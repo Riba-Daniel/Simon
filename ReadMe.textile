@@ -132,11 +132,11 @@ Lets look at the *Then ...* step
 As you can see there are two possible arguments in this step - *abc* and *5*. Simon can map these quite simply. The only rule is that the order of arguments in the method that will be executed matches the order of arguments in the step. Of course Simon also expects that the data types are a match as well. Here's the mapping:
 
 <pre lang="objc">
-SIMapStepToSelector(@".* I should be able to see (.*) and (.*) in the log", verifyText:andNumber:) 
-   -(void) verifyText:(NSString *) text andNumber:(int) number {
-      NSLog(@"Text: %@", text);
-      NSLog(@"Number: %i", number);
-   }
+SIMapStepToSelector(@".* I should be able to see (.*) and (.*) in the log", verifyText:andNumber:)
+-(void) verifyText:(NSString *) text andNumber:(int) number {
+   NSLog(@"Text: %@", text);
+   NSLog(@"Number: %i", number);
+}
 </pre>
 
 Simon will automatically scan the data types of the arguments and attempt a matching conversion. Also notice that in the regular expression I set the start to match any characters. This means that, for example, I could use this same expression with both a *Then ...* and a *And ...* step.

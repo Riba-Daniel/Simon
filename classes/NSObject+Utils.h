@@ -26,10 +26,18 @@
 /**
  Examines a string and returns the matching SIKeyword.
 
+ @param string an NSString instance containing a string which mapps to a SIKeyword.
+ 
  @return the matching SIkeyword.
  */
 -(SIKeyword) keywordFromString:(NSString *) string;
 
+/**
+ Returns a string representation of the keyword.
+ 
+ @param keyword the keyword we want the string for.
+ @return an NSString instance.
+ */
 -(NSString *) stringFromKeyword:(SIKeyword) keyword;
 
 @end

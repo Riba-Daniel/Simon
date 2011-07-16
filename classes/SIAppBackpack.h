@@ -10,13 +10,19 @@
 #import <dUsefulStuff/DCBackgroundTask.h>
 
 /**
- This class backpack's on a UIApplication in order to allow Simon to run in the background.
+ This class backpack's on a UIApplication in order to allow Simon to run in the background. You add it through the SIRun macro.
  */
 @interface SIAppBackpack : NSObject<DCBackgroundTask> {
 	@private 
 	NSString * fileName;
 }
+/// @name Initialisation
 
+/**
+ This init allows you to pass in a single story file rathe than having Simon scanning for all story files. This is most useful when debugging.
+ 
+ @param aFileName the .stories file you want to run.
+ */
 -(id) initWithStoryFile:(NSString *) aFileName;
 
 @end
