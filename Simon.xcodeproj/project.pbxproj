@@ -55,6 +55,11 @@
 		6583B41713D1B50F005E13F3 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6583B41613D1B50F005E13F3 /* RootViewController.m */; };
 		6583B41913D1B50F005E13F3 /* DetailViewController.h in Resources */ = {isa = PBXBuildFile; fileRef = 6583B41813D1B50F005E13F3 /* DetailViewController.h */; };
 		6583B41B13D1B50F005E13F3 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6583B41A13D1B50F005E13F3 /* DetailViewController.m */; };
+		6583B42313D1B861005E13F3 /* UI.stories in Resources */ = {isa = PBXBuildFile; fileRef = 6583B42213D1B861005E13F3 /* UI.stories */; };
+		6583B42713D1B98C005E13F3 /* dUsefulStuff.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 653D0EF213A7846B00A5AB82 /* dUsefulStuff.framework */; };
+		6583B42813D1C406005E13F3 /* libSimon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 653D0E8A13A782AD00A5AB82 /* libSimon.a */; };
+		6583B42913D1C439005E13F3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65D35BB813A872C50007A8AD /* CoreData.framework */; };
+		6583B42E13D1C4E6005E13F3 /* SimonUISteps.m in Sources */ = {isa = PBXBuildFile; fileRef = 6583B42C13D1C4E6005E13F3 /* SimonUISteps.m */; };
 		65A85A6413A86C6600599E31 /* GHUnitIOSTestMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A85A6313A86C6600599E31 /* GHUnitIOSTestMain.m */; };
 		65B647CE13B8B11E0083C114 /* SIStoryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B647CA13B8AE5E0083C114 /* SIStoryTests.m */; };
 		65D03BD713BA096700A3F0FA /* SIStoryReporter.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D03BD613BA096700A3F0FA /* SIStoryReporter.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -83,6 +88,16 @@
 		65FCD12E13B2291400A90FCA /* Unformatted.stories in Resources */ = {isa = PBXBuildFile; fileRef = 65FCD12D13B2245D00A90FCA /* Unformatted.stories */; };
 		65FCD13313B23E9100A90FCA /* SIStepMappingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FCD13013B23E8400A90FCA /* SIStepMappingTests.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6583B42513D1B8B1005E13F3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 653D0E8113A782AC00A5AB82 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 653D0E8913A782AD00A5AB82;
+			remoteInfo = Simon;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		652D4E4B13CDD44300633E51 /* SIAppBackpack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIAppBackpack.h; sourceTree = "<group>"; };
@@ -135,6 +150,8 @@
 		6583B41613D1B50F005E13F3 /* RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		6583B41813D1B50F005E13F3 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		6583B41A13D1B50F005E13F3 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		6583B42213D1B861005E13F3 /* UI.stories */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = UI.stories; sourceTree = "<group>"; };
+		6583B42C13D1C4E6005E13F3 /* SimonUISteps.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimonUISteps.m; sourceTree = "<group>"; };
 		65A85A6313A86C6600599E31 /* GHUnitIOSTestMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHUnitIOSTestMain.m; sourceTree = "<group>"; };
 		65B647CA13B8AE5E0083C114 /* SIStoryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIStoryTests.m; sourceTree = "<group>"; };
 		65D03BD613BA096700A3F0FA /* SIStoryReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIStoryReporter.h; sourceTree = "<group>"; };
@@ -188,9 +205,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6583B42813D1C406005E13F3 /* libSimon.a in Frameworks */,
 				6583B40313D1B50F005E13F3 /* UIKit.framework in Frameworks */,
 				6583B40413D1B50F005E13F3 /* Foundation.framework in Frameworks */,
 				6583B40513D1B50F005E13F3 /* CoreGraphics.framework in Frameworks */,
+				6583B42713D1B98C005E13F3 /* dUsefulStuff.framework in Frameworks */,
+				6583B42913D1C439005E13F3 /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,27 +277,9 @@
 		653D0EB113A783C000A5AB82 /* classes */ = {
 			isa = PBXGroup;
 			children = (
+				6583B42F13D1C9FF005E13F3 /* Stories */,
 				65D03BEF13BE014700A3F0FA /* Categories */,
-				653D0EB413A783C000A5AB82 /* SIEnums.h */,
-				653D0EB513A783C000A5AB82 /* SIStep.h */,
-				653D0EB613A783C000A5AB82 /* SIStep.m */,
-				653D0EB713A783C000A5AB82 /* SIStory.h */,
-				653D0EB813A783C000A5AB82 /* SIStory.m */,
-				653D0EBC13A783C000A5AB82 /* SIStoryFileReader.h */,
-				653D0EBD13A783C000A5AB82 /* SIStoryFileReader.m */,
-				6551A97F13AB904900679B94 /* SIStoryRunner.h */,
-				6551A98013AB904A00679B94 /* SIStoryRunner.m */,
 				6551A99213ACDEBE00679B94 /* SISimon.h */,
-				65D03BED13BDEBE000A3F0FA /* SIInternal.h */,
-				65FCD11C13AE2D6900A90FCA /* SIStepMapping.h */,
-				65FCD11D13AE2D6900A90FCA /* SIStepMapping.m */,
-				65FCD12413AF622300A90FCA /* SIRuntime.h */,
-				65FCD12513AF622300A90FCA /* SIRuntime.m */,
-				65D03BD613BA096700A3F0FA /* SIStoryReporter.h */,
-				65D03BD813BA099700A3F0FA /* SIStoryLogReporter.h */,
-				65D03BD913BA099700A3F0FA /* SIStoryLogReporter.m */,
-				652D4E4B13CDD44300633E51 /* SIAppBackpack.h */,
-				652D4E4C13CDD44400633E51 /* SIAppBackpack.m */,
 			);
 			path = classes;
 			sourceTree = "<group>";
@@ -285,19 +287,11 @@
 		653D0ED413A783DC00A5AB82 /* tests */ = {
 			isa = PBXGroup;
 			children = (
-				65A85A6313A86C6600599E31 /* GHUnitIOSTestMain.m */,
-				653D0ED513A783DC00A5AB82 /* GHUnit-Tests-Info.plist */,
-				65B647CA13B8AE5E0083C114 /* SIStoryTests.m */,
-				653D0ED713A783DC00A5AB82 /* SIStepTests.m */,
-				65FCD13013B23E8400A90FCA /* SIStepMappingTests.m */,
-				653D0ED913A783DC00A5AB82 /* SIStoryFileReaderTests.m */,
+				6583B43113D1CB4F005E13F3 /* GHUnit */,
+				6583B43013D1CB2E005E13F3 /* Stories */,
 				653D0EDB13A783DC00A5AB82 /* UITreeTests.m */,
 				65D35BC213A8BA130007A8AD /* NSObject+UtilsTests.m */,
-				6551A98613AB931F00679B94 /* SIStoryRunnerTests.m */,
 				6551A98E13AC8B8900679B94 /* NSString+UtilsTests.m */,
-				65FCD11713ADE3C200A90FCA /* SIRuntimeTests.m */,
-				65D03BE813BCB94F00A3F0FA /* CommsASteps.m */,
-				65D03BEB13BCBA3100A3F0FA /* CommsBSteps.m */,
 				653D0EDD13A783DC00A5AB82 /* stories */,
 			);
 			path = tests;
@@ -321,6 +315,8 @@
 		6583B40613D1B50F005E13F3 /* Test Navigation App */ = {
 			isa = PBXGroup;
 			children = (
+				6583B42A13D1C4BA005E13F3 /* test */,
+				6583B42113D1B82A005E13F3 /* stories */,
 				6583B40F13D1B50F005E13F3 /* Test_Navigation_AppAppDelegate.h */,
 				6583B41013D1B50F005E13F3 /* Test_Navigation_AppAppDelegate.m */,
 				6583B41213D1B50F005E13F3 /* MainStoryboard.storyboard */,
@@ -342,6 +338,72 @@
 				6583B40E13D1B50F005E13F3 /* Test Navigation App-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6583B42113D1B82A005E13F3 /* stories */ = {
+			isa = PBXGroup;
+			children = (
+				6583B42213D1B861005E13F3 /* UI.stories */,
+			);
+			path = stories;
+			sourceTree = "<group>";
+		};
+		6583B42A13D1C4BA005E13F3 /* test */ = {
+			isa = PBXGroup;
+			children = (
+				6583B42C13D1C4E6005E13F3 /* SimonUISteps.m */,
+			);
+			path = test;
+			sourceTree = "<group>";
+		};
+		6583B42F13D1C9FF005E13F3 /* Stories */ = {
+			isa = PBXGroup;
+			children = (
+				65D03BD613BA096700A3F0FA /* SIStoryReporter.h */,
+				653D0EB413A783C000A5AB82 /* SIEnums.h */,
+				653D0EB513A783C000A5AB82 /* SIStep.h */,
+				653D0EB613A783C000A5AB82 /* SIStep.m */,
+				653D0EB713A783C000A5AB82 /* SIStory.h */,
+				653D0EB813A783C000A5AB82 /* SIStory.m */,
+				653D0EBC13A783C000A5AB82 /* SIStoryFileReader.h */,
+				653D0EBD13A783C000A5AB82 /* SIStoryFileReader.m */,
+				6551A97F13AB904900679B94 /* SIStoryRunner.h */,
+				6551A98013AB904A00679B94 /* SIStoryRunner.m */,
+				65D03BED13BDEBE000A3F0FA /* SIInternal.h */,
+				65FCD11C13AE2D6900A90FCA /* SIStepMapping.h */,
+				65FCD11D13AE2D6900A90FCA /* SIStepMapping.m */,
+				65FCD12413AF622300A90FCA /* SIRuntime.h */,
+				65FCD12513AF622300A90FCA /* SIRuntime.m */,
+				65D03BD813BA099700A3F0FA /* SIStoryLogReporter.h */,
+				65D03BD913BA099700A3F0FA /* SIStoryLogReporter.m */,
+				652D4E4B13CDD44300633E51 /* SIAppBackpack.h */,
+				652D4E4C13CDD44400633E51 /* SIAppBackpack.m */,
+			);
+			name = Stories;
+			sourceTree = "<group>";
+		};
+		6583B43013D1CB2E005E13F3 /* Stories */ = {
+			isa = PBXGroup;
+			children = (
+				65B647CA13B8AE5E0083C114 /* SIStoryTests.m */,
+				653D0ED713A783DC00A5AB82 /* SIStepTests.m */,
+				65FCD13013B23E8400A90FCA /* SIStepMappingTests.m */,
+				653D0ED913A783DC00A5AB82 /* SIStoryFileReaderTests.m */,
+				6551A98613AB931F00679B94 /* SIStoryRunnerTests.m */,
+				65FCD11713ADE3C200A90FCA /* SIRuntimeTests.m */,
+			);
+			name = Stories;
+			sourceTree = "<group>";
+		};
+		6583B43113D1CB4F005E13F3 /* GHUnit */ = {
+			isa = PBXGroup;
+			children = (
+				65A85A6313A86C6600599E31 /* GHUnitIOSTestMain.m */,
+				653D0ED513A783DC00A5AB82 /* GHUnit-Tests-Info.plist */,
+				65D03BE813BCB94F00A3F0FA /* CommsASteps.m */,
+				65D03BEB13BCBA3100A3F0FA /* CommsBSteps.m */,
+			);
+			name = GHUnit;
 			sourceTree = "<group>";
 		};
 		65D03BEF13BE014700A3F0FA /* Categories */ = {
@@ -428,6 +490,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				6583B42613D1B8B1005E13F3 /* PBXTargetDependency */,
 			);
 			name = "Test Navigation App";
 			productName = "Test Navigation App";
@@ -484,6 +547,7 @@
 				6583B40B13D1B50F005E13F3 /* InfoPlist.strings in Resources */,
 				6583B41413D1B50F005E13F3 /* MainStoryboard.storyboard in Resources */,
 				6583B41913D1B50F005E13F3 /* DetailViewController.h in Resources */,
+				6583B42313D1B861005E13F3 /* UI.stories in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -504,6 +568,7 @@
 				65FCD12713AF622400A90FCA /* SIRuntime.m in Sources */,
 				65D03BDB13BA099700A3F0FA /* SIStoryLogReporter.m in Sources */,
 				652D4E4E13CDD44400633E51 /* SIAppBackpack.m in Sources */,
+				6583B42E13D1C4E6005E13F3 /* SimonUISteps.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -548,6 +613,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6583B42613D1B8B1005E13F3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 653D0E8913A782AD00A5AB82 /* Simon */;
+			targetProxy = 6583B42513D1B8B1005E13F3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		6583B40913D1B50F005E13F3 /* InfoPlist.strings */ = {
@@ -695,8 +768,11 @@
 		6583B41C13D1B50F005E13F3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_OBJC_ARC = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../Releases/dUsefulStuff/v0.0.10\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Test Navigation App/Test Navigation App-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -704,7 +780,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "Test Navigation App/Test Navigation App-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -713,12 +789,15 @@
 		6583B41D13D1B50F005E13F3 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_OBJC_ARC = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../Releases/dUsefulStuff/v0.0.10\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Test Navigation App/Test Navigation App-Prefix.pch";
 				INFOPLIST_FILE = "Test Navigation App/Test Navigation App-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
