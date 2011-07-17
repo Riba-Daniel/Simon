@@ -10,11 +10,16 @@
 
 #import "Test_Navigation_AppAppDelegate.h"
 
+#import "SISimon.h"
+
 int main(int argc, char *argv[])
 {
 	int retVal = 0;
 	@autoreleasepool {
-	    retVal = UIApplicationMain(argc, argv, nil, NSStringFromClass([Test_Navigation_AppAppDelegate class]));
+		
+		SIRun();
+		
+		retVal = UIApplicationMain(argc, argv, nil, NSStringFromClass([Test_Navigation_AppAppDelegate class]));
 	}
 	return retVal;
 }

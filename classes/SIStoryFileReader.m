@@ -104,7 +104,7 @@
 
 	// Validate the order of keywords.
 	SIKeyword priorKeyword = [self priorKeyword];
-	DC_LOG(@"Checking keywords %@ -> %@", 
+	DC_LOG(@"Syntax check %@ -> %@", 
 			 [self stringFromKeyword: priorKeyword],
 			 [self stringFromKeyword: keyword]);
 	
@@ -112,7 +112,7 @@
 	// whether the syntax is ok.
 	switch (priorKeyword) {
 
-		case SIKeywordNone:
+		case SIKeywordStartOfFile:
 			if (keyword != SIKeywordStory) {
 				*error = [self errorForCode:SIErrorInvalidStorySyntax 
 							  shortDescription:@"Incorrect keyword order" 
@@ -182,7 +182,7 @@
 	
 	// If there is no current story then it's the first story so return none.
 	if (story == nil) {
-		return SIKeywordNone;
+		return SIKeywordStartOfFile;
 	}
 	
 	// Go backwards to find the prior keyword.
@@ -230,7 +230,10 @@
 	[stories addObject:story];
 	
 	// Store the title.
-	NSString *title = [[line substringFromIndex: 6] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+	NSString *title = [[line substringFromIndex: 5] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+	if ([line hasPrefix:@":"]) {
+		title = [[line substringFromIndex: 1] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+	}
 	story.title = title;
 }
 

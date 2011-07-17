@@ -1,0 +1,4 @@
+Story:
+
+Given test app is ready.
+Then display the view hirachy.

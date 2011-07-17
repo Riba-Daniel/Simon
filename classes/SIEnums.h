@@ -14,7 +14,8 @@
  */
 typedef enum {
 	SIKeywordUnknown = 999,
-	SIKeywordNone = 0,
+	SIKeywordStartOfFile = 0,
+	SIKeywordNone,
 	SIKeywordStory,
 	SIKeywordGiven,
 	SIKeywordThen,
