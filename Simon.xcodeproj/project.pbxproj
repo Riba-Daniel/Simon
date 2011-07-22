@@ -33,8 +33,6 @@
 		653D0EEE13A783DC00A5AB82 /* Non keyword steps.stories in Resources */ = {isa = PBXBuildFile; fileRef = 653D0EDE13A783DC00A5AB82 /* Non keyword steps.stories */; };
 		653D0EEF13A783DC00A5AB82 /* Story files.stories in Resources */ = {isa = PBXBuildFile; fileRef = 653D0EDF13A783DC00A5AB82 /* Story files.stories */; };
 		653D0EF113A7842500A5AB82 /* Simon-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 653D0EF013A7842500A5AB82 /* Simon-Prefix.pch */; };
-		653D0EF313A7846B00A5AB82 /* dUsefulStuff.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 653D0EF213A7846B00A5AB82 /* dUsefulStuff.framework */; };
-		653D0EFD13A7851C00A5AB82 /* dUsefulStuff.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 653D0EF213A7846B00A5AB82 /* dUsefulStuff.framework */; };
 		653D0EFE13A7852200A5AB82 /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 653D0EF613A784A500A5AB82 /* OCMock.framework */; };
 		6551A98113AB904A00679B94 /* SIStoryRunner.h in Headers */ = {isa = PBXBuildFile; fileRef = 6551A97F13AB904900679B94 /* SIStoryRunner.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6551A98213AB904A00679B94 /* SIStoryRunner.m in Sources */ = {isa = PBXBuildFile; fileRef = 6551A98013AB904A00679B94 /* SIStoryRunner.m */; };
@@ -56,9 +54,7 @@
 		6583B41913D1B50F005E13F3 /* DetailViewController.h in Resources */ = {isa = PBXBuildFile; fileRef = 6583B41813D1B50F005E13F3 /* DetailViewController.h */; };
 		6583B41B13D1B50F005E13F3 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6583B41A13D1B50F005E13F3 /* DetailViewController.m */; };
 		6583B42313D1B861005E13F3 /* UI.stories in Resources */ = {isa = PBXBuildFile; fileRef = 6583B42213D1B861005E13F3 /* UI.stories */; };
-		6583B42713D1B98C005E13F3 /* dUsefulStuff.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 653D0EF213A7846B00A5AB82 /* dUsefulStuff.framework */; };
 		6583B42813D1C406005E13F3 /* libSimon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 653D0E8A13A782AD00A5AB82 /* libSimon.a */; };
-		6583B42913D1C439005E13F3 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65D35BB813A872C50007A8AD /* CoreData.framework */; };
 		6583B42E13D1C4E6005E13F3 /* SimonUISteps.m in Sources */ = {isa = PBXBuildFile; fileRef = 6583B42C13D1C4E6005E13F3 /* SimonUISteps.m */; };
 		65A85A6413A86C6600599E31 /* GHUnitIOSTestMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A85A6313A86C6600599E31 /* GHUnitIOSTestMain.m */; };
 		65B647CE13B8B11E0083C114 /* SIStoryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B647CA13B8AE5E0083C114 /* SIStoryTests.m */; };
@@ -74,8 +70,8 @@
 		65D03BE913BCB95000A3F0FA /* CommsASteps.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D03BE813BCB94F00A3F0FA /* CommsASteps.m */; };
 		65D03BEC13BCBA3100A3F0FA /* CommsBSteps.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D03BEB13BCBA3100A3F0FA /* CommsBSteps.m */; };
 		65D03BEE13BDEBE000A3F0FA /* SIInternal.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D03BED13BDEBE000A3F0FA /* SIInternal.h */; };
-		65D35BB913A872C50007A8AD /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65D35BB813A872C50007A8AD /* CoreData.framework */; };
-		65D35BBB13A872CE0007A8AD /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65D35BB813A872C50007A8AD /* CoreData.framework */; };
+		65D09A5213D961AB00D1A74B /* dXpath.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65D09A5113D961AB00D1A74B /* dXpath.framework */; };
+		65D09A6413D99C5900D1A74B /* dUsefulStuff.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65D09A6313D99C5900D1A74B /* dUsefulStuff.framework */; };
 		65D35BC313A8BA130007A8AD /* NSObject+UtilsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D35BC213A8BA130007A8AD /* NSObject+UtilsTests.m */; };
 		65F0F80213CF0BDA00FF56F6 /* SIAppBackpack.m in Sources */ = {isa = PBXBuildFile; fileRef = 652D4E4C13CDD44400633E51 /* SIAppBackpack.m */; };
 		65FCD11913ADE3F700A90FCA /* SIRuntimeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FCD11713ADE3C200A90FCA /* SIRuntimeTests.m */; };
@@ -124,7 +120,6 @@
 		653D0EDE13A783DC00A5AB82 /* Non keyword steps.stories */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Non keyword steps.stories"; sourceTree = "<group>"; };
 		653D0EDF13A783DC00A5AB82 /* Story files.stories */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Story files.stories"; sourceTree = "<group>"; };
 		653D0EF013A7842500A5AB82 /* Simon-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Simon-Prefix.pch"; sourceTree = "<group>"; };
-		653D0EF213A7846B00A5AB82 /* dUsefulStuff.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = dUsefulStuff.framework; path = ../Releases/dUsefulStuff/v0.0.10/dUsefulStuff.framework; sourceTree = "<group>"; };
 		653D0EF613A784A500A5AB82 /* OCMock.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OCMock.framework; path = ../tools/OCMock.framework; sourceTree = "<group>"; };
 		653D0EF813A784C100A5AB82 /* GHUnitIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GHUnitIOS.framework; path = "../tools/GHUnit 0.4.28/GHUnitIOS.framework"; sourceTree = "<group>"; };
 		6551A97F13AB904900679B94 /* SIStoryRunner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIStoryRunner.h; sourceTree = "<group>"; };
@@ -165,7 +160,8 @@
 		65D03BE813BCB94F00A3F0FA /* CommsASteps.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommsASteps.m; sourceTree = "<group>"; };
 		65D03BEB13BCBA3100A3F0FA /* CommsBSteps.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommsBSteps.m; sourceTree = "<group>"; };
 		65D03BED13BDEBE000A3F0FA /* SIInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIInternal.h; sourceTree = "<group>"; };
-		65D35BB813A872C50007A8AD /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		65D09A5113D961AB00D1A74B /* dXpath.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = dXpath.framework; path = ../Releases/dXpath/v0.1.0/dXpath.framework; sourceTree = "<group>"; };
+		65D09A6313D99C5900D1A74B /* dUsefulStuff.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = dUsefulStuff.framework; path = ../Releases/dUsefulStuff/v0.0.11/dUsefulStuff.framework; sourceTree = "<group>"; };
 		65D35BC213A8BA130007A8AD /* NSObject+UtilsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+UtilsTests.m"; sourceTree = "<group>"; };
 		65FCD11713ADE3C200A90FCA /* SIRuntimeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIRuntimeTests.m; sourceTree = "<group>"; };
 		65FCD11C13AE2D6900A90FCA /* SIStepMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIStepMapping.h; sourceTree = "<group>"; };
@@ -181,9 +177,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				653D0EF313A7846B00A5AB82 /* dUsefulStuff.framework in Frameworks */,
+				65D09A6413D99C5900D1A74B /* dUsefulStuff.framework in Frameworks */,
+				65D09A5213D961AB00D1A74B /* dXpath.framework in Frameworks */,
 				653D0E8E13A782AD00A5AB82 /* Foundation.framework in Frameworks */,
-				65D35BBB13A872CE0007A8AD /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -191,11 +187,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65D35BB913A872C50007A8AD /* CoreData.framework in Frameworks */,
 				653D0E9E13A783A500A5AB82 /* UIKit.framework in Frameworks */,
 				653D0E9F13A783A500A5AB82 /* Foundation.framework in Frameworks */,
 				653D0EA113A783A500A5AB82 /* CoreGraphics.framework in Frameworks */,
-				653D0EFD13A7851C00A5AB82 /* dUsefulStuff.framework in Frameworks */,
 				653D0EFE13A7852200A5AB82 /* OCMock.framework in Frameworks */,
 				6527B7CA13A871DF005A912F /* GHUnitIOS.framework in Frameworks */,
 			);
@@ -209,8 +203,6 @@
 				6583B40313D1B50F005E13F3 /* UIKit.framework in Frameworks */,
 				6583B40413D1B50F005E13F3 /* Foundation.framework in Frameworks */,
 				6583B40513D1B50F005E13F3 /* CoreGraphics.framework in Frameworks */,
-				6583B42713D1B98C005E13F3 /* dUsefulStuff.framework in Frameworks */,
-				6583B42913D1C439005E13F3 /* CoreData.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -247,8 +239,8 @@
 		653D0E8C13A782AD00A5AB82 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				65D35BB813A872C50007A8AD /* CoreData.framework */,
-				653D0EF213A7846B00A5AB82 /* dUsefulStuff.framework */,
+				65D09A6313D99C5900D1A74B /* dUsefulStuff.framework */,
+				65D09A5113D961AB00D1A74B /* dXpath.framework */,
 				653D0EF813A784C100A5AB82 /* GHUnitIOS.framework */,
 				653D0EF613A784A500A5AB82 /* OCMock.framework */,
 				653D0E8D13A782AD00A5AB82 /* Foundation.framework */,
@@ -650,6 +642,7 @@
 				CLANG_ENABLE_OBJC_ARC = NO;
 				CLANG_WARN_OBJCPP_ARC_ABI = NO;
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../Releases/dXpath/v0.1.0\"";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -676,8 +669,9 @@
 				CLANG_ENABLE_OBJC_ARC = NO;
 				CLANG_WARN_OBJCPP_ARC_ABI = NO;
 				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = "\"$(SRCROOT)/../Releases/dXpath/v0.1.0\"";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PREPROCESSOR_DEFINITIONS = DC_DEBUG;
+				GCC_PREPROCESSOR_DEFINITIONS = "";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -698,7 +692,7 @@
 				DSTROOT = /tmp/Simon.dst;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../Releases/dUsefulStuff/v0.0.10\"",
+					"\"$(SRCROOT)/../Releases/dUsefulStuff/v0.0.11\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Simon-Prefix.pch";
@@ -713,7 +707,7 @@
 				DSTROOT = /tmp/Simon.dst;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../Releases/dUsefulStuff/v0.0.10\"",
+					"\"$(SRCROOT)/../Releases/dUsefulStuff/v0.0.11\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Simon-Prefix.pch";
@@ -732,7 +726,6 @@
 					"\"$(SRCROOT)/../Releases/OCMock/v0.1.7\"",
 					"\"$(SRCROOT)/../tools\"",
 					"\"$(SRCROOT)/../tools/GHUnit 0.4.28\"",
-					"\"$(SRCROOT)/../Releases/dUsefulStuff/v0.0.10\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Simon-Prefix.pch";
@@ -753,7 +746,6 @@
 					"\"$(SRCROOT)/../Releases/OCMock/v0.1.7\"",
 					"\"$(SRCROOT)/../tools\"",
 					"\"$(SRCROOT)/../tools/GHUnit 0.4.28\"",
-					"\"$(SRCROOT)/../Releases/dUsefulStuff/v0.0.10\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Simon-Prefix.pch";
@@ -769,10 +761,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../Releases/dUsefulStuff/v0.0.10\"",
-				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Test Navigation App/Test Navigation App-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -790,10 +778,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../Releases/dUsefulStuff/v0.0.10\"",
-				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Test Navigation App/Test Navigation App-Prefix.pch";
 				INFOPLIST_FILE = "Test Navigation App/Test Navigation App-Info.plist";
@@ -841,6 +825,7 @@
 				6583B41D13D1B50F005E13F3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

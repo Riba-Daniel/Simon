@@ -1,3 +1,8 @@
+h1. Version 0.2.0
+July 2011
+
+* Brought in dXPath to handle XPath queries against a UI.
+
 h1. Version 0.1.0
 July 2011
 

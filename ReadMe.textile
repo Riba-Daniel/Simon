@@ -35,9 +35,19 @@ Here's the basic sequence:
 # You then open the startup code and add 1 line to get Simon launched in the background.
 # You write one or more classes containing the code that executed each step in the stories.
 # You add one line macros to the classes for each step, mapping the story step to a method.
-# You lanuch the target on your simulator or device. Simon will automatically startup, read the story files, match the steps to the methos and run each story. At the end Simon will produce a repot detailing successful executions of stories or failures.
+# You lanuch the target on your simulator or device. Simon will automatically startup, read the story files, match the steps to the methods and run each story. At the end Simon will produce a report detailing successful executions of stories or failures.
 
 h1. How do I install it?
+
+First there are three frameworks you need to download. They are:
+
+* "Simon framework":http://github.com/drekka/Simon
+* "dUsefulStuff framework":http://github.com/drekka/dUsefulStuff - version 0.0.11+
+* "dXPath framework":http://github.com/drekka/dXpath - version 0.1.0+
+
+Download the DMG files for each. Open each one and drag and drop the framework files to a directory. Open XCode again, select your target and go to *Build Phases* and *Link Binary With Libraries". Then click *&#91;+&#93;* to add library. Select *Add Other...* and then the framework directory you just copied. Do the same for the other frameworks.
+
+h1. Adding Simon to your project
 
 Simon is designed to run on a background thread in your app. To save you from having the headache of working this out, there is a simple macro you can use to install and run stories. This macros:
 
