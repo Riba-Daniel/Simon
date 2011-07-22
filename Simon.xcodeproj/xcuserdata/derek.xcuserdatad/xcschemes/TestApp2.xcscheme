@@ -13,9 +13,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "653D0E9A13A783A500A5AB82"
-               BuildableName = "Unit tests.app"
-               BlueprintName = "Unit tests"
+               BlueprintIdentifier = "659E625913D9BE9600ACD34C"
+               BuildableName = "TestApp2.app"
+               BlueprintName = "TestApp2"
                ReferencedContainer = "container:Simon.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -39,9 +39,9 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "653D0E9A13A783A500A5AB82"
-            BuildableName = "Unit tests.app"
-            BlueprintName = "Unit tests"
+            BlueprintIdentifier = "659E625913D9BE9600ACD34C"
+            BuildableName = "TestApp2.app"
+            BlueprintName = "TestApp2"
             ReferencedContainer = "container:Simon.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -57,9 +57,9 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "653D0E9A13A783A500A5AB82"
-            BuildableName = "Unit tests.app"
-            BlueprintName = "Unit tests"
+            BlueprintIdentifier = "659E625913D9BE9600ACD34C"
+            BuildableName = "TestApp2.app"
+            BlueprintName = "TestApp2"
             ReferencedContainer = "container:Simon.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

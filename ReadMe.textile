@@ -45,7 +45,7 @@ First there are three frameworks you need to download. They are:
 * "dUsefulStuff framework":http://github.com/drekka/dUsefulStuff - version 0.0.11+
 * "dXPath framework":http://github.com/drekka/dXpath - version 0.1.0+
 
-Download the DMG files for each. Open each one and drag and drop the framework files to a directory. Open XCode again, select your target and go to *Build Phases* and *Link Binary With Libraries". Then click *&#91;+&#93;* to add library. Select *Add Other...* and then the framework directory you just copied. Do the same for the other frameworks.
+Download the DMG files for each. Open each one and drag and drop the framework files to a directory. Open XCode again, select your target and go to *Build Phases* and *Link Binary With Libraries*. Then click *&#91;+&#93;* to add library. Select *Add Other...* and then the framework directory you just copied. Do the same for the other frameworks.
 
 h1. Adding Simon to your project
 

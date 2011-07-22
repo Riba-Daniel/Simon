@@ -9,10 +9,15 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
-		<key>Test Navigation App.xcscheme</key>
+		<key>TestApp.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>2</integer>
+		</dict>
+		<key>TestApp2.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
 		</dict>
 		<key>Unit tests.xcscheme</key>
 		<dict>
@@ -33,6 +38,16 @@
 			<true/>
 		</dict>
 		<key>6583B40013D1B50F005E13F3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>659E625913D9BE9600ACD34C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>65D09A8013D9AD3800D1A74B</key>
 		<dict>
 			<key>primary</key>
 			<true/>

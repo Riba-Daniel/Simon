@@ -16,10 +16,12 @@
  If you want a particular story file to be run, just enter it's name as a parameter.
  */
 #define SIRun() \
-	[[SIAppBackpack alloc] init];
+	SIAppBackpack *backpack = [[SIAppBackpack alloc] init]; \
+	DC_LOG(@"Started backpack %@", [backpack description]);
 
 #define SIRunFile(storyFile) \
-	[[SIAppBackpack alloc] initWithStoryFile:storyFile];
+	SIAppBackpack *backpack = [[SIAppBackpack alloc] initWithStoryFile:storyFile]; \
+	DC_LOG(@"Started backpack %@", [backpack description]);
 
 /**
  This macro maps a regex to a selector in the current class. Simon expects that the order and type of any groups in the regex will
