@@ -9,6 +9,7 @@
 #import "SIStepMapping.h"
 #import "NSObject+Utils.h"
 #import <dUsefulStuff/DCCommon.h>
+#import <dUsefulStuff/NSobject+dUsefulStuff.h>
 #import "SIEnums.h"
 
 @interface SIStepMapping()
@@ -41,27 +42,30 @@
 		// Look for regular expression errors so we can provide a better message.
 		if ([*error code] == 2048) {
 			*error = [self errorForCode:SIErrorInvalidRegularExpression 
+								 errorDomain:SIMON_ERROR_DOMAIN 
 						  shortDescription:@"Invalid regular expression"
 							  failureReason:
 						 [NSString stringWithFormat:@"The passed regular expression \"%@\" is invalid.", theRegex]];
 		} 
 		return nil;
 	}
-
+	
 	// Validate that the method exists.
 	Method method = class_getInstanceMethod(theClass, aSelector);
 	if (method == nil) {
 		*error = [self errorForCode:SIErrorUnknownSelector 
+							 errorDomain:SIMON_ERROR_DOMAIN 
 					  shortDescription:@"Selector not found"
 						  failureReason:
 					 [NSString stringWithFormat:@"The passed selector %@ was not found in class %@", NSStringFromSelector(aSelector), NSStringFromClass(theClass)]];
 		return NO;
 	}
-
+	
 	// Validate that the the regex's number of capture groups match the number of selector arguments.
 	int nbrArgs = method_getNumberOfArguments(method) - 2;
 	if ([mapping.regex numberOfCaptureGroups] != nbrArgs) {
 		*error = [self errorForCode:SIErrorRegularExpressionWillNotMatchSelector 
+							 errorDomain:SIMON_ERROR_DOMAIN 
 					  shortDescription:@"Regular expression and selector mis-match."
 						  failureReason:
 					 [NSString stringWithFormat:@"The passed regular expression \"%@\" has a different number of arguments to the selector %@"
@@ -79,7 +83,10 @@
 }
 
 -(BOOL) invokeWithObject:(id) object error:(NSError **) error {
-	
+
+	// flag that we have been called.
+	executed = YES;
+
 	// Create the invocation.
 	Method method = class_getInstanceMethod(targetClass, selector);
 	NSInvocation *invocation = [self createInvocationForMethod:method];
@@ -185,8 +192,9 @@
 			break;
 			
 		default:
-			*error = [self errorForCode:SIErrorCannotConvertArgumentToType shortDescription:[NSString stringWithFormat:@"Cannot handle selector %@, argument %i, type %c", 
-																														NSStringFromSelector(self.selector), index - 2, type]
+			*error = [self errorForCode:SIErrorCannotConvertArgumentToType 
+								 errorDomain:SIMON_ERROR_DOMAIN 
+						  shortDescription:[NSString stringWithFormat:@"Cannot handle selector %@, argument %i, type %c", NSStringFromSelector(self.selector), index - 2, type]
 							  failureReason:[NSString stringWithFormat:@"Selector %@ has an argument type of %c at parameter %i, I cannot handle that type at this time.",
 												  NSStringFromSelector(self.selector), type, index - 2]];
 			return NO;

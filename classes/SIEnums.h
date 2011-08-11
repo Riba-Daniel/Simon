@@ -37,7 +37,9 @@ typedef enum {
 	SIErrorCannotConvertArgumentToType,
 	SIErrorRegularExpressionWillNotMatchSelector,
 	SIErrorNoStoriesFound,
-	SIErrorStoryFailures
+	SIErrorStoryFailures,
+	SIUIErrorExpectAtLeastOneView,
+	SIUIErrorExpectOnlyOneView
 } SIError;
 
 /**

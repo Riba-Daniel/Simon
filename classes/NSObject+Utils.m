@@ -10,14 +10,6 @@
 
 @implementation NSObject (NSObject_Utils)
 
--(NSError *) errorForCode:(SIError) errorCode shortDescription:(NSString *) shortDescription failureReason:(NSString *) failureReason {
-	NSDictionary * dic = [NSDictionary dictionaryWithObjectsAndKeys:
-								 shortDescription, NSLocalizedDescriptionKey, 
-								 failureReason, NSLocalizedFailureReasonErrorKey, 
-								 nil];
-	return [NSError errorWithDomain:SIMON_ERROR_DOMAIN code:errorCode userInfo:dic];
-}
-
 -(SIKeyword) keywordFromString:(NSString *) string {
 	NSString * upper = [string uppercaseString];
 	if ([@"STORY" isEqualToString:upper]) {

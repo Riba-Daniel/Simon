@@ -13,9 +13,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6583B40013D1B50F005E13F3"
-               BuildableName = "Test Navigation App.app"
-               BlueprintName = "Test Navigation App"
+               BlueprintIdentifier = "653D0E8913A782AD00A5AB82"
+               BuildableName = "libSimon.a"
+               BlueprintName = "Simon"
                ReferencedContainer = "container:Simon.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -35,16 +35,8 @@
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Debug"
-      debugDocumentVersioning = "YES">
-      <BuildableProductRunnable>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "6583B40013D1B50F005E13F3"
-            BuildableName = "Test Navigation App.app"
-            BlueprintName = "Test Navigation App"
-            ReferencedContainer = "container:Simon.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
+      debugDocumentVersioning = "YES"
+      allowLocationSimulation = "YES">
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -54,15 +46,6 @@
       useCustomWorkingDirectory = "NO"
       buildConfiguration = "Release"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "6583B40013D1B50F005E13F3"
-            BuildableName = "Test Navigation App.app"
-            BlueprintName = "Test Navigation App"
-            ReferencedContainer = "container:Simon.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">

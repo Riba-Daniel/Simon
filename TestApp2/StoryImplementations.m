@@ -26,7 +26,7 @@ SIMapStepToSelector(@"then I can switch to the second view", clickTheSecondView)
 
 SIMapStepToSelector(@"and see the view", verifyTheViewIsVisible)
 -(void) verifyTheViewIsVisible {
-	
+	SIPrintCurrentWindowTree();
 }
 
 @end

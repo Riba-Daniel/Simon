@@ -7,6 +7,7 @@
 //
 
 #import <dUsefulStuff/DCCommon.h>
+#import <dUsefulStuff/NSObject+dUsefulStuff.h>
 
 #import "SIStoryFileReader.h"
 #import "SIEnums.h"
@@ -97,11 +98,12 @@
 	if (keyword == SIKeywordUnknown) {
 		DC_LOG(@"Detected unknown keyword in step: %@", cleanLine);
 		*error = [self errorForCode:SIErrorInvalidKeyword 
+							 errorDomain:SIMON_ERROR_DOMAIN 
 					  shortDescription:@"Story syntax error, unknown keyword" 
 						  failureReason:[NSString stringWithFormat:@"Story syntax error in %@, unknown keyword on step \"%@\"", file, cleanLine]];
 		return NO;
 	}
-
+	
 	// Validate the order of keywords.
 	SIKeyword priorKeyword = [self priorKeyword];
 	DC_LOG(@"Syntax check %@ -> %@", 
@@ -111,10 +113,11 @@
 	// Cross reference the prior keyword and current keyword to decide
 	// whether the syntax is ok.
 	switch (priorKeyword) {
-
+			
 		case SIKeywordStartOfFile:
 			if (keyword != SIKeywordStory) {
 				*error = [self errorForCode:SIErrorInvalidStorySyntax 
+									 errorDomain:SIMON_ERROR_DOMAIN 
 							  shortDescription:@"Incorrect keyword order" 
 								  failureReason:@"Incorrect keyword order, the Story: keyword must be the first keyword."];
 				return NO;
@@ -124,15 +127,17 @@
 		case SIKeywordStory: // SIKeywordStory so no prior.
 			if (keyword != SIKeywordGiven && keyword != SIKeywordAs) {
 				*error = [self errorForCode:SIErrorInvalidStorySyntax 
+									 errorDomain:SIMON_ERROR_DOMAIN 
 							  shortDescription:@"Incorrect keyword order" 
 								  failureReason:@"Incorrect keyword order, As or Given must appear after Story:"];
 				return NO;
 			}
 			break;
-
+			
 		case SIKeywordGiven:
 			if (keyword == SIKeywordGiven || keyword == SIKeywordAs || keyword == SIKeywordStory) {
 				*error = [self errorForCode:SIErrorInvalidStorySyntax 
+									 errorDomain:SIMON_ERROR_DOMAIN 
 							  shortDescription:@"Incorrect keyword order" 
 								  failureReason:@"Incorrect keyword order, only Then, And or Story: can appear after Given"];
 				return NO;
@@ -142,6 +147,7 @@
 		case SIKeywordAs:
 			if (keyword != SIKeywordGiven && keyword != SIKeywordThen) {
 				*error = [self errorForCode:SIErrorInvalidStorySyntax 
+									 errorDomain:SIMON_ERROR_DOMAIN 
 							  shortDescription:@"Incorrect keyword order" 
 								  failureReason:@"Incorrect keyword order, only Given or Then can appear after As"];
 				return NO;
@@ -150,6 +156,7 @@
 		case SIKeywordThen:
 			if (keyword != SIKeywordAnd && keyword != SIKeywordStory) {
 				*error = [self errorForCode:SIErrorInvalidStorySyntax 
+									 errorDomain:SIMON_ERROR_DOMAIN 
 							  shortDescription:@"Incorrect keyword order" 
 								  failureReason:[NSString stringWithFormat:@"Incorrect keyword order, %@ cannot appear after Then", [self stringFromKeyword:keyword]]];
 				return NO;
@@ -160,13 +167,13 @@
 		default: // SIKeywordUnknown
 			break;
 	}
-
+	
 	// Create a new story if its the story keyword and return without add a step.
 	if (keyword == SIKeywordStory) {
 		[self createNewStory:cleanLine];
 		return YES;
 	}
-
+	
 	// Now add the step to the current story.
 	DC_LOG(@"Adding step: %@", cleanLine);
 	[story newStepWithKeyword:keyword command:cleanLine];
@@ -205,6 +212,7 @@
 	
 	if (!foundWord) {
 		*error = [self errorForCode:SIErrorInvalidStorySyntax 
+							 errorDomain:SIMON_ERROR_DOMAIN 
 					  shortDescription:@"Story syntax error, step does not begin with a word" 
 						  failureReason:@"Each line of a story must start with a valid keyword (Story, Given, Then, As or And) or a comment."];
 		return SIKeywordUnknown;
@@ -213,6 +221,7 @@
 	SIKeyword keyword = [self keywordFromString:firstWord];
 	if (keyword == SIKeywordUnknown) {
 		*error = [self errorForCode:SIErrorInvalidStorySyntax 
+							 errorDomain:SIMON_ERROR_DOMAIN 
 					  shortDescription:[NSString stringWithFormat:@"Story syntax error, unknown keyword %@", firstWord] 
 						  failureReason:[NSString stringWithFormat:@"Each line of a story must start with a valid keyword (Given, Then, As or And) or a comment. %@ is not a keyword.", firstWord]];
 	}
@@ -231,9 +240,10 @@
 	
 	// Store the title.
 	NSString *title = [[line substringFromIndex: 5] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-	if ([line hasPrefix:@":"]) {
-		title = [[line substringFromIndex: 1] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+	if ([title hasPrefix:@":"]) {
+		title = [[title substringFromIndex: 1] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 	}
+	DC_LOG(@"Title: %@", title);
 	story.title = title;
 }
 

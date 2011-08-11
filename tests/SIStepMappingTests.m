@@ -69,6 +69,7 @@
 	
 	GHAssertTrue(ok, @"Invocation should have worked");
 	GHAssertTrue(methodCalled, @"Method not called");
+	GHAssertTrue(mapping.executed, @"Maping thinks it has not been executed");
 }
 
 -(void) testInvokePassesStringValue {
@@ -115,6 +116,7 @@
 	
 	GHAssertTrue(ok, @"Invocation should have worked, error %@", error.localizedDescription);
 	GHAssertTrue(methodCalled, @"Method not called");
+	GHAssertTrue(mapping.executed, @"Maping thinks it has not been executed");
 }
 
 // Called Methods.

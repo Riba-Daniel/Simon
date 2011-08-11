@@ -7,6 +7,7 @@
 //
 
 #import <dUsefulStuff/DCCommon.h>
+#import <dUsefulStuff/NSObject+dUsefulStuff.h>
 #import "SIStoryRunner.h"
 #import "SIStory.h"
 #import "SIStepMapping.h"
@@ -24,15 +25,15 @@
 
 - (id)init
 {
-    self = [super init];
-    if (self) {
-		 // Now setup the defaults.
-		 reader = [[SIStoryFileReader alloc] init];
-		 runtime = [[SIRuntime alloc] init];
-		 reporter = [[SIStoryLogReporter alloc] init];
-    }
-    
-    return self;
+	self = [super init];
+	if (self) {
+		// Now setup the defaults.
+		reader = [[SIStoryFileReader alloc] init];
+		runtime = [[SIRuntime alloc] init];
+		reporter = [[SIStoryLogReporter alloc] init];
+	}
+	
+	return self;
 }
 
 -(BOOL) runStories:(NSError **) error {
@@ -49,10 +50,11 @@
 		DC_LOG(@"Error reading story files. Exiting");
 		return NO;
 	}
-
+	
 	// If no stories where read then generate an error and return.
 	if ([stories count] == 0) {
 		*error = [self errorForCode:SIErrorNoStoriesFound 
+							 errorDomain:SIMON_ERROR_DOMAIN 
 					  shortDescription:@"No stories read" 
 						  failureReason:@"No stories where read from the files."];
 		DC_LOG(@"No stories found. Exiting");
@@ -64,7 +66,7 @@
 	for (SIStory *story in stories) {
 		[story mapSteps:(NSArray *) mappings];
 	}
-
+	
 	// Now execute the stories.
 	DC_LOG(@"Running %lu stories", [stories count]);
 	BOOL success = YES;
@@ -72,13 +74,14 @@
 		if (![story invoke]) {
 			if (story.status == SIStoryStatusNotMapped || story.status == SIStoryStatusError) {
 				*error = [self errorForCode:SIErrorStoryFailures 
+									 errorDomain:SIMON_ERROR_DOMAIN 
 							  shortDescription:@"One or more stories failed." 
 								  failureReason:@"One or more stories either failed or was not mapped fully."];
 				success = NO;
 			}
 		}
 	}
-
+	
 	// Publish the results.
 	[reporter reportOnStories:stories andMappings:mappings];
 	

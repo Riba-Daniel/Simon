@@ -18,6 +18,7 @@ There are other BDD style frameworks for iOS. But after looking at them, they ea
 * I wanted to use as little as possible "Glue" code to relate story steps to Objective C methods.
 * I wanted the stories to be stored in seperate files from the code so they would be easier to modify and update and the customer could read them.
 * I wanted it to run on the simulator.
+* I wanted to be easily able to locate and tap controls on a UI.
 * I wanted it - most of all - to be dead simple to run. 
 
 h2. Where did the name come from?
@@ -212,7 +213,13 @@ After each story has finished, Simon clears out the story's caches - releasing t
 
 h1. How do I interact with my app?
 
-Initially Simon is just about running code. So it's effectively a runner for Unit Tests. The next release is planned to include utilities that will provide the means to interact with the GUI of your app. (I'm working as hard on this as I can - there's a lot to do :-)
+In addition to the simple steps above for creating stories, Simon also includes a framework for accessing the components that make up a UI in an app. Simon does this by mapping out the tree structure of a UI and allowing you to use "dNodi's":https://github.com/drekka/dNodi xpath like queries to drill down through the interface, locate the controls you want, and perform various actions upon them. Tapping for example. Simon implements the dNodi DNNode protocol via a category on UIView. This keeps you from having to work through the mapping of dNodie expressions to the UI object graph.
+
+Simon makes it very simple to access any UIView instance on the display. Here's an example which returns a button. Lets say you have a UI hirachy that looks something like this:
+
+
+
+
 
 h1. I'd like to say thanks to several developers for developing the following tools:
 

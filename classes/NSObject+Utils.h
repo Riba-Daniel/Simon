@@ -17,13 +17,6 @@
 /// @name Tasks
 
 /**
- This creates NSError objects based on the passed information.
- 
- @param errorCode
- */
--(NSError *) errorForCode:(SIError) errorCode shortDescription:(NSString *) shortDescription failureReason:(NSString *) failureReason; 
-
-/**
  Examines a string and returns the matching SIKeyword.
 
  @param string an NSString instance containing a string which mapps to a SIKeyword.
