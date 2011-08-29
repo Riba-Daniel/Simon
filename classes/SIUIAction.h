@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 /**
- SIUIAction objects can perform UI actions such as taps and swipes on Views.
+ SIUIAction objects can perform UI actions such as taps and swipes on Views. Action methods must have a perculiar implementation. The method must first check that it is running on the main thread and if not, call itself on the main thread. This is because UI related code must execute on the main thread and no other.
  */
 @interface SIUIAction : NSObject {
 	@private 

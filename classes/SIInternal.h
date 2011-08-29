@@ -24,3 +24,6 @@
  */
 #define toNSString(chars) _toNSString(chars)
 #define _toNSString(chars) @#chars
+
+// Id of our main background thrad. Note this is a const char *, i.e. no '@' to declare a NSString.
+#define SIMONS_QUEUE "au.com.derekclarkson.simon"

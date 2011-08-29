@@ -6,6 +6,8 @@
 //  Copyright 2011 Sensis. All rights reserved.
 //
 #import <dUsefulStuff/DCCommon.h>
+#import <objc/runtime.h>
+
 #import "SIStepMapping.h"
 #import "SIStory.h"
 #import "SIInternal.h"

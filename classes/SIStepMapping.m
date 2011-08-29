@@ -5,12 +5,14 @@
 //  Created by Derek Clarkson on 6/19/11.
 //  Copyright 2011 Sensis. All rights reserved.
 //
+#import <objc/runtime.h>
 
 #import "SIStepMapping.h"
 #import "NSObject+Utils.h"
 #import <dUsefulStuff/DCCommon.h>
 #import <dUsefulStuff/NSobject+dUsefulStuff.h>
 #import "SIEnums.h"
+#import "SIInternal.h"
 
 @interface SIStepMapping()
 -(NSInvocation *) createInvocationForMethod:(Method) method;
@@ -123,6 +125,7 @@
 		NSString *value = [self.command substringWithRange:[match rangeAtIndex:i + 1]];
 		DC_LOG(@"Adding value to invocation: %@", value);
 		
+		// This can probably be done better using the argument functions on the signature.
 		char argType = *method_copyArgumentType(method, i + 2);
 		if (![self setValue:value ofType:argType onInvocation:invocation atArgIndex:i + 2 error:error]) {
 			return NO;

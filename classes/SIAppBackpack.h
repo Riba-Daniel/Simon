@@ -7,12 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <dUsefulStuff/DCBackgroundTask.h>
 
 /**
  This class backpack's on a UIApplication in order to allow Simon to run in the background. You add it through the SIRun macro.
  */
-@interface SIAppBackpack : NSObject<DCBackgroundTask> {
+@interface SIAppBackpack : NSObject {
 	@private 
 	NSString * fileName;
 }

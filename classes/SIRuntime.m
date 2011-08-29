@@ -5,12 +5,12 @@
 //  Created by Derek Clarkson on 6/20/11.
 //  Copyright 2011 Sensis. All rights reserved.
 //
+#import <dUsefulStuff/DCCommon.h>
+#import <objc/message.h>
 
 #import "SIRuntime.h"
-#import <dUsefulStuff/DCCommon.h>
 #import "SIStepMapping.h"
 #import "SIInternal.h"
-#import <objc/message.h>
 
 @interface SIRuntime()
 -(BOOL) addMappingMethodsFromClass:(Class) class toArray:(NSMutableArray *) array;

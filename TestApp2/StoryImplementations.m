@@ -14,9 +14,16 @@
 @implementation StoryImplementations
 
 SIMapStepToSelector(@"Given the interface is up", givenTheInterfaceIsUp)
-
 -(void) givenTheInterfaceIsUp {
 	
+}
+
+SIMapStepToSelector(@"Then I execute a log UI tree", executePrintUITree)
+-(void) executePrintUITree {
+}
+
+SIMapStepToSelector(@"and it should execute on the main thread", executedOnMainThread)
+-(void) executedOnMainThread {
 }
 
 SIMapStepToSelector(@"then I can switch to the second view", clickTheSecondView)

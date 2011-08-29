@@ -10,11 +10,12 @@
 #import "SIAppBackpack.h"
 #import <dUsefulStuff/DCCommon.h>
 #import <dUsefulStuff/DCDialogs.h>
-#import <dUsefulStuff/DCBackgroundThread.h>
 #import "SIStoryRunner.h"
+#import "SIInternal.h"
 
 
 @interface SIAppBackpack()
+-(void) start;
 -(void) startUp:(NSNotification *) notification;
 @end
 
@@ -67,9 +68,11 @@
 
 // Callbacks.
 -(void) startUp:(NSNotification *) notification {
-	DC_LOG(@"App is up so starting Simon's background thread");
-	DCBackgroundThread *simonsThread = [[DCBackgroundThread alloc] initWithTask:self];
-	[simonsThread start];
+	DC_LOG(@"App is up so starting Simon's background queue");
+	dispatch_queue_t queue = dispatch_queue_create(SIMONS_QUEUE, NULL);
+	dispatch_async(queue, ^{
+		[self start];
+	});
 }
 
 -(void) dealloc {

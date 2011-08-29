@@ -7,6 +7,7 @@
 //
 
 #import <dUsefulStuff/DCCommon.h>
+#import <objc/runtime.h>
 
 #import "SIStory.h"
 #import "SIStep.h"

@@ -17,6 +17,7 @@
 #import "TouchSynthesis.h"
 
 #import <dUsefulStuff/DCCommon.h>
+#import <objc/runtime.h>
 
 @implementation UITouch (Synthesize)
 

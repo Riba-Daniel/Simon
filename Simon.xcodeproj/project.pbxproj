@@ -186,7 +186,7 @@
 		65D03BE813BCB94F00A3F0FA /* CommsASteps.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommsASteps.m; sourceTree = "<group>"; };
 		65D03BEB13BCBA3100A3F0FA /* CommsBSteps.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommsBSteps.m; sourceTree = "<group>"; };
 		65D03BED13BDEBE000A3F0FA /* SIInternal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIInternal.h; sourceTree = "<group>"; };
-		65D09A6313D99C5900D1A74B /* dUsefulStuff.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = dUsefulStuff.framework; path = ../Releases/dUsefulStuff/v0.0.11/dUsefulStuff.framework; sourceTree = "<group>"; };
+		65D09A6313D99C5900D1A74B /* dUsefulStuff.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = dUsefulStuff.framework; path = ../Releases/dUsefulStuff/v0.0.12/dUsefulStuff.framework; sourceTree = "<group>"; };
 		65D35BC213A8BA130007A8AD /* NSObject+UtilsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+UtilsTests.m"; sourceTree = "<group>"; };
 		65FCD11713ADE3C200A90FCA /* SIRuntimeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIRuntimeTests.m; sourceTree = "<group>"; };
 		65FCD11C13AE2D6900A90FCA /* SIStepMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIStepMapping.h; sourceTree = "<group>"; };
@@ -195,7 +195,8 @@
 		65FCD12513AF622300A90FCA /* SIRuntime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIRuntime.m; sourceTree = "<group>"; };
 		65FCD12D13B2245D00A90FCA /* Unformatted.stories */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Unformatted.stories; sourceTree = "<group>"; };
 		65FCD13013B23E8400A90FCA /* SIStepMappingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIStepMappingTests.m; sourceTree = "<group>"; };
-		94327D7113E44F9A0003646C /* dNodi.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = dNodi.framework; path = ../Releases/dNodi/v0.2.0/dNodi.framework; sourceTree = "<group>"; };
+		9403BA4C1407AFA000786F53 /* libobjc.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libobjc.dylib; path = usr/lib/libobjc.dylib; sourceTree = SDKROOT; };
+		94327D7113E44F9A0003646C /* dNodi.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = dNodi.framework; path = ../Releases/dNodi/v0.2.1/dNodi.framework; sourceTree = "<group>"; };
 		94327D9A13EAD1D50003646C /* TouchSynthesis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchSynthesis.h; sourceTree = "<group>"; };
 		94327D9B13EAD1D50003646C /* TouchSynthesis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchSynthesis.m; sourceTree = "<group>"; };
 		9499DB6B13F017190053BEEA /* SIUIActionFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIActionFactory.h; sourceTree = "<group>"; };
@@ -250,6 +251,7 @@
 		653D0E7F13A782AC00A5AB82 = {
 			isa = PBXGroup;
 			children = (
+				9403BA4C1407AFA000786F53 /* libobjc.dylib */,
 				6583B3EE13CF2242005E13F3 /* ChangeLog.textile */,
 				6583B3EA13CF2220005E13F3 /* build.sh */,
 				6583B3EB13CF2220005E13F3 /* License.textile */,
@@ -324,6 +326,9 @@
 		653D0ED413A783DC00A5AB82 /* tests */ = {
 			isa = PBXGroup;
 			children = (
+				653D0ED913A783DC00A5AB82 /* SIStoryFileReaderTests.m */,
+				6551A98613AB931F00679B94 /* SIStoryRunnerTests.m */,
+				65FCD11713ADE3C200A90FCA /* SIRuntimeTests.m */,
 				659E62A013DB026400ACD34C /* UI */,
 				6583B43113D1CB4F005E13F3 /* GHUnit */,
 				6583B43013D1CB2E005E13F3 /* Stories */,
@@ -368,9 +373,6 @@
 				65B647CA13B8AE5E0083C114 /* SIStoryTests.m */,
 				653D0ED713A783DC00A5AB82 /* SIStepTests.m */,
 				65FCD13013B23E8400A90FCA /* SIStepMappingTests.m */,
-				653D0ED913A783DC00A5AB82 /* SIStoryFileReaderTests.m */,
-				6551A98613AB931F00679B94 /* SIStoryRunnerTests.m */,
-				65FCD11713ADE3C200A90FCA /* SIRuntimeTests.m */,
 			);
 			name = Stories;
 			sourceTree = "<group>";
@@ -733,12 +735,13 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
 				);
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -757,12 +760,13 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-all_load",
 				);
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -773,8 +777,8 @@
 				DSTROOT = /tmp/Simon.dst;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../Releases/dUsefulStuff/v0.0.11\"",
-					"\"$(SRCROOT)/../Releases/dNodi/v0.2.0\"",
+					"\"$(SRCROOT)/../Releases/dUsefulStuff/v0.0.12\"",
+					"\"$(SRCROOT)/../Releases/dNodi/v0.2.1\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Simon-Prefix.pch";
@@ -789,8 +793,8 @@
 				DSTROOT = /tmp/Simon.dst;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../Releases/dUsefulStuff/v0.0.11\"",
-					"\"$(SRCROOT)/../Releases/dNodi/v0.2.0\"",
+					"\"$(SRCROOT)/../Releases/dUsefulStuff/v0.0.12\"",
+					"\"$(SRCROOT)/../Releases/dNodi/v0.2.1\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Simon-Prefix.pch";
@@ -809,8 +813,8 @@
 					"\"$(SRCROOT)/../Releases/OCMock/v0.1.7\"",
 					"\"$(SRCROOT)/../tools\"",
 					"\"$(SRCROOT)/../tools/GHUnit 0.4.28\"",
-					"\"$(SRCROOT)/../Releases/dUsefulStuff/v0.0.11\"",
-					"\"$(SRCROOT)/../Releases/dNodi/v0.2.0\"",
+					"\"$(SRCROOT)/../Releases/dUsefulStuff/v0.0.12\"",
+					"\"$(SRCROOT)/../Releases/dNodi/v0.2.1\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Simon-Prefix.pch";
@@ -831,8 +835,8 @@
 					"\"$(SRCROOT)/../Releases/OCMock/v0.1.7\"",
 					"\"$(SRCROOT)/../tools\"",
 					"\"$(SRCROOT)/../tools/GHUnit 0.4.28\"",
-					"\"$(SRCROOT)/../Releases/dUsefulStuff/v0.0.11\"",
-					"\"$(SRCROOT)/../Releases/dNodi/v0.2.0\"",
+					"\"$(SRCROOT)/../Releases/dUsefulStuff/v0.0.12\"",
+					"\"$(SRCROOT)/../Releases/dNodi/v0.2.1\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Simon-Prefix.pch";
@@ -851,8 +855,8 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../Releases/dUsefulStuff/v0.0.11\"",
-					"\"$(SRCROOT)/../Releases/dNodi/v0.2.0\"",
+					"\"$(SRCROOT)/../Releases/dUsefulStuff/v0.0.12\"",
+					"\"$(SRCROOT)/../Releases/dNodi/v0.2.1\"",
 					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -875,8 +879,8 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../Releases/dUsefulStuff/v0.0.11\"",
-					"\"$(SRCROOT)/../Releases/dNodi/v0.2.0\"",
+					"\"$(SRCROOT)/../Releases/dUsefulStuff/v0.0.12\"",
+					"\"$(SRCROOT)/../Releases/dNodi/v0.2.1\"",
 					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

@@ -24,6 +24,13 @@
 }
 
 -(void) tap {
+
+	// Redirect to the main thread.
+	if (![[NSThread currentThread] isMainThread]) {
+		DC_LOG(@"Redirecting to main thread");
+		[self performSelectorOnMainThread:@selector(tap) withObject:nil waitUntilDone:YES];
+		return;
+	}
 	
 	DC_LOG(@"Creating touch sequence for control %@", self);
 	

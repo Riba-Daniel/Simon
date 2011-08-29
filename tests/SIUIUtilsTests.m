@@ -14,6 +14,7 @@
 #import "UIView+Simon.h"
 #import "UIView+Simon.h"
 #import "SIEnums.h"
+#import <dNodi/dNodi.h>
 
 @interface SIUIUtilsTests : GHTestCase {}
 
@@ -55,10 +56,9 @@
 }
 
 -(void) testFindsTableViewRowsUsingViewsWithQuery {
-	
+
 	NSError *error = nil;
 	NSArray *controls = [SIUIUtils findViewsWithQuery:@"//UITableViewCell" error:&error];
-	[SIUIUtils logUITree];
 	GHAssertTrue([controls count] > 0, @"Nothing returned");
 	GHAssertNotNil(controls, @"nil returned, error: %@", [error localizedFailureReason]);
 	
@@ -68,5 +68,13 @@
 	
 }
 
+-(void) testViewWithQueryReturnsErrorIfInvalidXPath {
+	
+	NSError *error = nil;
+	UIView<DNNode> *views = [SIUIUtils findViewWithQuery:@"//[" error:&error];
+	
+	GHAssertNil(views, @"Should not have returned an instance");
+	GHAssertEquals(error.code, DNErrorInvalidNodiExpression, @"Incorrect error.");
+}
 
 @end

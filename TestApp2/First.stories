@@ -1,3 +1,9 @@
+Story: UI print UI Tree is performed on the main thread
+Given the interface is up
+Then I execute a log UI tree
+and it should execute on the main thread
+
+
 Story: Switching to second view works from story
 Given the interface is up
 then I can switch to the second view
