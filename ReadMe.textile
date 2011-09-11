@@ -40,11 +40,10 @@ Here's the basic sequence:
 
 h1. How do I install it?
 
-First there are three frameworks you need to download. They are:
+First there are two other frameworks you need to download. They are:
 
-* "Simon framework":http://github.com/drekka/Simon
-* "dUsefulStuff framework":http://github.com/drekka/dUsefulStuff - version 0.0.11+
-* "dXPath framework":http://github.com/drekka/dXpath - version 0.1.0+
+* "dUsefulStuff framework":http://github.com/drekka/dUsefulStuff - version 0.0.12+ (Provides some common code I use)
+* "dNodi framework":http://github.com/drekka/dNodi - version 0.2.1+ (Provides XPath like searching)
 
 Download the DMG files for each. Open each one and drag and drop the framework files to a directory. Open XCode again, select your target and go to *Build Phases* and *Link Binary With Libraries*. Then click *&#91;+&#93;* to add library. Select *Add Other...* and then the framework directory you just copied. Do the same for the other frameworks.
 
