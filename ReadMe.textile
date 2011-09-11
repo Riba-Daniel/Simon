@@ -215,10 +215,62 @@ h1. How do I interact with my app?
 
 In addition to the simple steps above for creating stories, Simon also includes a framework for accessing the components that make up a UI in an app. Simon does this by mapping out the tree structure of a UI and allowing you to use "dNodi's":https://github.com/drekka/dNodi xpath like queries to drill down through the interface, locate the controls you want, and perform various actions upon them. Tapping for example. Simon implements the dNodi DNNode protocol via a category on UIView. This keeps you from having to work through the mapping of dNodie expressions to the UI object graph.
 
-Simon makes it very simple to access any UIView instance on the display. Here's an example which returns a button. Lets say you have a UI hirachy that looks something like this:
+	A lot of this code is wrapped by preprocessor macros which can be found in the *SISimon.h* file. 
 
 
+h2. Viewing the UI tree
 
+A good way to understand this is to include this code in a step. It will print out the current tree structure showing each UIView's class and index number in the hirachy. Some classes are further suplimented with attributes which Simon has identified as searchable ones.
+
+<pre lang="objc">
+SIMapStepToSelector(@"then print the UI tree", printTheUITree)
+-(void) printTheUITree {
+	SIPrintCurrentWindowTree();
+}
+</pre>
+
+h2. Getting a reference to a control on the UI
+
+There are two other useful preprocessor macros. One which provides a reference to a single control using a dNodi path to locate it, and the other returning a list of zero or more controls from a path. They look like this:
+
+<pre lang="objc">
+SIMapStepToSelector(@"then get the button", getTheButton)
+-(void) getTheButton {
+	NSError *error = nil;
+	UIButton *aButton = (UIButton *) SIFindView(@"/UIView/UIRoundedRectButton", &error);
+	if (aButton == nil) {
+		// Error!
+	}
+}
+</pre>
+
+<pre lang="objc">
+SIMapStepToSelector(@"then get all the controls", getAllControls)
+-(void) getAllControls {
+	NSError *error = nil;
+	NSArray *controls = SIFindViews(@"/UIView", &error);
+	if (controls == nil) {
+		// Error!
+	}
+}
+</pre>
+
+h2. Tapping a control
+
+This in an initial cut of this and I expect to expand it as I gain understanding of the best wasy to maniplulate a UI. 
+
+Tapping a control such as a button can also be accessed through a preprocessor macro which takes a path to the control as a parameter. Here is some example code:
+
+<pre lang="objc">
+SIMapStepToSelector(@"then tap the button", tapButton)
+-(void) tapButton {
+	NSError *error = nil;
+	SITapControl(@"/UIView/UIRoundedRectButton", &error);
+	if (error != nil) {
+		// Error!
+	}
+}
+</pre>
 
 
 h1. I'd like to say thanks to several developers for developing the following tools:
