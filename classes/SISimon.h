@@ -3,7 +3,7 @@
 //  Simon
 //
 //  Created by Derek Clarkson on 6/18/11.
-//  Copyright 2011 Sensis. All rights reserved.
+//  Copyright 2011. All rights reserved.
 //
 #import <dUsefulStuff/DCCommon.h>
 #import <objc/runtime.h>
@@ -13,6 +13,8 @@
 #import "SIInternal.h"
 #import "SIAppBackpack.h"
 #import "SIUIUtils.h"
+#import "SIUIAction.h"
+#import "SIUIActionFactory.h"
 
 /**
  This macro must be placed in your startup code. It loads Simon into the background and automatically runs the stories once the application is active and ready.
@@ -65,20 +67,32 @@
 #define SIPrintCurrentWindowTree() [SIUIUtils logUITree]
 
 /**
- Simple wrapper around dNodi's query facilities which returns a simple object from the display. This will trigger an error if the control is not found, so it is both a 
- find and assert in one wrapper. 
+ Simple wrapper around dNodi's query facilities which returns a simple object from the display. This will trigger an error if the control is not found, so it is both a find and assert in one wrapper. 
+ 
+ @param path a NSString containing the path to follow.
+ @param error a reference to a pointer to a NSError variable. (**NSError).
+ @return a single UIView instance or nil if there was an error.
  */
-#define SIFindView(path)
+#define SIFindView(path, errorRef) [SIUIUtils findViewWithQuery:path error:errorRef]
 
 /**
- Finds and returns an array of views. This does not assert anything about the views it is looking form.
+ Finds and returns an array of views. This does not assert anything about the views it is looking for.
+
+ @param path a NSString containing the path to follow.
+ @param error a reference to a pointer to a NSError variable. (**NSError).
+ @return a NSArray containing the found views, or nil if there was an error.
  */
-#define SIFindViews(path)
+#define SIFindViews(path, errorRef) [SIUIUtils findViewsWithQuery:path error:errorRef]
 
 /**
  Finds the control specified by the path and taps it. How this tap in implemented is very dependent on the control as some controls are dificult to synthensize a tap for.
  */
-#define SITapControl(path) 
+#define SITapControl(path, errorRef) \
+	do { \
+		UIView *theView = SIFindView(path, errorRef); \
+		SIUIAction *action = [[SIUIActionFactory actionFactory] createActionForView: theView]; \
+		[action tap]; \
+	} while (NO);
 
 
 

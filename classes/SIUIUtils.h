@@ -3,7 +3,7 @@
 //  Simon
 //
 //  Created by Derek Clarkson on 7/23/11.
-//  Copyright 2011 Sensis. All rights reserved.
+//  Copyright 2011. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -25,7 +25,8 @@
 
 /**
  Override of findViewsWithQuery:error: which expects to return only a single view.
-
+ This is more strict because it will generate errors if 0 or multiple controls are found instead of the expected control.
+ 
  @param xpath an xpath as decribed by the dXpath static library.
  @param error a pointer to an error variable that can be populated if there is a problem.
  */

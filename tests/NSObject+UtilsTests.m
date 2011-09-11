@@ -3,7 +3,7 @@
 //  Simon
 //
 //  Created by Derek Clarkson on 6/15/11.
-//  Copyright 2011 Sensis. All rights reserved.
+//  Copyright 2011. All rights reserved.
 //
 
 #import <GHUnitIOS/GHUnit.h>
