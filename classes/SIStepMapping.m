@@ -30,6 +30,7 @@
 @synthesize selector;
 @synthesize targetClass;
 @synthesize executed;
+@synthesize exceptionCaught;
 @synthesize command;
 
 +(SIStepMapping *) stepMappingWithClass:(Class) theClass selector:(SEL) aSelector regex:(NSString *) theRegex error:(NSError **) error {
@@ -85,10 +86,10 @@
 }
 
 -(BOOL) invokeWithObject:(id) object error:(NSError **) error {
-
+	
 	// flag that we have been called.
 	executed = YES;
-
+	
 	// Create the invocation.
 	Method method = class_getInstanceMethod(targetClass, selector);
 	NSInvocation *invocation = [self createInvocationForMethod:method];
@@ -98,7 +99,18 @@
 	
 	// No perform the invocation.
 	DC_LOG(@"Invoking methods on class");
-	[invocation invokeWithTarget:object];
+	@try {
+		[invocation invokeWithTarget:object];
+	}
+	@catch (NSException *exception) {
+		DC_LOG(@"Caught exception: %@", [exception reason]);
+		*error = [self errorForCode:SIErrorExceptionCaught 
+							 errorDomain:SIMON_ERROR_DOMAIN 
+					  shortDescription:@"Exception caught"
+						  failureReason:[NSString stringWithFormat:@"Exception caught: %@",[exception reason]]];
+		exceptionCaught = YES;
+		return NO;
+	}
 	return YES;
 }
 

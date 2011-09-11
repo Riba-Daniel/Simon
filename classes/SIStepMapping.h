@@ -17,6 +17,7 @@
 	SEL selector;
 	Class targetClass;
 	BOOL executed;
+	BOOL exceptionCaught;
 	NSString *command;
 }
 
@@ -41,6 +42,11 @@
  Indicates whether the maping was exexcuted. Mainly used for reporting mappings that are not being used. Returns `YES` if the mapping was executed at least once.
  */
 @property (nonatomic, assign, readonly) BOOL executed;
+
+/**
+ Indicates that an exception was caught when executing the method.
+ */
+@property (nonatomic, assign, readonly) BOOL exceptionCaught;
 
 /**
  This is the entire text of the step as read from the story file. This is populated by the story when it executes the steps just before invokeWithObject:error: is called.

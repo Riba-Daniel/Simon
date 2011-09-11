@@ -8,7 +8,6 @@
 
 #import <dUsefulStuff/DCCommon.h>
 #import <objc/runtime.h>
-
 #import "SIStory.h"
 #import "SIStep.h"
 #import "NSObject+Utils.h"
@@ -91,7 +90,7 @@
 	DC_LOG(@"Creating instance of %@", NSStringFromClass(targetClass));
 	instance = [[[targetClass alloc] init] autorelease];
 	[instanceCache setObject:instance forKey:cacheKey];
-
+	
 	// Inject a reference to the story so it can be accessed for data. Note we assign so we don't have 
 	// to worry aout retains. This is fine as the story will be around longer than the test class.
 	objc_setAssociatedObject(instance, SIINSTANCE_STORY_REF_KEY, self, OBJC_ASSOCIATION_ASSIGN);

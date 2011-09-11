@@ -92,6 +92,7 @@
 		94327D9D13EAD1D50003646C /* TouchSynthesis.m in Sources */ = {isa = PBXBuildFile; fileRef = 94327D9B13EAD1D50003646C /* TouchSynthesis.m */; };
 		9465773F141B97B90026F1FB /* SIUIActionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9465773E141B97B90026F1FB /* SIUIActionTests.m */; };
 		94657743141C95160026F1FB /* AbstractTestWithControlsOnView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94657742141C95160026F1FB /* AbstractTestWithControlsOnView.m */; };
+		94657751141CF2C60026F1FB /* GHUnitIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 653D0EF813A784C100A5AB82 /* GHUnitIOS.framework */; };
 		9499DB6D13F017190053BEEA /* SIUIActionFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 9499DB6B13F017190053BEEA /* SIUIActionFactory.h */; };
 		9499DB6E13F017190053BEEA /* SIUIActionFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 9499DB6C13F017190053BEEA /* SIUIActionFactory.m */; };
 		9499DB7213F017DC0053BEEA /* SIUIAction.h in Headers */ = {isa = PBXBuildFile; fileRef = 9499DB7013F017DC0053BEEA /* SIUIAction.h */; };
@@ -152,7 +153,7 @@
 		6583B3EB13CF2220005E13F3 /* License.textile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = License.textile; sourceTree = "<group>"; };
 		6583B3EC13CF2220005E13F3 /* ReadMe.textile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ReadMe.textile; sourceTree = "<group>"; };
 		6583B3EE13CF2242005E13F3 /* ChangeLog.textile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ChangeLog.textile; sourceTree = "<group>"; };
-		659E625A13D9BE9600ACD34C /* TestApp2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestApp2.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		659E625A13D9BE9600ACD34C /* App with tests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "App with tests.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		659E626113D9BE9600ACD34C /* TestApp2-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TestApp2-Info.plist"; sourceTree = "<group>"; };
 		659E626313D9BE9600ACD34C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		659E626513D9BE9600ACD34C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -198,7 +199,6 @@
 		65FCD12513AF622300A90FCA /* SIRuntime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIRuntime.m; sourceTree = "<group>"; };
 		65FCD12D13B2245D00A90FCA /* Unformatted.stories */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Unformatted.stories; sourceTree = "<group>"; };
 		65FCD13013B23E8400A90FCA /* SIStepMappingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIStepMappingTests.m; sourceTree = "<group>"; };
-		9403BA4C1407AFA000786F53 /* libobjc.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libobjc.dylib; path = usr/lib/libobjc.dylib; sourceTree = SDKROOT; };
 		9406BD33140D17C500E76E86 /* SISimonTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SISimonTests.m; sourceTree = "<group>"; };
 		94327D7113E44F9A0003646C /* dNodi.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = dNodi.framework; path = ../Releases/dNodi/v0.2.1/dNodi.framework; sourceTree = "<group>"; };
 		94327D9A13EAD1D50003646C /* TouchSynthesis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchSynthesis.h; sourceTree = "<group>"; };
@@ -249,6 +249,7 @@
 				659E625E13D9BE9600ACD34C /* CoreGraphics.framework in Frameworks */,
 				659E628613D9BF0E00ACD34C /* dUsefulStuff.framework in Frameworks */,
 				94327D7413E451820003646C /* dNodi.framework in Frameworks */,
+				94657751141CF2C60026F1FB /* GHUnitIOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,7 +259,6 @@
 		653D0E7F13A782AC00A5AB82 = {
 			isa = PBXGroup;
 			children = (
-				9403BA4C1407AFA000786F53 /* libobjc.dylib */,
 				6583B3EE13CF2242005E13F3 /* ChangeLog.textile */,
 				6583B3EA13CF2220005E13F3 /* build.sh */,
 				6583B3EB13CF2220005E13F3 /* License.textile */,
@@ -267,7 +267,7 @@
 				653D0EB113A783C000A5AB82 /* classes */,
 				653D0E9013A782AD00A5AB82 /* Supporting Files */,
 				653D0ED413A783DC00A5AB82 /* tests */,
-				659E625F13D9BE9600ACD34C /* TestApp2 */,
+				659E625F13D9BE9600ACD34C /* App with tests */,
 				653D0E8C13A782AD00A5AB82 /* Frameworks */,
 				653D0E8B13A782AD00A5AB82 /* Products */,
 			);
@@ -278,7 +278,7 @@
 			children = (
 				653D0E8A13A782AD00A5AB82 /* libSimon.a */,
 				653D0E9B13A783A500A5AB82 /* Unit tests.app */,
-				659E625A13D9BE9600ACD34C /* TestApp2.app */,
+				659E625A13D9BE9600ACD34C /* App with tests.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -398,7 +398,7 @@
 			name = GHUnit;
 			sourceTree = "<group>";
 		};
-		659E625F13D9BE9600ACD34C /* TestApp2 */ = {
+		659E625F13D9BE9600ACD34C /* App with tests */ = {
 			isa = PBXGroup;
 			children = (
 				659E628813D9C06300ACD34C /* stories */,
@@ -416,7 +416,7 @@
 				659E627C13D9BE9600ACD34C /* SecondViewController.xib */,
 				659E626013D9BE9600ACD34C /* Supporting Files */,
 			);
-			path = TestApp2;
+			path = "App with tests";
 			sourceTree = "<group>";
 		};
 		659E626013D9BE9600ACD34C /* Supporting Files */ = {
@@ -552,9 +552,9 @@
 			productReference = 653D0E9B13A783A500A5AB82 /* Unit tests.app */;
 			productType = "com.apple.product-type.application";
 		};
-		659E625913D9BE9600ACD34C /* TestApp2 */ = {
+		659E625913D9BE9600ACD34C /* App with tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 659E628113D9BE9600ACD34C /* Build configuration list for PBXNativeTarget "TestApp2" */;
+			buildConfigurationList = 659E628113D9BE9600ACD34C /* Build configuration list for PBXNativeTarget "App with tests" */;
 			buildPhases = (
 				659E625613D9BE9600ACD34C /* Sources */,
 				659E625713D9BE9600ACD34C /* Frameworks */,
@@ -565,9 +565,9 @@
 			dependencies = (
 				659E628413D9BEA000ACD34C /* PBXTargetDependency */,
 			);
-			name = TestApp2;
+			name = "App with tests";
 			productName = TestApp2;
-			productReference = 659E625A13D9BE9600ACD34C /* TestApp2.app */;
+			productReference = 659E625A13D9BE9600ACD34C /* App with tests.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -593,7 +593,7 @@
 			targets = (
 				653D0E8913A782AD00A5AB82 /* Simon */,
 				653D0E9A13A783A500A5AB82 /* Unit tests */,
-				659E625913D9BE9600ACD34C /* TestApp2 */,
+				659E625913D9BE9600ACD34C /* App with tests */,
 			);
 		};
 /* End PBXProject section */
@@ -876,14 +876,15 @@
 					"\"$(SRCROOT)/../Releases/dUsefulStuff/v0.0.12\"",
 					"\"$(SRCROOT)/../Releases/dNodi/v0.2.1\"",
 					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
+					"\"$(SRCROOT)/../tools/GHUnit 0.4.28\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TestApp2/TestApp2-Prefix.pch";
+				GCC_PREFIX_HEADER = "App with tests/TestApp2-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "TestApp2/TestApp2-Info.plist";
+				INFOPLIST_FILE = "App with tests/TestApp2-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -900,10 +901,11 @@
 					"\"$(SRCROOT)/../Releases/dUsefulStuff/v0.0.12\"",
 					"\"$(SRCROOT)/../Releases/dNodi/v0.2.1\"",
 					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
+					"\"$(SRCROOT)/../tools/GHUnit 0.4.28\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "TestApp2/TestApp2-Prefix.pch";
-				INFOPLIST_FILE = "TestApp2/TestApp2-Info.plist";
+				GCC_PREFIX_HEADER = "App with tests/TestApp2-Prefix.pch";
+				INFOPLIST_FILE = "App with tests/TestApp2-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -941,7 +943,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		659E628113D9BE9600ACD34C /* Build configuration list for PBXNativeTarget "TestApp2" */ = {
+		659E628113D9BE9600ACD34C /* Build configuration list for PBXNativeTarget "App with tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				659E627F13D9BE9600ACD34C /* Debug */,

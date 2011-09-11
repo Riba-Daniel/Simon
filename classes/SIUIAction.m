@@ -36,27 +36,12 @@
 	
 	UITouch *touch = [[UITouch alloc] initInView:self.view];
 	UIEvent *eventDown = [[UIEvent alloc] initWithTouch:touch];
-	
 	[[UIApplication sharedApplication] sendEvent:eventDown];
-	
-	/*
-	 SEL selector = @selector(touchesBegan:withEvent:);
-	 NSMethodSignature *sig = [self methodSignatureForSelector:selector];
-	 NSInvocation *inv = [NSInvocation invocationWithMethodSignature:sig];
-	 inv.selector = selector;
-	 NSSet *allTouches = [eventDown allTouches];
-	 [inv setArgument:&allTouches atIndex:2];
-	 [inv setArgument:&eventDown atIndex:3];
-	 [inv invokeWithTarget:self];
-	 */
-	
-	//[touch.view touchesBegan:[eventDown allTouches] withEvent:eventDown];
 	
 	[touch setPhase:UITouchPhaseEnded];
 	UIEvent *eventUp = [[UIEvent alloc] initWithTouch:touch];
 	
 	[[UIApplication sharedApplication] sendEvent:eventUp];
-	//[touch.view touchesEnded:[eventUp allTouches] withEvent:eventUp];
 	
 	[eventDown release];
 	[eventUp release];

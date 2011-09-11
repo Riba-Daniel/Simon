@@ -38,6 +38,7 @@ typedef enum {
 	SIErrorRegularExpressionWillNotMatchSelector,
 	SIErrorNoStoriesFound,
 	SIErrorStoryFailures,
+	SIErrorExceptionCaught,
 	SIUIErrorExpectAtLeastOneView,
 	SIUIErrorExpectOnlyOneView
 } SIError;

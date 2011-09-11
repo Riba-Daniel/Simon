@@ -52,7 +52,7 @@
 	for (SIStory *story in failures) {
 		NSLog(@"Failed story: %@", story.title);
 	}
-
+	
 	[self reportUnusedMappings:mappings];
 	
 	DC_DEALLOC(successes);
@@ -102,9 +102,17 @@
 	
 	for (SIStep * step in story.steps) {
 		if ([step isMapped]) {
-			NSLog(@"Step: %@, mapped to %@::%@", step.command, 
+			NSString *status;
+			if (step.stepMapping.executed) {
+				status = step.stepMapping.exceptionCaught ? @"Failed!" : @"Success";
+			} else {
+				status = @"Not executed";
+			}
+			
+			NSLog(@"Step: \"%@\" (%@::%@) - %@", step.command, 
 					NSStringFromClass(step.stepMapping.targetClass),
-					NSStringFromSelector(step.stepMapping.selector));
+					NSStringFromSelector(step.stepMapping.selector),
+					status);
 		} else {
 			NSLog(@"Step: %@, NOT MAPPED", step.command);
 		}
@@ -114,16 +122,16 @@
 
 -(void) reportUnusedMappings:(NSArray *) mappings {
 	NSLog(@" ");
-	NSLog(@"Unused step to selector mappings");
+	NSLog(@"Step mappings not mapped to stories");
 	int count = 0;
 	for (SIStepMapping * mapping in mappings) {
-		if (!mapping.executed) {
+		if (mapping.selector == nil && !mapping.executed) {
 			count++;
 			NSLog(@"\tMapping \"%@\" -> %@::%@", mapping.regex.pattern, NSStringFromClass(mapping.targetClass), NSStringFromSelector(mapping.selector));
 		}
 	}
 	if (count == 0) {
-		NSLog(@"All step mappings where executed during the tests.");
+		NSLog(@"All step mappings where mapped to stories.");
 	}
 }
 
