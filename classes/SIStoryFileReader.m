@@ -97,10 +97,12 @@
 	SIKeyword keyword = [self keywordFromLine:cleanLine error:error];
 	if (keyword == SIKeywordUnknown) {
 		DC_LOG(@"Detected unknown keyword in step: %@", cleanLine);
-		*error = [self errorForCode:SIErrorInvalidKeyword 
-							 errorDomain:SIMON_ERROR_DOMAIN 
-					  shortDescription:@"Story syntax error, unknown keyword" 
-						  failureReason:[NSString stringWithFormat:@"Story syntax error in %@, unknown keyword on step \"%@\"", file, cleanLine]];
+		if (error != NULL) {
+			*error = [self errorForCode:SIErrorInvalidKeyword 
+								 errorDomain:SIMON_ERROR_DOMAIN 
+						  shortDescription:@"Story syntax error, unknown keyword" 
+							  failureReason:[NSString stringWithFormat:@"Story syntax error in %@, unknown keyword on step \"%@\"", file, cleanLine]];
+		}
 		return NO;
 	}
 	
@@ -116,49 +118,54 @@
 			
 		case SIKeywordStartOfFile:
 			if (keyword != SIKeywordStory) {
-				*error = [self errorForCode:SIErrorInvalidStorySyntax 
-									 errorDomain:SIMON_ERROR_DOMAIN 
-							  shortDescription:@"Incorrect keyword order" 
-								  failureReason:@"Incorrect keyword order, the Story: keyword must be the first keyword."];
+				[self setError:error 
+							 code:SIErrorInvalidStorySyntax 
+					errorDomain:SIMON_ERROR_DOMAIN 
+			 shortDescription:@"Incorrect keyword order" 
+				 failureReason:@"Incorrect keyword order, the Story: keyword must be the first keyword."];
 				return NO;
 			}
 			break;
 			
 		case SIKeywordStory: // SIKeywordStory so no prior.
 			if (keyword != SIKeywordGiven && keyword != SIKeywordAs) {
-				*error = [self errorForCode:SIErrorInvalidStorySyntax 
-									 errorDomain:SIMON_ERROR_DOMAIN 
-							  shortDescription:@"Incorrect keyword order" 
-								  failureReason:@"Incorrect keyword order, As or Given must appear after Story:"];
+				[self setError:error 
+							 code:SIErrorInvalidStorySyntax 
+					errorDomain:SIMON_ERROR_DOMAIN 
+			 shortDescription:@"Incorrect keyword order" 
+				 failureReason:@"Incorrect keyword order, As or Given must appear after Story:"];
 				return NO;
 			}
 			break;
 			
 		case SIKeywordGiven:
 			if (keyword == SIKeywordGiven || keyword == SIKeywordAs || keyword == SIKeywordStory) {
-				*error = [self errorForCode:SIErrorInvalidStorySyntax 
-									 errorDomain:SIMON_ERROR_DOMAIN 
-							  shortDescription:@"Incorrect keyword order" 
-								  failureReason:@"Incorrect keyword order, only Then, And or Story: can appear after Given"];
+				[self setError:error 
+							 code:SIErrorInvalidStorySyntax 
+					errorDomain:SIMON_ERROR_DOMAIN 
+			 shortDescription:@"Incorrect keyword order" 
+				 failureReason:@"Incorrect keyword order, only Then, And or Story: can appear after Given"];
 				return NO;
 			}
 			break;
 			
 		case SIKeywordAs:
 			if (keyword != SIKeywordGiven && keyword != SIKeywordThen) {
-				*error = [self errorForCode:SIErrorInvalidStorySyntax 
-									 errorDomain:SIMON_ERROR_DOMAIN 
-							  shortDescription:@"Incorrect keyword order" 
-								  failureReason:@"Incorrect keyword order, only Given or Then can appear after As"];
+				[self setError:error 
+							 code:SIErrorInvalidStorySyntax 
+					errorDomain:SIMON_ERROR_DOMAIN 
+			 shortDescription:@"Incorrect keyword order" 
+				 failureReason:@"Incorrect keyword order, only Given or Then can appear after As"];
 				return NO;
 			} break;
 			
 		case SIKeywordThen:
 			if (keyword != SIKeywordAnd && keyword != SIKeywordStory) {
-				*error = [self errorForCode:SIErrorInvalidStorySyntax 
-									 errorDomain:SIMON_ERROR_DOMAIN 
-							  shortDescription:@"Incorrect keyword order" 
-								  failureReason:[NSString stringWithFormat:@"Incorrect keyword order, %@ cannot appear after Then", [self stringFromKeyword:keyword]]];
+				[self setError:error 
+							 code:SIErrorInvalidStorySyntax 
+					errorDomain:SIMON_ERROR_DOMAIN 
+			 shortDescription:@"Incorrect keyword order" 
+				 failureReason:[NSString stringWithFormat:@"Incorrect keyword order, %@ cannot appear after Then", [self stringFromKeyword:keyword]]];
 				return NO;
 			}
 			
@@ -176,7 +183,7 @@
 	
 	// Now add the step to the current story.
 	DC_LOG(@"Adding step: %@", cleanLine);
-	[story newStepWithKeyword:keyword command:cleanLine];
+	[story createStepWithKeyword:keyword command:cleanLine];
 	
 	return YES;
 }
@@ -211,19 +218,21 @@
 							intoString:&firstWord];
 	
 	if (!foundWord) {
-		*error = [self errorForCode:SIErrorInvalidStorySyntax 
-							 errorDomain:SIMON_ERROR_DOMAIN 
-					  shortDescription:@"Story syntax error, step does not begin with a word" 
-						  failureReason:@"Each line of a story must start with a valid keyword (Story, Given, Then, As or And) or a comment."];
+		[self setError:error 
+					 code:SIErrorInvalidStorySyntax 
+			errorDomain:SIMON_ERROR_DOMAIN 
+	 shortDescription:@"Story syntax error, step does not begin with a word" 
+		 failureReason:@"Each line of a story must start with a valid keyword (Story, Given, Then, As or And) or a comment."];
 		return SIKeywordUnknown;
 	}
 	
 	SIKeyword keyword = [self keywordFromString:firstWord];
 	if (keyword == SIKeywordUnknown) {
-		*error = [self errorForCode:SIErrorInvalidStorySyntax 
-							 errorDomain:SIMON_ERROR_DOMAIN 
-					  shortDescription:[NSString stringWithFormat:@"Story syntax error, unknown keyword %@", firstWord] 
-						  failureReason:[NSString stringWithFormat:@"Each line of a story must start with a valid keyword (Given, Then, As or And) or a comment. %@ is not a keyword.", firstWord]];
+		[self setError:error 
+					 code:SIErrorInvalidStorySyntax 
+			errorDomain:SIMON_ERROR_DOMAIN 
+	 shortDescription:[NSString stringWithFormat:@"Story syntax error, unknown keyword %@", firstWord] 
+		 failureReason:[NSString stringWithFormat:@"Each line of a story must start with a valid keyword (Given, Then, As or And) or a comment. %@ is not a keyword.", firstWord]];
 	}
 	return keyword;
 }

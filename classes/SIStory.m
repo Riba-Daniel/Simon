@@ -36,7 +36,7 @@
 	return self;
 }
 
--(SIStep *) newStepWithKeyword:(SIKeyword) keyword command:(NSString *) theCommand {
+-(SIStep *) createStepWithKeyword:(SIKeyword) keyword command:(NSString *) theCommand {
 	SIStep * step = [[[SIStep alloc] initWithKeyword:keyword command:theCommand] autorelease];
 	DC_LOG(@"Adding new step with keyword %i and command \"%@\"", keyword, theCommand);
 	[steps addObject:step];

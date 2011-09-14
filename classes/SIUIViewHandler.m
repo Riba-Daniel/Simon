@@ -1,30 +1,42 @@
 //
-//  SIUIAction.m
+//  SIUIViewHandler.m
 //  Simon
 //
-//  Created by Derek Clarkson on 8/08/11.
-//  Copyright 2011. All rights reserved.
+//  Created by Derek Clarkson on 13/09/11.
+//  Copyright (c) 2011 Sensis. All rights reserved.
 //
-#import <dUsefulStuff/DCCommon.h>
 
-#import "SIUIAction.h"
+#import <dUsefulStuff/DCCommon.h>
+#import "SIUIViewHandler.h"
 #import "TouchSynthesis.h"
 
-@implementation SIUIAction
+@implementation SIUIViewHandler
 
-@synthesize view;
+@synthesize view = view_;
 
--(id) initWithView:(UIView *) aView {
-    self = [super init];
-    if (self) {
-		 self.view = aView;
-    }
-    
-    return self;
+#pragma mark - DNNode
+
+-(NSString *)name {
+	return NSStringFromClass([self class]);
 }
 
--(void) tap {
+-(NSObject<DNNode> *)parentNode {
+	return (NSObject<DNNode> *) self.view.superview;
+}
 
+-(NSArray *)subNodes {
+	// Return a copy as this has been known to change whilst this code is executing.
+	return [[self.view.subviews copy] autorelease];	
+}
+
+-(NSObject *) objectForAttribute:(NSString *) attribute {
+	return nil;
+}
+
+#pragma mark - SIUIAction
+
+-(void) tap {
+	
 	// Redirect to the main thread.
 	if (![[NSThread currentThread] isMainThread]) {
 		DC_LOG(@"Redirecting to main thread");

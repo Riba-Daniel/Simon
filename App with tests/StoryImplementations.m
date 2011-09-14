@@ -16,8 +16,9 @@
 
 SIMapStepToSelector(@"Given the interface is up", givenTheInterfaceIsUp)
 -(void) givenTheInterfaceIsUp {
+	SIPrintCurrentWindowTree();
 	NSError *error = nil;
-	UILabel *firstViewLabel = (UILabel *) SIFindView(@"UILabel[@text='First View']", &error);
+	UILabel *firstViewLabel = (UILabel *) SIFindView(@"//UILabel[@text='First View']", &error);
 	if (firstViewLabel == nil) {
 		GHFail(@"Error: %@", [error localizedFailureReason]);
 	}

@@ -7,19 +7,21 @@
 //
 
 #import <GHUnitIOS/GHUnit.h>
-#import "SIUIAction.h"
+#import "SIUIViewHandler.h"
 #import <dUsefulStuff/DCCommon.h>
 #import "AbstractTestWithControlsOnView.h"
+#import "UIView+Simon.h"
 
 
-@interface SIUIActionTests : AbstractTestWithControlsOnView {}
+@interface SIUIViewHandlerTests : AbstractTestWithControlsOnView {}
 @end
 
-@implementation SIUIActionTests
+@implementation SIUIViewHandlerTests
 
 -(void) testSynthesizingATap {
-	SIUIAction *action  = [[SIUIAction alloc] initWithView:view];
-	[action tap];
+	SIUIViewHandler *handler  = [[[SIUIViewHandler alloc] init] autorelease];
+	handler.view = view;
+	[handler tap];
 	GHAssertTrue(tapped, @"Tap did not occur as expected");
 }
 

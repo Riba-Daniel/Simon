@@ -17,30 +17,35 @@
 @interface SIAppBackpack()
 -(void) start;
 -(void) startUp:(NSNotification *) notification;
+-(void) addApplicationReadyObserver;
 @end
 
 @implementation SIAppBackpack
 
-- (id)init
-{
+- (id)init {
 	self = [super init];
 	if (self) {
-
-		// Hook into the app startup.
-		DC_LOG(@"Applying program hooks to notification center: %@", [NSNotificationCenter defaultCenter]);
-		[[NSNotificationCenter defaultCenter] addObserver:self 
-															  selector:@selector(startUp:) 
-																	name:UIApplicationDidBecomeActiveNotification 
-																 object:nil];
+		[self addApplicationReadyObserver];
 	}
-	
 	return self;
 }
 
 -(id) initWithStoryFile:(NSString *) aFileName {
-	id me = [self init];
-	fileName = [aFileName retain];
-	return me;
+	self = [super init];
+	if (self) {
+		fileName = [aFileName retain];
+		[self addApplicationReadyObserver];
+	}
+	return self;
+}
+
+-(void) addApplicationReadyObserver {
+	// Hook into the app startup.
+	DC_LOG(@"Applying program hooks to notification center: %@", [NSNotificationCenter defaultCenter]);
+	[[NSNotificationCenter defaultCenter] addObserver:self 
+														  selector:@selector(startUp:) 
+																name:UIApplicationDidBecomeActiveNotification 
+															 object:nil];
 }
 
 
@@ -64,6 +69,8 @@
 	if (![runner runStories:&error]) {
 		[DCDialogs displayMessage:[error localizedFailureReason] title:[error localizedDescription]]; 
 	}
+	
+	[runner release];
 }
 
 // Callbacks.
@@ -77,6 +84,7 @@
 
 -(void) dealloc {
 	DC_LOG(@"Freeing memory and exiting");
+	DC_DEALLOC(fileName);
 	[super dealloc];
 }
 

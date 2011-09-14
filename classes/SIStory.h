@@ -69,7 +69,7 @@
  @return a new SIStep instance.
  @return the newly created SIStep instance.
  */
--(SIStep *) newStepWithKeyword:(SIKeyword) keyword command:(NSString *) theCommand;
+-(SIStep *) createStepWithKeyword:(SIKeyword) keyword command:(NSString *) theCommand;
 
 /**
  Returns the SIStep at the specified index. 

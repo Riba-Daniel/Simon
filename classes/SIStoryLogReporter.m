@@ -31,11 +31,11 @@
 	NSLog(@"====================================================");
 	
 	// Count result types.
-	NSMutableArray * successes = [[NSMutableArray alloc] init];
-	NSMutableArray * notMapped = [[NSMutableArray alloc] init];
-	NSMutableArray * failures = [[NSMutableArray alloc] init];
-	NSMutableArray * ignored = [[NSMutableArray alloc] init];
-	NSMutableArray * notRun = [[NSMutableArray alloc] init];
+	NSMutableArray *successes = [NSMutableArray array];
+	NSMutableArray *notMapped = [NSMutableArray array];
+	NSMutableArray *failures = [NSMutableArray array];
+	NSMutableArray *ignored = [NSMutableArray array];
+	NSMutableArray *notRun = [NSMutableArray array];
 	
 	for (SIStory * story in stories) {
 		[self reportStory:story successes:successes notMapped:notMapped failures:failures ignored:ignored notRun:notRun];
@@ -54,12 +54,6 @@
 	}
 	
 	[self reportUnusedMappings:mappings];
-	
-	DC_DEALLOC(successes);
-	DC_DEALLOC(notRun);
-	DC_DEALLOC(notMapped);
-	DC_DEALLOC(successes);
-	DC_DEALLOC(ignored);
 	
 }
 

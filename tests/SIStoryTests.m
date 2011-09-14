@@ -27,7 +27,7 @@
 -(void) testInvokeReturnsStatusIfStepIsNotMapped {
 	
 	SIStory *story = [[[SIStory alloc] init] autorelease];
-	[story newStepWithKeyword:SIKeywordGiven command:@"abc"];
+	[story createStepWithKeyword:SIKeywordGiven command:@"abc"];
 	
 	BOOL success = [story invoke];
 	
@@ -39,7 +39,7 @@
 -(void) testInvokeReturnsOk {
 	
 	SIStory *story = [[[SIStory alloc] init] autorelease];
-	SIStep *step = [story newStepWithKeyword:SIKeywordGiven command:@"abc"];
+	SIStep *step = [story createStepWithKeyword:SIKeywordGiven command:@"abc"];
 	
 	NSError * error = nil;
 	
@@ -57,7 +57,7 @@
 -(void) testInvokeGivesStatusNotMapped {
 	
 	SIStory *story = [[[SIStory alloc] init] autorelease];
-	[story newStepWithKeyword:SIKeywordGiven command:@"abc"];
+	[story createStepWithKeyword:SIKeywordGiven command:@"abc"];
 	
 	BOOL success = [story invoke];
 	
@@ -69,8 +69,8 @@
 -(void) testInvocationSharesClassInstance {
 	
 	SIStory *story = [[[SIStory alloc] init] autorelease];
-	SIStep *step1 = [story newStepWithKeyword:SIKeywordGiven command:@"abc"];
-	SIStep *step2 = [story newStepWithKeyword:SIKeywordGiven command:@"def"];
+	SIStep *step1 = [story createStepWithKeyword:SIKeywordGiven command:@"abc"];
+	SIStep *step2 = [story createStepWithKeyword:SIKeywordGiven command:@"def"];
 	
 	NSError * error = nil;
 	

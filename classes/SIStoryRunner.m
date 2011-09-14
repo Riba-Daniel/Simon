@@ -53,10 +53,11 @@
 	
 	// If no stories where read then generate an error and return.
 	if ([stories count] == 0) {
-		*error = [self errorForCode:SIErrorNoStoriesFound 
-							 errorDomain:SIMON_ERROR_DOMAIN 
-					  shortDescription:@"No stories read" 
-						  failureReason:@"No stories where read from the files."];
+		[self setError:error 
+					 code:SIErrorNoStoriesFound 
+			errorDomain:SIMON_ERROR_DOMAIN 
+	 shortDescription:@"No stories read" 
+		 failureReason:@"No stories where read from the files."];
 		DC_LOG(@"No stories found. Exiting");
 		return NO;
 	}
@@ -73,10 +74,11 @@
 	for (SIStory *story in stories) {
 		if (![story invoke]) {
 			if (story.status == SIStoryStatusNotMapped || story.status == SIStoryStatusError) {
-				*error = [self errorForCode:SIErrorStoryFailures 
-									 errorDomain:SIMON_ERROR_DOMAIN 
-							  shortDescription:@"One or more stories failed." 
-								  failureReason:@"One or more stories either failed or was not mapped fully."];
+				[self setError:error 
+							 code:SIErrorStoryFailures 
+					errorDomain:SIMON_ERROR_DOMAIN 
+			 shortDescription:@"One or more stories failed." 
+				 failureReason:@"One or more stories either failed or was not mapped fully."];
 				success = NO;
 			}
 		}

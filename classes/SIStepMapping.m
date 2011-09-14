@@ -56,23 +56,25 @@
 	// Validate that the method exists.
 	Method method = class_getInstanceMethod(theClass, aSelector);
 	if (method == nil) {
-		*error = [self errorForCode:SIErrorUnknownSelector 
-							 errorDomain:SIMON_ERROR_DOMAIN 
-					  shortDescription:@"Selector not found"
-						  failureReason:
-					 [NSString stringWithFormat:@"The passed selector %@ was not found in class %@", NSStringFromSelector(aSelector), NSStringFromClass(theClass)]];
+		[self setError:error 
+					 code:SIErrorUnknownSelector 
+			errorDomain:SIMON_ERROR_DOMAIN 
+	 shortDescription:@"Selector not found"
+		 failureReason:
+		 [NSString stringWithFormat:@"The passed selector %@ was not found in class %@", NSStringFromSelector(aSelector), NSStringFromClass(theClass)]];
 		return NO;
 	}
 	
 	// Validate that the the regex's number of capture groups match the number of selector arguments.
 	int nbrArgs = method_getNumberOfArguments(method) - 2;
 	if ([mapping.regex numberOfCaptureGroups] != nbrArgs) {
-		*error = [self errorForCode:SIErrorRegularExpressionWillNotMatchSelector 
-							 errorDomain:SIMON_ERROR_DOMAIN 
-					  shortDescription:@"Regular expression and selector mis-match."
-						  failureReason:
-					 [NSString stringWithFormat:@"The passed regular expression \"%@\" has a different number of arguments to the selector %@"
-					  , theRegex, NSStringFromSelector(aSelector)]];
+		[self setError:error 
+					 code:SIErrorRegularExpressionWillNotMatchSelector 
+			errorDomain:SIMON_ERROR_DOMAIN 
+	 shortDescription:@"Regular expression and selector mis-match."
+		 failureReason:
+		 [NSString stringWithFormat:@"The passed regular expression \"%@\" has a different number of arguments to the selector %@"
+		  , theRegex, NSStringFromSelector(aSelector)]];
 		return nil;
 	}	
 	
@@ -207,11 +209,12 @@
 			break;
 			
 		default:
-			*error = [self errorForCode:SIErrorCannotConvertArgumentToType 
-								 errorDomain:SIMON_ERROR_DOMAIN 
-						  shortDescription:[NSString stringWithFormat:@"Cannot handle selector %@, argument %i, type %c", NSStringFromSelector(self.selector), index - 2, type]
-							  failureReason:[NSString stringWithFormat:@"Selector %@ has an argument type of %c at parameter %i, I cannot handle that type at this time.",
-												  NSStringFromSelector(self.selector), type, index - 2]];
+			[self setError:error 
+						 code:SIErrorCannotConvertArgumentToType 
+				errorDomain:SIMON_ERROR_DOMAIN 
+		 shortDescription:[NSString stringWithFormat:@"Cannot handle selector %@, argument %i, type %c", NSStringFromSelector(self.selector), index - 2, type]
+			 failureReason:[NSString stringWithFormat:@"Selector %@ has an argument type of %c at parameter %i, I cannot handle that type at this time.",
+								 NSStringFromSelector(self.selector), type, index - 2]];
 			return NO;
 	}
 	return YES;

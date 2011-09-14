@@ -13,8 +13,9 @@
 #import "SIInternal.h"
 #import "SIAppBackpack.h"
 #import "SIUIUtils.h"
-#import "SIUIAction.h"
-#import "SIUIActionFactory.h"
+#import "SIUIViewHandler.h"
+#import "SIUIHandlerFactory.h"
+#import "UIView+Simon.h"
 
 /**
  This macro must be placed in your startup code. It loads Simon into the background and automatically runs the stories once the application is active and ready.
@@ -89,9 +90,9 @@
  */
 #define SITapControl(path, errorRef) \
 	do { \
-		UIView *theView = SIFindView(path, errorRef); \
-		SIUIAction *action = [[SIUIActionFactory actionFactory] createActionForView: theView]; \
-		[action tap]; \
+		UIView<DNNode> *theView = SIFindView(path, errorRef); \
+		SIUIViewHandler *handler = [[SIUIHandlerFactory handlerFactory] createHandlerForView: theView]; \
+		[handler tap]; \
 	} while (NO);
 
 

@@ -11,6 +11,9 @@
 #import "UIView+Simon.h"
 #import "TouchSynthesis.h"
 
+@interface UIView (_private)
+@end
+
 @implementation UIView (Simon)
 
 
@@ -26,7 +29,7 @@
 
 -(NSArray *)subNodes {
 	// Return a copy as this has been known to change whilst this code is executing.
-	return [self.subviews copy];	
+	return [[self.subviews copy] autorelease];	
 }
 
 -(NSObject *) objectForAttribute:(NSString *) attribute {
