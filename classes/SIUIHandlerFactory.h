@@ -17,6 +17,7 @@
  */
 @interface SIUIHandlerFactory : NSObject {
 	@private
+	NSMutableDictionary *handlerCache;
 }
 
 /// @name Factory

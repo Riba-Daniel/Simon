@@ -20,7 +20,7 @@
 
 -(void) testSynthesizingATap {
 	SIUIViewHandler *handler  = [[[SIUIViewHandler alloc] init] autorelease];
-	handler.view = view;
+	handler.view = button;
 	[handler tap];
 	GHAssertTrue(tapped, @"Tap did not occur as expected");
 }
