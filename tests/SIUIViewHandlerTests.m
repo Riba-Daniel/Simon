@@ -13,16 +13,35 @@
 #import "UIView+Simon.h"
 
 
-@interface SIUIViewHandlerTests : AbstractTestWithControlsOnView {}
+@interface SIUIViewHandlerTests : AbstractTestWithControlsOnView {
+@private 
+	SIUIViewHandler *handler;
+
+}
 @end
 
 @implementation SIUIViewHandlerTests
 
+-(void) setUp {
+	[super setUp];
+	handler  = [[SIUIViewHandler alloc] init];
+}
+
+-(void) tearDown {
+	DC_DEALLOC(handler);
+	[super tearDown];	
+}
+
+
 -(void) testSynthesizingATap {
-	SIUIViewHandler *handler  = [[[SIUIViewHandler alloc] init] autorelease];
 	handler.view = button;
 	[handler tap];
 	GHAssertTrue(tapped, @"Tap did not occur as expected");
+}
+
+-(void) testName {
+	handler.view = view;
+	GHAssertEqualStrings(handler.name, @"UIView", @"Incorrect name returned");
 }
 
 @end

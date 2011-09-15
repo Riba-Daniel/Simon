@@ -10,30 +10,27 @@
 
 #import "UIView+Simon.h"
 #import "TouchSynthesis.h"
+#import "SIUIHandlerFactory.h"
 
 @interface UIView (_private)
 @end
 
 @implementation UIView (Simon)
 
-
-// Simon's node methods.
-
 -(NSString *)name {
-	return NSStringFromClass([self class]);
+	return [[SIUIHandlerFactory handlerFactory] createHandlerForView:self].name;
 }
 
 -(NSObject<DNNode> *)parentNode {
-	return self.superview;
+	return [[SIUIHandlerFactory handlerFactory] createHandlerForView:self].parentNode;
 }
 
 -(NSArray *)subNodes {
-	// Return a copy as this has been known to change whilst this code is executing.
-	return [[self.subviews copy] autorelease];	
+	return [[SIUIHandlerFactory handlerFactory] createHandlerForView:self].subNodes;
 }
 
 -(NSObject *) objectForAttribute:(NSString *) attribute {
-	return nil;
+	return [[[SIUIHandlerFactory handlerFactory] createHandlerForView:self] objectForAttribute:attribute];
 }
 
 @end

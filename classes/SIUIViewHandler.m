@@ -17,7 +17,7 @@
 #pragma mark - DNNode
 
 -(NSString *)name {
-	return NSStringFromClass([self class]);
+	return NSStringFromClass([self.view class]);
 }
 
 -(NSObject<DNNode> *)parentNode {
