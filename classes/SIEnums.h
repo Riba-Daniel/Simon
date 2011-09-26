@@ -30,7 +30,7 @@ typedef enum {
  Individual error codes.
  */
 typedef enum {
-	SIErrorInvalidStorySyntax = 1, /// Generated when there is an issue with the syntax used in a sotry file.
+	SIErrorInvalidStorySyntax = 1, /// Generated when there is an issue with the syntax used in a story file.
 	SIErrorInvalidKeyword, 
 	SIErrorInvalidRegularExpression,
 	SIErrorUnknownSelector,
@@ -39,6 +39,7 @@ typedef enum {
 	SIErrorNoStoriesFound,
 	SIErrorStoryFailures,
 	SIErrorExceptionCaught,
+	SIErrorUnknownProperty,
 	SIUIErrorExpectAtLeastOneView,
 	SIUIErrorExpectOnlyOneView
 } SIError;

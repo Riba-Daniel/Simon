@@ -106,10 +106,17 @@
 	}
 	@catch (NSException *exception) {
 		DC_LOG(@"Caught exception: %@", [exception reason]);
-		*error = [self errorForCode:SIErrorExceptionCaught 
-							 errorDomain:SIMON_ERROR_DOMAIN 
-					  shortDescription:@"Exception caught"
-						  failureReason:[NSString stringWithFormat:@"Exception caught: %@",[exception reason]]];
+		if ([exception.name isEqualToString:@"NSUnknownKeyException"]) {
+			*error = [self errorForCode:SIErrorUnknownProperty 
+								 errorDomain:SIMON_ERROR_DOMAIN 
+						  shortDescription:@"Unknown property" 
+							  failureReason:[NSString stringWithFormat:@"Unknown property: %@",[exception reason]]];
+		} else {
+			*error = [self errorForCode:SIErrorExceptionCaught 
+								 errorDomain:SIMON_ERROR_DOMAIN 
+						  shortDescription:@"Exception caught"
+							  failureReason:[NSString stringWithFormat:@"Exception caught: %@",[exception reason]]];
+		}
 		exceptionCaught = YES;
 		return NO;
 	}

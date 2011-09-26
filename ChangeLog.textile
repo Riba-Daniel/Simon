@@ -2,6 +2,7 @@ h1. Version 0.3.0
 Sept 2011
 
 * Updated dUsefulStuff to obtain access to a better error handling routine.
+* Added KVC complient view attribute analysis.
 
 h1. Version 0.2.0
 July 2011

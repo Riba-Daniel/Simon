@@ -25,6 +25,7 @@
 -(void) setUp {
 	[super setUp];
 	handler  = [[SIUIViewHandler alloc] init];
+	handler.view = button;
 }
 
 -(void) tearDown {
@@ -32,16 +33,36 @@
 	[super tearDown];	
 }
 
-
 -(void) testSynthesizingATap {
-	handler.view = button;
 	[handler tap];
 	GHAssertTrue(tapped, @"Tap did not occur as expected");
 }
 
 -(void) testName {
+	GHAssertEqualStrings(handler.name, @"UIRoundedRectButton", @"Incorrect node returned");
+}
+
+-(void) testParentName {
+	GHAssertEquals(handler.parentNode, view, @"Incorrect name returned");
+}
+
+-(void) testAttributeQueryFailsWithInvalidPropertyName {
+	GHAssertThrowsSpecificNamed([handler hasAttribute:@"xyz" withValue:nil], NSException, @"NSUnknownKeyException", @"Handler should have failed request.");
+}
+
+-(void) testAttributeQueryMatchesPropertyValue {
+	GHAssertTrue([handler hasAttribute:@"alpha" withValue:[NSNumber numberWithInt:1]], @"Handler fails to match attribute data");
+}
+
+-(void) testAttributeQueryMatchesNestedPropertyValue {
+	GHAssertTrue([handler hasAttribute:@"titleLabel.text" withValue:@"hello"], @"Handler fails to match attribute data");
+}
+
+-(void) testSubnodes {
 	handler.view = view;
-	GHAssertEqualStrings(handler.name, @"UIView", @"Incorrect name returned");
+	NSArray *subNodes = handler.subNodes;
+	GHAssertEquals([subNodes count], (NSUInteger) 1, @"Should be one sub view");
+	GHAssertEquals([subNodes objectAtIndex:0], button, @"Returned node was not the button.");
 }
 
 @end

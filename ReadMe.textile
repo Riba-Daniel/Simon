@@ -43,7 +43,7 @@ h1. How do I install it?
 First there are two other frameworks you need to download. They are:
 
 * "dUsefulStuff framework":http://github.com/drekka/dUsefulStuff - version 0.0.13+ (Provides some common code I use)
-* "dNodi framework":http://github.com/drekka/dNodi - version 0.2.1+ (Provides XPath like searching)
+* "dNodi framework":http://github.com/drekka/dNodi - version 0.3.0+ (Provides XPath like searching)
 
 Download the DMG files for each. Open each one and drag and drop the framework files to a directory. Open XCode again, select your target and go to *Build Phases* and *Link Binary With Libraries*. Then click *&#91;+&#93;* to add library. Select *Add Other...* and then the framework directory you just copied. Do the same for the other frameworks.
 
@@ -270,6 +270,10 @@ SIMapStepToSelector(@"then tap the button", tapButton)
 	}
 }
 </pre>
+
+h2. Accessing view properties using KVC
+
+When Simon encounters a request to select based on the attribute of a UIView, it passes the attribute value to iOS's KVC API. This means that any property of a UIView which is KVC complient can be used in a query. For example, on a UIButton @[labelText.text='hello']@ works just fine to find a button which has the text "hello" on it. Funny enough, @frame.size@ does not work. Apparently @CGRect@ is not included in KVC although various other primitive types are.
 
 
 h1. I'd like to say thanks to several developers for developing the following tools:

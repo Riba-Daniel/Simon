@@ -29,8 +29,8 @@
 	return [[SIUIHandlerFactory handlerFactory] createHandlerForView:self].subNodes;
 }
 
--(NSObject *) objectForAttribute:(NSString *) attribute {
-	return [[[SIUIHandlerFactory handlerFactory] createHandlerForView:self] objectForAttribute:attribute];
+-(BOOL) hasAttribute:(NSString *)attribute withValue:(id)value {
+	return [[[SIUIHandlerFactory handlerFactory] createHandlerForView:self] hasAttribute:attribute withValue:value];
 }
 
 @end

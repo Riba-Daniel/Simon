@@ -29,8 +29,10 @@
 	return [[self.view.subviews copy] autorelease];	
 }
 
--(NSObject *) objectForAttribute:(NSString *) attribute {
-	return nil;
+-(BOOL) hasAttribute:(NSString *)attribute withValue:(id)value {
+	// Use KVC to test the value.
+	id propertyValue = [self.view valueForKeyPath:attribute];
+	return [propertyValue isEqual:value];
 }
 
 #pragma mark - SIUIAction

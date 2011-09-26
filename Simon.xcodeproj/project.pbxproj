@@ -204,7 +204,7 @@
 		9406BD33140D17C500E76E86 /* SISimonTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SISimonTests.m; sourceTree = "<group>"; };
 		942F7F64141F9197009F3550 /* SIUIViewHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIViewHandler.h; sourceTree = "<group>"; };
 		942F7F65141F9197009F3550 /* SIUIViewHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUIViewHandler.m; sourceTree = "<group>"; };
-		94327D7113E44F9A0003646C /* dNodi.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = dNodi.framework; path = ../Releases/dNodi/v0.2.1/dNodi.framework; sourceTree = "<group>"; };
+		94327D7113E44F9A0003646C /* dNodi.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = dNodi.framework; path = ../Releases/dNodi/v0.3.0/dNodi.framework; sourceTree = "<group>"; };
 		94327D9A13EAD1D50003646C /* TouchSynthesis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchSynthesis.h; sourceTree = "<group>"; };
 		94327D9B13EAD1D50003646C /* TouchSynthesis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchSynthesis.m; sourceTree = "<group>"; };
 		9465773E141B97B90026F1FB /* SIUIViewHandlerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUIViewHandlerTests.m; sourceTree = "<group>"; };
@@ -805,7 +805,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../Releases/dUsefulStuff/v0.0.13\"",
-					"\"$(SRCROOT)/../Releases/dNodi/v0.2.1\"",
+					"\"$(SRCROOT)/../Releases/dNodi/v0.3.0\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Simon-Prefix.pch";
@@ -821,7 +821,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../Releases/dUsefulStuff/v0.0.13\"",
-					"\"$(SRCROOT)/../Releases/dNodi/v0.2.1\"",
+					"\"$(SRCROOT)/../Releases/dNodi/v0.3.0\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Simon-Prefix.pch";
@@ -841,7 +841,7 @@
 					"\"$(SRCROOT)/../tools\"",
 					"\"$(SRCROOT)/../tools/GHUnit 0.4.28\"",
 					"\"$(SRCROOT)/../Releases/dUsefulStuff/v0.0.13\"",
-					"\"$(SRCROOT)/../Releases/dNodi/v0.2.1\"",
+					"\"$(SRCROOT)/../Releases/dNodi/v0.3.0\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Simon-Prefix.pch";
@@ -864,7 +864,7 @@
 					"\"$(SRCROOT)/../tools\"",
 					"\"$(SRCROOT)/../tools/GHUnit 0.4.28\"",
 					"\"$(SRCROOT)/../Releases/dUsefulStuff/v0.0.13\"",
-					"\"$(SRCROOT)/../Releases/dNodi/v0.2.1\"",
+					"\"$(SRCROOT)/../Releases/dNodi/v0.3.0\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Simon-Prefix.pch";
@@ -884,7 +884,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../Releases/dUsefulStuff/v0.0.13\"",
-					"\"$(SRCROOT)/../Releases/dNodi/v0.2.1\"",
+					"\"$(SRCROOT)/../Releases/dNodi/v0.3.0\"",
 					"\"$(SRCROOT)/../tools/GHUnit 0.4.28\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -908,7 +908,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../Releases/dUsefulStuff/v0.0.13\"",
-					"\"$(SRCROOT)/../Releases/dNodi/v0.2.1\"",
+					"\"$(SRCROOT)/../Releases/dNodi/v0.3.0\"",
 					"\"$(SRCROOT)/../tools/GHUnit 0.4.28\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
