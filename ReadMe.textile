@@ -283,6 +283,14 @@ I looked into this quite a bit and ultimately was able to develope some code tha
 
 So the upshot is that if your code triggers a NSInvocation, it will abort Simon's run. When Apple fixes the bug, I can change this.
 
+h1. Test Assert Macros
+
+Unfortunately the assert macros in both Sen Kit and GHUnit require that they are called from within an appropriate test case class. So I'm coding up a set of macros which are basically the same, but don't require the test code to be in any particular class. I'm also coding them so that rather than throwing NSExceptions, they pass and exception back to the step mapping via a static variable. This will help with working around the NSInvocation bug previously mentioned.
+
+|| Macro || Description || 
+| SIFail(message) | Indicates that the test should fail. |
+
+
 h1. I'd like to say thanks to several developers for developing the following tools:
 
 * Tomaž Kragelj for "Appledoc V2":http://www.gentlebytes.com/home/appledocapp
