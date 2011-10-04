@@ -287,9 +287,12 @@ h1. Test Assert Macros
 
 Unfortunately the assert macros in both Sen Kit and GHUnit require that they are called from within an appropriate test case class. So I'm coding up a set of macros which are basically the same, but don't require the test code to be in any particular class. I'm also coding them so that rather than throwing NSExceptions, they pass and exception back to the step mapping via a static variable. This will help with working around the NSInvocation bug previously mentioned.
 
-|| Macro || Description || 
+|_. Macro |_. Description | 
 | SIFail(message) | Indicates that the test should fail. |
-
+| SIAssertTrue(expr) | Fails if the expression results in NO. |
+| SIAssertTrueM(expr, message) | Fails if the expression results in NO and uses the passed message. |
+| SIAssertFalse(expr) | Fails if the expression results in YES. |
+| SIAssertFalseM(expr, message) | Fails if the expression results in YES and uses the passed message. |
 
 h1. I'd like to say thanks to several developers for developing the following tools:
 
