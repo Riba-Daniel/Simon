@@ -1,0 +1,4 @@
+Story: SIFail macro passes exception back to story
+Given the interface is up
+then call the SIFail macro
+and check that the exception was recorded

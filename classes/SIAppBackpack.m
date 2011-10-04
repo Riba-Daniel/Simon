@@ -18,6 +18,7 @@
 -(void) start;
 -(void) startUp:(NSNotification *) notification;
 -(void) addApplicationReadyObserver;
+-(void) removeApplicationReadyObserver;
 @end
 
 @implementation SIAppBackpack
@@ -48,8 +49,13 @@
 															 object:nil];
 }
 
+-(void) removeApplicationReadyObserver {
+	DC_LOG(@"Removing program hooks to notification center: %@", [NSNotificationCenter defaultCenter]);
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
-// From DCBackgroundTask
+
+// Background method
 -(void) start {
 	
 	DC_LOG(@"Simon's background task starting");
@@ -71,6 +77,10 @@
 	}
 	
 	[runner release];
+	
+	// Release program hooks and dealloc self.
+	[self removeApplicationReadyObserver];
+	[self release];
 }
 
 // Callbacks.

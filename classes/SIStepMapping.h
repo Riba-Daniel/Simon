@@ -13,12 +13,6 @@
  */
 @interface SIStepMapping : NSObject {
 	@private
-	NSRegularExpression *regex;
-	SEL selector;
-	Class targetClass;
-	BOOL executed;
-	BOOL exceptionCaught;
-	NSString *command;
 }
 
 /// @name Properties
@@ -39,14 +33,14 @@
 @property (nonatomic, assign) Class targetClass;
 
 /**
- Indicates whether the maping was exexcuted. Mainly used for reporting mappings that are not being used. Returns `YES` if the mapping was executed at least once.
+ Indicates whether the maping was exexcuted. Mainly used for reporting mappings that are not being used. Returns YES if the mapping was executed at least once.
  */
-@property (nonatomic, assign, readonly) BOOL executed;
+@property (nonatomic, assign) BOOL executed;
 
 /**
- Indicates that an exception was caught when executing the method.
+ If an exception is caught, it is stored here.
  */
-@property (nonatomic, assign, readonly) BOOL exceptionCaught;
+@property (nonatomic, retain) NSException *exception;
 
 /**
  This is the entire text of the step as read from the story file. This is populated by the story when it executes the steps just before invokeWithObject:error: is called.
@@ -82,5 +76,10 @@
  @return `YES` if the invocation was successful. `NO` if there was an error.
  */
 -(BOOL) invokeWithObject:(id) object error:(NSError **) error;
+
+/**
+ Part of a temporary workaround for the exception hadning bug in NSInvocation.
+ */
++(void) cacheException:(NSException *) exception;
 
 @end

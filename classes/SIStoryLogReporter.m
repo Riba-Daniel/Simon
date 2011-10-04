@@ -42,6 +42,7 @@
 	}
 	
 	NSLog(@" ");
+	NSLog(@"Final Report:");
 	NSLog(@"Total stories    : %u", [stories count]);
 	NSLog(@"Not run          : %u", [notRun count]);
 	NSLog(@"Not fully mapped : %u", [notMapped count]);
@@ -63,9 +64,6 @@
 			  failures:(NSMutableArray *) failures
 				ignored:(NSMutableArray *) ignored
 				 notRun:(NSMutableArray *) notRun {
-	
-	NSLog(@" ");
-	NSLog(@"Story: %@", story.title);
 	
 	NSString *status;
 	switch (story.status) {
@@ -90,15 +88,16 @@
 			[notRun addObject:story];
 			break;
 	}
-	
-	NSLog(@"Final status: %@", status);
-	NSLog(@"Step report:");
+
+	NSLog(@" ");
+	NSLog(@"Story: %@ - %@", story.title, status);
+	NSLog(@" ");
 	
 	for (SIStep * step in story.steps) {
 		if ([step isMapped]) {
 			NSString *status;
 			if (step.stepMapping.executed) {
-				status = step.stepMapping.exceptionCaught ? @"Failed!" : @"Success";
+				status = step.stepMapping.exception != nil ? @"Failed!" : @"Success";
 			} else {
 				status = @"Not executed";
 			}
@@ -115,16 +114,16 @@
 }
 
 -(void) reportUnusedMappings:(NSArray *) mappings {
+
 	NSLog(@" ");
-	NSLog(@"Step mappings not mapped to stories");
-	int count = 0;
-	for (SIStepMapping * mapping in mappings) {
-		if (mapping.selector == nil && !mapping.executed) {
-			count++;
-			NSLog(@"\tMapping \"%@\" -> %@::%@", mapping.regex.pattern, NSStringFromClass(mapping.targetClass), NSStringFromSelector(mapping.selector));
+	if ([mappings count] > 0) {
+		NSLog(@"Step mappings not mapped to stories");
+		for (SIStepMapping * mapping in mappings) {
+			if (mapping.selector == nil && !mapping.executed) {
+				NSLog(@"\tMapping \"%@\" -> %@::%@", mapping.regex.pattern, NSStringFromClass(mapping.targetClass), NSStringFromSelector(mapping.selector));
+			}
 		}
-	}
-	if (count == 0) {
+	} else {
 		NSLog(@"All step mappings where mapped to stories.");
 	}
 }

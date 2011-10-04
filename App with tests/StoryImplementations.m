@@ -1,3 +1,4 @@
+
 //
 //  StoryImplementations.m
 //  Simon
@@ -6,9 +7,8 @@
 //  Copyright 2011. All rights reserved.
 //
 #import "SISimon.h"
-#import <GHUnitIOS/GHUnit.h>
 
-@interface StoryImplementations : GHTestCase {
+@interface StoryImplementations : NSObject {
 }
 @end
 
@@ -16,11 +16,11 @@
 
 SIMapStepToSelector(@"Given the interface is up", givenTheInterfaceIsUp)
 -(void) givenTheInterfaceIsUp {
-	SIPrintCurrentWindowTree();
+	//SIPrintCurrentWindowTree();
 	NSError *error = nil;
 	UILabel *firstViewLabel = (UILabel *) SIFindView(@"//UILabel[@text='First View']", &error);
 	if (firstViewLabel == nil) {
-		GHFail(@"Error: %@", [error localizedFailureReason]);
+		SIFail(@"Error: %@", [error localizedFailureReason]);
 	}
 }
 
@@ -31,7 +31,7 @@ SIMapStepToSelector(@"Then I execute a log UI tree", executePrintUITree)
 
 SIMapStepToSelector(@"and it should execute on the main thread", executedOnMainThread)
 -(void) executedOnMainThread {
-	GHAssertTrue([[NSThread currentThread] isMainThread], @"not on main thread");
+	//STAssertTrue([[NSThread currentThread] isMainThread], @"not on main thread");
 }
 
 SIMapStepToSelector(@"then I can switch to the second view", clickTheSecondView)
@@ -39,8 +39,15 @@ SIMapStepToSelector(@"then I can switch to the second view", clickTheSecondView)
 	
 }
 
-SIMapStepToSelector(@"and see the view", verifyTheViewIsVisible)
--(void) verifyTheViewIsVisible {
+SIMapStepToSelector(@"and see the view labelled (.*)", verifyTheViewIsVisible:)
+-(void) verifyTheViewIsVisible:(NSString *) viewName {
+	//SIPrintCurrentWindowTree();
+	NSError *error = nil;
+	NSString *query = [NSString stringWithFormat:@"//UILabel[@text='%@']", viewName];
+	UILabel *firstViewLabel = (UILabel *) SIFindView(query, &error);
+	if (firstViewLabel == nil) {
+		SIFail(@"Error: %@", [error localizedFailureReason]);
+	}
 }
 
 @end

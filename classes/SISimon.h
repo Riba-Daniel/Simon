@@ -17,17 +17,31 @@
 #import "SIUIHandlerFactory.h"
 #import "UIView+Simon.h"
 
+#pragma mark - Runners
+
 /**
  This macro must be placed in your startup code. It loads Simon into the background and automatically runs the stories once the application is active and ready.
  If you want a particular story file to be run, just enter it's name as a parameter.
  */
+#ifdef DC_DEBUG
+
 #define SIRun() \
-	SIAppBackpack *backpack = [[SIAppBackpack alloc] init]; \
+	SIAppBackpack *backpack = [[[SIAppBackpack alloc] init] autorelease]; \
 	DC_LOG(@"Started backpack %@", [backpack description]);
 
 #define SIRunFile(storyFile) \
-	SIAppBackpack *backpack = [[SIAppBackpack alloc] initWithStoryFile:storyFile]; \
+	SIAppBackpack *backpack = [[[SIAppBackpack alloc] initWithStoryFile:storyFile] autorelease]; \
 	DC_LOG(@"Started backpack %@", [backpack description]);
+
+#else
+
+#define SIRun() [[[SIAppBackpack alloc] init] autorelease];
+#define SIRunFile(storyFile) [[[SIAppBackpack alloc] initWithStoryFile:storyFile] autorelease];
+
+#endif
+
+
+#pragma mark - Step mapping
 
 /**
  This macro maps a regex to a selector in the current class. Simon expects that the order and type of any groups in the regex will
@@ -50,6 +64,8 @@
    return mapping; \
 }
 
+#pragma mark - Storing data
+
 /**
  * Macro which stores data in the story so it can be passed between implmentation classes. 
  */
@@ -60,6 +76,7 @@
  */
 #define SIRetrieveFromStory(key) [(SIStory *) objc_getAssociatedObject(self, SIINSTANCE_STORY_REF_KEY) retrieveObjectWithKey:key]
 
+#pragma mark - Accessing the UI
 /// @name UI interactions
 
 /**
@@ -95,5 +112,26 @@
 		[handler tap]; \
 	} while (NO);
 
+#pragma mark - Test assertions
+
+/// @name Assertions
+
+// These are sourced from Apple's Sent Kit and the GHUnit macros. They are then modified to work independantly of a testing framework. 
+
+/*! Generates a failure unconditionally. 
+ @param description A format string as in the printf() function. Can be nil or an empty string but must be present
+ @param ... A variable number of arguments to the format string. Can be absent
+ */
+#define SIFail(description, ...) \
+do { \
+	NSLog(@"Throwing exception"); \
+	NSString *_message = @""; \
+	if (description) { \
+		_message = [NSString stringWithFormat:description, ##__VA_ARGS__]; \
+		NSLog(@"MESSAGE %@", _message); \
+	} \
+	[SIStepMapping cacheException:[NSException exceptionWithName:@"SIAssertionException" reason:_message userInfo:nil]]; \
+} while (NO);
+//@throw [NSException exceptionWithName:@"SIAssertionException" reason:_message userInfo:nil]; \
 
 

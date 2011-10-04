@@ -16,9 +16,6 @@
  */
 @interface SIStoryRunner : NSObject {
 	@private 
-	SIStoryFileReader * reader;
-	SIRuntime *runtime;
-	NSObject<SIStoryReporter> * reporter;
 }
 
 /// @name Properties
@@ -31,12 +28,17 @@
 /**
  The runtime to source mappings from. This is read only.
  */
-@property (retain, readonly, nonatomic) SIRuntime *runtime;
+@property (retain, nonatomic) SIRuntime *runtime;
 
 /**
  The NSObject<SIStoryReporter> instance which will report on the run. If `nil`, (the default) then no reporting is done. In other words to get a report a reporter must be set explicitly.
  */
 @property (retain, nonatomic) NSObject<SIStoryReporter> * reporter;
+
+/**
+ After the run this will be populated with the stories. This allows access to interrogate them for reporting.
+ */
+@property (retain, nonatomic) NSArray *stories;
 
 /// @name Stories
 

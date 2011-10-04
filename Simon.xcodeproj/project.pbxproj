@@ -95,10 +95,13 @@
 		9465773F141B97B90026F1FB /* SIUIViewHandlerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9465773E141B97B90026F1FB /* SIUIViewHandlerTests.m */; };
 		94657743141C95160026F1FB /* AbstractTestWithControlsOnView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94657742141C95160026F1FB /* AbstractTestWithControlsOnView.m */; };
 		94657751141CF2C60026F1FB /* GHUnitIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 653D0EF813A784C100A5AB82 /* GHUnitIOS.framework */; };
+		9481C8A71431F3780036121A /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9481C8A61431F3780036121A /* SenTestingKit.framework */; };
 		9499DB6D13F017190053BEEA /* SIUIHandlerFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 9499DB6B13F017190053BEEA /* SIUIHandlerFactory.h */; };
 		9499DB6E13F017190053BEEA /* SIUIHandlerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 9499DB6C13F017190053BEEA /* SIUIHandlerFactory.m */; };
 		9499DB7213F017DC0053BEEA /* SIUIAction.h in Headers */ = {isa = PBXBuildFile; fileRef = 9499DB7013F017DC0053BEEA /* SIUIAction.h */; };
 		94AED1541420DB660070D3BB /* SIUIHandlerFactoryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 94AED1511420DB070070D3BB /* SIUIHandlerFactoryTests.m */; };
+		94C18E8A1439DBEB00B28D44 /* Macro.stories in Resources */ = {isa = PBXBuildFile; fileRef = 94C18E891439DBEB00B28D44 /* Macro.stories */; };
+		94C18E8D1439DC7B00B28D44 /* MacroStoryImplementations.m in Sources */ = {isa = PBXBuildFile; fileRef = 94C18E8C1439DC7B00B28D44 /* MacroStoryImplementations.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -210,10 +213,13 @@
 		9465773E141B97B90026F1FB /* SIUIViewHandlerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUIViewHandlerTests.m; sourceTree = "<group>"; };
 		94657741141C95160026F1FB /* AbstractTestWithControlsOnView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractTestWithControlsOnView.h; sourceTree = "<group>"; };
 		94657742141C95160026F1FB /* AbstractTestWithControlsOnView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractTestWithControlsOnView.m; sourceTree = "<group>"; };
+		9481C8A61431F3780036121A /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		9499DB6B13F017190053BEEA /* SIUIHandlerFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIHandlerFactory.h; sourceTree = "<group>"; };
 		9499DB6C13F017190053BEEA /* SIUIHandlerFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUIHandlerFactory.m; sourceTree = "<group>"; };
 		9499DB7013F017DC0053BEEA /* SIUIAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIAction.h; sourceTree = "<group>"; };
 		94AED1511420DB070070D3BB /* SIUIHandlerFactoryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUIHandlerFactoryTests.m; sourceTree = "<group>"; };
+		94C18E891439DBEB00B28D44 /* Macro.stories */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Macro.stories; sourceTree = "<group>"; };
+		94C18E8C1439DC7B00B28D44 /* MacroStoryImplementations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MacroStoryImplementations.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -247,6 +253,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9481C8A71431F3780036121A /* SenTestingKit.framework in Frameworks */,
 				659E628513D9BEB000ACD34C /* libSimon.a in Frameworks */,
 				659E625C13D9BE9600ACD34C /* UIKit.framework in Frameworks */,
 				659E625D13D9BE9600ACD34C /* Foundation.framework in Frameworks */,
@@ -290,6 +297,7 @@
 		653D0E8C13A782AD00A5AB82 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9481C8A61431F3780036121A /* SenTestingKit.framework */,
 				94327D7113E44F9A0003646C /* dNodi.framework */,
 				65D09A6313D99C5900D1A74B /* dUsefulStuff.framework */,
 				653D0EF813A784C100A5AB82 /* GHUnitIOS.framework */,
@@ -348,12 +356,12 @@
 				6583B43013D1CB2E005E13F3 /* Stories */,
 				65D35BC213A8BA130007A8AD /* NSObject+UtilsTests.m */,
 				6551A98E13AC8B8900679B94 /* NSString+UtilsTests.m */,
-				653D0EDD13A783DC00A5AB82 /* stories */,
+				653D0EDD13A783DC00A5AB82 /* Story files */,
 			);
 			path = tests;
 			sourceTree = "<group>";
 		};
-		653D0EDD13A783DC00A5AB82 /* stories */ = {
+		653D0EDD13A783DC00A5AB82 /* Story files */ = {
 			isa = PBXGroup;
 			children = (
 				653D0EDE13A783DC00A5AB82 /* Non keyword steps.stories */,
@@ -365,6 +373,7 @@
 				65D03BE313BB4BF700A3F0FA /* Non word steps.stories */,
 				65D03BE513BCB8CE00A3F0FA /* Communication.stories */,
 			);
+			name = "Story files";
 			path = stories;
 			sourceTree = "<group>";
 		};
@@ -439,6 +448,8 @@
 			children = (
 				659E628913D9C08700ACD34C /* First.stories */,
 				659E628C13D9C0D000ACD34C /* StoryImplementations.m */,
+				94C18E891439DBEB00B28D44 /* Macro.stories */,
+				94C18E8C1439DC7B00B28D44 /* MacroStoryImplementations.m */,
 			);
 			name = stories;
 			sourceTree = "<group>";
@@ -633,6 +644,7 @@
 				659E627B13D9BE9600ACD34C /* FirstViewController.xib in Resources */,
 				659E627E13D9BE9600ACD34C /* SecondViewController.xib in Resources */,
 				659E628A13D9C08700ACD34C /* First.stories in Resources */,
+				94C18E8A1439DBEB00B28D44 /* Macro.stories in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -693,6 +705,7 @@
 				659E626D13D9BE9600ACD34C /* FirstViewController.m in Sources */,
 				659E627413D9BE9600ACD34C /* SecondViewController.m in Sources */,
 				659E628D13D9C0D000ACD34C /* StoryImplementations.m in Sources */,
+				94C18E8D1439DC7B00B28D44 /* MacroStoryImplementations.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -751,10 +764,7 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					DC_LOG_DEALLOCS,
-					DC_DEBUG,
-				);
+				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
@@ -886,13 +896,11 @@
 					"\"$(SRCROOT)/../Releases/dUsefulStuff/v0.0.13\"",
 					"\"$(SRCROOT)/../Releases/dNodi/v0.3.0\"",
 					"\"$(SRCROOT)/../tools/GHUnit 0.4.28\"",
+					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "App with tests/TestApp2-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
+				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				INFOPLIST_FILE = "App with tests/TestApp2-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -910,6 +918,7 @@
 					"\"$(SRCROOT)/../Releases/dUsefulStuff/v0.0.13\"",
 					"\"$(SRCROOT)/../Releases/dNodi/v0.3.0\"",
 					"\"$(SRCROOT)/../tools/GHUnit 0.4.28\"",
+					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "App with tests/TestApp2-Prefix.pch";

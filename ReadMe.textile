@@ -275,6 +275,13 @@ h2. Accessing view properties using KVC
 
 When Simon encounters a request to select based on the attribute of a UIView, it passes the attribute value to iOS's KVC API. This means that any property of a UIView which is KVC complient can be used in a query. For example, on a UIButton @[labelText.text='hello']@ works just fine to find a button which has the text "hello" on it. Funny enough, @frame.size@ does not work. Apparently @CGRect@ is not included in KVC although various other primitive types are.
 
+h1. Exception handling - Bugger!
+
+Whilst coding for exceptions from the step implementations I came across a known Apple bug (I reported it as well as others). The bug is that NSInvocation (Which I use to call the implementation of a step) cannot handle NSExceptions properly and triggers a SIGABRT crash.
+
+I looked into this quite a bit and ultimately was able to develope some code that worked around it, however it will not work whilst the XCode debugger (GDB) is running because GDB intercepts signals. It can be switched off, but requires some knowledge of GDB to get it working and having it working all the time would impact SIGABRTs across your program as well as Simon's step implementations.
+
+So the upshot is that if your code triggers a NSInvocation, it will abort Simon's run. When Apple fixes the bug, I can change this.
 
 h1. I'd like to say thanks to several developers for developing the following tools:
 

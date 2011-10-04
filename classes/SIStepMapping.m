@@ -22,16 +22,33 @@
 	 onInvocation:(NSInvocation *) invocation 
 		atArgIndex:(NSUInteger) index 
 			  error:(NSError **) error;
+-(NSError *) errorForException;
 @end
 
 @implementation SIStepMapping
 
-@synthesize regex;
-@synthesize selector;
-@synthesize targetClass;
-@synthesize executed;
-@synthesize exceptionCaught;
-@synthesize command;
+@synthesize regex = regex_;
+@synthesize selector = selector_;
+@synthesize targetClass = targetClass_;
+@synthesize executed = executed_;
+@synthesize exception = exception_;
+@synthesize command = command_;
+
+-(id) init {
+	self = [super init];
+	if (self) {
+		self.exception = nil;
+	}
+	return self;
+}
+
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!! HACK
+// Static to tempoary store an exception so we can pass it from implementation code back to the mapping that is executing it. This will no longer be needed when Apple fixes NSInvocation.
+static NSException * passedException = nil;
++(void) cacheException:(NSException *) exception {
+	passedException = [exception retain];
+}
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!! HACK
 
 +(SIStepMapping *) stepMappingWithClass:(Class) theClass selector:(SEL) aSelector regex:(NSString *) theRegex error:(NSError **) error {
 	SIStepMapping * mapping = [[[SIStepMapping alloc] init] autorelease];
@@ -60,8 +77,7 @@
 					 code:SIErrorUnknownSelector 
 			errorDomain:SIMON_ERROR_DOMAIN 
 	 shortDescription:@"Selector not found"
-		 failureReason:
-		 [NSString stringWithFormat:@"The passed selector %@ was not found in class %@", NSStringFromSelector(aSelector), NSStringFromClass(theClass)]];
+		 failureReason:[NSString stringWithFormat:@"The passed selector %@ was not found in class %@", NSStringFromSelector(aSelector), NSStringFromClass(theClass)]];
 		return NO;
 	}
 	
@@ -72,9 +88,8 @@
 					 code:SIErrorRegularExpressionWillNotMatchSelector 
 			errorDomain:SIMON_ERROR_DOMAIN 
 	 shortDescription:@"Regular expression and selector mis-match."
-		 failureReason:
-		 [NSString stringWithFormat:@"The passed regular expression \"%@\" has a different number of arguments to the selector %@"
-		  , theRegex, NSStringFromSelector(aSelector)]];
+		 failureReason:[NSString stringWithFormat:@"The passed regular expression \"%@\" has a different number of arguments to the selector %@"
+							 , theRegex, NSStringFromSelector(aSelector)]];
 		return nil;
 	}	
 	
@@ -83,17 +98,17 @@
 }
 
 -(BOOL) canMapToStep:(NSString *) step {
-	NSRange rangeOfFirstMatch = [regex rangeOfFirstMatchInString:step options:0 range:NSMakeRange(0, [step length])];
+	NSRange rangeOfFirstMatch = [self.regex rangeOfFirstMatchInString:step options:0 range:NSMakeRange(0, [step length])];
 	return ! NSEqualRanges(rangeOfFirstMatch, NSMakeRange(NSNotFound, 0));
 }
 
 -(BOOL) invokeWithObject:(id) object error:(NSError **) error {
 	
 	// flag that we have been called.
-	executed = YES;
+	self.executed = YES;
 	
 	// Create the invocation.
-	Method method = class_getInstanceMethod(targetClass, selector);
+	Method method = class_getInstanceMethod(self.targetClass, self.selector);
 	NSInvocation *invocation = [self createInvocationForMethod:method];
 	if (![self populateInvocationParameters:invocation withMethod:method error:error]) {
 		return NO;		
@@ -101,40 +116,55 @@
 	
 	// No perform the invocation.
 	DC_LOG(@"Invoking methods on class");
+	
 	@try {
-		[invocation invokeWithTarget:object];
+		invocation.target = object;
+		[invocation invoke];
 	}
-	@catch (NSException *exception) {
-		DC_LOG(@"Caught exception: %@", [exception reason]);
-		if ([exception.name isEqualToString:@"NSUnknownKeyException"]) {
-			*error = [self errorForCode:SIErrorUnknownProperty 
-								 errorDomain:SIMON_ERROR_DOMAIN 
-						  shortDescription:@"Unknown property" 
-							  failureReason:[NSString stringWithFormat:@"Unknown property: %@",[exception reason]]];
-		} else {
-			*error = [self errorForCode:SIErrorExceptionCaught 
-								 errorDomain:SIMON_ERROR_DOMAIN 
-						  shortDescription:@"Exception caught"
-							  failureReason:[NSString stringWithFormat:@"Exception caught: %@",[exception reason]]];
-		}
-		exceptionCaught = YES;
+	@catch (NSException *thrownException) {
+		self.exception = thrownException;
+		DC_LOG(@"Caught exception: %@", [self.exception reason]);
+		*error = [self errorForException];
 		return NO;
 	}
+	
+	// !!!!!!!!!!!!!!!!!!!!!!!!!!! Exception handling HACK.
+	if (passedException != nil) {
+		self.exception = passedException;
+		*error = [self errorForException];
+		DC_DEALLOC(passedException);
+		return NO;
+	}
+
 	return YES;
+}
+
+-(NSError *) errorForException {
+	
+	if ([self.exception.name isEqualToString:@"NSUnknownKeyException"]) {
+		return [self errorForCode:SIErrorUnknownProperty 
+						  errorDomain:SIMON_ERROR_DOMAIN 
+					shortDescription:@"Unknown property" 
+						failureReason:[NSString stringWithFormat:@"Unknown property: %@",[self.exception reason]]];
+	} 
+	return [self errorForCode:SIErrorExceptionCaught 
+					  errorDomain:SIMON_ERROR_DOMAIN 
+				shortDescription:@"Exception caught"
+					failureReason:[NSString stringWithFormat:@"Exception caught: %@",[self.exception reason]]];
 }
 
 -(NSInvocation *) createInvocationForMethod:(Method) method {
 	DC_LOG(@"Creating invocation for %@::%@", NSStringFromClass(targetClass), NSStringFromSelector(selector));
 	NSMethodSignature *signature = [NSMethodSignature signatureWithObjCTypes:method_getTypeEncoding(method)];
 	NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
-	invocation.selector = selector;
+	invocation.selector = self.selector;
 	return invocation;
 }
 
 -(BOOL) populateInvocationParameters:(NSInvocation *) invocation withMethod:(Method)method error:(NSError **) error {
 	
 	// Get the data values from the passed command.	
-	NSArray *matches = [regex matchesInString:self.command options:0 range:NSMakeRange(0, [self.command length])];
+	NSArray *matches = [self.regex matchesInString:self.command options:0 range:NSMakeRange(0, [self.command length])];
 	NSTextCheckingResult * match = [matches objectAtIndex:0];
 	
 	// Populate the invocation with the data from the command. Remember to allow for the first three
@@ -233,7 +263,10 @@
 	self.command = nil;
 	self.regex = nil;
 	self.selector = nil;
+	self.exception = nil;
 	[super dealloc];
 }
 
 @end
+
+

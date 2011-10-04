@@ -104,6 +104,18 @@
 	[self invokeWithRegex: @"abc (.*)" selector:@selector(doSomethingWithBoolean:) command:@"abc yes"];
 }
 
+-(void) testSettingPassedExceptionTriggersAStepFailure {
+	NSError *error = nil;
+	SIStepMapping * mapping = [SIStepMapping stepMappingWithClass:[self class] selector:@selector(doSomething) regex:@"abc" error:&error];
+	GHAssertNotNil(mapping, @"nil mapping, error says %@", error.localizedDescription);
+	mapping.command = @"abc";
+	[SIStepMapping cacheException:[NSException exceptionWithName:@"abc" reason:@"def" userInfo:nil]];
+	
+	GHAssertFalse([mapping invokeWithObject:self error:&error], @"Mapping should not have worked");
+	GHAssertNotNil(mapping.exception, @"Exception should not be null");
+	
+}
+
 // Helpers
 
 -(void) invokeWithRegex:(NSString *) regex selector:(SEL) selector command:(NSString *) command {

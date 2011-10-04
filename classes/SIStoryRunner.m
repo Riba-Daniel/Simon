@@ -19,18 +19,19 @@
 
 @implementation SIStoryRunner
 
-@synthesize reader;
-@synthesize runtime;
-@synthesize reporter;
+@synthesize reader = reader_;
+@synthesize runtime = runtime_;
+@synthesize reporter = reporter_;
+@synthesize stories = stories_;
 
 - (id)init
 {
 	self = [super init];
 	if (self) {
 		// Now setup the defaults.
-		reader = [[SIStoryFileReader alloc] init];
-		runtime = [[SIRuntime alloc] init];
-		reporter = [[SIStoryLogReporter alloc] init];
+		self.reader = [[[SIStoryFileReader alloc] init] autorelease];
+		self.runtime = [[[SIRuntime alloc] init] autorelease];
+		self.reporter = [[[SIStoryLogReporter alloc] init] autorelease];
 	}
 	
 	return self;
@@ -39,20 +40,20 @@
 -(BOOL) runStories:(NSError **) error {
 	
 	// Read the runtime to local all mappings. 
-	NSArray * mappings = [runtime allMappingMethodsInRuntime];
+	NSArray * mappings = [self.runtime allMappingMethodsInRuntime];
 	
 	// Read the stories.
 	DC_LOG(@"Reading stories");
-	NSArray *stories = [reader readStories: error];
+	self.stories = [self.reader readStories: error];
 	
 	// If there was an error then return.
-	if (stories == nil) {
+	if (self.stories == nil) {
 		DC_LOG(@"Error reading story files. Exiting");
 		return NO;
 	}
 	
 	// If no stories where read then generate an error and return.
-	if ([stories count] == 0) {
+	if ([self.stories count] == 0) {
 		[self setError:error 
 					 code:SIErrorNoStoriesFound 
 			errorDomain:SIMON_ERROR_DOMAIN 
@@ -64,14 +65,14 @@
 	
 	// Find the mapping for each story.
 	DC_LOG(@"Mappin steps to story steps");
-	for (SIStory *story in stories) {
+	for (SIStory *story in self.stories) {
 		[story mapSteps:(NSArray *) mappings];
 	}
 	
 	// Now execute the stories.
 	DC_LOG(@"Running %lu stories", [stories count]);
 	BOOL success = YES;
-	for (SIStory *story in stories) {
+	for (SIStory *story in self.stories) {
 		if (![story invoke]) {
 			if (story.status == SIStoryStatusNotMapped || story.status == SIStoryStatusError) {
 				[self setError:error 
@@ -85,7 +86,7 @@
 	}
 	
 	// Publish the results.
-	[reporter reportOnStories:stories andMappings:mappings];
+	[self.reporter reportOnStories:self.stories andMappings:mappings];
 	
 	DC_LOG(@"Done. All stories succeeded ? %@", DC_PRETTY_BOOL(success));
 	return success;
@@ -94,8 +95,9 @@
 
 -(void) dealloc {
 	self.reader = nil;
-	DC_DEALLOC(runtime);
+	self.runtime = nil;
 	self.reporter = nil;
+	self.stories = nil;
 	[super dealloc];
 }
 
