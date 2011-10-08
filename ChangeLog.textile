@@ -1,8 +1,16 @@
 h1. Version 0.3.0
-Sept 2011
+Oct 2011
 
 * Updated dUsefulStuff to obtain access to a better error handling routine.
 * Added KVC complient view attribute analysis.
+* Adding assert macros.
+* Adding better handling of NSInvocation exceptions due to known bug in NSInvocation.
+* Added new in app display of results.
+* Injected SIStepMapping into implementation classes storage area before call so class can access it. Mainly for testing.
+* Revamped output of reporting in log.
+* Updated to use dNodi (replacement for DXPath).
+* More work on UI utils.
+* More work on macros.
 
 h1. Version 0.2.0
 July 2011

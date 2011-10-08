@@ -33,7 +33,7 @@
 /**
  The NSObject<SIStoryReporter> instance which will report on the run. If `nil`, (the default) then no reporting is done. In other words to get a report a reporter must be set explicitly.
  */
-@property (retain, nonatomic) NSObject<SIStoryReporter> * reporter;
+@property (retain, nonatomic) NSArray * reporters;
 
 /**
  After the run this will be populated with the stories. This allows access to interrogate them for reporting.

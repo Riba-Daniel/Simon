@@ -12,7 +12,7 @@
 
 #import "SIUIUtils.h"
 #import "UIView+Simon.h"
-#import "SIEnums.h"
+#import "SIConstants.h"
 
 @interface SIUIUtils()
 +(void) logSubviewsOfView:(UIView *) view widthPrefix:(NSString *) prefix index:(int) index;

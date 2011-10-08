@@ -11,7 +11,7 @@
 #import <dUsefulStuff/DCCommon.h>
 #import <dUsefulStuff/DCDialogs.h>
 #import "SIStoryRunner.h"
-#import "SIInternal.h"
+#import "SIConstants.h"
 
 
 @interface SIAppBackpack()
@@ -73,7 +73,7 @@
 	NSError *error = nil;
 	DC_LOG(@"Calling story runner");
 	if (![runner runStories:&error]) {
-		[DCDialogs displayMessage:[error localizedFailureReason] title:[error localizedDescription]]; 
+		// Do mothing as runner has code to deal with the error.
 	}
 	
 	[runner release];
@@ -86,7 +86,7 @@
 // Callbacks.
 -(void) startUp:(NSNotification *) notification {
 	DC_LOG(@"App is up so starting Simon's background queue");
-	dispatch_queue_t queue = dispatch_queue_create(SIMONS_QUEUE, NULL);
+	dispatch_queue_t queue = dispatch_queue_create(SI_QUEUE_NAME, NULL);
 	dispatch_async(queue, ^{
 		[self start];
 	});

@@ -10,7 +10,7 @@
 #import <dUsefulStuff/NSObject+dUsefulStuff.h>
 
 #import "SIStoryFileReader.h"
-#import "SIEnums.h"
+#import "SIConstants.h"
 #import "NSObject+Utils.h"
 
 @interface SIStoryFileReader()

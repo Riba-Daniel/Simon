@@ -90,8 +90,7 @@
 	}
 
 	NSLog(@" ");
-	NSLog(@"Story: %@ - %@", story.title, status);
-	NSLog(@" ");
+	NSLog(@"Story: %@", story.title);
 	
 	for (SIStep * step in story.steps) {
 		if ([step isMapped]) {
@@ -102,15 +101,17 @@
 				status = @"Not executed";
 			}
 			
-			NSLog(@"Step: \"%@\" (%@::%@) - %@", step.command, 
+			NSLog(@"   Step: \"%@\" (%@::%@) - %@", step.command, 
 					NSStringFromClass(step.stepMapping.targetClass),
 					NSStringFromSelector(step.stepMapping.selector),
 					status);
 		} else {
-			NSLog(@"Step: %@, NOT MAPPED", step.command);
+			NSLog(@"   Step: %@, NOT MAPPED", step.command);
 		}
 	}
-	
+
+	NSLog(@"Result: %@", status);
+
 }
 
 -(void) reportUnusedMappings:(NSArray *) mappings {

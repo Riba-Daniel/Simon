@@ -78,7 +78,7 @@
 -(BOOL) invokeWithObject:(id) object error:(NSError **) error;
 
 /**
- Part of a temporary workaround for the exception hadning bug in NSInvocation.
+ Part of a temporary workaround for the exception handling bug in NSInvocation.
  */
 +(void) cacheException:(NSException *) exception;
 

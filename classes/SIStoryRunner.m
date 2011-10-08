@@ -13,6 +13,7 @@
 #import "SIStepMapping.h"
 #import "NSObject+Utils.h"
 #import "SIStoryLogReporter.h"
+#import "SIStoryInAppReporter.h"
 
 @interface SIStoryRunner()
 @end
@@ -21,7 +22,7 @@
 
 @synthesize reader = reader_;
 @synthesize runtime = runtime_;
-@synthesize reporter = reporter_;
+@synthesize reporters = reporters_;
 @synthesize stories = stories_;
 
 - (id)init
@@ -31,7 +32,10 @@
 		// Now setup the defaults.
 		self.reader = [[[SIStoryFileReader alloc] init] autorelease];
 		self.runtime = [[[SIRuntime alloc] init] autorelease];
-		self.reporter = [[[SIStoryLogReporter alloc] init] autorelease];
+		self.reporters = [NSArray arrayWithObjects:
+								[[[SIStoryLogReporter alloc] init] autorelease], 
+								[[[SIStoryInAppReporter alloc] init] autorelease],
+								nil];
 	}
 	
 	return self;
@@ -70,7 +74,7 @@
 	}
 	
 	// Now execute the stories.
-	DC_LOG(@"Running %lu stories", [stories count]);
+	DC_LOG(@"Running %lu stories", [self.stories count]);
 	BOOL success = YES;
 	for (SIStory *story in self.stories) {
 		if (![story invoke]) {
@@ -86,7 +90,9 @@
 	}
 	
 	// Publish the results.
-	[self.reporter reportOnStories:self.stories andMappings:mappings];
+	for (NSObject<SIStoryReporter> *reporter in self.reporters) {
+		[reporter reportOnStories:self.stories andMappings:mappings];
+	}
 	
 	DC_LOG(@"Done. All stories succeeded ? %@", DC_PRETTY_BOOL(success));
 	return success;
@@ -96,7 +102,7 @@
 -(void) dealloc {
 	self.reader = nil;
 	self.runtime = nil;
-	self.reporter = nil;
+	self.reporters = nil;
 	self.stories = nil;
 	[super dealloc];
 }

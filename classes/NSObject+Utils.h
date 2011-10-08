@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SIEnums.h"
+
+#import "SIConstants.h"
 
 /**
  Extra methods applicable to all objects.

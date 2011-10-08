@@ -11,8 +11,7 @@
 #import "NSObject+Utils.h"
 #import <dUsefulStuff/DCCommon.h>
 #import <dUsefulStuff/NSobject+dUsefulStuff.h>
-#import "SIEnums.h"
-#import "SIInternal.h"
+#import "SIConstants.h"
 
 @interface SIStepMapping()
 -(NSInvocation *) createInvocationForMethod:(Method) method;
@@ -107,6 +106,10 @@ static NSException * passedException = nil;
 	// flag that we have been called.
 	self.executed = YES;
 	
+	// Inject a reference to the step mapping so it can be accessed for data. Note we assign so we don't have 
+	// to worry about retains. This is fine as the story will be around longer than the test class.
+	objc_setAssociatedObject(object, SI_INSTANCE_STEP_MAPPING_REF_KEY, self, OBJC_ASSOCIATION_ASSIGN);
+	
 	// Create the invocation.
 	Method method = class_getInstanceMethod(self.targetClass, self.selector);
 	NSInvocation *invocation = [self createInvocationForMethod:method];
@@ -154,7 +157,7 @@ static NSException * passedException = nil;
 }
 
 -(NSInvocation *) createInvocationForMethod:(Method) method {
-	DC_LOG(@"Creating invocation for %@::%@", NSStringFromClass(targetClass), NSStringFromSelector(selector));
+	DC_LOG(@"Creating invocation for %@::%@", NSStringFromClass(self.targetClass), NSStringFromSelector(self.selector));
 	NSMethodSignature *signature = [NSMethodSignature signatureWithObjCTypes:method_getTypeEncoding(method)];
 	NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
 	invocation.selector = self.selector;

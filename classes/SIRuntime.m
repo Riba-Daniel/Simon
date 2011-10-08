@@ -8,9 +8,8 @@
 #import <dUsefulStuff/DCCommon.h>
 #import <objc/message.h>
 
+#import "SISimon.h"
 #import "SIRuntime.h"
-#import "SIStepMapping.h"
-#import "SIInternal.h"
 
 @interface SIRuntime()
 -(BOOL) addMappingMethodsFromClass:(Class) class toArray:(NSMutableArray *) array;
@@ -65,7 +64,7 @@
 	
 	// Search the methods for mapping methods. If found, execute them to retrieve the 
 	// mapping objects and add to the return array.
-	NSString  * prefix = toNSString(SISTEP_METHOD_PREFIX);
+	NSString  * prefix = toNSString(SI_STEP_METHOD_PREFIX);
 	BOOL methodsFound = NO;
 	for (size_t j = 0; j < methodCount; ++j) {
 		

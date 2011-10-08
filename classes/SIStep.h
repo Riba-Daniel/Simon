@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SIEnums.h"
+#import "SIConstants.h"
 #import "SIStepMapping.h"
 
 /**

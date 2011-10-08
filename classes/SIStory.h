@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SIEnums.h"
+#import "SIConstants.h"
 #import "SIStep.h"
 
 /**
@@ -41,7 +41,7 @@
 /**
  This array stores references to the SIStep objects that represent the steps of the story.
  */
-@property (nonatomic, readonly) NSArray * steps;
+@property (nonatomic, readonly) NSMutableArray * steps;
 
 /**
  Gives the final status of the story after all steps have been run. Also may contains statuss that indicate that a story was not run. For example
@@ -99,7 +99,7 @@
 /**
  Stores a value in the story. Because this is stored in the story rather than an instance of a class that has step methods, it is available to all classes that are instantiated as part of running it. Store data here if you wish to save and retrieve it across a number of classes. 
  
- @param object the oject ou want to store.
+ @param object the object you want to store.
  @param key the key you want it stored under. Given this is for accessing something rom another class, make sure the key is something that works across both. Strings are probably best.
  */
 -(void) storeObject:(id) object withKey:(id) key;

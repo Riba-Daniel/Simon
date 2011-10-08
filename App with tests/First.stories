@@ -6,5 +6,4 @@ and it should execute on the main thread
 Story: Switching to second view works from story
 Given the interface is up
 then I can switch to the second view
-and see the view
-
+and see the view labelled Second View

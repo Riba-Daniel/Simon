@@ -12,6 +12,7 @@
 #import "SIStep.h"
 #import "NSObject+Utils.h"
 #import "SISimon.h"
+#import "SIConstants.h"
 
 @interface SIStory()
 -(id) instanceForTargetClass:(Class) targetClass;
@@ -92,8 +93,8 @@
 	[instanceCache setObject:instance forKey:cacheKey];
 	
 	// Inject a reference to the story so it can be accessed for data. Note we assign so we don't have 
-	// to worry aout retains. This is fine as the story will be around longer than the test class.
-	objc_setAssociatedObject(instance, SIINSTANCE_STORY_REF_KEY, self, OBJC_ASSOCIATION_ASSIGN);
+	// to worry about retains. This is fine as the story will be around longer than the test class.
+	objc_setAssociatedObject(instance, SI_INSTANCE_STORY_REF_KEY, self, OBJC_ASSOCIATION_ASSIGN);
 	
 	return instance;
 }

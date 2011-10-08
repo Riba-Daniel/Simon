@@ -1,12 +1,25 @@
 //
-//  SIEnums.h
+//  SIConstants.h
 //  Simon
 //
-//  Created by Derek Clarkson on 6/7/11.
-//  Copyright 2011. All rights reserved.
+//  Created by Derek Clarkson on 6/10/11.
+//  Copyright (c) 2011 Sensis. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+/**
+ The name of the field dynamically added to classes which contain step implementations. A reference to the parent story is set on this key effectively giving the class access to the story without the author having to write any code.
+ */
+extern const NSString * SI_INSTANCE_STORY_REF_KEY;
+
+/**
+The name of the field dynamically added to classes which contain step implementations. A reference to the parent story is set on this key effectively giving the class access to the story without the author having to write any code.
+*/
+ extern const NSString * SI_INSTANCE_STEP_MAPPING_REF_KEY;
+
+/**
+ Id of our main background thread. Note this is a const char "*", i.e. no '@' to declare a NSString.
+ */
+extern const char * SI_QUEUE_NAME;
 
 /**
  This gives the types of keywords read by SIStoryFileReader. SIKeywordNone is used only when the first story is beng read as it designates
@@ -54,4 +67,8 @@ typedef enum {
 	SIStoryStatusNotMapped,
 	SIStoryStatusNotRun
 } SIStoryStatus;
+
+
+
+
 
