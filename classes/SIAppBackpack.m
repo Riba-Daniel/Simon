@@ -17,16 +17,18 @@
 @interface SIAppBackpack()
 -(void) start;
 -(void) startUp:(NSNotification *) notification;
--(void) addApplicationReadyObserver;
--(void) removeApplicationReadyObserver;
+-(void) shutDown:(NSNotification *) notification;
+-(void) addNotificationObservers;
 @end
 
 @implementation SIAppBackpack
 
+static SIStoryRunner *runner;
+
 - (id)init {
 	self = [super init];
 	if (self) {
-		[self addApplicationReadyObserver];
+		[self addNotificationObservers];
 	}
 	return self;
 }
@@ -35,33 +37,32 @@
 	self = [super init];
 	if (self) {
 		fileName = [aFileName retain];
-		[self addApplicationReadyObserver];
+		[self addNotificationObservers];
 	}
 	return self;
 }
 
--(void) addApplicationReadyObserver {
+-(void) addNotificationObservers {
 	// Hook into the app startup.
 	DC_LOG(@"Applying program hooks to notification center: %@", [NSNotificationCenter defaultCenter]);
 	[[NSNotificationCenter defaultCenter] addObserver:self 
 														  selector:@selector(startUp:) 
 																name:UIApplicationDidBecomeActiveNotification 
 															 object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self 
+														  selector:@selector(shutDown:) 
+																name:@"Simon shutdown" 
+															 object:nil];
 }
-
--(void) removeApplicationReadyObserver {
-	DC_LOG(@"Removing program hooks to notification center: %@", [NSNotificationCenter defaultCenter]);
-	[[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
 
 // Background method
 -(void) start {
 	
 	DC_LOG(@"Simon's background task starting");
 	[NSThread currentThread].name = @"Simon";
-
-	SIStoryRunner *runner = [[SIStoryRunner alloc] init];
+	
+	DC_DEALLOC(runner);
+	runner = [[SIStoryRunner alloc] init];
 	
 	// Now tell it to use just the passed story file is present.
 	if (fileName != nil) {
@@ -76,11 +77,11 @@
 		// Do mothing as runner has code to deal with the error.
 	}
 	
-	[runner release];
-	
-	// Release program hooks and dealloc self.
-	[self removeApplicationReadyObserver];
-	[self release];
+}
+
+
++(SIStoryRunner *) runner {
+	return runner;
 }
 
 // Callbacks.
@@ -92,9 +93,17 @@
 	});
 }
 
+-(void) shutDown:(NSNotification *) notification  {
+	// Release program hooks and dealloc self.
+	DC_LOG(@"ShutDown requested");
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
+	[self release];
+}
+
 -(void) dealloc {
 	DC_LOG(@"Freeing memory and exiting");
 	DC_DEALLOC(fileName);
+	DC_DEALLOC(runner);
 	[super dealloc];
 }
 

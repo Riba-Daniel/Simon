@@ -11,7 +11,7 @@
 
 #import "SIStoryFileReader.h"
 #import "SIConstants.h"
-#import "NSObject+Utils.h"
+#import "NSString+Simon.h"
 
 @interface SIStoryFileReader()
 -(BOOL) processNextLine:(NSString *) line file:(NSString *) file error:(NSError **) error;
@@ -109,8 +109,8 @@
 	// Validate the order of keywords.
 	SIKeyword priorKeyword = [self priorKeyword];
 	DC_LOG(@"Syntax check %@ -> %@", 
-			 [self stringFromKeyword: priorKeyword],
-			 [self stringFromKeyword: keyword]);
+			 [NSString stringFromKeyword: priorKeyword],
+			 [NSString stringFromKeyword: keyword]);
 	
 	// Cross reference the prior keyword and current keyword to decide
 	// whether the syntax is ok.
@@ -165,7 +165,7 @@
 							 code:SIErrorInvalidStorySyntax 
 					errorDomain:SIMON_ERROR_DOMAIN 
 			 shortDescription:@"Incorrect keyword order" 
-				 failureReason:[NSString stringWithFormat:@"Incorrect keyword order, %@ cannot appear after Then", [self stringFromKeyword:keyword]]];
+				 failureReason:[NSString stringWithFormat:@"Incorrect keyword order, %@ cannot appear after Then", [NSString stringFromKeyword:keyword]]];
 				return NO;
 			}
 			
@@ -226,7 +226,7 @@
 		return SIKeywordUnknown;
 	}
 	
-	SIKeyword keyword = [self keywordFromString:firstWord];
+	SIKeyword keyword = [firstWord keywordFromString];
 	if (keyword == SIKeywordUnknown) {
 		[self setError:error 
 					 code:SIErrorInvalidStorySyntax 

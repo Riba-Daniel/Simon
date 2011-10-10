@@ -8,7 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import "SIStoryReporter.h"
+#import "SIStoryInAppViewController.h"
 
-@interface SIStoryInAppReporter : NSObject<SIStoryReporter>
+@interface SIStoryInAppReporter : NSObject<SIStoryReporter> {
+	@private 
+	UIView *backgroundView;
+}
+
+@property (nonatomic, retain) SIStoryInAppViewController *reportController;
 
 @end

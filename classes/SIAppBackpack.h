@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SIStoryRunner.h"
 
 /**
  This class backpack's on a UIApplication in order to allow Simon to run in the background. You add it through the SIRun macro.
@@ -23,5 +24,10 @@
  @param aFileName the .stories file you want to run.
  */
 -(id) initWithStoryFile:(NSString *) aFileName;
+
+/**
+ Acess to the static story runner.
+ */
++(SIStoryRunner *) runner;
 
 @end

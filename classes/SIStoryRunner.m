@@ -11,7 +11,7 @@
 #import "SIStoryRunner.h"
 #import "SIStory.h"
 #import "SIStepMapping.h"
-#import "NSObject+Utils.h"
+#import "NSString+Simon.h"
 #import "SIStoryLogReporter.h"
 #import "SIStoryInAppReporter.h"
 
@@ -30,6 +30,7 @@
 	self = [super init];
 	if (self) {
 		// Now setup the defaults.
+		DC_LOG(@"Setting up reader, runtime ad reporters");
 		self.reader = [[[SIStoryFileReader alloc] init] autorelease];
 		self.runtime = [[[SIRuntime alloc] init] autorelease];
 		self.reporters = [NSArray arrayWithObjects:
@@ -90,6 +91,7 @@
 	}
 	
 	// Publish the results.
+	DC_LOG(@"Calling reporters");
 	for (NSObject<SIStoryReporter> *reporter in self.reporters) {
 		[reporter reportOnStories:self.stories andMappings:mappings];
 	}
@@ -100,6 +102,7 @@
 
 
 -(void) dealloc {
+	DC_LOG(@"Deallocing");
 	self.reader = nil;
 	self.runtime = nil;
 	self.reporters = nil;

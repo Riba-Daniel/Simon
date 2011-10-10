@@ -12,6 +12,7 @@
 #import "SIStory.h"
 #import "SIStep.h"
 #import "SIStepMapping.h"
+#import "NSString+Simon.h"
 
 @interface SIStoryLogReporter()
 -(void) reportStory:(SIStory *) story
@@ -65,26 +66,21 @@
 				ignored:(NSMutableArray *) ignored
 				 notRun:(NSMutableArray *) notRun {
 	
-	NSString *status;
+	NSString *status = [NSString stringStatusWithStory:story];
 	switch (story.status) {
 		case SIStoryStatusSuccess:
-			status = @"Success";
 			[successes addObject:story];
 			break;
 		case SIStoryStatusNotMapped:
-			status = @"Not mapped";
 			[notMapped addObject:story];
 			break;
 		case SIStoryStatusError:
-			status = [NSString stringWithFormat:@"Failed: %@", story.error.localizedFailureReason];
 			[failures addObject:story];
 			break;
 		case SIStoryStatusIgnored:
-			status = @"Ignored";
 			[ignored addObject:story];
 			break;
 		default:
-			status = @"Not run";
 			[notRun addObject:story];
 			break;
 	}

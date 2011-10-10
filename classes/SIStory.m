@@ -10,7 +10,7 @@
 #import <objc/runtime.h>
 #import "SIStory.h"
 #import "SIStep.h"
-#import "NSObject+Utils.h"
+#import "NSString+Simon.h"
 #import "SISimon.h"
 #import "SIConstants.h"
 

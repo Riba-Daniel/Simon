@@ -8,7 +8,7 @@
 #import <objc/runtime.h>
 
 #import "SIStepMapping.h"
-#import "NSObject+Utils.h"
+#import "NSString+Simon.h"
 #import <dUsefulStuff/DCCommon.h>
 #import <dUsefulStuff/NSobject+dUsefulStuff.h>
 #import "SIConstants.h"

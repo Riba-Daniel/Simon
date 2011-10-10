@@ -8,7 +8,7 @@
 
 #import "SIStep.h"
 #import <dUsefulStuff/DCCommon.h>
-#import "NSObject+Utils.h"
+#import "NSString+Simon.h"
 
 @implementation SIStep
 
