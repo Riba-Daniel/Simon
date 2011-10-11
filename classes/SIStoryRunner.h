@@ -36,9 +36,9 @@
 @property (retain, nonatomic) NSArray * reporters;
 
 /**
- After the run this will be populated with the stories. This allows access to interrogate them for reporting.
+ After the run this will be populated with the sources of all the stories. This allows access to interrogate them for reporting.
  */
-@property (retain, nonatomic) NSArray *stories;
+@property (retain, nonatomic) NSArray *storySources;
 
 /// @name Stories
 

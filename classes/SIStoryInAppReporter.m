@@ -12,7 +12,7 @@
 #import <dUsefulStuff/DCCommon.h>
 
 @interface SIStoryInAppReporter()
--(void) displayReportOnStories:(NSArray *) stories andMappings:(NSArray *) mappings;
+-(void) displayReportOnStorySources:(NSArray *) sources andMappings:(NSArray *) mappings;
 -(void) handleTap:(UITapGestureRecognizer *)sender;    
 @end
 
@@ -29,16 +29,16 @@
 	[super dealloc];
 }
 
--(void) reportOnStories:(NSArray *) stories andMappings:(NSArray *) mappings {
+-(void) reportOnStorySources:(NSArray *) sources andMappings:(NSArray *) mappings {
 	// Refire on the main thread.
 	dispatch_queue_t mainQ = dispatch_get_main_queue();
 	dispatch_async(mainQ, ^{
-		[self displayReportOnStories:stories andMappings:mappings];
+		[self displayReportOnStorySources:sources andMappings:mappings];
 	});
 	
 }
 
--(void) displayReportOnStories:(NSArray *) stories andMappings:(NSArray *) mappings {
+-(void) displayReportOnStorySources:(NSArray *) sources andMappings:(NSArray *) mappings {
 	// Get the size from the window.
 	UIWindow *window = [UIApplication sharedApplication].keyWindow;
 	CGRect frame = window.frame;
@@ -64,7 +64,7 @@
 	// Add the report table view to the background.
 	CGRect reportFrame = CGRectMake(0, 0, onScreen.size.width, close.frame.origin.y - 40);
 	self.reportController = [[[SIStoryInAppViewController alloc] initWithSize:reportFrame.size] autorelease];
-	self.reportController.stories = stories;
+	self.reportController.stories = [sources valueForKeyPath:@"@unionOfArrays.stories"];
 	self.reportController.mappings = mappings;
 	[backgroundView addSubview:self.reportController.tableView];
 	

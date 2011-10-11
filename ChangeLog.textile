@@ -11,6 +11,7 @@ Oct 2011
 * Updated to use dNodi (replacement for DXPath).
 * More work on UI utils.
 * More work on macros.
+* Added shutdown button to in app report to shutdown Simon.
 
 h1. Version 0.2.0
 July 2011

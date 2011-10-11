@@ -13,7 +13,7 @@
 #import "SIUIUtils.h"
 #import "UIView+Simon.h"
 #import "UIView+Simon.h"
-#import "SIEnums.h"
+#import "SIConstants.h"
 #import <dNodi/dNodi.h>
 
 @interface SIUIUtilsTests : GHTestCase {}

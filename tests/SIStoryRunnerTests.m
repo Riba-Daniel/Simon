@@ -29,7 +29,7 @@
 	SIStoryRunner * runner = [[[SIStoryRunner alloc] init] autorelease];
 	SIStoryFileReader *reader = [[[SIStoryFileReader alloc] initWithFileName:@"Story files"] autorelease];
 	runner.reader = reader;
-	runner.reporter = [[[SIStoryLogReporter alloc] init] autorelease];
+	runner.reporters = [NSArray array];
 	
 	NSError *error = nil;
 	BOOL success = [runner runStories:&error];
@@ -44,7 +44,7 @@
 	SIStoryRunner * runner = [[[SIStoryRunner alloc] init] autorelease];
 	SIStoryFileReader *reader = [[[SIStoryFileReader alloc] initWithFileName:@"Communication"] autorelease];
 	runner.reader = reader;
-	runner.reporter = [[[SIStoryLogReporter alloc] init] autorelease];
+	runner.reporters = [NSArray array];
 	
 	NSError *error = nil;
 	BOOL success = [runner runStories:&error];

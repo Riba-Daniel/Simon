@@ -47,6 +47,7 @@
 	// Clear the background.
 	self.tableView.backgroundColor = [UIColor clearColor];
 	self.tableView.backgroundView = nil;
+	self.tableView.separatorColor = [UIColor grayColor];
 	
 }
 

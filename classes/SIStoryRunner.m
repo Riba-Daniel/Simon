@@ -23,7 +23,7 @@
 @synthesize reader = reader_;
 @synthesize runtime = runtime_;
 @synthesize reporters = reporters_;
-@synthesize stories = stories_;
+@synthesize storySources = storySources_;
 
 - (id)init
 {
@@ -49,16 +49,17 @@
 	
 	// Read the stories.
 	DC_LOG(@"Reading stories");
-	self.stories = [self.reader readStories: error];
+	self.storySources = [self.reader readStorySources: error];
 	
 	// If there was an error then return.
-	if (self.stories == nil) {
+	if (self.storySources == nil) {
 		DC_LOG(@"Error reading story files. Exiting");
 		return NO;
 	}
 	
 	// If no stories where read then generate an error and return.
-	if ([self.stories count] == 0) {
+	NSNumber *numberOfStories = [self.storySources valueForKeyPath:@"@count.stories"];
+	if ([self.storySources count] == 0 || [numberOfStories integerValue] == 0) {
 		[self setError:error 
 					 code:SIErrorNoStoriesFound 
 			errorDomain:SIMON_ERROR_DOMAIN 
@@ -69,15 +70,17 @@
 	}
 	
 	// Find the mapping for each story.
+	
+	NSArray *stories = [self.storySources valueForKeyPath:@"@unionOfArrays.stories"];
 	DC_LOG(@"Mappin steps to story steps");
-	for (SIStory *story in self.stories) {
+	for (SIStory *story in stories) {
 		[story mapSteps:(NSArray *) mappings];
 	}
 	
 	// Now execute the stories.
-	DC_LOG(@"Running %lu stories", [self.stories count]);
+	DC_LOG(@"Running %lu stories", [stories count]);
 	BOOL success = YES;
-	for (SIStory *story in self.stories) {
+	for (SIStory *story in stories) {
 		if (![story invoke]) {
 			if (story.status == SIStoryStatusNotMapped || story.status == SIStoryStatusError) {
 				[self setError:error 
@@ -93,7 +96,7 @@
 	// Publish the results.
 	DC_LOG(@"Calling reporters");
 	for (NSObject<SIStoryReporter> *reporter in self.reporters) {
-		[reporter reportOnStories:self.stories andMappings:mappings];
+		[reporter reportOnStorySources:self.storySources andMappings:mappings];
 	}
 	
 	DC_LOG(@"Done. All stories succeeded ? %@", DC_PRETTY_BOOL(success));
@@ -106,7 +109,7 @@
 	self.reader = nil;
 	self.runtime = nil;
 	self.reporters = nil;
-	self.stories = nil;
+	self.storySources = nil;
 	[super dealloc];
 }
 

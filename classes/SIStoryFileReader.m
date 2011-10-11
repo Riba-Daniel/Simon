@@ -12,12 +12,13 @@
 #import "SIStoryFileReader.h"
 #import "SIConstants.h"
 #import "NSString+Simon.h"
+#import "SIStorySource.h"
 
 @interface SIStoryFileReader()
--(BOOL) processNextLine:(NSString *) line file:(NSString *) file error:(NSError **) error;
--(void) createNewStory: (NSString *) line;
+-(BOOL) processNextLine:(NSString *) line source:(SIStorySource *) source error:(NSError **) error;
+-(void) createNewStoryForSource:(SIStorySource *) source withTitle:(NSString *) title;
 -(SIKeyword) keywordFromLine:(NSString *) line error:(NSError **) error;
--(SIKeyword) priorKeyword;
+-(SIKeyword) priorKeywordFromStory:(SIStory *) story;
 -(void) mainInit;
 @end
 
@@ -56,11 +57,16 @@
 	[(NSMutableCharacterSet *)trimChars formUnionWithCharacterSet:[NSCharacterSet characterSetWithCharactersInString:@".,;:!?"]];
 }
 
--(NSArray *) readStories:(NSError **) error {
+-(NSArray *) readStorySources:(NSError **) error {
 	
-	stories = [[[NSMutableArray alloc] init] autorelease];
+	NSMutableArray * storySources = [[[NSMutableArray alloc] init] autorelease];
 	
 	for (NSString * file in self.files) {
+		
+		// Add the file as source.
+		SIStorySource *source = [[[SIStorySource alloc] init] autorelease];
+		source.source = file;
+		[storySources addObject:source];
 		
 		// Read the file.
 		DC_LOG(@"Reading file: %@", file);
@@ -72,16 +78,16 @@
 		
 		// Break it up and process the lines.
 		for (NSString * line in [contents componentsSeparatedByString:@"\n"]) {
-			if (![self processNextLine: line file:file error:error]) {
+			if (![self processNextLine: line source:source error:error]) {
 				return nil;
 			}
 		}
 	}
 	
-	return stories;
+	return storySources;
 }
 
--(BOOL) processNextLine:(NSString *) line file:(NSString *) file error:(NSError **) error {
+-(BOOL) processNextLine:(NSString *) line source:(SIStorySource *) source error:(NSError **) error {
 	
 	DC_LOG(@"Line: %@", line);
 	
@@ -101,13 +107,13 @@
 			*error = [self errorForCode:SIErrorInvalidKeyword 
 								 errorDomain:SIMON_ERROR_DOMAIN 
 						  shortDescription:@"Story syntax error, unknown keyword" 
-							  failureReason:[NSString stringWithFormat:@"Story syntax error in %@, unknown keyword on step \"%@\"", file, cleanLine]];
+							  failureReason:[NSString stringWithFormat:@"Story syntax error in %@, unknown keyword on step \"%@\"", source.source, cleanLine]];
 		}
 		return NO;
 	}
 	
 	// Validate the order of keywords.
-	SIKeyword priorKeyword = [self priorKeyword];
+	SIKeyword priorKeyword = [self priorKeywordFromStory:[source.stories lastObject]];
 	DC_LOG(@"Syntax check %@ -> %@", 
 			 [NSString stringFromKeyword: priorKeyword],
 			 [NSString stringFromKeyword: keyword]);
@@ -177,12 +183,13 @@
 	
 	// Create a new story if its the story keyword and return without add a step.
 	if (keyword == SIKeywordStory) {
-		[self createNewStory:cleanLine];
+		[self createNewStoryForSource: source withTitle:cleanLine];
 		return YES;
 	}
 	
 	// Now add the step to the current story.
 	DC_LOG(@"Adding step: %@", cleanLine);
+	SIStory *story = [source.stories lastObject];
 	[story createStepWithKeyword:keyword command:cleanLine];
 	
 	return YES;
@@ -192,8 +199,8 @@
  * Searches backwards through the steps, ignoring And steps to find the previous keyword.
  * Returns SIKeywordUnknown if it doesn't find anything.
  */
--(SIKeyword) priorKeyword {
-	
+-(SIKeyword) priorKeywordFromStory:(SIStory *) story {
+
 	// If there is no current story then it's the first story so return none.
 	if (story == nil) {
 		return SIKeywordStartOfFile;
@@ -238,29 +245,26 @@
 }
 
 
--(void) createNewStory: (NSString *) line {
-	// Free the old story.
-	DC_DEALLOC(story);
-	
+-(void) createNewStoryForSource:(SIStorySource *) source withTitle:(NSString *) title {
+
 	// Create the new one and store it in the return array.
 	DC_LOG(@"Creating new story");
-	story = [[SIStory alloc] init];
-	[stories addObject:story];
+	SIStory *story = [[[SIStory alloc] init] autorelease];
+	[source.stories addObject:story];
 	
 	// Store the title.
-	NSString *title = [[line substringFromIndex: 5] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-	if ([title hasPrefix:@":"]) {
-		title = [[title substringFromIndex: 1] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+	NSString *storyTitle = [[title substringFromIndex: 5] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+	if ([storyTitle hasPrefix:@":"]) {
+		storyTitle = [[storyTitle substringFromIndex: 1] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 	}
-	DC_LOG(@"Title: %@", title);
-	story.title = title;
+	DC_LOG(@"Title: %@", storyTitle);
+	story.title = storyTitle;
 }
 
 
 -(void) dealloc {
 	DC_DEALLOC(trimChars);
 	self.files = nil;
-	DC_DEALLOC(story);
 	[super dealloc];
 }
 

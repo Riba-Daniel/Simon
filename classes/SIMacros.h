@@ -57,12 +57,12 @@ return mapping; \
 /**
  * Macro which stores data in the story so it can be passed between implmentation classes. 
  */
-#define SIStoreInStory(key, value) [(SIStory *) objc_getAssociatedObject(self, SIINSTANCE_STORY_REF_KEY) storeObject:value withKey:key]
+#define SIStoreInStory(key, value) [(SIStory *) objc_getAssociatedObject(self, SI_INSTANCE_STORY_REF_KEY) storeObject:value withKey:key]
 
 /**
  * The opposite of SISToreInStory(key, value) this macro retrieves a previously stored value.
  */
-#define SIRetrieveFromStory(key) [(SIStory *) objc_getAssociatedObject(self, SIINSTANCE_STORY_REF_KEY) retrieveObjectWithKey:key]
+#define SIRetrieveFromStory(key) [(SIStory *) objc_getAssociatedObject(self, SI_INSTANCE_STORY_REF_KEY) retrieveObjectWithKey:key]
 
 #pragma mark - Accessing the UI
 /// @name UI interactions

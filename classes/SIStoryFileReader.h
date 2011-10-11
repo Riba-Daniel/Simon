@@ -15,8 +15,6 @@
 @interface SIStoryFileReader : NSObject {
 	@private
 	NSArray * files;
-	NSMutableArray *stories;
-	SIStory *story;
 	NSCharacterSet *trimChars;
 }
 
@@ -43,6 +41,6 @@
  
  @param error a pointer to a reference where any errors will be stored.
  */
--(NSArray *) readStories:(NSError **) error;
+-(NSArray *) readStorySources:(NSError **) error;
 
 @end

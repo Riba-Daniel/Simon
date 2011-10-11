@@ -26,7 +26,7 @@
 
 @implementation SIStoryLogReporter
 
--(void) reportOnStories:(NSArray *) stories andMappings:(NSArray *) mappings {
+-(void) reportOnStorySources:(NSArray *) sources andMappings:(NSArray *) mappings {
 	
 	NSLog(@"Simon's run report");
 	NSLog(@"====================================================");
@@ -37,6 +37,8 @@
 	NSMutableArray *failures = [NSMutableArray array];
 	NSMutableArray *ignored = [NSMutableArray array];
 	NSMutableArray *notRun = [NSMutableArray array];
+	
+	NSArray *stories = [sources valueForKeyPath:@"@unionOfArrays.stories"];
 	
 	for (SIStory * story in stories) {
 		[self reportStory:story successes:successes notMapped:notMapped failures:failures ignored:ignored notRun:notRun];
