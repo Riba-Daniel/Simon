@@ -7,11 +7,19 @@
 //
 
 #import "SIStorySource.h"
+#import <dUsefulStuff/DCCommon.h>
 
 @implementation SIStorySource
 
 @synthesize stories = stories_;
 @synthesize source = source_;
+
+-(void) dealloc {
+	DC_LOG(@"Deallocing");
+	self.stories = nil;
+	self.source = nil;
+	[super dealloc];
+}
 
 -(id) init {
 	self = [super init];

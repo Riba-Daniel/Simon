@@ -34,6 +34,11 @@ static SIUIHandlerFactory *factory;
 	return self;
 }
 
++(void) shutDown {
+	DC_LOG(@"Shutting down handler factory");
+	DC_DEALLOC(factory);
+}
+
 -(SIUIViewHandler *) createHandlerForView:(UIView<DNNode> *) view {
 	
 	// Get the handler from the cache if it exists, otherwise create one.

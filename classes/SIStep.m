@@ -16,6 +16,12 @@
 @synthesize command;
 @synthesize stepMapping;
 
+-(void) dealloc {
+	self.command = nil;
+	self.stepMapping = nil;
+	[super dealloc];
+}
+
 -(id) initWithKeyword:(SIKeyword) aKeyword command:(NSString *) theCommand {
 	self = [super init];
 	if (self) {
@@ -42,11 +48,6 @@
 -(BOOL) invokeWithObject:(id) object error:(NSError **) error {
 	self.stepMapping.command = self.command;
 	return [self.stepMapping invokeWithObject:object error:error];
-}
-
--(void) dealloc {
-	self.command = nil;
-	[super dealloc];
 }
 
 @end

@@ -64,7 +64,7 @@
 	// Add the report table view to the background.
 	CGRect reportFrame = CGRectMake(0, 0, onScreen.size.width, close.frame.origin.y - 40);
 	self.reportController = [[[SIStoryInAppViewController alloc] initWithSize:reportFrame.size] autorelease];
-	self.reportController.stories = [sources valueForKeyPath:@"@unionOfArrays.stories"];
+	self.reportController.storySources = sources;
 	self.reportController.mappings = mappings;
 	[backgroundView addSubview:self.reportController.tableView];
 	

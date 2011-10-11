@@ -20,19 +20,29 @@
 
 @implementation SIStory
 
-@synthesize status;
-@synthesize error;
-@synthesize steps;
-@synthesize title;
+@synthesize status = status_;
+@synthesize error = error_;
+@synthesize steps = steps_;
+@synthesize title = title_;
+
+-(void) dealloc {
+	DC_LOG(@"Deallocing");
+	DC_DEALLOC(steps_);
+	DC_DEALLOC(error_);
+	self.title = nil;
+	DC_DEALLOC(instanceCache);
+	DC_DEALLOC(storyCache);
+	[super dealloc];
+}
 
 -(id) init {
 	self = [super init];
 	if (self) {
-		steps = [[NSMutableArray alloc] init];
+		steps_ = [[NSMutableArray alloc] init];
 		instanceCache = [[NSMutableDictionary alloc] init];
 		storyCache = [[NSMutableDictionary alloc] init];
-		status = SIStoryStatusNotRun;
-		error = nil;
+		status_ = SIStoryStatusNotRun;
+		error_ = nil;
 	}
 	return self;
 }
@@ -40,41 +50,42 @@
 -(SIStep *) createStepWithKeyword:(SIKeyword) keyword command:(NSString *) theCommand {
 	SIStep * step = [[[SIStep alloc] initWithKeyword:keyword command:theCommand] autorelease];
 	DC_LOG(@"Adding new step with keyword %i and command \"%@\"", keyword, theCommand);
-	[steps addObject:step];
+	[self.steps addObject:step];
 	return step;
 }
 
 -(SIStep *) stepAtIndex:(NSUInteger) index {
-	return [steps objectAtIndex:index];
+	return [self.steps objectAtIndex:index];
 }
 
 -(BOOL) invoke {
 	
 	// If the story is not fully mapped then exit because we cannot run it.
-	for (SIStep *step in steps) {
+	for (SIStep *step in self.steps) {
 		if (![step isMapped]) {
 			DC_LOG(@"Story is not fully mapped. Cannot execute step %@", step.command);
-			status = SIStoryStatusNotMapped;
+			status_ = SIStoryStatusNotMapped;
 			return NO;
 		}
 	}
 	
 	DC_LOG(@"Executing steps");
-	for (SIStep *step in steps) {
+	for (SIStep *step in self.steps) {
 		
 		// First check the cache for an instance of the class. 
 		// Create an instance of the class if we don't have one.
 		id instance = [self instanceForTargetClass:step.stepMapping.targetClass];
 		
 		// Now invoke the step on the class.
-		if (![step invokeWithObject:instance error:&error]) {
-			[error retain];
-			status = SIStoryStatusError;
+		if (![step invokeWithObject:instance error:&error_]) {
+			// Retain the error because it will be an autoreleased one.
+			[error_ retain];
+			status_ = SIStoryStatusError;
 			return NO;
 		}
 	}
 	
-	status = SIStoryStatusSuccess;
+	status_ = SIStoryStatusSuccess;
 	return YES;
 }
 
@@ -100,7 +111,7 @@
 }
 
 -(void) mapSteps:(NSArray *) mappings {
-	for (SIStep *step in steps) {
+	for (SIStep *step in self.steps) {
 		[step findMappingInList:mappings];
 	}
 }
@@ -111,15 +122,6 @@
 
 -(id) retrieveObjectWithKey:(id) key {
 	return [storyCache objectForKey:key];
-}
-
--(void) dealloc {
-	DC_DEALLOC(steps);
-	DC_DEALLOC(instanceCache);
-	DC_DEALLOC(storyCache);
-	DC_DEALLOC(error);
-	self.title = nil;
-	[super dealloc];
 }
 
 @end

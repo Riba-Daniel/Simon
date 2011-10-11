@@ -12,6 +12,7 @@
 #import <dUsefulStuff/DCDialogs.h>
 #import "SIStoryRunner.h"
 #import "SIConstants.h"
+#import "SIUIHandlerFactory.h"
 
 
 @interface SIAppBackpack()
@@ -96,6 +97,11 @@ static SIStoryRunner *runner;
 -(void) shutDown:(NSNotification *) notification  {
 	// Release program hooks and dealloc self.
 	DC_LOG(@"ShutDown requested");
+	
+	// Shut down the handler factory for UI components.
+	[SIUIHandlerFactory shutDown];
+	
+	// Rmeove all notification watching.
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	[self release];
 }

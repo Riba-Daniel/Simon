@@ -28,12 +28,8 @@
  */
 @interface SIStory : NSObject {
 	@private
-	NSMutableArray *steps;
 	NSMutableDictionary *instanceCache;
 	NSMutableDictionary *storyCache;
-	SIStoryStatus status;
-	NSError *error;
-	NSString *title;
 }
 
 /// @name Properties

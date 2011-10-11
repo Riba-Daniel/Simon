@@ -13,7 +13,7 @@
 	CGSize initSize;
 }
 
-@property (nonatomic, retain) NSArray *stories;
+@property (nonatomic, retain) NSArray *storySources;
 @property (nonatomic, retain) NSArray *mappings;
 
 -(id) initWithSize:(CGSize) size;

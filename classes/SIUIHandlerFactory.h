@@ -34,6 +34,11 @@
  */
 +(SIUIHandlerFactory *) handlerFactory;
 
+/**
+ Shuts down the factory and releases memory.
+ */
++(void) shutDown;
+
 
 /// @name Tasks
 
@@ -41,5 +46,7 @@
  Factory method for creating a handler object for a specific view class.
  */
 -(SIUIViewHandler *) createHandlerForView:(UIView<DNNode> *) view;
+
+
 
 @end
