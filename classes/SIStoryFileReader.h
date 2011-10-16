@@ -8,17 +8,21 @@
 
 #import <Foundation/Foundation.h>
 #import "SIStory.h"
+#import "SIStorySource.h"
 
 /**
  This class is used to read story files from the application. Each file must has the extension *.story*.
  */
 @interface SIStoryFileReader : NSObject {
 	@private
-	NSArray * files;
 	NSCharacterSet *trimChars;
+	SIKeyword priorKeyword;
 }
 
 /// @name Properties
+
+@property (nonatomic, retain) SIStorySource *currentSource;
+@property (nonatomic) NSUInteger currentLineNumber;
 
 /**
  List of the files found in the file system which will be processed to produce stories. Multi stories can be stored in any given file.

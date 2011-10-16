@@ -114,8 +114,9 @@ NSString *_message = defaultMsg; \
 if (description) { \
 _message = [NSString stringWithFormat:description, ##__VA_ARGS__]; \
 } \
-DC_LOG(@"Setting exception with message: %@", _message); \
-[SIStepMapping cacheException:[NSException exceptionWithName:@"SIAssertionException" reason:_message userInfo:nil]]; \
+NSString *_finalMessage = [NSString stringWithFormat:@"%s(%d) %@", __PRETTY_FUNCTION__, __LINE__, _message]; \
+DC_LOG(@"Setting exception with message: %@", _finalMessage); \
+[SIStepMapping cacheException:[NSException exceptionWithName:@"SIAssertionException" reason:_finalMessage userInfo:nil]]; \
 return
 
 /** 
@@ -139,7 +140,7 @@ SIThrowException(@"SIFail executed, throwing failure exception.", description, #
 #define SIAssertNotNil(obj, description, ...) \
 do { \
 if (obj == nil) { \
-SIThrowException(@"Expecting " #obj " to be a valid pointer to something.", description, ##__VA_ARGS__); \
+SIThrowException(@"Expecting \"" #obj "\" to be a valid pointer to something.", description, ##__VA_ARGS__); \
 } \
 } while (NO)
 
@@ -153,7 +154,37 @@ SIThrowException(@"Expecting " #obj " to be a valid pointer to something.", desc
 #define SIAssertNil(obj, description, ...) \
 do { \
 if (obj != nil) { \
-SIThrowException(@"Expecting " #obj " to be nil.", description, ##__VA_ARGS__); \
+SIThrowException(@"Expecting \"" #obj "\" to be nil.", description, ##__VA_ARGS__); \
+} \
+} while (NO)
+
+/**
+ Fail if the passed BOOL variable is NO.
+ 
+ @param exp an expression that is expected to resolve to a BOOL value. The expression can just be a simple BOOL variable name.
+ @param description A format string as in the printf() function. Can be nil or an empty string but must be present. A nil tells Simon to use a default message.
+ @param ... A variable number of arguments to the format string. Can be absent.
+*/ 
+#define SIAssertTrue(exp, description, ...) \
+do { \
+BOOL _exp = exp; \
+if (!_exp) { \
+SIThrowException(@"Expecting \"" #exp "\" to be YES, but it was NO.", description, ##__VA_ARGS__); \
+} \
+} while (NO)
+
+/**
+ Fail if the passed BOOL variable is YES.
+ 
+ @param exp an expression that is expected to resolve to a BOOL value. The expression can just be a simple BOOL variable name.
+ @param description A format string as in the printf() function. Can be nil or an empty string but must be present. A nil tells Simon to use a default message.
+ @param ... A variable number of arguments to the format string. Can be absent.
+ */ 
+#define SIAssertFalse(exp, description, ...) \
+do { \
+BOOL _exp = exp; \
+if (_exp) { \
+SIThrowException(@"Expecting \"" #exp "\" to be NO, but it was YES.", description, ##__VA_ARGS__); \
 } \
 } while (NO)
 

@@ -14,8 +14,10 @@
 #import "NSString+Simon.h"
 #import "SIStoryLogReporter.h"
 #import "SIStoryInAppReporter.h"
+#import <dUsefulStuff/DCDialogs.h>
 
 @interface SIStoryRunner()
+-(void) displayMessage:(NSString *) message;
 @end
 
 @implementation SIStoryRunner
@@ -54,6 +56,8 @@
 	// If there was an error then return.
 	if (self.storySources == nil) {
 		DC_LOG(@"Error reading story files. Exiting");
+		[self performSelectorOnMainThread:@selector(displayMessage:)
+									  withObject:[*error localizedFailureReason] waitUntilDone:NO];
 		return NO;
 	}
 	
@@ -101,6 +105,10 @@
 	
 	DC_LOG(@"Done. All stories succeeded ? %@", DC_PRETTY_BOOL(success));
 	return success;
+}
+
+-(void) displayMessage:(NSString *) message {
+	[DCDialogs displayMessage:message];
 }
 
 

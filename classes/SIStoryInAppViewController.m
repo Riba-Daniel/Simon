@@ -11,6 +11,7 @@
 #import "SIStory.h"
 #import "NSString+Simon.h"
 #import "SIStorySource.h"
+#import <dUsefulStuff/DCDialogs.h>
 
 @implementation SIStoryInAppViewController
 
@@ -80,13 +81,16 @@
 	SIStory *story = (SIStory *)[stories objectAtIndex:indexPath.row];
 	cell.textLabel.text = story.title;
 	cell.detailTextLabel.text = [NSString stringStatusWithStory:story];
+	cell.accessoryType = UITableViewCellAccessoryNone;
 	
 	switch (story.status) {
 		case SIStoryStatusError:
 			cell.detailTextLabel.textColor = [UIColor redColor];
+			cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
 			break;
 		case SIStoryStatusNotMapped:
 			cell.textLabel.textColor = [UIColor lightGrayColor];
+			cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
 			break;
 		default:
 			// Do nothing.
@@ -123,22 +127,13 @@
 	return headerLine;
 }
 
-/*
- 
- if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
- // The device is an iPad running iOS 3.2 or later.
- }
- else {
- // The device is an iPhone or iPod touch.
- }
- */
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
 
-/*
- // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
- - (void)viewDidLoad
- {
- [super viewDidLoad];
- }
- */
+	SIStorySource *source = [self.storySources objectAtIndex:indexPath.section];
+	SIStory *story = [source.stories objectAtIndex:indexPath.row];
+	[DCDialogs displayMessage:story.error.localizedFailureReason];
+	
+}
+
 
 @end
