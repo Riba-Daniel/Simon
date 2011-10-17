@@ -42,11 +42,6 @@
  */
 @property (nonatomic, retain) NSException *exception;
 
-/**
- This is the entire text of the step as read from the story file. This is populated by the story when it executes the steps just before invokeWithObject:error: is called.
- */
-@property (nonatomic, retain) NSString *command;
-
 /// @name Initialisers
 
 /**
@@ -75,7 +70,7 @@
  @param error a pointer to a reference to an NSError that will be populated if there is a problem.
  @return `YES` if the invocation was successful. `NO` if there was an error.
  */
--(BOOL) invokeWithObject:(id) object error:(NSError **) error;
+-(BOOL) invokeWithCommand:(NSString *) command object:(id) object error:(NSError **) error;
 
 /**
  Part of a temporary workaround for the exception handling bug in NSInvocation.

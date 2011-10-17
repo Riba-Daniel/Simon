@@ -96,8 +96,8 @@
 		9481C8A71431F3780036121A /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9481C8A61431F3780036121A /* SenTestingKit.framework */; };
 		9490248C144089A3006132A5 /* SIStoryInAppReporter.h in Headers */ = {isa = PBXBuildFile; fileRef = 9490248A144089A3006132A5 /* SIStoryInAppReporter.h */; };
 		9490248D144089A3006132A5 /* SIStoryInAppReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9490248B144089A3006132A5 /* SIStoryInAppReporter.m */; };
-		9490249414408DC4006132A5 /* SIStoryInAppViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 9490249214408DC4006132A5 /* SIStoryInAppViewController.h */; };
-		9490249514408DC4006132A5 /* SIStoryInAppViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9490249314408DC4006132A5 /* SIStoryInAppViewController.m */; };
+		9490249414408DC4006132A5 /* SIStoryReportTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 9490249214408DC4006132A5 /* SIStoryReportTableViewController.h */; };
+		9490249514408DC4006132A5 /* SIStoryReportTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9490249314408DC4006132A5 /* SIStoryReportTableViewController.m */; };
 		9499DB6D13F017190053BEEA /* SIUIHandlerFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 9499DB6B13F017190053BEEA /* SIUIHandlerFactory.h */; };
 		9499DB6E13F017190053BEEA /* SIUIHandlerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 9499DB6C13F017190053BEEA /* SIUIHandlerFactory.m */; };
 		9499DB7213F017DC0053BEEA /* SIUIAction.h in Headers */ = {isa = PBXBuildFile; fileRef = 9499DB7013F017DC0053BEEA /* SIUIAction.h */; };
@@ -218,8 +218,8 @@
 		9481C8A61431F3780036121A /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		9490248A144089A3006132A5 /* SIStoryInAppReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIStoryInAppReporter.h; sourceTree = "<group>"; };
 		9490248B144089A3006132A5 /* SIStoryInAppReporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIStoryInAppReporter.m; sourceTree = "<group>"; };
-		9490249214408DC4006132A5 /* SIStoryInAppViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIStoryInAppViewController.h; sourceTree = "<group>"; };
-		9490249314408DC4006132A5 /* SIStoryInAppViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIStoryInAppViewController.m; sourceTree = "<group>"; };
+		9490249214408DC4006132A5 /* SIStoryReportTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIStoryReportTableViewController.h; sourceTree = "<group>"; };
+		9490249314408DC4006132A5 /* SIStoryReportTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIStoryReportTableViewController.m; sourceTree = "<group>"; };
 		9499DB6B13F017190053BEEA /* SIUIHandlerFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIHandlerFactory.h; sourceTree = "<group>"; };
 		9499DB6C13F017190053BEEA /* SIUIHandlerFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUIHandlerFactory.m; sourceTree = "<group>"; };
 		9499DB7013F017DC0053BEEA /* SIUIAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIAction.h; sourceTree = "<group>"; };
@@ -515,8 +515,8 @@
 				65D03BD813BA099700A3F0FA /* SIStoryLogReporter.h */,
 				65D03BD913BA099700A3F0FA /* SIStoryLogReporter.m */,
 				65D03BD613BA096700A3F0FA /* SIStoryReporter.h */,
-				9490249214408DC4006132A5 /* SIStoryInAppViewController.h */,
-				9490249314408DC4006132A5 /* SIStoryInAppViewController.m */,
+				9490249214408DC4006132A5 /* SIStoryReportTableViewController.h */,
+				9490249314408DC4006132A5 /* SIStoryReportTableViewController.m */,
 			);
 			name = Reporting;
 			sourceTree = "<group>";
@@ -549,7 +549,7 @@
 				942F7F66141F9197009F3550 /* SIUIViewHandler.h in Headers */,
 				943A3969143DD2D0000D506C /* SIConstants.h in Headers */,
 				9490248C144089A3006132A5 /* SIStoryInAppReporter.h in Headers */,
-				9490249414408DC4006132A5 /* SIStoryInAppViewController.h in Headers */,
+				9490249414408DC4006132A5 /* SIStoryReportTableViewController.h in Headers */,
 				94DC535D14445C5300C3E586 /* SIStorySource.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -693,7 +693,7 @@
 				942F7F67141F9197009F3550 /* SIUIViewHandler.m in Sources */,
 				943A396A143DD2D0000D506C /* SIConstants.m in Sources */,
 				9490248D144089A3006132A5 /* SIStoryInAppReporter.m in Sources */,
-				9490249514408DC4006132A5 /* SIStoryInAppViewController.m in Sources */,
+				9490249514408DC4006132A5 /* SIStoryReportTableViewController.m in Sources */,
 				94DC535E14445C5300C3E586 /* SIStorySource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

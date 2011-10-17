@@ -46,8 +46,7 @@
 }
 
 -(BOOL) invokeWithObject:(id) object error:(NSError **) error {
-	self.stepMapping.command = self.command;
-	return [self.stepMapping invokeWithObject:object error:error];
+	return [self.stepMapping invokeWithCommand:self.command object:object error:error];
 }
 
 @end

@@ -14,8 +14,11 @@
 #import "SIConstants.h"
 
 @interface SIStepMapping()
--(NSInvocation *) createInvocationForMethod:(Method) method;
--(BOOL) populateInvocationParameters:(NSInvocation *) invocation withMethod:(Method) method error:(NSError **) error;
+-(NSInvocation *) createInvocationForMethod:(Method) method withCommand:(NSString *) command;
+-(BOOL) populateInvocationParameters:(NSInvocation *) invocation 
+								  withMethod:(Method) method 
+									  command:(NSString *) command 
+										 error:(NSError **) error;
 -(BOOL) setValue:(NSString *) value 
 			 ofType:(char) type 
 	 onInvocation:(NSInvocation *) invocation 
@@ -31,7 +34,14 @@
 @synthesize targetClass = targetClass_;
 @synthesize executed = executed_;
 @synthesize exception = exception_;
-@synthesize command = command_;
+
+-(void) dealloc {
+	self.targetClass = nil;
+	self.regex = nil;
+	self.selector = nil;
+	self.exception = nil;
+	[super dealloc];
+}
 
 -(id) init {
 	self = [super init];
@@ -101,7 +111,7 @@ static NSException * passedException = nil;
 	return ! NSEqualRanges(rangeOfFirstMatch, NSMakeRange(NSNotFound, 0));
 }
 
--(BOOL) invokeWithObject:(id) object error:(NSError **) error {
+-(BOOL) invokeWithCommand:(NSString *) command object:(id) object error:(NSError **) error {
 	
 	// flag that we have been called.
 	self.executed = YES;
@@ -112,8 +122,11 @@ static NSException * passedException = nil;
 	
 	// Create the invocation.
 	Method method = class_getInstanceMethod(self.targetClass, self.selector);
-	NSInvocation *invocation = [self createInvocationForMethod:method];
-	if (![self populateInvocationParameters:invocation withMethod:method error:error]) {
+	NSInvocation *invocation = [self createInvocationForMethod:method withCommand:command];
+	if (![self populateInvocationParameters:invocation 
+										  withMethod:method 
+											  command:command 
+												 error:error]) {
 		return NO;		
 	}
 	
@@ -156,7 +169,8 @@ static NSException * passedException = nil;
 					failureReason:[NSString stringWithFormat:@"Exception caught: %@",[self.exception reason]]];
 }
 
--(NSInvocation *) createInvocationForMethod:(Method) method {
+-(NSInvocation *) createInvocationForMethod:(Method) method 
+										  withCommand:(NSString *) command {
 	DC_LOG(@"Creating invocation for %@::%@", NSStringFromClass(self.targetClass), NSStringFromSelector(self.selector));
 	NSMethodSignature *signature = [NSMethodSignature signatureWithObjCTypes:method_getTypeEncoding(method)];
 	NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
@@ -164,10 +178,13 @@ static NSException * passedException = nil;
 	return invocation;
 }
 
--(BOOL) populateInvocationParameters:(NSInvocation *) invocation withMethod:(Method)method error:(NSError **) error {
+-(BOOL) populateInvocationParameters:(NSInvocation *) invocation 
+								  withMethod:(Method)method  
+									  command:(NSString *) command 
+										 error:(NSError **) error {
 	
 	// Get the data values from the passed command.	
-	NSArray *matches = [self.regex matchesInString:self.command options:0 range:NSMakeRange(0, [self.command length])];
+	NSArray *matches = [self.regex matchesInString:command options:0 range:NSMakeRange(0, [command length])];
 	NSTextCheckingResult * match = [matches objectAtIndex:0];
 	
 	// Populate the invocation with the data from the command. Remember to allow for the first three
@@ -176,7 +193,7 @@ static NSException * passedException = nil;
 	for (int i = 0; i < nbrArgs; i++) {
 		
 		// Values will be from regex groups after group 0 which is he complete match.
-		NSString *value = [self.command substringWithRange:[match rangeAtIndex:i + 1]];
+		NSString *value = [command substringWithRange:[match rangeAtIndex:i + 1]];
 		DC_LOG(@"Adding value to invocation: %@", value);
 		
 		// This can probably be done better using the argument functions on the signature.
@@ -258,16 +275,6 @@ static NSException * passedException = nil;
 			return NO;
 	}
 	return YES;
-}
-
-
--(void) dealloc {
-	self.targetClass = nil;
-	self.command = nil;
-	self.regex = nil;
-	self.selector = nil;
-	self.exception = nil;
-	[super dealloc];
 }
 
 @end
