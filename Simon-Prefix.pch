@@ -7,4 +7,5 @@
 #endif
 
 #define STORY_EXTENSION @"stories"
-#define GRAMMER_EXTENSION @"grammer"
+
+#import "SISimon.h"

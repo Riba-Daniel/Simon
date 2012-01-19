@@ -22,29 +22,30 @@
 
 +(NSArray *) findViewsWithQuery:(NSString *) query error:(NSError **) error {
 	
-	DC_LOG(@"On main thread: %@", DC_PRETTY_BOOL([[NSThread currentThread] isMainThread]));
+	SI_LOG(@"On main thread: %@", DC_PRETTY_BOOL([[NSThread currentThread] isMainThread]));
 	
 	// Redirect to the main thread.
 	if (![[NSThread currentThread] isMainThread]) {
 		
-		DC_LOG(@"Redirecting to main thread via GCD");
+		SI_LOG(@"Redirecting to main thread via GCD");
 		dispatch_queue_t mainQueue = dispatch_get_main_queue();
 		
 		__block NSArray *views;
+      
 		dispatch_sync(mainQueue, ^{
 			views = [SIUIUtils findViewsWithQuery:query error:error];
 			// Retain so data survives GCDs autorelease pools.
 			[*error retain];
 			[views retain];
-			DC_LOG(@"Returning %lu views to background thread", [views count]);
+			SI_LOG(@"Returning %lu views to background thread", [views count]);
 		});
 		
-		// Now autorelease.
+		// Now autorelease and return.
 		[*error autorelease];
 		return [views autorelease];
 	}
 	
-	DC_LOG(@"Searching for views based on the query \"%@\"", query);
+	SI_LOG(@"Searching for views based on the query \"%@\"", query);
 	
 	// Get the window as the root node.
 	UIView *keyWindow = [UIApplication sharedApplication].keyWindow;
@@ -77,11 +78,11 @@
 
 +(void) logUITree {
 	
-	DC_LOG(@"On main thread: %@", DC_PRETTY_BOOL([[NSThread currentThread] isMainThread]));
+	SI_LOG(@"On main thread: %@", DC_PRETTY_BOOL([[NSThread currentThread] isMainThread]));
 	
 	// Redirect to the main thread.
 	if (![[NSThread currentThread] isMainThread]) {
-		DC_LOG(@"Redirecting to main thread via GCD");
+		SI_LOG(@"Redirecting to main thread via GCD");
 		dispatch_queue_t mainQueue = dispatch_get_main_queue();
 		dispatch_sync(mainQueue, ^{
 			[self logUITree];
@@ -107,7 +108,7 @@
 	
 	NSLog(@"%@[%i] %@", prefix, index, name);
 	
-	// No recursively handle sub views.
+	// Now recursively handle sub views.
 	NSString * offset = [NSString stringWithFormat:@"%@%@", prefix, @"   "];
 	
 	int subViewIndex = 0;

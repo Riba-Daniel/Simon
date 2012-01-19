@@ -131,7 +131,7 @@ static NSException * passedException = nil;
 	}
 	
 	// No perform the invocation.
-	DC_LOG(@"Invoking methods on class");
+	SI_LOG(@"Invoking methods on class");
 	
 	@try {
 		invocation.target = object;
@@ -139,7 +139,7 @@ static NSException * passedException = nil;
 	}
 	@catch (NSException *thrownException) {
 		self.exception = thrownException;
-		DC_LOG(@"Caught exception: %@", [self.exception reason]);
+		SI_LOG(@"Caught exception: %@", [self.exception reason]);
 		*error = [self errorForException];
 		return NO;
 	}
@@ -171,7 +171,7 @@ static NSException * passedException = nil;
 
 -(NSInvocation *) createInvocationForMethod:(Method) method 
 										  withCommand:(NSString *) command {
-	DC_LOG(@"Creating invocation for %@::%@", NSStringFromClass(self.targetClass), NSStringFromSelector(self.selector));
+	SI_LOG(@"Creating invocation for %@::%@", NSStringFromClass(self.targetClass), NSStringFromSelector(self.selector));
 	NSMethodSignature *signature = [NSMethodSignature signatureWithObjCTypes:method_getTypeEncoding(method)];
 	NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
 	invocation.selector = self.selector;
@@ -194,7 +194,7 @@ static NSException * passedException = nil;
 		
 		// Values will be from regex groups after group 0 which is he complete match.
 		NSString *value = [command substringWithRange:[match rangeAtIndex:i + 1]];
-		DC_LOG(@"Adding value to invocation: %@", value);
+		SI_LOG(@"Adding value to invocation: %@", value);
 		
 		// This can probably be done better using the argument functions on the signature.
 		char argType = *method_copyArgumentType(method, i + 2);
@@ -215,7 +215,7 @@ static NSException * passedException = nil;
 		atArgIndex:(NSUInteger) index 
 			  error:(NSError **) error {
 	
-	DC_LOG(@"Arg type = %c", type);
+	SI_LOG(@"Arg type = %c", type);
 	switch (type) {
 		case 'C':
 		case 'c': {

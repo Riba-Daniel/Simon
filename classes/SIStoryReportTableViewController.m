@@ -12,6 +12,7 @@
 #import "NSString+Simon.h"
 #import "SIStorySource.h"
 #import <dUsefulStuff/DCDialogs.h>
+#import "SIStoryDetailsTableViewController.h"
 
 @implementation SIStoryReportTableViewController
 
@@ -19,7 +20,7 @@
 @synthesize mappings = mappings_;
 
 -(void) dealloc {
-	DC_LOG(@"Deallocing");
+	SI_LOG(@"Deallocing");
 	self.view = nil;
 	self.storySources = nil;
 	self.mappings = nil;
@@ -31,8 +32,7 @@
 -(void) viewDidLoad {
 	self.tableView.backgroundColor = [UIColor clearColor];
 	self.tableView.backgroundView = nil;
-	self.tableView.separatorColor = [UIColor grayColor];
-	self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
+	self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
  
 
@@ -43,7 +43,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	DC_LOG(@"There are %i stories in section %i", [((SIStorySource *)[self.storySources objectAtIndex:section]).stories count], section);
+	SI_LOG(@"There are %i stories in section %i", [((SIStorySource *)[self.storySources objectAtIndex:section]).stories count], section);
 	return [((SIStorySource *)[self.storySources objectAtIndex:section]).stories count];
 }
 
@@ -57,9 +57,10 @@
 	// Get the source and story.
 	NSArray *stories = ((SIStorySource *)[self.storySources objectAtIndex:indexPath.section]).stories;
 	SIStory *story = (SIStory *)[stories objectAtIndex:indexPath.row];
+   
+   // Setup the cell.
 	cell.textLabel.text = story.title;
 	cell.detailTextLabel.text = [NSString stringStatusWithStory:story];
-	cell.accessoryType = UITableViewCellAccessoryNone;
 	
 	switch (story.status) {
 		case SIStoryStatusError:
@@ -68,18 +69,19 @@
 			break;
 		case SIStoryStatusNotMapped:
 			cell.textLabel.textColor = [UIColor lightGrayColor];
-			cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 			break;
 		default:
-			// Do nothing.
+         cell.accessoryType = UITableViewCellAccessoryNone;
 			break;
 	}
 	
-	DC_LOG(@"returning %@ cell", story.title);
+	SI_LOG(@"returning %@ cell", story.title);
 	return cell;
 }
 
 #pragma mark - Table view delegate
+
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
 	return [UIFont systemFontOfSize:14.0f].lineHeight + 4.0f;
 }
@@ -105,8 +107,21 @@
 	return headerLine;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+
+	SIStoryDetailsTableViewController *details = [[[SIStoryDetailsTableViewController alloc] initWithStyle:UITableViewStyleGrouped] autorelease];
+   SI_LOG(@"Loading details for story %@", details.story);
+	
+   details.source = [self.storySources objectAtIndex:indexPath.section];
+	details.story = (SIStory *)[details.source.stories objectAtIndex:indexPath.row];
+	details.navigationItem.title = details.story.title;
+
+	[self.navigationController pushViewController:details animated:YES];
+}
+
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
 	
+   SI_LOG(@"Responding to accessory button being tapped");
 	SIStorySource *source = [self.storySources objectAtIndex:indexPath.section];
 	SIStory *story = [source.stories objectAtIndex:indexPath.row];
 	

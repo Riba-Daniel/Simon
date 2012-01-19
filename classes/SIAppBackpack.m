@@ -24,6 +24,7 @@
 
 @implementation SIAppBackpack
 
+// Static reference to the current story runner.
 static SIStoryRunner *runner;
 
 - (id)init {
@@ -32,6 +33,11 @@ static SIStoryRunner *runner;
 		[self addNotificationObservers];
 	}
 	return self;
+}
+
+// Provides a class based access to the current story runner.
++(SIStoryRunner *) runner {
+	return runner;
 }
 
 -(id) initWithStoryFile:(NSString *) aFileName {
@@ -45,7 +51,7 @@ static SIStoryRunner *runner;
 
 -(void) addNotificationObservers {
 	// Hook into the app startup.
-	DC_LOG(@"Applying program hooks to notification center: %@", [NSNotificationCenter defaultCenter]);
+	SI_LOG(@"Applying program hooks to notification center: %@", [NSNotificationCenter defaultCenter]);
 	[[NSNotificationCenter defaultCenter] addObserver:self 
 														  selector:@selector(startUp:) 
 																name:UIApplicationDidBecomeActiveNotification 
@@ -59,7 +65,7 @@ static SIStoryRunner *runner;
 // Background method
 -(void) start {
 	
-	DC_LOG(@"Simon's background task starting");
+	SI_LOG(@"Simon's background task starting");
 	[NSThread currentThread].name = @"Simon";
 	
 	DC_DEALLOC(runner);
@@ -73,21 +79,16 @@ static SIStoryRunner *runner;
 	}
 	
 	NSError *error = nil;
-	DC_LOG(@"Calling story runner");
+	SI_LOG(@"Calling story runner");
 	if (![runner runStories:&error]) {
 		// Do mothing as runner has code to deal with the error.
 	}
 	
 }
 
-
-+(SIStoryRunner *) runner {
-	return runner;
-}
-
 // Callbacks.
 -(void) startUp:(NSNotification *) notification {
-	DC_LOG(@"App is up so starting Simon's background queue");
+	SI_LOG(@"App is up so starting Simon's background queue");
 	dispatch_queue_t queue = dispatch_queue_create(SI_QUEUE_NAME, NULL);
 	dispatch_async(queue, ^{
 		[self start];
@@ -96,18 +97,18 @@ static SIStoryRunner *runner;
 
 -(void) shutDown:(NSNotification *) notification  {
 	// Release program hooks and dealloc self.
-	DC_LOG(@"ShutDown requested");
+	SI_LOG(@"ShutDown requested");
 	
 	// Shut down the handler factory for UI components.
 	[SIUIHandlerFactory shutDown];
 	
-	// Rmeove all notification watching.
+	// Remove all notification watching.
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	[self release];
 }
 
 -(void) dealloc {
-	DC_LOG(@"Freeing memory and exiting");
+	SI_LOG(@"Freeing memory and exiting");
 	DC_DEALLOC(fileName);
 	DC_DEALLOC(runner);
 	[super dealloc];

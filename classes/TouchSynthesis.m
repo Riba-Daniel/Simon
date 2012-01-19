@@ -35,12 +35,12 @@
 		CGRect frameInWindow;
 		if ([view isKindOfClass:[UIWindow class]])
 		{
-			DC_LOG(@"Using views frame");
+			SI_LOG(@"Using views frame");
 			frameInWindow = view.frame;
 		}
 		else
 		{
-			DC_LOG(@"Locating views frame in the window via it's superview");
+			SI_LOG(@"Locating views frame in the window via it's superview");
 			frameInWindow =
 				[view.window convertRect:view.frame fromView:view.superview];
 		}
@@ -52,10 +52,10 @@
 		_locationInWindow = CGPointMake(
 							frameInWindow.origin.x + 0.5 * frameInWindow.size.width,
 							frameInWindow.origin.y + 0.5 * frameInWindow.size.height);
-		DC_LOG(@"Center point %f x %f", _locationInWindow.x, _locationInWindow.y);
+		SI_LOG(@"Center point %f x %f", _locationInWindow.x, _locationInWindow.y);
 		_previousLocationInWindow = _locationInWindow;
 		UIView *target = [view.window hitTest:_locationInWindow withEvent:nil];
-		DC_LOG(@"Deepest target at point: %@", target);
+		SI_LOG(@"Deepest target at point: %@", target);
 
 		_window = [view.window retain];
 		_view = [target retain];
@@ -172,7 +172,7 @@
 	Class touchesEventClass = objc_getClass("UITouchesEvent");
 	if (touchesEventClass && ![[self class] isEqual:touchesEventClass])
 	{
-		DC_LOG(@"Reallocing as a UITouchesEvent");
+		SI_LOG(@"Reallocing as a UITouchesEvent");
 		[self release];
 		self = [touchesEventClass alloc];
 	}

@@ -10,7 +10,6 @@
 
 @interface SIStoryReportTableViewController : UITableViewController {
 @private
-	CGSize initSize;
 }
 
 @property (nonatomic, retain) NSArray *storySources;

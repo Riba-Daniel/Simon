@@ -20,19 +20,27 @@
 -(NSArray *) allMappingMethodsInRuntime {
 	
 	int numClasses = objc_getClassList(NULL, 0);
-	DC_LOG(@"Found %i classes in runtime", numClasses);
+	SI_LOG(@"Found %i classes in runtime", numClasses);
 	
 	NSMutableArray * stepMappings = [[[NSMutableArray alloc] init] autorelease];
 	if (numClasses > 0 ) {
 		
 		Class * classes = malloc(sizeof(Class) * numClasses);
-		numClasses = objc_getClassList(classes, numClasses);
+		// Don't use the return number from this call because it's often wrong. Reported as a Bug to Apple.
+		objc_getClassList(classes, numClasses);
+		SI_LOG(@"When returning classes, %i classes in runtime", numClasses);
 		
 		for (int index = 0; index < numClasses; index++) {
 			
 			Class nextClass = classes[index];
 			
+			if (nextClass == NULL || nextClass == nil) {
+				SI_LOG(@"%i: NULL/nil class returned, skipping");
+				continue;
+			}
+			
 			// Ignore if the class does not belong to the application bundle.
+			SI_LOG(@"%i: Checking class: %@", index, NSStringFromClass(nextClass));
 			NSBundle * classBundle = [NSBundle bundleForClass:nextClass];
 			if ([NSBundle mainBundle] != classBundle) {
 				continue;
@@ -52,8 +60,6 @@
 
 -(BOOL) addMappingMethodsFromClass:(Class) class toArray:(NSMutableArray *) array {
 
-	DC_LOG(@"Checking %@", NSStringFromClass(class));
-
 	// Get the class methods. To get instance methods, drop the object_getClass function.
 	unsigned int methodCount;
 	Method *methods = class_copyMethodList(object_getClass(class), &methodCount);
@@ -72,7 +78,7 @@
 		SEL sel = method_getName(currMethod);	
 
 		if ([NSStringFromSelector(sel) hasPrefix:prefix]) {
-			DC_LOG(@"\tStep method found %@ %@", NSStringFromClass(class), NSStringFromSelector(sel));
+			SI_LOG(@"\tStep method found %@ %@", NSStringFromClass(class), NSStringFromSelector(sel));
 			id returnValue = objc_msgSend(class, sel, class);
 			[array addObject:returnValue];
 			methodsFound = YES;

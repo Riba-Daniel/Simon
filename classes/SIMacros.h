@@ -6,21 +6,30 @@
 //  Copyright 2011. All rights reserved.
 //
 
+#pragma Internal functions
+
+// Place Simons logging under a different flag so that we can seperate it from other logging.
+#ifdef SI_DEBUG
+#define SI_LOG(s, ...) DC_LOG(s, __VA_ARGS__)
+#else
+#define SI_LOG(s, ...) 
+#endif
+
 #pragma mark - Runners
 
 /**
  This macro must be placed in your startup code. It loads Simon into the background and automatically runs the stories once the application is active and ready.
  If you want a particular story file to be run, just enter it's name as a parameter.
  */
-#ifdef DC_DEBUG
+#ifdef SI_DEBUG
 
 #define SIRun() \
 SIAppBackpack *backpack = [[[SIAppBackpack alloc] init] autorelease]; \
-DC_LOG(@"Started backpack %@", [backpack description]);
+SI_LOG(@"Started backpack %@", [backpack description]);
 
 #define SIRunFile(storyFile) \
 SIAppBackpack *backpack = [[[SIAppBackpack alloc] initWithStoryFile:storyFile] autorelease]; \
-DC_LOG(@"Started backpack %@", [backpack description]);
+SI_LOG(@"Started backpack %@", [backpack description]);
 
 #else
 
@@ -43,7 +52,7 @@ DC_LOG(@"Started backpack %@", [backpack description]);
  */
 #define SIMapStepToSelector(theRegex, aSelector) \
 +(SIStepMapping *) DC_CONCATINATE(SI_STEP_METHOD_PREFIX, __LINE__):(Class) class { \
-DC_LOG(@"Creating mapping \"%@\" -> %@::%@", theRegex, NSStringFromClass(class), toNSString(aSelector)); \
+SI_LOG(@"Creating mapping \"%@\" -> %@::%@", theRegex, NSStringFromClass(class), toNSString(aSelector)); \
 NSError *error = nil; \
 SIStepMapping *mapping = [SIStepMapping stepMappingWithClass:class selector:@selector(aSelector) regex:theRegex error:&error]; \
 if (mapping == nil) { \
@@ -109,13 +118,13 @@ SIUIViewHandler *handler = [[SIUIHandlerFactory handlerFactory] createHandlerFor
  But first some reuseable logic embedded in a macro.
  */
 #define SIThrowException(defaultMsg, description, ...) \
-DC_LOG(@"Throwing exception"); \
+SI_LOG(@"Throwing exception"); \
 NSString *_message = defaultMsg; \
 if (description) { \
 _message = [NSString stringWithFormat:description, ##__VA_ARGS__]; \
 } \
 NSString *_finalMessage = [NSString stringWithFormat:@"%s(%d) %@", __PRETTY_FUNCTION__, __LINE__, _message]; \
-DC_LOG(@"Setting exception with message: %@", _finalMessage); \
+SI_LOG(@"Setting exception with message: %@", _finalMessage); \
 [SIStepMapping cacheException:[NSException exceptionWithName:@"SIAssertionException" reason:_finalMessage userInfo:nil]]; \
 return
 

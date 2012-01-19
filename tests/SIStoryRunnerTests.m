@@ -57,21 +57,21 @@
 
 SIMapStepToSelector(@"As ([A-Z][a-z]+)", stepAs:)
 -(void) stepAs:(NSString *) name {
-	DC_LOG(@"As %@", name);
+	SI_LOG(@"As %@", name);
 	GHAssertEqualStrings(name, @"Simon", @"Incorrect name passed to step.");
 	step1Called = YES;
 }
 
 SIMapStepToSelector(@"Given this file exists", stepGivenThisFileExists)
 -(void) stepGivenThisFileExists {
-	DC_LOG(@"Given this file exists");
+	SI_LOG(@"Given this file exists");
 	GHAssertTrue(step1Called, @"Step 1 not called");
 	step2Called = YES;
 }
 
 SIMapStepToSelector(@"then I should be able to read (\\d+) and ([a-z]+) from it", stepThenIShouldBeAbleToRead:and:)
 -(void) stepThenIShouldBeAbleToRead:(NSNumber *) aNumber and:(NSString *) aString {
-	DC_LOG(@"Then I should be able to read %f and %@", [aNumber floatValue], aString);
+	SI_LOG(@"Then I should be able to read %f and %@", [aNumber floatValue], aString);
 	GHAssertEquals([aNumber floatValue], (float) 5.0, @"Incorrect float value passed to step.");
 	GHAssertEqualStrings(aString, @"abc", @"Incorrect value passed to step.");
 	GHAssertTrue(step1Called, @"Step 1 not called");

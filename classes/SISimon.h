@@ -8,6 +8,7 @@
 #import <dUsefulStuff/DCCommon.h>
 #import <objc/runtime.h>
 
+#import "SIMacros.h"
 #import "SIConstants.h"
 #import "SIStepMapping.h"
 #import "SIStory.h"
@@ -29,6 +30,6 @@
 #define toNSString(chars) _toNSString(chars)
 #define _toNSString(chars) @#chars
 
-#include "SIMacros.h"
+
 
 

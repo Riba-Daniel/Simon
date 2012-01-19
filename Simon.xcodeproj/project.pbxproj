@@ -106,6 +106,11 @@
 		94C18E8D1439DC7B00B28D44 /* MacroStoryImplementations.m in Sources */ = {isa = PBXBuildFile; fileRef = 94C18E8C1439DC7B00B28D44 /* MacroStoryImplementations.m */; };
 		94DC535D14445C5300C3E586 /* SIStorySource.h in Headers */ = {isa = PBXBuildFile; fileRef = 94DC535B14445C5300C3E586 /* SIStorySource.h */; };
 		94DC535E14445C5300C3E586 /* SIStorySource.m in Sources */ = {isa = PBXBuildFile; fileRef = 94DC535C14445C5300C3E586 /* SIStorySource.m */; };
+		94E375331452962000FB86AA /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94E375321452962000FB86AA /* CoreText.framework */; };
+		94E375351452962A00FB86AA /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94E375321452962000FB86AA /* CoreText.framework */; };
+		94E375361452962B00FB86AA /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94E375321452962000FB86AA /* CoreText.framework */; };
+		94E3753914544A5100FB86AA /* SIStoryDetailsTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 94E3753714544A5000FB86AA /* SIStoryDetailsTableViewController.h */; };
+		94E3753A14544A5100FB86AA /* SIStoryDetailsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94E3753814544A5000FB86AA /* SIStoryDetailsTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -130,7 +135,6 @@
 		652D4E4C13CDD44400633E51 /* SIAppBackpack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIAppBackpack.m; sourceTree = "<group>"; };
 		653D0E8A13A782AD00A5AB82 /* libSimon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSimon.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		653D0E8D13A782AD00A5AB82 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		653D0E9113A782AD00A5AB82 /* Simon-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Simon-Prefix.pch"; sourceTree = "<group>"; };
 		653D0E9B13A783A500A5AB82 /* Unit tests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Unit tests.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		653D0E9D13A783A500A5AB82 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		653D0EA013A783A500A5AB82 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -228,6 +232,9 @@
 		94C18E8C1439DC7B00B28D44 /* MacroStoryImplementations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MacroStoryImplementations.m; sourceTree = "<group>"; };
 		94DC535B14445C5300C3E586 /* SIStorySource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIStorySource.h; sourceTree = "<group>"; };
 		94DC535C14445C5300C3E586 /* SIStorySource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIStorySource.m; sourceTree = "<group>"; };
+		94E375321452962000FB86AA /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		94E3753714544A5000FB86AA /* SIStoryDetailsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIStoryDetailsTableViewController.h; sourceTree = "<group>"; };
+		94E3753814544A5000FB86AA /* SIStoryDetailsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIStoryDetailsTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -235,6 +242,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94E375331452962000FB86AA /* CoreText.framework in Frameworks */,
 				94327D7213E44F9A0003646C /* dNodi.framework in Frameworks */,
 				65D09A6413D99C5900D1A74B /* dUsefulStuff.framework in Frameworks */,
 				653D0E8E13A782AD00A5AB82 /* Foundation.framework in Frameworks */,
@@ -254,6 +262,7 @@
 				65D09A7813D9A99D00D1A74B /* dUsefulStuff.framework in Frameworks */,
 				65D09AAB13D9AE6D00D1A74B /* libSimon.a in Frameworks */,
 				94327D7313E451810003646C /* dNodi.framework in Frameworks */,
+				94E375351452962A00FB86AA /* CoreText.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,6 +278,7 @@
 				659E628613D9BF0E00ACD34C /* dUsefulStuff.framework in Frameworks */,
 				94327D7413E451820003646C /* dNodi.framework in Frameworks */,
 				94657751141CF2C60026F1FB /* GHUnitIOS.framework in Frameworks */,
+				94E375361452962B00FB86AA /* CoreText.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,7 +294,6 @@
 				6583B3EC13CF2220005E13F3 /* ReadMe.textile */,
 				653D0EF013A7842500A5AB82 /* Simon-Prefix.pch */,
 				653D0EB113A783C000A5AB82 /* classes */,
-				653D0E9013A782AD00A5AB82 /* Supporting Files */,
 				653D0ED413A783DC00A5AB82 /* tests */,
 				659E625F13D9BE9600ACD34C /* App with tests */,
 				653D0E8C13A782AD00A5AB82 /* Frameworks */,
@@ -305,6 +314,7 @@
 		653D0E8C13A782AD00A5AB82 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				94E375321452962000FB86AA /* CoreText.framework */,
 				9481C8A61431F3780036121A /* SenTestingKit.framework */,
 				94327D7113E44F9A0003646C /* dNodi.framework */,
 				65D09A6313D99C5900D1A74B /* dUsefulStuff.framework */,
@@ -315,15 +325,6 @@
 				653D0EA013A783A500A5AB82 /* CoreGraphics.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		653D0E9013A782AD00A5AB82 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				653D0E9113A782AD00A5AB82 /* Simon-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			path = Simon;
 			sourceTree = "<group>";
 		};
 		653D0EB113A783C000A5AB82 /* classes */ = {
@@ -517,6 +518,8 @@
 				65D03BD613BA096700A3F0FA /* SIStoryReporter.h */,
 				9490249214408DC4006132A5 /* SIStoryReportTableViewController.h */,
 				9490249314408DC4006132A5 /* SIStoryReportTableViewController.m */,
+				94E3753714544A5000FB86AA /* SIStoryDetailsTableViewController.h */,
+				94E3753814544A5000FB86AA /* SIStoryDetailsTableViewController.m */,
 			);
 			name = Reporting;
 			sourceTree = "<group>";
@@ -551,6 +554,7 @@
 				9490248C144089A3006132A5 /* SIStoryInAppReporter.h in Headers */,
 				9490249414408DC4006132A5 /* SIStoryReportTableViewController.h in Headers */,
 				94DC535D14445C5300C3E586 /* SIStorySource.h in Headers */,
+				94E3753914544A5100FB86AA /* SIStoryDetailsTableViewController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -695,6 +699,7 @@
 				9490248D144089A3006132A5 /* SIStoryInAppReporter.m in Sources */,
 				9490249514408DC4006132A5 /* SIStoryReportTableViewController.m in Sources */,
 				94DC535E14445C5300C3E586 /* SIStorySource.m in Sources */,
+				94E3753A14544A5100FB86AA /* SIStoryDetailsTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -926,7 +931,6 @@
 					DC_DEBUG,
 				);
 				INFOPLIST_FILE = "App with tests/TestApp2-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -946,7 +950,6 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "App with tests/TestApp2-Prefix.pch";
 				INFOPLIST_FILE = "App with tests/TestApp2-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;

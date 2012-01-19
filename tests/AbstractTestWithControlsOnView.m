@@ -49,7 +49,7 @@
 }
 
 -(IBAction) buttonTapped:(id) sender {
-	DC_LOG(@"Button was tapped");	
+	SI_LOG(@"Button was tapped");	
 	tapped = YES;
 }
 

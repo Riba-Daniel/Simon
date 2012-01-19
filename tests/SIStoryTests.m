@@ -93,12 +93,12 @@
 
 // Used for testing.
 -(void) abc {
-	DC_LOG(@"Executing abc");
+	SI_LOG(@"Executing abc");
 	abcMethodCalled = YES;
 }
 
 -(void) def {
-	DC_LOG(@"Executing def");
+	SI_LOG(@"Executing def");
 	defMethodCalled = YES;
 	GHAssertTrue(abcMethodCalled, @"Appear to in a different instance of the class.");
 }

@@ -51,7 +51,7 @@
 	if (self) {
 		[self mainInit];
 		NSString * file = [[NSBundle mainBundle] pathForResource:fileName ofType:STORY_EXTENSION];
-		DC_LOG(@"Found file %@", file);
+		SI_LOG(@"Found file %@", file);
 		if (file == nil) {
 			NSException* myException = [NSException
 												 exceptionWithName:@"FileNotFoundException"
@@ -85,10 +85,10 @@
 		self.currentSource = source;
 		
 		// Read the file.
-		DC_LOG(@"Reading file: %@", file);
+		SI_LOG(@"Reading file: %@", file);
 		NSString *contents = [NSString stringWithContentsOfFile:file encoding:NSUTF8StringEncoding error:error];
 		if (contents == nil) {
-			DC_LOG(@"Failed to read file %@", file);
+			SI_LOG(@"Failed to read file %@", file);
 			return nil;
 		}
 		
@@ -108,7 +108,7 @@
 -(BOOL) processLine:(NSString *) line 
 				  error:(NSError **) error {
 	
-	DC_LOG(@"Line: %@", line);
+	SI_LOG(@"Line: %@", line);
 	
 	// Trim whitespace and trailing punctuation.
 	NSString *cleanLine = [line stringByTrimmingCharactersInSet:trimChars];
@@ -121,14 +121,14 @@
 	// Attempt to figure out what the keyword is.
 	SIKeyword keyword = [self keywordFromLine:cleanLine error:error];
 	if (keyword == SIKeywordUnknown) {
-		DC_LOG(@"Detected unknown keyword in step: %@", cleanLine);
+		SI_LOG(@"Detected unknown keyword in step: %@", cleanLine);
 		NSString *msg = [self failureReasonWithContent:[NSString stringWithFormat:@"Story syntax error, unknown keyword on step \"%@\"", cleanLine]];
 		[self setError:error code:SIErrorInvalidKeyword errorDomain:SIMON_ERROR_DOMAIN shortDescription:@"Story syntax error, unknown keyword" failureReason:msg];
 		return NO;
 	}
 	
 	// Validate the order of keywords.
-	DC_LOG(@"Syntax check %@ -> %@", 
+	SI_LOG(@"Syntax check %@ -> %@", 
 			 [NSString stringFromKeyword: priorKeyword],
 			 [NSString stringFromKeyword: keyword]);
 	
@@ -210,7 +210,7 @@
 	}
 	
 	// Now add the step to the current story.
-	DC_LOG(@"Adding step: %@", cleanLine);
+	SI_LOG(@"Adding step: %@", cleanLine);
 	SIStory *story = [self.currentSource.stories lastObject];
 	[story createStepWithKeyword:keyword command:cleanLine];
 	
@@ -249,7 +249,7 @@
 -(void) createNewStoryWithTitle:(NSString *) title {
 	
 	// Create the new one and store it in the return array.
-	DC_LOG(@"Creating new story");
+	SI_LOG(@"Creating new story");
 	SIStory *story = [[[SIStory alloc] init] autorelease];
 	[self.currentSource.stories addObject:story];
 	
@@ -258,7 +258,7 @@
 	if ([storyTitle hasPrefix:@":"]) {
 		storyTitle = [[storyTitle substringFromIndex: 1] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 	}
-	DC_LOG(@"Title: %@", storyTitle);
+	SI_LOG(@"Title: %@", storyTitle);
 	story.title = storyTitle;
 }
 

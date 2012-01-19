@@ -20,7 +20,7 @@
 @implementation SIStoryInAppReporter
 
 -(void) dealloc {
-	DC_LOG(@"Deallocing");
+	SI_LOG(@"Deallocing");
 	[super dealloc];
 }
 
@@ -34,13 +34,6 @@
 }
 
 -(void) displayReportOnStorySources:(NSArray *) sources andMappings:(NSArray *) mappings {
-	// Get the size from the window.
-	UIWindow *window = [UIApplication sharedApplication].keyWindow;
-	
-	CGRect frame = window.frame;
-	NSUInteger heightAdjust = [UIApplication sharedApplication].statusBarHidden ? 0 : 20;
-	CGRect offScreen = CGRectMake(0, frame.size.height, frame.size.width, frame.size.height - heightAdjust);
-	CGRect onScreen = CGRectMake(0, heightAdjust, frame.size.width, frame.size.height - heightAdjust);
 	
 	SIStoryReportTableViewController *reportController = [[[SIStoryReportTableViewController alloc] initWithStyle:UITableViewStyleGrouped] autorelease];
 	reportController.storySources = sources;
@@ -50,7 +43,6 @@
 	// Add a navigation bar at the top.
 	navController = [[UINavigationController alloc] initWithRootViewController:reportController];
 	navController.view.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.75f];
-	navController.view.frame = offScreen;
 	
 	UIBarButtonItem *closeButton = [[[UIBarButtonItem alloc] initWithTitle:@"Close Simon" 
 																						  style:UIBarButtonItemStylePlain 
@@ -58,9 +50,17 @@
 																						 action:@selector(closeSimon)] autorelease];
 	reportController.navigationItem.rightBarButtonItem = closeButton;
 	
-	[window addSubview:navController.view];
+	// Get the size from the window.
+	UIWindow *window = [UIApplication sharedApplication].keyWindow;
+	
+	CGRect frame = window.frame;
+	NSUInteger heightAdjust = [UIApplication sharedApplication].statusBarHidden ? 0 : 20;
+	CGRect offScreen = CGRectMake(0, frame.size.height, frame.size.width, frame.size.height - heightAdjust);
+	CGRect onScreen = CGRectMake(0, heightAdjust, frame.size.width, frame.size.height - heightAdjust);
 	
 	// Animate on.
+	navController.view.frame = offScreen;
+	[window addSubview:navController.view];
 	[UIView animateWithDuration:1.0 animations:^{
 		navController.view.frame = onScreen;
 	}];
