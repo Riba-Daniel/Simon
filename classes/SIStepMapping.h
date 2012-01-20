@@ -72,9 +72,4 @@
  */
 -(BOOL) invokeWithCommand:(NSString *) command object:(id) object error:(NSError **) error;
 
-/**
- Part of a temporary workaround for the exception handling bug in NSInvocation.
- */
-+(void) cacheException:(NSException *) exception;
-
 @end

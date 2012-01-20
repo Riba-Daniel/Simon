@@ -51,14 +51,6 @@
 	return self;
 }
 
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!! HACK
-// Static to tempoary store an exception so we can pass it from implementation code back to the mapping that is executing it. This will no longer be needed when Apple fixes NSInvocation.
-static NSException * passedException = nil;
-+(void) cacheException:(NSException *) exception {
-	passedException = [exception retain];
-}
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!! HACK
-
 +(SIStepMapping *) stepMappingWithClass:(Class) theClass selector:(SEL) aSelector regex:(NSString *) theRegex error:(NSError **) error {
 	SIStepMapping * mapping = [[[SIStepMapping alloc] init] autorelease];
 	mapping.targetClass = theClass;
@@ -144,14 +136,6 @@ static NSException * passedException = nil;
 		return NO;
 	}
 	
-	// !!!!!!!!!!!!!!!!!!!!!!!!!!! Exception handling HACK.
-	if (passedException != nil) {
-		self.exception = passedException;
-		*error = [self errorForException];
-		DC_DEALLOC(passedException);
-		return NO;
-	}
-
 	return YES;
 }
 
