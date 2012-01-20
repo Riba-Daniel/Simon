@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		32A9D11014C907BC00B0CFBD /* NSInvocations.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A9D10F14C907BC00B0CFBD /* NSInvocations.m */; };
 		6527B7CA13A871DF005A912F /* GHUnitIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 653D0EF813A784C100A5AB82 /* GHUnitIOS.framework */; };
 		652D4E4D13CDD44400633E51 /* SIAppBackpack.h in Headers */ = {isa = PBXBuildFile; fileRef = 652D4E4B13CDD44300633E51 /* SIAppBackpack.h */; };
 		652D4E4E13CDD44400633E51 /* SIAppBackpack.m in Sources */ = {isa = PBXBuildFile; fileRef = 652D4E4C13CDD44400633E51 /* SIAppBackpack.m */; };
@@ -131,6 +132,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		32A9D10F14C907BC00B0CFBD /* NSInvocations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSInvocations.m; sourceTree = "<group>"; };
 		652D4E4B13CDD44300633E51 /* SIAppBackpack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIAppBackpack.h; sourceTree = "<group>"; };
 		652D4E4C13CDD44400633E51 /* SIAppBackpack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIAppBackpack.m; sourceTree = "<group>"; };
 		653D0E8A13A782AD00A5AB82 /* libSimon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSimon.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -364,6 +366,7 @@
 				6583B43013D1CB2E005E13F3 /* Stories */,
 				65D35BC213A8BA130007A8AD /* NSString+SimonTests.m */,
 				653D0EDD13A783DC00A5AB82 /* Story files */,
+				32A9D10F14C907BC00B0CFBD /* NSInvocations.m */,
 			);
 			path = tests;
 			sourceTree = "<group>";
@@ -722,6 +725,7 @@
 				9465773F141B97B90026F1FB /* SIUIViewHandlerTests.m in Sources */,
 				94657743141C95160026F1FB /* AbstractTestWithControlsOnView.m in Sources */,
 				94AED1541420DB660070D3BB /* SIUIHandlerFactoryTests.m in Sources */,
+				32A9D11014C907BC00B0CFBD /* NSInvocations.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

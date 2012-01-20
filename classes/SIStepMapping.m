@@ -130,7 +130,7 @@ static NSException * passedException = nil;
 		return NO;		
 	}
 	
-	// No perform the invocation.
+	// Now perform the invocation.
 	SI_LOG(@"Invoking methods on class");
 	
 	@try {

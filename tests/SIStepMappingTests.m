@@ -63,9 +63,8 @@
 	NSError *error = nil;
 	SIStepMapping * mapping = [SIStepMapping stepMappingWithClass:[self class] selector:@selector(doSomething) regex:@"abc" error:&error];
 	GHAssertNotNil(mapping, @"nil mapping, error says %@", error.localizedDescription);
-	mapping.command = @"abc";
 	
-	BOOL ok = [mapping invokeWithObject:self error:&error];
+	BOOL ok = [mapping invokeWithCommand:@"abc" object:self error:&error];
 	
 	GHAssertTrue(ok, @"Invocation should have worked");
 	GHAssertTrue(methodCalled, @"Method not called");
@@ -108,10 +107,9 @@
 	NSError *error = nil;
 	SIStepMapping * mapping = [SIStepMapping stepMappingWithClass:[self class] selector:@selector(doSomething) regex:@"abc" error:&error];
 	GHAssertNotNil(mapping, @"nil mapping, error says %@", error.localizedDescription);
-	mapping.command = @"abc";
 	[SIStepMapping cacheException:[NSException exceptionWithName:@"abc" reason:@"def" userInfo:nil]];
 	
-	GHAssertFalse([mapping invokeWithObject:self error:&error], @"Mapping should not have worked");
+	GHAssertFalse([mapping invokeWithCommand:@"abc" object:self error:&error], @"Mapping should not have worked");
 	GHAssertNotNil(mapping.exception, @"Exception should not be null");
 	
 }
@@ -122,9 +120,8 @@
 	NSError *error = nil;
 	SIStepMapping * mapping = [SIStepMapping stepMappingWithClass:[self class] selector:selector regex:regex error:&error];
 	GHAssertNotNil(mapping, @"nil mapping, error says %@", error.localizedDescription);
-	mapping.command = command;
 	
-	BOOL ok = [mapping invokeWithObject:self error:&error];
+	BOOL ok = [mapping invokeWithCommand:command object:self error:&error];
 	
 	GHAssertTrue(ok, @"Invocation should have worked, error %@", error.localizedDescription);
 	GHAssertTrue(methodCalled, @"Method not called");

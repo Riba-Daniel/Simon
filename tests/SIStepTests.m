@@ -62,8 +62,7 @@
 	BOOL yes = YES;
 	
 	id mockMapping = [OCMockObject mockForClass:[SIStepMapping class]];
-	[[mockMapping expect] setCommand:@"abc"];
-	[[[mockMapping expect] andReturnValue:OCMOCK_VALUE(yes)] invokeWithObject:self error:&error];
+	[[[mockMapping expect] andReturnValue:OCMOCK_VALUE(yes)] invokeWithCommand:@"abc" object:self error:&error];
 	
 	step.stepMapping = mockMapping;
 	[step invokeWithObject:self error:&error];

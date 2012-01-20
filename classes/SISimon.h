@@ -30,6 +30,10 @@
 #define toNSString(chars) _toNSString(chars)
 #define _toNSString(chars) @#chars
 
+#define IPAD_HEADER_INDENT 55
+#define IPHONE_HEADER_INDENT 20
+
+
 
 
 

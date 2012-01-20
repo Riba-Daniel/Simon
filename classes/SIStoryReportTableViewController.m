@@ -7,7 +7,6 @@
 //
 
 #import "SIStoryReportTableViewController.h"
-#import <dUSefulStuff/DCCommon.h>
 #import "SIStory.h"
 #import "NSString+Simon.h"
 #import "SIStorySource.h"
@@ -61,11 +60,12 @@
    // Setup the cell.
 	cell.textLabel.text = story.title;
 	cell.detailTextLabel.text = [NSString stringStatusWithStory:story];
+   cell.selectionStyle = UITableViewCellSelectionStyleNone;
 	
 	switch (story.status) {
 		case SIStoryStatusError:
 			cell.detailTextLabel.textColor = [UIColor redColor];
-			cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+			cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 			break;
 		case SIStoryStatusNotMapped:
 			cell.textLabel.textColor = [UIColor lightGrayColor];
@@ -95,13 +95,14 @@
 	label.lineBreakMode = UILineBreakModeHeadTruncation;
 	NSString *filename = ((SIStorySource *)[self.storySources objectAtIndex:section]).source;
 	label.text = [filename lastPathComponent];
-	
-	CGFloat lineHeight = [UIFont systemFontOfSize:14.0f].lineHeight + 4.0f;
-	UIView *headerLine = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, lineHeight)] autorelease];
-	
-	label.frame = CGRectMake(50, 0, 50, lineHeight);
+
+   // Adjust the indent according to the device.
+	label.frame = CGRectMake(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? IPAD_HEADER_INDENT : IPHONE_HEADER_INDENT, 0, 0, 0);
+   
+	// Make sure the label will resize when the table resizes the header.
 	label.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 	
+	UIView *headerLine = [[[UIView alloc] init] autorelease];
 	[headerLine addSubview:label];
 	
 	return headerLine;
@@ -118,42 +119,5 @@
 
 	[self.navigationController pushViewController:details animated:YES];
 }
-
-- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath {
-	
-   SI_LOG(@"Responding to accessory button being tapped");
-	SIStorySource *source = [self.storySources objectAtIndex:indexPath.section];
-	SIStory *story = [source.stories objectAtIndex:indexPath.row];
-	
-	switch (story.status) {
-			
-		case SIStoryStatusError:
-			[DCDialogs displayMessage:story.error.localizedFailureReason];
-			break;
-			
-		case SIStoryStatusNotMapped: {
-			NSMutableString *message = [NSMutableString string];
-			[story.steps enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-				SIStep *step = (SIStep *) obj;
-				NSString *selector = @"";
-				if (step.stepMapping.selector != nil) {
-					selector = [NSString stringWithFormat:@"%@ -> %@::%@\n",
-									step.command,
-									NSStringFromClass(step.stepMapping.targetClass),
-					NSStringFromSelector(step.stepMapping.selector)];
-				}
-				[message appendString:selector];
-			}];
-			[DCDialogs displayMessage:message];
-			
-			break;
-		}
-			
-		default:
-			break;
-	}
-	
-}
-
 
 @end
