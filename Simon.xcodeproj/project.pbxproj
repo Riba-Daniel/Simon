@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		32A9D11014C907BC00B0CFBD /* NSInvocations.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A9D10F14C907BC00B0CFBD /* NSInvocations.m */; };
+		32A9D11314C914B500B0CFBD /* SIMacroTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A9D11214C914B500B0CFBD /* SIMacroTests.m */; };
 		6527B7CA13A871DF005A912F /* GHUnitIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 653D0EF813A784C100A5AB82 /* GHUnitIOS.framework */; };
 		652D4E4D13CDD44400633E51 /* SIAppBackpack.h in Headers */ = {isa = PBXBuildFile; fileRef = 652D4E4B13CDD44300633E51 /* SIAppBackpack.h */; };
 		652D4E4E13CDD44400633E51 /* SIAppBackpack.m in Sources */ = {isa = PBXBuildFile; fileRef = 652D4E4C13CDD44400633E51 /* SIAppBackpack.m */; };
@@ -133,6 +134,7 @@
 
 /* Begin PBXFileReference section */
 		32A9D10F14C907BC00B0CFBD /* NSInvocations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSInvocations.m; sourceTree = "<group>"; };
+		32A9D11214C914B500B0CFBD /* SIMacroTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIMacroTests.m; sourceTree = "<group>"; };
 		652D4E4B13CDD44300633E51 /* SIAppBackpack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIAppBackpack.h; sourceTree = "<group>"; };
 		652D4E4C13CDD44400633E51 /* SIAppBackpack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIAppBackpack.m; sourceTree = "<group>"; };
 		653D0E8A13A782AD00A5AB82 /* libSimon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSimon.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -290,16 +292,16 @@
 		653D0E7F13A782AC00A5AB82 = {
 			isa = PBXGroup;
 			children = (
-				6583B3EE13CF2242005E13F3 /* ChangeLog.textile */,
+				659E625F13D9BE9600ACD34C /* App with tests */,
 				6583B3EA13CF2220005E13F3 /* build.sh */,
+				6583B3EE13CF2242005E13F3 /* ChangeLog.textile */,
+				653D0EB113A783C000A5AB82 /* classes */,
+				653D0E8C13A782AD00A5AB82 /* Frameworks */,
 				6583B3EB13CF2220005E13F3 /* License.textile */,
+				653D0E8B13A782AD00A5AB82 /* Products */,
 				6583B3EC13CF2220005E13F3 /* ReadMe.textile */,
 				653D0EF013A7842500A5AB82 /* Simon-Prefix.pch */,
-				653D0EB113A783C000A5AB82 /* classes */,
 				653D0ED413A783DC00A5AB82 /* tests */,
-				659E625F13D9BE9600ACD34C /* App with tests */,
-				653D0E8C13A782AD00A5AB82 /* Frameworks */,
-				653D0E8B13A782AD00A5AB82 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -332,8 +334,8 @@
 		653D0EB113A783C000A5AB82 /* classes */ = {
 			isa = PBXGroup;
 			children = (
-				9490249114408D11006132A5 /* Reporting */,
 				65D03BEF13BE014700A3F0FA /* Categories */,
+				9490249114408D11006132A5 /* Reporting */,
 				652D4E4B13CDD44300633E51 /* SIAppBackpack.h */,
 				652D4E4C13CDD44400633E51 /* SIAppBackpack.m */,
 				943A3967143DD2D0000D506C /* SIConstants.h */,
@@ -357,16 +359,17 @@
 			children = (
 				94657741141C95160026F1FB /* AbstractTestWithControlsOnView.h */,
 				94657742141C95160026F1FB /* AbstractTestWithControlsOnView.m */,
+				6583B43113D1CB4F005E13F3 /* GHUnit */,
+				32A9D10F14C907BC00B0CFBD /* NSInvocations.m */,
+				65D35BC213A8BA130007A8AD /* NSString+SimonTests.m */,
+				32A9D11214C914B500B0CFBD /* SIMacroTests.m */,
+				65FCD11713ADE3C200A90FCA /* SIRuntimeTests.m */,
 				9406BD33140D17C500E76E86 /* SISimonTests.m */,
 				653D0ED913A783DC00A5AB82 /* SIStoryFileReaderTests.m */,
 				6551A98613AB931F00679B94 /* SIStoryRunnerTests.m */,
-				65FCD11713ADE3C200A90FCA /* SIRuntimeTests.m */,
-				659E62A013DB026400ACD34C /* UI */,
-				6583B43113D1CB4F005E13F3 /* GHUnit */,
 				6583B43013D1CB2E005E13F3 /* Stories */,
-				65D35BC213A8BA130007A8AD /* NSString+SimonTests.m */,
 				653D0EDD13A783DC00A5AB82 /* Story files */,
-				32A9D10F14C907BC00B0CFBD /* NSInvocations.m */,
+				659E62A013DB026400ACD34C /* UI */,
 			);
 			path = tests;
 			sourceTree = "<group>";
@@ -623,7 +626,7 @@
 		653D0E8113A782AC00A5AB82 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0420;
+				LastUpgradeCheck = 0430;
 				ORGANIZATIONNAME = Sensis;
 			};
 			buildConfigurationList = 653D0E8413A782AC00A5AB82 /* Build configuration list for PBXProject "Simon" */;
@@ -726,6 +729,7 @@
 				94657743141C95160026F1FB /* AbstractTestWithControlsOnView.m in Sources */,
 				94AED1541420DB660070D3BB /* SIUIHandlerFactoryTests.m in Sources */,
 				32A9D11014C907BC00B0CFBD /* NSInvocations.m in Sources */,
+				32A9D11314C914B500B0CFBD /* SIMacroTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -799,6 +803,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -825,6 +830,7 @@
 				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PREPROCESSOR_DEFINITIONS = "";
+				GCC_THUMB_SUPPORT = NO;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -856,6 +862,7 @@
 					DEBUG,
 					DC_DEBUG,
 				);
+				GCC_THUMB_SUPPORT = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -872,6 +879,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Simon-Prefix.pch";
+				GCC_THUMB_SUPPORT = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -891,6 +899,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Simon-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = DC_DEBUG;
+				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = "tests/GHUnit-Tests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -910,6 +919,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Simon-Prefix.pch";
+				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = "tests/GHUnit-Tests-Info.plist";
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -934,6 +944,7 @@
 					"$(inherited)",
 					DC_DEBUG,
 				);
+				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = "App with tests/TestApp2-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -953,6 +964,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "App with tests/TestApp2-Prefix.pch";
+				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = "App with tests/TestApp2-Info.plist";
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
