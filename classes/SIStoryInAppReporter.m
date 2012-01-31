@@ -40,7 +40,7 @@
 	reportController.mappings = mappings;
 	reportController.navigationItem.title = @"Simon's simple report";
 	
-	// Add a navigation bar at the top.
+	// Set a nav controller as the top controller.
 	navController = [[UINavigationController alloc] initWithRootViewController:reportController];
 	navController.view.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.75f];
 	
@@ -50,21 +50,20 @@
 																						 action:@selector(closeSimon)] autorelease];
 	reportController.navigationItem.rightBarButtonItem = closeButton;
 	
-	// Get the size from the window.
-	UIWindow *window = [UIApplication sharedApplication].keyWindow;
-	
-	CGRect frame = window.frame;
-	NSUInteger heightAdjust = [UIApplication sharedApplication].statusBarHidden ? 0 : 20;
-	CGRect offScreen = CGRectMake(0, frame.size.height, frame.size.width, frame.size.height - heightAdjust);
-	
-	// Animate on.
-	navController.view.frame = offScreen;
-	[window addSubview:navController.view];
-	[UIView animateWithDuration:1.0 animations:^{
-      CGRect onScreen = CGRectMake(0, heightAdjust, frame.size.width, frame.size.height - heightAdjust);
-		navController.view.frame = onScreen;
+	// Get the root view controller.
+	UIViewController *rootController = [UIApplication sharedApplication].keyWindow.rootViewController;
+   DC_LOG(@"%@", rootController.view);
+
+	// Position the new view offscreen.
+   CGFloat width = rootController.view.bounds.size.width;
+   CGFloat height = rootController.view.bounds.size.height;
+   navController.view.frame = CGRectMake(0,height, width, height);
+	[rootController.view addSubview:navController.view];
+   
+	// Animate to the center of the view.
+   [UIView animateWithDuration:1.0 animations:^{
+		navController.view.frame = CGRectMake(0,0, width, height);
 	}];
-	
 }
 
 -(void) closeSimon {

@@ -21,14 +21,16 @@
 @implementation SIStory
 
 @synthesize status = status_;
-@synthesize error = error_;
+@synthesize mappingWithError = mappingWithError_;
 @synthesize steps = steps_;
 @synthesize title = title_;
+@synthesize error = error_;
 
 -(void) dealloc {
 	SI_LOG(@"Deallocing");
-	DC_DEALLOC(steps_);
 	DC_DEALLOC(error_);
+	DC_DEALLOC(steps_);
+	DC_DEALLOC(mappingWithError_);
 	self.title = nil;
 	DC_DEALLOC(instanceCache);
 	DC_DEALLOC(storyCache);
@@ -42,7 +44,6 @@
 		instanceCache = [[NSMutableDictionary alloc] init];
 		storyCache = [[NSMutableDictionary alloc] init];
 		status_ = SIStoryStatusNotRun;
-		error_ = nil;
 	}
 	return self;
 }
@@ -77,9 +78,11 @@
 		id instance = [self instanceForTargetClass:step.stepMapping.targetClass];
 		
 		// Now invoke the step on the class.
+      
 		if (![step invokeWithObject:instance error:&error_]) {
 			// Retain the error because it will be an autoreleased one.
 			[error_ retain];
+         mappingWithError_ = [step.stepMapping retain];
 			status_ = SIStoryStatusError;
 			return NO;
 		}

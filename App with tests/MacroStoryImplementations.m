@@ -16,52 +16,55 @@ SIMapStepToSelector(@"reset test flags", setUp)
 
 SIMapStepToSelector(@"check the flags", checkFlags)
 -(void) checkFlags {
-	SIAssertTrue(gotThere, nil);
+	SIAssertTrue(gotThere);
 }
 
 
 SIMapStepToSelector(@"call the SIFail macro", doSIFail)
 -(void) doSIFail {
 	@try {
-		SIFail(nil);
+		SIFail();
 	}
 	@finally {
 		// Get the step mapping.
 		SIStepMapping *mapping = (SIStepMapping *)objc_getAssociatedObject(self, SI_INSTANCE_STEP_MAPPING_REF_KEY);
 		// Check the step mapping for an exception.	
-		SIAssertNotNil(mapping, nil);
+		SIAssertNotNil(mapping);
 		
-		// Clear the static exception that the fail would have created.
-		[SIStepMapping cacheException:nil];
 	}
 }
 
 SIMapStepToSelector(@"call the SIFail macro with a message", doSIFailWithMessage)
 -(void) doSIFailWithMessage {
 	@try {
-		SIFail(@"This is the message and value: %@", @"abc");
+		SIFailM(@"Hello this is the SIFailM macro");
 	}
 	@finally {
 		// Get the step mapping from the associated object storage.
-		SIStepMapping *mapping = (SIStepMapping *)objc_getAssociatedObject(self, SI_INSTANCE_STEP_MAPPING_REF_KEY);
+      
+		SIStepMapping *mapping = SIRetrieveFromStory(SI_INSTANCE_STEP_MAPPING_REF_KEY); 
+      //= (SIStepMapping *)objc_getAssociatedObject(self, SI_INSTANCE_STEP_MAPPING_REF_KEY);
+      
 		// Check the step mapping for an exception.	
-		SIAssertNotNil(mapping, nil);
-		
-		// Clear the static exception that the fail would have created.
-		[SIStepMapping cacheException:nil];
-	}
+		SIAssertNotNil(mapping);
+      SIAssertNotNil(mapping.exception);
+      SIAssertObjectEquals(mapping.exception, @"");
+      
+      // Clear the exception so we don't fail the test.
+      mapping.exception = nil;
+   }
 }
 
 SIMapStepToSelector(@"calling SIAssertNil with nil should work", doSIAssertNilShouldPassNilOk)
 -(void) doSIAssertNilShouldPassNilOk {
 	@try {
-		SIAssertNil(nil, nil);
+		SIAssertNil(nil);
 		// This is good.
 		gotThere = YES;
 	}
 	@finally {
 		if (! gotThere) {
-			SIFail(@"Should not have got to here");
+			SIFail();
 		}
 	}
 }

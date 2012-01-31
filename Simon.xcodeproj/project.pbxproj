@@ -95,7 +95,6 @@
 		9465773F141B97B90026F1FB /* SIUIViewHandlerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9465773E141B97B90026F1FB /* SIUIViewHandlerTests.m */; };
 		94657743141C95160026F1FB /* AbstractTestWithControlsOnView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94657742141C95160026F1FB /* AbstractTestWithControlsOnView.m */; };
 		94657751141CF2C60026F1FB /* GHUnitIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 653D0EF813A784C100A5AB82 /* GHUnitIOS.framework */; };
-		9481C8A71431F3780036121A /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9481C8A61431F3780036121A /* SenTestingKit.framework */; };
 		9490248C144089A3006132A5 /* SIStoryInAppReporter.h in Headers */ = {isa = PBXBuildFile; fileRef = 9490248A144089A3006132A5 /* SIStoryInAppReporter.h */; };
 		9490248D144089A3006132A5 /* SIStoryInAppReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9490248B144089A3006132A5 /* SIStoryInAppReporter.m */; };
 		9490249414408DC4006132A5 /* SIStoryReportTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 9490249214408DC4006132A5 /* SIStoryReportTableViewController.h */; };
@@ -223,7 +222,6 @@
 		9465773E141B97B90026F1FB /* SIUIViewHandlerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUIViewHandlerTests.m; sourceTree = "<group>"; };
 		94657741141C95160026F1FB /* AbstractTestWithControlsOnView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractTestWithControlsOnView.h; sourceTree = "<group>"; };
 		94657742141C95160026F1FB /* AbstractTestWithControlsOnView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractTestWithControlsOnView.m; sourceTree = "<group>"; };
-		9481C8A61431F3780036121A /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		9490248A144089A3006132A5 /* SIStoryInAppReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIStoryInAppReporter.h; sourceTree = "<group>"; };
 		9490248B144089A3006132A5 /* SIStoryInAppReporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIStoryInAppReporter.m; sourceTree = "<group>"; };
 		9490249214408DC4006132A5 /* SIStoryReportTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIStoryReportTableViewController.h; sourceTree = "<group>"; };
@@ -274,7 +272,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9481C8A71431F3780036121A /* SenTestingKit.framework in Frameworks */,
 				659E628513D9BEB000ACD34C /* libSimon.a in Frameworks */,
 				659E625C13D9BE9600ACD34C /* UIKit.framework in Frameworks */,
 				659E625D13D9BE9600ACD34C /* Foundation.framework in Frameworks */,
@@ -319,7 +316,6 @@
 			isa = PBXGroup;
 			children = (
 				94E375321452962000FB86AA /* CoreText.framework */,
-				9481C8A61431F3780036121A /* SenTestingKit.framework */,
 				94327D7113E44F9A0003646C /* dNodi.framework */,
 				65D09A6313D99C5900D1A74B /* dUsefulStuff.framework */,
 				653D0EF813A784C100A5AB82 /* GHUnitIOS.framework */,

@@ -20,7 +20,7 @@ SIMapStepToSelector(@"Given the interface is up", givenTheInterfaceIsUp)
 	NSError *error = nil;
 	UILabel *firstViewLabel = (UILabel *) SIFindView(@"//UILabel[@text='First View']", &error);
 	if (firstViewLabel == nil) {
-		SIFail(@"Error: %@", [error localizedFailureReason]);
+		SIFailM(@"Error: %@", [error localizedFailureReason]);
 	}
 }
 
@@ -46,7 +46,7 @@ SIMapStepToSelector(@"and see the view labelled (.*)", verifyTheViewIsVisible:)
 	NSString *query = [NSString stringWithFormat:@"//UILabel[@text='%@']", viewName];
 	UILabel *firstViewLabel = (UILabel *) SIFindView(query, &error);
 	if (firstViewLabel == nil) {
-		SIFail(@"Error: %@", [error localizedFailureReason]);
+		SIFailM(@"Error: %@", [error localizedFailureReason]);
 	}
 }
 

@@ -46,9 +46,14 @@
 @property (nonatomic, readonly) SIStoryStatus status;
 
 /**
- This error instance is initially `nil`. it is set if there is an error ecountered or if any error is returned from a SIStep.
+ The error that was returned from the step executions.
  */
-@property (nonatomic, readonly) NSError *error;
+@property (nonatomic, retain, readonly) NSError *error;
+
+/**
+ If there is an error this refers to the step mapping that has the error.
+ */
+@property (nonatomic, retain, readonly) SIStepMapping *mappingWithError;
 
 /**
  This is the title of the story as read from the story file. It contains all the text after the "Story" keword.

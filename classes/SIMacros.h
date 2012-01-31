@@ -108,103 +108,128 @@ do { \
 UIView<DNNode> *theView = SIFindView(path, errorRef); \
 SIUIViewHandler *handler = [[SIUIHandlerFactory handlerFactory] createHandlerForView: theView]; \
 [handler tap]; \
-} while (NO);
-
-#pragma mark - Test assertions
-
-// These have been written because the others I was modelling off only worked within their respective frameworks. They take two forms. The base form is a simple macro. The *M form takes an addition set of parameters where you can specify a custom message. 
-
-/// @name Assertions
+} while (NO)
 
 /**
  But first some reuseable logic embedded in a macro.
  */
-#define SIThrowException(defaultMsg, description, ...) \
+#define SIThrowException(msgTemplate, ...) \
 SI_LOG(@"Throwing exception"); \
-NSString *_message = defaultMsg; \
-if (description) { \
-_message = [NSString stringWithFormat:description, ##__VA_ARGS__]; \
-} \
+NSString *_message = [NSString stringWithFormat:msgTemplate, ##__VA_ARGS__]; \
 NSString *_finalMessage = [NSString stringWithFormat:@"%s(%d) %@", __PRETTY_FUNCTION__, __LINE__, _message]; \
 SI_LOG(@"Setting exception with message: %@", _finalMessage); \
 @throw [NSException exceptionWithName:@"SIAssertionException" reason:_finalMessage userInfo:nil]; \
 return
 
+#pragma mark - Basic assertions
+
+// These have been written because the others I was modelling off only worked within their respective frameworks. They take two forms. The base form is a simple macro. The *M form takes an addition set of parameters where you can specify a custom message. 
+
+/// @name Basic Assertions
+
 /** 
  Generates a failure unconditionally. 
- 
- @param description A format string as in the printf() function. Can be nil or an empty string but must be present. A nil tells Simon to use a default message.
- @param ... A variable number of arguments to the format string. Can be absent.
  */
-#define SIFail() SIFailM(nil);
-#define SIFailM(description, ...) \
-SIThrowException(@"SIFail executed, throwing failure exception.", description, ##__VA_ARGS__);
+#define SIFail() SIFailM(@"SIFail executed, throwing failure exception.")
 
 /**
  Fail if the passed object variable is not a nil value.
  
  @param obj a variable of type id or NSObject* to test.
- @param description A format string as in the printf() function. Can be nil or an empty string but must be present. A nil tells Simon to use a default message.
- @param ... A variable number of arguments to the format string. Can be absent.
  */
-#define SIAssertNotNil(obj) _SIAssertNotNil(#obj, obj, nil)
-#define SIAssertNotNilM(obj, description, ...) _SIAssertNotNil(#obj, obj, description, ##__VA_ARGS__)
-#define _SIAssertNotNil(expr, obj, description, ...) \
-do { \
-if (obj == nil) { \
-SIThrowException(@"Expecting '" expr "' to be a valid pointer to something.", description, ##__VA_ARGS__); \
-} \
-} while (NO)
+#define SIAssertNotNil(obj) SIAssertNotNilM(obj, @"SIAssertNotNil(" #obj ") '" #obj "' is nil, should be a valid object.")
 
 /**
  Fail if the passed object variable is a nil value.
  
  @param obj a variable of type id or NSObject* to test.
- @param description A format string as in the printf() function. Can be nil or an empty string but must be present. A nil tells Simon to use a default message.
- @param ... A variable number of arguments to the format string. Can be absent.
  */
-#define SIAssertNil(obj) _SIAssertNil(#obj, obj, nil)
-#define SIAssertNilM(obj, description, ...) _SIAssertNil(#obj, obj, description, ##__VA_ARGS__)
-#define _SIAssertNil(expr, obj, description, ...) \
-do { \
-if (obj != nil) { \
-SIThrowException(@"Expecting '" expr "' to be nil.", description, ##__VA_ARGS__); \
-} \
-} while (NO)
+#define SIAssertNil(obj) SIAssertNilM(obj, @"SIAssertNil(" #obj ") Expecting '" #obj "' to be nil")
 
 /**
  Fail if the passed BOOL variable is NO.
  
  @param exp an expression that is expected to resolve to a BOOL value. The expression can just be a simple BOOL variable name.
- @param description A format string as in the printf() function. Can be nil or an empty string but must be present. A nil tells Simon to use a default message.
- @param ... A variable number of arguments to the format string. Can be absent.
  */ 
-#define SIAssertTrue(exp) _SIAssertTrue(#exp, exp, nil)
-#define SIAssertTrueM(exp, description, ...) _SIAssertTrue(#exp, exp, description, ##__VA_ARGS__)
-#define _SIAssertTrue(expr, exp, description, ...) \
-do { \
-BOOL _exp = exp; \
-if (!_exp) { \
-SIThrowException(@"Expecting '" expr "' to be YES, but it was NO.", description, ##__VA_ARGS__); \
-} \
-} while (NO)
+#define SIAssertTrue(exp) SIAssertTrueM(exp, @"SIAssertTrue(" #exp ") Expecting '" #exp "' to be YES, but it was NO.")
 
 /**
  Fail if the passed BOOL variable is YES.
  
  @param exp an expression that is expected to resolve to a BOOL value. The expression can just be a simple BOOL variable name.
- @param description A format string as in the printf() function. Can be nil or an empty string but must be present. A nil tells Simon to use a default message.
- @param ... A variable number of arguments to the format string. Can be absent.
  */ 
-#define SIAssertFalse(exp) _SIAssertFalse(#exp, exp, nil)
-#define SIAssertFalseM(exp, description, ...) _SIAssertFalse(#exp, exp, description, ##__VA_ARGS__)
-#define _SIAssertFalse(expr, exp, description, ...) \
+#define SIAssertFalse(exp) SIAssertFalseM(exp, @"SIAssertFalse(" #exp ") Expecting '" #exp "' to be NO, but it was YES.")
+
+/*
+ Fails if the two values are not equal. This works for all primitive numbers.
+ 
+ @param x the first value to compare.
+ @parma y the second value to compare.
+ */
+#define SIAssertEquals(x, y) SIAssertEqualsM(x, y, @"SIAssertEquals(" #x ", " #y ") failed: " #x @" != " #y)
+
+/*
+ Fails if the two objects are not equal. This basically calls the Object:isEquals: method on x giving y as a paramter.
+ 
+ @param x the first object to compare.
+ @parma y the second value to compare.
+ */
+#define SIAssertObjectEquals(x, y) SIAssertObjectEqualsM(x, y, @"SIAssertObjectEquals(" #x ", " #y ") failed: " #x @" != " #y)
+
+
+#pragma mark - Assertions with custom messages
+/// @name Assertions with custom messages
+/*
+ Same as above assertions but have extra parameters which are passed to NSString:stringWithFormat:
+ */
+
+#pragma mark - Main assertions
+/// @name Main assertions
+
+#define SIFailM(msgTemplate, ...) SIThrowException(msgTemplate, ##__VA_ARGS__)
+
+#define SIAssertNotNilM(obj, msgtemplate, ...) \
+do { \
+if (obj == nil) { \
+SIThrowException(msgtemplate, ##__VA_ARGS__); \
+} \
+} while (NO)
+
+#define SIAssertNilM(obj, msgTemplate, ...) \
+do { \
+if (obj != nil) { \
+SIThrowException(msgTemplate, ##__VA_ARGS__); \
+} \
+} while (NO)
+
+#define SIAssertTrueM(exp, msgTemplate, ...) \
+do { \
+BOOL _exp = exp; \
+if (!_exp) { \
+SIThrowException(msgTemplate, ##__VA_ARGS__); \
+} \
+} while (NO)
+
+#define SIAssertFalseM(exp, msgTemplate, ...) \
 do { \
 BOOL _exp = exp; \
 if (_exp) { \
-SIThrowException(@"Expecting '" expr "' to be NO, but it was YES.", description, ##__VA_ARGS__); \
+SIThrowException(msgTemplate, ##__VA_ARGS__); \
 } \
 } while (NO)
+
+#define SIAssertEqualsM(x, y, msgTemplate, ...) \
+do { \
+SIAssertTrueM((x) == (y), msgTemplate, ##__VA_ARGS__); \
+} while(NO);
+
+#define SIAssertObjectEqualsM(x, y, msgTemplate, ...) \
+do { \
+if ((x) == nil && (y) == nil) { \
+break; \
+} \
+SIAssertTrueM([(id)(x) isEqual:(id)(y)], msgTemplate, ##__VA_ARGS__); \
+} while(NO);
 
 /*
  const char *tX = @encode(__typeof__(x)); \
@@ -217,34 +242,4 @@ SIThrowException(@"Expecting '" expr "' to be NO, but it was YES.", description,
  DC_LOG(@"type of x is a number %@", DC_PRETTY_BOOL(isPrimitiveNumberX)); \
  BOOL isPrimitiveNumberY = strchr("islLqLfd", tY[0]) != NULL; \
  DC_LOG(@"type of x is a number %@", DC_PRETTY_BOOL(isPrimitiveNumberY)); \
- \
- if isPrimitiveNumberX && isPrimitiveNumberY \
- DC_LOG(@"Both sides are primitive numbers"); \
- SIAssertTrueM(x == y, notEqualsMsg); \
- } \
- \
- if (strcmp(tX, tY) != 0) { \
- DC_LOG(@"Types types don't match"); \
- SIFailM(@"SIAssertEquals failed: " #x @" and " #y " are different types"); \
- } \
- \
- */
-#define SIAssertEquals(x,y) \
-do { \
-NSString *notEqualsMsg = (@"SIAssertEquals failed: " #x @" != " #y); \
-SIAssertTrueM((x) == (y), notEqualsMsg); \
-} while(NO);
-
-#define SIAssertObjectEquals(x,y) \
-do { \
-if ((x) == nil && (y) == nil) { \
-break; \
-} \
-NSString *notEqualsMsg = (@"SIAssertEquals failed: " #x @" != " #y); \
-SIAssertTrueM([(id)(x) isEqual:(id)(y)], notEqualsMsg); \
-} while(NO);
-
-
-
-
-
+  */

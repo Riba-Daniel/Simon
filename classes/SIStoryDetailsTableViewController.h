@@ -11,9 +11,6 @@
 #import "SIStory.h"
 
 @interface SIStoryDetailsTableViewController : UITableViewController {
-   @private
-   UIFont *font;
-
 }
 
 @property (nonatomic, retain) SIStorySource *source;

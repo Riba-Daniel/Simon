@@ -120,4 +120,13 @@
 	[self.navigationController pushViewController:details animated:YES];
 }
 
+#pragma mark - View rotation
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+   return YES;
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+   DC_LOG(@"Rotated from %i", fromInterfaceOrientation);
+}
+
 @end
