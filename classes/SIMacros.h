@@ -137,14 +137,14 @@ return
  
  @param obj a variable of type id or NSObject* to test.
  */
-#define SIAssertNotNil(obj) SIAssertNotNilM(obj, @"SIAssertNotNil(" #obj ") '" #obj "' is nil, should be a valid object.")
+#define SIAssertNotNil(obj) SIAssertNotNilM(obj, @"SIAssertNotNil(" #obj ") '" #obj "' should be a valid object.")
 
 /**
  Fail if the passed object variable is a nil value.
  
  @param obj a variable of type id or NSObject* to test.
  */
-#define SIAssertNil(obj) SIAssertNilM(obj, @"SIAssertNil(" #obj ") Expecting '" #obj "' to be nil")
+#define SIAssertNil(obj) SIAssertNilM(obj, @"SIAssertNil(" #obj ") Expecting '" #obj "' to be nil.")
 
 /**
  Fail if the passed BOOL variable is NO.

@@ -54,7 +54,7 @@ do { \
       GHFail(@"Exception not thrown");
    }
    @catch (NSException *exception) {
-      catchMessage(@"-[SIMacroTests testSIAssertNilThrows](%i) Expecting '@\"abc\"' to be nil.");
+      catchMessage(@"-[SIMacroTests testSIAssertNilThrows](%i) SIAssertNil(@\"abc\") Expecting '@\"abc\"' to be nil.");
    }
 }
 
@@ -78,7 +78,7 @@ do { \
       GHFail(@"Exception not thrown");
    }
    @catch (NSException *exception) {
-      catchMessage(@"-[SIMacroTests testSIAssertNotNilThrows](%i) Expecting 'nil' to be a valid pointer to something.");
+      catchMessage(@"-[SIMacroTests testSIAssertNotNilThrows](%i) SIAssertNotNil(nil) 'nil' should be a valid object.");
    }
 }
 
@@ -100,7 +100,7 @@ do { \
       GHFail(@"Exception not thrown");
    }
    @catch (NSException *exception) {
-      catchMessage(@"-[SIMacroTests testSIAssertTrueThrows](%i) Expecting 'NO' to be YES, but it was NO.");
+      catchMessage(@"-[SIMacroTests testSIAssertTrueThrows](%i) SIAssertTrue(NO) Expecting 'NO' to be YES, but it was NO.");
    }
 }
 
@@ -122,7 +122,7 @@ do { \
       GHFail(@"Exception not thrown");
    }
    @catch (NSException *exception) {
-      catchMessage(@"-[SIMacroTests testSIAssertFalseThrows](%i) Expecting 'YES' to be NO, but it was YES.");
+      catchMessage(@"-[SIMacroTests testSIAssertFalseThrows](%i) SIAssertFalse(YES) Expecting 'YES' to be NO, but it was YES.");
    }
 }
 
@@ -132,7 +132,7 @@ do { \
       GHFail(@"Exception not thrown");
    }
    @catch (NSException *exception) {
-      catchMessage(@"-[SIMacroTests testSIAssertFalseThrowsWhenExpression](%i) Expecting '1 == 1' to be NO, but it was YES.");
+      catchMessage(@"-[SIMacroTests testSIAssertFalseThrowsWhenExpression](%i) SIAssertFalse(1 == 1) Expecting '1 == 1' to be NO, but it was YES.");
    }
 }
 
@@ -148,7 +148,7 @@ do { \
       GHFail(@"Exception not thrown");
    }
    @catch (NSException *exception) {
-      catchMessage(@"-[SIMacroTests testSIAssertEqualsWithIntsThrows](%i) SIAssertEquals failed: 1 != 2");
+      catchMessage(@"-[SIMacroTests testSIAssertEqualsWithIntsThrows](%i) SIAssertEquals(1, 2) failed: 1 != 2");
    }
 }
 
@@ -166,7 +166,7 @@ do { \
       GHFail(@"Exception not thrown");
    }
    @catch (NSException *exception) {
-      catchMessage(@"-[SIMacroTests testSIAssertEqualsWithMixedTypesThrows](%i) SIAssertEquals failed: 1.5 != 2");
+      catchMessage(@"-[SIMacroTests testSIAssertEqualsWithMixedTypesThrows](%i) SIAssertEquals(1.5, 2) failed: 1.5 != 2");
    }
 }
 
@@ -186,7 +186,7 @@ do { \
       GHFail(@"Exception not thrown");
    }
    @catch (NSException *exception) {
-      catchMessage(@"-[SIMacroTests testSIAssertObjectEqualsWithNilAndStringThrows](%i) SIAssertObjectEquals failed: nil != @\"abc\"");
+      catchMessage(@"-[SIMacroTests testSIAssertObjectEqualsWithNilAndStringThrows](%i) SIAssertObjectEquals(nil, @\"abc\") failed: nil != @\"abc\"");
    }
 }
 
@@ -200,7 +200,7 @@ do { \
       GHFail(@"Exception not thrown");
    }
    @catch (NSException *exception) {
-      catchMessage(@"-[SIMacroTests testSIAssertObjectEqualsWithObjectsThrows](%i) SIAssertObjectEquals failed: @\"def\" != @\"abc\"");
+      catchMessage(@"-[SIMacroTests testSIAssertObjectEqualsWithObjectsThrows](%i) SIAssertObjectEquals(@\"def\", @\"abc\") failed: @\"def\" != @\"abc\"");
    }
 }
 
