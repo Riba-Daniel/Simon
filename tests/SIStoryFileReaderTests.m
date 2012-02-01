@@ -22,13 +22,19 @@
 -(void) testInitReturnsAllStoryFiles {
 	SIStoryFileReader * fileSystemStoryReader = [[[SIStoryFileReader alloc] init] autorelease];
 	GHAssertEquals([fileSystemStoryReader.files count], (NSUInteger) 8, @"Incorrect number of files returned");
-	GHAssertTrue([(NSString *)[fileSystemStoryReader.files objectAtIndex:0] hasSuffix:STORY_EXTENSION], @"Incorrect extension");
+	GHAssertEqualStrings(STORY_EXTENSION, [(NSString *)[fileSystemStoryReader.files objectAtIndex:0] pathExtension], @"Incorrect extension");
 }
 
 -(void) testInitWithFileNameReturnsStoryFile {
 	SIStoryFileReader * fileSystemStoryReader = [[[SIStoryFileReader alloc] initWithFileName:@"Story files"] autorelease];
 	GHAssertEquals([fileSystemStoryReader.files count], (NSUInteger)1, @"Incorrect number of files returned");
-	GHAssertTrue([(NSString *)[fileSystemStoryReader.files objectAtIndex:0] hasSuffix:@"Story files." STORY_EXTENSION], @"Wrong file returned");
+	GHAssertEqualStrings(@"Story files." STORY_EXTENSION, [[fileSystemStoryReader.files objectAtIndex:0] lastPathComponent], @"Wrong file returned");
+}
+
+-(void) testInitWithFileNameAndExtensionReturnsStoryFile {
+	SIStoryFileReader * fileSystemStoryReader = [[[SIStoryFileReader alloc] initWithFileName:@"Story files." STORY_EXTENSION] autorelease];
+	GHAssertEquals([fileSystemStoryReader.files count], (NSUInteger)1, @"Incorrect number of files returned");
+	GHAssertEqualStrings(@"Story files." STORY_EXTENSION, [[fileSystemStoryReader.files objectAtIndex:0] lastPathComponent], @"Wrong file returned");
 }
 
 -(void) testThrowsErrorWhenCannotFindAFile {

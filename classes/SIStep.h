@@ -37,7 +37,7 @@
  Initialises the SIStep with the passed keyword and command. This is usually executed by the SIStory instance to which this step belongs to.
  
  @param aKeyword the keyword that starts the line of text stored in the command.
- @param command the contents of the step as read from the story file.
+ @param theCommand the contents of the step as read from the story file.
  */
 -(id) initWithKeyword:(SIKeyword) aKeyword command:(NSString *) theCommand;
 
@@ -60,7 +60,7 @@
 /**
  During executing the story, this is called to get the SIStepMapping to call the method using data from this step.
  
- @param id an instance of the class stored in [SIStepMapping targetClass]. This is created and cached by the SIStory which this step belongs to.
+ @param object an instance of the class stored in [SIStepMapping targetClass]. This is created and cached by the SIStory which this step belongs to.
  @param error a reference to a pointer to an NSError object. If there is an error, the pointer will be set to point to an error object containing the details.
  */
 -(BOOL) invokeWithObject:(id) object error:(NSError **) error;

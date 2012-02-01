@@ -1,4 +1,4 @@
-h1. Version 0.3.0
+h1. Version 0.1.3
 Oct 2011
 
 * Updated dUsefulStuff to obtain access to a better error handling routine.
@@ -10,10 +10,12 @@ Oct 2011
 * Revamped output of reporting in log.
 * Updated to use dNodi (replacement for DXPath).
 * More work on UI utils.
-* More work on macros.
+* More work on macros. Added assert macros.
 * Added shutdown button to in app report to shutdown Simon.
+* Added a UI based report for viewing results.
+* Lots more doco.
 
-h1. Version 0.2.0
+h1. Version 0.1.1
 July 2011
 
 * Brought in dXPath to handle XPath queries against a UI.

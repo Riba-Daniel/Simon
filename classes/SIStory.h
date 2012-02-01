@@ -108,7 +108,7 @@
 /**
  Retrieves a value from the story. 
  
- @see store:withKey:
+ @see storeObject:withKey:
  @param key the key that the value you want has been previously stored under. 
  @return the value or `nil` if the value was not found.
  */

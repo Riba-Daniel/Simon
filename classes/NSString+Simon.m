@@ -8,7 +8,7 @@
 
 #import "NSString+Simon.h"
 
-@implementation NSString (Utils)
+@implementation NSString (Simon)
 
 -(NSString *) stringByRemovingQuotes {
 	NSCharacterSet *quotes = [NSCharacterSet characterSetWithCharactersInString:@"'\""];

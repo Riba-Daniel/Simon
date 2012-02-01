@@ -10,7 +10,10 @@
 #import "SIConstants.h"
 #import "SIStory.h"
 
-@interface NSString (Utils)
+/**
+ Utility methods for strings.
+ */
+@interface NSString (Simon)
 
 /**
  * Returns the string with any leading and trail quotes removed. Works with both
@@ -20,13 +23,13 @@
 
 /**
  Returns the string description of a story's status.
+ 
+ @param story the story we want the status of.
  */
 +(NSString *) stringStatusWithStory:(SIStory *) story;
 
 /**
  Examines a string and returns the matching SIKeyword.
- 
- @param string an NSString instance containing a string which mapps to a SIKeyword.
  
  @return the matching SIkeyword.
  */

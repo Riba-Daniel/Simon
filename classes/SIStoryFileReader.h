@@ -21,7 +21,14 @@
 
 /// @name Properties
 
+/**
+ The current source file we are reading.
+ */
 @property (nonatomic, retain) SIStorySource *currentSource;
+
+/**
+ The current line number we are on in the story file.
+ */
 @property (nonatomic) NSUInteger currentLineNumber;
 
 /**

@@ -10,10 +10,16 @@
 #import "SIStorySource.h"
 #import "SIStory.h"
 
+/**
+ Table view controller for the details window.
+ */
 @interface SIStoryDetailsTableViewController : UITableViewController {
 }
 
+/// The source file of the story.
 @property (nonatomic, retain) SIStorySource *source;
+
+/// The story being displayed.
 @property (nonatomic, retain) SIStory *story;
 
 

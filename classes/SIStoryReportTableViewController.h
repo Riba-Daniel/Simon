@@ -8,11 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+/**
+ Table view controller for the report on all the stories which where run.
+ */
 @interface SIStoryReportTableViewController : UITableViewController {
 @private
 }
 
+/// A list of the story source files.
 @property (nonatomic, retain) NSArray *storySources;
+
+/// A list of all the SIStepMapping objects that where created.
 @property (nonatomic, retain) NSArray *mappings;
 
 @end

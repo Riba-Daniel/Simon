@@ -10,6 +10,9 @@
 #import "SIStoryReporter.h"
 #import "SIStoryReportTableViewController.h"
 
+/**
+ An implementation of SIStoryReporter which produces a log of the run on console.
+ */
 @interface SIStoryInAppReporter : NSObject<SIStoryReporter> {
 	@private 
 	UINavigationController *navController;

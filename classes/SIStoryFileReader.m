@@ -50,7 +50,8 @@
 	self = [super init];
 	if (self) {
 		[self mainInit];
-		NSString * file = [[NSBundle mainBundle] pathForResource:fileName ofType:STORY_EXTENSION];
+      
+		NSString * file = [[NSBundle mainBundle] pathForResource:[fileName stringByDeletingPathExtension] ofType:STORY_EXTENSION];
 		SI_LOG(@"Found file %@", file);
 		if (file == nil) {
 			NSException* myException = [NSException

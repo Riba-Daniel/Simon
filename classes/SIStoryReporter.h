@@ -15,7 +15,7 @@
 /**
  This method is called after the run has finished. It is passed an NSArray of the SIStory objects that took part in the run. These objects contain all the information necessary to report on the run.
  
- @param storySources an NSArray containing the SIStorySource objects.
+ @param sources an NSArray containing the SIStorySource objects.
  @param mappings an NSArray containing all the SIStepMapping objects found by the SIRuntime class.
  */
 -(void) reportOnStorySources:(NSArray *) sources andMappings:(NSArray *) mappings;

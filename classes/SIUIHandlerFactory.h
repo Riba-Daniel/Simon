@@ -44,6 +44,8 @@
 
 /**
  Factory method for creating a handler object for a specific view class.
+ 
+ @param view the view we need the handler for.
  */
 -(SIUIViewHandler *) createHandlerForView:(UIView<DNNode> *) view;
 

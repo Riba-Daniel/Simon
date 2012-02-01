@@ -66,6 +66,7 @@
 /**
  Called by the SIStep to invoke the implementaton that is mapped to the step.
  
+ @param command the text line from the story.
  @param object the instantiated targetClass which contains the implementation code.
  @param error a pointer to a reference to an NSError that will be populated if there is a problem.
  @return `YES` if the invocation was successful. `NO` if there was an error.

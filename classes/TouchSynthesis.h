@@ -14,26 +14,48 @@
 
 #import <UIKit/UIKit.h>
 
-//
-// UITouch (Synthesize)
-//
-// Category to allow creation and modification of UITouch objects.
-//
+/**
+ UITouch (Synthesize)
+
+ Category to allow creation and modification of UITouch objects.
+*/
 @interface UITouch (Synthesize)
 
+/**
+ Default constructor.
+ 
+ @param view the view that the touch will apply to.
+ */
 - (id)initInView:(UIView *)view;
+
+/**
+ Sets the phase of the touch.
+ 
+ @param phase the phase to set.
+ */
 - (void)setPhase:(UITouchPhase)phase;
+
+/**
+ Sets the location of the touch in the view.
+
+ @param location where in the view.
+ */
 - (void)setLocationInWindow:(CGPoint)location;
 
 @end
 
-//
-// UIEvent (Synthesize)
-//
-// A category to allow creation of a touch event.
-//
+/**
+ UIEvent (Synthesize)
+
+ A category to allow creation of a touch event.
+*/
 @interface UIEvent (Synthesize)
 
+/**
+ Default constructor.
+ 
+ @param touch the UITouch to init with.
+ */
 - (id)initWithTouch:(UITouch *)touch;
 
 @end

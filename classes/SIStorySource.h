@@ -12,7 +12,15 @@
  Represents a source of stories. Mainly used for reporting purposes.
  */
 @interface SIStorySource : NSObject
+
+/**
+ The source file which the story was read from.
+ */
 @property (nonatomic, retain) NSString *source;
+
+/**
+ A list of the stories read from the file. These are SIStory implementations.
+ */
 @property (nonatomic, retain) NSMutableArray *stories;
 
 @end

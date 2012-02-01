@@ -113,12 +113,15 @@ SIUIViewHandler *handler = [[SIUIHandlerFactory handlerFactory] createHandlerFor
 /**
  But first some reuseable logic embedded in a macro.
  */
-#define SIThrowException(msgTemplate, ...) \
+
+#define ASSERTION_EXCEPTION_NAME @"SIAssertionException"
+
+#define SIThrowException(name, msgTemplate, ...) \
 SI_LOG(@"Throwing exception"); \
 NSString *_message = [NSString stringWithFormat:msgTemplate, ##__VA_ARGS__]; \
 NSString *_finalMessage = [NSString stringWithFormat:@"%s(%d) %@", __PRETTY_FUNCTION__, __LINE__, _message]; \
 SI_LOG(@"Setting exception with message: %@", _finalMessage); \
-@throw [NSException exceptionWithName:@"SIAssertionException" reason:_finalMessage userInfo:nil]; \
+@throw [NSException exceptionWithName:name reason:_finalMessage userInfo:nil]; \
 return
 
 #pragma mark - Basic assertions
@@ -186,19 +189,19 @@ return
 #pragma mark - Main assertions
 /// @name Main assertions
 
-#define SIFailM(msgTemplate, ...) SIThrowException(msgTemplate, ##__VA_ARGS__)
+#define SIFailM(msgTemplate, ...) SIThrowException(ASSERTION_EXCEPTION_NAME, msgTemplate, ##__VA_ARGS__)
 
 #define SIAssertNotNilM(obj, msgtemplate, ...) \
 do { \
 if (obj == nil) { \
-SIThrowException(msgtemplate, ##__VA_ARGS__); \
+SIThrowException(ASSERTION_EXCEPTION_NAME, msgtemplate, ##__VA_ARGS__); \
 } \
 } while (NO)
 
 #define SIAssertNilM(obj, msgTemplate, ...) \
 do { \
 if (obj != nil) { \
-SIThrowException(msgTemplate, ##__VA_ARGS__); \
+SIThrowException(ASSERTION_EXCEPTION_NAME, msgTemplate, ##__VA_ARGS__); \
 } \
 } while (NO)
 
@@ -206,7 +209,7 @@ SIThrowException(msgTemplate, ##__VA_ARGS__); \
 do { \
 BOOL _exp = exp; \
 if (!_exp) { \
-SIThrowException(msgTemplate, ##__VA_ARGS__); \
+SIThrowException(ASSERTION_EXCEPTION_NAME, msgTemplate, ##__VA_ARGS__); \
 } \
 } while (NO)
 
@@ -214,7 +217,7 @@ SIThrowException(msgTemplate, ##__VA_ARGS__); \
 do { \
 BOOL _exp = exp; \
 if (_exp) { \
-SIThrowException(msgTemplate, ##__VA_ARGS__); \
+SIThrowException(ASSERTION_EXCEPTION_NAME, msgTemplate, ##__VA_ARGS__); \
 } \
 } while (NO)
 

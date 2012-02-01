@@ -17,6 +17,9 @@
  */
 @interface SIUIViewHandler : NSObject <DNNode, SIUIAction>
 
+/**
+ The view that is being managed.
+ */
 @property (retain, nonatomic) UIView<DNNode> *view;
 
 @end
