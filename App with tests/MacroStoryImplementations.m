@@ -11,62 +11,49 @@
 
 SIMapStepToSelector(@"reset test flags", setUp)
 -(void) setUp {
-	gotThere = NO;
+   gotThere = NO;
 }
 
 SIMapStepToSelector(@"check the flags", checkFlags)
 -(void) checkFlags {
-	SIAssertTrue(gotThere);
+   SIAssertTrue(gotThere);
 }
 
 
 SIMapStepToSelector(@"call the SIFail macro", doSIFail)
 -(void) doSIFail {
-	@try {
-		SIFail();
-	}
-	@finally {
-		// Get the step mapping.
-		SIStepMapping *mapping = (SIStepMapping *)objc_getAssociatedObject(self, SI_INSTANCE_STEP_MAPPING_REF_KEY);
-		// Check the step mapping for an exception.	
-		SIAssertNotNil(mapping);
-		
-	}
+   @try {
+      SIFail();
+   }
+   @catch (NSException *e) {
+      SIAssertObjectEquals(@"", e);
+   }
 }
 
 SIMapStepToSelector(@"call the SIFail macro with a message", doSIFailWithMessage)
 -(void) doSIFailWithMessage {
-	@try {
-		SIFailM(@"Hello this is the SIFailM macro");
-	}
-	@finally {
-		// Get the step mapping from the associated object storage.
-      
-		SIStepMapping *mapping = SIRetrieveFromStory(SI_INSTANCE_STEP_MAPPING_REF_KEY); 
-      //= (SIStepMapping *)objc_getAssociatedObject(self, SI_INSTANCE_STEP_MAPPING_REF_KEY);
-      
-		// Check the step mapping for an exception.	
-		SIAssertNotNil(mapping);
-      SIAssertNotNil(mapping.exception);
-      SIAssertObjectEquals(mapping.exception, @"");
-      
-      // Clear the exception so we don't fail the test.
-      mapping.exception = nil;
-   }
+@try {
+   SIFailM(@"Hello this is the SIFailM macro");
+   //SIFail();
+}
+@catch (NSException *e) {
+   SIAssertObjectEquals(@"", e.reason);
+}
+
 }
 
 SIMapStepToSelector(@"calling SIAssertNil with nil should work", doSIAssertNilShouldPassNilOk)
 -(void) doSIAssertNilShouldPassNilOk {
-	@try {
-		SIAssertNil(nil);
-		// This is good.
-		gotThere = YES;
-	}
-	@finally {
-		if (! gotThere) {
-			SIFail();
-		}
-	}
+@try {
+   SIAssertNil(nil);
+   // This is good.
+   gotThere = YES;
+}
+@finally {
+   if (! gotThere) {
+      SIFail();
+   }
+}
 }
 
 @end

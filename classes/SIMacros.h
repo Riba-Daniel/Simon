@@ -53,13 +53,13 @@ SI_LOG(@"Started backpack %@", [backpack description]);
  */
 #define SIMapStepToSelector(theRegex, aSelector) \
 +(SIStepMapping *) DC_CONCATINATE(SI_STEP_METHOD_PREFIX, __LINE__):(Class) class { \
-SI_LOG(@"Creating mapping \"%@\" -> %@::%@", theRegex, NSStringFromClass(class), toNSString(aSelector)); \
-NSError *error = nil; \
-SIStepMapping *mapping = [SIStepMapping stepMappingWithClass:class selector:@selector(aSelector) regex:theRegex error:&error]; \
-if (mapping == nil) { \
-@throw [NSException exceptionWithName:@"SIMappingException" reason:error.localizedDescription userInfo:error.userInfo]; \
-} \
-return mapping; \
+   SI_LOG(@"Creating mapping \"%@\" -> %@::%@", theRegex, NSStringFromClass(class), toNSString(aSelector)); \
+   NSError *error = nil; \
+   SIStepMapping *mapping = [SIStepMapping stepMappingWithClass:class selector:@selector(aSelector) regex:theRegex error:&error]; \
+   if (mapping == nil) { \
+      @throw [NSException exceptionWithName:@"SIMappingException" reason:error.localizedDescription userInfo:error.userInfo]; \
+   } \
+   return mapping; \
 }
 
 #pragma mark - Storing data
@@ -105,9 +105,9 @@ return mapping; \
  */
 #define SITapControl(path, errorRef) \
 do { \
-UIView<DNNode> *theView = SIFindView(path, errorRef); \
-SIUIViewHandler *handler = [[SIUIHandlerFactory handlerFactory] createHandlerForView: theView]; \
-[handler tap]; \
+   UIView<DNNode> *theView = SIFindView(path, errorRef); \
+   SIUIViewHandler *handler = [[SIUIHandlerFactory handlerFactory] createHandlerForView: theView]; \
+   [handler tap]; \
 } while (NO)
 
 /**
@@ -117,12 +117,13 @@ SIUIViewHandler *handler = [[SIUIHandlerFactory handlerFactory] createHandlerFor
 #define ASSERTION_EXCEPTION_NAME @"SIAssertionException"
 
 #define SIThrowException(name, msgTemplate, ...) \
-SI_LOG(@"Throwing exception"); \
-NSString *_message = [NSString stringWithFormat:msgTemplate, ##__VA_ARGS__]; \
-NSString *_finalMessage = [NSString stringWithFormat:@"%s(%d) %@", __PRETTY_FUNCTION__, __LINE__, _message]; \
-SI_LOG(@"Setting exception with message: %@", _finalMessage); \
-@throw [NSException exceptionWithName:name reason:_finalMessage userInfo:nil]; \
-return
+do { \
+   NSString *_message = [NSString stringWithFormat:msgTemplate, ##__VA_ARGS__]; \
+   NSString *_finalMessage = [NSString stringWithFormat:@"%s(%d) %@", __PRETTY_FUNCTION__, __LINE__, _message]; \
+   SI_LOG(@"Throwing exception with message: %@", _finalMessage); \
+   @throw [NSException exceptionWithName:name reason:_finalMessage userInfo:nil]; \
+} while (NO)
+
 
 #pragma mark - Basic assertions
 
@@ -177,11 +178,17 @@ return
  @param x the first object to compare.
  @parma y the second value to compare.
  */
-#define SIAssertObjectEquals(x, y) SIAssertObjectEqualsM(x, y, @"SIAssertObjectEquals(" #x ", " #y ") failed: " #x @" != " #y)
-
+#define SIAssertObjectEquals(x, y) \
+   do { \
+      id xValue = (x) == nil ? @"nil" : (x); \
+      id yValue = (y) == nil ? @"nil" : (y); \
+      SIAssertObjectEqualsM(x, y, [NSString stringWithFormat:@"SIAssertObjectEquals(%s, %s) failed: %@ != %@", #x, #y, xValue, yValue] ); \
+   } while (NO)
 
 #pragma mark - Assertions with custom messages
+
 /// @name Assertions with custom messages
+
 /*
  Same as above assertions but have extra parameters which are passed to NSString:stringWithFormat:
  */
@@ -192,57 +199,36 @@ return
 #define SIFailM(msgTemplate, ...) SIThrowException(ASSERTION_EXCEPTION_NAME, msgTemplate, ##__VA_ARGS__)
 
 #define SIAssertNotNilM(obj, msgtemplate, ...) \
-do { \
-if (obj == nil) { \
-SIThrowException(ASSERTION_EXCEPTION_NAME, msgtemplate, ##__VA_ARGS__); \
-} \
-} while (NO)
+   if (obj == nil) { \
+      SIThrowException(ASSERTION_EXCEPTION_NAME, msgtemplate, ##__VA_ARGS__); \
+   }
 
 #define SIAssertNilM(obj, msgTemplate, ...) \
-do { \
-if (obj != nil) { \
-SIThrowException(ASSERTION_EXCEPTION_NAME, msgTemplate, ##__VA_ARGS__); \
-} \
-} while (NO)
+   if (obj != nil) { \
+      SIThrowException(ASSERTION_EXCEPTION_NAME, msgTemplate, ##__VA_ARGS__); \
+   }
 
 #define SIAssertTrueM(exp, msgTemplate, ...) \
-do { \
-BOOL _exp = exp; \
-if (!_exp) { \
-SIThrowException(ASSERTION_EXCEPTION_NAME, msgTemplate, ##__VA_ARGS__); \
-} \
-} while (NO)
+   do { \
+      BOOL _exp = exp; \
+      if (!_exp) { \
+         SIThrowException(ASSERTION_EXCEPTION_NAME, msgTemplate, ##__VA_ARGS__); \
+      } \
+   } while (NO)
 
 #define SIAssertFalseM(exp, msgTemplate, ...) \
-do { \
-BOOL _exp = exp; \
-if (_exp) { \
-SIThrowException(ASSERTION_EXCEPTION_NAME, msgTemplate, ##__VA_ARGS__); \
-} \
-} while (NO)
+   do { \
+      BOOL _exp = exp; \
+      if (_exp) { \
+         SIThrowException(ASSERTION_EXCEPTION_NAME, msgTemplate, ##__VA_ARGS__); \
+      } \
+   } while (NO)
 
 #define SIAssertEqualsM(x, y, msgTemplate, ...) \
-do { \
-SIAssertTrueM((x) == (y), msgTemplate, ##__VA_ARGS__); \
-} while(NO);
+   SIAssertTrueM((x) == (y), msgTemplate, ##__VA_ARGS__);
 
 #define SIAssertObjectEqualsM(x, y, msgTemplate, ...) \
-do { \
-if ((x) == nil && (y) == nil) { \
-break; \
-} \
-SIAssertTrueM([(id)(x) isEqual:(id)(y)], msgTemplate, ##__VA_ARGS__); \
-} while(NO);
+   if ((x) != nil || (y) != nil) { \
+      SIAssertTrueM([(id)(x) isEqual:(id)(y)], msgTemplate, ##__VA_ARGS__); \
+   }
 
-/*
- const char *tX = @encode(__typeof__(x)); \
- #DEFINE typeX @encode(__typeof__(x)) \
- const char *tY = @encode(__typeof__(y)); \
- DC_LOG(@"type of x: %s", tX); \
- DC_LOG(@"type of y: %s", tY); \
- \
- BOOL isPrimitiveNumberX = strchr("islLqLfd", tX[0]) != NULL; \
- DC_LOG(@"type of x is a number %@", DC_PRETTY_BOOL(isPrimitiveNumberX)); \
- BOOL isPrimitiveNumberY = strchr("islLqLfd", tY[0]) != NULL; \
- DC_LOG(@"type of x is a number %@", DC_PRETTY_BOOL(isPrimitiveNumberY)); \
-  */

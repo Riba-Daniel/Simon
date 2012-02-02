@@ -160,6 +160,10 @@ do { \
    SIAssertEquals(45 / 45 * 5, 100 / 20.0);
 }
 
+-(void) testSIAssertEqualsWithObjectsProducingPrimitives {
+   SIAssertEquals([[NSNumber numberWithDouble:12.0] floatValue], [[NSNumber numberWithInt:12] intValue]);
+}
+
 -(void) testSIAssertEqualsWithMixedTypesThrows {
    @try {
       SIAssertEquals(1.5, 2);
@@ -174,6 +178,10 @@ do { \
    SIAssertEquals(NULL, NULL);
 }
 
+-(void) testSIAssertEqualsWithComplexExpressions {
+   SIAssertEquals(NO ? 0 : 12, YES ? 12 : 0);
+}
+
 #pragma mark - Object comparison
 
 -(void) testSIAssertObjectEqualsWithNils {
@@ -186,12 +194,28 @@ do { \
       GHFail(@"Exception not thrown");
    }
    @catch (NSException *exception) {
-      catchMessage(@"-[SIMacroTests testSIAssertObjectEqualsWithNilAndStringThrows](%i) SIAssertObjectEquals(nil, @\"abc\") failed: nil != @\"abc\"");
+      catchMessage(@"-[SIMacroTests testSIAssertObjectEqualsWithNilAndStringThrows](%i) SIAssertObjectEquals(nil, @\"abc\") failed: nil != abc");
    }
 }
 
 -(void) testSIAssertObjectEqualsWithObjects {
    SIAssertObjectEquals(@"abc", @"abc");
+}
+
+-(void) testSIAssertObjectEqualsWithBuiltObjects {
+   NSString *s1 = [NSString stringWithFormat:@"abc %@", @"def"];
+   NSString *s2 = [NSString stringWithFormat:@"%@ def", @"abc"];
+   SIAssertObjectEquals(s1, s2);
+}
+
+-(void) testSIAssertObjectEqualsWithDifferentTypes {
+   SIAssertObjectEquals(@"12", [[NSNumber numberWithInt:12] stringValue]);
+}
+
+-(void) testSIAssertObjectEqualsWithObjectExpressions {
+   NSString *s1 = [NSString stringWithFormat:@"abc %@", @"def"];
+   NSString *s2 = [NSString stringWithFormat:@"%@ def", @"abc"];
+   SIAssertObjectEquals([s1 substringFromIndex:2], [s2 substringFromIndex:2]);
 }
 
 -(void) testSIAssertObjectEqualsWithObjectsThrows {
@@ -200,7 +224,7 @@ do { \
       GHFail(@"Exception not thrown");
    }
    @catch (NSException *exception) {
-      catchMessage(@"-[SIMacroTests testSIAssertObjectEqualsWithObjectsThrows](%i) SIAssertObjectEquals(@\"def\", @\"abc\") failed: @\"def\" != @\"abc\"");
+      catchMessage(@"-[SIMacroTests testSIAssertObjectEqualsWithObjectsThrows](%i) SIAssertObjectEquals(@\"def\", @\"abc\") failed: def != abc");
    }
 }
 
