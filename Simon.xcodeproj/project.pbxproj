@@ -293,12 +293,12 @@
 				6583B3EA13CF2220005E13F3 /* build.sh */,
 				6583B3EE13CF2242005E13F3 /* ChangeLog.textile */,
 				653D0EB113A783C000A5AB82 /* classes */,
+				653D0ED413A783DC00A5AB82 /* tests */,
 				653D0E8C13A782AD00A5AB82 /* Frameworks */,
 				6583B3EB13CF2220005E13F3 /* License.textile */,
 				653D0E8B13A782AD00A5AB82 /* Products */,
 				6583B3EC13CF2220005E13F3 /* ReadMe.textile */,
 				653D0EF013A7842500A5AB82 /* Simon-Prefix.pch */,
-				653D0ED413A783DC00A5AB82 /* tests */,
 			);
 			sourceTree = "<group>";
 		};

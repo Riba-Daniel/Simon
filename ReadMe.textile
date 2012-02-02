@@ -155,6 +155,29 @@ Simon will automatically scan the data types of the arguments and attempt a matc
 
 Note that each step in a story can matched to only one selector. But that a selector can be mapped to any number of story steps. This gives you the ability to share code across many steps, saving you from repeating yourself. Also know as the "DRY principle":http://en.wikipedia.org/wiki/Don't_repeat_yourself.
 
+h2. Hey, Simon executed the wrong step mapping!
+
+Probably not. You have to watch those step mapping regexs. When mapping story steps to mappings, Simon accepts the first match it finds and stops looking, assuming that for any given story step, there will only be a single mapping. So if you have used a regex on a different mapping that also matches that step, and that mapping is queried first when looking for mappings, then Simon will use it instead. Lets look at an example. Assume you have the step @then do something interesting@ and that you have the following step mappings:
+
+<pre lang="objc">
+SIMapStepToSelector(@"then do something", doSomething)
+-(void) doSomething {...}
+
+SIMapStepToSelector(@"then do something interesting", doSomethingInteresting)
+-(void) doSomethingInteresting {...}
+</pre>
+ 
+Simon is most likely to check the @doSomething@ mapping before it checks the @doSomethingInteresting@ mapping and because the regex "then do something" will match, Simon will probably use this method for the mapping even though there is a more explicit mapping. 
+
+There are a number of ways to deal with this, si for the moment I've left it pretty open. I would suggest that a likely best solution is to consider using the regex  start of line '^' or end of line '$' expressions to better define. To go with our example, the following change would fix the problem:
+
+<pre lang="objc">
+SIMapStepToSelector(@"then do something$", doSomething)
+-(void) doSomething {...}
+</pre>
+
+Because specifying that the expression must occur at the end of the line means it will no longer match the longer story step text.
+
 h1. But wait! what if the step implementations are in different classes?
 
 This is where Simon gets a bit smarter than the original Simon. 

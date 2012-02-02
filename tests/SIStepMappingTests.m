@@ -59,6 +59,22 @@
 	GHAssertFalse([mapping canMapToStep:@"xyz"], @"Should not have mapped the step.");
 }
 
+-(void) testCanMapToStepWithShortRegex {
+	NSError *error = nil;
+	SIStepMapping * mapping = [SIStepMapping stepMappingWithClass:[self class] selector:@selector(doSomething) regex:@"abc" error:&error];
+   GHAssertTrue([mapping canMapToStep:@"abc"], @"Should have mapped the step.");
+   GHAssertFalse([mapping canMapToStep:@"abc def"], @"Should not have mapped the step.");
+   GHAssertFalse([mapping canMapToStep:@"123 abc def"], @"Should not have mapped the step.");
+}
+
+-(void) testCanMapToStepWithLongRegex {
+	NSError *error = nil;
+	SIStepMapping * mapping = [SIStepMapping stepMappingWithClass:[self class] selector:@selector(doSomething) regex:@"abc def" error:&error];
+   GHAssertFalse([mapping canMapToStep:@"abc"], @"Should not have mapped the step.");
+   GHAssertTrue([mapping canMapToStep:@"abc def"], @"Should have mapped the step.");
+   GHAssertFalse([mapping canMapToStep:@"123 abc def"], @"Should not have mapped the step.");
+}
+
 -(void) testInvokeInstantiatesClassAndCallsMethod {
 	NSError *error = nil;
 	SIStepMapping * mapping = [SIStepMapping stepMappingWithClass:[self class] selector:@selector(doSomething) regex:@"abc" error:&error];

@@ -20,13 +20,13 @@ SIMapStepToSelector(@"check the flags", checkFlags)
 }
 
 
-SIMapStepToSelector(@"call the SIFail macro", doSIFail)
+SIMapStepToSelector(@"call the SIFail macro$", doSIFail)
 -(void) doSIFail {
    @try {
       SIFail();
    }
    @catch (NSException *e) {
-      SIAssertObjectEquals(@"", e);
+      SIAssertObjectEquals(@"-[MacroStoryImplementations doSIFail](26) SIFail executed, throwing failure exception.", e.reason);
    }
 }
 
@@ -37,7 +37,7 @@ SIMapStepToSelector(@"call the SIFail macro with a message", doSIFailWithMessage
    //SIFail();
 }
 @catch (NSException *e) {
-   SIAssertObjectEquals(@"", e.reason);
+   SIAssertObjectEquals(@"-[MacroStoryImplementations doSIFailWithMessage](36) Hello this is the SIFailM macro", e.reason);
 }
 
 }
