@@ -83,7 +83,6 @@
 						<int key="NSvFlags">290</int>
 						<string key="NSFrame">{{20, 181}, {280, 88}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>

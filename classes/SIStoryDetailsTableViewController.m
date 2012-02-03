@@ -83,7 +83,7 @@
          if (indexPath.row == 2) {
             DC_LOG(@"Working out height for trace");
             CGSize size = [self.trace sizeWithFont:self.traceFont constrainedToSize:CGSizeMake(580, CGFLOAT_MAX)];
-            return size.height + 12;
+            return fmax(size.height + 12, 45);
          }
          break;
          

@@ -169,7 +169,7 @@ SIMapStepToSelector(@"then do something interesting", doSomethingInteresting)
  
 Simon is most likely to check the @doSomething@ mapping before it checks the @doSomethingInteresting@ mapping and because the regex "then do something" will match, Simon will probably use this method for the mapping even though there is a more explicit mapping. 
 
-There are a number of ways to deal with this, si for the moment I've left it pretty open. I would suggest that a likely best solution is to consider using the regex  start of line '^' or end of line '$' expressions to better define. To go with our example, the following change would fix the problem:
+There are a number of ways to deal with this, so for the moment I've left it pretty open. I would suggest that a likely best solution is to consider using the regex  start of line '^' or end of line '$' expressions to better define. To go with our example, the following change would fix the problem:
 
 <pre lang="objc">
 SIMapStepToSelector(@"then do something$", doSomething)
