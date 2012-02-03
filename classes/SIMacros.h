@@ -19,14 +19,9 @@
 SIAppBackpack *backpack = [[[SIAppBackpack alloc] init] autorelease]; \
 DC_LOG(@"Started backpack %@", [backpack description]);
 
-#define SIRunFile(storyFile) \
-SIAppBackpack *backpack = [[[SIAppBackpack alloc] initWithStoryFile:storyFile] autorelease]; \
-DC_LOG(@"Started backpack %@", [backpack description]);
-
 #else
 
 #define SIRun() [[[SIAppBackpack alloc] init] autorelease];
-#define SIRunFile(storyFile) [[[SIAppBackpack alloc] initWithStoryFile:storyFile] autorelease];
 
 #endif
 

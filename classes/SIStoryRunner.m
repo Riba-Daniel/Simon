@@ -82,8 +82,12 @@
 	}
 	
 	// Now execute the stories.
-	DC_LOG(@"Running %lu stories", [stories count]);
+   // Only run the stories if we are autorunning.
 	BOOL success = YES;
+#ifndef SI_DONT_AUTORUN
+
+	DC_LOG(@"Running %lu stories", [stories count]);
+   
 	for (SIStory *story in stories) {
 		if (![story invoke]) {
 			if (story.status == SIStoryStatusNotMapped || story.status == SIStoryStatusError) {
@@ -104,6 +108,8 @@
 	}
 	
 	DC_LOG(@"Done. All stories succeeded ? %@", DC_PRETTY_BOOL(success));
+#endif
+
 	return success;
 }
 

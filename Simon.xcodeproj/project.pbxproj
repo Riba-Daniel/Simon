@@ -289,16 +289,16 @@
 		653D0E7F13A782AC00A5AB82 = {
 			isa = PBXGroup;
 			children = (
-				659E625F13D9BE9600ACD34C /* App with tests */,
+				653D0EF013A7842500A5AB82 /* Simon-Prefix.pch */,
 				6583B3EA13CF2220005E13F3 /* build.sh */,
 				6583B3EE13CF2242005E13F3 /* ChangeLog.textile */,
-				653D0EB113A783C000A5AB82 /* classes */,
-				653D0ED413A783DC00A5AB82 /* tests */,
-				653D0E8C13A782AD00A5AB82 /* Frameworks */,
 				6583B3EB13CF2220005E13F3 /* License.textile */,
-				653D0E8B13A782AD00A5AB82 /* Products */,
 				6583B3EC13CF2220005E13F3 /* ReadMe.textile */,
-				653D0EF013A7842500A5AB82 /* Simon-Prefix.pch */,
+				659E625F13D9BE9600ACD34C /* App with tests */,
+				653D0EB113A783C000A5AB82 /* classes */,
+				653D0E8C13A782AD00A5AB82 /* Frameworks */,
+				653D0E8B13A782AD00A5AB82 /* Products */,
+				653D0ED413A783DC00A5AB82 /* tests */,
 			);
 			sourceTree = "<group>";
 		};
@@ -857,7 +857,6 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					DEBUG,
 					DC_DEBUG,
-					SI_DEBUG,
 				);
 				GCC_THUMB_SUPPORT = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -940,7 +939,6 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					DC_DEBUG,
-					SI_DEBUG,
 				);
 				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = "App with tests/TestApp2-Info.plist";

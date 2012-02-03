@@ -45,10 +45,8 @@
 		return [views autorelease];
 	}
 	
-	DC_LOG(@"Searching for views based on the query \"%@\"", query);
-   SIPrintCurrentWindowTree();
-	
 	// Get the window as the root node.
+	DC_LOG(@"Searching for views based on the query \"%@\"", query);
 	UIView *keyWindow = [UIApplication sharedApplication].keyWindow;
 	
 	// Create an executor and search the tree.

@@ -40,15 +40,6 @@ static SIStoryRunner *runner;
 	return runner;
 }
 
--(id) initWithStoryFile:(NSString *) aFileName {
-	self = [super init];
-	if (self) {
-		fileName = [aFileName retain];
-		[self addNotificationObservers];
-	}
-	return self;
-}
-
 -(void) addNotificationObservers {
 	// Hook into the app startup.
 	DC_LOG(@"Applying program hooks to notification center: %@", [NSNotificationCenter defaultCenter]);
@@ -71,17 +62,10 @@ static SIStoryRunner *runner;
 	DC_DEALLOC(runner);
 	runner = [[SIStoryRunner alloc] init];
 	
-	// Now tell it to use just the passed story file is present.
-	if (fileName != nil) {
-		SIStoryFileReader *reader = [[SIStoryFileReader alloc] initWithFileName:fileName];
-		runner.reader = reader;
-		[reader release];
-	}
-	
 	NSError *error = nil;
 	DC_LOG(@"Calling story runner");
 	if (![runner runStories:&error]) {
-		// Do mothing as runner has code to deal with the error.
+		// Do nothing as runner has code to deal with the error.
 	}
 	
 }
@@ -109,7 +93,6 @@ static SIStoryRunner *runner;
 
 -(void) dealloc {
 	DC_LOG(@"Freeing memory and exiting");
-	DC_DEALLOC(fileName);
 	DC_DEALLOC(runner);
 	[super dealloc];
 }

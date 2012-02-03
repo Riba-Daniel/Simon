@@ -14,6 +14,7 @@ Oct 2011
 * Added shutdown button to in app report to shutdown Simon.
 * Added a UI based report for viewing results.
 * Lots more doco.
+* Removed passing a file to the backpack startup macro. Not really that useful.
 
 h1. Version 0.1.1
 July 2011
