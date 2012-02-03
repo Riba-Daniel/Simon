@@ -133,7 +133,7 @@ Firstly Simon regards each line in a story as a unique step which it must find s
 </pre>
 
 The first thing you wil notice is the inclusion of the SISimon.h header file. A necessary evil unfortunately. The second thing you will notice is the 
-@SIMapStepToSelector(\@"Given Simon is working", simonIsRunning)@ line. That's Simon mapping a step to a method. This preprocessor macro instructs Simon to map any story step to the selector using the given regular expression to match it. 
+<pre>SIMapStepToSelector(@"Given Simon is working", simonIsRunning)</pre> line. That's Simon mapping a step to a method. This preprocessor macro instructs Simon to map any story step to the selector using the given regular expression to match it. 
 
 So the first parameter is a "regular expression":http://developer.apple.com/library/ios/#documentation/Foundation/Reference/NSRegularExpression_Class as specified in the doc for the "NSRegularExpression class":http://developer.apple.com/library/ios/#documentation/Foundation/Reference/NSRegularExpression_Class in Apple's documentation. This gives us an advantage because it means that we can map a wide variety of steps to this method and also (using regular expression groups) pick out arguments to pass to the selector. 
 
