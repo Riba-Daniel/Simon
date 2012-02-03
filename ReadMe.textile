@@ -5,13 +5,13 @@ Simon is a BDD framework for testing apps on iOS simulators and devices. I've wr
 
 h2. Why use a BDD framework?
 
-Customes don't understand code. So showing then a Unit test run or raw code means little to them. That's ok, that's why we write the code and they don't. However, customers do understand their own requirements and they usually can express those requirements quite well. 
+Customers don't understand code. So showing then a Unit test run or raw code usually means little to them. That's ok, that's why we write the code and they don't. However, customers do understand their own requirements and they usually can express those requirements quite well. BDD frameworks aim to bridge the gap by allowing customers to "Write" stories in English so that they are easy to read, then the developers can write code that matches the English text to test code using the BD frameworks API and tools.
 
-Behaviour Driven Development is an agile technique where we get the customer to express their requirements in simple story like terns. Then using a framework like Simon, we match executable code to the stories, thus proving that they are implemented. By doing this we can prove that the app meets the customers expectations.
+The up shot of all of this is the by using a BDD framework it becomes much easier to express the customers goals in code, and to be able to show the customer that those goals are being met.
 
 h2. Why did I write Simon?
 
-There are other BDD style frameworks for iOS. But after looking at them, they each had something I wasn't that fond of. So I sat down and thought about what I wanted as a developer. I came up with this list:
+There are other BDD style frameworks for iOS. But after looking at them, they each had something I wasn't that fond of. So I sat down and thought about what I wanted from one. I came up with this list:
 
 * I wanted to use Objective C because that's what every iOS developer already knows.
 * I wanted it to be easy to include and run without requiring modifications to the system.
@@ -27,48 +27,54 @@ When I was thinking about keeping things simple, I thought of the old nursery rh
 
 h2. Ok how does it really work?
 
-Here's the basic sequence:
+Here's the basic sequence from a iOS developers point of view:
 
-# The Customer and Developer work together to write stories in the form "As/Given .... then ...." For example "Given Simon is running Then I expect it to execute the stories".
-# You create a new target which runs your app as though you where going to manually test it.
+# The Customer and Developer work together to write stories in semi-formal form to one or more text files. Typically as "As/Given .... then ....". For example "Given Simon is running Then I expect it to execute the stories".
+# You create a new target which runs your app.
 # You add the text files containing the stories to your code base and the new target.
 # You add the Simon framework to this target.
-# You then open the startup code and add 1 line to get Simon launched in the background.
-# You write one or more classes containing the code that executed each step in the stories.
-# You add one line macros to the classes for each step, mapping the story step to a method.
-# You lanuch the target on your simulator or device. Simon will automatically startup, read the story files, match the steps to the methods and run each story. At the end Simon will produce a report detailing successful executions of stories or failures.
+# You add 1 line to your main.m file to get Simon launched in the background.
+# You write one or more classes which contain methods which express the text of the stories. Generally these are methods which implement the intent of each line of a story. There is also a single macro which you add to each which does the mapping to the story file.
+# You launch the target on your simulator or device. Simon will automatically startup, read the story files, match the steps to the methods and run each story. At the end Simon will produce a report detailing successful executions of stories or failures.
 
 h1. How do I install it?
 
 First there are two other frameworks you need to download. They are:
 
 * "dUsefulStuff framework":http://github.com/drekka/dUsefulStuff - version 0.0.13+ (Provides some common code I use)
-* "dNodi framework":http://github.com/drekka/dNodi - version 0.3.0+ (Provides XPath like searching)
+* "dNodi framework":http://github.com/drekka/dNodi - version 0.3.0+ (Provides simple XPath like queries)
 
-Download the DMG files for each. Open each one and drag and drop the framework files to a directory. Open XCode again, select your target and go to *Build Phases* and *Link Binary With Libraries*. Then click *&#91;+&#93;* to add library. Select *Add Other...* and then the framework directory you just copied. Do the same for the other frameworks.
+Download the DMG files for each. Open each one and drag and drop the framework files to a directory. Open XCode again, select your target and go to *Build Phases* and *Link Binary With Libraries*. Then click *&#91;+&#93;* to add the static frameworks. Select *Add Other...* and then the framework directory you just copied. 
+
+You only need to add these frameworks to the target which will run Simon.
 
 h1. Adding Simon to your project
 
-Simon is designed to run on a background thread in your app. To save you from having the headache of working this out, there is a simple macro you can use to install and run stories. This macros:
+Simon is designed to run on a background thread in your app. To save you from having the headache of working this out and managing, there is a simple macro you can use to install into your *main.m* file. The macro calls a class called SIBackPack which provides the infrastructure Simon needs. It does the following:
 
 # Sets up Simon on a background thread.
 # Waits for your app to finish loading by watching the UIApplication notifications. 
 # Once your app is up, starts running the stories.
 # When all stories have been run, displays a report of the results.
+# When requested, shuts down Simon and removes it from memory.
 
 You place this macro into the *main.m* file of your app. Here's a simplified example so show you what it looks like:
 
 <pre lang="objc">
 #import <UIKit/UIKit.h>
 
+#ifdef INC_SIMON
 #import "SISimon.h"
+#endif
 
 int main(int argc, char *argv[]) {
    
    NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
 
+#ifdef INC_SIMON
    // Add Simon.
    SIRun();
+#end
 
    int retVal = UIApplicationMain(argc, argv, nil, @"YourAppDelegate");
    
@@ -77,10 +83,7 @@ int main(int argc, char *argv[]) {
 }
 </pre>
 
-There are two versions of the macros
-
-* *SIRun()* which searches the app for story files (*.stories) and runs them all.
-* *SIRunFile(story-filename)* which runs stories from the specified file only. The story-filename does not have to have the .stories extension. So 'My' and 'My.stories' give the same result.
+The guard flag (*INC_SIMON*) can be added to the preprocessor flags in the target so Simon is activated for that target, but not included in your production code. The *SIRun()* macro searches the app for story files (*.stories) and runs them all.
 
 h2. How to I write a story?
 
@@ -94,22 +97,23 @@ Then I should be able to see abc and 5 in the log
 and say goodby at the end.
 </pre>
 
-Thats pretty simple. The *Story: ...* line gives the story a name. The rest of the lines outline the story and what is expected. Simon does impose some rules about the first word on each line. Ultimately it doesn't matter, but by imposing some simple rules, it helps to better understand the stories. Yes you can have more than one per file. Here's an outline of the syntax rules:
+Thats pretty simple. The *Story: ...* line gives the story a name. The rest of the lines outline the story and what is expected. Simon does impose some rules about the first word on each line. Ultimately it doesn't matter, but by imposing some simple rules, it helps to structure and understand the stories. _Yes you can have more than one per file._ Here's an outline of the syntax rules:
 
 * Each story must start with a line that begins with the word *story* or *story:*.
-* The structure of the story lines must conform to:
+* This is followed by the story lines and must follow this structure:
 ** *As ...* _(optional)_
 ** *Given ...*
 ** *And ...* _(zero or more)_
 ** *Then ...* _(zero or more)_
 ** *And ...* _(zero or more)_
+
 * Leading and trailing blanks are ignored on each line.
 * Lines that begin with *#* are treated as comments and ignored.
 * Blank lines are ignored.
 
 h2. How do I relate a story to the executable code?
 
-Firstly Simon regards each line in a story as a seperate item to be executed. So lets look at the @Given Simon is working@ line from the above story. Lets say we have a class called StepImplementations.m and we want to map the step to a method in it. Here's what it would look like:
+Firstly Simon regards each line in a story as a unique step which it must find some code to exact. Lets look at the @Given Simon is working@ line from the above story as an example. Lets say we have a class called _StepImplementations.m_ and we want to map the step to a method in it so that when the story is run, the method is executed. Here's what it would look like:
 
 <pre lang="objc">
 #import <SISimon/SISimon.h>
@@ -129,35 +133,33 @@ Firstly Simon regards each line in a story as a seperate item to be executed. So
 </pre>
 
 The first thing you wil notice is the inclusion of the SISimon.h header file. A necessary evil unfortunately. The second thing you will notice is the 
-<pre>SIMapStepToSelector(@"Given Simon is working", simonIsRunning)</pre>
-line. That's Simon. This preprocessor macro instructs Simon to map the given step to the selector. 
+@SIMapStepToSelector(@"Given Simon is working", simonIsRunning)@ line. That's Simon mapping a step to a method. This preprocessor macro instructs Simon to map any story step to the selector using the given regular expression to match it. 
 
-Now it's not obvious from the above, but that first parameter is a "regular expression":http://developer.apple.com/library/ios/#documentation/Foundation/Reference/NSRegularExpression_Class as specified in the doc for the "NSRegularExpression class":http://developer.apple.com/library/ios/#documentation/Foundation/Reference/NSRegularExpression_Class in Apple's documentation. This means that we can use it to pick up a wide variety of steps and also (using regular expression groups) pick out arguments to pass to the selector. Oh, and the second argument is the selector to execute. You don't need to use objective C's @selector(...)@ with this as Simon needs it as text. Plus it's less to type in :-)
+So the first parameter is a "regular expression":http://developer.apple.com/library/ios/#documentation/Foundation/Reference/NSRegularExpression_Class as specified in the doc for the "NSRegularExpression class":http://developer.apple.com/library/ios/#documentation/Foundation/Reference/NSRegularExpression_Class in Apple's documentation. This gives us an advantage because it means that we can map a wide variety of steps to this method and also (using regular expression groups) pick out arguments to pass to the selector. 
+
+The second argument to the macro is the selector to execute. You don't need to use objective C's @selector(...)@ with this as Simon needs the selector as text. Plus it's less to type in :-)
 
 h2. How do I map arguments in a step?
 
-Lets look at the *Then ...* step
+Lets look at the *Then ...* step from above: @Then I should be able to see abc and 5 in the log@.
 
-<pre>Then I should be able to see abc and 5 in the log</pre>
-
-As you can see there are two possible arguments in this step - *abc* and *5*. Simon can map these quite simply. The only rule is that the order of arguments in the method that will be executed matches the order of arguments in the step. Of course Simon also expects that the data types are a match as well. Here's the mapping:
+As you can see there are two possible arguments in this step - *abc* and *5*. Simon can map these quite simply. The only rule is that the order of arguments in the method that will be executed matches the order of arguments in the step. Of course Simon also expects that the data types are a match as well. Here's the mapping to do this:
 
 <pre lang="objc">
 SIMapStepToSelector(@".* I should be able to see (.*) and (.*) in the log", verifyText:andNumber:)
-
 -(void) verifyText:(NSString *) text andNumber:(int) number {
    NSLog(@"Text: %@", text);
    NSLog(@"Number: %i", number);
 }
 </pre>
 
-Simon will automatically scan the data types of the arguments and attempt a matching conversion. Also notice that in the regular expression I set the start to match any characters. This means that, for example, I could use this same expression with both a *Then ...* and a *And ...* step.
+Simon will automatically scan the data types of the arguments to the selector and attempt a matching conversion of the values retrieved by the regex groups. Also notice that in the regular expression I set the start to match any characters. This means that, for example, I could use this same expression with both a *Then ...* and an *And ...* step.
 
 Note that each step in a story can matched to only one selector. But that a selector can be mapped to any number of story steps. This gives you the ability to share code across many steps, saving you from repeating yourself. Also know as the "DRY principle":http://en.wikipedia.org/wiki/Don't_repeat_yourself.
 
 h2. Hey, Simon executed the wrong step mapping!
 
-Probably not. You have to watch those step mapping regexs. When mapping story steps to mappings, Simon accepts the first match it finds and stops looking, assuming that for any given story step, there will only be a single mapping. So if you have used a regex on a different mapping that also matches that step, and that mapping is queried first when looking for mappings, then Simon will use it instead. Lets look at an example. Assume you have the step @then do something interesting@ and that you have the following step mappings:
+Probably not. You have to watch those step mapping regexs. When mapping story steps to methods, Simon accepts the first match it encounters between mapping regular expressions and step text, and stops looking. It assumes that for any given story step, there will only be a single mapping. So if you have used a regex on a different mapping that also matches that step, and that mapping is checked first, then Simon will use it. Lets look at an example. Assume you have the step @then do something interesting@ and that you have the following step mappings:
 
 <pre lang="objc">
 SIMapStepToSelector(@"then do something", doSomething)
@@ -167,9 +169,9 @@ SIMapStepToSelector(@"then do something interesting", doSomethingInteresting)
 -(void) doSomethingInteresting {...}
 </pre>
  
-Simon is most likely to check the @doSomething@ mapping before it checks the @doSomethingInteresting@ mapping and because the regex "then do something" will match, Simon will probably use this method for the mapping even though there is a more explicit mapping. 
+Simon might check the @doSomething@ mapping before it checks the @doSomethingInteresting@ mapping and because the regex matches, Simon will use this method for the mapping even though there is a more explicit mapping further down.
 
-There are a number of ways to deal with this, so for the moment I've left it pretty open. I would suggest that a likely best solution is to consider using the regex  start of line '^' or end of line '$' expressions to better define. To go with our example, the following change would fix the problem:
+There are a number of ways to deal with this, so for the moment I've left it pretty open. I would suggest that a likely best solution is to consider using the regex  start of line '^' or end of line '$' expressions to better define your expression. To go with our example, the following change would fix the problem:
 
 <pre lang="objc">
 SIMapStepToSelector(@"then do something$", doSomething)
@@ -178,17 +180,17 @@ SIMapStepToSelector(@"then do something$", doSomething)
 
 Because specifying that the expression must occur at the end of the line means it will no longer match the longer story step text.
 
-h1. But wait! what if the step implementations are in different classes?
+h1. Communicating data between steps
 
-This is where Simon gets a bit smarter than the original Simon. 
+One thing that is most likely to happen is that you want to pass some piece of information between the methods that implement two different steps. This is where Simon gets a bit smarter than the original Simon. 
 
 h2. First, when steps are in the same class
 
-Simon instantiates each class that contains mapped steps when it needs to run those steps. In addition it also caches and reuses these objects, so transferring data between story step mappings in the same class is as simple as using class properties. 
+Simon instantiates an instance of a class that contains mapped steps when it needs to run those steps. It also caches and reuses these objects, so transferring data between story step mappings in the same class is as simple as using class properties. Populate them with data in one step and read them in the next. As long as the steps are in the same story the data will be there.
 
 h2. And when they are in different classes
 
-When dealing with step mappings in different classes, Simon has to be a little smarter. Each story has a local storage area Simon can use to transfer objects between classes without these classes even being aware of each other. Accessing this storage is done through two macros. Here is an example:
+When dealing with step mappings in different classes though, Simon has to be a little smarter again. Each story has a local storage area outside the classes which implement the steps. Simon can use this storage area to transfer objects between classes without these classes even being aware of each other. Again this is something that you don't need to manage - that Simon's job. Accessing this storage is done through two macros. Here is an example:
 
 _Communications.stories_
 <pre lang="objc">
@@ -203,7 +205,6 @@ _CommsASteps.m_
 @implementation CommsASteps
 
    SIMapStepToSelector(@"Given this class stores (.*) in the story storage using key (.*)", storesString:withKey:)
-
    -(void) storesString:(NSString *) aString withKey:(NSString *) key{
       SIStoreInStory(key, aString);
    }
@@ -219,7 +220,6 @@ _CommsBSteps.m_
 @implementation CommsBSteps
 
    SIMapStepToSelector(@"then this class should be able to retrieve (.*) from storage with key (.*)", retrieveString:withKey:)
-
    -(void) retrieveString:(NSString *) aString withKey:(NSString *) key{
       NSString *value = SIRetrieveFromStory(key);
       GHAssertEqualStrings(value, aString, @"Strings do not match");
@@ -232,18 +232,18 @@ CommsBSteps then reads that value back from the cache and verifies it.
 
 h2. Just in case you are wondering
 
-After each story has finished, Simon clears out the story's caches - releasing the step mapping implementations. So you cannot transfer data between stories. That may come later.
+After each story has finished, Simon clears out the story's caches - releasing the step implementation instances and generally handles clean up for you. So you cannot transfer data between stories. That may come later.
 
 h1. How do I interact with my app?
 
-In addition to the simple steps above for creating stories, Simon also includes a framework for accessing the components that make up a UI in an app. Simon does this by mapping out the tree structure of a UI and allowing you to use "dNodi's":https://github.com/drekka/dNodi xpath like queries to drill down through the interface, locate the controls you want, and perform various actions upon them. Tapping for example. Simon implements the dNodi DNNode protocol via a category on UIView. This keeps you from having to work through the mapping of dNodie expressions to the UI object graph.
+In addition to the simple steps above for creating stories, Simon also includes a framework for accessing the components that make up a UI in an app. Simon does this by mapping out the tree structure of a UI and allowing you to use "dNodi's":https://github.com/drekka/dNodi xpath like queries to drill down through the interface, locate the controls you want, and perform various actions upon them. Tapping a control for example. Simon implements the dNodi DNNode protocol via a category on UIView. This keeps you from having to work through the mapping of dNodi expressions to the UI object graph.
 
 	A lot of this code is wrapped by preprocessor macros which can be found in the *SISimon.h* file. 
 
 
 h2. Viewing the UI tree
 
-A good way to understand this is to include this code in a step. It will print out the current tree structure showing each UIView's class and index number in the hirachy. Some classes are further suplimented with attributes which Simon has identified as searchable ones.
+A good way to understand this is to include this code in a step. It will print out the current tree structure showing each UIView's class and index number in the hirachy. Some classes are further suplimented with attributes which Simon thinks you may be interested in. They are by no means all that you can search.
 
 <pre lang="objc">
 SIMapStepToSelector(@"then print the UI tree", printTheUITree)
@@ -313,7 +313,7 @@ These macros can be used in your step mappings to assert values and trigger erro
 | SIAssertEquals(x, y) | Fails if the x and y are not equals. Uses x == y to do the comparison. |
 | SIAssertObjectEquals(objX, objY) | Fails if the two objects are not equal. Uses [objX isEqual:objY] to do the comparison. |
 
-In addition to the above macros there are also *SIFail(message, ...), SIAssertTrue(expr, message, ...), SIAssertFalse(expr, message, ...), SIAssertNil(expr, message, ...), SIAssertNotNil(expr, message, ...), SIAssertEquals(x, y, message, ...),* and *SIAssertObjectEquals(objX, objY, message, ...)* which provide exactly the same functionality except that you also provide a custom message text and arguments. These are formatted according to the rules for the NSString:stringWithFormat: method. 
+In addition to the above macros there are also *SIFailM(message, ...), SIAssertTrueM(expr, message, ...), SIAssertFalseM(expr, message, ...), SIAssertNilM(expr, message, ...), SIAssertNotNilM(expr, message, ...), SIAssertEqualsM(x, y, message, ...),* and *SIAssertObjectEqualsM(objX, objY, message, ...)* which provide exactly the same functionality except that you also provide a custom message text and arguments. These are formatted according to the rules for the NSString:stringWithFormat: method. 
 
 h1. I'd like to say thanks to several developers for developing the following tools:
 
