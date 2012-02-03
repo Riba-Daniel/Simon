@@ -19,7 +19,7 @@
 @synthesize mappings = mappings_;
 
 -(void) dealloc {
-	SI_LOG(@"Deallocing");
+	DC_LOG(@"Deallocing");
 	self.view = nil;
 	self.storySources = nil;
 	self.mappings = nil;
@@ -42,7 +42,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	SI_LOG(@"There are %i stories in section %i", [((SIStorySource *)[self.storySources objectAtIndex:section]).stories count], section);
+	DC_LOG(@"There are %i stories in section %i", [((SIStorySource *)[self.storySources objectAtIndex:section]).stories count], section);
 	return [((SIStorySource *)[self.storySources objectAtIndex:section]).stories count];
 }
 
@@ -76,7 +76,7 @@
 			break;
 	}
 	
-	SI_LOG(@"returning %@ cell", story.title);
+	DC_LOG(@"returning %@ cell", story.title);
 	return cell;
 }
 
@@ -111,7 +111,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
 	SIStoryDetailsTableViewController *details = [[[SIStoryDetailsTableViewController alloc] initWithStyle:UITableViewStyleGrouped] autorelease];
-   SI_LOG(@"Loading details for story %@", details.story);
+   DC_LOG(@"Loading details for story %@", details.story);
 	
    details.source = [self.storySources objectAtIndex:indexPath.section];
 	details.story = (SIStory *)[details.source.stories objectAtIndex:indexPath.row];

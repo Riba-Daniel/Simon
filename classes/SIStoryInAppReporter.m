@@ -20,7 +20,7 @@
 @implementation SIStoryInAppReporter
 
 -(void) dealloc {
-	SI_LOG(@"Deallocing");
+	DC_LOG(@"Deallocing");
 	[super dealloc];
 }
 

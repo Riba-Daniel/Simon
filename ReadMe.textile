@@ -299,7 +299,9 @@ h2. Accessing view properties using KVC
 
 When Simon encounters a request to select based on the attribute of a UIView, it passes the attribute value to iOS's KVC API. This means that any property of a UIView which is KVC complient can be used in a query. For example, on a UIButton @[labelText.text='hello']@ works just fine to find a button which has the text "hello" on it. Funny enough, @frame.size@ does not work. Apparently @CGRect@ is not understood by KVC although various other primitive types are.
 
-Note that with these macros, passing nil as the message results in a default message being displayed. This aleviates the need to always enter a message when most of the time, the default message serves the purpose.
+.h1 Simon's Assertion macros
+
+These macros can be used in your step mappings to assert values and trigger errors which Simon will report on. 
 
 |_. Macros |_. Description |
 | SIThrowException(name, message, ...) | Throws an exception using the given name, message and arguments. Mostly used by the assertion macros. |

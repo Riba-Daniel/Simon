@@ -15,7 +15,7 @@
 @synthesize source = source_;
 
 -(void) dealloc {
-	SI_LOG(@"Deallocing");
+	DC_LOG(@"Deallocing");
 	self.stories = nil;
 	self.source = nil;
 	[super dealloc];

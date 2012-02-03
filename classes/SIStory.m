@@ -27,7 +27,7 @@
 @synthesize error = error_;
 
 -(void) dealloc {
-	SI_LOG(@"Deallocing");
+	DC_LOG(@"Deallocing");
 	DC_DEALLOC(error_);
 	DC_DEALLOC(steps_);
 	DC_DEALLOC(mappingWithError_);
@@ -50,7 +50,7 @@
 
 -(SIStep *) createStepWithKeyword:(SIKeyword) keyword command:(NSString *) theCommand {
 	SIStep * step = [[[SIStep alloc] initWithKeyword:keyword command:theCommand] autorelease];
-	SI_LOG(@"Adding new step with keyword %i and command \"%@\"", keyword, theCommand);
+	DC_LOG(@"Adding new step with keyword %i and command \"%@\"", keyword, theCommand);
 	[self.steps addObject:step];
 	return step;
 }
@@ -64,13 +64,13 @@
 	// If the story is not fully mapped then exit because we cannot run it.
 	for (SIStep *step in self.steps) {
 		if (![step isMapped]) {
-			SI_LOG(@"Story is not fully mapped. Cannot execute step %@", step.command);
+			DC_LOG(@"Story is not fully mapped. Cannot execute step %@", step.command);
 			status_ = SIStoryStatusNotMapped;
 			return NO;
 		}
 	}
 	
-	SI_LOG(@"Executing steps");
+	DC_LOG(@"Executing steps");
 	for (SIStep *step in self.steps) {
 		
 		// First check the cache for an instance of the class. 
@@ -102,7 +102,7 @@
 	}
 	
 	// Create one.
-	SI_LOG(@"Creating instance of %@", NSStringFromClass(targetClass));
+	DC_LOG(@"Creating instance of %@", NSStringFromClass(targetClass));
 	instance = [[[targetClass alloc] init] autorelease];
 	[instanceCache setObject:instance forKey:cacheKey];
 	

@@ -7,6 +7,7 @@
 //
 
 #import "SecondViewController.h"
+#import <dUsefulStuff/DCCommon.h>
 
 @implementation SecondViewController
 
@@ -48,6 +49,7 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
+   DC_LOG(@"Second view appeared");
     [super viewDidAppear:animated];
 }
 

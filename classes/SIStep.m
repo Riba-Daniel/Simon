@@ -34,7 +34,7 @@
 -(void) findMappingInList:(NSArray *) mappings {
 	for (SIStepMapping * mapping in mappings) {
 		if ([mapping canMapToStep:self.command]) {
-			SI_LOG(@"Found mapping for step %@", self.command);
+			DC_LOG(@"Found mapping for step %@", self.command);
 			self.stepMapping = mapping;
 			return;
 		}

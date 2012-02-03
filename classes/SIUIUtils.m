@@ -22,12 +22,12 @@
 
 +(NSArray *) findViewsWithQuery:(NSString *) query error:(NSError **) error {
 	
-	SI_LOG(@"On main thread: %@", DC_PRETTY_BOOL([[NSThread currentThread] isMainThread]));
+	DC_LOG(@"On main thread: %@", DC_PRETTY_BOOL([[NSThread currentThread] isMainThread]));
 	
 	// Redirect to the main thread.
 	if (![[NSThread currentThread] isMainThread]) {
 		
-		SI_LOG(@"Redirecting to main thread via GCD");
+		DC_LOG(@"Redirecting to main thread via GCD");
 		dispatch_queue_t mainQueue = dispatch_get_main_queue();
 		
 		__block NSArray *views;
@@ -37,7 +37,7 @@
 			// Retain so data survives GCDs autorelease pools.
 			[*error retain];
 			[views retain];
-			SI_LOG(@"Returning %lu views to background thread", [views count]);
+			DC_LOG(@"Returning %lu views to background thread", [views count]);
 		});
 		
 		// Now autorelease and return.
@@ -45,7 +45,8 @@
 		return [views autorelease];
 	}
 	
-	SI_LOG(@"Searching for views based on the query \"%@\"", query);
+	DC_LOG(@"Searching for views based on the query \"%@\"", query);
+   SIPrintCurrentWindowTree();
 	
 	// Get the window as the root node.
 	UIView *keyWindow = [UIApplication sharedApplication].keyWindow;
@@ -60,6 +61,7 @@
 	
 	NSArray *views = [self findViewsWithQuery:query error:error];
 	if (views == nil) {
+      DC_LOG(@"No view found by findViewsWithQuery:error:, returning nil");
 		return nil;
 	}
 	
@@ -69,7 +71,7 @@
 					 code:SIUIErrorExpectOnlyOneView
 			errorDomain:SIMON_ERROR_DOMAIN
 	 shortDescription:@"Expected only one view" 
-		 failureReason:[NSString stringWithFormat:@"Expected only one view, got %lu instead.", [views count]]];
+		 failureReason:[NSString stringWithFormat:@"Using path %@, expected only one view, got %lu instead.", query, [views count]]];
 		return nil;
 	}
 	
@@ -78,11 +80,11 @@
 
 +(void) logUITree {
 	
-	SI_LOG(@"On main thread: %@", DC_PRETTY_BOOL([[NSThread currentThread] isMainThread]));
+	DC_LOG(@"On main thread: %@", DC_PRETTY_BOOL([[NSThread currentThread] isMainThread]));
 	
 	// Redirect to the main thread.
 	if (![[NSThread currentThread] isMainThread]) {
-		SI_LOG(@"Redirecting to main thread via GCD");
+		DC_LOG(@"Redirecting to main thread via GCD");
 		dispatch_queue_t mainQueue = dispatch_get_main_queue();
 		dispatch_sync(mainQueue, ^{
 			[self logUITree];

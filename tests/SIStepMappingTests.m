@@ -42,7 +42,7 @@
 	NSError *error = nil;
 	SIStepMapping * mapping = [SIStepMapping stepMappingWithClass:[self class] selector:@selector(doSomething) regex:@"[({.+*" error:&error];
 	GHAssertNil(mapping, @"Mapping returned instead of nil");
-	SI_LOG(@"%@", error);
+	DC_LOG(@"%@", error);
 	GHAssertEquals(error.code, SIErrorInvalidRegularExpression, @"Invalid regex message not returned");
 }
 

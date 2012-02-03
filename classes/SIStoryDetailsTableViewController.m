@@ -211,12 +211,12 @@
    
    // Now format the lines.
    NSMutableString *stackTrace = [NSMutableString string];
-   NSString *lineFormatString = [NSString stringWithFormat:@"\n%%i %%-%i@ %%@ %%@", maxSourceLength];
+   NSString *lineFormatString = [NSString stringWithFormat:@"\n%%i %%-%is %%@ %%@", maxSourceLength];
    DC_LOG(@"Format string is %@", lineFormatString);
    for (int i = 0; i < [traceLines count]; i++) {
       SITraceLineData *lineData = [traceLines objectAtIndex: i];
       if (! DC_EQUALS_NOT_FOUND_RANGE(lineData.sourceRange)) {
-         [stackTrace appendFormat:@"\n%3i %-17s %15@ %@", i, 
+         [stackTrace appendFormat:lineFormatString, i, 
           [[lineData.line substringWithRange:lineData.sourceRange] UTF8String],
           [lineData.line substringWithRange:lineData.addressRange],
           [lineData.line substringWithRange:lineData.methodRange]

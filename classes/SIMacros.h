@@ -7,15 +7,6 @@
 //
 #import <dUsefulStuff/DCCommon.h>
 
-#pragma Internal functions
-
-// Place Simons logging under a different flag so that we can seperate it from other logging.
-#ifdef SI_DEBUG
-#define SI_LOG(s, ...) DC_LOG(s, __VA_ARGS__)
-#else
-#define SI_LOG(s, ...) 
-#endif
-
 #pragma mark - Runners
 
 /**
@@ -26,11 +17,11 @@
 
 #define SIRun() \
 SIAppBackpack *backpack = [[[SIAppBackpack alloc] init] autorelease]; \
-SI_LOG(@"Started backpack %@", [backpack description]);
+DC_LOG(@"Started backpack %@", [backpack description]);
 
 #define SIRunFile(storyFile) \
 SIAppBackpack *backpack = [[[SIAppBackpack alloc] initWithStoryFile:storyFile] autorelease]; \
-SI_LOG(@"Started backpack %@", [backpack description]);
+DC_LOG(@"Started backpack %@", [backpack description]);
 
 #else
 
@@ -53,7 +44,7 @@ SI_LOG(@"Started backpack %@", [backpack description]);
  */
 #define SIMapStepToSelector(theRegex, aSelector) \
 +(SIStepMapping *) DC_CONCATINATE(SI_STEP_METHOD_PREFIX, __LINE__):(Class) class { \
-   SI_LOG(@"Creating mapping \"%@\" -> %@::%@", theRegex, NSStringFromClass(class), toNSString(aSelector)); \
+   DC_LOG(@"Creating mapping \"%@\" -> %@::%@", theRegex, NSStringFromClass(class), toNSString(aSelector)); \
    NSError *error = nil; \
    SIStepMapping *mapping = [SIStepMapping stepMappingWithClass:class selector:@selector(aSelector) regex:theRegex error:&error]; \
    if (mapping == nil) { \
@@ -106,6 +97,10 @@ SI_LOG(@"Started backpack %@", [backpack description]);
 #define SITapControl(path, errorRef) \
 do { \
    UIView<DNNode> *theView = SIFindView(path, errorRef); \
+   if (theView == nil) { \
+      SIThrowException(@"UI", @"Cannot tap view, nothing returned for query %@", path); \
+   } \
+   DC_LOG(@"About to tap %@", theView); \
    SIUIViewHandler *handler = [[SIUIHandlerFactory handlerFactory] createHandlerForView: theView]; \
    [handler tap]; \
 } while (NO)
@@ -120,7 +115,7 @@ do { \
 do { \
    NSString *_message = [NSString stringWithFormat:msgTemplate, ##__VA_ARGS__]; \
    NSString *_finalMessage = [NSString stringWithFormat:@"%s(%d) %@", __PRETTY_FUNCTION__, __LINE__, _message]; \
-   SI_LOG(@"Throwing exception with message: %@", _finalMessage); \
+   DC_LOG(@"Throwing exception with message: %@", _finalMessage); \
    @throw [NSException exceptionWithName:name reason:_finalMessage userInfo:nil]; \
 } while (NO)
 

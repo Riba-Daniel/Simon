@@ -41,12 +41,12 @@
 	
 	// Redirect to the main thread.
 	if (![[NSThread currentThread] isMainThread]) {
-		SI_LOG(@"Redirecting to main thread");
+		DC_LOG(@"Redirecting to main thread");
 		[self performSelectorOnMainThread:@selector(tap) withObject:nil waitUntilDone:YES];
 		return;
 	}
 	
-	SI_LOG(@"Creating touch sequence for control %@", self);
+	DC_LOG(@"Creating touch sequence for control %@", self.view);
 	
 	UITouch *touch = [[UITouch alloc] initInView:self.view];
 	UIEvent *eventDown = [[UIEvent alloc] initWithTouch:touch];
@@ -55,12 +55,13 @@
 	[touch setPhase:UITouchPhaseEnded];
 	UIEvent *eventUp = [[UIEvent alloc] initWithTouch:touch];
 	
+   DC_LOG(@"Sending touch event");
 	[[UIApplication sharedApplication] sendEvent:eventUp];
 	
 	[eventDown release];
 	[eventUp release];
 	[touch release];
-	
+   
 }
 
 @end

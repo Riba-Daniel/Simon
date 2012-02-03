@@ -32,7 +32,7 @@
 	self = [super init];
 	if (self) {
 		// Now setup the defaults.
-		SI_LOG(@"Setting up reader, runtime ad reporters");
+		DC_LOG(@"Setting up reader, runtime ad reporters");
 		self.reader = [[[SIStoryFileReader alloc] init] autorelease];
 		self.runtime = [[[SIRuntime alloc] init] autorelease];
 		self.reporters = [NSArray arrayWithObjects:
@@ -50,12 +50,12 @@
 	NSArray * mappings = [self.runtime allMappingMethodsInRuntime];
 	
 	// Read the stories.
-	SI_LOG(@"Reading stories");
+	DC_LOG(@"Reading stories");
 	self.storySources = [self.reader readStorySources: error];
 	
 	// If there was an error then return.
 	if (self.storySources == nil) {
-		SI_LOG(@"Error reading story files. Exiting");
+		DC_LOG(@"Error reading story files. Exiting");
 		[self performSelectorOnMainThread:@selector(displayMessage:)
 									  withObject:[*error localizedFailureReason] waitUntilDone:NO];
 		return NO;
@@ -69,20 +69,20 @@
 			errorDomain:SIMON_ERROR_DOMAIN 
 	 shortDescription:@"No stories read" 
 		 failureReason:@"No stories where read from the files."];
-		SI_LOG(@"No stories found. Exiting");
+		DC_LOG(@"No stories found. Exiting");
 		return NO;
 	}
 	
 	// Find the mapping for each story.
 	
 	NSArray *stories = [self.storySources valueForKeyPath:@"@unionOfArrays.stories"];
-	SI_LOG(@"Mappin steps to story steps");
+	DC_LOG(@"Mappin steps to story steps");
 	for (SIStory *story in stories) {
 		[story mapSteps:(NSArray *) mappings];
 	}
 	
 	// Now execute the stories.
-	SI_LOG(@"Running %lu stories", [stories count]);
+	DC_LOG(@"Running %lu stories", [stories count]);
 	BOOL success = YES;
 	for (SIStory *story in stories) {
 		if (![story invoke]) {
@@ -98,12 +98,12 @@
 	}
 	
 	// Publish the results.
-	SI_LOG(@"Calling reporters");
+	DC_LOG(@"Calling reporters");
 	for (NSObject<SIStoryReporter> *reporter in self.reporters) {
 		[reporter reportOnStorySources:self.storySources andMappings:mappings];
 	}
 	
-	SI_LOG(@"Done. All stories succeeded ? %@", DC_PRETTY_BOOL(success));
+	DC_LOG(@"Done. All stories succeeded ? %@", DC_PRETTY_BOOL(success));
 	return success;
 }
 
@@ -113,7 +113,7 @@
 
 
 -(void) dealloc {
-	SI_LOG(@"Deallocing");
+	DC_LOG(@"Deallocing");
 	self.reader = nil;
 	self.runtime = nil;
 	self.reporters = nil;

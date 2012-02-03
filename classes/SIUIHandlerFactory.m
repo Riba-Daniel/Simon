@@ -35,7 +35,7 @@ static SIUIHandlerFactory *factory;
 }
 
 +(void) shutDown {
-	SI_LOG(@"Shutting down handler factory");
+	DC_LOG(@"Shutting down handler factory");
 	DC_DEALLOC(factory);
 }
 

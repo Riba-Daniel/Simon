@@ -132,7 +132,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		32A9D10F14C907BC00B0CFBD /* NSInvocations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSInvocations.m; sourceTree = "<group>"; };
+		32A9D10F14C907BC00B0CFBD /* NSInvocations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = NSInvocations.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		32A9D11214C914B500B0CFBD /* SIMacroTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIMacroTests.m; sourceTree = "<group>"; };
 		652D4E4B13CDD44300633E51 /* SIAppBackpack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIAppBackpack.h; sourceTree = "<group>"; };
 		652D4E4C13CDD44400633E51 /* SIAppBackpack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIAppBackpack.m; sourceTree = "<group>"; };
@@ -201,7 +201,7 @@
 		65D03BE513BCB8CE00A3F0FA /* Communication.stories */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Communication.stories; sourceTree = "<group>"; };
 		65D03BE813BCB94F00A3F0FA /* CommsASteps.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommsASteps.m; sourceTree = "<group>"; };
 		65D03BEB13BCBA3100A3F0FA /* CommsBSteps.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommsBSteps.m; sourceTree = "<group>"; };
-		65D03BED13BDEBE000A3F0FA /* SIMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIMacros.h; sourceTree = "<group>"; };
+		65D03BED13BDEBE000A3F0FA /* SIMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SIMacros.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		65D09A6313D99C5900D1A74B /* dUsefulStuff.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = dUsefulStuff.framework; path = ../Releases/dUsefulStuff/v0.0.13/dUsefulStuff.framework; sourceTree = "<group>"; };
 		65D35BC213A8BA130007A8AD /* NSString+SimonTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SimonTests.m"; sourceTree = "<group>"; };
 		65FCD11713ADE3C200A90FCA /* SIRuntimeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIRuntimeTests.m; sourceTree = "<group>"; };
@@ -223,9 +223,9 @@
 		94657741141C95160026F1FB /* AbstractTestWithControlsOnView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractTestWithControlsOnView.h; sourceTree = "<group>"; };
 		94657742141C95160026F1FB /* AbstractTestWithControlsOnView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractTestWithControlsOnView.m; sourceTree = "<group>"; };
 		9490248A144089A3006132A5 /* SIStoryInAppReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIStoryInAppReporter.h; sourceTree = "<group>"; };
-		9490248B144089A3006132A5 /* SIStoryInAppReporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIStoryInAppReporter.m; sourceTree = "<group>"; };
+		9490248B144089A3006132A5 /* SIStoryInAppReporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIStoryInAppReporter.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		9490249214408DC4006132A5 /* SIStoryReportTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIStoryReportTableViewController.h; sourceTree = "<group>"; };
-		9490249314408DC4006132A5 /* SIStoryReportTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIStoryReportTableViewController.m; sourceTree = "<group>"; };
+		9490249314408DC4006132A5 /* SIStoryReportTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIStoryReportTableViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		9499DB6B13F017190053BEEA /* SIUIHandlerFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIHandlerFactory.h; sourceTree = "<group>"; };
 		9499DB6C13F017190053BEEA /* SIUIHandlerFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUIHandlerFactory.m; sourceTree = "<group>"; };
 		9499DB7013F017DC0053BEEA /* SIUIAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIAction.h; sourceTree = "<group>"; };
@@ -236,7 +236,7 @@
 		94DC535C14445C5300C3E586 /* SIStorySource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIStorySource.m; sourceTree = "<group>"; };
 		94E375321452962000FB86AA /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		94E3753714544A5000FB86AA /* SIStoryDetailsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIStoryDetailsTableViewController.h; sourceTree = "<group>"; };
-		94E3753814544A5000FB86AA /* SIStoryDetailsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIStoryDetailsTableViewController.m; sourceTree = "<group>"; };
+		94E3753814544A5000FB86AA /* SIStoryDetailsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIStoryDetailsTableViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -857,6 +857,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					DEBUG,
 					DC_DEBUG,
+					SI_DEBUG,
 				);
 				GCC_THUMB_SUPPORT = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -939,6 +940,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
 					DC_DEBUG,
+					SI_DEBUG,
 				);
 				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = "App with tests/TestApp2-Info.plist";

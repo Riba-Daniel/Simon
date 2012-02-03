@@ -7,6 +7,7 @@
 //
 
 #import "FirstViewController.h"
+#import <dUsefulStuff/DCCommon.h>
 
 @implementation FirstViewController
 
@@ -48,6 +49,7 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
+   DC_LOG(@"First view appeared");
     [super viewDidAppear:animated];
 }
 
