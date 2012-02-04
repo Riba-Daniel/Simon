@@ -20,7 +20,7 @@
 
 @implementation SIUIUtils
 
-+(NSArray *) findViewsWithQuery:(NSString *) query error:(NSError **) error {
++(NSArray *) findViewsWithQuery:(NSString *) query {
 	
 	DC_LOG(@"On main thread: %@", DC_PRETTY_BOOL([[NSThread currentThread] isMainThread]));
 	
@@ -31,17 +31,26 @@
 		dispatch_queue_t mainQueue = dispatch_get_main_queue();
 		
 		__block NSArray *views;
+      __block NSException *exception = nil;
       
 		dispatch_sync(mainQueue, ^{
-			views = [SIUIUtils findViewsWithQuery:query error:error];
-			// Retain so data survives GCDs autorelease pools.
-			[*error retain];
-			[views retain];
-			DC_LOG(@"Returning %lu views to background thread", [views count]);
+         @try {
+            views = [SIUIUtils findViewsWithQuery:query];
+            // Retain so data survives GCDs autorelease pools.
+            [views retain];
+            DC_LOG(@"Returning %lu views to background thread", [views count]);
+         }
+         @catch (NSException *e) {
+            // Retain the exception.
+            exception = [e retain];
+         }
 		});
-		
+
+		if (exception != nil) {
+         @throw [exception autorelease];
+      }
+      
 		// Now autorelease and return.
-		[*error autorelease];
 		return [views autorelease];
 	}
 	
@@ -51,26 +60,28 @@
 	
 	// Create an executor and search the tree.
 	DNExecutor *executor = [[[DNExecutor alloc] initWithRootNode: keyWindow] autorelease];
-	return [executor executeQuery: query error:error];
+   NSError *error = nil;
+	NSArray *results = [executor executeQuery: query error:&error];
+   
+   if (results == nil) {
+      @throw [NSException exceptionWithName: SIMON_ERROR_UI_DOMAIN 
+                                     reason: [error localizedFailureReason] 
+                                   userInfo: nil];
+   }
+   
+   return results;
 	
 }
 
-+(UIView *) findViewWithQuery:(NSString *) query error:(NSError **) error {
++(UIView *) findViewWithQuery:(NSString *) query {
 	
-	NSArray *views = [self findViewsWithQuery:query error:error];
-	if (views == nil) {
-      DC_LOG(@"No view found by findViewsWithQuery:error:, returning nil");
-		return nil;
-	}
+	NSArray *views = [self findViewsWithQuery:query];
 	
 	// Validate that we only have a single view.
 	if ([views count] != 1) {
-		[self setError:error 
-					 code:SIUIErrorExpectOnlyOneView
-			errorDomain:SIMON_ERROR_DOMAIN
-	 shortDescription:@"Expected only one view" 
-		 failureReason:[NSString stringWithFormat:@"Using path %@, expected only one view, got %lu instead.", query, [views count]]];
-		return nil;
+      @throw [NSException exceptionWithName: SIMON_ERROR_UI_DOMAIN 
+                                     reason: [NSString stringWithFormat:@"Path %@ should return one view only, got %lu instead.", query, [views count]] 
+                                   userInfo: nil];
 	}
 	
 	return (UIView *) [views objectAtIndex:0];
@@ -116,5 +127,20 @@
 		[self logSubviewsOfView:subview widthPrefix:offset index:subViewIndex++];
 	}
 }
+
++(BOOL) tapUIViewWithQuery:(NSString *) query {
+   UIView<DNNode> *theView = [SIUIUtils findViewWithQuery:query];
+   if (theView == nil) {
+      @throw [NSException exceptionWithName: SIMON_ERROR_UI_DOMAIN 
+                                     reason: [NSString stringWithFormat:@"Cannot tap view, nothing returned for query %@", query] 
+                                   userInfo: nil];
+   } 
+   
+   DC_LOG(@"About to tap %@", theView); 
+   SIUIViewHandler *handler = [[SIUIHandlerFactory handlerFactory] createHandlerForView: theView]; 
+   [handler tap]; 
+   return YES;
+}
+
 
 @end

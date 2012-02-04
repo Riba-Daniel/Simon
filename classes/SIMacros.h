@@ -72,33 +72,22 @@ DC_LOG(@"Started backpack %@", [backpack description]);
  Simple wrapper around dNodi's query facilities which returns a simple object from the display. This will trigger an error if the control is not found, so it is both a find and assert in one wrapper. 
  
  @param path a NSString containing the path to follow.
- @param error a reference to a pointer to a NSError variable. (**NSError).
- @return a single UIView instance or nil if there was an error.
+ @return a single UIView instance.
  */
-#define SIFindView(path, errorRef) [SIUIUtils findViewWithQuery:path error:errorRef]
+#define SIFindView(path) [SIUIUtils findViewWithQuery:path]
 
 /**
  Finds and returns an array of views. This does not assert anything about the views it is looking for.
  
  @param path a NSString containing the path to follow.
- @param error a reference to a pointer to a NSError variable. (**NSError).
- @return a NSArray containing the found views, or nil if there was an error.
+ @return a NSArray containing the found views.
  */
-#define SIFindViews(path, errorRef) [SIUIUtils findViewsWithQuery:path error:errorRef]
+#define SIFindViews(path) [SIUIUtils findViewsWithQuery:path]
 
 /**
  Finds the control specified by the path and taps it. How this tap in implemented is very dependent on the control as some controls are dificult to synthensize a tap for.
  */
-#define SITapControl(path, errorRef) \
-do { \
-   UIView<DNNode> *theView = SIFindView(path, errorRef); \
-   if (theView == nil) { \
-      SIThrowException(@"UI", @"Cannot tap view, nothing returned for query %@", path); \
-   } \
-   DC_LOG(@"About to tap %@", theView); \
-   SIUIViewHandler *handler = [[SIUIHandlerFactory handlerFactory] createHandlerForView: theView]; \
-   [handler tap]; \
-} while (NO)
+#define SITapControl(path) [SIUIUtils tapUIViewWithQuery:path]
 
 /**
  But first some reuseable logic embedded in a macro.

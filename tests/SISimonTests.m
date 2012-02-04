@@ -37,29 +37,29 @@ SIMapStepToSelector(@"abc", dummyMethod);
 }
 
 -(void) testSIFindViewFindsASingleControl {
-	NSError *error = nil;
-	UIView *foundView = SIFindView(@"/UIView", &error);
-	GHAssertNotNil(foundView, @"Nil returned, error: %@", [error localizedFailureReason]);
+	UIView *foundView = SIFindView(@"/UIView");
 	GHAssertEqualObjects(foundView, view, @"Returned view is not a match");
 }
 
 -(void) testSIFindViewReturnsErrors {
-	NSError *error = nil;
-	UIView *foundView = SIFindView(@"/xxx", &error);
-	GHAssertNil(foundView, @"Should not have returned an object");
-	GHAssertNotNil(error, @"Error should not be nil");
+   @try {
+      SIFindView(@"/xxx");
+      GHFail(@"Exception not thrown");
+   }
+   @catch (NSException *exception) {
+      GHAssertEqualStrings(exception.name, SIMON_ERROR_UI_DOMAIN, @"Incorrect domain");
+      GHAssertEqualStrings(exception.reason, @"Path /xxx should return one view only, got 0 instead.", @"Reason incorrect");
+   }
 }
 
 -(void) testSIFindViewsFindsASingleControl {
-	NSError *error = nil;
-	NSArray *foundViews = SIFindViews(@"/UIView", &error);
-	GHAssertNotNil(foundViews, @"Nil returned, error: %@", [error localizedFailureReason]);
+	NSArray *foundViews = SIFindViews(@"/UIView");
+	GHAssertNotNil(foundViews, @"Nil returned");
 	GHAssertEqualObjects([foundViews objectAtIndex:0], view, @"Returned view is not a match");
 }
 
 -(void) testSITapControl {
-	NSError *error = nil;
-	SITapControl(@"/UIView/UIRoundedRectButton", &error);
+	SITapControl(@"/UIView/UIRoundedRectButton");
 	GHAssertTrue(tapped, @"Tapped flag not set. Control tapping may not have worked");
 }
 

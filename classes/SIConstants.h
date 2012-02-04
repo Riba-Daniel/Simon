@@ -38,6 +38,7 @@ typedef enum {
 
 /// Error domain for NSError's that Simon generates.
 #define SIMON_ERROR_DOMAIN @"Simon"
+#define SIMON_ERROR_UI_DOMAIN @"Simon UI"
 
 /**
  Individual error codes.

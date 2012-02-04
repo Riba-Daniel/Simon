@@ -25,30 +25,30 @@
 
 
 -(void) testViewWithQueryFindsSearchBar {
-	
-	NSError *error = nil;
-	UIView<DNNode> *searchBar = [SIUIUtils findViewWithQuery:@"//UISearchBar" error:&error];
-	
-	GHAssertNotNil(searchBar, @"nil returned, error: %@", [error localizedFailureReason]);
+	UIView<DNNode> *searchBar = [SIUIUtils findViewWithQuery:@"//UISearchBar"];
 	GHAssertEqualStrings(searchBar.name, @"UISearchBar", @"Search bar not returned");
 }
 
 -(void) testViewWithQueryGeneratesErrorIfNotFound {
-	
-	NSError *error = nil;
-	UIView<DNNode> *searchBar = [SIUIUtils findViewWithQuery:@"//abc" error:&error];
-	
-	GHAssertNil(searchBar, @"Should not have returned an instance");
-	GHAssertEquals(error.code, SIUIErrorExpectOnlyOneView, @"Incorrect error.");
+	@try {
+      [SIUIUtils findViewWithQuery:@"//abc"];
+      GHFail(@"Exception not thrown");
+   } 
+	@catch (NSException *e) {
+      GHAssertEqualStrings(e.name, SIMON_ERROR_UI_DOMAIN, @"Incorrect domain");
+      GHAssertEqualStrings(e.reason, @"Path //abc should return one view only, got 0 instead.", @"Reason incorrect");
+   }
 }
 
 -(void) testViewWithQueryGeneratesErrorIfTooManyFound {
-	
-	NSError *error = nil;
-	UIView<DNNode> *views = [SIUIUtils findViewWithQuery:@"//UITableViewCell" error:&error];
-	
-	GHAssertNil(views, @"Should not have returned an instance");
-	GHAssertEquals(error.code, SIUIErrorExpectOnlyOneView, @"Incorrect error.");
+	@try {
+      [SIUIUtils findViewWithQuery:@"//UISegmentLabel"];
+      GHFail(@"Exception not thrown");
+   }
+   @catch (NSException *exception) {
+      GHAssertEqualStrings(exception.name, SIMON_ERROR_UI_DOMAIN, @"Incorrect domain");
+      GHAssertEqualStrings(exception.reason, @"Path //UISegmentLabel should return one view only, got 2 instead.", @"Reason incorrect");
+   }
 }
 
 -(void) testUITreeDumpsToConsoleWithoutError {
@@ -56,25 +56,22 @@
 }
 
 -(void) testFindsTableViewRowsUsingViewsWithQuery {
-
-	NSError *error = nil;
-	NSArray *controls = [SIUIUtils findViewsWithQuery:@"//UITableViewCell" error:&error];
+	NSArray *controls = [SIUIUtils findViewsWithQuery:@"//UITableViewCell"];
 	GHAssertTrue([controls count] > 0, @"Nothing returned");
-	GHAssertNotNil(controls, @"nil returned, error: %@", [error localizedFailureReason]);
-	
 	for (UIView *view in controls) {
 		GHAssertTrue([view isKindOfClass:[UITableViewCell class]], @"Non-table view cell found");
 	}
-	
 }
 
 -(void) testViewWithQueryReturnsErrorIfInvalidXPath {
-	
-	NSError *error = nil;
-	UIView<DNNode> *views = [SIUIUtils findViewWithQuery:@"//[" error:&error];
-	
-	GHAssertNil(views, @"Should not have returned an instance");
-	GHAssertEquals(error.code, DNErrorInvalidNodiExpression, @"Incorrect error.");
+	@try {
+      [SIUIUtils findViewWithQuery:@"//["];
+      GHFail(@"Exception not thrown");
+   }
+   @catch (NSException *exception) {
+      GHAssertEqualStrings(exception.name, SIMON_ERROR_UI_DOMAIN, @"Incorrect domain");
+      GHAssertEqualStrings(exception.reason, @"Cannot go from a // to a [ at character index 2", @"Reason incorrect");
+   }
 }
 
 @end
