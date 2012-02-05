@@ -270,11 +270,14 @@ SIMapStepToSelector(@"then get all the controls", getAllControls)
 }
 </pre>
 
-h2. Tapping a control
+h2. Interacting with the UI
 
-This in an initial cut of this and I expect to expand it as I gain understanding of the best wasy to maniplulate a UI. 
+Simon has a number of useful macros for quickly and easily performing actions on your UI.
 
-Tapping a control such as a button can also be accessed through a preprocessor macro which takes a path to the control as a parameter. Here is some example code:
+|_. Macros |_. Description |
+| SITapControl(query) | Taps the UIView returned from the query. For example, a UIButton. |
+| SITapTabBarButtonWithLabel(label) | Searches for a UITabBar, and then locates a button on it with the label. Once found the button is tapped. |
+
 
 <pre lang="objc">
 SIMapStepToSelector(@"then tap the button", tapButton)

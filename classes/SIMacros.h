@@ -98,6 +98,12 @@ DC_LOG(@"Started backpack %@", [backpack description]);
  But first some reuseable logic embedded in a macro.
  */
 
+/// @name Basic Assertions
+
+// These have been written because the others I was modelling off only worked within their respective frameworks. They take two forms. The base form is a simple macro. The *M form takes an addition set of parameters where you can specify a custom message. 
+
+#pragma mark - Basic assertions
+
 #define ASSERTION_EXCEPTION_NAME @"SIAssertionException"
 
 #define SIThrowException(name, msgTemplate, ...) \
@@ -107,13 +113,6 @@ do { \
    DC_LOG(@"Throwing exception with message: %@", _finalMessage); \
    @throw [NSException exceptionWithName:name reason:_finalMessage userInfo:nil]; \
 } while (NO)
-
-
-#pragma mark - Basic assertions
-
-// These have been written because the others I was modelling off only worked within their respective frameworks. They take two forms. The base form is a simple macro. The *M form takes an addition set of parameters where you can specify a custom message. 
-
-/// @name Basic Assertions
 
 /** 
  Generates a failure unconditionally. 
