@@ -102,7 +102,7 @@
 	}
 	
 	UIWindow * window = [UIApplication sharedApplication].keyWindow;
-	NSLog(@"Tree view of current window");
+	NSLog(@"Tree view of current window"); 
 	NSLog(@"====================================================");
 	[self logSubviewsOfView:window widthPrefix:@"" index:0];
 }
@@ -128,7 +128,7 @@
 	}
 }
 
-+(BOOL) tapUIViewWithQuery:(NSString *) query {
++(BOOL) tapViewWithQuery:(NSString *) query {
    UIView<DNNode> *theView = [SIUIUtils findViewWithQuery:query];
    if (theView == nil) {
       @throw [NSException exceptionWithName: SIMON_ERROR_UI_DOMAIN 
@@ -141,6 +141,11 @@
    [handler tap]; 
    return YES;
 }
+
++(void) tapTabBarButtonWithLabel:(NSString *) label {
+   [SIUIUtils tapViewWithQuery:[NSString stringWithFormat:@"//UITabBarButtonLabel[@text='%@']/..", label]];
+}
+
 
 
 @end

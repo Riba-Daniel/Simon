@@ -22,10 +22,20 @@
 
 @implementation SIUIViewHandlerTests
 
+-(void) setUpClass {
+   [super setUpClass];
+   [self setupTestView];
+}
+
+-(void) tearDownClass {
+   [self removeTestView];
+   [super tearDownClass];
+}
+
 -(void) setUp {
 	[super setUp];
 	handler  = [[SIUIViewHandler alloc] init];
-	handler.view = button;
+	handler.view = self.testButton1;
 }
 
 -(void) tearDown {
@@ -35,7 +45,7 @@
 
 -(void) testSynthesizingATap {
 	[handler tap];
-	GHAssertTrue(tapped, @"Tap did not occur as expected");
+	GHAssertTrue(self.testButton1Tapped, @"Tap did not occur as expected");
 }
 
 -(void) testName {
@@ -43,7 +53,7 @@
 }
 
 -(void) testParentName {
-	GHAssertEquals(handler.parentNode, view, @"Incorrect name returned");
+	GHAssertEquals(handler.parentNode, self.testView, @"Incorrect name returned");
 }
 
 -(void) testAttributeQueryFailsWithInvalidPropertyName {
@@ -55,14 +65,15 @@
 }
 
 -(void) testAttributeQueryMatchesNestedPropertyValue {
-	GHAssertTrue([handler hasAttribute:@"titleLabel.text" withValue:@"hello"], @"Handler fails to match attribute data");
+	GHAssertTrue([handler hasAttribute:@"titleLabel.text" withValue:@"hello 1"], @"Handler fails to match attribute data");
 }
 
 -(void) testSubnodes {
-	handler.view = view;
+	handler.view = self.testView;
 	NSArray *subNodes = handler.subNodes;
-	GHAssertEquals([subNodes count], (NSUInteger) 1, @"Should be one sub view");
-	GHAssertEquals([subNodes objectAtIndex:0], button, @"Returned node was not the button.");
+	GHAssertEquals([subNodes count], (NSUInteger) 2, @"Should be one sub view");
+	GHAssertEquals([subNodes objectAtIndex:0], self.testButton1, @"Returned node was not button 1.");
+	GHAssertEquals([subNodes objectAtIndex:1], self.testButton2, @"Returned node was not button 2.");
 }
 
 @end

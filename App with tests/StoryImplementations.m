@@ -23,7 +23,8 @@ SIMapStepToSelector(@"Given the interface is up", givenTheInterfaceIsUp)
    }
    @catch (NSException *exception) {
       // Try switching to the first view and verify again.
-      SITapControl(@"//UITabBarButton[0]");
+      SITapTabBarButtonWithLabel(@"First");
+      //SITapControl(@"//UITabBarButton[0]");
       SIFindView(@"//UILabel[@text='First View']");
    }
    
@@ -41,7 +42,7 @@ SIMapStepToSelector(@"and it should execute on the main thread", executedOnMainT
 
 SIMapStepToSelector(@"then I can switch to the second view", clickTheSecondView)
 -(void) clickTheSecondView {
-   SITapControl(@"//UITabBarButton[1]");
+   SITapTabBarButtonWithLabel(@"Second");
 }
 
 SIMapStepToSelector(@"and see the view labelled (.*)", verifyTheViewIsVisible:)

@@ -41,6 +41,13 @@
  
  @param query the query that will locate the view. Zero or multiple returns from that query will trigger an error.
  */
-+(BOOL) tapUIViewWithQuery:(NSString *) query;
++(BOOL) tapViewWithQuery:(NSString *) query;
+
+/**
+ Searches for a tab bar and taps the button with the passed label.
+ 
+ @name the text label of the icon we want to tap.
+ */
++(void) tapTabBarButtonWithLabel:(NSString *) label;
 
 @end

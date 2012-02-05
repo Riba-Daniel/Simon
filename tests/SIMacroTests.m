@@ -8,6 +8,7 @@
 
 #import <GHUnitIOS/GHUnit.h>
 #import "SIMacros.h"
+#import "AbstractTestWithControlsOnView.h"
 
 #define catchMessage(msg) \
 do { \
@@ -15,13 +16,38 @@ do { \
    [self verifyException:exception description:newMsg]; \
 } while (NO)
 
-@interface SIMacroTests : GHTestCase
+@interface SIMacroTests : AbstractTestWithControlsOnView
+-(void) dummyMethod;
 -(void) verifyException:(NSException *) exception description:(NSString *) expectedDescription;
 @end
 
 @implementation SIMacroTests
 
-#pragma mark - fails tests
+-(void) tearDown {
+   [self removeTestView];
+}
+
+#pragma mark - Mappings
+
+SIMapStepToSelector(@"abc", dummyMethod)
+-(void) testSIMapStepToSelector {
+	
+	// First find the mapping.
+	SIRuntime *runtime = [[[SIRuntime alloc] init] autorelease];
+	NSArray *methods = [runtime allMappingMethodsInRuntime];
+   
+	for (SIStepMapping *mapping in methods) {
+		if (mapping.targetClass == [self class]
+			 && mapping.selector == @selector(dummyMethod)) {
+			// good so exit.
+			return;
+		}
+	}
+	GHFail(@"Mapping has not worked");	
+}
+
+#pragma mark - Fails tests
+
 -(void) testSIFail {
    @try {
       SIFail();
@@ -136,7 +162,7 @@ do { \
    }
 }
 
-#pragma mark- Equals tests
+#pragma mark - Equals tests
 
 -(void) testSIAssertEqualsWithInts {
    SIAssertEquals(5, 5);
@@ -228,11 +254,49 @@ do { \
    }
 }
 
-#pragma mark - Private methods.
+#pragma mark - UI Tests
+
+-(void) testSIFindViewReturnsErrors {
+   [self setupTestView];
+   @try {
+      SIFindView(@"/xxx");
+      GHFail(@"Exception not thrown");
+   }
+   @catch (NSException *exception) {
+      GHAssertEqualStrings(exception.name, SIMON_ERROR_UI_DOMAIN, @"Incorrect domain");
+      GHAssertEqualStrings(exception.reason, @"Path /xxx should return one view only, got 0 instead.", @"Reason incorrect");
+   }
+}
+
+-(void) testSIFindViewFindsASingleControl {
+   [self setupTestView];
+	UIView *foundView = SIFindView(@"//UIRoundedRectButton/UIButtonLabel[@text='hello 1']/..");
+	GHAssertNotNil(foundView, @"Nil returned");
+	GHAssertEqualObjects(foundView, self.testButton1, @"Returned view is not a match");
+}
+
+-(void) testSIFindViewsFindsASingleControl {
+   [self setupTestView];
+	NSArray *foundViews = SIFindViews(@"//UIRoundedRectButton/UIButtonLabel[@text='hello 1']/..");
+	GHAssertNotNil(foundViews, @"Nil returned");
+	GHAssertEqualObjects([foundViews objectAtIndex:0], self.testButton1, @"Returned view is not a match");
+}
+
+-(void) testSITapControl {
+   [self setupTestView];
+	SITapControl(@"//UIRoundedRectButton/UIButtonLabel[@text='hello 1']/..");
+	GHAssertTrue(self.testButton1Tapped, @"Tapped flag not set. Control tapping may not have worked");
+}
+
+
+#pragma mark - Helpers
+
+-(void) dummyMethod {}
 
 -(void) verifyException:(NSException *) exception description:(NSString *) expectedDescription {
    GHAssertEqualStrings(exception.name, @"SIAssertionException", @"Incorrect exception: %@", exception);
    GHAssertEqualStrings(exception.description, expectedDescription, @"Incorrect exception");
 }
+
 
 @end

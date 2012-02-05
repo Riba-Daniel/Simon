@@ -87,7 +87,12 @@ DC_LOG(@"Started backpack %@", [backpack description]);
 /**
  Finds the control specified by the path and taps it. How this tap in implemented is very dependent on the control as some controls are dificult to synthensize a tap for.
  */
-#define SITapControl(path) [SIUIUtils tapUIViewWithQuery:path]
+#define SITapControl(path) [SIUIUtils tapViewWithQuery:path]
+
+/**
+ Locates the tab bar button with the matching label and taps it.
+ */
+#define SITapTabBarButtonWithLabel(label) [SIUIUtils tapTabBarButtonWithLabel:label]
 
 /**
  But first some reuseable logic embedded in a macro.

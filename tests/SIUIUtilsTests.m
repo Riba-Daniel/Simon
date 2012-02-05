@@ -15,21 +15,33 @@
 #import "UIView+Simon.h"
 #import "SIConstants.h"
 #import <dNodi/dNodi.h>
+#import "AbstractTestWithControlsOnView.h"
 
-@interface SIUIUtilsTests : GHTestCase {}
+@interface SIUIUtilsTests : AbstractTestWithControlsOnView {}
 
 @end
 
 @implementation SIUIUtilsTests
 
-
-
--(void) testViewWithQueryFindsSearchBar {
-	UIView<DNNode> *searchBar = [SIUIUtils findViewWithQuery:@"//UISearchBar"];
-	GHAssertEqualStrings(searchBar.name, @"UISearchBar", @"Search bar not returned");
+-(void) setUpClass {
+   [super setUpClass];
+   [self setupTestView];
 }
 
--(void) testViewWithQueryGeneratesErrorIfNotFound {
+-(void) tearDownClass {
+   [self removeTestView];
+   [super tearDownClass];
+}
+
+#pragma mark - findViewWithQuery
+
+-(void) testViewWithQueryFindsButton {
+   SIPrintCurrentWindowTree();
+	UIView<DNNode> *button = [SIUIUtils findViewWithQuery:@"//UIRoundedRectButton/UIButtonLabel[@text='hello 1']/.."];
+	GHAssertEqualStrings(button.name, @"UIRoundedRectButton", @"Search bar not returned");
+}
+
+-(void) testViewWithQueryThrowsIfNotFound {
 	@try {
       [SIUIUtils findViewWithQuery:@"//abc"];
       GHFail(@"Exception not thrown");
@@ -40,7 +52,7 @@
    }
 }
 
--(void) testViewWithQueryGeneratesErrorIfTooManyFound {
+-(void) testViewWithQueryThrowsIfTooManyFound {
 	@try {
       [SIUIUtils findViewWithQuery:@"//UISegmentLabel"];
       GHFail(@"Exception not thrown");
@@ -51,19 +63,7 @@
    }
 }
 
--(void) testUITreeDumpsToConsoleWithoutError {
-	[SIUIUtils logUITree]; 
-}
-
--(void) testFindsTableViewRowsUsingViewsWithQuery {
-	NSArray *controls = [SIUIUtils findViewsWithQuery:@"//UITableViewCell"];
-	GHAssertTrue([controls count] > 0, @"Nothing returned");
-	for (UIView *view in controls) {
-		GHAssertTrue([view isKindOfClass:[UITableViewCell class]], @"Non-table view cell found");
-	}
-}
-
--(void) testViewWithQueryReturnsErrorIfInvalidXPath {
+-(void) testViewWithQueryThrowsIfInvalidXPath {
 	@try {
       [SIUIUtils findViewWithQuery:@"//["];
       GHFail(@"Exception not thrown");
@@ -72,6 +72,29 @@
       GHAssertEqualStrings(exception.name, SIMON_ERROR_UI_DOMAIN, @"Incorrect domain");
       GHAssertEqualStrings(exception.reason, @"Cannot go from a // to a [ at character index 2", @"Reason incorrect");
    }
+}
+
+#pragma mark - findViewsWithQuery
+
+-(void) testFindViewsWithQueryFindsAllButtons {
+	NSArray *controls = [SIUIUtils findViewsWithQuery:@"//UITableViewCell"];
+	GHAssertTrue([controls count] > 0, @"Nothing returned");
+	for (UIView *view in controls) {
+		GHAssertTrue([view isKindOfClass:[UITableViewCell class]], @"Non-table view cell found");
+	}
+}
+
+#pragma mark - logUITree
+
+-(void) testLogUITreeDumpsToConsoleWithoutError {
+	[SIUIUtils logUITree]; 
+}
+
+#pragma mark - taps
+
+-(void) testTapButton1 {
+   [SIUIUtils tapViewWithQuery:@"//UIRoundedRectButton/UIButtonLabel[@text='hello 1']/.."];
+   GHAssertTrue(self.testButton1Tapped, @"Button not tapped");
 }
 
 @end

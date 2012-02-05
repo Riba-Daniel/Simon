@@ -42,7 +42,7 @@ h1. How do I install it?
 First there are two other frameworks you need to download. They are:
 
 * "dUsefulStuff framework":http://github.com/drekka/dUsefulStuff - version 0.0.13+ (Provides some common code I use)
-* "dNodi framework":http://github.com/drekka/dNodi - version 0.3.0+ (Provides simple XPath like queries)
+* "dNodi framework":http://github.com/drekka/dNodi - version 0.3.1+ (Provides simple XPath like queries)
 
 Download the DMG files for each. Open each one and drag and drop the framework files to a directory. Open XCode again, select your target and go to *Build Phases* and *Link Binary With Libraries*. Then click *&#91;+&#93;* to add the static frameworks. Select *Add Other...* and then the framework directory you just copied. 
 
@@ -222,7 +222,7 @@ _CommsBSteps.m_
    SIMapStepToSelector(@"then this class should be able to retrieve (.*) from storage with key (.*)", retrieveString:withKey:)
    -(void) retrieveString:(NSString *) aString withKey:(NSString *) key{
       NSString *value = SIRetrieveFromStory(key);
-      GHAssertEqualStrings(value, aString, @"Strings do not match");
+      SIAssertObjectEquals(value, aString);
    }
 
 @end
@@ -259,22 +259,14 @@ There are some other useful preprocessor macros. One which provides a reference 
 <pre lang="objc">
 SIMapStepToSelector(@"then get the button", getTheButton)
 -(void) getTheButton {
-	NSError *error = nil;
-	UIButton *aButton = (UIButton *) SIFindView(@"/UIView/UIRoundedRectButton", &error);
-	if (aButton == nil) {
-		// Error!
-	}
+	UIButton *aButton = (UIButton *) SIFindView(@"/UIView/UIRoundedRectButton");
 }
 </pre>
 
 <pre lang="objc">
 SIMapStepToSelector(@"then get all the controls", getAllControls)
 -(void) getAllControls {
-	NSError *error = nil;
-	NSArray *controls = SIFindViews(@"/UIView", &error);
-	if (controls == nil) {
-		// Error!
-	}
+	NSArray *controls = SIFindViews(@"/UIView");
 }
 </pre>
 
@@ -287,11 +279,7 @@ Tapping a control such as a button can also be accessed through a preprocessor m
 <pre lang="objc">
 SIMapStepToSelector(@"then tap the button", tapButton)
 -(void) tapButton {
-	NSError *error = nil;
-	SITapControl(@"/UIView/UIRoundedRectButton", &error);
-	if (error != nil) {
-		// Error!
-	}
+	SITapControl(@"/UIView/UIRoundedRectButton");
 }
 </pre>
 

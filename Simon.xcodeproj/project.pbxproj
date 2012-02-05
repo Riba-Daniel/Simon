@@ -82,7 +82,6 @@
 		65FCD12713AF622400A90FCA /* SIRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FCD12513AF622300A90FCA /* SIRuntime.m */; };
 		65FCD12E13B2291400A90FCA /* Unformatted.stories in Resources */ = {isa = PBXBuildFile; fileRef = 65FCD12D13B2245D00A90FCA /* Unformatted.stories */; };
 		65FCD13313B23E9100A90FCA /* SIStepMappingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FCD13013B23E8400A90FCA /* SIStepMappingTests.m */; };
-		9406BD34140D17C500E76E86 /* SISimonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9406BD33140D17C500E76E86 /* SISimonTests.m */; };
 		942F7F66141F9197009F3550 /* SIUIViewHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 942F7F64141F9197009F3550 /* SIUIViewHandler.h */; };
 		942F7F67141F9197009F3550 /* SIUIViewHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 942F7F65141F9197009F3550 /* SIUIViewHandler.m */; };
 		94327D7213E44F9A0003646C /* dNodi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94327D7113E44F9A0003646C /* dNodi.framework */; };
@@ -153,8 +152,8 @@
 		653D0EDE13A783DC00A5AB82 /* Non keyword steps.stories */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Non keyword steps.stories"; sourceTree = "<group>"; };
 		653D0EDF13A783DC00A5AB82 /* Story files.stories */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Story files.stories"; sourceTree = "<group>"; };
 		653D0EF013A7842500A5AB82 /* Simon-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Simon-Prefix.pch"; sourceTree = "<group>"; };
-		653D0EF613A784A500A5AB82 /* OCMock.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OCMock.framework; path = ../tools/OCMock.framework; sourceTree = "<group>"; };
-		653D0EF813A784C100A5AB82 /* GHUnitIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GHUnitIOS.framework; path = "../tools/GHUnit 0.4.28/GHUnitIOS.framework"; sourceTree = "<group>"; };
+		653D0EF613A784A500A5AB82 /* OCMock.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OCMock.framework; path = ../Releases/OCMock/v0.2.0/OCMock.framework; sourceTree = "<group>"; };
+		653D0EF813A784C100A5AB82 /* GHUnitIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GHUnitIOS.framework; path = "../tools/GHUnit 0.4.32/GHUnitIOS.framework"; sourceTree = "<group>"; };
 		6551A97F13AB904900679B94 /* SIStoryRunner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIStoryRunner.h; sourceTree = "<group>"; };
 		6551A98013AB904A00679B94 /* SIStoryRunner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIStoryRunner.m; sourceTree = "<group>"; };
 		6551A98613AB931F00679B94 /* SIStoryRunnerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIStoryRunnerTests.m; sourceTree = "<group>"; };
@@ -211,10 +210,9 @@
 		65FCD12513AF622300A90FCA /* SIRuntime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIRuntime.m; sourceTree = "<group>"; };
 		65FCD12D13B2245D00A90FCA /* Unformatted.stories */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Unformatted.stories; sourceTree = "<group>"; };
 		65FCD13013B23E8400A90FCA /* SIStepMappingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIStepMappingTests.m; sourceTree = "<group>"; };
-		9406BD33140D17C500E76E86 /* SISimonTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SISimonTests.m; sourceTree = "<group>"; };
 		942F7F64141F9197009F3550 /* SIUIViewHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIViewHandler.h; sourceTree = "<group>"; };
 		942F7F65141F9197009F3550 /* SIUIViewHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUIViewHandler.m; sourceTree = "<group>"; };
-		94327D7113E44F9A0003646C /* dNodi.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = dNodi.framework; path = ../Releases/dNodi/v0.3.0/dNodi.framework; sourceTree = "<group>"; };
+		94327D7113E44F9A0003646C /* dNodi.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = dNodi.framework; path = ../Releases/dNodi/v0.3.1/dNodi.framework; sourceTree = "<group>"; };
 		94327D9A13EAD1D50003646C /* TouchSynthesis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchSynthesis.h; sourceTree = "<group>"; };
 		94327D9B13EAD1D50003646C /* TouchSynthesis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchSynthesis.m; sourceTree = "<group>"; };
 		943A3967143DD2D0000D506C /* SIConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIConstants.h; sourceTree = "<group>"; };
@@ -360,7 +358,6 @@
 				65D35BC213A8BA130007A8AD /* NSString+SimonTests.m */,
 				32A9D11214C914B500B0CFBD /* SIMacroTests.m */,
 				65FCD11713ADE3C200A90FCA /* SIRuntimeTests.m */,
-				9406BD33140D17C500E76E86 /* SISimonTests.m */,
 				653D0ED913A783DC00A5AB82 /* SIStoryFileReaderTests.m */,
 				6551A98613AB931F00679B94 /* SIStoryRunnerTests.m */,
 				6583B43013D1CB2E005E13F3 /* Stories */,
@@ -720,7 +717,6 @@
 				65D03BE913BCB95000A3F0FA /* CommsASteps.m in Sources */,
 				65D03BEC13BCBA3100A3F0FA /* CommsBSteps.m in Sources */,
 				659E62A513DB028900ACD34C /* SIUIUtilsTests.m in Sources */,
-				9406BD34140D17C500E76E86 /* SISimonTests.m in Sources */,
 				9465773F141B97B90026F1FB /* SIUIViewHandlerTests.m in Sources */,
 				94657743141C95160026F1FB /* AbstractTestWithControlsOnView.m in Sources */,
 				94AED1541420DB660070D3BB /* SIUIHandlerFactoryTests.m in Sources */,
@@ -850,7 +846,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../Releases/dUsefulStuff/v0.0.13\"",
-					"\"$(SRCROOT)/../Releases/dNodi/v0.3.0\"",
+					"\"$(SRCROOT)/../Releases/dNodi/v0.3.1\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Simon-Prefix.pch";
@@ -871,7 +867,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../Releases/dUsefulStuff/v0.0.13\"",
-					"\"$(SRCROOT)/../Releases/dNodi/v0.3.0\"",
+					"\"$(SRCROOT)/../Releases/dNodi/v0.3.1\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Simon-Prefix.pch";
@@ -886,11 +882,11 @@
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../Releases/OCMock/v0.1.7\"",
+					"\"$(SRCROOT)/../Releases/OCMock/v0.2.0\"",
 					"\"$(SRCROOT)/../tools\"",
-					"\"$(SRCROOT)/../tools/GHUnit 0.4.28\"",
+					"\"$(SRCROOT)/../tools/GHUnit 0.4.32\"",
 					"\"$(SRCROOT)/../Releases/dUsefulStuff/v0.0.13\"",
-					"\"$(SRCROOT)/../Releases/dNodi/v0.3.0\"",
+					"\"$(SRCROOT)/../Releases/dNodi/v0.3.1\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Simon-Prefix.pch";
@@ -907,11 +903,11 @@
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../Releases/OCMock/v0.1.7\"",
+					"\"$(SRCROOT)/../Releases/OCMock/v0.2.0\"",
 					"\"$(SRCROOT)/../tools\"",
-					"\"$(SRCROOT)/../tools/GHUnit 0.4.28\"",
+					"\"$(SRCROOT)/../tools/GHUnit 0.4.32\"",
 					"\"$(SRCROOT)/../Releases/dUsefulStuff/v0.0.13\"",
-					"\"$(SRCROOT)/../Releases/dNodi/v0.3.0\"",
+					"\"$(SRCROOT)/../Releases/dNodi/v0.3.1\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Simon-Prefix.pch";
@@ -930,7 +926,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../Releases/dUsefulStuff/v0.0.13\"",
-					"\"$(SRCROOT)/../Releases/dNodi/v0.3.0\"",
+					"\"$(SRCROOT)/../Releases/dNodi/v0.3.1\"",
 					"\"$(SRCROOT)/../tools/GHUnit 0.4.28\"",
 					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
 				);
@@ -954,7 +950,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../Releases/dUsefulStuff/v0.0.13\"",
-					"\"$(SRCROOT)/../Releases/dNodi/v0.3.0\"",
+					"\"$(SRCROOT)/../Releases/dNodi/v0.3.1\"",
 					"\"$(SRCROOT)/../tools/GHUnit 0.4.28\"",
 					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
 				);
