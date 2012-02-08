@@ -288,6 +288,14 @@ SIMapStepToSelector(@"abc", dummyMethod)
 	GHAssertEquals(self.testViewController.tappedButton, 1, @"Tapped flag not set. Control tapping may not have worked");
 }
 
+-(void) testSITapTabBarItems {
+   [self setupTestView];
+   SITapTabBarButtonWithLabel(@"More");
+	GHAssertEquals(self.testViewController.tappedTabBarItem, 2, @"Tapped flag not set. Control tapping may not have worked");
+   SITapTabBarButtonWithLabel(@"Favorites");
+	GHAssertEquals(self.testViewController.tappedTabBarItem, 1, @"Tapped flag not set. Control tapping may not have worked");
+}
+
 
 #pragma mark - Helpers
 
