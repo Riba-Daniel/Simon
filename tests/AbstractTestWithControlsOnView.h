@@ -7,19 +7,14 @@
 //
 
 #import <GHUnitIOS/GHUnit.h>
+#import "TestViewController.h"
 
 @interface AbstractTestWithControlsOnView : GHTestCase {
 }
 
-@property (retain, nonatomic) UIView *testView;
-@property (nonatomic) BOOL testButton1Tapped;
-@property (nonatomic) BOOL testButton2Tapped;
-@property (retain, nonatomic) UIButton *testButton1;
-@property (retain, nonatomic) UIButton *testButton2;
+@property (retain, nonatomic) TestViewController *testViewController;
 
 -(void) setupTestView;
 -(void) removeTestView;
--(IBAction) button1Tapped:(id) sender;
--(IBAction) button2Tapped:(id) sender;
 
 @end

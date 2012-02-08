@@ -270,22 +270,22 @@ SIMapStepToSelector(@"abc", dummyMethod)
 
 -(void) testSIFindViewFindsASingleControl {
    [self setupTestView];
-	UIView *foundView = SIFindView(@"//UIRoundedRectButton/UIButtonLabel[@text='hello 1']/..");
+	UIView *foundView = SIFindView(@"//UIRoundedRectButton[@titleLabel.text='Button 1']");
 	GHAssertNotNil(foundView, @"Nil returned");
-	GHAssertEqualObjects(foundView, self.testButton1, @"Returned view is not a match");
+	GHAssertEqualObjects(foundView, self.testViewController.button1, @"Returned view is not a match");
 }
 
 -(void) testSIFindViewsFindsASingleControl {
    [self setupTestView];
-	NSArray *foundViews = SIFindViews(@"//UIRoundedRectButton/UIButtonLabel[@text='hello 1']/..");
+	NSArray *foundViews = SIFindViews(@"//UIRoundedRectButton[@titleLabel.text='Button 1']");
 	GHAssertNotNil(foundViews, @"Nil returned");
-	GHAssertEqualObjects([foundViews objectAtIndex:0], self.testButton1, @"Returned view is not a match");
+	GHAssertEqualObjects([foundViews objectAtIndex:0], self.testViewController.button1, @"Returned view is not a match");
 }
 
 -(void) testSITapControl {
    [self setupTestView];
-	SITapControl(@"//UIRoundedRectButton/UIButtonLabel[@text='hello 1']/..");
-	GHAssertTrue(self.testButton1Tapped, @"Tapped flag not set. Control tapping may not have worked");
+	SITapControl(@"//UIRoundedRectButton[@titleLabel.text='Button 1']");
+	GHAssertEquals(self.testViewController.tappedButton, 1, @"Tapped flag not set. Control tapping may not have worked");
 }
 
 

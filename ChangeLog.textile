@@ -4,7 +4,6 @@ Oct 2011
 * Updated dUsefulStuff to obtain access to a better error handling routine.
 * Added KVC complient view attribute analysis.
 * Adding assert macros.
-* Adding better handling of NSInvocation exceptions due to known bug in NSInvocation.
 * Added new in app display of results.
 * Injected SIStepMapping into implementation classes storage area before call so class can access it. Mainly for testing.
 * Revamped output of reporting in log.
@@ -15,6 +14,8 @@ Oct 2011
 * Added a UI based report for viewing results.
 * Lots more doco.
 * Removed passing a file to the backpack startup macro. Not really that useful.
+* Removed dependency on -all_load for categories as latest linkers no longer need it.
+* Got search attributes working with KVC values for UIViews.
 
 h1. Version 0.1.1
 July 2011

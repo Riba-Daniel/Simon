@@ -37,7 +37,7 @@
 
 -(void) testViewWithQueryFindsButton {
    SIPrintCurrentWindowTree();
-	UIView<DNNode> *button = [SIUIUtils findViewWithQuery:@"//UIRoundedRectButton/UIButtonLabel[@text='hello 1']/.."];
+	UIView<DNNode> *button = [SIUIUtils findViewWithQuery:@"//UIRoundedRectButton/UIButtonLabel[@text='Button 1']/.."];
 	GHAssertEqualStrings(button.name, @"UIRoundedRectButton", @"Search bar not returned");
 }
 
@@ -92,9 +92,30 @@
 
 #pragma mark - taps
 
--(void) testTapButton1 {
-   [SIUIUtils tapViewWithQuery:@"//UIRoundedRectButton/UIButtonLabel[@text='hello 1']/.."];
-   GHAssertTrue(self.testButton1Tapped, @"Button not tapped");
+-(void) testTapViewWithQueryTapsButton1 {
+   self.testViewController.tappedButton = 0;
+   SIPrintCurrentWindowTree();
+   [SIUIUtils tapViewWithQuery:@"//UIRoundedRectButton[@titleLabel.text='Button 1']"];
+   GHAssertEquals(self.testViewController.tappedButton, 1, @"Button not tapped");
 }
+
+-(void) testTapViewWithQueryTapsButton2 {
+   self.testViewController.tappedButton = 0;
+   [SIUIUtils tapViewWithQuery:@"//UIRoundedRectButton[@titleLabel.text='Button 2']"];
+   GHAssertEquals(self.testViewController.tappedButton, 2, @"Button not tapped");
+}
+
+-(void) testTapTabBarButtonWithLabelTapsButton1 {
+   self.testViewController.tappedTabBarItem = 0;
+   [SIUIUtils tapTabBarButtonWithLabel:@"Favorites"];
+   GHAssertEquals(self.testViewController.tappedTabBarItem, 1, @"Tab bar item not tapped");
+}
+
+-(void) testTapTabBarButtonWithLabelTapsButton2 {
+   self.testViewController.tappedTabBarItem = 0;
+   [SIUIUtils tapTabBarButtonWithLabel:@"More"];
+   GHAssertEquals(self.testViewController.tappedTabBarItem, 2, @"Tab bar item not tapped");
+}
+
 
 @end
