@@ -42,4 +42,8 @@ $DC_SCRIPTS_DIR/createDocumentation.sh
 # Final assembly.
 $DC_SCRIPTS_DIR/createDmg.sh
 
+# Copy API documentation to web site.
+rm -fr ../drekka.github.com/simon/api/*
+cp -vR build/appledoc/html/* ../drekka.github.com/simon/api
+
 
