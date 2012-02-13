@@ -46,14 +46,14 @@
 /**
  Searches for a button with a specific label taps it.
  
- @name the text label of the icon we want to tap.
+ @param label the text label of the icon we want to tap.
  */
 +(void) tapButtonWithLabel:(NSString *) label;
 
 /**
  Searches for a button with a specific label taps it, then waits for the specified period of time before returning. 
  
- @name the text label of the icon we want to tap.
+ @param label the text label of the icon we want to tap.
  @param seconds how many seconds or partial seconds to wait before continuing the current thread.
  */
 +(void) tapButtonWithLabel:(NSString *) label andWait:(NSTimeInterval) seconds;
@@ -61,7 +61,7 @@
 /**
  Searches for a tab bar and taps the button with the passed label.
  
- @name the text label of the icon we want to tap.
+ @param label the text label of the icon we want to tap.
  */
 +(void) tapTabBarButtonWithLabel:(NSString *) label;
 
