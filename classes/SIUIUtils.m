@@ -149,6 +149,12 @@
    }
 }
 
++(void) tapButtonWithLabel:(NSString *) label andWait:(NSTimeInterval) seconds {
+   [self tapButtonWithLabel:label];
+   [NSThread sleepForTimeInterval:seconds];
+}
+
+
 +(void) tapTabBarButtonWithLabel:(NSString *) label {
    [SIUIUtils tapViewWithQuery:[NSString stringWithFormat:@"//UITabBarButtonLabel[@text='%@']/..", label]];
 }

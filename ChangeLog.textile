@@ -1,5 +1,5 @@
 h1. Version 0.1.3
-Oct 2011
+Feburary 2012
 
 * Updated dUsefulStuff to obtain access to a better error handling routine.
 * Added KVC complient view attribute analysis.
@@ -16,6 +16,8 @@ Oct 2011
 * Removed passing a file to the backpack startup macro. Not really that useful.
 * Removed dependency on -all_load for categories as latest linkers no longer need it.
 * Got search attributes working with KVC values for UIViews.
+* Added basic shortcut macros for tapping.
+* Added custom exceptions.
 
 h1. Version 0.1.1
 July 2011

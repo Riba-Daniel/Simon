@@ -95,6 +95,11 @@ DC_LOG(@"Started backpack %@", [backpack description]);
 #define SITapButtonWithLabel(label) [SIUIUtils tapButtonWithLabel:label]
 
 /**
+ Locates the button with the matching label and taps it, then waits for the specified seconds before continuing.
+ */
+#define SITapButtonWithLabelAndWait(label, seconds) [SIUIUtils tapButtonWithLabel:label andWait:seconds]
+
+/**
  Locates the tab bar button with the matching label and taps it.
  */
 #define SITapTabBarButtonWithLabel(label) [SIUIUtils tapTabBarButtonWithLabel:label]

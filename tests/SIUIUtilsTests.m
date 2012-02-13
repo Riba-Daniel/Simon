@@ -119,11 +119,22 @@
    GHAssertEquals(self.testViewController.tappedTabBarItem, 2, @"Tab bar item not tapped");
 }
 
-
 -(void) testTapButtonWithLabel {
    self.testViewController.tappedButton = 0;
    [SIUIUtils tapButtonWithLabel:@"Button 1"];
    GHAssertEquals(self.testViewController.tappedButton, 1, @"Button not tapped");
+}
+
+-(void) testTapButtonWithLabelAndWait {
+
+   self.testViewController.tappedButton = 0;
+   
+   NSDate *before = [NSDate date];
+   [SIUIUtils tapButtonWithLabel:@"Button 1" andWait:1.0];
+   NSTimeInterval diff = [before timeIntervalSinceNow];
+   
+   GHAssertEquals(self.testViewController.tappedButton, 1, @"Button not tapped");
+   GHAssertLessThan(diff, -1.0, @"Not enough time passed");
 }
 
 

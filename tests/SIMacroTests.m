@@ -308,6 +308,18 @@ SIMapStepToSelector(@"abc", dummyMethod)
    }
 }
 
+-(void) testTapButtonWithLabelAndWait {
+
+   [self setupTestView];
+   
+   NSDate *before = [NSDate date];
+   SITapButtonWithLabelAndWait(@"Button 1",1.0);
+   NSTimeInterval diff = [before timeIntervalSinceNow];
+   
+   GHAssertEquals(self.testViewController.tappedButton, 1, @"Button not tapped");
+   GHAssertLessThan(diff, -1.0, @"Not enough time passed");
+}
+
 -(void) testSITapTabBarItems {
    [self setupTestView];
    SITapTabBarButtonWithLabel(@"More");
