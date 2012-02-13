@@ -9,15 +9,15 @@
 /* Begin PBXBuildFile section */
 		32A9D11014C907BC00B0CFBD /* NSInvocations.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A9D10F14C907BC00B0CFBD /* NSInvocations.m */; };
 		32A9D11314C914B500B0CFBD /* SIMacroTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A9D11214C914B500B0CFBD /* SIMacroTests.m */; };
-		32B0ABF914E8DF780020500E /* SISyntaxException.h in Headers */ = {isa = PBXBuildFile; fileRef = 32B0ABF714E8DF780020500E /* SISyntaxException.h */; };
+		32B0ABF914E8DF780020500E /* SISyntaxException.h in Headers */ = {isa = PBXBuildFile; fileRef = 32B0ABF714E8DF780020500E /* SISyntaxException.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32B0ABFA14E8DF780020500E /* SISyntaxException.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0ABF814E8DF780020500E /* SISyntaxException.m */; };
-		32B0ABFD14E8DFEC0020500E /* SIUINotFoundException.h in Headers */ = {isa = PBXBuildFile; fileRef = 32B0ABFB14E8DFEC0020500E /* SIUINotFoundException.h */; };
+		32B0ABFD14E8DFEC0020500E /* SIUINotFoundException.h in Headers */ = {isa = PBXBuildFile; fileRef = 32B0ABFB14E8DFEC0020500E /* SIUINotFoundException.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32B0ABFE14E8DFEC0020500E /* SIUINotFoundException.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0ABFC14E8DFEC0020500E /* SIUINotFoundException.m */; };
-		32B0AC0714E8E2660020500E /* SIUITooManyFoundException.h in Headers */ = {isa = PBXBuildFile; fileRef = 32B0AC0514E8E2660020500E /* SIUITooManyFoundException.h */; };
+		32B0AC0714E8E2660020500E /* SIUITooManyFoundException.h in Headers */ = {isa = PBXBuildFile; fileRef = 32B0AC0514E8E2660020500E /* SIUITooManyFoundException.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32B0AC0814E8E2660020500E /* SIUITooManyFoundException.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0AC0614E8E2660020500E /* SIUITooManyFoundException.m */; };
-		32B0AC0B14E8E8210020500E /* SIAbstractException.h in Headers */ = {isa = PBXBuildFile; fileRef = 32B0AC0914E8E8210020500E /* SIAbstractException.h */; };
+		32B0AC0B14E8E8210020500E /* SIAbstractException.h in Headers */ = {isa = PBXBuildFile; fileRef = 32B0AC0914E8E8210020500E /* SIAbstractException.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32B0AC0C14E8E8210020500E /* SIAbstractException.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0AC0A14E8E8210020500E /* SIAbstractException.m */; };
-		32B0AC0F14E8EB170020500E /* SIUIException.h in Headers */ = {isa = PBXBuildFile; fileRef = 32B0AC0D14E8EB170020500E /* SIUIException.h */; };
+		32B0AC0F14E8EB170020500E /* SIUIException.h in Headers */ = {isa = PBXBuildFile; fileRef = 32B0AC0D14E8EB170020500E /* SIUIException.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32B0AC1014E8EB170020500E /* SIUIException.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0AC0E14E8EB170020500E /* SIUIException.m */; };
 		32D5D98A14E1357900D29DD5 /* TestView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32D5D98914E1357900D29DD5 /* TestView.xib */; };
 		32D5D98D14E135A300D29DD5 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D5D98C14E135A300D29DD5 /* TestViewController.m */; };
@@ -43,7 +43,7 @@
 		6551A98113AB904A00679B94 /* SIStoryRunner.h in Headers */ = {isa = PBXBuildFile; fileRef = 6551A97F13AB904900679B94 /* SIStoryRunner.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6551A98213AB904A00679B94 /* SIStoryRunner.m in Sources */ = {isa = PBXBuildFile; fileRef = 6551A98013AB904A00679B94 /* SIStoryRunner.m */; };
 		6551A98713AB931F00679B94 /* SIStoryRunnerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6551A98613AB931F00679B94 /* SIStoryRunnerTests.m */; };
-		6551A98A13AC8A5300679B94 /* NSString+Simon.h in Headers */ = {isa = PBXBuildFile; fileRef = 6551A98813AC8A5200679B94 /* NSString+Simon.h */; };
+		6551A98A13AC8A5300679B94 /* NSString+Simon.h in Headers */ = {isa = PBXBuildFile; fileRef = 6551A98813AC8A5200679B94 /* NSString+Simon.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6551A98B13AC8A5300679B94 /* NSString+Simon.m in Sources */ = {isa = PBXBuildFile; fileRef = 6551A98913AC8A5200679B94 /* NSString+Simon.m */; };
 		6551A99313ACDEBE00679B94 /* SISimon.h in Headers */ = {isa = PBXBuildFile; fileRef = 6551A99213ACDEBE00679B94 /* SISimon.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		659E625C13D9BE9600ACD34C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 653D0E9D13A783A500A5AB82 /* UIKit.framework */; };
@@ -94,7 +94,7 @@
 		65FCD12713AF622400A90FCA /* SIRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FCD12513AF622300A90FCA /* SIRuntime.m */; };
 		65FCD12E13B2291400A90FCA /* Unformatted.stories in Resources */ = {isa = PBXBuildFile; fileRef = 65FCD12D13B2245D00A90FCA /* Unformatted.stories */; };
 		65FCD13313B23E9100A90FCA /* SIStepMappingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FCD13013B23E8400A90FCA /* SIStepMappingTests.m */; };
-		942F7F66141F9197009F3550 /* SIUIViewHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 942F7F64141F9197009F3550 /* SIUIViewHandler.h */; };
+		942F7F66141F9197009F3550 /* SIUIViewHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 942F7F64141F9197009F3550 /* SIUIViewHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		942F7F67141F9197009F3550 /* SIUIViewHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 942F7F65141F9197009F3550 /* SIUIViewHandler.m */; };
 		94327D7213E44F9A0003646C /* dNodi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94327D7113E44F9A0003646C /* dNodi.framework */; };
 		94327D7313E451810003646C /* dNodi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94327D7113E44F9A0003646C /* dNodi.framework */; };
@@ -109,9 +109,9 @@
 		9490248D144089A3006132A5 /* SIStoryInAppReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9490248B144089A3006132A5 /* SIStoryInAppReporter.m */; };
 		9490249414408DC4006132A5 /* SIStoryReportTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 9490249214408DC4006132A5 /* SIStoryReportTableViewController.h */; };
 		9490249514408DC4006132A5 /* SIStoryReportTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9490249314408DC4006132A5 /* SIStoryReportTableViewController.m */; };
-		9499DB6D13F017190053BEEA /* SIUIHandlerFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 9499DB6B13F017190053BEEA /* SIUIHandlerFactory.h */; };
+		9499DB6D13F017190053BEEA /* SIUIHandlerFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 9499DB6B13F017190053BEEA /* SIUIHandlerFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9499DB6E13F017190053BEEA /* SIUIHandlerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 9499DB6C13F017190053BEEA /* SIUIHandlerFactory.m */; };
-		9499DB7213F017DC0053BEEA /* SIUIAction.h in Headers */ = {isa = PBXBuildFile; fileRef = 9499DB7013F017DC0053BEEA /* SIUIAction.h */; };
+		9499DB7213F017DC0053BEEA /* SIUIAction.h in Headers */ = {isa = PBXBuildFile; fileRef = 9499DB7013F017DC0053BEEA /* SIUIAction.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		94AED1541420DB660070D3BB /* SIUIHandlerFactoryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 94AED1511420DB070070D3BB /* SIUIHandlerFactoryTests.m */; };
 		94C18E8A1439DBEB00B28D44 /* Macro.stories in Resources */ = {isa = PBXBuildFile; fileRef = 94C18E891439DBEB00B28D44 /* Macro.stories */; };
 		94C18E8D1439DC7B00B28D44 /* MacroStoryImplementations.m in Sources */ = {isa = PBXBuildFile; fileRef = 94C18E8C1439DC7B00B28D44 /* MacroStoryImplementations.m */; };
