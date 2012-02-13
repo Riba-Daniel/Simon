@@ -9,6 +9,8 @@
 #import <GHUnitIOS/GHUnit.h>
 #import "SIMacros.h"
 #import "AbstractTestWithControlsOnView.h"
+#import "SIUITooManyFoundException.h"
+#import "SIUINotFoundException.h"
 
 #define catchMessage(msg) \
 do { \
@@ -262,9 +264,9 @@ SIMapStepToSelector(@"abc", dummyMethod)
       SIFindView(@"/xxx");
       GHFail(@"Exception not thrown");
    }
-   @catch (NSException *exception) {
-      GHAssertEqualStrings(exception.name, SIMON_ERROR_UI_DOMAIN, @"Incorrect domain");
-      GHAssertEqualStrings(exception.reason, @"Path /xxx should return one view only, got 0 instead.", @"Reason incorrect");
+   @catch (SIUINotFoundException *exception) {
+      GHAssertEqualStrings(exception.name, NSStringFromClass([SIUINotFoundException class]), @"Incorrect domain");
+      GHAssertEqualStrings(exception.reason, @"Path /xxx failed to find anything.", @"Reason incorrect");
    }
 }
 
@@ -286,6 +288,24 @@ SIMapStepToSelector(@"abc", dummyMethod)
    [self setupTestView];
 	SITapControl(@"//UIRoundedRectButton[@titleLabel.text='Button 1']");
 	GHAssertEquals(self.testViewController.tappedButton, 1, @"Tapped flag not set. Control tapping may not have worked");
+}
+
+-(void) testSITapButtonWithLabel {
+   [self setupTestView];
+	SITapButtonWithLabel(@"Button 1");
+	GHAssertEquals(self.testViewController.tappedButton, 1, @"Tapped flag not set. Control tapping may not have worked");
+}
+
+-(void) testSITapButtonWithLabelFailsIfButtonNotFound {
+   [self setupTestView];
+   @try {
+      SITapButtonWithLabel(@"Button 3");
+      GHFail(@"Exception not thrown");
+   }
+   @catch (SIUINotFoundException *exception) {
+      GHAssertEqualStrings(exception.name, NSStringFromClass([SIUINotFoundException class]), @"Incorrect domain");
+      GHAssertEqualStrings(exception.reason, @"Button 3 not found.", @"Reason incorrect");
+   }
 }
 
 -(void) testSITapTabBarItems {

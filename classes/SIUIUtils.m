@@ -13,6 +13,9 @@
 #import "SIUIUtils.h"
 #import "UIView+Simon.h"
 #import "SIConstants.h"
+#import "SISyntaxException.h"
+#import "SIUITooManyFoundException.m"
+#import "SIUINotFoundException.h"
 
 @interface SIUIUtils()
 +(void) logSubviewsOfView:(UIView *) view widthPrefix:(NSString *) prefix index:(int) index;
@@ -64,9 +67,7 @@
 	NSArray *results = [executor executeQuery: query error:&error];
    
    if (results == nil) {
-      @throw [NSException exceptionWithName: SIMON_ERROR_UI_DOMAIN 
-                                     reason: [error localizedFailureReason] 
-                                   userInfo: nil];
+      @throw [SISyntaxException exceptionWithReason: [error localizedFailureReason]]; 
    }
    
    return results;
@@ -78,10 +79,11 @@
 	NSArray *views = [self findViewsWithQuery:query];
 	
 	// Validate that we only have a single view.
-	if ([views count] != 1) {
-      @throw [NSException exceptionWithName: SIMON_ERROR_UI_DOMAIN 
-                                     reason: [NSString stringWithFormat:@"Path %@ should return one view only, got %lu instead.", query, [views count]] 
-                                   userInfo: nil];
+	if ([views count] == 0) {
+      @throw [SIUINotFoundException exceptionWithReason: [NSString stringWithFormat:@"Path %@ failed to find anything.", query]];
+	}
+	if ([views count] > 1) {
+      @throw [SIUITooManyFoundException exceptionWithReason: [NSString stringWithFormat:@"Path %@ should return one view only, got %lu instead.", query, [views count]]];
 	}
 	
 	return (UIView *) [views objectAtIndex:0];
@@ -129,17 +131,22 @@
 }
 
 +(BOOL) tapViewWithQuery:(NSString *) query {
+
    UIView<DNNode> *theView = [SIUIUtils findViewWithQuery:query];
-   if (theView == nil) {
-      @throw [NSException exceptionWithName: SIMON_ERROR_UI_DOMAIN 
-                                     reason: [NSString stringWithFormat:@"Cannot tap view, nothing returned for query %@", query] 
-                                   userInfo: nil];
-   } 
    
    DC_LOG(@"About to tap %@", theView); 
    SIUIViewHandler *handler = [[SIUIHandlerFactory handlerFactory] createHandlerForView: theView]; 
    [handler tap]; 
    return YES;
+}
+
++(void) tapButtonWithLabel:(NSString *) label {
+   @try {
+      [SIUIUtils tapViewWithQuery:[NSString stringWithFormat:@"//UIRoundedRectButton[@titleLabel.text='%@']", label]];
+   }
+   @catch (SIUINotFoundException *exception) {
+      @throw [SIUINotFoundException exceptionWithReason:[NSString stringWithFormat:@"%@ not found.", label]];
+   }
 }
 
 +(void) tapTabBarButtonWithLabel:(NSString *) label {

@@ -44,6 +44,13 @@
 +(BOOL) tapViewWithQuery:(NSString *) query;
 
 /**
+ Searches for a buttont with a specific label taps it.
+ 
+ @name the text label of the icon we want to tap.
+ */
++(void) tapButtonWithLabel:(NSString *) label;
+
+/**
  Searches for a tab bar and taps the button with the passed label.
  
  @name the text label of the icon we want to tap.

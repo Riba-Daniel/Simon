@@ -16,6 +16,9 @@
 #import "SIConstants.h"
 #import <dNodi/dNodi.h>
 #import "AbstractTestWithControlsOnView.h"
+#import "SIUITooManyFoundException.h"
+#import "SIUINotFoundException.h"
+#import "SISyntaxException.h"
 
 @interface SIUIUtilsTests : AbstractTestWithControlsOnView {}
 
@@ -46,9 +49,9 @@
       [SIUIUtils findViewWithQuery:@"//abc"];
       GHFail(@"Exception not thrown");
    } 
-	@catch (NSException *e) {
-      GHAssertEqualStrings(e.name, SIMON_ERROR_UI_DOMAIN, @"Incorrect domain");
-      GHAssertEqualStrings(e.reason, @"Path //abc should return one view only, got 0 instead.", @"Reason incorrect");
+	@catch (SIUINotFoundException *exception) {
+      GHAssertEqualStrings(exception.name, NSStringFromClass([SIUINotFoundException class]), @"Incorrect domain");
+      GHAssertEqualStrings(exception.reason, @"Path //abc failed to find anything.", @"Reason incorrect");
    }
 }
 
@@ -57,8 +60,8 @@
       [SIUIUtils findViewWithQuery:@"//UISegmentLabel"];
       GHFail(@"Exception not thrown");
    }
-   @catch (NSException *exception) {
-      GHAssertEqualStrings(exception.name, SIMON_ERROR_UI_DOMAIN, @"Incorrect domain");
+   @catch (SIUITooManyFoundException *exception) {
+      GHAssertEqualStrings(exception.name, NSStringFromClass([SIUITooManyFoundException class]), @"Incorrect domain");
       GHAssertEqualStrings(exception.reason, @"Path //UISegmentLabel should return one view only, got 2 instead.", @"Reason incorrect");
    }
 }
@@ -68,8 +71,8 @@
       [SIUIUtils findViewWithQuery:@"//["];
       GHFail(@"Exception not thrown");
    }
-   @catch (NSException *exception) {
-      GHAssertEqualStrings(exception.name, SIMON_ERROR_UI_DOMAIN, @"Incorrect domain");
+   @catch (SISyntaxException *exception) {
+      GHAssertEqualStrings(exception.name, NSStringFromClass([SISyntaxException class]), @"Incorrect domain");
       GHAssertEqualStrings(exception.reason, @"Cannot go from a // to a [ at character index 2", @"Reason incorrect");
    }
 }
@@ -94,7 +97,6 @@
 
 -(void) testTapViewWithQueryTapsButton1 {
    self.testViewController.tappedButton = 0;
-   SIPrintCurrentWindowTree();
    [SIUIUtils tapViewWithQuery:@"//UIRoundedRectButton[@titleLabel.text='Button 1']"];
    GHAssertEquals(self.testViewController.tappedButton, 1, @"Button not tapped");
 }
@@ -115,6 +117,13 @@
    self.testViewController.tappedTabBarItem = 0;
    [SIUIUtils tapTabBarButtonWithLabel:@"More"];
    GHAssertEquals(self.testViewController.tappedTabBarItem, 2, @"Tab bar item not tapped");
+}
+
+
+-(void) testTapButtonWithLabel {
+   self.testViewController.tappedButton = 0;
+   [SIUIUtils tapButtonWithLabel:@"Button 1"];
+   GHAssertEquals(self.testViewController.tappedButton, 1, @"Button not tapped");
 }
 
 

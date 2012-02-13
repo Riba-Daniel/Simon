@@ -9,6 +9,16 @@
 /* Begin PBXBuildFile section */
 		32A9D11014C907BC00B0CFBD /* NSInvocations.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A9D10F14C907BC00B0CFBD /* NSInvocations.m */; };
 		32A9D11314C914B500B0CFBD /* SIMacroTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A9D11214C914B500B0CFBD /* SIMacroTests.m */; };
+		32B0ABF914E8DF780020500E /* SISyntaxException.h in Headers */ = {isa = PBXBuildFile; fileRef = 32B0ABF714E8DF780020500E /* SISyntaxException.h */; };
+		32B0ABFA14E8DF780020500E /* SISyntaxException.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0ABF814E8DF780020500E /* SISyntaxException.m */; };
+		32B0ABFD14E8DFEC0020500E /* SIUINotFoundException.h in Headers */ = {isa = PBXBuildFile; fileRef = 32B0ABFB14E8DFEC0020500E /* SIUINotFoundException.h */; };
+		32B0ABFE14E8DFEC0020500E /* SIUINotFoundException.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0ABFC14E8DFEC0020500E /* SIUINotFoundException.m */; };
+		32B0AC0714E8E2660020500E /* SIUITooManyFoundException.h in Headers */ = {isa = PBXBuildFile; fileRef = 32B0AC0514E8E2660020500E /* SIUITooManyFoundException.h */; };
+		32B0AC0814E8E2660020500E /* SIUITooManyFoundException.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0AC0614E8E2660020500E /* SIUITooManyFoundException.m */; };
+		32B0AC0B14E8E8210020500E /* SIAbstractException.h in Headers */ = {isa = PBXBuildFile; fileRef = 32B0AC0914E8E8210020500E /* SIAbstractException.h */; };
+		32B0AC0C14E8E8210020500E /* SIAbstractException.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0AC0A14E8E8210020500E /* SIAbstractException.m */; };
+		32B0AC0F14E8EB170020500E /* SIUIException.h in Headers */ = {isa = PBXBuildFile; fileRef = 32B0AC0D14E8EB170020500E /* SIUIException.h */; };
+		32B0AC1014E8EB170020500E /* SIUIException.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0AC0E14E8EB170020500E /* SIUIException.m */; };
 		32D5D98A14E1357900D29DD5 /* TestView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32D5D98914E1357900D29DD5 /* TestView.xib */; };
 		32D5D98D14E135A300D29DD5 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D5D98C14E135A300D29DD5 /* TestViewController.m */; };
 		6527B7CA13A871DF005A912F /* GHUnitIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 653D0EF813A784C100A5AB82 /* GHUnitIOS.framework */; };
@@ -131,6 +141,16 @@
 /* Begin PBXFileReference section */
 		32A9D10F14C907BC00B0CFBD /* NSInvocations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = NSInvocations.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		32A9D11214C914B500B0CFBD /* SIMacroTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIMacroTests.m; sourceTree = "<group>"; };
+		32B0ABF714E8DF780020500E /* SISyntaxException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SISyntaxException.h; sourceTree = "<group>"; };
+		32B0ABF814E8DF780020500E /* SISyntaxException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SISyntaxException.m; sourceTree = "<group>"; };
+		32B0ABFB14E8DFEC0020500E /* SIUINotFoundException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUINotFoundException.h; sourceTree = "<group>"; };
+		32B0ABFC14E8DFEC0020500E /* SIUINotFoundException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUINotFoundException.m; sourceTree = "<group>"; };
+		32B0AC0514E8E2660020500E /* SIUITooManyFoundException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUITooManyFoundException.h; sourceTree = "<group>"; };
+		32B0AC0614E8E2660020500E /* SIUITooManyFoundException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUITooManyFoundException.m; sourceTree = "<group>"; };
+		32B0AC0914E8E8210020500E /* SIAbstractException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIAbstractException.h; sourceTree = "<group>"; };
+		32B0AC0A14E8E8210020500E /* SIAbstractException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIAbstractException.m; sourceTree = "<group>"; };
+		32B0AC0D14E8EB170020500E /* SIUIException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIException.h; sourceTree = "<group>"; };
+		32B0AC0E14E8EB170020500E /* SIUIException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUIException.m; sourceTree = "<group>"; };
 		32D5D98914E1357900D29DD5 /* TestView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestView.xib; sourceTree = "<group>"; };
 		32D5D98B14E135A300D29DD5 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
 		32D5D98C14E135A300D29DD5 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
@@ -280,6 +300,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		32B0ABF514E8DEE20020500E /* Exceptions */ = {
+			isa = PBXGroup;
+			children = (
+				32B0ABF714E8DF780020500E /* SISyntaxException.h */,
+				32B0ABF814E8DF780020500E /* SISyntaxException.m */,
+				32B0AC0514E8E2660020500E /* SIUITooManyFoundException.h */,
+				32B0AC0614E8E2660020500E /* SIUITooManyFoundException.m */,
+				32B0ABFB14E8DFEC0020500E /* SIUINotFoundException.h */,
+				32B0ABFC14E8DFEC0020500E /* SIUINotFoundException.m */,
+				32B0AC0914E8E8210020500E /* SIAbstractException.h */,
+				32B0AC0A14E8E8210020500E /* SIAbstractException.m */,
+				32B0AC0D14E8EB170020500E /* SIUIException.h */,
+				32B0AC0E14E8EB170020500E /* SIUIException.m */,
+			);
+			name = Exceptions;
+			sourceTree = "<group>";
+		};
 		653D0E7F13A782AC00A5AB82 = {
 			isa = PBXGroup;
 			children = (
@@ -323,6 +360,7 @@
 		653D0EB113A783C000A5AB82 /* classes */ = {
 			isa = PBXGroup;
 			children = (
+				32B0ABF514E8DEE20020500E /* Exceptions */,
 				65D03BEF13BE014700A3F0FA /* Categories */,
 				9490249114408D11006132A5 /* Reporting */,
 				652D4E4B13CDD44300633E51 /* SIAppBackpack.h */,
@@ -552,6 +590,11 @@
 				9490249414408DC4006132A5 /* SIStoryReportTableViewController.h in Headers */,
 				94DC535D14445C5300C3E586 /* SIStorySource.h in Headers */,
 				94E3753914544A5100FB86AA /* SIStoryDetailsTableViewController.h in Headers */,
+				32B0ABF914E8DF780020500E /* SISyntaxException.h in Headers */,
+				32B0ABFD14E8DFEC0020500E /* SIUINotFoundException.h in Headers */,
+				32B0AC0714E8E2660020500E /* SIUITooManyFoundException.h in Headers */,
+				32B0AC0B14E8E8210020500E /* SIAbstractException.h in Headers */,
+				32B0AC0F14E8EB170020500E /* SIUIException.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -698,6 +741,11 @@
 				9490249514408DC4006132A5 /* SIStoryReportTableViewController.m in Sources */,
 				94DC535E14445C5300C3E586 /* SIStorySource.m in Sources */,
 				94E3753A14544A5100FB86AA /* SIStoryDetailsTableViewController.m in Sources */,
+				32B0ABFA14E8DF780020500E /* SISyntaxException.m in Sources */,
+				32B0ABFE14E8DFEC0020500E /* SIUINotFoundException.m in Sources */,
+				32B0AC0814E8E2660020500E /* SIUITooManyFoundException.m in Sources */,
+				32B0AC0C14E8E8210020500E /* SIAbstractException.m in Sources */,
+				32B0AC1014E8EB170020500E /* SIUIException.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

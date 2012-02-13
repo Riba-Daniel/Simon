@@ -90,6 +90,11 @@ DC_LOG(@"Started backpack %@", [backpack description]);
 #define SITapControl(path) [SIUIUtils tapViewWithQuery:path]
 
 /**
+ Locates the button with the matching label and taps it.
+ */
+#define SITapButtonWithLabel(label) [SIUIUtils tapButtonWithLabel:label]
+
+/**
  Locates the tab bar button with the matching label and taps it.
  */
 #define SITapTabBarButtonWithLabel(label) [SIUIUtils tapTabBarButtonWithLabel:label]

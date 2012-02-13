@@ -37,8 +37,7 @@ typedef enum {
 } SIKeyword;
 
 /// Error domain for NSError's that Simon generates.
-#define SIMON_ERROR_DOMAIN @"Simon"
-#define SIMON_ERROR_UI_DOMAIN @"Simon UI"
+#define SIMON_ERROR_DOMAIN @"SIError"
 
 /**
  Individual error codes.
@@ -53,9 +52,7 @@ typedef enum {
 	SIErrorNoStoriesFound,
 	SIErrorStoryFailures,
 	SIErrorExceptionCaught,
-	SIErrorUnknownProperty,
-	SIUIErrorExpectAtLeastOneView,
-	SIUIErrorExpectOnlyOneView
+	SIErrorUnknownProperty
 } SIError;
 
 /**
