@@ -29,7 +29,9 @@
          dispatch_sync(mainQueue, ^{
             results = [self allMappingMethodsInRuntime];
          });
-         return results;
+         
+         // return with retain/autorelease to ensure we don't loose the data.
+         return [[results retain] autorelease];
       }
    }
 	
@@ -100,14 +102,17 @@
 	// Search the methods for mapping methods. If found, execute them to retrieve the 
 	// mapping objects and add to the return array.
 	NSString  * prefix = toNSString(SI_STEP_METHOD_PREFIX);
+   Method currMethod;
+   SEL sel;
+   id returnValue;
 	for (size_t j = 0; j < methodCount; ++j) {
 		
-		Method currMethod = methods[j];
-		SEL sel = method_getName(currMethod);	
+      currMethod = methods[j];
+      sel = method_getName(currMethod);	
       
 		if ([NSStringFromSelector(sel) hasPrefix:prefix]) {
 			DC_LOG(@"\tStep method found %@::%@", NSStringFromClass(class), NSStringFromSelector(sel));
-			id returnValue = objc_msgSend(class, sel, class);
+         returnValue = objc_msgSend(class, sel, class);
 			[array addObject:returnValue];
 		}
 	}
