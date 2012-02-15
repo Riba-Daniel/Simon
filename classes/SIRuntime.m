@@ -18,6 +18,19 @@
 @implementation SIRuntime
 
 -(NSArray *) allMappingMethodsInRuntime {
+   
+   // Redirect to the main thread.
+   if (![NSThread isMainThread]) {
+      if (![[NSThread currentThread] isMainThread]) {
+         DC_LOG(@"Redirecting to main thread via GCD");
+         dispatch_queue_t mainQueue = dispatch_get_main_queue();
+         __block NSArray *results = nil;
+         dispatch_sync(mainQueue, ^{
+            results = [self allMappingMethodsInRuntime];
+         });
+         return results;
+      }
+   }
 	
 	int numClasses = objc_getClassList(NULL, 0);
 	DC_LOG(@"Found %i classes in runtime", numClasses);
@@ -30,19 +43,23 @@
 		objc_getClassList(classes, numClasses);
 		DC_LOG(@"When returning classes, %i classes in runtime", numClasses);
 		
+      NSBundle *mainBundle = [NSBundle mainBundle];
+      mainBundle 
+      NSBundle * classBundle;
+      Class nextClass;
 		for (int index = 0; index < numClasses; index++) {
 			
-			Class nextClass = classes[index];
+         nextClass = classes[index];
 			
-			if (nextClass == NULL || nextClass == nil) {
-				DC_LOG(@"%i: NULL/nil class returned, skipping");
+			if (nextClass == NULL || nextClass == nil || class_isMetaClass(nextClass)) {
+				DC_LOG(@"%i: NULL/nil/MetaClass class returned, skipping");
 				continue;
 			}
 			
 			// Ignore if the class does not belong to the application bundle.
 			DC_LOG(@"%i: Checking class: %@", index, NSStringFromClass(nextClass));
-			NSBundle * classBundle = [NSBundle bundleForClass:nextClass];
-			if ([NSBundle mainBundle] != classBundle) {
+			classBundle = [NSBundle bundleForClass:nextClass];
+			if (![mainBundle isEqual: classBundle]) {
 				continue;
 			}
 			

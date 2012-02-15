@@ -8,7 +8,8 @@
 
 #import <dUsefulStuff/DCCommon.h>
 #import "SIUIViewHandler.h"
-#import "TouchSynthesis.h"
+#import "UITouch+Simon.h"
+#import "UIEvent+Simon.h"
 
 @implementation SIUIViewHandler
 

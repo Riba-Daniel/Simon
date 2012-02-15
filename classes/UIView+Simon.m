@@ -9,7 +9,8 @@
 #import <dUsefulStuff/DCCommon.h>
 
 #import "UIView+Simon.h"
-#import "TouchSynthesis.h"
+#import "UITouch+Simon.h"
+#import "UIEvent+Simon.h"
 #import "SIUIHandlerFactory.h"
 
 @interface UIView (_private)

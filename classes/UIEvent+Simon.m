@@ -55,7 +55,7 @@
 
 
 
-@interface UIEvent (Creation)
+@interface UIEvent (_private)
 
 - (id)_initWithEvent:(GSEventProxy *)fp8 touches:(id)fp12;
 
