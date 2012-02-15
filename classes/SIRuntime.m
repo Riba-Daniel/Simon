@@ -12,7 +12,8 @@
 #import "SIRuntime.h"
 
 @interface SIRuntime()
--(BOOL) addMappingMethodsFromClass:(Class) class toArray:(NSMutableArray *) array;
+-(void) addMappingMethodsFromClass:(Class) class toArray:(NSMutableArray *) array;
+-(Class) getUltimateSuperClass:(Class) class; 
 @end
 
 @implementation SIRuntime
@@ -30,19 +31,29 @@
 		objc_getClassList(classes, numClasses);
 		DC_LOG(@"When returning classes, %i classes in runtime", numClasses);
 		
+      Class nextClass;
+      Class superClass;
+      NSBundle * classBundle;
+      NSBundle *mainBundle = [NSBundle mainBundle];
 		for (int index = 0; index < numClasses; index++) {
 			
-			Class nextClass = classes[index];
+         nextClass = classes[index];
 			
-			if (nextClass == NULL || nextClass == nil) {
-				DC_LOG(@"%i: NULL/nil class returned, skipping");
+         // Ignore nulls.
+			if (nextClass == NULL 
+             || nextClass == nil) {
 				continue;
 			}
+         
+         // Check to see where it comes from.
+         superClass = [self getUltimateSuperClass:nextClass];
+         if (nextClass == superClass || superClass != [NSObject class]) {
+            continue;
+         }
 			
 			// Ignore if the class does not belong to the application bundle.
-			DC_LOG(@"%i: Checking class: %@", index, NSStringFromClass(nextClass));
-			NSBundle * classBundle = [NSBundle bundleForClass:nextClass];
-			if ([NSBundle mainBundle] != classBundle) {
+			classBundle = [NSBundle bundleForClass:nextClass];
+			if (![classBundle isEqual:mainBundle]) {
 				continue;
 			}
 			
@@ -58,34 +69,35 @@
 	
 }
 
--(BOOL) addMappingMethodsFromClass:(Class) class toArray:(NSMutableArray *) array {
+-(Class) getUltimateSuperClass:(Class) class {
+   Class parent = class_getSuperclass(class);
+   return parent == nil ? class : [self getUltimateSuperClass:parent];
+}
 
+
+-(void) addMappingMethodsFromClass:(Class) class toArray:(NSMutableArray *) array {
+   
 	// Get the class methods. To get instance methods, drop the object_getClass function.
 	unsigned int methodCount;
 	Method *methods = class_copyMethodList(object_getClass(class), &methodCount);
 	
 	// This handles disposing of the method memory for us even if an exception is thrown. 
-	[NSData dataWithBytesNoCopy:methods
-								length:sizeof(Method) * methodCount];
+	[NSData dataWithBytesNoCopy:methods length:sizeof(Method) * methodCount];
 	
 	// Search the methods for mapping methods. If found, execute them to retrieve the 
 	// mapping objects and add to the return array.
 	NSString  * prefix = toNSString(SI_STEP_METHOD_PREFIX);
-	BOOL methodsFound = NO;
 	for (size_t j = 0; j < methodCount; ++j) {
 		
 		Method currMethod = methods[j];
 		SEL sel = method_getName(currMethod);	
-
+      
 		if ([NSStringFromSelector(sel) hasPrefix:prefix]) {
-			DC_LOG(@"\tStep method found %@ %@", NSStringFromClass(class), NSStringFromSelector(sel));
+			DC_LOG(@"\tStep method found %@::%@", NSStringFromClass(class), NSStringFromSelector(sel));
 			id returnValue = objc_msgSend(class, sel, class);
 			[array addObject:returnValue];
-			methodsFound = YES;
 		}
 	}
-	
-	return methodsFound;
 }
 
 @end
