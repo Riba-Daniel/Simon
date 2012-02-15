@@ -19,6 +19,21 @@
 @implementation SIRuntime
 
 -(NSArray *) allMappingMethodsInRuntime {
+   
+   // Redirect to the main thread.
+   if (![NSThread isMainThread]) {
+      if (![[NSThread currentThread] isMainThread]) {
+         DC_LOG(@"Redirecting to main thread via GCD");
+         dispatch_queue_t mainQueue = dispatch_get_main_queue();
+         __block NSArray *results = nil;
+         dispatch_sync(mainQueue, ^{
+            results = [self allMappingMethodsInRuntime];
+         });
+         
+         // return with retain/autorelease to ensure we don't loose the data.
+         return [[results retain] autorelease];
+      }
+   }
 	
 	int numClasses = objc_getClassList(NULL, 0);
 	DC_LOG(@"Found %i classes in runtime", numClasses);
@@ -87,14 +102,17 @@
 	// Search the methods for mapping methods. If found, execute them to retrieve the 
 	// mapping objects and add to the return array.
 	NSString  * prefix = toNSString(SI_STEP_METHOD_PREFIX);
+   Method currMethod;
+   SEL sel;
+   id returnValue;
 	for (size_t j = 0; j < methodCount; ++j) {
 		
-		Method currMethod = methods[j];
-		SEL sel = method_getName(currMethod);	
+      currMethod = methods[j];
+      sel = method_getName(currMethod);	
       
 		if ([NSStringFromSelector(sel) hasPrefix:prefix]) {
 			DC_LOG(@"\tStep method found %@::%@", NSStringFromClass(class), NSStringFromSelector(sel));
-			id returnValue = objc_msgSend(class, sel, class);
+         returnValue = objc_msgSend(class, sel, class);
 			[array addObject:returnValue];
 		}
 	}
