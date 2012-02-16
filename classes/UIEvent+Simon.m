@@ -93,6 +93,8 @@
 	self = [self _initWithEvent:gsEventProxy touches:[NSSet setWithObject:touch]];
 	if (self != nil)
 	{
+      // following line is inserted to support gesture recognizer  
+      [self _addGestureRecognizersForView:touch.view toTouch:touch];  
 	}
 	return self;
 }
