@@ -16,4 +16,6 @@
 -(IBAction) buttonATapped:(id) sender;
 -(IBAction) buttonBTapped:(id) sender;
 
++(void) logEvent:(UIEvent *) event source:(NSString *) source;
+
 @end
