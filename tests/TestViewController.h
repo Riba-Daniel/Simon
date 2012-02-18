@@ -16,7 +16,13 @@
 
 @property (nonatomic) NSInteger tappedButton;
 @property (nonatomic) NSInteger tappedTabBarItem;
+@property (retain, nonatomic) IBOutlet UISlider *slider;
 
 - (IBAction)buttonTapped:(id)sender;
+
+- (IBAction)sliderChanged:(id)sender;
+- (IBAction)touchDown:(id)sender;
+- (IBAction)touchUpInside:(id)sender;
+- (IBAction)touchDownRepeat:(id)sender;
 
 @end

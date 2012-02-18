@@ -9,6 +9,9 @@
 #import "UITouch+Simon.h"
 
 @implementation UITouch (Simon)
+
+
+@dynamic locationInWindow;
 //
 // initInView:phase:
 //
@@ -28,37 +31,38 @@
 		}
 		else
 		{
-			DC_LOG(@"Locating views frame in the window via it's superview");
-			frameInWindow =
-         [view.window convertRect:view.frame fromView:view.superview];
+			frameInWindow = [view.window convertRect:view.frame fromView:view.superview];
 		}
-		DC_LOG_CGRECT(@"View frame in window", frameInWindow);
+		DC_LOG_CGRECT(@"View frame in window co-rds", frameInWindow);
       
 		_tapCount = 1;
       
 		// Find the deepest view at the cursor position.
-		_locationInWindow = CGPointMake(
+      [self setLocationInWindow:CGPointMake(
                                       frameInWindow.origin.x + 0.5 * frameInWindow.size.width,
-                                      frameInWindow.origin.y + 0.5 * frameInWindow.size.height);
-		DC_LOG(@"Center point %f x %f", _locationInWindow.x, _locationInWindow.y);
-		_previousLocationInWindow = _locationInWindow;
+                                      frameInWindow.origin.y + 0.5 * frameInWindow.size.height)];
 		UIView *target = [view.window hitTest:_locationInWindow withEvent:nil];
 		DC_LOG(@"Deepest target at point: %@", target);
       
 		_window = [view.window retain];
 		_view = [target retain];
 		_phase = UITouchPhaseBegan;
-		_touchFlags._firstTouchForView = 1;
-		_touchFlags._isTap = 1;
-		_timestamp = [NSDate timeIntervalSinceReferenceDate];
+      // Always on.
+		_touchFlags._firstTouchForView = YES;
+		//_touchFlags._isTap = 1;
 	}
 	return self;
 }
 
 - (void)setPhase:(UITouchPhase)phase
 {
+   DC_LOG(@"Phase: %i", phase);
 	_phase = phase;
 	_timestamp = [NSDate timeIntervalSinceReferenceDate];
+}
+
+-(CGPoint) locationInWindow {
+   return _locationInWindow;
 }
 
 - (void)setLocationInWindow:(CGPoint)location
@@ -66,6 +70,7 @@
 	_previousLocationInWindow = _locationInWindow;
 	_locationInWindow = location;
 	_timestamp = [NSDate timeIntervalSinceReferenceDate];
+   DC_LOG(@"Touch point: %i x %i", (int)_locationInWindow.x, (int)_locationInWindow.y);
 }
 
 @end

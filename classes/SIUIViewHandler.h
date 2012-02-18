@@ -6,16 +6,17 @@
 //  Copyright (c) 2011. All rights reserved.
 //
 
-#import <dNodi/DNNode.h>
 #import <UIKit/UIKit.h>
 #import "SIUIAction.h"
+#import <dNodi/DNNode.h>
+#import "SIUIConstants.h"
 
 /**
  Handlers encompass all aspects of dealing with a particular UI widget. This class
  is he base class for handlers and provides the core infrastructure they need. Handlers are automatically allocated
  based on the class of the node dNodi is processing.
  */
-@interface SIUIViewHandler : NSObject <DNNode, SIUIAction>
+@interface SIUIViewHandler : NSObject<DNNode, SIUIAction> 
 
 /**
  The view that is being managed.

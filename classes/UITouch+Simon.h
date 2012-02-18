@@ -13,6 +13,8 @@
  */
 @interface UITouch (Simon)
 
+@property (nonatomic) CGPoint locationInWindow;
+
 /**
  Default constructor.
  
@@ -26,12 +28,5 @@
  @param phase the phase to set.
  */
 - (void)setPhase:(UITouchPhase)phase;
-
-/**
- Sets the location of the touch in the view.
- 
- @param location where in the view.
- */
-- (void)setLocationInWindow:(CGPoint)location;
 
 @end

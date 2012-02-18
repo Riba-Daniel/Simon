@@ -1,3 +1,10 @@
+h1. Version 0.1.3
+Febuary 2012
+
+* Rewrote the class scanning to be more reliable when analysing classes for find mappings.
+* Refactored the touch synthesis code.
+* Added swipe gestures.
+
 h1. Version 0.1.2
 Feburary 2012
 

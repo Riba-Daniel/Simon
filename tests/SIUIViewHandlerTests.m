@@ -43,10 +43,7 @@
 	[super tearDown];	
 }
 
--(void) testSynthesizingATap {
-	[handler tap];
-	GHAssertEquals(self.testViewController.tappedButton, 1, @"Tap did not occur as expected");
-}
+#pragma mark - DNNode test
 
 -(void) testName {
 	GHAssertEqualStrings(handler.name, @"UIRoundedRectButton", @"Incorrect node returned");
@@ -71,10 +68,25 @@
 -(void) testSubnodes {
    handler.view = self.testViewController.view;
 	NSArray *subNodes = handler.subNodes;
-	GHAssertEquals([subNodes count], (NSUInteger) 3, @"Should be one sub view");
+	GHAssertEquals([subNodes count], (NSUInteger) 4, @"Should be one sub view");
 	GHAssertEquals([subNodes objectAtIndex:0], self.testViewController.button1, @"Returned node was not button 1.");
 	GHAssertEquals([subNodes objectAtIndex:1], self.testViewController.button2, @"Returned node was not button 2.");
 	GHAssertEquals([subNodes objectAtIndex:2], self.testViewController.tabBar, @"Returned node was not the tab bar.");
+	GHAssertEquals([subNodes objectAtIndex:3], self.testViewController.slider, @"Returned node was not the slider.");
+}
+
+#pragma mark - SIUIAction tests
+
+-(void) testSynthesizingATap {
+	[handler tap];
+	GHAssertEquals(self.testViewController.tappedButton, 1, @"Tap did not occur as expected");
+}
+
+
+-(void) testSwiping {
+   handler.view = self.testViewController.slider;
+   [handler swipe:SIUISwipeDirectionRight distance:60];
+	GHAssertEquals(round(self.testViewController.slider.value), round(8), @"Swipe did not occur as expected");
 }
 
 @end
