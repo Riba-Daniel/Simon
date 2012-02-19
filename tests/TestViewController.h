@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TestViewController : UIViewController<UITabBarDelegate>
+@interface TestViewController : UIViewController<UITabBarDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @property (retain, nonatomic) IBOutlet UIButton *button1;
 @property (retain, nonatomic) IBOutlet UIButton *button2;
@@ -16,13 +16,11 @@
 
 @property (nonatomic) NSInteger tappedButton;
 @property (nonatomic) NSInteger tappedTabBarItem;
+@property (nonatomic) NSInteger selectedRow;
+
 @property (retain, nonatomic) IBOutlet UISlider *slider;
+@property (retain, nonatomic) IBOutlet UITableView *tableView;
 
 - (IBAction)buttonTapped:(id)sender;
-
-- (IBAction)sliderChanged:(id)sender;
-- (IBAction)touchDown:(id)sender;
-- (IBAction)touchUpInside:(id)sender;
-- (IBAction)touchDownRepeat:(id)sender;
 
 @end

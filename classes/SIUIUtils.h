@@ -77,6 +77,13 @@
 #pragma mark - Swiping
 /// @name Swiping
 
-+(void) swipeViewWithQuery:(NSString *) query inDirection:(SIUISwipeDirection) swipeDirection;
+/**
+ Performs a swipe on the specified control.
+ 
+ @param query a string containing the DNodi query that will locate the control we want to swipe. The swipe will start from the center of that control.
+ @param swipeDirection a value from SIUISwipeDirection indicting the direction to swipe in.
+ @param distance how far to swipe in the given direction.
+ */
++(void) swipeViewWithQuery:(NSString *) query inDirection:(SIUISwipeDirection) swipeDirection forDistance:(int) distance;
 
 @end

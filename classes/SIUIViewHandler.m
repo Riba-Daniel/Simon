@@ -47,18 +47,28 @@
 
 -(void) tap {
 	
-	// Redirect to the main thread.
 	if (![[NSThread currentThread] isMainThread]) {
 		DC_LOG(@"Redirecting to main thread");
-		[self performSelectorOnMainThread:@selector(tap) withObject:nil waitUntilDone:YES];
-		return;
+      dispatch_queue_t mainQ = dispatch_get_main_queue();
+      dispatch_sync(mainQ, ^{
+         [self tap];
+      });
+      return;
 	}
 	
-	DC_LOG(@"Creating touch sequence for control %@", self.view);
-   UITouch * previousTouch = [self touchView:self.view forPhase:UITouchPhaseBegan];
-   [self sendTouch:previousTouch];
+	DC_LOG(@"Creating tap sequence for a %@", NSStringFromClass([self.view class]));
+   
+   UITouch * beginTouch = [self touchView:self.view forPhase:UITouchPhaseBegan];
+   [self sendTouch:beginTouch];
+   
+   UITouch * stationaryTouch = [self touchView:self.view forPhase:UITouchPhaseStationary];
+   [self sendTouch:stationaryTouch];
+
    UITouch * lastTouch = [self touchView:self.view forPhase:UITouchPhaseEnded];
    [self sendTouch:lastTouch];
+
+   // Ensure all events have been delivered.
+   [[NSRunLoop currentRunLoop] runUntilDate:[NSDate date]];
 }
 
 -(void) swipe:(SIUISwipeDirection) swipeDirection distance:(int) distance {
@@ -73,7 +83,7 @@
       return;
 	}
 	
-	DC_LOG(@"Creating swipe sequence for control %@", self.view);
+	DC_LOG(@"Creating swipe sequence for a %@", NSStringFromClass([self.view class]));
 	
    // Calculate the event framerate and interval between events to achieve this.
    CGFloat duration = 0.25;
@@ -107,12 +117,12 @@
    UITouch * lastTouch = [self touchView:self.view forPhase:UITouchPhaseEnded atWindowLocation:previousTouch.locationInWindow];
    [self sendTouch:lastTouch];
 
+   // Ensure all events have been delivered.
+   [[NSRunLoop currentRunLoop] runUntilDate:[NSDate date]];
 }
 
 -(UITouch *) touchView:(UIView *) view forPhase:(UITouchPhase) phase {
-	UITouch *touch = [[[UITouch alloc] initInView:view] autorelease];
-   [touch setPhase:phase];
-   return touch;
+	return [[[UITouch alloc] initInView:view withPhase:phase] autorelease];
 }
 
 -(UITouch *) touchView:(UIView *) view forPhase:(UITouchPhase) phase atWindowLocation:(CGPoint) location {
@@ -122,7 +132,7 @@
 }
 
 -(UIEvent *) sendTouch:(UITouch *) touch {
-   DC_LOG(@"Sending touch event");
+   DC_LOG(@"Sending touch event for phase: %i", touch.phase);
 	UIEvent *event = [[[UIEvent alloc] initWithTouch:touch] autorelease];
 	[[UIApplication sharedApplication] sendEvent:event];
    return event;

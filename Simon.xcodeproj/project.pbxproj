@@ -1114,7 +1114,10 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Simon-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = "";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					DEBUG,
+					DC_DEBUG,
+				);
 				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = "tests/GHUnit-Tests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1134,6 +1137,10 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Simon-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					DEBUG,
+					DC_DEBUG,
+				);
 				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = "tests/GHUnit-Tests-Info.plist";
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";

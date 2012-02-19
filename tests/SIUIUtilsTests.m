@@ -140,7 +140,7 @@
 
 -(void) testSwipeSlider {
    self.testViewController.slider.value = 5;
-   [SIUIUtils swipeViewWithQuery:@"//UISlider" inDirection:SIUISwipeDirectionRight];
+   [SIUIUtils swipeViewWithQuery:@"//UISlider" inDirection:SIUISwipeDirectionRight forDistance: 60];
    
    GHAssertEquals(round(self.testViewController.slider.value), 8.0, @"Slider not swiped.");
 }

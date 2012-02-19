@@ -159,13 +159,13 @@
    [SIUIUtils tapViewWithQuery:[NSString stringWithFormat:@"//UITabBarButtonLabel[@text='%@']/..", label]];
 }
 
-+(void) swipeViewWithQuery:(NSString *) query inDirection:(SIUISwipeDirection) swipeDirection {
++(void) swipeViewWithQuery:(NSString *) query inDirection:(SIUISwipeDirection) swipeDirection forDistance:(int) distance {
 
    UIView<DNNode> *theView = [SIUIUtils findViewWithQuery:query];
    
    DC_LOG(@"About to swipe %@", theView); 
    SIUIViewHandler *handler = [[SIUIHandlerFactory handlerFactory] createHandlerForView: theView]; 
-   [handler swipe:swipeDirection distance:60]; 
+   [handler swipe:swipeDirection distance:distance]; 
    
 }
 

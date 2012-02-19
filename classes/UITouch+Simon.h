@@ -19,14 +19,9 @@
  Default constructor.
  
  @param view the view that the touch will apply to.
- */
-- (id)initInView:(UIView *)view;
-
-/**
- Sets the phase of the touch.
- 
  @param phase the phase to set.
  */
+- (id)initInView:(UIView *)view withPhase:(UITouchPhase) phase;
 - (void)setPhase:(UITouchPhase)phase;
 
 @end

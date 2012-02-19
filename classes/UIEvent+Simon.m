@@ -41,17 +41,17 @@
 
 - (id)initWithTouch:(UITouch *)touch
 {
-	//CGPoint location = [touch locationInView:touch.window];
 	GSEventProxy *gsEventProxy = [[[GSEventProxy alloc] init] autorelease];
-	//gsEventProxy->x1 = location.x;
-	//gsEventProxy->y1 = location.y;
-	//gsEventProxy->x2 = location.x;
-	//gsEventProxy->y2 = location.y;
-	//gsEventProxy->x3 = location.x;
-	//gsEventProxy->y3 = location.y;
-	//gsEventProxy->sizeX = 1.0;
-	//gsEventProxy->sizeY = 1.0;
-   /*
+/*
+	CGPoint location = [touch locationInView:touch.window];
+	gsEventProxy->x1 = location.x;
+	gsEventProxy->y1 = location.y;
+	gsEventProxy->x2 = location.x;
+	gsEventProxy->y2 = location.y;
+   gsEventProxy->x3 = location.x;
+	gsEventProxy->y3 = location.y;
+	gsEventProxy->sizeX = 1.0;
+	gsEventProxy->sizeY = 1.0;
    switch ([touch phase]) {
       case UITouchPhaseEnded:
          gsEventProxy->flags = 0x1010180;
@@ -61,22 +61,26 @@
          gsEventProxy->flags = 0x2010180;
          break;
          
+      case UITouchPhaseStationary:
+         gsEventProxy->flags = 0x4010180;
+         break;
+         
       default:
          // Started
          gsEventProxy->flags = 0x3010180;
          break;
    }
-
 	gsEventProxy->type = 3001;	
-	*/
-	//
+ */
+   
+ //
 	// On SDK versions 3.0 and greater, we need to reallocate as a
 	// UITouchesEvent.
 	//
 	Class touchesEventClass = objc_getClass("UITouchesEvent");
 	if (touchesEventClass && ![[self class] isEqual:touchesEventClass])
 	{
-		DC_LOG(@"Reallocing as a UITouchesEvent");
+      // Reallocated self as a touches event class.
 		[self release];
 		self = [touchesEventClass alloc];
 	}

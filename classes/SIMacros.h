@@ -86,23 +86,41 @@ DC_LOG(@"Started backpack %@", [backpack description]);
 
 /**
  Finds the control specified by the path and taps it. How this tap in implemented is very dependent on the control as some controls are dificult to synthensize a tap for.
+ 
+ @param path a NSString containing the path to the control.
  */
 #define SITapControl(path) [SIUIUtils tapViewWithQuery:path]
 
 /**
  Locates the button with the matching label and taps it.
+ 
+ @param label the text label on the button to find.
  */
 #define SITapButtonWithLabel(label) [SIUIUtils tapButtonWithLabel:label]
 
 /**
  Locates the button with the matching label and taps it, then waits for the specified seconds before continuing.
+
+ @param label the text label on the button to find.
+ @param seconds how many seconds and/or part seconds to wait after tapping the button.
  */
 #define SITapButtonWithLabelAndWait(label, seconds) [SIUIUtils tapButtonWithLabel:label andWait:seconds]
 
 /**
  Locates the tab bar button with the matching label and taps it.
+ 
+ @param label the text label of the tab bar button we want to tap.
  */
 #define SITapTabBarButtonWithLabel(label) [SIUIUtils tapTabBarButtonWithLabel:label]
+
+/**
+ Locates a control based on a path and then performs a swipe on it.
+ 
+ @param path a NSString containing the path to the control on the UI. This should yield only a single control.
+ @param direction a SIUISwipeDirection value which indicates which direction to swipe in.
+ @param distance how far to swipe in display points.
+ */
+#define SISwipeControlInDirectionDistance(path, direction, distance) [SIUIUtils swipeViewWithQuery:path inDirection:direction forDistance: distance]
 
 /**
  But first some reuseable logic embedded in a macro.
