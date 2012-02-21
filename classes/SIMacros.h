@@ -66,7 +66,7 @@ DC_LOG(@"Started backpack %@", [backpack description]);
 /**
  Prints a tree view of the current window's UIView hirachy to the console. This is very useful for debugging and working out queries to location controls. 
  */
-#define SIPrintCurrentWindowTree() [SIUIUtils logUITree]
+#define SIPrintCurrentWindowTree() [[SIUIApplication application] logUITree]
 
 /**
  Simple wrapper around dNodi's query facilities which returns a simple object from the display. This will trigger an error if the control is not found, so it is both a find and assert in one wrapper. 
@@ -74,7 +74,7 @@ DC_LOG(@"Started backpack %@", [backpack description]);
  @param path a NSString containing the path to follow.
  @return a single UIView instance.
  */
-#define SIFindView(path) [SIUIUtils findViewWithQuery:path]
+#define SIFindView(path) [[SIUIApplication application] findViewWithQuery:path]
 
 /**
  Finds and returns an array of views. This does not assert anything about the views it is looking for.
@@ -82,21 +82,21 @@ DC_LOG(@"Started backpack %@", [backpack description]);
  @param path a NSString containing the path to follow.
  @return a NSArray containing the found views.
  */
-#define SIFindViews(path) [SIUIUtils findViewsWithQuery:path]
+#define SIFindViews(path) [[SIUIApplication application] findViewsWithQuery:path]
 
 /**
  Finds the control specified by the path and taps it. How this tap in implemented is very dependent on the control as some controls are dificult to synthensize a tap for.
  
  @param path a NSString containing the path to the control.
  */
-#define SITapControl(path) [SIUIUtils tapViewWithQuery:path]
+#define SITapControl(path) [[SIUIApplication application] tapViewWithQuery:path]
 
 /**
  Locates the button with the matching label and taps it.
  
  @param label the text label on the button to find.
  */
-#define SITapButtonWithLabel(label) [SIUIUtils tapButtonWithLabel:label]
+#define SITapButtonWithLabel(label) [[SIUIApplication application] tapButtonWithLabel:label]
 
 /**
  Locates the button with the matching label and taps it, then waits for the specified seconds before continuing.
@@ -104,14 +104,14 @@ DC_LOG(@"Started backpack %@", [backpack description]);
  @param label the text label on the button to find.
  @param seconds how many seconds and/or part seconds to wait after tapping the button.
  */
-#define SITapButtonWithLabelAndWait(label, seconds) [SIUIUtils tapButtonWithLabel:label andWait:seconds]
+#define SITapButtonWithLabelAndWait(label, seconds) [[SIUIApplication application] tapButtonWithLabel:label andWait:seconds]
 
 /**
  Locates the tab bar button with the matching label and taps it.
  
  @param label the text label of the tab bar button we want to tap.
  */
-#define SITapTabBarButtonWithLabel(label) [SIUIUtils tapTabBarButtonWithLabel:label]
+#define SITapTabBarButtonWithLabel(label) [[SIUIApplication application] tapTabBarButtonWithLabel:label]
 
 /**
  Locates a control based on a path and then performs a swipe on it.
@@ -120,7 +120,7 @@ DC_LOG(@"Started backpack %@", [backpack description]);
  @param direction a SIUISwipeDirection value which indicates which direction to swipe in.
  @param distance how far to swipe in display points.
  */
-#define SISwipeControlInDirectionDistance(path, direction, distance) [SIUIUtils swipeViewWithQuery:path inDirection:direction forDistance: distance]
+#define SISwipeControlInDirectionDistance(path, direction, distance) [[SIUIApplication application] swipeViewWithQuery:path inDirection:direction forDistance: distance]
 
 /**
  But first some reuseable logic embedded in a macro.

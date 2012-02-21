@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		322D46B414F3ADB7008931A9 /* SIEventCannon.h in Headers */ = {isa = PBXBuildFile; fileRef = 322D46B214F3ADB7008931A9 /* SIEventCannon.h */; };
-		322D46B514F3ADB7008931A9 /* SIEventCannon.m in Sources */ = {isa = PBXBuildFile; fileRef = 322D46B314F3ADB7008931A9 /* SIEventCannon.m */; };
 		325683D914EF6CEB00F7C189 /* SIUIConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 325683D814EF6CEB00F7C189 /* SIUIConstants.h */; };
 		32741D7814EB581E00093E0F /* UITouch+Simon.h in Headers */ = {isa = PBXBuildFile; fileRef = 32741D7614EB581E00093E0F /* UITouch+Simon.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32741D7914EB581E00093E0F /* UITouch+Simon.m in Sources */ = {isa = PBXBuildFile; fileRef = 32741D7714EB581E00093E0F /* UITouch+Simon.m */; };
 		32741D7C14EB5BAE00093E0F /* UIEvent+Simon.h in Headers */ = {isa = PBXBuildFile; fileRef = 32741D7A14EB5BAE00093E0F /* UIEvent+Simon.h */; };
 		32741D7D14EB5BAE00093E0F /* UIEvent+Simon.m in Sources */ = {isa = PBXBuildFile; fileRef = 32741D7B14EB5BAE00093E0F /* UIEvent+Simon.m */; };
+		32A3120714F3BAA3007D7327 /* SIUIEventCannon.h in Headers */ = {isa = PBXBuildFile; fileRef = 322D46B214F3ADB7008931A9 /* SIUIEventCannon.h */; };
+		32A3120814F3BAA7007D7327 /* SIUIEventCannon.m in Sources */ = {isa = PBXBuildFile; fileRef = 322D46B314F3ADB7008931A9 /* SIUIEventCannon.m */; };
 		32A9D11014C907BC00B0CFBD /* NSInvocations.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A9D10F14C907BC00B0CFBD /* NSInvocations.m */; };
 		32A9D11314C914B500B0CFBD /* SIMacroTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A9D11214C914B500B0CFBD /* SIMacroTests.m */; };
 		32B0ABF914E8DF780020500E /* SISyntaxException.h in Headers */ = {isa = PBXBuildFile; fileRef = 32B0ABF714E8DF780020500E /* SISyntaxException.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -75,10 +75,10 @@
 		659E628D13D9C0D000ACD34C /* StoryImplementations.m in Sources */ = {isa = PBXBuildFile; fileRef = 659E628C13D9C0D000ACD34C /* StoryImplementations.m */; };
 		659E629113D9C3E200ACD34C /* UIView+Simon.h in Headers */ = {isa = PBXBuildFile; fileRef = 659E628F13D9C3E200ACD34C /* UIView+Simon.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		659E629213D9C3E200ACD34C /* UIView+Simon.m in Sources */ = {isa = PBXBuildFile; fileRef = 659E629013D9C3E200ACD34C /* UIView+Simon.m */; };
-		659E629D13DAFC4000ACD34C /* SIUIUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 659E629B13DAFC4000ACD34C /* SIUIUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		659E629E13DAFC4000ACD34C /* SIUIUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 659E629C13DAFC4000ACD34C /* SIUIUtils.m */; };
+		659E629D13DAFC4000ACD34C /* SIUIApplication.h in Headers */ = {isa = PBXBuildFile; fileRef = 659E629B13DAFC4000ACD34C /* SIUIApplication.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		659E629E13DAFC4000ACD34C /* SIUIApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = 659E629C13DAFC4000ACD34C /* SIUIApplication.m */; };
 		659E629F13DAFEF500ACD34C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 653D0E9D13A783A500A5AB82 /* UIKit.framework */; };
-		659E62A513DB028900ACD34C /* SIUIUtilsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 659E62A213DB027E00ACD34C /* SIUIUtilsTests.m */; };
+		659E62A513DB028900ACD34C /* SIUIApplicationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 659E62A213DB027E00ACD34C /* SIUIApplicationTests.m */; };
 		65A85A6413A86C6600599E31 /* GHUnitIOSTestMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 65A85A6313A86C6600599E31 /* GHUnitIOSTestMain.m */; };
 		65B647CE13B8B11E0083C114 /* SIStoryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 65B647CA13B8AE5E0083C114 /* SIStoryTests.m */; };
 		65D03BD713BA096700A3F0FA /* SIStoryReporter.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D03BD613BA096700A3F0FA /* SIStoryReporter.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -116,8 +116,8 @@
 		9490248D144089A3006132A5 /* SIStoryInAppReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9490248B144089A3006132A5 /* SIStoryInAppReporter.m */; };
 		9490249414408DC4006132A5 /* SIStoryReportTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 9490249214408DC4006132A5 /* SIStoryReportTableViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9490249514408DC4006132A5 /* SIStoryReportTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9490249314408DC4006132A5 /* SIStoryReportTableViewController.m */; };
-		9499DB6D13F017190053BEEA /* SIUIHandlerFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 9499DB6B13F017190053BEEA /* SIUIHandlerFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9499DB6E13F017190053BEEA /* SIUIHandlerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 9499DB6C13F017190053BEEA /* SIUIHandlerFactory.m */; };
+		9499DB6D13F017190053BEEA /* SIUIViewHandlerFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 9499DB6B13F017190053BEEA /* SIUIViewHandlerFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9499DB6E13F017190053BEEA /* SIUIViewHandlerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 9499DB6C13F017190053BEEA /* SIUIViewHandlerFactory.m */; };
 		9499DB7213F017DC0053BEEA /* SIUIAction.h in Headers */ = {isa = PBXBuildFile; fileRef = 9499DB7013F017DC0053BEEA /* SIUIAction.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		94AED1541420DB660070D3BB /* SIUIHandlerFactoryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 94AED1511420DB070070D3BB /* SIUIHandlerFactoryTests.m */; };
 		94C18E8A1439DBEB00B28D44 /* Macro.stories in Resources */ = {isa = PBXBuildFile; fileRef = 94C18E891439DBEB00B28D44 /* Macro.stories */; };
@@ -146,8 +146,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		322D46B214F3ADB7008931A9 /* SIEventCannon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIEventCannon.h; sourceTree = "<group>"; };
-		322D46B314F3ADB7008931A9 /* SIEventCannon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIEventCannon.m; sourceTree = "<group>"; };
+		322D46B214F3ADB7008931A9 /* SIUIEventCannon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIEventCannon.h; sourceTree = "<group>"; };
+		322D46B314F3ADB7008931A9 /* SIUIEventCannon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUIEventCannon.m; sourceTree = "<group>"; };
 		325683D814EF6CEB00F7C189 /* SIUIConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIConstants.h; sourceTree = "<group>"; };
 		32741D7614EB581E00093E0F /* UITouch+Simon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITouch+Simon.h"; sourceTree = "<group>"; };
 		32741D7714EB581E00093E0F /* UITouch+Simon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITouch+Simon.m"; sourceTree = "<group>"; };
@@ -222,9 +222,9 @@
 		659E628C13D9C0D000ACD34C /* StoryImplementations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryImplementations.m; sourceTree = "<group>"; };
 		659E628F13D9C3E200ACD34C /* UIView+Simon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Simon.h"; sourceTree = "<group>"; };
 		659E629013D9C3E200ACD34C /* UIView+Simon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Simon.m"; sourceTree = "<group>"; };
-		659E629B13DAFC4000ACD34C /* SIUIUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIUtils.h; sourceTree = "<group>"; };
-		659E629C13DAFC4000ACD34C /* SIUIUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUIUtils.m; sourceTree = "<group>"; };
-		659E62A213DB027E00ACD34C /* SIUIUtilsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUIUtilsTests.m; sourceTree = "<group>"; };
+		659E629B13DAFC4000ACD34C /* SIUIApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIApplication.h; sourceTree = "<group>"; };
+		659E629C13DAFC4000ACD34C /* SIUIApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUIApplication.m; sourceTree = "<group>"; };
+		659E62A213DB027E00ACD34C /* SIUIApplicationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUIApplicationTests.m; sourceTree = "<group>"; };
 		65A85A6313A86C6600599E31 /* GHUnitIOSTestMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHUnitIOSTestMain.m; sourceTree = "<group>"; };
 		65B647CA13B8AE5E0083C114 /* SIStoryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIStoryTests.m; sourceTree = "<group>"; };
 		65D03BD613BA096700A3F0FA /* SIStoryReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIStoryReporter.h; sourceTree = "<group>"; };
@@ -259,8 +259,8 @@
 		9490248B144089A3006132A5 /* SIStoryInAppReporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIStoryInAppReporter.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		9490249214408DC4006132A5 /* SIStoryReportTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIStoryReportTableViewController.h; sourceTree = "<group>"; };
 		9490249314408DC4006132A5 /* SIStoryReportTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIStoryReportTableViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		9499DB6B13F017190053BEEA /* SIUIHandlerFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIHandlerFactory.h; sourceTree = "<group>"; };
-		9499DB6C13F017190053BEEA /* SIUIHandlerFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUIHandlerFactory.m; sourceTree = "<group>"; };
+		9499DB6B13F017190053BEEA /* SIUIViewHandlerFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIViewHandlerFactory.h; sourceTree = "<group>"; };
+		9499DB6C13F017190053BEEA /* SIUIViewHandlerFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUIViewHandlerFactory.m; sourceTree = "<group>"; };
 		9499DB7013F017DC0053BEEA /* SIUIAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIAction.h; sourceTree = "<group>"; };
 		94AED1511420DB070070D3BB /* SIUIHandlerFactoryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUIHandlerFactoryTests.m; sourceTree = "<group>"; };
 		94C18E891439DBEB00B28D44 /* Macro.stories */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Macro.stories; sourceTree = "<group>"; };
@@ -318,8 +318,8 @@
 			isa = PBXGroup;
 			children = (
 				9499DB7013F017DC0053BEEA /* SIUIAction.h */,
-				9499DB6B13F017190053BEEA /* SIUIHandlerFactory.h */,
-				9499DB6C13F017190053BEEA /* SIUIHandlerFactory.m */,
+				9499DB6B13F017190053BEEA /* SIUIViewHandlerFactory.h */,
+				9499DB6C13F017190053BEEA /* SIUIViewHandlerFactory.m */,
 				942F7F64141F9197009F3550 /* SIUIViewHandler.h */,
 				942F7F65141F9197009F3550 /* SIUIViewHandler.m */,
 			);
@@ -335,8 +335,8 @@
 				32741D7B14EB5BAE00093E0F /* UIEvent+Simon.m */,
 				32F7F3E414EE1E5800F94F65 /* GSEventProxy.h */,
 				32F7F3E514EE1E5800F94F65 /* GSEventProxy.m */,
-				322D46B214F3ADB7008931A9 /* SIEventCannon.h */,
-				322D46B314F3ADB7008931A9 /* SIEventCannon.m */,
+				322D46B214F3ADB7008931A9 /* SIUIEventCannon.h */,
+				322D46B314F3ADB7008931A9 /* SIUIEventCannon.m */,
 			);
 			name = Events;
 			sourceTree = "<group>";
@@ -544,8 +544,8 @@
 			children = (
 				3232A9F514EDFD25002010FF /* Events */,
 				3232A9F414EDFCAC002010FF /* View Handlers */,
-				659E629B13DAFC4000ACD34C /* SIUIUtils.h */,
-				659E629C13DAFC4000ACD34C /* SIUIUtils.m */,
+				659E629B13DAFC4000ACD34C /* SIUIApplication.h */,
+				659E629C13DAFC4000ACD34C /* SIUIApplication.m */,
 				659E628F13D9C3E200ACD34C /* UIView+Simon.h */,
 				659E629013D9C3E200ACD34C /* UIView+Simon.m */,
 				325683D814EF6CEB00F7C189 /* SIUIConstants.h */,
@@ -557,7 +557,7 @@
 			isa = PBXGroup;
 			children = (
 				94AED1511420DB070070D3BB /* SIUIHandlerFactoryTests.m */,
-				659E62A213DB027E00ACD34C /* SIUIUtilsTests.m */,
+				659E62A213DB027E00ACD34C /* SIUIApplicationTests.m */,
 				9465773E141B97B90026F1FB /* SIUIViewHandlerTests.m */,
 			);
 			name = UI;
@@ -609,8 +609,8 @@
 				65D03BEE13BDEBE000A3F0FA /* SIMacros.h in Headers */,
 				652D4E4D13CDD44400633E51 /* SIAppBackpack.h in Headers */,
 				659E629113D9C3E200ACD34C /* UIView+Simon.h in Headers */,
-				659E629D13DAFC4000ACD34C /* SIUIUtils.h in Headers */,
-				9499DB6D13F017190053BEEA /* SIUIHandlerFactory.h in Headers */,
+				659E629D13DAFC4000ACD34C /* SIUIApplication.h in Headers */,
+				9499DB6D13F017190053BEEA /* SIUIViewHandlerFactory.h in Headers */,
 				9499DB7213F017DC0053BEEA /* SIUIAction.h in Headers */,
 				942F7F66141F9197009F3550 /* SIUIViewHandler.h in Headers */,
 				943A3969143DD2D0000D506C /* SIConstants.h in Headers */,
@@ -627,7 +627,7 @@
 				32741D7C14EB5BAE00093E0F /* UIEvent+Simon.h in Headers */,
 				32F7F3E614EE1E5800F94F65 /* GSEventProxy.h in Headers */,
 				325683D914EF6CEB00F7C189 /* SIUIConstants.h in Headers */,
-				322D46B414F3ADB7008931A9 /* SIEventCannon.h in Headers */,
+				32A3120714F3BAA3007D7327 /* SIUIEventCannon.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -765,8 +765,8 @@
 				65D03BDB13BA099700A3F0FA /* SIStoryLogReporter.m in Sources */,
 				652D4E4E13CDD44400633E51 /* SIAppBackpack.m in Sources */,
 				659E629213D9C3E200ACD34C /* UIView+Simon.m in Sources */,
-				659E629E13DAFC4000ACD34C /* SIUIUtils.m in Sources */,
-				9499DB6E13F017190053BEEA /* SIUIHandlerFactory.m in Sources */,
+				659E629E13DAFC4000ACD34C /* SIUIApplication.m in Sources */,
+				9499DB6E13F017190053BEEA /* SIUIViewHandlerFactory.m in Sources */,
 				942F7F67141F9197009F3550 /* SIUIViewHandler.m in Sources */,
 				943A396A143DD2D0000D506C /* SIConstants.m in Sources */,
 				9490248D144089A3006132A5 /* SIStoryInAppReporter.m in Sources */,
@@ -781,7 +781,7 @@
 				32741D7914EB581E00093E0F /* UITouch+Simon.m in Sources */,
 				32741D7D14EB5BAE00093E0F /* UIEvent+Simon.m in Sources */,
 				32F7F3E714EE1E5800F94F65 /* GSEventProxy.m in Sources */,
-				322D46B514F3ADB7008931A9 /* SIEventCannon.m in Sources */,
+				32A3120814F3BAA7007D7327 /* SIUIEventCannon.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -799,7 +799,7 @@
 				65B647CE13B8B11E0083C114 /* SIStoryTests.m in Sources */,
 				65D03BE913BCB95000A3F0FA /* CommsASteps.m in Sources */,
 				65D03BEC13BCBA3100A3F0FA /* CommsBSteps.m in Sources */,
-				659E62A513DB028900ACD34C /* SIUIUtilsTests.m in Sources */,
+				659E62A513DB028900ACD34C /* SIUIApplicationTests.m in Sources */,
 				9465773F141B97B90026F1FB /* SIUIViewHandlerTests.m in Sources */,
 				94657743141C95160026F1FB /* AbstractTestWithControlsOnView.m in Sources */,
 				94AED1541420DB660070D3BB /* SIUIHandlerFactoryTests.m in Sources */,

@@ -7,14 +7,14 @@
 //
 
 #import <GHUnitIOS/GHUnit.h>
-#import "SIUIHandlerFactory.h"
+#import "SIUIViewHandlerFactory.h"
 #import <dUSefulStuff/DCCommon.h>
 #import "SIUIViewHandler.h"
 #import "UIView+Simon.h"
 
 @interface SIUIHandlerFactoryTests : GHTestCase {
 	@private
-	SIUIHandlerFactory *factory;
+	SIUIViewHandlerFactory *factory;
 }
 
 @end
@@ -22,7 +22,7 @@
 @implementation SIUIHandlerFactoryTests
 
 -(void) setUp {
-	factory = [[SIUIHandlerFactory alloc] init];
+	factory = [[SIUIViewHandlerFactory alloc] init];
 }
 
 -(void) tearDown {
@@ -31,15 +31,15 @@
 
 -(void) testCreatesHandler {
 	UIView *view = [[[UIView alloc] init] autorelease];
-	SIUIViewHandler *handler = [factory createHandlerForView:view];
+	SIUIViewHandler *handler = [factory handlerForView:view];
 	GHAssertNotNil(handler, @"Handler not created");
 }
 
 -(void) testReturnsSameInstanceForMultipleRequests {
 	UIView *view1 = [[[UIView alloc] init] autorelease];
 	UIView *view2 = [[[UIView alloc] init] autorelease];
-	SIUIViewHandler *handler1 = [factory createHandlerForView:view1];
-	SIUIViewHandler *handler2 = [factory createHandlerForView:view2];
+	SIUIViewHandler *handler1 = [factory handlerForView:view1];
+	SIUIViewHandler *handler2 = [factory handlerForView:view2];
 	GHAssertEqualObjects(handler1, handler2, @"Different handlers returned when expecting the same instance");
 }
 

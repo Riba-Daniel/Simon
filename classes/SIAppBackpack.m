@@ -12,7 +12,7 @@
 #import <dUsefulStuff/DCDialogs.h>
 #import "SIStoryRunner.h"
 #import "SIConstants.h"
-#import "SIUIHandlerFactory.h"
+#import "SIUIViewHandlerFactory.h"
 
 
 @interface SIAppBackpack()
@@ -77,14 +77,16 @@ static SIStoryRunner *runner;
 	dispatch_async(queue, ^{
 		[self start];
 	});
+   dispatch_release(queue);
+
 }
 
 -(void) shutDown:(NSNotification *) notification  {
 	// Release program hooks and dealloc self.
 	DC_LOG(@"ShutDown requested");
-	
+	   
 	// Shut down the handler factory for UI components.
-	[SIUIHandlerFactory shutDown];
+	[SIUIViewHandlerFactory shutDown];
 	
 	// Remove all notification watching.
 	[[NSNotificationCenter defaultCenter] removeObserver:self];

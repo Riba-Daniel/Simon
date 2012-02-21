@@ -13,9 +13,9 @@
 #import "SIStepMapping.h"
 #import "SIStory.h"
 #import "SIAppBackpack.h"
-#import "SIUIUtils.h"
+#import "SIUIApplication.h"
 #import "SIUIViewHandler.h"
-#import "SIUIHandlerFactory.h"
+#import "SIUIViewHandlerFactory.h"
 #import "UIView+Simon.h"
 
 #pragma mark Internals

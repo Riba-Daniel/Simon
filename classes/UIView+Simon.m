@@ -11,7 +11,7 @@
 #import "UIView+Simon.h"
 #import "UITouch+Simon.h"
 #import "UIEvent+Simon.h"
-#import "SIUIHandlerFactory.h"
+#import "SIUIViewHandlerFactory.h"
 
 @interface UIView (_private)
 @end
@@ -19,19 +19,19 @@
 @implementation UIView (Simon)
 
 -(NSString *)name {
-	return [[SIUIHandlerFactory handlerFactory] createHandlerForView:self].name;
+	return [[SIUIViewHandlerFactory handlerFactory] createHandlerForView:self].name;
 }
 
 -(NSObject<DNNode> *)parentNode {
-	return [[SIUIHandlerFactory handlerFactory] createHandlerForView:self].parentNode;
+	return [[SIUIViewHandlerFactory handlerFactory] createHandlerForView:self].parentNode;
 }
 
 -(NSArray *)subNodes {
-	return [[SIUIHandlerFactory handlerFactory] createHandlerForView:self].subNodes;
+	return [[SIUIViewHandlerFactory handlerFactory] createHandlerForView:self].subNodes;
 }
 
 -(BOOL) hasAttribute:(NSString *)attribute withValue:(id)value {
-	return [[[SIUIHandlerFactory handlerFactory] createHandlerForView:self] hasAttribute:attribute withValue:value];
+	return [[[SIUIViewHandlerFactory handlerFactory] createHandlerForView:self] hasAttribute:attribute withValue:value];
 }
 
 @end
