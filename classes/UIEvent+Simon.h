@@ -20,4 +20,6 @@
  */
 - (id)initWithTouch:(UITouch *)touch;
 
+-(void) updateTimeStamp;
+
 @end

@@ -13,11 +13,13 @@
 @synthesize button1 = button1_;
 @synthesize button2 = button2_;
 @synthesize tabBar = tabBar_;
+@synthesize tapableLabel = tapableLabel_;
 @synthesize tappedButton = tappedButton_;
 @synthesize tappedTabBarItem = tappedTabBarItem_;
 @synthesize slider = slider_;
 @synthesize tableView = tableView_;
 @synthesize selectedRow = selectedRow_;
+@synthesize gestureRecognizerTapped = gestureRecognizerTapped_;
 
 - (void)dealloc {
    self.button1 = nil;
@@ -25,15 +27,16 @@
    self.tabBar = nil;
    self.slider = nil;
    self.tableView = nil;
+   self.tapableLabel = nil;
    [super dealloc];
 }
-
-#pragma mark - View lifecycle
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
    return YES;
 }
+
+#pragma mark - Interface events
 
 - (IBAction)buttonTapped:(id)sender {
    UIView *button = sender;
@@ -45,8 +48,26 @@
    DC_LOG(@"Tab bar item tapped: %i", item.tag);
    self.tappedTabBarItem = item.tag;
 }
+
+-(void) detectedRecognizerTap:(UIGestureRecognizer *)gestureRecognizer {
+   DC_LOG(@"Gesture recognizer tapped");
+   self.gestureRecognizerTapped = YES;
+}
+
+#pragma mark - View
+
+-(void) viewDidLoad {
+   [super viewDidLoad];
+   
+   // Add a gesture recogniser
+   UIGestureRecognizer *gr = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(detectedRecognizerTap:)] autorelease];
+   gr.enabled = YES;
+   [self.tapableLabel addGestureRecognizer:gr];
+}
+
 - (void)viewDidUnload {
    [self setTableView:nil];
+   [self setTapableLabel:nil];
    [super viewDidUnload];
 }
 

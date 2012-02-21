@@ -21,7 +21,6 @@
  @param view the view that the touch will apply to.
  @param phase the phase to set.
  */
-- (id)initInView:(UIView *)view withPhase:(UITouchPhase) phase;
+- (id)initInView:(UIView *)view;
 - (void)setPhase:(UITouchPhase)phase;
-
 @end

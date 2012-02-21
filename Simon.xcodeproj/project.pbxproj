@@ -7,15 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3232A9C914EBE13A002010FF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 653D0E9D13A783A500A5AB82 /* UIKit.framework */; };
-		3232A9CA14EBE13A002010FF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 653D0E8D13A782AD00A5AB82 /* Foundation.framework */; };
-		3232A9CB14EBE13A002010FF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 653D0EA013A783A500A5AB82 /* CoreGraphics.framework */; };
-		3232A9D114EBE13A002010FF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3232A9CF14EBE13A002010FF /* InfoPlist.strings */; };
-		3232A9D314EBE13A002010FF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3232A9D214EBE13A002010FF /* main.m */; };
-		3232A9D714EBE13A002010FF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3232A9D614EBE13A002010FF /* AppDelegate.m */; };
-		3232A9DA14EBE13A002010FF /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3232A9D814EBE13A002010FF /* MainStoryboard.storyboard */; };
-		3232A9DD14EBE13A002010FF /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3232A9DC14EBE13A002010FF /* ViewController.m */; };
-		3232A9E114EBE779002010FF /* dUsefulStuff.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65D09A6313D99C5900D1A74B /* dUsefulStuff.framework */; };
+		322D46B414F3ADB7008931A9 /* SIEventCannon.h in Headers */ = {isa = PBXBuildFile; fileRef = 322D46B214F3ADB7008931A9 /* SIEventCannon.h */; };
+		322D46B514F3ADB7008931A9 /* SIEventCannon.m in Sources */ = {isa = PBXBuildFile; fileRef = 322D46B314F3ADB7008931A9 /* SIEventCannon.m */; };
 		325683D914EF6CEB00F7C189 /* SIUIConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 325683D814EF6CEB00F7C189 /* SIUIConstants.h */; };
 		32741D7814EB581E00093E0F /* UITouch+Simon.h in Headers */ = {isa = PBXBuildFile; fileRef = 32741D7614EB581E00093E0F /* UITouch+Simon.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32741D7914EB581E00093E0F /* UITouch+Simon.m in Sources */ = {isa = PBXBuildFile; fileRef = 32741D7714EB581E00093E0F /* UITouch+Simon.m */; };
@@ -153,16 +146,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		3232A9C714EBE13A002010FF /* EventLogger.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EventLogger.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		3232A9CE14EBE13A002010FF /* EventLogger-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "EventLogger-Info.plist"; sourceTree = "<group>"; };
-		3232A9D014EBE13A002010FF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		3232A9D214EBE13A002010FF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		3232A9D414EBE13A002010FF /* EventLogger-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EventLogger-Prefix.pch"; sourceTree = "<group>"; };
-		3232A9D514EBE13A002010FF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		3232A9D614EBE13A002010FF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		3232A9D914EBE13A002010FF /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		3232A9DB14EBE13A002010FF /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		3232A9DC14EBE13A002010FF /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		322D46B214F3ADB7008931A9 /* SIEventCannon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIEventCannon.h; sourceTree = "<group>"; };
+		322D46B314F3ADB7008931A9 /* SIEventCannon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIEventCannon.m; sourceTree = "<group>"; };
 		325683D814EF6CEB00F7C189 /* SIUIConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIConstants.h; sourceTree = "<group>"; };
 		32741D7614EB581E00093E0F /* UITouch+Simon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITouch+Simon.h"; sourceTree = "<group>"; };
 		32741D7714EB581E00093E0F /* UITouch+Simon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITouch+Simon.m"; sourceTree = "<group>"; };
@@ -205,7 +190,7 @@
 		653D0EDF13A783DC00A5AB82 /* Story files.stories */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Story files.stories"; sourceTree = "<group>"; };
 		653D0EF013A7842500A5AB82 /* Simon-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Simon-Prefix.pch"; sourceTree = "<group>"; };
 		653D0EF613A784A500A5AB82 /* OCMock.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OCMock.framework; path = ../Releases/OCMock/v0.2.0/OCMock.framework; sourceTree = "<group>"; };
-		653D0EF813A784C100A5AB82 /* GHUnitIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GHUnitIOS.framework; path = "../tools/GHUnit 0.4.32/GHUnitIOS.framework"; sourceTree = "<group>"; };
+		653D0EF813A784C100A5AB82 /* GHUnitIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GHUnitIOS.framework; path = "../tools/GHUnit 0.4.33/GHUnitIOS.framework"; sourceTree = "<group>"; };
 		6551A97F13AB904900679B94 /* SIStoryRunner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIStoryRunner.h; sourceTree = "<group>"; };
 		6551A98013AB904A00679B94 /* SIStoryRunner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIStoryRunner.m; sourceTree = "<group>"; };
 		6551A98613AB931F00679B94 /* SIStoryRunnerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIStoryRunnerTests.m; sourceTree = "<group>"; };
@@ -287,17 +272,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		3232A9C414EBE13A002010FF /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3232A9C914EBE13A002010FF /* UIKit.framework in Frameworks */,
-				3232A9CA14EBE13A002010FF /* Foundation.framework in Frameworks */,
-				3232A9CB14EBE13A002010FF /* CoreGraphics.framework in Frameworks */,
-				3232A9E114EBE779002010FF /* dUsefulStuff.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		653D0E8713A782AD00A5AB82 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -340,30 +314,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3232A9CC14EBE13A002010FF /* EventLogger */ = {
-			isa = PBXGroup;
-			children = (
-				3232A9D514EBE13A002010FF /* AppDelegate.h */,
-				3232A9D614EBE13A002010FF /* AppDelegate.m */,
-				3232A9D814EBE13A002010FF /* MainStoryboard.storyboard */,
-				3232A9DB14EBE13A002010FF /* ViewController.h */,
-				3232A9DC14EBE13A002010FF /* ViewController.m */,
-				3232A9CD14EBE13A002010FF /* Supporting Files */,
-			);
-			path = EventLogger;
-			sourceTree = "<group>";
-		};
-		3232A9CD14EBE13A002010FF /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				3232A9CE14EBE13A002010FF /* EventLogger-Info.plist */,
-				3232A9CF14EBE13A002010FF /* InfoPlist.strings */,
-				3232A9D214EBE13A002010FF /* main.m */,
-				3232A9D414EBE13A002010FF /* EventLogger-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		3232A9F414EDFCAC002010FF /* View Handlers */ = {
 			isa = PBXGroup;
 			children = (
@@ -385,6 +335,8 @@
 				32741D7B14EB5BAE00093E0F /* UIEvent+Simon.m */,
 				32F7F3E414EE1E5800F94F65 /* GSEventProxy.h */,
 				32F7F3E514EE1E5800F94F65 /* GSEventProxy.m */,
+				322D46B214F3ADB7008931A9 /* SIEventCannon.h */,
+				322D46B314F3ADB7008931A9 /* SIEventCannon.m */,
 			);
 			name = Events;
 			sourceTree = "<group>";
@@ -416,7 +368,6 @@
 				6583B3EC13CF2220005E13F3 /* ReadMe.textile */,
 				659E625F13D9BE9600ACD34C /* App with tests */,
 				653D0EB113A783C000A5AB82 /* classes */,
-				3232A9CC14EBE13A002010FF /* EventLogger */,
 				653D0E8C13A782AD00A5AB82 /* Frameworks */,
 				653D0E8B13A782AD00A5AB82 /* Products */,
 				653D0ED413A783DC00A5AB82 /* tests */,
@@ -429,7 +380,6 @@
 				653D0E8A13A782AD00A5AB82 /* libSimon.a */,
 				653D0E9B13A783A500A5AB82 /* Unit tests.app */,
 				659E625A13D9BE9600ACD34C /* App with tests.app */,
-				3232A9C714EBE13A002010FF /* EventLogger.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -677,29 +627,13 @@
 				32741D7C14EB5BAE00093E0F /* UIEvent+Simon.h in Headers */,
 				32F7F3E614EE1E5800F94F65 /* GSEventProxy.h in Headers */,
 				325683D914EF6CEB00F7C189 /* SIUIConstants.h in Headers */,
+				322D46B414F3ADB7008931A9 /* SIEventCannon.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		3232A9C614EBE13A002010FF /* EventLogger */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3232A9DE14EBE13A002010FF /* Build configuration list for PBXNativeTarget "EventLogger" */;
-			buildPhases = (
-				3232A9C314EBE13A002010FF /* Sources */,
-				3232A9C414EBE13A002010FF /* Frameworks */,
-				3232A9C514EBE13A002010FF /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = EventLogger;
-			productName = EventLogger;
-			productReference = 3232A9C714EBE13A002010FF /* EventLogger.app */;
-			productType = "com.apple.product-type.application";
-		};
 		653D0E8913A782AD00A5AB82 /* Simon */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 653D0E9413A782AD00A5AB82 /* Build configuration list for PBXNativeTarget "Simon" */;
@@ -777,21 +711,11 @@
 				653D0E8913A782AD00A5AB82 /* Simon */,
 				653D0E9A13A783A500A5AB82 /* Unit tests */,
 				659E625913D9BE9600ACD34C /* App with tests */,
-				3232A9C614EBE13A002010FF /* EventLogger */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		3232A9C514EBE13A002010FF /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3232A9D114EBE13A002010FF /* InfoPlist.strings in Resources */,
-				3232A9DA14EBE13A002010FF /* MainStoryboard.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		653D0E9913A783A500A5AB82 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -827,16 +751,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		3232A9C314EBE13A002010FF /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3232A9D314EBE13A002010FF /* main.m in Sources */,
-				3232A9D714EBE13A002010FF /* AppDelegate.m in Sources */,
-				3232A9DD14EBE13A002010FF /* ViewController.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		653D0E8613A782AD00A5AB82 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -867,6 +781,7 @@
 				32741D7914EB581E00093E0F /* UITouch+Simon.m in Sources */,
 				32741D7D14EB5BAE00093E0F /* UIEvent+Simon.m in Sources */,
 				32F7F3E714EE1E5800F94F65 /* GSEventProxy.m in Sources */,
+				322D46B514F3ADB7008931A9 /* SIEventCannon.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -923,22 +838,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		3232A9CF14EBE13A002010FF /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3232A9D014EBE13A002010FF /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		3232A9D814EBE13A002010FF /* MainStoryboard.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3232A9D914EBE13A002010FF /* en */,
-			);
-			name = MainStoryboard.storyboard;
-			sourceTree = "<group>";
-		};
 		659E626213D9BE9600ACD34C /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -966,50 +865,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		3232A9DF14EBE13A002010FF /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_ARC = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../Releases/dUsefulStuff/v0.0.14\"",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "EventLogger/EventLogger-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-					DC_DEBUG,
-				);
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				INFOPLIST_FILE = "EventLogger/EventLogger-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = app;
-			};
-			name = Debug;
-		};
-		3232A9E014EBE13A002010FF /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_ARC = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../Releases/dUsefulStuff/v0.0.14\"",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "EventLogger/EventLogger-Prefix.pch";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				INFOPLIST_FILE = "EventLogger/EventLogger-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
-				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
 		653D0E9213A782AD00A5AB82 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1108,7 +963,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../Releases/OCMock/v0.2.0\"",
-					"\"$(SRCROOT)/../tools/GHUnit 0.4.32\"",
+					"\"$(SRCROOT)/../tools/GHUnit 0.4.33\"",
 					"\"$(SRCROOT)/../Releases/dUsefulStuff/v0.0.14\"",
 					"\"$(SRCROOT)/../Releases/dNodi/v0.3.3\"",
 				);
@@ -1131,7 +986,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../Releases/OCMock/v0.2.0\"",
-					"\"$(SRCROOT)/../tools/GHUnit 0.4.32\"",
+					"\"$(SRCROOT)/../tools/GHUnit 0.4.33\"",
 					"\"$(SRCROOT)/../Releases/dUsefulStuff/v0.0.14\"",
 					"\"$(SRCROOT)/../Releases/dNodi/v0.3.3\"",
 				);
@@ -1195,15 +1050,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3232A9DE14EBE13A002010FF /* Build configuration list for PBXNativeTarget "EventLogger" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3232A9DF14EBE13A002010FF /* Debug */,
-				3232A9E014EBE13A002010FF /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		653D0E8413A782AC00A5AB82 /* Build configuration list for PBXProject "Simon" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

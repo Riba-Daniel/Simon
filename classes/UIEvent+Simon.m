@@ -9,89 +9,50 @@
 #import "UIEvent+Simon.h"
 #import "GSEventProxy.h"
 
-//
-// PublicEvent
-//
-// A dummy class used to gain access to UIEvent's private member variables.
-// If UIEvent changes at all, this will break.
-//
-/*
-@interface PublicEvent : NSObject
-{
-@public
-   GSEventProxy           *_event;
-   NSTimeInterval          _timestamp;
-   NSMutableSet           *_touches;
-   CFMutableDictionaryRef  _keyedTouches;
-}
-@end
-
-@implementation PublicEvent
-@end
-*/
-
-
 @interface UIEvent (_private)
-//-(void) _addGestureRecognizersForView:(UIView *) view toTouch:(UITouch *) touch;
-- (id)_initWithEvent:(GSEventProxy *)fp8 touches:(id)fp12;
-
+-(id) _initWithEvent:(GSEventProxy *)eventProxy touches:(NSSet *) touches;
+-(BOOL) _addGestureRecognizersForView:(id)view toTouch:(id)touch currentTouchMap:(NSDictionary *)arg3 newTouchMap:(NSDictionary *)arg4;
+-(void) _setTimestamp:(NSTimeInterval) timeStamp;
 @end
 
 @implementation UIEvent (Simon)
 
 - (id)initWithTouch:(UITouch *)touch
 {
-	GSEventProxy *gsEventProxy = [[[GSEventProxy alloc] init] autorelease];
-/*
-	CGPoint location = [touch locationInView:touch.window];
-	gsEventProxy->x1 = location.x;
-	gsEventProxy->y1 = location.y;
-	gsEventProxy->x2 = location.x;
-	gsEventProxy->y2 = location.y;
+   GSEventProxy *gsEventProxy = [[[GSEventProxy alloc] init] autorelease];
+   /*
+    CGPoint location = [touch locationInView:touch.window];
+   gsEventProxy->x = location.x;
+   gsEventProxy->y = location.y;
+   gsEventProxy->x1 = location.x + 10;
+   gsEventProxy->y1 = location.y + 10;
+   gsEventProxy->x2 = location.x + 10;
+   gsEventProxy->y2 = location.y + 10;
    gsEventProxy->x3 = location.x;
-	gsEventProxy->y3 = location.y;
-	gsEventProxy->sizeX = 1.0;
-	gsEventProxy->sizeY = 1.0;
-   switch ([touch phase]) {
-      case UITouchPhaseEnded:
-         gsEventProxy->flags = 0x1010180;
-         break;
-
-      case UITouchPhaseMoved:
-         gsEventProxy->flags = 0x2010180;
-         break;
-         
-      case UITouchPhaseStationary:
-         gsEventProxy->flags = 0x4010180;
-         break;
-         
-      default:
-         // Started
-         gsEventProxy->flags = 0x3010180;
-         break;
-   }
-	gsEventProxy->type = 3001;	
- */
-   
- //
+   gsEventProxy->y3 = location.y;
+   gsEventProxy->sizeX = 1.0;
+   gsEventProxy->sizeY = 1.0;
+   gsEventProxy->flags = ([touch phase] == UITouchPhaseEnded) ? 0x1010180 : 0x3010180;
+   gsEventProxy->type = 3001;       
+   */
 	// On SDK versions 3.0 and greater, we need to reallocate as a
 	// UITouchesEvent.
-	//
-	Class touchesEventClass = objc_getClass("UITouchesEvent");
-	if (touchesEventClass && ![[self class] isEqual:touchesEventClass])
-	{
-      // Reallocated self as a touches event class.
-		[self release];
-		self = [touchesEventClass alloc];
-	}
-
+   //[self release];
+	//Class touchesEventClass = objc_getClass("UITouchesEvent");
+   //self = [touchesEventClass alloc];
 	self = [self _initWithEvent:gsEventProxy touches:[NSSet setWithObject:touch]];
 	if (self != nil)
 	{
       // following line is inserted to support gesture recognizer  
-      //[self _addGestureRecognizersForView:touch.view toTouch:touch];  
+      //DC_LOG(@"Adding gesture recognizers");
+      [self _addGestureRecognizersForView:touch.view toTouch:touch currentTouchMap:nil newTouchMap:nil];
 	}
 	return self;
 }
+
+-(void) updateTimeStamp {
+   [self _setTimestamp:[NSDate timeIntervalSinceReferenceDate]];
+}
+
 
 @end

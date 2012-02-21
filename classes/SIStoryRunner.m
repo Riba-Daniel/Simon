@@ -46,9 +46,6 @@
 
 -(BOOL) runStories:(NSError **) error {
 	
-	// Read the runtime to local all mappings. 
-	NSArray * mappings = [self.runtime allMappingMethodsInRuntime];
-	
 	// Read the stories.
 	DC_LOG(@"Reading stories");
 	self.storySources = [self.reader readStorySources: error];
@@ -73,9 +70,13 @@
 		return NO;
 	}
 	
-	// Find the mapping for each story.
-	
+	// Read the runtime to local all mappings. 
+	NSArray * mappings = [self.runtime allMappingMethodsInRuntime];
+
+   // Get a union of all the stories.
 	NSArray *stories = [self.storySources valueForKeyPath:@"@unionOfArrays.stories"];
+
+	// Find the mapping for each story.
 	DC_LOG(@"Mappin steps to story steps");
 	for (SIStory *story in stories) {
 		[story mapSteps:(NSArray *) mappings];
