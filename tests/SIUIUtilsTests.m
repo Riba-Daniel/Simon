@@ -39,7 +39,6 @@
 #pragma mark - findViewWithQuery
 
 -(void) testViewWithQueryFindsButton {
-   SIPrintCurrentWindowTree();
 	UIView<DNNode> *button = [SIUIUtils findViewWithQuery:@"//UIRoundedRectButton/UIButtonLabel[@text='Button 1']/.."];
 	GHAssertEqualStrings(button.name, @"UIRoundedRectButton", @"Search bar not returned");
 }
@@ -135,6 +134,15 @@
    
    GHAssertEquals(self.testViewController.tappedButton, 1, @"Button not tapped");
    GHAssertLessThan(diff, -1.0, @"Not enough time passed");
+}
+
+#pragma mark - Swipes
+
+-(void) testSwipeSlider {
+   self.testViewController.slider.value = 5;
+   [SIUIUtils swipeViewWithQuery:@"//UISlider" inDirection:SIUISwipeDirectionRight forDistance: 80];
+   
+   GHAssertEquals(round(self.testViewController.slider.value), 8.0, @"Slider not swiped.");
 }
 
 

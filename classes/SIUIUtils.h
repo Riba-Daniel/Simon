@@ -7,11 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SIUIConstants.h"
 
 /**
  Provides tools for accessing the UI of a running application.
  */
 @interface SIUIUtils : NSObject
+
+#pragma mark - Finding
+/// @name Finding things
 
 /**
  Executes the given query against the current window to locate one or more UIViews. Given that all interface controls inherit from UIView, this gives us the ability to locate any control on the display.
@@ -30,18 +34,23 @@
  */
 +(UIView *) findViewWithQuery:(NSString *) query;
 
+#pragma mark - Logging
+/// @name Logging
 
 /**
  Simple method which prints a tree view of the current UI to the console.
  */
 +(void) logUITree;
 
+#pragma mark - Tapping
+/// @name Tapping
+
 /**
  Locates a single UIView based on the passed query and taps at the exact center of that view.
  
  @param query the query that will locate the view. Zero or multiple returns from that query will trigger an error.
  */
-+(BOOL) tapViewWithQuery:(NSString *) query;
++(void) tapViewWithQuery:(NSString *) query;
 
 /**
  Searches for a button with a specific label taps it.
@@ -64,5 +73,17 @@
  @param label the text label of the icon we want to tap.
  */
 +(void) tapTabBarButtonWithLabel:(NSString *) label;
+
+#pragma mark - Swiping
+/// @name Swiping
+
+/**
+ Performs a swipe on the specified control.
+ 
+ @param query a string containing the DNodi query that will locate the control we want to swipe. The swipe will start from the center of that control.
+ @param swipeDirection a value from SIUISwipeDirection indicting the direction to swipe in.
+ @param distance how far to swipe in the given direction.
+ */
++(void) swipeViewWithQuery:(NSString *) query inDirection:(SIUISwipeDirection) swipeDirection forDistance:(int) distance;
 
 @end

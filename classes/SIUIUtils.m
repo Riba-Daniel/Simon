@@ -16,6 +16,8 @@
 #import "SISyntaxException.h"
 #import "SIUITooManyFoundException.m"
 #import "SIUINotFoundException.h"
+#import "SIUIViewHandler.h"
+#import "SIUIHandlerFactory.h"
 
 @interface SIUIUtils()
 +(void) logSubviewsOfView:(UIView *) view widthPrefix:(NSString *) prefix index:(int) index;
@@ -130,14 +132,13 @@
 	}
 }
 
-+(BOOL) tapViewWithQuery:(NSString *) query {
++(void) tapViewWithQuery:(NSString *) query {
 
    UIView<DNNode> *theView = [SIUIUtils findViewWithQuery:query];
    
    DC_LOG(@"About to tap %@", theView); 
    SIUIViewHandler *handler = [[SIUIHandlerFactory handlerFactory] createHandlerForView: theView]; 
    [handler tap]; 
-   return YES;
 }
 
 +(void) tapButtonWithLabel:(NSString *) label {
@@ -154,11 +155,19 @@
    [NSThread sleepForTimeInterval:seconds];
 }
 
-
 +(void) tapTabBarButtonWithLabel:(NSString *) label {
    [SIUIUtils tapViewWithQuery:[NSString stringWithFormat:@"//UITabBarButtonLabel[@text='%@']/..", label]];
 }
 
++(void) swipeViewWithQuery:(NSString *) query inDirection:(SIUISwipeDirection) swipeDirection forDistance:(int) distance {
+
+   UIView<DNNode> *theView = [SIUIUtils findViewWithQuery:query];
+   
+   DC_LOG(@"About to swipe %@", theView); 
+   SIUIViewHandler *handler = [[SIUIHandlerFactory handlerFactory] createHandlerForView: theView]; 
+   [handler swipe:swipeDirection distance:distance]; 
+   
+}
 
 
 @end

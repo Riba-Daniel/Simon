@@ -8,14 +8,21 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TestViewController : UIViewController<UITabBarDelegate>
+@interface TestViewController : UIViewController<UITabBarDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @property (retain, nonatomic) IBOutlet UIButton *button1;
 @property (retain, nonatomic) IBOutlet UIButton *button2;
 @property (retain, nonatomic) IBOutlet UITabBar *tabBar;
+@property (retain, nonatomic) IBOutlet UILabel *tapableLabel;
 
 @property (nonatomic) NSInteger tappedButton;
 @property (nonatomic) NSInteger tappedTabBarItem;
+@property (nonatomic) NSInteger selectedRow;
+
+@property (retain, nonatomic) IBOutlet UISlider *slider;
+@property (retain, nonatomic) IBOutlet UITableView *tableView;
+
+@property (nonatomic) BOOL gestureRecognizerTapped;
 
 - (IBAction)buttonTapped:(id)sender;
 

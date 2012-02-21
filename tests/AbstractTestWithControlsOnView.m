@@ -28,7 +28,9 @@
    self.testViewController = (TestViewController *)[[[TestViewController alloc] initWithNibName:@"TestView" bundle:[NSBundle mainBundle]] autorelease];
    self.testViewController.view.center = [UIApplication sharedApplication].keyWindow.center;
 	[[UIApplication sharedApplication].keyWindow addSubview:self.testViewController.view];
-   //[[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+   
+   // get the view on screen.
+   //[[NSRunLoop currentRunLoop] runUntilDate:[NSDate date]];
    
 }
 
