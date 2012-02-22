@@ -85,9 +85,6 @@ static SIStoryRunner *runner;
 	// Release program hooks and dealloc self.
 	DC_LOG(@"ShutDown requested");
 	   
-	// Shut down the handler factory for UI components.
-	[SIUIViewHandlerFactory shutDown];
-	
 	// Remove all notification watching.
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	[self release];

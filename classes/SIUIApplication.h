@@ -8,11 +8,19 @@
 
 #import <UIKit/UIKit.h>
 #import "SIUIConstants.h"
+#import "SIUIEventCannon.h"
+#import "SIUIViewHandlerFactory.h"
 
 /**
  Provides tools for accessing the UI of a running application.
  */
-@interface SIUIApplication : NSObject
+@interface SIUIApplication : NSObject {
+   @private
+   SIUIEventCannon *eventCannon;
+}
+
+/// @name Properties
+@property (retain, nonatomic) SIUIViewHandlerFactory *viewHandlerFactory;
 
 #pragma mark - Accessors
 /// @name Singleton Accessors

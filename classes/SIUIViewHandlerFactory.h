@@ -22,24 +22,6 @@
 
 /// @name Factory
 
-/**
- Sets a new factory for creating actions. Normally you would not use this unless you want to extend the SIUIActionFactory class to implement your own factory methods.
- 
- @param handlerFactory the new factory to set. 
- */
-+(void) setHandlerFactory:(SIUIViewHandlerFactory *) handlerFactory;
-
-/**
- Returns the current factory instance. If it is nil, then an instance of SIUIHandlerFactory is created first.
- */
-+(SIUIViewHandlerFactory *) handlerFactory;
-
-/**
- Shuts down the factory and releases memory.
- */
-+(void) shutDown;
-
-
 /// @name Tasks
 
 /**
@@ -57,13 +39,5 @@
  @result the appropriate handler.
  */
 -(SIUIViewHandler *) createHandlerForView:(UIView<DNNode> *) view;
-
-/**
- Called each time a handler has been requested. Here is where you can setup the handler with data for the current request.
- 
- @param handler the handler that needs to be setup.
- @param view the view that was used to request the handler.
- */
--(void) initHandler:(SIUIViewHandler *) handler withView:(UIView *) view;
 
 @end

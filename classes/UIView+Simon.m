@@ -19,19 +19,19 @@
 @implementation UIView (Simon)
 
 -(NSString *)name {
-	return [[SIUIViewHandlerFactory handlerFactory] createHandlerForView:self].name;
+	return [[SIUIApplication application].viewHandlerFactory handlerForView:self].name;
 }
 
 -(NSObject<DNNode> *)parentNode {
-	return [[SIUIViewHandlerFactory handlerFactory] createHandlerForView:self].parentNode;
+	return [[SIUIApplication application].viewHandlerFactory handlerForView:self].parentNode;
 }
 
 -(NSArray *)subNodes {
-	return [[SIUIViewHandlerFactory handlerFactory] createHandlerForView:self].subNodes;
+	return [[SIUIApplication application].viewHandlerFactory handlerForView:self].subNodes;
 }
 
 -(BOOL) hasAttribute:(NSString *)attribute withValue:(id)value {
-	return [[[SIUIViewHandlerFactory handlerFactory] createHandlerForView:self] hasAttribute:attribute withValue:value];
+	return [[[SIUIApplication application].viewHandlerFactory handlerForView:self] hasAttribute:attribute withValue:value];
 }
 
 @end

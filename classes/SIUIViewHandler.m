@@ -20,6 +20,13 @@
 @implementation SIUIViewHandler
 
 @synthesize view = view_;
+@synthesize eventCannon = eventCannon_;
+
+-(void) dealloc {
+   self.view = nil;
+   self.eventCannon = nil;
+   [super dealloc];
+}
 
 #pragma mark - DNNode
 
@@ -45,25 +52,7 @@
 #pragma mark - SIUIAction
 
 -(void) tap {
-	
-	if (![[NSThread currentThread] isMainThread]) {
-		DC_LOG(@"Redirecting to main thread");
-      dispatch_queue_t mainQ = dispatch_get_main_queue();
-      dispatch_sync(mainQ, ^{
-         [self tap];
-      });
-      return;
-	}
-	
-	DC_LOG(@"Creating tap sequence for a %@", NSStringFromClass([self.view class]));
-   
-   UITouch *touch = [[[UITouch alloc] initInView:self.view] autorelease];
-   UIEvent *event = [[[NSClassFromString(@"UITouchesEvent") alloc] initWithTouch:touch] autorelease];
-   [self sendEvent:event];
-   
-   [touch setPhase:UITouchPhaseEnded];
-   [self sendEvent:event andPauseFor:0.5];
-   
+   [self.eventCannon tapView:self.view];
 }
 
 -(void) swipe:(SIUISwipeDirection) swipeDirection distance:(int) distance {

@@ -21,12 +21,14 @@
 
 @interface SIUIApplication(_privates)
 -(void) logSubviewsOfView:(UIView *) view widthPrefix:(NSString *) prefix index:(int) index;
+-(SIUIViewHandler *) viewHandlerForView:(UIView *) view;
 @end
 
 @implementation SIUIApplication
 
-// Static instance of the application class.
 static SIUIApplication *application = nil;
+
+@synthesize viewHandlerFactory = viewHandlerFactory_;
 
 #pragma mark - Accessors
 
@@ -43,12 +45,16 @@ static SIUIApplication *application = nil;
 {
    self = [super init];
    if (self) {
+      eventCannon = [[SIUIEventCannon alloc] init];
+      self.viewHandlerFactory = [[[SIUIViewHandlerFactory alloc] init] autorelease];
    }
    return self;
 }
 
 -(void)dealloc
 {
+   DC_DEALLOC(eventCannon);
+   self.viewHandlerFactory = nil;
    [super dealloc];
 }
 
@@ -185,12 +191,8 @@ static SIUIApplication *application = nil;
 }
 
 -(void) tapViewWithQuery:(NSString *) query {
-
    UIView<DNNode> *theView = [[SIUIApplication application] findViewWithQuery:query];
-   
-   DC_LOG(@"About to tap %@", theView); 
-   SIUIViewHandler *handler = [[SIUIViewHandlerFactory handlerFactory] createHandlerForView: theView]; 
-   [handler tap]; 
+   [[self viewHandlerForView:theView] tap];
 }
 
 -(void) tapButtonWithLabel:(NSString *) label {
@@ -212,14 +214,16 @@ static SIUIApplication *application = nil;
 }
 
 -(void) swipeViewWithQuery:(NSString *) query inDirection:(SIUISwipeDirection) swipeDirection forDistance:(int) distance {
-
    UIView<DNNode> *theView = [[SIUIApplication application] findViewWithQuery:query];
-   
-   DC_LOG(@"About to swipe %@", theView); 
-   SIUIViewHandler *handler = [[SIUIViewHandlerFactory handlerFactory] createHandlerForView: theView]; 
-   [handler swipe:swipeDirection distance:distance]; 
-   
+   [[self viewHandlerForView:theView] swipe:swipeDirection distance:distance]; 
 }
+
+-(SIUIViewHandler *) viewHandlerForView:(UIView *) view {
+   SIUIViewHandler *handler = [self.viewHandlerFactory handlerForView:view];
+   handler.view = view;
+   return handler;
+}
+
 
 
 @end
