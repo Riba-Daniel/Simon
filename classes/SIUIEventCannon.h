@@ -29,4 +29,13 @@
  */
 -(void) tapView:(UIView *) view;
 
+/**
+ Swipes a control in the given direction.
+ 
+ @param view the target view of the swipe.
+ @param direction a SIUISwipeDirection value indicating which direction to swipe in.
+ @param distance the distance in points of the swipe.
+ */
+-(void) swipeView:(UIView *) view direction:(SIUISwipeDirection) swipeDirection distance:(int) distance;
+
 @end

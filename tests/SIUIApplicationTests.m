@@ -20,7 +20,7 @@
 #import "SIUINotFoundException.h"
 #import "SISyntaxException.h"
 
-@interface SIUIApplicationTests : AbstractTestWithControlsOnView {}
+@interface SIUIApplicationTests : AbstractTestWithControlsOnView
 
 @end
 

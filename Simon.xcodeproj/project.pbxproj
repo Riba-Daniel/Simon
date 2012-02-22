@@ -12,6 +12,7 @@
 		32741D7914EB581E00093E0F /* UITouch+Simon.m in Sources */ = {isa = PBXBuildFile; fileRef = 32741D7714EB581E00093E0F /* UITouch+Simon.m */; };
 		32741D7C14EB5BAE00093E0F /* UIEvent+Simon.h in Headers */ = {isa = PBXBuildFile; fileRef = 32741D7A14EB5BAE00093E0F /* UIEvent+Simon.h */; };
 		32741D7D14EB5BAE00093E0F /* UIEvent+Simon.m in Sources */ = {isa = PBXBuildFile; fileRef = 32741D7B14EB5BAE00093E0F /* UIEvent+Simon.m */; };
+		32793BAE14F4FB5800B93621 /* SIUIEventCannonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32793BAD14F4FB5800B93621 /* SIUIEventCannonTests.m */; };
 		32A3120714F3BAA3007D7327 /* SIUIEventCannon.h in Headers */ = {isa = PBXBuildFile; fileRef = 322D46B214F3ADB7008931A9 /* SIUIEventCannon.h */; };
 		32A3120814F3BAA7007D7327 /* SIUIEventCannon.m in Sources */ = {isa = PBXBuildFile; fileRef = 322D46B314F3ADB7008931A9 /* SIUIEventCannon.m */; };
 		32A9D11014C907BC00B0CFBD /* NSInvocations.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A9D10F14C907BC00B0CFBD /* NSInvocations.m */; };
@@ -153,6 +154,7 @@
 		32741D7714EB581E00093E0F /* UITouch+Simon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITouch+Simon.m"; sourceTree = "<group>"; };
 		32741D7A14EB5BAE00093E0F /* UIEvent+Simon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIEvent+Simon.h"; sourceTree = "<group>"; };
 		32741D7B14EB5BAE00093E0F /* UIEvent+Simon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIEvent+Simon.m"; sourceTree = "<group>"; };
+		32793BAD14F4FB5800B93621 /* SIUIEventCannonTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUIEventCannonTests.m; sourceTree = "<group>"; };
 		32A9D10F14C907BC00B0CFBD /* NSInvocations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = NSInvocations.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		32A9D11214C914B500B0CFBD /* SIMacroTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIMacroTests.m; sourceTree = "<group>"; };
 		32B0ABF714E8DF780020500E /* SISyntaxException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SISyntaxException.h; sourceTree = "<group>"; };
@@ -337,6 +339,22 @@
 				32F7F3E514EE1E5800F94F65 /* GSEventProxy.m */,
 				322D46B214F3ADB7008931A9 /* SIUIEventCannon.h */,
 				322D46B314F3ADB7008931A9 /* SIUIEventCannon.m */,
+			);
+			name = Events;
+			sourceTree = "<group>";
+		};
+		32793BAA14F4F95600B93621 /* View Handlers */ = {
+			isa = PBXGroup;
+			children = (
+				9465773E141B97B90026F1FB /* SIUIViewHandlerTests.m */,
+			);
+			name = "View Handlers";
+			sourceTree = "<group>";
+		};
+		32793BAC14F4F97700B93621 /* Events */ = {
+			isa = PBXGroup;
+			children = (
+				32793BAD14F4FB5800B93621 /* SIUIEventCannonTests.m */,
 			);
 			name = Events;
 			sourceTree = "<group>";
@@ -556,9 +574,10 @@
 		659E62A013DB026400ACD34C /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				32793BAC14F4F97700B93621 /* Events */,
+				32793BAA14F4F95600B93621 /* View Handlers */,
 				94AED1511420DB070070D3BB /* SIUIHandlerFactoryTests.m */,
 				659E62A213DB027E00ACD34C /* SIUIApplicationTests.m */,
-				9465773E141B97B90026F1FB /* SIUIViewHandlerTests.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -806,6 +825,7 @@
 				32A9D11014C907BC00B0CFBD /* NSInvocations.m in Sources */,
 				32A9D11314C914B500B0CFBD /* SIMacroTests.m in Sources */,
 				32D5D98D14E135A300D29DD5 /* TestViewController.m in Sources */,
+				32793BAE14F4FB5800B93621 /* SIUIEventCannonTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

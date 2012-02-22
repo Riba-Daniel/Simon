@@ -10,15 +10,11 @@
 #import "SIUIViewHandler.h"
 #import <dUsefulStuff/DCCommon.h>
 #import "AbstractTestWithControlsOnView.h"
-#import "UIView+Simon.h"
-
 
 @interface SIUIViewHandlerTests : AbstractTestWithControlsOnView {
 @private 
 	SIUIViewHandler *handler;
-   
 }
--(void) scrollTableViewToIndex:(int) index atScrollPosition:(UITableViewScrollPosition) position;
 @end
 
 @implementation SIUIViewHandlerTests
@@ -81,85 +77,5 @@
 	GHAssertEquals([subNodes objectAtIndex:4], self.testViewController.tableView, @"Returned node was not the tableView.");
 	GHAssertEquals([subNodes objectAtIndex:5], self.testViewController.tapableLabel, @"Returned node was not the tapable label.");
 }
-
-#pragma mark - SIUIAction tests
-
--(void) testButtonTap {
-	
-   handler.view = self.testViewController.button1;
-	[handler tap];
-	
-   GHAssertEquals(self.testViewController.tappedButton, 1, @"Tap did not occur as expected");
-}
-
--(void) testGestureRecognizerOnLabelTapped {
-	
-   self.testViewController.gestureRecognizerTapped = NO;
-   handler.view = self.testViewController.tapableLabel;
-	[handler tap];
-	
-   GHAssertTrue(self.testViewController.gestureRecognizerTapped, @"gesture recognizer not fired");
-}
-
--(void) testTableViewTappingRowSelects {
-   self.testViewController.selectedRow = 0;
-   [self scrollTableViewToIndex:0 atScrollPosition:UITableViewScrollPositionTop];
-   
-   handler.view = self.testViewController.tableView;
-   [handler tap];
-	
-   DC_LOG(@"Checking state");
-   GHAssertEquals(self.testViewController.selectedRow, (NSInteger) 1, @"Row not selected");
-}
-
--(void) testSliderSwipingRight {
-   self.testViewController.slider.value = 5.0;
-   handler.view = self.testViewController.slider;
-   [handler swipe:SIUISwipeDirectionRight distance:100];
-	GHAssertEquals(round(self.testViewController.slider.value), round(8), @"Swipe did not occur as expected");
-}
-
--(void) testSliderSwipingLeft {
-   self.testViewController.slider.value = 5.0;
-   handler.view = self.testViewController.slider;
-   [handler swipe:SIUISwipeDirectionLeft distance:100];
-	GHAssertEquals(round(self.testViewController.slider.value), round(2), @"Swipe did not occur as expected");
-}
-
-
--(void) testTableViewSwipingUp {
-   handler.view = self.testViewController.slider;
-   [handler swipe:SIUISwipeDirectionUp distance:100];
-	GHAssertEquals(round(self.testViewController.slider.value), round(1), @"Swipe did not occur as expected");
-}
-
--(void) testTableViewSwipingDown {
-   
-   self.testViewController.selectedRow = 0;
-   [self scrollTableViewToIndex:5 atScrollPosition:UITableViewScrollPositionMiddle];
-   
-   handler.view = self.testViewController.tableView;
-   [handler swipe:SIUISwipeDirectionDown distance:100];
-   [NSThread sleepForTimeInterval:0.5];
-   [handler tap];
-	GHAssertEquals(self.testViewController.selectedRow, (NSInteger)3, @"Row not selected");
-}
-
-#pragma mark - Helpers
--(void) scrollTableViewToIndex:(int) index atScrollPosition:(UITableViewScrollPosition) position {
-   
-   // Whatch for the main thread because re-running a test from GHUnit test view runs it on the main thread.
-   if ([NSThread isMainThread]) {
-      [self.testViewController.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0] atScrollPosition:position animated:NO];
-      [[NSRunLoop currentRunLoop] runUntilDate: [NSDate date]];
-   } else {
-      dispatch_queue_t mainQ = dispatch_get_main_queue();
-      dispatch_sync(mainQ, ^{
-         [self.testViewController.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0] atScrollPosition:position animated:NO];
-         [[NSRunLoop currentRunLoop] runUntilDate: [NSDate date]];
-      });
-   }   
-}
-
 
 @end

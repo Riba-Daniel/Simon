@@ -34,7 +34,7 @@
 }
 
 -(void) tapView:(UIView *) view {
-   DC_LOG(@"Firing tap events");
+   DC_LOG(@"Firing tap events at a %@", NSStringFromClass([view class]));
    dispatch_sync(cannonQueue, ^{
       dispatch_sync(mainQ, ^{
          DC_LOG(@"Creating tap sequence for a %@", NSStringFromClass([view class]));
@@ -49,8 +49,48 @@
    });
 }
 
--(void) sendEvent:(UIEvent *) event {
+-(void) swipeView:(UIView *) view direction:(SIUISwipeDirection) swipeDirection distance:(int) distance {
+   DC_LOG(@"Firing swipe events at a %@", NSStringFromClass([view class]));
+   dispatch_sync(cannonQueue, ^{
+      dispatch_sync(mainQ, ^{
+         
+         // Calculate the event framerate and interval between events to achieve this.
+         CGFloat duration = 0.25;
+         CGFloat fps = 72;
+         NSTimeInterval frameDuration = 1 / fps;
+         
+         // Calculate the number of events to generate and the distance between them.
+         int nbrTicks = fps * duration;
+         CGFloat tickDistance = distance / nbrTicks;
+         
+         // Work out the offsets to use on the x and y axis.
+         CGFloat tickDistanceX = swipeDirection == SIUISwipeDirectionRight ? tickDistance: swipeDirection == SIUISwipeDirectionLeft ? -tickDistance: 0;
+         CGFloat tickDistanceY = swipeDirection == SIUISwipeDirectionDown ? tickDistance : swipeDirection == SIUISwipeDirectionUp ? -tickDistance : 0;
+         
+         // Send the touch and trigger the run loop, then pause for the amount of time needed between touches.
+         UITouch *touch = [[[UITouch alloc] initInView:view] autorelease];
+         UIEvent *event = [[[NSClassFromString(@"UITouchesEvent") alloc] initWithTouch:touch] autorelease];
+         [self sendEvent:event andPauseFor:frameDuration];
+         
+         // Loop and generate the intermediary move events.
+         [touch setPhase:UITouchPhaseMoved];
+         for (int i = 1; i <= nbrTicks; i++) {
+            touch.locationInWindow = CGPointMake(touch.locationInWindow.x + tickDistanceX, touch.locationInWindow.y + tickDistanceY);
+            [self sendEvent:event andPauseFor:frameDuration];
+         }
+         
+         // Send the ending event.
+         [touch setPhase:UITouchPhaseEnded];
+         [self sendEvent:event];
+         
+      });
+   });
+}
 
+#pragma mark - Private methods
+
+-(void) sendEvent:(UIEvent *) event {
+   
    DC_LOG(@"Sending touch event type %i", [[[event allTouches] anyObject] phase]);
    
    // Send the event.
