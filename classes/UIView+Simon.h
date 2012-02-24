@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <dNodi/DNNode.h>
+#import "SIUIAction.h"
 
 /**
  This category hooks into any UIVIew class and adds the methods dNodi
@@ -16,6 +17,6 @@
  Then the method call is forwarded to the handler which also implements the DNNode protocol. 
  This allows the handler factory to be able to generate an apprpriate handler for the class on the UI instance. 
  */
-@interface UIView (Simon) <DNNode>
+@interface UIView (Simon) <DNNode, SIUIAction>
 
 @end

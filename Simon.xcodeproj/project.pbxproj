@@ -12,9 +12,13 @@
 		32741D7914EB581E00093E0F /* UITouch+Simon.m in Sources */ = {isa = PBXBuildFile; fileRef = 32741D7714EB581E00093E0F /* UITouch+Simon.m */; };
 		32741D7C14EB5BAE00093E0F /* UIEvent+Simon.h in Headers */ = {isa = PBXBuildFile; fileRef = 32741D7A14EB5BAE00093E0F /* UIEvent+Simon.h */; };
 		32741D7D14EB5BAE00093E0F /* UIEvent+Simon.m in Sources */ = {isa = PBXBuildFile; fileRef = 32741D7B14EB5BAE00093E0F /* UIEvent+Simon.m */; };
-		32793BAE14F4FB5800B93621 /* SIUIEventCannonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32793BAD14F4FB5800B93621 /* SIUIEventCannonTests.m */; };
-		32A3120714F3BAA3007D7327 /* SIUIEventCannon.h in Headers */ = {isa = PBXBuildFile; fileRef = 322D46B214F3ADB7008931A9 /* SIUIEventCannon.h */; };
-		32A3120814F3BAA7007D7327 /* SIUIEventCannon.m in Sources */ = {isa = PBXBuildFile; fileRef = 322D46B314F3ADB7008931A9 /* SIUIEventCannon.m */; };
+		32793BAE14F4FB5800B93621 /* SIUIBackgroundThreadSenderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32793BAD14F4FB5800B93621 /* SIUIBackgroundThreadSenderTests.m */; };
+		3296322014F7505000D9310A /* SIUIEventSender.h in Headers */ = {isa = PBXBuildFile; fileRef = 3296321F14F7505000D9310A /* SIUIEventSender.h */; };
+		3296322314F7516400D9310A /* SIUIEventGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 3296322214F7516400D9310A /* SIUIEventGenerator.h */; };
+		3296322614F751D300D9310A /* SIUITapGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 3296322414F751D300D9310A /* SIUITapGenerator.h */; };
+		3296322714F751D300D9310A /* SIUITapGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3296322514F751D300D9310A /* SIUITapGenerator.m */; };
+		32A3120714F3BAA3007D7327 /* SIUIBackgroundThreadSender.h in Headers */ = {isa = PBXBuildFile; fileRef = 322D46B214F3ADB7008931A9 /* SIUIBackgroundThreadSender.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		32A3120814F3BAA7007D7327 /* SIUIBackgroundThreadSender.m in Sources */ = {isa = PBXBuildFile; fileRef = 322D46B314F3ADB7008931A9 /* SIUIBackgroundThreadSender.m */; };
 		32A9D11014C907BC00B0CFBD /* NSInvocations.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A9D10F14C907BC00B0CFBD /* NSInvocations.m */; };
 		32A9D11314C914B500B0CFBD /* SIMacroTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A9D11214C914B500B0CFBD /* SIMacroTests.m */; };
 		32B0ABF914E8DF780020500E /* SISyntaxException.h in Headers */ = {isa = PBXBuildFile; fileRef = 32B0ABF714E8DF780020500E /* SISyntaxException.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -29,6 +33,9 @@
 		32B0AC1014E8EB170020500E /* SIUIException.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0AC0E14E8EB170020500E /* SIUIException.m */; };
 		32D5D98A14E1357900D29DD5 /* TestView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32D5D98914E1357900D29DD5 /* TestView.xib */; };
 		32D5D98D14E135A300D29DD5 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D5D98C14E135A300D29DD5 /* TestViewController.m */; };
+		32F742D414F75B1E005E5E97 /* SIUIEventSender.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F742D314F75B1E005E5E97 /* SIUIEventSender.m */; };
+		32F742D814F75F58005E5E97 /* SIUISwipeGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F742D614F75F58005E5E97 /* SIUISwipeGenerator.h */; };
+		32F742D914F75F58005E5E97 /* SIUISwipeGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F742D714F75F58005E5E97 /* SIUISwipeGenerator.m */; };
 		32F7F3E614EE1E5800F94F65 /* GSEventProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F7F3E414EE1E5800F94F65 /* GSEventProxy.h */; };
 		32F7F3E714EE1E5800F94F65 /* GSEventProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F7F3E514EE1E5800F94F65 /* GSEventProxy.m */; };
 		6527B7CA13A871DF005A912F /* GHUnitIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 653D0EF813A784C100A5AB82 /* GHUnitIOS.framework */; };
@@ -147,14 +154,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		322D46B214F3ADB7008931A9 /* SIUIEventCannon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIEventCannon.h; sourceTree = "<group>"; };
-		322D46B314F3ADB7008931A9 /* SIUIEventCannon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUIEventCannon.m; sourceTree = "<group>"; };
+		322D46B214F3ADB7008931A9 /* SIUIBackgroundThreadSender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIBackgroundThreadSender.h; sourceTree = "<group>"; };
+		322D46B314F3ADB7008931A9 /* SIUIBackgroundThreadSender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUIBackgroundThreadSender.m; sourceTree = "<group>"; };
 		325683D814EF6CEB00F7C189 /* SIUIConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIConstants.h; sourceTree = "<group>"; };
 		32741D7614EB581E00093E0F /* UITouch+Simon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITouch+Simon.h"; sourceTree = "<group>"; };
 		32741D7714EB581E00093E0F /* UITouch+Simon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITouch+Simon.m"; sourceTree = "<group>"; };
 		32741D7A14EB5BAE00093E0F /* UIEvent+Simon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIEvent+Simon.h"; sourceTree = "<group>"; };
 		32741D7B14EB5BAE00093E0F /* UIEvent+Simon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIEvent+Simon.m"; sourceTree = "<group>"; };
-		32793BAD14F4FB5800B93621 /* SIUIEventCannonTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUIEventCannonTests.m; sourceTree = "<group>"; };
+		32793BAD14F4FB5800B93621 /* SIUIBackgroundThreadSenderTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUIBackgroundThreadSenderTests.m; sourceTree = "<group>"; };
+		3296321F14F7505000D9310A /* SIUIEventSender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIEventSender.h; sourceTree = "<group>"; };
+		3296322214F7516400D9310A /* SIUIEventGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIEventGenerator.h; sourceTree = "<group>"; };
+		3296322414F751D300D9310A /* SIUITapGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUITapGenerator.h; sourceTree = "<group>"; };
+		3296322514F751D300D9310A /* SIUITapGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUITapGenerator.m; sourceTree = "<group>"; };
 		32A9D10F14C907BC00B0CFBD /* NSInvocations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = NSInvocations.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		32A9D11214C914B500B0CFBD /* SIMacroTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIMacroTests.m; sourceTree = "<group>"; };
 		32B0ABF714E8DF780020500E /* SISyntaxException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SISyntaxException.h; sourceTree = "<group>"; };
@@ -170,6 +181,9 @@
 		32D5D98914E1357900D29DD5 /* TestView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestView.xib; sourceTree = "<group>"; };
 		32D5D98B14E135A300D29DD5 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
 		32D5D98C14E135A300D29DD5 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
+		32F742D314F75B1E005E5E97 /* SIUIEventSender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUIEventSender.m; sourceTree = "<group>"; };
+		32F742D614F75F58005E5E97 /* SIUISwipeGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUISwipeGenerator.h; sourceTree = "<group>"; };
+		32F742D714F75F58005E5E97 /* SIUISwipeGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUISwipeGenerator.m; sourceTree = "<group>"; };
 		32F7F3E414EE1E5800F94F65 /* GSEventProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSEventProxy.h; sourceTree = "<group>"; };
 		32F7F3E514EE1E5800F94F65 /* GSEventProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSEventProxy.m; sourceTree = "<group>"; };
 		652D4E4B13CDD44300633E51 /* SIAppBackpack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIAppBackpack.h; sourceTree = "<group>"; };
@@ -337,8 +351,15 @@
 				32741D7B14EB5BAE00093E0F /* UIEvent+Simon.m */,
 				32F7F3E414EE1E5800F94F65 /* GSEventProxy.h */,
 				32F7F3E514EE1E5800F94F65 /* GSEventProxy.m */,
-				322D46B214F3ADB7008931A9 /* SIUIEventCannon.h */,
-				322D46B314F3ADB7008931A9 /* SIUIEventCannon.m */,
+				322D46B214F3ADB7008931A9 /* SIUIBackgroundThreadSender.h */,
+				322D46B314F3ADB7008931A9 /* SIUIBackgroundThreadSender.m */,
+				3296321F14F7505000D9310A /* SIUIEventSender.h */,
+				32F742D314F75B1E005E5E97 /* SIUIEventSender.m */,
+				3296322214F7516400D9310A /* SIUIEventGenerator.h */,
+				3296322414F751D300D9310A /* SIUITapGenerator.h */,
+				3296322514F751D300D9310A /* SIUITapGenerator.m */,
+				32F742D614F75F58005E5E97 /* SIUISwipeGenerator.h */,
+				32F742D714F75F58005E5E97 /* SIUISwipeGenerator.m */,
 			);
 			name = Events;
 			sourceTree = "<group>";
@@ -354,7 +375,7 @@
 		32793BAC14F4F97700B93621 /* Events */ = {
 			isa = PBXGroup;
 			children = (
-				32793BAD14F4FB5800B93621 /* SIUIEventCannonTests.m */,
+				32793BAD14F4FB5800B93621 /* SIUIBackgroundThreadSenderTests.m */,
 			);
 			name = Events;
 			sourceTree = "<group>";
@@ -646,7 +667,11 @@
 				32741D7C14EB5BAE00093E0F /* UIEvent+Simon.h in Headers */,
 				32F7F3E614EE1E5800F94F65 /* GSEventProxy.h in Headers */,
 				325683D914EF6CEB00F7C189 /* SIUIConstants.h in Headers */,
-				32A3120714F3BAA3007D7327 /* SIUIEventCannon.h in Headers */,
+				32A3120714F3BAA3007D7327 /* SIUIBackgroundThreadSender.h in Headers */,
+				3296322014F7505000D9310A /* SIUIEventSender.h in Headers */,
+				3296322314F7516400D9310A /* SIUIEventGenerator.h in Headers */,
+				3296322614F751D300D9310A /* SIUITapGenerator.h in Headers */,
+				32F742D814F75F58005E5E97 /* SIUISwipeGenerator.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -800,7 +825,10 @@
 				32741D7914EB581E00093E0F /* UITouch+Simon.m in Sources */,
 				32741D7D14EB5BAE00093E0F /* UIEvent+Simon.m in Sources */,
 				32F7F3E714EE1E5800F94F65 /* GSEventProxy.m in Sources */,
-				32A3120814F3BAA7007D7327 /* SIUIEventCannon.m in Sources */,
+				32A3120814F3BAA7007D7327 /* SIUIBackgroundThreadSender.m in Sources */,
+				3296322714F751D300D9310A /* SIUITapGenerator.m in Sources */,
+				32F742D414F75B1E005E5E97 /* SIUIEventSender.m in Sources */,
+				32F742D914F75F58005E5E97 /* SIUISwipeGenerator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -825,7 +853,7 @@
 				32A9D11014C907BC00B0CFBD /* NSInvocations.m in Sources */,
 				32A9D11314C914B500B0CFBD /* SIMacroTests.m in Sources */,
 				32D5D98D14E135A300D29DD5 /* TestViewController.m in Sources */,
-				32793BAE14F4FB5800B93621 /* SIUIEventCannonTests.m in Sources */,
+				32793BAE14F4FB5800B93621 /* SIUIBackgroundThreadSenderTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -45,7 +45,6 @@ static SIUIApplication *application = nil;
 {
    self = [super init];
    if (self) {
-      eventCannon = [[SIUIEventCannon alloc] init];
       self.viewHandlerFactory = [[[SIUIViewHandlerFactory alloc] init] autorelease];
    }
    return self;
@@ -53,7 +52,6 @@ static SIUIApplication *application = nil;
 
 -(void)dealloc
 {
-   DC_DEALLOC(eventCannon);
    self.viewHandlerFactory = nil;
    [super dealloc];
 }
@@ -81,7 +79,7 @@ static SIUIApplication *application = nil;
    return self;
 }
 
-#pragma mark Searching
+#pragma mark - Searching
 
 -(NSArray *) findViewsWithQuery:(NSString *) query {
 	
@@ -190,6 +188,8 @@ static SIUIApplication *application = nil;
 	}
 }
 
+#pragma mark - Tapping
+
 -(void) tapViewWithQuery:(NSString *) query {
    UIView<DNNode> *theView = [[SIUIApplication application] findViewWithQuery:query];
    [[self viewHandlerForView:theView] tap];
@@ -213,10 +213,14 @@ static SIUIApplication *application = nil;
    [[SIUIApplication application] tapViewWithQuery:[NSString stringWithFormat:@"//UITabBarButtonLabel[@text='%@']/..", label]];
 }
 
+#pragma mark - Swiping
+
 -(void) swipeViewWithQuery:(NSString *) query inDirection:(SIUISwipeDirection) swipeDirection forDistance:(int) distance {
    UIView<DNNode> *theView = [[SIUIApplication application] findViewWithQuery:query];
    [[self viewHandlerForView:theView] swipe:swipeDirection distance:distance]; 
 }
+
+#pragma mark - View handlers
 
 -(SIUIViewHandler *) viewHandlerForView:(UIView *) view {
    SIUIViewHandler *handler = [self.viewHandlerFactory handlerForView:view];
@@ -224,6 +228,11 @@ static SIUIApplication *application = nil;
    return handler;
 }
 
+#pragma mark - Pauses and holds
+
+-(void) pauseFor:(NSTimeInterval) duration {
+   [NSThread sleepForTimeInterval:duration];
+}
 
 
 @end

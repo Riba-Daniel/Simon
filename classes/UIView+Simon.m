@@ -18,6 +18,8 @@
 
 @implementation UIView (Simon)
 
+#pragma mark - Querying
+
 -(NSString *)name {
 	return [[SIUIApplication application].viewHandlerFactory handlerForView:self].name;
 }
@@ -32,6 +34,16 @@
 
 -(BOOL) hasAttribute:(NSString *)attribute withValue:(id)value {
 	return [[[SIUIApplication application].viewHandlerFactory handlerForView:self] hasAttribute:attribute withValue:value];
+}
+
+#pragma mark - Actions
+
+-(void) tap {
+	 [[[SIUIApplication application].viewHandlerFactory handlerForView:self] tap];
+}
+
+-(void) swipe:(SIUISwipeDirection) swipeDirection distance:(int) distance {
+   [[[SIUIApplication application].viewHandlerFactory handlerForView:self] swipe:swipeDirection distance:distance];
 }
 
 @end

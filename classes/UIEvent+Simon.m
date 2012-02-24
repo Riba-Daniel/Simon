@@ -37,7 +37,7 @@
    */
 	// On SDK versions 3.0 and greater, we need to reallocate as a
 	// UITouchesEvent.
-   //[self release];
+   [self release];
 	//Class touchesEventClass = objc_getClass("UITouchesEvent");
    //self = [touchesEventClass alloc];
 	self = [self _initWithEvent:gsEventProxy touches:[NSSet setWithObject:touch]];

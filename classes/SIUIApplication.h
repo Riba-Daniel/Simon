@@ -8,16 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "SIUIConstants.h"
-#import "SIUIEventCannon.h"
+#import "SIUIBackgroundThreadSender.h"
 #import "SIUIViewHandlerFactory.h"
 
 /**
  Provides tools for accessing the UI of a running application.
  */
-@interface SIUIApplication : NSObject {
-   @private
-   SIUIEventCannon *eventCannon;
-}
+@interface SIUIApplication : NSObject
 
 /// @name Properties
 @property (retain, nonatomic) SIUIViewHandlerFactory *viewHandlerFactory;
@@ -101,5 +98,14 @@
  @param distance how far to swipe in the given direction.
  */
 -(void) swipeViewWithQuery:(NSString *) query inDirection:(SIUISwipeDirection) swipeDirection forDistance:(int) distance;
+
+#pragma mark - Waiting and holding
+
+/**
+ Pauses the current thread for the specified time.
+ 
+ @param duration how long to hold the current thread for.
+ */
+-(void) pauseFor:(NSTimeInterval) duration;
 
 @end

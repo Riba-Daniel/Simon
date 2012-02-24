@@ -12,4 +12,3 @@ const NSString * SI_INSTANCE_STORY_REF_KEY = @"__story";
 const NSString * SI_INSTANCE_STEP_MAPPING_REF_KEY = @"__stepMapping"; 
 
 const char * SI_QUEUE_NAME = "au.com.derekclarkson.simon";
-const char * SI_EVENT_CANNON_QUEUE_NAME = "au.com.derekclarkson.simon.event.cannon";

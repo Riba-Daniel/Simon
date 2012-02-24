@@ -22,12 +22,6 @@ The name of the field dynamically added to classes which contain step implementa
 extern const char * SI_QUEUE_NAME;
 
 /**
- Id of the event cannon thread. Note this is a const char "*", i.e. no '@' to declare a NSString.
- */
-extern const char * SI_EVENT_CANNON_QUEUE_NAME;
-
-
-/**
  This gives the types of keywords read by SIStoryFileReader. SIKeywordNone is used only when the first story is beng read as it designates
  the start of the file.
  */

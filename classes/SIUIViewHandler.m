@@ -8,6 +8,8 @@
 
 #import <dUsefulStuff/DCCommon.h>
 #import "SIUIViewHandler.h"
+#import "SIUITapGenerator.h"
+#import "SIUISwipeGenerator.h"
 
 @implementation SIUIViewHandler
 
@@ -44,11 +46,15 @@
 #pragma mark - SIUIAction
 
 -(void) tap {
-   [self.eventCannon tapView:self.view];
+   SIUITapGenerator *tapGenerator = [[SIUITapGenerator alloc] initWithView:self.view];
+   [tapGenerator sendEvents];
+   [tapGenerator release];
 }
 
 -(void) swipe:(SIUISwipeDirection) swipeDirection distance:(int) distance {
-   [self.eventCannon swipeView:self.view direction:swipeDirection distance:distance];
+   SIUISwipeGenerator *swipeGenerator = [[SIUISwipeGenerator alloc] initWithView:self.view];
+   [swipeGenerator sendEvents];
+   [swipeGenerator release];
 }
 
 @end
