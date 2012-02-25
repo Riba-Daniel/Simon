@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "SIUIConstants.h"
-#import "SIUIBackgroundThreadSender.h"
+//#import "SIUIEventSender.m"
 #import "SIUIViewHandlerFactory.h"
 
 /**

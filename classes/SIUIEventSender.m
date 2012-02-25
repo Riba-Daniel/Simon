@@ -5,20 +5,24 @@
 //  Created by Derek Clarkson on 24/02/12.
 //  Copyright (c) 2012 Sensis. All rights reserved.
 //
+#import <dUsefulStuff/DCCommon.h>
 
 #import "SIUIEventSender.h"
 #import "SIUIBackgroundThreadSender.h"
-#import <dUsefulStuff/DCCommon.h>
 
 @implementation SIUIEventSender
 
 +(SIUIEventSender *) sender {
+   return [[[SIUIEventSender alloc] init] autorelease];
+}
+
++ (id)alloc {
    if ([NSThread isMainThread]) {
       DC_LOG(@"Creating main thread sender");
-      return [[[SIUIBackgroundThreadSender alloc] init] autorelease];
+      return [SIUIBackgroundThreadSender allocWithZone:nil];
    } else {
       DC_LOG(@"Creating background thread sender");
-      return [[[SIUIBackgroundThreadSender alloc] init] autorelease];
+      return [SIUIBackgroundThreadSender allocWithZone:nil];
    }
 }
 
@@ -27,3 +31,6 @@
 -(void) sendEvent:(UIEvent *) event {}
 
 @end
+
+
+

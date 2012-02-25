@@ -10,7 +10,6 @@
 #import "SIUIAction.h"
 #import <dNodi/DNNode.h>
 #import "SIUIConstants.h"
-#import "SIUIBackgroundThreadSender.h"
 
 /**
  Handlers encompass all aspects of dealing with a particular UI widget. This class
@@ -23,10 +22,5 @@
  The view that is being managed.
  */
 @property (retain, nonatomic) UIView<DNNode> *view;
-
-/**
- The event cannon that will be used to fire events at the applications UI.
- */
-@property (retain, nonatomic) SIUIBackgroundThreadSender *eventCannon;
 
 @end

@@ -6,9 +6,6 @@
 //  Copyright (c) 2012 Sensis. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "SIUIEventSender.h"
-
 /**
  Classes which can generate one or more events to be sent to the interface.
  */

@@ -14,11 +14,9 @@
 @implementation SIUIViewHandler
 
 @synthesize view = view_;
-@synthesize eventCannon = eventCannon_;
 
 -(void) dealloc {
    self.view = nil;
-   self.eventCannon = nil;
    [super dealloc];
 }
 
