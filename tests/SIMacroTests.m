@@ -259,7 +259,6 @@ SIMapStepToSelector(@"abc", dummyMethod)
 #pragma mark - UI Tests
 
 -(void) testSIFindViewReturnsErrors {
-   [self setupTestView];
    @try {
       SIFindView(@"/xxx");
       GHFail(@"Exception not thrown");
@@ -271,33 +270,28 @@ SIMapStepToSelector(@"abc", dummyMethod)
 }
 
 -(void) testSIFindViewFindsASingleControl {
-   [self setupTestView];
 	UIView *foundView = SIFindView(@"//UIRoundedRectButton[@titleLabel.text='Button 1']");
 	GHAssertNotNil(foundView, @"Nil returned");
 	GHAssertEqualObjects(foundView, self.testViewController.button1, @"Returned view is not a match");
 }
 
 -(void) testSIFindViewsFindsASingleControl {
-   [self setupTestView];
 	NSArray *foundViews = SIFindViews(@"//UIRoundedRectButton[@titleLabel.text='Button 1']");
 	GHAssertNotNil(foundViews, @"Nil returned");
 	GHAssertEqualObjects([foundViews objectAtIndex:0], self.testViewController.button1, @"Returned view is not a match");
 }
 
 -(void) testSITapControl {
-   [self setupTestView];
 	SITapControl(@"//UIRoundedRectButton[@titleLabel.text='Button 1']");
 	GHAssertEquals(self.testViewController.tappedButton, 1, @"Tapped flag not set. Control tapping may not have worked");
 }
 
 -(void) testSITapButtonWithLabel {
-   [self setupTestView];
 	SITapButtonWithLabel(@"Button 1");
 	GHAssertEquals(self.testViewController.tappedButton, 1, @"Tapped flag not set. Control tapping may not have worked");
 }
 
 -(void) testSITapButtonWithLabelFailsIfButtonNotFound {
-   [self setupTestView];
    @try {
       SITapButtonWithLabel(@"Button 3");
       GHFail(@"Exception not thrown");
@@ -310,8 +304,6 @@ SIMapStepToSelector(@"abc", dummyMethod)
 
 -(void) testTapButtonWithLabelAndWait {
 
-   [self setupTestView];
-   
    NSDate *before = [NSDate date];
    SITapButtonWithLabelAndWait(@"Button 1",1.0);
    NSTimeInterval diff = [before timeIntervalSinceNow];
@@ -321,7 +313,6 @@ SIMapStepToSelector(@"abc", dummyMethod)
 }
 
 -(void) testSITapTabBarItems {
-   [self setupTestView];
    SITapTabBarButtonWithLabel(@"More");
 	GHAssertEquals(self.testViewController.tappedTabBarItem, 2, @"Tapped flag not set. Control tapping may not have worked");
    SITapTabBarButtonWithLabel(@"Favorites");

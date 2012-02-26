@@ -14,7 +14,14 @@
 
 @synthesize testViewController = testViewController_;
 
--(void) setUp {
+-(void) setUpClass {
+   [super setUpClass];
+   [self setupTestView];
+}
+
+-(void) tearDownClass {
+   [self removeTestView];
+   [super tearDownClass];
 }
 
 -(void) setupTestView {

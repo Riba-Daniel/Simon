@@ -26,16 +26,6 @@
 
 @implementation SIUIApplicationTests
 
--(void) setUpClass {
-   [super setUpClass];
-   [self setupTestView];
-}
-
--(void) tearDownClass {
-   [self removeTestView];
-   [super tearDownClass];
-}
-
 #pragma mark - findViewWithQuery
 
 -(void) testViewWithQueryFindsButton {

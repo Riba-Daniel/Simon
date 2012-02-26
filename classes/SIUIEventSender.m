@@ -9,6 +9,7 @@
 
 #import "SIUIEventSender.h"
 #import "SIUIBackgroundThreadSender.h"
+#import "SIUIMainThreadSender.h"
 
 @implementation SIUIEventSender
 
@@ -19,7 +20,7 @@
 + (id)alloc {
    if ([NSThread isMainThread]) {
       DC_LOG(@"Creating main thread sender");
-      return [SIUIBackgroundThreadSender allocWithZone:nil];
+      return [SIUIMainThreadSender allocWithZone:nil];
    } else {
       DC_LOG(@"Creating background thread sender");
       return [SIUIBackgroundThreadSender allocWithZone:nil];

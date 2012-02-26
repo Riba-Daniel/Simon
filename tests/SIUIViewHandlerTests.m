@@ -19,16 +19,6 @@
 
 @implementation SIUIViewHandlerTests
 
--(void) setUpClass {
-   [super setUpClass];
-   [self setupTestView];
-}
-
--(void) tearDownClass {
-   [self removeTestView];
-   [super tearDownClass];
-}
-
 -(void) setUp {
 	[super setUp];
 	handler  = [[SIUIViewHandler alloc] init];
