@@ -20,6 +20,8 @@
 @synthesize tableView = tableView_;
 @synthesize selectedRow = selectedRow_;
 @synthesize gestureRecognizerTapped = gestureRecognizerTapped_;
+@synthesize startDragTime = startDragTime_;
+@synthesize endDragTime = endDragTime_;
 
 - (void)dealloc {
    self.button1 = nil;
@@ -28,6 +30,8 @@
    self.slider = nil;
    self.tableView = nil;
    self.tapableLabel = nil;
+   self.startDragTime = nil;
+   self.endDragTime = nil;
    [super dealloc];
 }
 
@@ -90,6 +94,20 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
    DC_LOG(@"Row %i selected", indexPath.row);
    self.selectedRow = indexPath.row;
+}
+
+#pragma mark - Scroll View delegate
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
+   self.startDragTime = [NSDate date];
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+   self.endDragTime = [NSDate date];
+}
+
+- (NSTimeInterval) dragDuration {
+   return [self.endDragTime timeIntervalSinceDate:self.startDragTime];
 }
 
 @end

@@ -28,9 +28,9 @@
    self = [super init];
    if (self) {
       self.view = view;
-      self.distance = 60;
-      self.eps = 48;
-      self.duration = 0.25;
+      self.distance = 80;
+      self.eps = 50;
+      self.duration = 0.5;
       self.swipeDirection = SIUISwipeDirectionLeft;
    }
    return self;
@@ -39,17 +39,17 @@
 
 -(void) sendEvents {
    
-   // Calculate the event framerate and interval between events to achieve this.
-   NSTimeInterval frameDuration = 1 / self.eps * 1000 * 1000;
-   
    // Calculate the number of events to generate and the distance between them.
-   int nbrTicks = self.eps * self.duration;
-   CGFloat tickDistance = self.distance / nbrTicks;
-   
-   // Work out the offsets to use on the x and y axis.
-   CGFloat tickDistanceX = self.swipeDirection == SIUISwipeDirectionRight ? tickDistance: self.swipeDirection == SIUISwipeDirectionLeft ? -tickDistance: 0;
-   CGFloat tickDistanceY = self.swipeDirection == SIUISwipeDirectionDown ? tickDistance : self.swipeDirection == SIUISwipeDirectionUp ? -tickDistance : 0;
+   int nbrMoves = round(self.eps * self.duration);
+   CGFloat touchAdjust = (CGFloat) self.distance / (CGFloat) nbrMoves;
 
+   // Calculate the event interval between events to achieve this.
+   NSTimeInterval frameDuration = self.duration / nbrMoves;
+
+   // Work out the offsets to use on the x and y axis.
+   CGFloat touchAdjustX = self.swipeDirection == SIUISwipeDirectionRight ? touchAdjust: self.swipeDirection == SIUISwipeDirectionLeft ? -touchAdjust: 0;
+   CGFloat touchAdjustY = self.swipeDirection == SIUISwipeDirectionDown ? touchAdjust : self.swipeDirection == SIUISwipeDirectionUp ? -touchAdjust : 0;
+   
    SIUIEventSender *sender = [SIUIEventSender sender];
 
    // Send the touch and trigger the run loop, then pause for the amount of time needed between touches.
@@ -58,20 +58,27 @@
    
    // Send the starting event.
    [sender sendEvent:event];
+   [NSThread sleepForTimeInterval:frameDuration];
    
-   // Setup the dispatch time.
-   dispatch_time_t nextEventTime = dispatch_time(DISPATCH_TIME_NOW, frameDuration);
+   DC_LOG(@"Swipe setup:-");
+   DC_LOG(@"   direction           : %i", self.swipeDirection);
+   DC_LOG(@"   distance            : %i", self.distance);
+   DC_LOG(@"   eps                 : %i", self.eps);
+   DC_LOG(@"   number moves        : %i", nbrMoves);
+   DC_LOG(@"   Move distance       : %f", touchAdjust);
+   DC_LOG(@"   frame duration      : %f", frameDuration);
    
    // Loop and generate the intermediary move events.
    [touch setPhase:UITouchPhaseMoved];
-   for (int i = 1; i <= nbrTicks; i++) {
+   for (int i = 1; i < nbrMoves; i++) {
       // Setup the dispatch time.
-      nextEventTime = dispatch_time(nextEventTime, frameDuration);
-      touch.locationInWindow = CGPointMake(touch.locationInWindow.x + tickDistanceX, touch.locationInWindow.y + tickDistanceY);
-      [sender scheduleEvent:event atTime:nextEventTime];
+      touch.locationInWindow = CGPointMake(touch.locationInWindow.x + touchAdjustX, touch.locationInWindow.y + touchAdjustY);
+      [sender sendEvent:event];
+      [NSThread sleepForTimeInterval:frameDuration];
    }
    
    // Send the ending event.
+   touch.locationInWindow = CGPointMake(touch.locationInWindow.x + touchAdjustX, touch.locationInWindow.y + touchAdjustY);
    [touch setPhase:UITouchPhaseEnded];
    [sender sendEvent:event];
    

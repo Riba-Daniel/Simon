@@ -71,7 +71,7 @@
 	_previousLocationInWindow = _locationInWindow;
 	_locationInWindow = location;
 	_timestamp = [NSDate timeIntervalSinceReferenceDate];
-   DC_LOG(@"Setting touch point in window from -> to: %i x %i -> %i x %i", (int)_previousLocationInWindow.x, (int)_previousLocationInWindow.y, (int)_locationInWindow.x, (int)_locationInWindow.y);
+   DC_LOG(@"Setting new touch point %f x %f", _locationInWindow.x, _locationInWindow.y);
 }
 
 @end

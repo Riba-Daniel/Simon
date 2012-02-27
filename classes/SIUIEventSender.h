@@ -17,14 +17,6 @@
 +(SIUIEventSender *) sender;
 
 /**
- Schedules an event to occur at the specified time.
- 
- @param event the event to schedule.
- @param atTime when the event is to fire.
- */
--(void) scheduleEvent:(UIEvent *) event atTime:(dispatch_time_t) atTime;
-
-/**
  Directly sends an event to the UI.
  
  @param event the event to send.

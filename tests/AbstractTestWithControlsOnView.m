@@ -52,4 +52,20 @@
    self.testViewController = nil;
 }
 
+#pragma mark - Helpers
+-(void) scrollTableViewToIndex:(int) index atScrollPosition:(UITableViewScrollPosition) position {
+   
+   // Whatch for the main thread because re-running a test from GHUnit test view runs it on the main thread. Known bug in GHUnit.
+   if ([NSThread isMainThread]) {
+      [self.testViewController.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0] atScrollPosition:position animated:NO];
+      [[NSRunLoop currentRunLoop] runUntilDate: [NSDate date]];
+   } else {
+      dispatch_queue_t mainQ = dispatch_get_main_queue();
+      dispatch_sync(mainQ, ^{
+         [self.testViewController.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0] atScrollPosition:position animated:NO];
+         [[NSRunLoop currentRunLoop] runUntilDate: [NSDate date]];
+      });
+   }   
+}
+
 @end

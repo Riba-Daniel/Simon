@@ -24,27 +24,17 @@
 #pragma mark - Private methods
 
 -(void) sendEvent:(UIEvent *) event {
-
-   DC_LOG(@"Sending touch event type %i", [[[event allTouches] anyObject] phase]);
-
    dispatch_sync(mainQ, ^{
+
+#ifdef DC_DEBUG
+      UITouch *touch = [[event allTouches] anyObject];
+      CGPoint loc = [touch locationInView:touch.window];
+      DC_LOG(@"Sending touch event type %i @ %i x %i", touch.phase, (int)loc.x, (int)loc.y);
+#endif
+      
       // Send the event.
       [event updateTimeStamp];
       [[UIApplication sharedApplication] sendEvent:event];
-      
-      // Fire the current run loop which will be the main one.
-      //[[NSRunLoop currentRunLoop] runUntilDate:[NSDate date]];
-   });
-}
-
--(void) scheduleEvent:(UIEvent *) event atTime:(dispatch_time_t) atTime {
-
-   DC_LOG(@"Scheduling touch event type %i at %f", [[[event allTouches] anyObject] phase], atTime);
-   dispatch_after(atTime, mainQ, ^{
-      [event updateTimeStamp];
-      [[UIApplication sharedApplication] sendEvent:event];
-      
-      // Fire the current run loop which will be the main one.
       //[[NSRunLoop currentRunLoop] runUntilDate:[NSDate date]];
    });
 }

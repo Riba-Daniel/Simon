@@ -29,12 +29,4 @@
    [[NSRunLoop currentRunLoop] runUntilDate:[NSDate date]];
 }
 
--(void) scheduleEvent:(UIEvent *) event atTime:(dispatch_time_t) atTime {
-   
-   DC_LOG(@"Scheduling touch event type %i at %f", [[[event allTouches] anyObject] phase], atTime);
-   [event updateTimeStamp];
-   [[UIApplication sharedApplication] sendEvent:event];
-   [[NSRunLoop currentRunLoop] runUntilDate:[NSDate date]];
-}
-
 @end

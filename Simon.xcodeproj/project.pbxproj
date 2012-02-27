@@ -35,6 +35,7 @@
 		32BF7CFB14F90EA300A0B197 /* SIUIMainThreadSender.h in Headers */ = {isa = PBXBuildFile; fileRef = 32BF7CF914F90EA300A0B197 /* SIUIMainThreadSender.h */; };
 		32BF7CFC14F90EA300A0B197 /* SIUIMainThreadSender.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BF7CFA14F90EA300A0B197 /* SIUIMainThreadSender.m */; };
 		32BF7CFE14F9152D00A0B197 /* SIUITapGeneratorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BF7CFD14F9152D00A0B197 /* SIUITapGeneratorTests.m */; };
+		32BF7D0014F9CB2900A0B197 /* SIUISwipeGeneratorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BF7CFF14F9CB2900A0B197 /* SIUISwipeGeneratorTests.m */; };
 		32D5D98A14E1357900D29DD5 /* TestView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32D5D98914E1357900D29DD5 /* TestView.xib */; };
 		32D5D98D14E135A300D29DD5 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D5D98C14E135A300D29DD5 /* TestViewController.m */; };
 		32F742D814F75F58005E5E97 /* SIUISwipeGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F742D614F75F58005E5E97 /* SIUISwipeGenerator.h */; };
@@ -185,6 +186,7 @@
 		32BF7CF914F90EA300A0B197 /* SIUIMainThreadSender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIMainThreadSender.h; sourceTree = "<group>"; };
 		32BF7CFA14F90EA300A0B197 /* SIUIMainThreadSender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUIMainThreadSender.m; sourceTree = "<group>"; };
 		32BF7CFD14F9152D00A0B197 /* SIUITapGeneratorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUITapGeneratorTests.m; sourceTree = "<group>"; };
+		32BF7CFF14F9CB2900A0B197 /* SIUISwipeGeneratorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUISwipeGeneratorTests.m; sourceTree = "<group>"; };
 		32D5D98914E1357900D29DD5 /* TestView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestView.xib; sourceTree = "<group>"; };
 		32D5D98B14E135A300D29DD5 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
 		32D5D98C14E135A300D29DD5 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
@@ -385,6 +387,7 @@
 			children = (
 				32793BAD14F4FB5800B93621 /* SIUIEventSenderTests.m */,
 				32BF7CFD14F9152D00A0B197 /* SIUITapGeneratorTests.m */,
+				32BF7CFF14F9CB2900A0B197 /* SIUISwipeGeneratorTests.m */,
 			);
 			name = Events;
 			sourceTree = "<group>";
@@ -866,6 +869,7 @@
 				32D5D98D14E135A300D29DD5 /* TestViewController.m in Sources */,
 				32793BAE14F4FB5800B93621 /* SIUIEventSenderTests.m in Sources */,
 				32BF7CFE14F9152D00A0B197 /* SIUITapGeneratorTests.m in Sources */,
+				32BF7D0014F9CB2900A0B197 /* SIUISwipeGeneratorTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

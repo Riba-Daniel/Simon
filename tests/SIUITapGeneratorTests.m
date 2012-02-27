@@ -24,4 +24,22 @@
    GHAssertEquals(self.testViewController.tappedButton, 2, @"Button not tapped");
 }
 
+-(void) testGestureRecognizerOnLabelTapped {
+   self.testViewController.gestureRecognizerTapped = NO;
+   SIUITapGenerator *tapGenerator = [[[SIUITapGenerator alloc] initWithView:self.testViewController.tapableLabel] autorelease];
+   [tapGenerator sendEvents];
+   [NSThread sleepForTimeInterval:0.1];
+   GHAssertTrue(self.testViewController.gestureRecognizerTapped, @"gesture recognizer not fired");
+}
+
+-(void) testTableViewTappingRowSelects {
+   self.testViewController.selectedRow = 0;
+   [self scrollTableViewToIndex:0 atScrollPosition:UITableViewScrollPositionTop];
+   [NSThread sleepForTimeInterval:0.1];
+   SIUITapGenerator *tapGenerator = [[[SIUITapGenerator alloc] initWithView:self.testViewController.tableView] autorelease];
+   [tapGenerator sendEvents];
+   [NSThread sleepForTimeInterval:0.1];
+   GHAssertEquals(self.testViewController.selectedRow, (NSInteger) 1, @"Row not selected");
+}
+
 @end

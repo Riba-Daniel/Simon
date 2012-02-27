@@ -16,5 +16,6 @@
 
 -(void) setupTestView;
 -(void) removeTestView;
+-(void) scrollTableViewToIndex:(int) index atScrollPosition:(UITableViewScrollPosition) position;
 
 @end
