@@ -7,14 +7,14 @@
 //
 
 /**
- Classes which can generate one or more events to be sent to the interface.
+ Classes which can generate one or more events to be sent to the interface. Implementations of this interface define the events in order to create taps, swipes and other gestures.
  */
 @protocol SIUIEventGenerator <NSObject>
 
 /// @name Tasks
 
 /**
- Called by the cannon to tell the generator to create and send the events.
+ Create and send the events.
  */
 -(void) sendEvents;
 

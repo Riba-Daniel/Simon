@@ -8,11 +8,15 @@
 
 #import "SIUIEventSender.h"
 
+/**
+ Sender used when sending events from a background thread.
+ */
 @interface SIUIBackgroundThreadSender : SIUIEventSender {
    @private
    dispatch_queue_t mainQ;
 }
 
+/// Main init.
 -(id) init;
 
 @end

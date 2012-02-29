@@ -8,8 +8,12 @@
 
 #import "SIUIEventSender.h"
 
+/**
+ Sender usd when sending events from the main thread. Not really recommended, but can happen. This attempts to make it invisible to the test code.
+ */
 @interface SIUIMainThreadSender : SIUIEventSender
 
+/// Default initialiser.
 -(id) init;
 
 @end

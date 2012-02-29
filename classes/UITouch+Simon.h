@@ -13,14 +13,20 @@
  */
 @interface UITouch (Simon)
 
+/// Property set to update the position in the window where the touch takes place. Note that this is in the windows co-ordinates, not the controls.
 @property (nonatomic) CGPoint locationInWindow;
 
 /**
  Default constructor.
  
  @param view the view that the touch will apply to.
- @param phase the phase to set.
  */
 - (id)initInView:(UIView *)view;
+
+/**
+ Sets the phase of the touch. 
+ 
+ @param phase the new phase. One of the values from UITouchPhase.
+ */
 - (void)setPhase:(UITouchPhase)phase;
 @end

@@ -20,13 +20,13 @@
 /// The view that will be tapped.
 @property (nonatomic, retain) UIView *view;
 
-/// The distance to swipe in display points. Defaults to 60.
+/// The distance to swipe in display points. Defaults to 80.
 @property(nonatomic) NSUInteger distance;
 
-/// How many frames per second to generate events at. Defaults to 48.
+/// How many frames per second to generate events at. Defaults to 50.
 @property(nonatomic) NSUInteger eps;
 
-/// How long in seconds the swipe will be. Defaults to 0.25
+/// How long in seconds the swipe will be. Defaults to 0.5
 @property(nonatomic) NSTimeInterval duration;
 
 /// THe direction of the swipe. Defaults to left.

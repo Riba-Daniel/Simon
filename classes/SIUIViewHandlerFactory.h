@@ -34,7 +34,6 @@
 /**
  This does the work of creating a handler. If you want to create a custom implementation of this class to create your own handlers. Override this method to do the creation. Like all create methods this should return an autoreleased object. Note that this will only be called once per view class as handlers are cached and reused.
  
- @see initHandler:withView:
  @param view the view we want to obtain a handler for.
  @result the appropriate handler.
  */

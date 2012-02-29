@@ -20,6 +20,9 @@
  */
 - (id)initWithTouch:(UITouch *)touch;
 
+/**
+ Tells the event to update it's timestamp to now. This is important for the UI.
+ */
 -(void) updateTimeStamp;
 
 @end

@@ -17,6 +17,8 @@
 @interface SIUIApplication : NSObject
 
 /// @name Properties
+
+/// Factory which is used to generate view handlers for talking to UIView objects returned from queries. You can set this to a custom factory for implementing your own view handlers.
 @property (retain, nonatomic) SIUIViewHandlerFactory *viewHandlerFactory;
 
 #pragma mark - Accessors
