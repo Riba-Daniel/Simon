@@ -37,7 +37,7 @@
 	[[UIApplication sharedApplication].keyWindow addSubview:self.testViewController.view];
    
    // get the view on screen.
-   //[[NSRunLoop currentRunLoop] runUntilDate:[NSDate date]];
+   [[NSRunLoop currentRunLoop] runUntilDate:[NSDate date]];
    
 }
 

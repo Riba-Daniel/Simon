@@ -13,9 +13,6 @@
 #import "UIEvent+Simon.h"
 #import "SIUIViewHandlerFactory.h"
 
-@interface UIView (_private)
-@end
-
 @implementation UIView (Simon)
 
 #pragma mark - Querying

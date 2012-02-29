@@ -29,6 +29,7 @@
 		[handlerCache setObject:handler forKey:viewClass];
 	}
 	
+   handler.view = view;
 	return handler;
 }
 

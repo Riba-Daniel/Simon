@@ -69,6 +69,7 @@
 #pragma mark - findViewsWithQuery
 
 -(void) testFindViewsWithQueryFindsAllButtons {
+   [[SIUIApplication application] logUITree];
 	NSArray *controls = [[SIUIApplication application] findViewsWithQuery:@"//UITableViewCell"];
 	GHAssertTrue([controls count] > 0, @"Nothing returned");
 	for (UIView *view in controls) {

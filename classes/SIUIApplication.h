@@ -104,7 +104,7 @@
 #pragma mark - Waiting and holding
 
 /**
- Pauses the current thread for the specified time.
+ Pauses the current thread for the specified time. Use this to hold a background test thread whilst waiting for the UI to update.
  
  @param duration how long to hold the current thread for.
  */

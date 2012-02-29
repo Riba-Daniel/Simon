@@ -47,7 +47,7 @@
    NSTimeInterval frameDuration = self.duration / nbrMoves;
 
    // Work out the offsets to use on the x and y axis.
-   CGFloat touchAdjustX = self.swipeDirection == SIUISwipeDirectionRight ? touchAdjust: self.swipeDirection == SIUISwipeDirectionLeft ? -touchAdjust: 0;
+   CGFloat touchAdjustX = self.swipeDirection == SIUISwipeDirectionRight ? touchAdjust : self.swipeDirection == SIUISwipeDirectionLeft ? -touchAdjust : 0;
    CGFloat touchAdjustY = self.swipeDirection == SIUISwipeDirectionDown ? touchAdjust : self.swipeDirection == SIUISwipeDirectionUp ? -touchAdjust : 0;
    
    SIUIEventSender *sender = [SIUIEventSender sender];
@@ -66,6 +66,8 @@
    DC_LOG(@"   eps                 : %i", self.eps);
    DC_LOG(@"   number moves        : %i", nbrMoves);
    DC_LOG(@"   Move distance       : %f", touchAdjust);
+   DC_LOG(@"   Move distance X     : %f", touchAdjustX);
+   DC_LOG(@"   Move distance Y     : %f", touchAdjustY);
    DC_LOG(@"   frame duration      : %f", frameDuration);
    
    // Loop and generate the intermediary move events.

@@ -33,6 +33,7 @@
 	UIView *view = [[[UIView alloc] init] autorelease];
 	SIUIViewHandler *handler = [factory handlerForView:view];
 	GHAssertNotNil(handler, @"Handler not created");
+   GHAssertEqualObjects(handler.view, view, @"View not set on handler");
 }
 
 -(void) testReturnsSameInstanceForMultipleRequests {

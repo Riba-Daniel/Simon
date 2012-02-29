@@ -51,6 +51,8 @@
 
 -(void) swipe:(SIUISwipeDirection) swipeDirection distance:(int) distance {
    SIUISwipeGenerator *swipeGenerator = [[SIUISwipeGenerator alloc] initWithView:self.view];
+   swipeGenerator.swipeDirection = swipeDirection;
+   swipeGenerator.distance = distance;
    [swipeGenerator sendEvents];
    [swipeGenerator release];
 }
