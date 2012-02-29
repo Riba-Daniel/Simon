@@ -35,7 +35,7 @@
       // Send the event.
       [event updateTimeStamp];
       [[UIApplication sharedApplication] sendEvent:event];
-      //[[NSRunLoop currentRunLoop] runUntilDate:[NSDate date]];
+      [[NSRunLoop currentRunLoop] runUntilDate:[NSDate date]];
    });
 }
 
