@@ -25,10 +25,6 @@ do { \
 
 @implementation SIMacroTests
 
--(void) tearDown {
-   [self removeTestView];
-}
-
 #pragma mark - Mappings
 
 SIMapStepToSelector(@"abc", dummyMethod)
@@ -282,11 +278,13 @@ SIMapStepToSelector(@"abc", dummyMethod)
 }
 
 -(void) testSITapControl {
+   self.testViewController.tappedButton = 0;
 	SITapControl(@"//UIRoundedRectButton[@titleLabel.text='Button 1']");
 	GHAssertEquals(self.testViewController.tappedButton, 1, @"Tapped flag not set. Control tapping may not have worked");
 }
 
 -(void) testSITapButtonWithLabel {
+   self.testViewController.tappedButton = 0;
 	SITapButtonWithLabel(@"Button 1");
 	GHAssertEquals(self.testViewController.tappedButton, 1, @"Tapped flag not set. Control tapping may not have worked");
 }
@@ -304,6 +302,7 @@ SIMapStepToSelector(@"abc", dummyMethod)
 
 -(void) testTapButtonWithLabelAndWait {
 
+   self.testViewController.tappedButton = 0;
    NSDate *before = [NSDate date];
    SITapButtonWithLabelAndWait(@"Button 1",1.0);
    NSTimeInterval diff = [before timeIntervalSinceNow];
@@ -313,6 +312,7 @@ SIMapStepToSelector(@"abc", dummyMethod)
 }
 
 -(void) testSITapTabBarItems {
+   self.testViewController.tappedTabBarItem = 0;
    SITapTabBarButtonWithLabel(@"More");
 	GHAssertEquals(self.testViewController.tappedTabBarItem, 2, @"Tapped flag not set. Control tapping may not have worked");
    SITapTabBarButtonWithLabel(@"Favorites");
