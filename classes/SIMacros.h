@@ -123,6 +123,11 @@ DC_LOG(@"Started backpack %@", [backpack description]);
 #define SISwipeControlInDirectionDistance(path, direction, distance) [[SIUIApplication application] swipeViewWithQuery:path inDirection:direction forDistance: distance]
 
 /**
+ Pauses the current thread for the specified time. Note that this will only work on a background thread.
+ */
+#define SIPauseFor(seconds) [[SIUIApplication application] pauseFor:seconds]
+
+/**
  But first some reuseable logic embedded in a macro.
  */
 
@@ -195,10 +200,6 @@ do { \
       id yValue = (y) == nil ? @"nil" : (y); \
       SIAssertObjectEqualsM(x, y, [NSString stringWithFormat:@"SIAssertObjectEquals(%s, %s) failed: %@ != %@", #x, #y, xValue, yValue] ); \
    } while (NO)
-
-#pragma mark - Assertions with custom messages
-
-/// @name Assertions with custom messages
 
 /*
  Same as above assertions but have extra parameters which are passed to NSString:stringWithFormat:

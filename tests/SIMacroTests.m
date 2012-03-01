@@ -252,7 +252,7 @@ SIMapStepToSelector(@"abc", dummyMethod)
    }
 }
 
-#pragma mark - UI Tests
+#pragma mark - UI Tests - Finding
 
 -(void) testSIFindViewReturnsErrors {
    @try {
@@ -276,6 +276,8 @@ SIMapStepToSelector(@"abc", dummyMethod)
 	GHAssertNotNil(foundViews, @"Nil returned");
 	GHAssertEqualObjects([foundViews objectAtIndex:0], self.testViewController.button1, @"Returned view is not a match");
 }
+
+#pragma mark - UI Tests - Tapping
 
 -(void) testSITapControl {
    self.testViewController.tappedButton = 0;
@@ -311,7 +313,7 @@ SIMapStepToSelector(@"abc", dummyMethod)
    GHAssertLessThan(diff, -1.0, @"Not enough time passed");
 }
 
--(void) testSITapTabBarItems {
+-(void) testTapTabBarItems {
    self.testViewController.tappedTabBarItem = 0;
    SITapTabBarButtonWithLabel(@"More");
 	GHAssertEquals(self.testViewController.tappedTabBarItem, 2, @"Tapped flag not set. Control tapping may not have worked");
@@ -319,6 +321,38 @@ SIMapStepToSelector(@"abc", dummyMethod)
 	GHAssertEquals(self.testViewController.tappedTabBarItem, 1, @"Tapped flag not set. Control tapping may not have worked");
 }
 
+#pragma mark - UI Tests - Swiping
+-(void) testSwipeSliderRight {
+   self.testViewController.slider.value = 5;
+   SISwipeControlInDirectionDistance(@"//UISlider", SIUISwipeDirectionRight, 50);
+	GHAssertEquals(round(self.testViewController.slider.value), 7.0, @"Slider not slide.");
+}
+
+-(void) testSwipeSliderLeft {
+   self.testViewController.slider.value = 5;
+   SISwipeControlInDirectionDistance(@"//UISlider", SIUISwipeDirectionLeft, 50);
+	GHAssertEquals(round(self.testViewController.slider.value), 3.0, @"Slider not slide.");
+}
+
+-(void) testSwipeThrowsWhenNotFound {
+   @try {
+      SISwipeControlInDirectionDistance(@"//XXX", SIUISwipeDirectionRight, 50);
+      GHFail(@"Exception not thrown");
+   }
+   @catch (SIUINotFoundException *exception) {
+      GHAssertEqualStrings(exception.name, NSStringFromClass([SIUINotFoundException class]), @"Incorrect domain");
+      GHAssertEqualStrings(exception.reason, @"Path //XXX failed to find anything.", @"Reason incorrect");
+   }
+}
+
+#pragma mark - Others
+
+-(void) testPauseFor {
+   NSDate *before = [NSDate date];
+   SIPauseFor(0.5);
+   NSTimeInterval diff = [before timeIntervalSinceNow];
+   GHAssertLessThan(diff, -0.5, @"Not enough time passed");
+}
 
 #pragma mark - Helpers
 

@@ -136,5 +136,21 @@
    GHAssertEquals(round(self.testViewController.slider.value), 8.0, @"Slider not swiped.");
 }
 
+#pragma mark - Other
+
+-(void) testPauseFor {
+   NSDate *before = [NSDate date];
+   [[SIUIApplication application] pauseFor:0.5];
+   NSTimeInterval diff = [before timeIntervalSinceNow];
+   GHAssertLessThan(diff, -0.5, @"Not enough time passed");
+}
+
+-(void) testWaitFor {
+   NSDate *before = [NSDate date];
+   [[SIUIApplication application] pauseFor:0.5];
+   NSTimeInterval diff = [before timeIntervalSinceNow];
+   GHAssertLessThan(diff, -0.5, @"Not enough time passed");
+}
+
 
 @end
