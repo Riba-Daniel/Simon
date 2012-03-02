@@ -19,6 +19,7 @@
 #import "SIUITooManyFoundException.h"
 #import "SIUINotFoundException.h"
 #import "SISyntaxException.h"
+#import "SIUIException.h"
 
 @interface SIUIApplicationTests : AbstractTestWithControlsOnView
 
@@ -146,10 +147,39 @@
 }
 
 -(void) testWaitFor {
-   NSDate *before = [NSDate date];
-   [[SIUIApplication application] pauseFor:0.5];
-   NSTimeInterval diff = [before timeIntervalSinceNow];
-   GHAssertLessThan(diff, -0.5, @"Not enough time passed");
+   
+   self.testViewController.displayLabel.text = @"...";
+   [[NSRunLoop mainRunLoop] runUntilDate:[NSDate date]];
+
+   [[SIUIApplication application] tapButtonWithLabel:@"Wait for it!"];
+   GHAssertEqualStrings(self.testViewController.displayLabel.text, @"...", @"Label should not be updated yet");
+   UIView *label = [[SIUIApplication application] waitForViewWithQuery:@"//UILabel[@text='Clicked!']" retryInterval:0.5 maxRetries:5];
+   GHAssertNotNil(label, @"Nothing returned");
+   GHAssertEqualStrings(self.testViewController.displayLabel.text, @"Clicked!", @"Button should have updated by now");
+}
+
+-(void) testWaitForExitsOnOtherException {
+	@try {
+      [[SIUIApplication application] waitForViewWithQuery:@"//[" retryInterval:0.5 maxRetries:5];
+      GHFail(@"Exception not thrown");
+   }
+   @catch (SISyntaxException *exception) {
+      // Good
+   }
+}
+
+-(void) testWaitForExceedsRetryCount {
+   
+   self.testViewController.displayLabel.text = @"...";
+   [[NSRunLoop mainRunLoop] runUntilDate:[NSDate date]];
+	
+   @try {
+      [[SIUIApplication application] waitForViewWithQuery:@"//UILabel[@text='Wait for it!']" retryInterval:0.5 maxRetries:5];
+      GHFail(@"Exception not thrown");
+   }
+   @catch (SIUIException *exception) {
+      // Good
+   }
 }
 
 

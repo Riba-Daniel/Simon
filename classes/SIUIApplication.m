@@ -18,6 +18,7 @@
 #import "SIUINotFoundException.h"
 #import "SIUIViewHandler.h"
 #import "SIUIViewHandlerFactory.h"
+#import "SIUIException.h"
 
 @interface SIUIApplication(_privates)
 -(void) logSubviewsOfView:(UIView *) view widthPrefix:(NSString *) prefix index:(int) index;
@@ -106,7 +107,7 @@ static SIUIApplication *application = nil;
             exception = [e retain];
          }
 		});
-
+      
 		if (exception != nil) {
          @throw [exception autorelease];
       }
@@ -232,6 +233,35 @@ static SIUIApplication *application = nil;
 
 -(void) pauseFor:(NSTimeInterval) duration {
    [NSThread sleepForTimeInterval:duration];
+}
+
+-(UIView *) waitForViewWithQuery:(NSString *) query retryInterval:(NSTimeInterval) interval maxRetries:(int) maxRetries {
+   
+   int nbrTries = 0;
+   for (;;) {
+      @try {
+         // Attempt to return the UIView found.
+         UIView *view = [self findViewWithQuery:query];
+         DC_LOG(@"View found, returning to calling method");
+         return view;
+      }
+      @catch (SIUINotFoundException *notFoundException) {
+         
+         // Not found exceptions trigger the continuation of the loop.
+         DC_LOG(@"View not found, pausing before trying again");
+         nbrTries++;
+         if (nbrTries >= maxRetries) {
+            // errk! Less we have tried too many times.
+            DC_LOG(@"Retry count exceeeded!");
+            @throw [SIUIException exceptionWithReason: [NSString stringWithFormat:@"Path %@ has not appeared on the UI after %i attempts", query, maxRetries]];
+         }
+         
+         // Sleeeeeep
+         [NSThread sleepForTimeInterval:interval];
+      }
+      
+   };
+
 }
 
 

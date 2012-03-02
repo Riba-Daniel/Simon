@@ -110,4 +110,16 @@
  */
 -(void) pauseFor:(NSTimeInterval) duration;
 
+/**
+ Examines the UI using the query. It the query sucessfully returns a single view, then this method ends and returns the view. If the query is not successful, the the method sleeps for the specified time interval and tries again. If the the maximum number of retries is reached doing this, an exception is raised.
+ 
+ This method is of most use when there are animations involved in the display.
+ 
+ @param query the query that should find the control.
+ @param interval the time interval between attemts to find the control.
+ @param maxRetrieves hows many times to attempt to find the control before giving up.
+ @return the control if found.
+ */
+-(UIView *) waitForViewWithQuery:(NSString *) query retryInterval:(NSTimeInterval) interval maxRetries:(int) maxRetries;
+
 @end

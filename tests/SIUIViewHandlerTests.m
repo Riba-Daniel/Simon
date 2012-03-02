@@ -59,13 +59,15 @@
 -(void) testSubnodes {
    handler.view = self.testViewController.view;
 	NSArray *subNodes = handler.subNodes;
-	GHAssertEquals([subNodes count], (NSUInteger) 6, @"Should be one sub view");
+	GHAssertEquals([subNodes count], (NSUInteger) 8, @"Should be one sub view");
 	GHAssertEquals([subNodes objectAtIndex:0], self.testViewController.button1, @"Returned node was not button 1.");
 	GHAssertEquals([subNodes objectAtIndex:1], self.testViewController.button2, @"Returned node was not button 2.");
 	GHAssertEquals([subNodes objectAtIndex:2], self.testViewController.tabBar, @"Returned node was not the tab bar.");
 	GHAssertEquals([subNodes objectAtIndex:3], self.testViewController.slider, @"Returned node was not the slider.");
 	GHAssertEquals([subNodes objectAtIndex:4], self.testViewController.tableView, @"Returned node was not the tableView.");
 	GHAssertEquals([subNodes objectAtIndex:5], self.testViewController.tapableLabel, @"Returned node was not the tapable label.");
+	GHAssertEquals([subNodes objectAtIndex:6], self.testViewController.displayLabel, @"Returned node was not the display label.");
+	GHAssertEquals([subNodes objectAtIndex:7], self.testViewController.waitForItButton, @"Returned node was not the wait for it button.");
 }
 
 @end

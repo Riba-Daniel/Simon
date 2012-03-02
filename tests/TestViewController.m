@@ -8,12 +8,18 @@
 
 #import "TestViewController.h"
 
+@interface TestViewController (_private)
+-(void) updateDisplayLabel:(NSString *) text;
+@end
+
 @implementation TestViewController
 
 @synthesize button1 = button1_;
 @synthesize button2 = button2_;
+@synthesize waitForItButton = waitForItButton_;
 @synthesize tabBar = tabBar_;
 @synthesize tapableLabel = tapableLabel_;
+@synthesize displayLabel = displayLabel_;
 @synthesize tappedButton = tappedButton_;
 @synthesize tappedTabBarItem = tappedTabBarItem_;
 @synthesize slider = slider_;
@@ -26,10 +32,12 @@
 - (void)dealloc {
    self.button1 = nil;
    self.button2 = nil;
+   self.waitForItButton = nil;
    self.tabBar = nil;
    self.slider = nil;
    self.tableView = nil;
    self.tapableLabel = nil;
+   self.displayLabel = nil;
    self.startDragTime = nil;
    self.endDragTime = nil;
    [super dealloc];
@@ -47,6 +55,15 @@
    DC_LOG(@"Button tapped: %i", button.tag);
    self.tappedButton = button.tag;
 }
+
+- (IBAction)waitForItTapped:(id)sender {
+   [self performSelector:@selector(updateDisplayLabel:) withObject:@"Clicked!" afterDelay:1.5];
+}
+
+-(void) updateDisplayLabel:(NSString *) text {
+   self.displayLabel.text = text;
+}
+
 
 - (void)tabBar:(UITabBar *)tabBar didSelectItem:(UITabBarItem *)item {
    DC_LOG(@"Tab bar item tapped: %i", item.tag);

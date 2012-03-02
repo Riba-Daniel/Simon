@@ -120,12 +120,24 @@ DC_LOG(@"Started backpack %@", [backpack description]);
  @param direction a SIUISwipeDirection value which indicates which direction to swipe in.
  @param distance how far to swipe in display points.
  */
-#define SISwipeControlInDirectionDistance(path, direction, distance) [[SIUIApplication application] swipeViewWithQuery:path inDirection:direction forDistance: distance]
+#define SISwipeControl(path, direction, distance) [[SIUIApplication application] swipeViewWithQuery:path inDirection:direction forDistance: distance]
 
 /**
  Pauses the current thread for the specified time. Note that this will only work on a background thread.
+ 
+ @param seconds how many seconds to pause for.
  */
 #define SIPauseFor(seconds) [[SIUIApplication application] pauseFor:seconds]
+
+/**
+ Checks for the existance of a query path on the UI periodically, up to a specified number of retries. Returns the control found (can be only one) or throws an
+ exception if it is not found before the max number of retries is exected.
+ 
+ @param path the query path that should locate the control.
+ @param retryEvery the time interval between retries.
+ @param maxRetryAttempts how many times to attempt to find the control before throwing an exception.
+ */
+#define SIWaitForView(path, retryEvery, maxRetryAttempts) [[SIUIApplication application] waitForViewWithQuery:path retryInterval:retryEvery maxRetries:maxRetryAttempts]
 
 /**
  But first some reuseable logic embedded in a macro.

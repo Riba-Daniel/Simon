@@ -324,19 +324,19 @@ SIMapStepToSelector(@"abc", dummyMethod)
 #pragma mark - UI Tests - Swiping
 -(void) testSwipeSliderRight {
    self.testViewController.slider.value = 5;
-   SISwipeControlInDirectionDistance(@"//UISlider", SIUISwipeDirectionRight, 50);
+   SISwipeControl(@"//UISlider", SIUISwipeDirectionRight, 50);
 	GHAssertEquals(round(self.testViewController.slider.value), 7.0, @"Slider not slide.");
 }
 
 -(void) testSwipeSliderLeft {
    self.testViewController.slider.value = 5;
-   SISwipeControlInDirectionDistance(@"//UISlider", SIUISwipeDirectionLeft, 50);
+   SISwipeControl(@"//UISlider", SIUISwipeDirectionLeft, 50);
 	GHAssertEquals(round(self.testViewController.slider.value), 3.0, @"Slider not slide.");
 }
 
 -(void) testSwipeThrowsWhenNotFound {
    @try {
-      SISwipeControlInDirectionDistance(@"//XXX", SIUISwipeDirectionRight, 50);
+      SISwipeControl(@"//XXX", SIUISwipeDirectionRight, 50);
       GHFail(@"Exception not thrown");
    }
    @catch (SIUINotFoundException *exception) {
@@ -352,6 +352,15 @@ SIMapStepToSelector(@"abc", dummyMethod)
    SIPauseFor(0.5);
    NSTimeInterval diff = [before timeIntervalSinceNow];
    GHAssertLessThan(diff, -0.5, @"Not enough time passed");
+}
+
+-(void) testWaitForViewWithQuery {
+   self.testViewController.displayLabel.text = @"...";
+   [[SIUIApplication application] tapButtonWithLabel:@"Wait for it!"];
+   GHAssertEqualStrings(self.testViewController.displayLabel.text, @"...", @"Label should not be updated yet");
+   UIView *label = SIWaitForView(@"//UILabel[@text='Clicked!']", 0.5, 5);
+   GHAssertNotNil(label, @"Nothing returned");
+   GHAssertEqualStrings(self.testViewController.displayLabel.text, @"Clicked!", @"Button should have updated by now");
 }
 
 #pragma mark - Helpers
