@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "SIUIConstants.h"
-//#import "SIUIEventSender.m"
 #import "SIUIViewHandlerFactory.h"
 
 /**
@@ -30,6 +29,7 @@
 +(SIUIApplication *) application;
 
 #pragma mark - Finding
+
 /// @name Finding things
 
 /**
@@ -50,6 +50,7 @@
 -(UIView *) findViewWithQuery:(NSString *) query;
 
 #pragma mark - Logging
+
 /// @name Logging
 
 /**
@@ -58,6 +59,7 @@
 -(void) logUITree;
 
 #pragma mark - Tapping
+
 /// @name Tapping
 
 /**
@@ -90,6 +92,7 @@
 -(void) tapTabBarButtonWithLabel:(NSString *) label;
 
 #pragma mark - Swiping
+
 /// @name Swiping
 
 /**
@@ -102,6 +105,8 @@
 -(void) swipeViewWithQuery:(NSString *) query inDirection:(SIUISwipeDirection) swipeDirection forDistance:(int) distance;
 
 #pragma mark - Waiting and holding
+
+/// @name Pauses and waits
 
 /**
  Pauses the current thread for the specified time. Use this to hold a background test thread whilst waiting for the UI to update.
