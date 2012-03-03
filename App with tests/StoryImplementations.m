@@ -8,8 +8,7 @@
 //
 #import "SISimon.h"
 
-@interface StoryImplementations : NSObject {
-}
+@interface StoryImplementations : NSObject {}
 @end
 
 @implementation StoryImplementations
@@ -24,20 +23,10 @@ SIMapStepToSelector(@"Given the interface is up", givenTheInterfaceIsUp)
    @catch (NSException *exception) {
       // Try switching to the first view and verify again.
       SITapTabBarButtonWithLabel(@"First");
-      //SITapControl(@"//UITabBarButton[0]");
+      SIPauseFor(0.5);
       SIFindView(@"//UILabel[@text='First View']");
    }
    
-}
-
-SIMapStepToSelector(@"Then I execute a log UI tree", executePrintUITree)
--(void) executePrintUITree {
-   SIPrintCurrentWindowTree();
-}
-
-SIMapStepToSelector(@"and it should execute on the main thread", executedOnMainThread)
--(void) executedOnMainThread {
-   //STAssertTrue([[NSThread currentThread] isMainThread], @"not on main thread");
 }
 
 SIMapStepToSelector(@"then I can switch to the second view", clickTheSecondView)
