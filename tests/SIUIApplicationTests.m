@@ -137,6 +137,21 @@
    GHAssertEquals(round(self.testViewController.slider.value), 8.0, @"Slider not swiped.");
 }
 
+-(void) testTableViewSwipingDown {
+   [[SIUIApplication application] logUITree];
+   self.testViewController.selectedRow = 0;
+   [self scrollTableViewToIndex:5 atScrollPosition:UITableViewScrollPositionMiddle];
+
+   [[SIUIApplication application] swipeViewWithQuery:@"//UIView//UITableView" inDirection:SIUISwipeDirectionDown forDistance:80];
+   
+   [NSThread sleepForTimeInterval:0.1];
+   [[SIUIApplication application] tapViewWithQuery:@"//UIView//UITableView"];
+   
+   [NSThread sleepForTimeInterval:0.1];
+   GHAssertEquals(self.testViewController.selectedRow, (NSInteger)3, @"Swipe or tap failed");
+}
+
+
 #pragma mark - Other
 
 -(void) testPauseFor {
