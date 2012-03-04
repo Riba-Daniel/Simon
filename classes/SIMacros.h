@@ -15,13 +15,23 @@
  */
 #ifdef SI_DEBUG
 
+#if __has_feature(objc_arc)
+#define SIRun() \
+SIAppBackpack *backpack = [[SIAppBackpack alloc] init]; \
+DC_LOG(@"Started backpack %@", [backpack description]);
+#else
 #define SIRun() \
 SIAppBackpack *backpack = [[[SIAppBackpack alloc] init] autorelease]; \
 DC_LOG(@"Started backpack %@", [backpack description]);
+#endif
 
 #else
 
+#if __has_feature(objc_arc)
+#define SIRun() [[SIAppBackpack alloc] init];
+#else
 #define SIRun() [[[SIAppBackpack alloc] init] autorelease];
+#endif
 
 #endif
 

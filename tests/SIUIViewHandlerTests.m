@@ -1,10 +1,4 @@
-//
-//  SIUIActionTests.m
-//  Simon
-//
-//  Created by Derek Clarkson on 10/09/11.
-//  Copyright (c) 2011. All rights reserved.
-//
+
 
 #import <GHUnitIOS/GHUnit.h>
 #import "SIUIViewHandler.h"
