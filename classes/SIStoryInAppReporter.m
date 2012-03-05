@@ -49,21 +49,22 @@
 																						 target:self 
 																						 action:@selector(closeSimon)] autorelease];
 	reportController.navigationItem.rightBarButtonItem = closeButton;
-	
-	// Get the root view controller.
-	UIViewController *rootController = [UIApplication sharedApplication].keyWindow.rootViewController;
-   DC_LOG(@"%@", rootController.view);
 
+	// Get the front most view and add our report to it.
+	UIView *rootView = [[UIApplication sharedApplication].keyWindow.subviews lastObject];
+   DC_LOG(@"Root View: %@", rootView);
+   
 	// Position the new view offscreen.
-   CGFloat width = rootController.view.bounds.size.width;
-   CGFloat height = rootController.view.bounds.size.height;
+   CGFloat width = rootView.bounds.size.width;
+   CGFloat height = rootView.bounds.size.height;
    navController.view.frame = CGRectMake(0,height, width, height);
-	[rootController.view addSubview:navController.view];
+	[rootView addSubview:navController.view];
    
 	// Animate to the center of the view.
    [UIView animateWithDuration:1.0 animations:^{
 		navController.view.frame = CGRectMake(0,0, width, height);
 	}];
+    
 }
 
 -(void) closeSimon {
