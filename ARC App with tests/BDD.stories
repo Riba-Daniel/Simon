@@ -1,0 +1,3 @@
+Story: Goto second page
+Given we are on the first page
+Then goto the second page

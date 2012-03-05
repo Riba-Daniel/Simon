@@ -33,6 +33,7 @@
 		329825351503A02E00631203 /* dUsefulStuff.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65D09A6313D99C5900D1A74B /* dUsefulStuff.framework */; };
 		329825361503A0C100631203 /* libSimon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 653D0E8A13A782AD00A5AB82 /* libSimon.a */; };
 		329825391503A0FF00631203 /* BDD.stories in Resources */ = {isa = PBXBuildFile; fileRef = 329825381503A0FF00631203 /* BDD.stories */; };
+		3298253C1504C87700631203 /* BDDImplementations.m in Sources */ = {isa = PBXBuildFile; fileRef = 3298253B1504C87600631203 /* BDDImplementations.m */; };
 		32A9D11014C907BC00B0CFBD /* NSInvocations.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A9D10F14C907BC00B0CFBD /* NSInvocations.m */; };
 		32A9D11314C914B500B0CFBD /* SIMacroTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A9D11214C914B500B0CFBD /* SIMacroTests.m */; };
 		32B0ABF914E8DF780020500E /* SISyntaxException.h in Headers */ = {isa = PBXBuildFile; fileRef = 32B0ABF714E8DF780020500E /* SISyntaxException.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -208,6 +209,7 @@
 		3298252B15039FE300631203 /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
 		3298252D15039FE300631203 /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
 		329825381503A0FF00631203 /* BDD.stories */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BDD.stories; sourceTree = "<group>"; };
+		3298253B1504C87600631203 /* BDDImplementations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDDImplementations.m; sourceTree = "<group>"; };
 		32A9D10F14C907BC00B0CFBD /* NSInvocations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = NSInvocations.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		32A9D11214C914B500B0CFBD /* SIMacroTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIMacroTests.m; sourceTree = "<group>"; };
 		32B0ABF714E8DF780020500E /* SISyntaxException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SISyntaxException.h; sourceTree = "<group>"; };
@@ -481,6 +483,7 @@
 			isa = PBXGroup;
 			children = (
 				329825381503A0FF00631203 /* BDD.stories */,
+				3298253B1504C87600631203 /* BDDImplementations.m */,
 			);
 			name = Stories;
 			sourceTree = "<group>";
@@ -944,6 +947,7 @@
 				3298251D15039FE300631203 /* AppDelegate.m in Sources */,
 				3298252315039FE300631203 /* FirstViewController.m in Sources */,
 				3298252A15039FE300631203 /* SecondViewController.m in Sources */,
+				3298253C1504C87700631203 /* BDDImplementations.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1102,8 +1106,8 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ARC App with tests/ARC App with tests-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
+					DEBUG,
+					DC_DEBUG,
 				);
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;

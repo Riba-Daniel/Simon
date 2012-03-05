@@ -13,26 +13,12 @@
  This macro must be placed in your startup code. It loads Simon into the background and automatically runs the stories once the application is active and ready.
  If you want a particular story file to be run, just enter it's name as a parameter.
  */
-#ifdef SI_DEBUG
-
 #if __has_feature(objc_arc)
-#define SIRun() \
-SIAppBackpack *backpack = [[SIAppBackpack alloc] init]; \
-DC_LOG(@"Started backpack %@", [backpack description]);
+#define SIRun() DC_LOG(@"Started backpack with ARC enabled"); \
+[[SIAppBackpack alloc] init];
 #else
-#define SIRun() \
-SIAppBackpack *backpack = [[[SIAppBackpack alloc] init] autorelease]; \
-DC_LOG(@"Started backpack %@", [backpack description]);
-#endif
-
-#else
-
-#if __has_feature(objc_arc)
-#define SIRun() [[SIAppBackpack alloc] init];
-#else
-#define SIRun() [[[SIAppBackpack alloc] init] autorelease];
-#endif
-
+#define SIRun() DC_LOG(@"Started backpack with manual memory management"); \
+[[[SIAppBackpack alloc] init] release];
 #endif
 
 #pragma mark - Step mapping

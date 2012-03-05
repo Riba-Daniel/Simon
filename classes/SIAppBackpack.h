@@ -12,9 +12,8 @@
 /**
  This class backpack's on a UIApplication in order to allow Simon to run in the background. You add it through the SIRun macro.
  */
-@interface SIAppBackpack : NSObject {
-	@private 
-}
+@interface SIAppBackpack : NSObject
+
 /// @name Tasks
 
 /**
