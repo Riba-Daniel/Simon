@@ -69,12 +69,36 @@
 	GHAssertNil([handler kvcAttributes], @"Expected a nil");
 }
 
--(void) testKvcAttributesReturnsAttributesWhenNoTag {
+-(void) testKvcAttributesReturnsAttributesWhenTagSet {
    handler.view = [[[UIView alloc] init] autorelease];
 	handler.view.tag = 1;
 	NSDictionary *attributes = [handler kvcAttributes];
 	GHAssertNotNil(attributes, @"Expected aattributes");
 	GHAssertEquals([attributes objectForKey:@"tag"], [NSNumber numberWithInt:1], @"Attribute not returned");
+}
+
+-(void) testKvcAttributesReturnsAttributesWhenAccessibilityIndentifierSet {
+   handler.view = [[[UIView alloc] init] autorelease];
+	handler.view.accessibilityIdentifier = @"abc";
+	NSDictionary *attributes = [handler kvcAttributes];
+	GHAssertNotNil(attributes, @"Expected aattributes");
+	GHAssertEquals([attributes objectForKey:@"accessibilityIdentifier"], @"abc", @"Attribute not returned");
+}
+
+-(void) testKvcAttributesReturnsAttributesWhenAccessibilityLabelSet {
+   handler.view = [[[UIView alloc] init] autorelease];
+	handler.view.accessibilityLabel = @"abc";
+	NSDictionary *attributes = [handler kvcAttributes];
+	GHAssertNotNil(attributes, @"Expected aattributes");
+	GHAssertEquals([attributes objectForKey:@"accessibilityLabel"], @"abc", @"Attribute not returned");
+}
+
+-(void) testKvcAttributesReturnsAttributesWhenAccessibilityValueSet {
+   handler.view = [[[UIView alloc] init] autorelease];
+	handler.view.accessibilityValue = @"abc";
+	NSDictionary *attributes = [handler kvcAttributes];
+	GHAssertNotNil(attributes, @"Expected aattributes");
+	GHAssertEquals([attributes objectForKey:@"accessibilityValue"], @"abc", @"Attribute not returned");
 }
 
 @end

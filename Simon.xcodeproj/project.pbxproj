@@ -420,15 +420,15 @@
 			isa = PBXGroup;
 			children = (
 				9499DB7013F017DC0053BEEA /* SIUIAction.h */,
-				9499DB6B13F017190053BEEA /* SIUIViewHandlerFactory.h */,
-				9499DB6C13F017190053BEEA /* SIUIViewHandlerFactory.m */,
-				942F7F64141F9197009F3550 /* SIUIViewHandler.h */,
-				942F7F65141F9197009F3550 /* SIUIViewHandler.m */,
-				3221C79D150C9365003CA286 /* SIUIViewInfo.h */,
 				3221C79F150C956A003CA286 /* SIUIButtonHandler.h */,
 				3221C7A0150C956A003CA286 /* SIUIButtonHandler.m */,
 				3221C7A5150CD1DD003CA286 /* SIUILabelHandler.h */,
 				3221C7A6150CD1DD003CA286 /* SIUILabelHandler.m */,
+				942F7F64141F9197009F3550 /* SIUIViewHandler.h */,
+				942F7F65141F9197009F3550 /* SIUIViewHandler.m */,
+				9499DB6B13F017190053BEEA /* SIUIViewHandlerFactory.h */,
+				9499DB6C13F017190053BEEA /* SIUIViewHandlerFactory.m */,
+				3221C79D150C9365003CA286 /* SIUIViewInfo.h */,
 			);
 			name = "View Handlers";
 			sourceTree = "<group>";

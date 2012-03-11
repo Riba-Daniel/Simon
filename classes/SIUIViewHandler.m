@@ -60,13 +60,20 @@
 #pragma mark - View info
 
 -(NSDictionary *) kvcAttributes {
-	NSMutableDictionary *attributes = nil;
+	NSMutableDictionary *attributes = [NSMutableDictionary dictionary];
 	if (self.view.tag > 0) {
-		attributes = [NSMutableDictionary dictionary];
 		[attributes setObject:[NSNumber numberWithInt:self.view.tag] forKey:@"tag"];
-		return attributes;
 	}
-	return attributes;
+	if (self.view.accessibilityIdentifier != nil) {
+		[attributes setObject:self.view.accessibilityIdentifier forKey:@"accessibilityIdentifier"];
+	}
+	if (self.view.accessibilityLabel != nil) {
+		[attributes setObject:self.view.accessibilityLabel forKey:@"accessibilityLabel"];
+	}
+	if (self.view.accessibilityValue != nil) {
+		[attributes setObject:self.view.accessibilityValue forKey:@"accessibilityValue"];
+	}
+	return [attributes count] > 0 ? attributes : nil;
 }
 
 @end
