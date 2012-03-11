@@ -11,6 +11,9 @@
 		3221C7A1150C956A003CA286 /* SIUIButtonHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 3221C79F150C956A003CA286 /* SIUIButtonHandler.h */; };
 		3221C7A2150C956A003CA286 /* SIUIButtonHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 3221C7A0150C956A003CA286 /* SIUIButtonHandler.m */; };
 		3221C7A4150CBD75003CA286 /* SIUIButtonHandlerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3221C7A3150CBD75003CA286 /* SIUIButtonHandlerTests.m */; };
+		3221C7A7150CD1DE003CA286 /* SIUILabelHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 3221C7A5150CD1DD003CA286 /* SIUILabelHandler.h */; };
+		3221C7A8150CD1DE003CA286 /* SIUILabelHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 3221C7A6150CD1DD003CA286 /* SIUILabelHandler.m */; };
+		3221C7AA150CD24C003CA286 /* SIUILabelHandlerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3221C7A9150CD24C003CA286 /* SIUILabelHandlerTests.m */; };
 		324108B61509C19400AFBF66 /* SIUIViewDescriptionVisitor.h in Headers */ = {isa = PBXBuildFile; fileRef = 324108B41509C19400AFBF66 /* SIUIViewDescriptionVisitor.h */; };
 		324108B71509C19400AFBF66 /* SIUIViewDescriptionVisitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 324108B51509C19400AFBF66 /* SIUIViewDescriptionVisitor.m */; };
 		324108BA1509C23200AFBF66 /* SIUIViewDescriptionVisitorDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 324108B91509C23200AFBF66 /* SIUIViewDescriptionVisitorDelegate.h */; };
@@ -195,6 +198,9 @@
 		3221C79F150C956A003CA286 /* SIUIButtonHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIButtonHandler.h; sourceTree = "<group>"; };
 		3221C7A0150C956A003CA286 /* SIUIButtonHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUIButtonHandler.m; sourceTree = "<group>"; };
 		3221C7A3150CBD75003CA286 /* SIUIButtonHandlerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUIButtonHandlerTests.m; sourceTree = "<group>"; };
+		3221C7A5150CD1DD003CA286 /* SIUILabelHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUILabelHandler.h; sourceTree = "<group>"; };
+		3221C7A6150CD1DD003CA286 /* SIUILabelHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUILabelHandler.m; sourceTree = "<group>"; };
+		3221C7A9150CD24C003CA286 /* SIUILabelHandlerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUILabelHandlerTests.m; sourceTree = "<group>"; };
 		324108B41509C19400AFBF66 /* SIUIViewDescriptionVisitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIViewDescriptionVisitor.h; sourceTree = "<group>"; };
 		324108B51509C19400AFBF66 /* SIUIViewDescriptionVisitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUIViewDescriptionVisitor.m; sourceTree = "<group>"; };
 		324108B91509C23200AFBF66 /* SIUIViewDescriptionVisitorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIViewDescriptionVisitorDelegate.h; sourceTree = "<group>"; };
@@ -421,6 +427,8 @@
 				3221C79D150C9365003CA286 /* SIUIViewInfo.h */,
 				3221C79F150C956A003CA286 /* SIUIButtonHandler.h */,
 				3221C7A0150C956A003CA286 /* SIUIButtonHandler.m */,
+				3221C7A5150CD1DD003CA286 /* SIUILabelHandler.h */,
+				3221C7A6150CD1DD003CA286 /* SIUILabelHandler.m */,
 			);
 			name = "View Handlers";
 			sourceTree = "<group>";
@@ -454,6 +462,7 @@
 			children = (
 				9465773E141B97B90026F1FB /* SIUIViewHandlerTests.m */,
 				3221C7A3150CBD75003CA286 /* SIUIButtonHandlerTests.m */,
+				3221C7A9150CD24C003CA286 /* SIUILabelHandlerTests.m */,
 			);
 			name = "View Handlers";
 			sourceTree = "<group>";
@@ -811,6 +820,7 @@
 				324108BA1509C23200AFBF66 /* SIUIViewDescriptionVisitorDelegate.h in Headers */,
 				3221C79E150C9365003CA286 /* SIUIViewInfo.h in Headers */,
 				3221C7A1150C956A003CA286 /* SIUIButtonHandler.h in Headers */,
+				3221C7A7150CD1DE003CA286 /* SIUILabelHandler.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1016,6 +1026,7 @@
 				32BF7CFC14F90EA300A0B197 /* SIUIMainThreadSender.m in Sources */,
 				324108B71509C19400AFBF66 /* SIUIViewDescriptionVisitor.m in Sources */,
 				3221C7A2150C956A003CA286 /* SIUIButtonHandler.m in Sources */,
+				3221C7A8150CD1DE003CA286 /* SIUILabelHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1045,6 +1056,7 @@
 				32BF7D0014F9CB2900A0B197 /* SIUISwipeGeneratorTests.m in Sources */,
 				324108BC1509C61E00AFBF66 /* SIUIViewDescriptionVisitorTests.m in Sources */,
 				3221C7A4150CBD75003CA286 /* SIUIButtonHandlerTests.m in Sources */,
+				3221C7AA150CD24C003CA286 /* SIUILabelHandlerTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

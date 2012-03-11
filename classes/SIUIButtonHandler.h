@@ -9,7 +9,7 @@
 #import "SIUIViewHandler.h"
 
 /**
- hander for buttons. Derives from SIUIViewHandler. The main reason is to allow returning of button related attributes.
+ Hander for buttons. Derives from SIUIViewHandler. The main reason is to allow returning of button related attributes.
  */
 @interface SIUIButtonHandler : SIUIViewHandler
 
