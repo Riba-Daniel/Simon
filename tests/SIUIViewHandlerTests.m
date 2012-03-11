@@ -97,7 +97,7 @@
    handler.view = [[[UIView alloc] init] autorelease];
 	handler.view.accessibilityValue = @"abc";
 	NSDictionary *attributes = [handler kvcAttributes];
-	GHAssertNotNil(attributes, @"Expected aattributes");
+	GHAssertNotNil(attributes, @"Expected attributes");
 	GHAssertEquals([attributes objectForKey:@"accessibilityValue"], @"abc", @"Attribute not returned");
 }
 
