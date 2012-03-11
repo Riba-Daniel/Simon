@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3221C79E150C9365003CA286 /* SIUIViewInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 3221C79D150C9365003CA286 /* SIUIViewInfo.h */; };
+		3221C7A1150C956A003CA286 /* SIUIButtonHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 3221C79F150C956A003CA286 /* SIUIButtonHandler.h */; };
+		3221C7A2150C956A003CA286 /* SIUIButtonHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 3221C7A0150C956A003CA286 /* SIUIButtonHandler.m */; };
+		3221C7A4150CBD75003CA286 /* SIUIButtonHandlerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3221C7A3150CBD75003CA286 /* SIUIButtonHandlerTests.m */; };
 		324108B61509C19400AFBF66 /* SIUIViewDescriptionVisitor.h in Headers */ = {isa = PBXBuildFile; fileRef = 324108B41509C19400AFBF66 /* SIUIViewDescriptionVisitor.h */; };
 		324108B71509C19400AFBF66 /* SIUIViewDescriptionVisitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 324108B51509C19400AFBF66 /* SIUIViewDescriptionVisitor.m */; };
 		324108BA1509C23200AFBF66 /* SIUIViewDescriptionVisitorDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 324108B91509C23200AFBF66 /* SIUIViewDescriptionVisitorDelegate.h */; };
@@ -187,6 +191,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3221C79D150C9365003CA286 /* SIUIViewInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIViewInfo.h; sourceTree = "<group>"; };
+		3221C79F150C956A003CA286 /* SIUIButtonHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIButtonHandler.h; sourceTree = "<group>"; };
+		3221C7A0150C956A003CA286 /* SIUIButtonHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUIButtonHandler.m; sourceTree = "<group>"; };
+		3221C7A3150CBD75003CA286 /* SIUIButtonHandlerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUIButtonHandlerTests.m; sourceTree = "<group>"; };
 		324108B41509C19400AFBF66 /* SIUIViewDescriptionVisitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIViewDescriptionVisitor.h; sourceTree = "<group>"; };
 		324108B51509C19400AFBF66 /* SIUIViewDescriptionVisitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUIViewDescriptionVisitor.m; sourceTree = "<group>"; };
 		324108B91509C23200AFBF66 /* SIUIViewDescriptionVisitorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIViewDescriptionVisitorDelegate.h; sourceTree = "<group>"; };
@@ -410,6 +418,9 @@
 				9499DB6C13F017190053BEEA /* SIUIViewHandlerFactory.m */,
 				942F7F64141F9197009F3550 /* SIUIViewHandler.h */,
 				942F7F65141F9197009F3550 /* SIUIViewHandler.m */,
+				3221C79D150C9365003CA286 /* SIUIViewInfo.h */,
+				3221C79F150C956A003CA286 /* SIUIButtonHandler.h */,
+				3221C7A0150C956A003CA286 /* SIUIButtonHandler.m */,
 			);
 			name = "View Handlers";
 			sourceTree = "<group>";
@@ -442,6 +453,7 @@
 			isa = PBXGroup;
 			children = (
 				9465773E141B97B90026F1FB /* SIUIViewHandlerTests.m */,
+				3221C7A3150CBD75003CA286 /* SIUIButtonHandlerTests.m */,
 			);
 			name = "View Handlers";
 			sourceTree = "<group>";
@@ -797,6 +809,8 @@
 				32BF7CFB14F90EA300A0B197 /* SIUIMainThreadSender.h in Headers */,
 				324108B61509C19400AFBF66 /* SIUIViewDescriptionVisitor.h in Headers */,
 				324108BA1509C23200AFBF66 /* SIUIViewDescriptionVisitorDelegate.h in Headers */,
+				3221C79E150C9365003CA286 /* SIUIViewInfo.h in Headers */,
+				3221C7A1150C956A003CA286 /* SIUIButtonHandler.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1001,6 +1015,7 @@
 				32BF7CF814F9035400A0B197 /* SIUIBackgroundThreadSender.m in Sources */,
 				32BF7CFC14F90EA300A0B197 /* SIUIMainThreadSender.m in Sources */,
 				324108B71509C19400AFBF66 /* SIUIViewDescriptionVisitor.m in Sources */,
+				3221C7A2150C956A003CA286 /* SIUIButtonHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1029,6 +1044,7 @@
 				32BF7CFE14F9152D00A0B197 /* SIUITapGeneratorTests.m in Sources */,
 				32BF7D0014F9CB2900A0B197 /* SIUISwipeGeneratorTests.m in Sources */,
 				324108BC1509C61E00AFBF66 /* SIUIViewDescriptionVisitorTests.m in Sources */,
+				3221C7A4150CBD75003CA286 /* SIUIButtonHandlerTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1119,7 +1135,6 @@
 					"\"$(SRCROOT)/../Releases/dNodi/v0.3.3\"",
 					"\"$(SRCROOT)/../Releases/dUsefulStuff/v0.0.14\"",
 				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ARC App with tests/ARC App with tests-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					DEBUG,
@@ -1145,7 +1160,6 @@
 					"\"$(SRCROOT)/../Releases/dNodi/v0.3.3\"",
 					"\"$(SRCROOT)/../Releases/dUsefulStuff/v0.0.14\"",
 				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ARC App with tests/ARC App with tests-Prefix.pch";
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
@@ -1178,6 +1192,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_LDFLAGS = "-ObjC";
+				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = NO;
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1201,6 +1216,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_LDFLAGS = "-ObjC";
+				PRECOMPS_INCLUDE_HEADERS_FROM_BUILT_PRODUCTS_DIR = NO;
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1217,7 +1233,6 @@
 					"\"$(SRCROOT)/../Releases/dUsefulStuff/v0.0.14\"",
 					"\"$(SRCROOT)/../Releases/dNodi/v0.3.3\"",
 				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Simon-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					DEBUG,
@@ -1247,7 +1262,6 @@
 					"\"$(SRCROOT)/../Releases/dUsefulStuff/v0.0.14\"",
 					"\"$(SRCROOT)/../Releases/dNodi/v0.3.3\"",
 				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Simon-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
 				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
@@ -1274,7 +1288,6 @@
 					"\"$(SRCROOT)/../Releases/dUsefulStuff/v0.0.14\"",
 					"\"$(SRCROOT)/../Releases/dNodi/v0.3.3\"",
 				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Simon-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					DEBUG,
@@ -1297,7 +1310,6 @@
 					"\"$(SRCROOT)/../Releases/dUsefulStuff/v0.0.14\"",
 					"\"$(SRCROOT)/../Releases/dNodi/v0.3.3\"",
 				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Simon-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					DEBUG,
@@ -1321,7 +1333,6 @@
 					"\"$(SRCROOT)/../Releases/dNodi/v0.3.3\"",
 					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
 				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "App with tests/TestApp2-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -1344,7 +1355,6 @@
 					"\"$(SRCROOT)/../Releases/dNodi/v0.3.3\"",
 					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
 				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "App with tests/TestApp2-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = "App with tests/TestApp2-Info.plist";

@@ -175,13 +175,20 @@ static SIUIApplication *application = nil;
 			attributes:(NSDictionary *) attributes
 			 indexPath:(NSIndexPath *) indexPath
 				sibling:(int) siblingIndex {
-	
+
+	// Build a string of the attributes.
+	NSMutableString *attributeString = [NSMutableString string];
+	[attributes enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+		[attributeString appendFormat:@", @%2$@='%3$@'", key, obj];
+	}];
+
+	// Log the main details.
 	NSString *name = NSStringFromClass([view class]);
 	NSUInteger index = [indexPath indexAtPosition:[indexPath length] - 1];
 	NSUInteger depth = [indexPath length];
 	NSString *prefix = [@"" stringByPaddingToLength:depth * 3 withString:@"   " startingAtIndex:0];
 	NSString *siblingString = siblingIndex > 0 ? [NSString stringWithFormat:@" [%i]", siblingIndex]: @"";
-	NSLog(@"%1$@[%3$i] %2$@%4$@", prefix, name, index, siblingString);
+	NSLog(@"%1$@[%3$i] %2$@%4$@%5$@", prefix, name, index, siblingString, attributeString);
 	
 }
 

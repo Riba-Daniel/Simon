@@ -57,4 +57,16 @@
    [swipeGenerator release];
 }
 
+#pragma mark - View info
+
+-(NSDictionary *) kvcAttributes {
+	NSMutableDictionary *attributes = nil;
+	if (self.view.tag > 0) {
+		attributes = [NSMutableDictionary dictionary];
+		[attributes setObject:[NSNumber numberWithInt:self.view.tag] forKey:@"tag"];
+		return attributes;
+	}
+	return attributes;
+}
+
 @end

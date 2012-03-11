@@ -8,6 +8,7 @@
 
 #import "SIUIViewHandlerFactory.h"
 #import <dUsefulStuff/DCCommon.h>
+#import "SIUIButtonHandler.h"
 
 @implementation SIUIViewHandlerFactory
 
@@ -34,6 +35,9 @@
 }
 
 -(SIUIViewHandler *) createHandlerForView:(UIView<DNNode> *) view {
+	if ([view isKindOfClass:[UIButton class]]) {
+		return [[[SIUIButtonHandler alloc] init] autorelease];
+	}
    return [[[SIUIViewHandler alloc] init] autorelease];
 }
 

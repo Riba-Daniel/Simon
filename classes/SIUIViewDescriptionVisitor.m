@@ -59,7 +59,7 @@
 	// Tell the delegate we are being visited.
 	[delegate visitedView:view 
 				 description:viewDescription 
-				  attributes:nil
+				  attributes:[view kvcAttributes]
 					indexPath:indexPath
 					  sibling:siblingCount];
 	

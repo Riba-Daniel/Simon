@@ -64,4 +64,17 @@
 	GHAssertEquals([subNodes objectAtIndex:7], self.testViewController.waitForItButton, @"Returned node was not the wait for it button.");
 }
 
+-(void) testKvcAttributesReturnsNilWhenNoTag {
+   handler.view = [[[UIView alloc] init] autorelease];
+	GHAssertNil([handler kvcAttributes], @"Expected a nil");
+}
+
+-(void) testKvcAttributesReturnsAttributesWhenNoTag {
+   handler.view = [[[UIView alloc] init] autorelease];
+	handler.view.tag = 1;
+	NSDictionary *attributes = [handler kvcAttributes];
+	GHAssertNotNil(attributes, @"Expected aattributes");
+	GHAssertEquals([attributes objectForKey:@"tag"], [NSNumber numberWithInt:1], @"Attribute not returned");
+}
+
 @end

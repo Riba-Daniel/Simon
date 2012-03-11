@@ -43,4 +43,8 @@
    [[[SIUIApplication application].viewHandlerFactory handlerForView:self] swipe:swipeDirection distance:distance];
 }
 
+-(NSDictionary *) kvcAttributes {
+   return [[[SIUIApplication application].viewHandlerFactory handlerForView:self] kvcAttributes];
+}
+
 @end
