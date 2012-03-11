@@ -68,7 +68,7 @@
 				ignored:(NSMutableArray *) ignored
 				 notRun:(NSMutableArray *) notRun {
 	
-	NSString *status = [NSString stringStatusWithStory:story];
+	NSString *statusAsString = [NSString stringStatusWithStory:story];
 	switch (story.status) {
 		case SIStoryStatusSuccess:
 			[successes addObject:story];
@@ -90,25 +90,25 @@
 	NSLog(@" ");
 	NSLog(@"Story: %@", story.title);
 	
+	NSString *stepStatus;
 	for (SIStep * step in story.steps) {
 		if ([step isMapped]) {
-			NSString *status;
 			if (step.stepMapping.executed) {
-				status = step.stepMapping.exception != nil ? @"Failed!" : @"Success";
+				stepStatus = step.stepMapping.exception != nil ? @"Failed!" : @"Success";
 			} else {
-				status = @"Not executed";
+				stepStatus = @"Not executed";
 			}
 			
 			NSLog(@"   Step: \"%@\" (%@::%@) - %@", step.command, 
 					NSStringFromClass(step.stepMapping.targetClass),
 					NSStringFromSelector(step.stepMapping.selector),
-					status);
+					stepStatus);
 		} else {
 			NSLog(@"   Step: %@, NOT MAPPED", step.command);
 		}
 	}
 
-	NSLog(@"Result: %@", status);
+	NSLog(@"Result: %@", statusAsString);
 
 }
 

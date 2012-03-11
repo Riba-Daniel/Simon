@@ -9,11 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "SIUIConstants.h"
 #import "SIUIViewHandlerFactory.h"
+#import "SIUIViewDescriptionVisitorDelegate.h"
 
 /**
  Provides tools for accessing the UI of a running application.
  */
-@interface SIUIApplication : NSObject
+@interface SIUIApplication : NSObject<SIUIViewDescriptionVisitorDelegate> {
+	@private
+}
 
 /// @name Properties
 

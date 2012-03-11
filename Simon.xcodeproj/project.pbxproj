@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		324108B61509C19400AFBF66 /* SIUIViewDescriptionVisitor.h in Headers */ = {isa = PBXBuildFile; fileRef = 324108B41509C19400AFBF66 /* SIUIViewDescriptionVisitor.h */; };
+		324108B71509C19400AFBF66 /* SIUIViewDescriptionVisitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 324108B51509C19400AFBF66 /* SIUIViewDescriptionVisitor.m */; };
+		324108BA1509C23200AFBF66 /* SIUIViewDescriptionVisitorDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 324108B91509C23200AFBF66 /* SIUIViewDescriptionVisitorDelegate.h */; };
+		324108BC1509C61E00AFBF66 /* SIUIViewDescriptionVisitorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 324108BB1509C61E00AFBF66 /* SIUIViewDescriptionVisitorTests.m */; };
 		325683D914EF6CEB00F7C189 /* SIUIConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 325683D814EF6CEB00F7C189 /* SIUIConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32741D7814EB581E00093E0F /* UITouch+Simon.h in Headers */ = {isa = PBXBuildFile; fileRef = 32741D7614EB581E00093E0F /* UITouch+Simon.h */; settings = {ATTRIBUTES = (); }; };
 		32741D7914EB581E00093E0F /* UITouch+Simon.m in Sources */ = {isa = PBXBuildFile; fileRef = 32741D7714EB581E00093E0F /* UITouch+Simon.m */; };
@@ -183,6 +187,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		324108B41509C19400AFBF66 /* SIUIViewDescriptionVisitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIViewDescriptionVisitor.h; sourceTree = "<group>"; };
+		324108B51509C19400AFBF66 /* SIUIViewDescriptionVisitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUIViewDescriptionVisitor.m; sourceTree = "<group>"; };
+		324108B91509C23200AFBF66 /* SIUIViewDescriptionVisitorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIViewDescriptionVisitorDelegate.h; sourceTree = "<group>"; };
+		324108BB1509C61E00AFBF66 /* SIUIViewDescriptionVisitorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUIViewDescriptionVisitorTests.m; sourceTree = "<group>"; };
 		325683D814EF6CEB00F7C189 /* SIUIConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIConstants.h; sourceTree = "<group>"; };
 		32741D7614EB581E00093E0F /* UITouch+Simon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITouch+Simon.h"; sourceTree = "<group>"; };
 		32741D7714EB581E00093E0F /* UITouch+Simon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITouch+Simon.m"; sourceTree = "<group>"; };
@@ -694,10 +702,13 @@
 			isa = PBXGroup;
 			children = (
 				3232A9F514EDFD25002010FF /* Events */,
-				3232A9F414EDFCAC002010FF /* View Handlers */,
+				325683D814EF6CEB00F7C189 /* SIUIConstants.h */,
+				324108B41509C19400AFBF66 /* SIUIViewDescriptionVisitor.h */,
+				324108B51509C19400AFBF66 /* SIUIViewDescriptionVisitor.m */,
+				324108B91509C23200AFBF66 /* SIUIViewDescriptionVisitorDelegate.h */,
 				659E628F13D9C3E200ACD34C /* UIView+Simon.h */,
 				659E629013D9C3E200ACD34C /* UIView+Simon.m */,
-				325683D814EF6CEB00F7C189 /* SIUIConstants.h */,
+				3232A9F414EDFCAC002010FF /* View Handlers */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -709,6 +720,7 @@
 				32793BAA14F4F95600B93621 /* View Handlers */,
 				94AED1511420DB070070D3BB /* SIUIHandlerFactoryTests.m */,
 				659E62A213DB027E00ACD34C /* SIUIApplicationTests.m */,
+				324108BB1509C61E00AFBF66 /* SIUIViewDescriptionVisitorTests.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -783,6 +795,8 @@
 				32BF7CF214F9032C00A0B197 /* SIUIEventSender.h in Headers */,
 				32BF7CF714F9035400A0B197 /* SIUIBackgroundThreadSender.h in Headers */,
 				32BF7CFB14F90EA300A0B197 /* SIUIMainThreadSender.h in Headers */,
+				324108B61509C19400AFBF66 /* SIUIViewDescriptionVisitor.h in Headers */,
+				324108BA1509C23200AFBF66 /* SIUIViewDescriptionVisitorDelegate.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -986,6 +1000,7 @@
 				32BF7CF314F9032C00A0B197 /* SIUIEventSender.m in Sources */,
 				32BF7CF814F9035400A0B197 /* SIUIBackgroundThreadSender.m in Sources */,
 				32BF7CFC14F90EA300A0B197 /* SIUIMainThreadSender.m in Sources */,
+				324108B71509C19400AFBF66 /* SIUIViewDescriptionVisitor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1013,6 +1028,7 @@
 				32793BAE14F4FB5800B93621 /* SIUIEventSenderTests.m in Sources */,
 				32BF7CFE14F9152D00A0B197 /* SIUITapGeneratorTests.m in Sources */,
 				32BF7D0014F9CB2900A0B197 /* SIUISwipeGeneratorTests.m in Sources */,
+				324108BC1509C61E00AFBF66 /* SIUIViewDescriptionVisitorTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1208,6 +1224,15 @@
 					DC_DEBUG,
 				);
 				GCC_THUMB_SUPPORT = NO;
+				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
+				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GCC_WARN_SHADOW = YES;
+				GCC_WARN_STRICT_SELECTOR_MATCH = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNKNOWN_PRAGMAS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_LABEL = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -1225,6 +1250,15 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Simon-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
+				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
+				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;
+				GCC_TREAT_WARNINGS_AS_ERRORS = YES;
+				GCC_WARN_SHADOW = YES;
+				GCC_WARN_STRICT_SELECTOR_MATCH = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNKNOWN_PRAGMAS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_LABEL = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -1330,6 +1364,7 @@
 				3298253115039FE300631203 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		653D0E8413A782AC00A5AB82 /* Build configuration list for PBXProject "Simon" */ = {
 			isa = XCConfigurationList;

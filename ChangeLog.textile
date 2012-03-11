@@ -1,3 +1,8 @@
+h1. Version 0.1.6
+March 2012
+
+* Added more data to the display of a UI tree by breaking out the visitor code using the visitor pattern and delegate pattern.
+
 h1. Version 0.1.5
 March 2012
 

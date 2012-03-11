@@ -7,7 +7,7 @@
 # Copyright 2010 Derek Clarkson. All rights reserved.
 
 # build specific.
-DC_CURRENT_PROJECT_VERSION=${CURRENT_PROJECT_VERSION=0.1.5}
+DC_CURRENT_PROJECT_VERSION=${CURRENT_PROJECT_VERSION=0.1.6}
 DC_PRODUCT_NAME=${PRODUCT_NAME=Simon}
 DC_SRC=classes
 DC_BUILD_TARGET="Simon"
@@ -30,6 +30,7 @@ $DC_SCRIPTS_DIR/clean.sh
 
 # Do documentation first.
 $DC_SCRIPTS_DIR/createDocumentation.sh
+
 # Copy API documentation to web site.
 rm -fr ../drekka.github.com/simon/api/*
 cp -vR build/appledoc/html/* ../drekka.github.com/simon/api

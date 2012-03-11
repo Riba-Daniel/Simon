@@ -19,9 +19,9 @@
 #import "SIUIViewHandler.h"
 #import "SIUIViewHandlerFactory.h"
 #import "SIUIException.h"
+#import "SIUIViewDescriptionVisitor.h"
 
 @interface SIUIApplication(_privates)
--(void) logSubviewsOfView:(UIView *) view widthPrefix:(NSString *) prefix index:(int) index;
 -(SIUIViewHandler *) viewHandlerForView:(UIView *) view;
 @end
 
@@ -162,32 +162,29 @@ static SIUIApplication *application = nil;
 		return;
 	}
 	
-	UIWindow * window = [UIApplication sharedApplication].keyWindow;
 	NSLog(@"Tree view of current window"); 
 	NSLog(@"====================================================");
-	[self logSubviewsOfView:window widthPrefix:@"" index:0];
+	
+	SIUIViewDescriptionVisitor *visitor = [[SIUIViewDescriptionVisitor alloc] initWithDelegate:self];
+	[visitor visitView:[UIApplication sharedApplication].keyWindow];
+	DC_DEALLOC(visitor);
 }
 
--(void) logSubviewsOfView:(UIView *) view widthPrefix:(NSString *) prefix index:(int) index {
+-(void) visitedView:(UIView *) view 
+		  description:(NSString *) description 
+			attributes:(NSDictionary *) attributes
+			 indexPath:(NSIndexPath *) indexPath
+				sibling:(int) siblingIndex {
 	
-	// Find out if we have some text.
-	NSString *name;
-	if ([view respondsToSelector:@selector(text)]) {
-		name = [NSString stringWithFormat:@"%@ \"%@\"", NSStringFromClass([view class]), [view performSelector:@selector(text)]];
-	} else {
-		name = NSStringFromClass([view class]);
-	}
+	NSString *name = NSStringFromClass([view class]);
+	NSUInteger index = [indexPath indexAtPosition:[indexPath length] - 1];
+	NSUInteger depth = [indexPath length];
+	NSString *prefix = [@"" stringByPaddingToLength:depth * 3 withString:@"   " startingAtIndex:0];
+	NSString *siblingString = siblingIndex > 0 ? [NSString stringWithFormat:@" [%i]", siblingIndex]: @"";
+	NSLog(@"%1$@[%3$i] %2$@%4$@", prefix, name, index, siblingString);
 	
-	NSLog(@"%@[%i] %@", prefix, index, name);
-	
-	// Now recursively handle sub views.
-	NSString * offset = [NSString stringWithFormat:@"%@%@", prefix, @"   "];
-	
-	int subViewIndex = 0;
-	for (UIView * subview in view.subviews) {
-		[self logSubviewsOfView:subview widthPrefix:offset index:subViewIndex++];
-	}
 }
+
 
 #pragma mark - Tapping
 
