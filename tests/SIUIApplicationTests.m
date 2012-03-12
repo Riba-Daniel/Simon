@@ -117,7 +117,7 @@
 }
 
 -(void) testTapButtonWithLabelAndWait {
-
+	
    self.testViewController.tappedButton = 0;
    
    NSDate *before = [NSDate date];
@@ -141,7 +141,7 @@
    [[SIUIApplication application] logUITree];
    self.testViewController.selectedRow = 0;
    [self scrollTableViewToIndex:5 atScrollPosition:UITableViewScrollPositionMiddle];
-
+	
    [[SIUIApplication application] swipeViewWithQuery:@"//UIView//UITableView" inDirection:SIUISwipeDirectionDown forDistance:80];
    
    [NSThread sleepForTimeInterval:0.1];
@@ -152,7 +152,7 @@
 }
 
 
-#pragma mark - Other
+#pragma mark - Pauses and Waits
 
 -(void) testPauseFor {
    NSDate *before = [NSDate date];
@@ -165,7 +165,7 @@
    
    self.testViewController.displayLabel.text = @"...";
    [[NSRunLoop mainRunLoop] runUntilDate:[NSDate date]];
-
+	
    [[SIUIApplication application] tapButtonWithLabel:@"Wait for it!"];
    GHAssertEqualStrings(self.testViewController.displayLabel.text, @"...", @"Label should not be updated yet");
    UIView *label = [[SIUIApplication application] waitForViewWithQuery:@"//UILabel[@text='Clicked!']" retryInterval:0.5 maxRetries:5];
@@ -195,6 +195,32 @@
    @catch (SIUIException *exception) {
       // Good
    }
+}
+
+#pragma mark - Animation
+
+-(void) testWaitForAnimationFinish {
+	
+	dispatch_queue_t mainQueue = dispatch_get_main_queue();
+   NSDate *before = [NSDate date];
+	dispatch_async(mainQueue, ^{
+		CGPoint originalCenter = self.testViewController.waitForItButton.center;
+		[UIView animateWithDuration:1.0 
+									 delay:0.0
+								  options:UIViewAnimationOptionAutoreverse
+							  animations: ^{
+								  self.testViewController.waitForItButton.center = CGPointMake(originalCenter.x + 100, originalCenter.y); 
+							  }
+							  completion:^(BOOL finished) {
+								  self.testViewController.waitForItButton.center = originalCenter;
+							  }];
+	});
+
+	[[SIUIApplication application]waitForAnimationEndOnViewWithQuery:@"//UIRoundedRectButton[@titleLabel.text='Wait for it!']" retryInterval:0.8];
+
+   NSTimeInterval diff = fabs([before timeIntervalSinceNow]);
+	GHAssertGreaterThan(diff, 2.0, @"not long enough, animation not finished.");
+	
 }
 
 

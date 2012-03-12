@@ -130,4 +130,16 @@
  */
 -(UIView *) waitForViewWithQuery:(NSString *) query retryInterval:(NSTimeInterval) interval maxRetries:(int) maxRetries;
 
+/**
+ Waits for an animation to finish before returning. If the control is not present this method will first wait for it to appear by calling 
+ waitFirViewWithQuery:retryInterval:maxRetries using the same retryInterval and a maxRetries of 20.
+ 
+ The process of assessing if an animation is finished is not simple. To achieve it we access the views CALayer and check it for animation
+ keys. If there are none, we assume the animations have finished. Note that this takes into account any animations running on super views as well. So you can check a control which is on a view which is sliding on and it will be regarded as being animated even though the control itself is not.
+
+ @param query the query that should find the control.
+ @param interval the time interval between animation checks.
+*/ 
+-(void) waitForAnimationEndOnViewWithQuery:(NSString *) query retryInterval:(NSTimeInterval) interval;
+
 @end

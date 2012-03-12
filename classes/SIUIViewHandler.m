@@ -24,8 +24,6 @@
 
 -(NSString *)dnName {
 	NSString *name =  NSStringFromClass([self.view class]);
-	DC_LOG(@"View = %@", self.view);
-	DC_LOG(@"Returning name = %@", name);
 	return name;
 }
 

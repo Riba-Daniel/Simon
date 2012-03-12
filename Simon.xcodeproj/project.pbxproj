@@ -67,6 +67,7 @@
 		32BF7D0014F9CB2900A0B197 /* SIUISwipeGeneratorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BF7CFF14F9CB2900A0B197 /* SIUISwipeGeneratorTests.m */; };
 		32D5D98A14E1357900D29DD5 /* TestView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32D5D98914E1357900D29DD5 /* TestView.xib */; };
 		32D5D98D14E135A300D29DD5 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D5D98C14E135A300D29DD5 /* TestViewController.m */; };
+		32EA6E76150E11E2000A64A1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32EA6E75150E11E2000A64A1 /* QuartzCore.framework */; };
 		32F742D814F75F58005E5E97 /* SIUISwipeGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F742D614F75F58005E5E97 /* SIUISwipeGenerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32F742D914F75F58005E5E97 /* SIUISwipeGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F742D714F75F58005E5E97 /* SIUISwipeGenerator.m */; };
 		32F7F3E614EE1E5800F94F65 /* GSEventProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F7F3E414EE1E5800F94F65 /* GSEventProxy.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -255,6 +256,7 @@
 		32D5D98914E1357900D29DD5 /* TestView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestView.xib; sourceTree = "<group>"; };
 		32D5D98B14E135A300D29DD5 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
 		32D5D98C14E135A300D29DD5 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
+		32EA6E75150E11E2000A64A1 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		32F742D614F75F58005E5E97 /* SIUISwipeGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUISwipeGenerator.h; sourceTree = "<group>"; };
 		32F742D714F75F58005E5E97 /* SIUISwipeGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUISwipeGenerator.m; sourceTree = "<group>"; };
 		32F7F3E414EE1E5800F94F65 /* GSEventProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSEventProxy.h; sourceTree = "<group>"; };
@@ -378,6 +380,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32EA6E76150E11E2000A64A1 /* QuartzCore.framework in Frameworks */,
 				94327D7213E44F9A0003646C /* dNodi.framework in Frameworks */,
 				65D09A6413D99C5900D1A74B /* dUsefulStuff.framework in Frameworks */,
 				653D0E8E13A782AD00A5AB82 /* Foundation.framework in Frameworks */,
@@ -565,6 +568,7 @@
 		653D0E8C13A782AD00A5AB82 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				32EA6E75150E11E2000A64A1 /* QuartzCore.framework */,
 				94327D7113E44F9A0003646C /* dNodi.framework */,
 				65D09A6313D99C5900D1A74B /* dUsefulStuff.framework */,
 				653D0EF813A784C100A5AB82 /* GHUnitIOS.framework */,
@@ -607,9 +611,6 @@
 			children = (
 				94657741141C95160026F1FB /* AbstractTestWithControlsOnView.h */,
 				94657742141C95160026F1FB /* AbstractTestWithControlsOnView.m */,
-				32D5D98914E1357900D29DD5 /* TestView.xib */,
-				32D5D98B14E135A300D29DD5 /* TestViewController.h */,
-				32D5D98C14E135A300D29DD5 /* TestViewController.m */,
 				6583B43113D1CB4F005E13F3 /* GHUnit */,
 				32A9D10F14C907BC00B0CFBD /* NSInvocations.m */,
 				65D35BC213A8BA130007A8AD /* NSString+SimonTests.m */,
@@ -617,8 +618,12 @@
 				65FCD11713ADE3C200A90FCA /* SIRuntimeTests.m */,
 				653D0ED913A783DC00A5AB82 /* SIStoryFileReaderTests.m */,
 				6551A98613AB931F00679B94 /* SIStoryRunnerTests.m */,
+				659E62A213DB027E00ACD34C /* SIUIApplicationTests.m */,
 				6583B43013D1CB2E005E13F3 /* Stories */,
 				653D0EDD13A783DC00A5AB82 /* Story files */,
+				32D5D98914E1357900D29DD5 /* TestView.xib */,
+				32D5D98B14E135A300D29DD5 /* TestViewController.h */,
+				32D5D98C14E135A300D29DD5 /* TestViewController.m */,
 				659E62A013DB026400ACD34C /* UI */,
 			);
 			path = tests;
@@ -740,7 +745,6 @@
 				32793BAC14F4F97700B93621 /* Events */,
 				32793BAA14F4F95600B93621 /* View Handlers */,
 				94AED1511420DB070070D3BB /* SIUIHandlerFactoryTests.m */,
-				659E62A213DB027E00ACD34C /* SIUIApplicationTests.m */,
 				324108BB1509C61E00AFBF66 /* SIUIViewDescriptionVisitorTests.m */,
 			);
 			name = UI;

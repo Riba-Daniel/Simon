@@ -21,8 +21,11 @@
 #import "SIUIException.h"
 #import "SIUIViewDescriptionVisitor.h"
 
+#import <QuartzCore/CALayer.h>
+
 @interface SIUIApplication(_privates)
 -(SIUIViewHandler *) viewHandlerForView:(UIView *) view;
+-(BOOL) animationsRunningOnViewHierarchy:(UIView *) view;
 @end
 
 @implementation SIUIApplication
@@ -175,13 +178,13 @@ static SIUIApplication *application = nil;
 			attributes:(NSDictionary *) attributes
 			 indexPath:(NSIndexPath *) indexPath
 				sibling:(int) siblingIndex {
-
+	
 	// Build a string of the attributes.
 	NSMutableString *attributeString = [NSMutableString string];
 	[attributes enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
 		[attributeString appendFormat:@", @%2$@='%3$@'", key, obj];
 	}];
-
+	
 	// Log the main details.
 	NSString *name = NSStringFromClass([view class]);
 	NSUInteger index = [indexPath indexAtPosition:[indexPath length] - 1];
@@ -265,8 +268,41 @@ static SIUIApplication *application = nil;
       }
       
    };
-
+	
 }
 
+-(void) waitForAnimationEndOnViewWithQuery:(NSString *) query retryInterval:(NSTimeInterval) interval {
+	
+	UIView *view = [self waitForViewWithQuery:query retryInterval:interval maxRetries: 20];
+	
+	do {
+		// Sleeeeeep
+		[NSThread sleepForTimeInterval:interval];
+		
+		// Now check.
+		DC_LOG(@"Checking animation keys");
+		
+		// Here we dig into the CALayer and get a list of all animation keys. 
+		// If this list is empty, then there are no more animations.
+		if (![self animationsRunningOnViewHierarchy:view]) {
+			DC_LOG(@"Animation appears to be over, returning");
+			return;
+		}
+		
+	} while(YES);
+	
+}
+
+// If any of the views in the hierarchy have animations present then regard the passed view as still being animated.
+-(BOOL) animationsRunningOnViewHierarchy:(UIView *) view {
+	UIView *checkView = view;
+	do {
+		if ([[view.layer animationKeys] count] > 0) {
+			return YES;
+		}
+		checkView = checkView.superview;
+	} while (checkView != nil);
+	return NO;
+}
 
 @end

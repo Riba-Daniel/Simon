@@ -345,7 +345,7 @@ SIMapStepToSelector(@"abc", dummyMethod)
    }
 }
 
-#pragma mark - Others
+#pragma mark - Pauses and Waits
 
 -(void) testPauseFor {
    NSDate *before = [NSDate date];
@@ -362,6 +362,33 @@ SIMapStepToSelector(@"abc", dummyMethod)
    GHAssertNotNil(label, @"Nothing returned");
    GHAssertEqualStrings(self.testViewController.displayLabel.text, @"Clicked!", @"Button should have updated by now");
 }
+
+#pragma mark - Animation
+
+-(void) testWaitForAnimationFinish {
+	
+	dispatch_queue_t mainQueue = dispatch_get_main_queue();
+   NSDate *before = [NSDate date];
+	dispatch_async(mainQueue, ^{
+		CGPoint originalCenter = self.testViewController.waitForItButton.center;
+		[UIView animateWithDuration:1.0 
+									 delay:0.0
+								  options:UIViewAnimationOptionAutoreverse
+							  animations: ^{
+								  self.testViewController.waitForItButton.center = CGPointMake(originalCenter.x + 100, originalCenter.y); 
+							  }
+							  completion:^(BOOL finished) {
+								  self.testViewController.waitForItButton.center = originalCenter;
+							  }];
+	});
+	
+	SIWaitForViewAnimationsToFinish(@"//UIRoundedRectButton[@titleLabel.text='Wait for it!']", 0.1);
+	
+   NSTimeInterval diff = fabs([before timeIntervalSinceNow]);
+	GHAssertGreaterThan(diff, 2.0, @"not long enough, animation not finished.");
+	
+}
+
 
 #pragma mark - Helpers
 

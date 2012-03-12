@@ -136,6 +136,17 @@
 #define SIWaitForView(path, retryEvery, maxRetryAttempts) [[SIUIApplication application] waitForViewWithQuery:path retryInterval:retryEvery maxRetries:maxRetryAttempts]
 
 /**
+ Finds the view defined by path and waits until any animations which are active on it finish processing. This is tested periodically as defined by the checkEvery argument.
+ Note that this takes into account any animations running on super views as well. So you can check a control which is on a view which is sliding on and it will be 
+ regarded as being animated even though the control itself is not.
+
+ @param path the query path that should locate the control.
+ @param checkEvery the time interval to wait before checking for animations.
+*/
+#define SIWaitForViewAnimationsToFinish(path, checkEvery) [[SIUIApplication application] waitForAnimationEndOnViewWithQuery:path retryInterval:checkEvery];
+
+ 
+/**
  But first some reuseable logic embedded in a macro.
  */
 
