@@ -5,6 +5,7 @@ March 2012
 * Added handlers for UIButtons and UILabels so that the print tree function can work better.
 * Added label text, button titles, UIView tags, accessibility Identifiers, values and labels as attributes to be printed.
 * Updated dNodi to 0.3.4 to fix issues with name clashes on properties of nodes.
+* Added a new macro which waits for animations to finish on a specific UIView.
 
 h1. Version 0.1.5
 March 2012

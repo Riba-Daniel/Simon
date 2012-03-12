@@ -75,17 +75,17 @@
 /**
  Finds and returns an array of views. This does not assert anything about the views it is looking for.
  
- @param path a NSString containing the path to follow.
+ @param query a NSString containing the path to follow.
  @return a NSArray containing the found views.
  */
-#define SIFindViews(path) [[SIUIApplication application] findViewsWithQuery:path]
+#define SIFindViews(query) [[SIUIApplication application] findViewsWithQuery:query]
 
 /**
  Finds the control specified by the path and taps it. How this tap in implemented is very dependent on the control as some controls are dificult to synthensize a tap for.
  
- @param path a NSString containing the path to the control.
+ @param query a NSString containing the path to the control.
  */
-#define SITapControl(path) [[SIUIApplication application] tapViewWithQuery:path]
+#define SITapControl(query) [[SIUIApplication application] tapViewWithQuery:query]
 
 /**
  Locates the button with the matching label and taps it.
@@ -112,11 +112,11 @@
 /**
  Locates a control based on a path and then performs a swipe on it.
  
- @param path a NSString containing the path to the control on the UI. This should yield only a single control.
+ @param query a NSString containing the path to the control on the UI. This should yield only a single control.
  @param direction a SIUISwipeDirection value which indicates which direction to swipe in.
  @param distance how far to swipe in display points.
  */
-#define SISwipeControl(path, direction, distance) [[SIUIApplication application] swipeViewWithQuery:path inDirection:direction forDistance: distance]
+#define SISwipeControl(query, direction, distance) [[SIUIApplication application] swipeViewWithQuery:query inDirection:direction forDistance: distance]
 
 /**
  Pauses the current thread for the specified time. Note that this will only work on a background thread.
@@ -129,21 +129,21 @@
  Checks for the existance of a query path on the UI periodically, up to a specified number of retries. Returns the control found (can be only one) or throws an
  exception if it is not found before the max number of retries is exected.
  
- @param path the query path that should locate the control.
+ @param query the query path that should locate the control.
  @param retryEvery the time interval between retries.
  @param maxRetryAttempts how many times to attempt to find the control before throwing an exception.
  */
-#define SIWaitForView(path, retryEvery, maxRetryAttempts) [[SIUIApplication application] waitForViewWithQuery:path retryInterval:retryEvery maxRetries:maxRetryAttempts]
+#define SIWaitForView(query, retryEvery, maxRetryAttempts) [[SIUIApplication application] waitForViewWithQuery:query retryInterval:retryEvery maxRetries:maxRetryAttempts]
 
 /**
  Finds the view defined by path and waits until any animations which are active on it finish processing. This is tested periodically as defined by the checkEvery argument.
  Note that this takes into account any animations running on super views as well. So you can check a control which is on a view which is sliding on and it will be 
  regarded as being animated even though the control itself is not.
 
- @param path the query path that should locate the control.
+ @param query the query path that should locate the control.
  @param checkEvery the time interval to wait before checking for animations.
 */
-#define SIWaitForViewAnimationsToFinish(path, checkEvery) [[SIUIApplication application] waitForAnimationEndOnViewWithQuery:path retryInterval:checkEvery];
+#define SIWaitForViewAnimationsToFinish(query, checkEvery) [[SIUIApplication application] waitForAnimationEndOnViewWithQuery:query retryInterval:checkEvery];
 
  
 /**
