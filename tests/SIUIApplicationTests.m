@@ -31,7 +31,7 @@
 
 -(void) testViewWithQueryFindsButton {
 	UIView<DNNode> *button = [[SIUIApplication application] findViewWithQuery:@"//UIRoundedRectButton/UIButtonLabel[@text='Button 1']/.."];
-	GHAssertEqualStrings(button.name, @"UIRoundedRectButton", @"Search bar not returned");
+	GHAssertEqualStrings(button.dnName, @"UIRoundedRectButton", @"Search bar not returned");
 }
 
 -(void) testViewWithQueryThrowsIfNotFound {

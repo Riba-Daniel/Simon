@@ -45,7 +45,7 @@
 	  siblingNames:(NSMutableArray *) siblingNames {
 	
 	// Get the sibling count.
-	NSString *viewDescription = [view name];
+	NSString *viewDescription = view.dnName;
 	__block int siblingCount = 0;
 	[siblingNames enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
 		if ([viewDescription isEqualToString: obj]) {

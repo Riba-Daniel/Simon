@@ -22,20 +22,23 @@
 
 #pragma mark - DNNode
 
--(NSString *)name {
-	return NSStringFromClass([self.view class]);
+-(NSString *)dnName {
+	NSString *name =  NSStringFromClass([self.view class]);
+	DC_LOG(@"View = %@", self.view);
+	DC_LOG(@"Returning name = %@", name);
+	return name;
 }
 
--(NSObject<DNNode> *)parentNode {
+-(NSObject<DNNode> *)dnParentNode {
 	return (NSObject<DNNode> *) self.view.superview;
 }
 
--(NSArray *)subNodes {
+-(NSArray *)dnSubNodes {
 	// Return a copy as this has been known to change whilst this code is executing.
 	return [[self.view.subviews copy] autorelease];	
 }
 
--(BOOL) hasAttribute:(NSString *)attribute withValue:(id)value {
+-(BOOL) dnHasAttribute:(NSString *)attribute withValue:(id)value {
 	// Use KVC to test the value.
 	id propertyValue = [self.view valueForKeyPath:attribute];
 	return [propertyValue isEqual:value];

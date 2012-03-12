@@ -338,7 +338,7 @@
 		65FCD13013B23E8400A90FCA /* SIStepMappingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIStepMappingTests.m; sourceTree = "<group>"; };
 		942F7F64141F9197009F3550 /* SIUIViewHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIViewHandler.h; sourceTree = "<group>"; };
 		942F7F65141F9197009F3550 /* SIUIViewHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUIViewHandler.m; sourceTree = "<group>"; };
-		94327D7113E44F9A0003646C /* dNodi.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = dNodi.framework; path = ../Releases/dNodi/v0.3.3/dNodi.framework; sourceTree = "<group>"; };
+		94327D7113E44F9A0003646C /* dNodi.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = dNodi.framework; path = ../Releases/dNodi/v0.3.4/dNodi.framework; sourceTree = "<group>"; };
 		943A3967143DD2D0000D506C /* SIConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIConstants.h; sourceTree = "<group>"; };
 		943A3968143DD2D0000D506C /* SIConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIConstants.m; sourceTree = "<group>"; };
 		9465773E141B97B90026F1FB /* SIUIViewHandlerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUIViewHandlerTests.m; sourceTree = "<group>"; };
@@ -1144,7 +1144,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../Releases/dNodi/v0.3.3\"",
+					"\"$(SRCROOT)/../Releases/dNodi/v0.3.4\"",
 					"\"$(SRCROOT)/../Releases/dUsefulStuff/v0.0.14\"",
 				);
 				GCC_PREFIX_HEADER = "ARC App with tests/ARC App with tests-Prefix.pch";
@@ -1169,7 +1169,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../Releases/dNodi/v0.3.3\"",
+					"\"$(SRCROOT)/../Releases/dNodi/v0.3.4\"",
 					"\"$(SRCROOT)/../Releases/dUsefulStuff/v0.0.14\"",
 				);
 				GCC_PREFIX_HEADER = "ARC App with tests/ARC App with tests-Prefix.pch";
@@ -1243,7 +1243,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../Releases/dUsefulStuff/v0.0.14\"",
-					"\"$(SRCROOT)/../Releases/dNodi/v0.3.3\"",
+					"\"$(SRCROOT)/../Releases/dNodi/v0.3.4\"",
 				);
 				GCC_PREFIX_HEADER = "Simon-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1272,7 +1272,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../Releases/dUsefulStuff/v0.0.14\"",
-					"\"$(SRCROOT)/../Releases/dNodi/v0.3.3\"",
+					"\"$(SRCROOT)/../Releases/dNodi/v0.3.4\"",
 				);
 				GCC_PREFIX_HEADER = "Simon-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
@@ -1298,7 +1298,7 @@
 					"\"$(SRCROOT)/../Releases/OCMock/v0.2.0\"",
 					"\"$(SRCROOT)/../tools/GHUnit 0.4.33\"",
 					"\"$(SRCROOT)/../Releases/dUsefulStuff/v0.0.14\"",
-					"\"$(SRCROOT)/../Releases/dNodi/v0.3.3\"",
+					"\"$(SRCROOT)/../Releases/dNodi/v0.3.4\"",
 				);
 				GCC_PREFIX_HEADER = "Simon-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1320,7 +1320,7 @@
 					"\"$(SRCROOT)/../Releases/OCMock/v0.2.0\"",
 					"\"$(SRCROOT)/../tools/GHUnit 0.4.33\"",
 					"\"$(SRCROOT)/../Releases/dUsefulStuff/v0.0.14\"",
-					"\"$(SRCROOT)/../Releases/dNodi/v0.3.3\"",
+					"\"$(SRCROOT)/../Releases/dNodi/v0.3.4\"",
 				);
 				GCC_PREFIX_HEADER = "Simon-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1342,7 +1342,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../Releases/dUsefulStuff/v0.0.14\"",
-					"\"$(SRCROOT)/../Releases/dNodi/v0.3.3\"",
+					"\"$(SRCROOT)/../Releases/dNodi/v0.3.4\"",
 					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
 				);
 				GCC_PREFIX_HEADER = "App with tests/TestApp2-Prefix.pch";
@@ -1364,7 +1364,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../Releases/dUsefulStuff/v0.0.14\"",
-					"\"$(SRCROOT)/../Releases/dNodi/v0.3.3\"",
+					"\"$(SRCROOT)/../Releases/dNodi/v0.3.4\"",
 					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
 				);
 				GCC_PREFIX_HEADER = "App with tests/TestApp2-Prefix.pch";

@@ -17,20 +17,20 @@
 
 #pragma mark - Querying
 
--(NSString *)name {
-	return [[SIUIApplication application].viewHandlerFactory handlerForView:self].name;
+-(NSString *)dnName {
+	return [[SIUIApplication application].viewHandlerFactory handlerForView:self].dnName;
 }
 
--(NSObject<DNNode> *)parentNode {
-	return [[SIUIApplication application].viewHandlerFactory handlerForView:self].parentNode;
+-(NSObject<DNNode> *)dnParentNode {
+	return [[SIUIApplication application].viewHandlerFactory handlerForView:self].dnParentNode;
 }
 
--(NSArray *)subNodes {
-	return [[SIUIApplication application].viewHandlerFactory handlerForView:self].subNodes;
+-(NSArray *)dnSubNodes {
+	return [[SIUIApplication application].viewHandlerFactory handlerForView:self].dnSubNodes;
 }
 
--(BOOL) hasAttribute:(NSString *)attribute withValue:(id)value {
-	return [[[SIUIApplication application].viewHandlerFactory handlerForView:self] hasAttribute:attribute withValue:value];
+-(BOOL) dnHasAttribute:(NSString *)attribute withValue:(id)value {
+	return [[[SIUIApplication application].viewHandlerFactory handlerForView:self] dnHasAttribute:attribute withValue:value];
 }
 
 #pragma mark - Actions

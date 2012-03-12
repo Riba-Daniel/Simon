@@ -27,32 +27,32 @@
 
 -(void) testName {
 	handler.view = self.testViewController.button1;
-	GHAssertEqualStrings(handler.name, @"UIRoundedRectButton", @"Incorrect node returned");
+	GHAssertEqualStrings(handler.dnName, @"UIRoundedRectButton", @"Incorrect node returned");
 }
 
 -(void) testParentName {
 	handler.view = self.testViewController.button1;
-	GHAssertEquals(handler.parentNode, self.testViewController.view, @"Incorrect name returned");
+	GHAssertEquals(handler.dnParentNode, self.testViewController.view, @"Incorrect name returned");
 }
 
 -(void) testAttributeQueryFailsWithInvalidPropertyName {
 	handler.view = self.testViewController.button1;
-	GHAssertThrowsSpecificNamed([handler hasAttribute:@"xyz" withValue:nil], NSException, @"NSUnknownKeyException", @"Handler should have failed request.");
+	GHAssertThrowsSpecificNamed([handler dnHasAttribute:@"xyz" withValue:nil], NSException, @"NSUnknownKeyException", @"Handler should have failed request.");
 }
 
 -(void) testAttributeQueryMatchesPropertyValue {
 	handler.view = self.testViewController.button1;
-	GHAssertTrue([handler hasAttribute:@"alpha" withValue:[NSNumber numberWithInt:1]], @"Handler fails to match attribute data");
+	GHAssertTrue([handler dnHasAttribute:@"alpha" withValue:[NSNumber numberWithInt:1]], @"Handler fails to match attribute data");
 }
 
 -(void) testAttributeQueryMatchesNestedPropertyValue {
 	handler.view = self.testViewController.button1;
-	GHAssertTrue([handler hasAttribute:@"titleLabel.text" withValue:@"Button 1"], @"Handler fails to match attribute data");
+	GHAssertTrue([handler dnHasAttribute:@"titleLabel.text" withValue:@"Button 1"], @"Handler fails to match attribute data");
 }
 
 -(void) testSubnodes {
    handler.view = self.testViewController.view;
-	NSArray *subNodes = handler.subNodes;
+	NSArray *subNodes = handler.dnSubNodes;
 	GHAssertEquals([subNodes count], (NSUInteger) 8, @"Should be one sub view");
 	GHAssertEquals([subNodes objectAtIndex:0], self.testViewController.button1, @"Returned node was not button 1.");
 	GHAssertEquals([subNodes objectAtIndex:1], self.testViewController.button2, @"Returned node was not button 2.");
