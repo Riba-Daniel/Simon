@@ -6,6 +6,8 @@
 //  Copyright (c) 2012 Sensis. All rights reserved.
 //
 
+#import <objc/runtime.h>
+
 #import "UIEvent+Simon.h"
 #import "GSEventProxy.h"
 
@@ -20,21 +22,7 @@
 - (id)initWithTouch:(UITouch *)touch
 {
    GSEventProxy *gsEventProxy = [[[GSEventProxy alloc] init] autorelease];
-   /*
-    CGPoint location = [touch locationInView:touch.window];
-   gsEventProxy->x = location.x;
-   gsEventProxy->y = location.y;
-   gsEventProxy->x1 = location.x + 10;
-   gsEventProxy->y1 = location.y + 10;
-   gsEventProxy->x2 = location.x + 10;
-   gsEventProxy->y2 = location.y + 10;
-   gsEventProxy->x3 = location.x;
-   gsEventProxy->y3 = location.y;
-   gsEventProxy->sizeX = 1.0;
-   gsEventProxy->sizeY = 1.0;
-   gsEventProxy->flags = ([touch phase] == UITouchPhaseEnded) ? 0x1010180 : 0x3010180;
-   gsEventProxy->type = 3001;       
-   */
+
 	// On SDK versions 3.0 and greater, we need to reallocate as a
 	// UITouchesEvent.
    [self release];
@@ -44,7 +32,6 @@
 	if (self != nil)
 	{
       // following line is inserted to support gesture recognizer  
-      //DC_LOG(@"Adding gesture recognizers");
       [self _addGestureRecognizersForView:touch.view toTouch:touch currentTouchMap:nil newTouchMap:nil];
 	}
 	return self;

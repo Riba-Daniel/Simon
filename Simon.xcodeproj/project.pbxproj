@@ -7,21 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3221C79E150C9365003CA286 /* SIUIViewInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 3221C79D150C9365003CA286 /* SIUIViewInfo.h */; };
-		3221C7A1150C956A003CA286 /* SIUIButtonHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 3221C79F150C956A003CA286 /* SIUIButtonHandler.h */; };
+		3221C79E150C9365003CA286 /* SIUIViewInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 3221C79D150C9365003CA286 /* SIUIViewInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3221C7A1150C956A003CA286 /* SIUIButtonHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 3221C79F150C956A003CA286 /* SIUIButtonHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3221C7A2150C956A003CA286 /* SIUIButtonHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 3221C7A0150C956A003CA286 /* SIUIButtonHandler.m */; };
 		3221C7A4150CBD75003CA286 /* SIUIButtonHandlerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3221C7A3150CBD75003CA286 /* SIUIButtonHandlerTests.m */; };
-		3221C7A7150CD1DE003CA286 /* SIUILabelHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 3221C7A5150CD1DD003CA286 /* SIUILabelHandler.h */; };
+		3221C7A7150CD1DE003CA286 /* SIUILabelHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 3221C7A5150CD1DD003CA286 /* SIUILabelHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3221C7A8150CD1DE003CA286 /* SIUILabelHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 3221C7A6150CD1DD003CA286 /* SIUILabelHandler.m */; };
 		3221C7AA150CD24C003CA286 /* SIUILabelHandlerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3221C7A9150CD24C003CA286 /* SIUILabelHandlerTests.m */; };
-		324108B61509C19400AFBF66 /* SIUIViewDescriptionVisitor.h in Headers */ = {isa = PBXBuildFile; fileRef = 324108B41509C19400AFBF66 /* SIUIViewDescriptionVisitor.h */; };
+		324108B61509C19400AFBF66 /* SIUIViewDescriptionVisitor.h in Headers */ = {isa = PBXBuildFile; fileRef = 324108B41509C19400AFBF66 /* SIUIViewDescriptionVisitor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		324108B71509C19400AFBF66 /* SIUIViewDescriptionVisitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 324108B51509C19400AFBF66 /* SIUIViewDescriptionVisitor.m */; };
-		324108BA1509C23200AFBF66 /* SIUIViewDescriptionVisitorDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 324108B91509C23200AFBF66 /* SIUIViewDescriptionVisitorDelegate.h */; };
+		324108BA1509C23200AFBF66 /* SIUIViewDescriptionVisitorDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 324108B91509C23200AFBF66 /* SIUIViewDescriptionVisitorDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		324108BC1509C61E00AFBF66 /* SIUIViewDescriptionVisitorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 324108BB1509C61E00AFBF66 /* SIUIViewDescriptionVisitorTests.m */; };
 		325683D914EF6CEB00F7C189 /* SIUIConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 325683D814EF6CEB00F7C189 /* SIUIConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		32741D7814EB581E00093E0F /* UITouch+Simon.h in Headers */ = {isa = PBXBuildFile; fileRef = 32741D7614EB581E00093E0F /* UITouch+Simon.h */; settings = {ATTRIBUTES = (); }; };
+		32741D7814EB581E00093E0F /* UITouch+Simon.h in Headers */ = {isa = PBXBuildFile; fileRef = 32741D7614EB581E00093E0F /* UITouch+Simon.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32741D7914EB581E00093E0F /* UITouch+Simon.m in Sources */ = {isa = PBXBuildFile; fileRef = 32741D7714EB581E00093E0F /* UITouch+Simon.m */; };
-		32741D7C14EB5BAE00093E0F /* UIEvent+Simon.h in Headers */ = {isa = PBXBuildFile; fileRef = 32741D7A14EB5BAE00093E0F /* UIEvent+Simon.h */; };
+		32741D7C14EB5BAE00093E0F /* UIEvent+Simon.h in Headers */ = {isa = PBXBuildFile; fileRef = 32741D7A14EB5BAE00093E0F /* UIEvent+Simon.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32741D7D14EB5BAE00093E0F /* UIEvent+Simon.m in Sources */ = {isa = PBXBuildFile; fileRef = 32741D7B14EB5BAE00093E0F /* UIEvent+Simon.m */; };
 		32793BAE14F4FB5800B93621 /* SIUIEventSenderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32793BAD14F4FB5800B93621 /* SIUIEventSenderTests.m */; };
 		3296322314F7516400D9310A /* SIUIEventGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 3296322214F7516400D9310A /* SIUIEventGenerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -59,9 +59,9 @@
 		32B0AC1014E8EB170020500E /* SIUIException.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0AC0E14E8EB170020500E /* SIUIException.m */; };
 		32BF7CF214F9032C00A0B197 /* SIUIEventSender.h in Headers */ = {isa = PBXBuildFile; fileRef = 32BF7CF014F9032C00A0B197 /* SIUIEventSender.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32BF7CF314F9032C00A0B197 /* SIUIEventSender.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BF7CF114F9032C00A0B197 /* SIUIEventSender.m */; };
-		32BF7CF714F9035400A0B197 /* SIUIBackgroundThreadSender.h in Headers */ = {isa = PBXBuildFile; fileRef = 32BF7CF514F9035400A0B197 /* SIUIBackgroundThreadSender.h */; };
+		32BF7CF714F9035400A0B197 /* SIUIBackgroundThreadSender.h in Headers */ = {isa = PBXBuildFile; fileRef = 32BF7CF514F9035400A0B197 /* SIUIBackgroundThreadSender.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32BF7CF814F9035400A0B197 /* SIUIBackgroundThreadSender.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BF7CF614F9035400A0B197 /* SIUIBackgroundThreadSender.m */; };
-		32BF7CFB14F90EA300A0B197 /* SIUIMainThreadSender.h in Headers */ = {isa = PBXBuildFile; fileRef = 32BF7CF914F90EA300A0B197 /* SIUIMainThreadSender.h */; };
+		32BF7CFB14F90EA300A0B197 /* SIUIMainThreadSender.h in Headers */ = {isa = PBXBuildFile; fileRef = 32BF7CF914F90EA300A0B197 /* SIUIMainThreadSender.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32BF7CFC14F90EA300A0B197 /* SIUIMainThreadSender.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BF7CFA14F90EA300A0B197 /* SIUIMainThreadSender.m */; };
 		32BF7CFE14F9152D00A0B197 /* SIUITapGeneratorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BF7CFD14F9152D00A0B197 /* SIUITapGeneratorTests.m */; };
 		32BF7D0014F9CB2900A0B197 /* SIUISwipeGeneratorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BF7CFF14F9CB2900A0B197 /* SIUISwipeGeneratorTests.m */; };
@@ -69,7 +69,7 @@
 		32D5D98D14E135A300D29DD5 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D5D98C14E135A300D29DD5 /* TestViewController.m */; };
 		32F742D814F75F58005E5E97 /* SIUISwipeGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F742D614F75F58005E5E97 /* SIUISwipeGenerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32F742D914F75F58005E5E97 /* SIUISwipeGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F742D714F75F58005E5E97 /* SIUISwipeGenerator.m */; };
-		32F7F3E614EE1E5800F94F65 /* GSEventProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F7F3E414EE1E5800F94F65 /* GSEventProxy.h */; };
+		32F7F3E614EE1E5800F94F65 /* GSEventProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F7F3E414EE1E5800F94F65 /* GSEventProxy.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32F7F3E714EE1E5800F94F65 /* GSEventProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F7F3E514EE1E5800F94F65 /* GSEventProxy.m */; };
 		6527B7CA13A871DF005A912F /* GHUnitIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 653D0EF813A784C100A5AB82 /* GHUnitIOS.framework */; };
 		652D4E4D13CDD44400633E51 /* SIAppBackpack.h in Headers */ = {isa = PBXBuildFile; fileRef = 652D4E4B13CDD44300633E51 /* SIAppBackpack.h */; settings = {ATTRIBUTES = (Public, ); }; };

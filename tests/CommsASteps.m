@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "SISimon.h"
+#import <objc/runtime.h>
 
 
 @interface CommsASteps : NSObject

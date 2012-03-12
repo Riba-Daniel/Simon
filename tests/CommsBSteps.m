@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "SISimon.h"
 #import <GHUnitIOS/GHUnit.h>
+#import <objc/runtime.h>
 
 
 @interface CommsBSteps : GHTestCase
