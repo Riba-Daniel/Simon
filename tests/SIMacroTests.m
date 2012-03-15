@@ -277,11 +277,25 @@ SIMapStepToSelector(@"abc", dummyMethod)
 	GHAssertEqualObjects([foundViews objectAtIndex:0], self.testViewController.button1, @"Returned view is not a match");
 }
 
+-(void) testIsViewPresentReturnsYes {
+	GHAssertTrue(SIIsViewPresent(@"//UIRoundedRectButton/UIButtonLabel[@text='Button 1']/.."), @"Should have returned YES");
+}
+
+-(void) testIsViewPresentReturnsNo {
+	GHAssertFalse(SIIsViewPresent(@"xxxx"), @"Should have returned NO");
+}
+
+-(void) testSIIsViewPresentReturnsYes {
+	NSArray *foundViews = SIFindViews(@"//UIRoundedRectButton[@titleLabel.text='Button 1']");
+	GHAssertNotNil(foundViews, @"Nil returned");
+	GHAssertEqualObjects([foundViews objectAtIndex:0], self.testViewController.button1, @"Returned view is not a match");
+}
+
 #pragma mark - UI Tests - Tapping
 
--(void) testSITapControl {
+-(void) testSITapView {
    self.testViewController.tappedButton = 0;
-	SITapControl(@"//UIRoundedRectButton[@titleLabel.text='Button 1']");
+	SITapView(@"//UIRoundedRectButton[@titleLabel.text='Button 1']");
 	GHAssertEquals(self.testViewController.tappedButton, 1, @"Tapped flag not set. Control tapping may not have worked");
 }
 
@@ -324,19 +338,19 @@ SIMapStepToSelector(@"abc", dummyMethod)
 #pragma mark - UI Tests - Swiping
 -(void) testSwipeSliderRight {
    self.testViewController.slider.value = 5;
-   SISwipeControl(@"//UISlider", SIUISwipeDirectionRight, 50);
+   SISwipeView(@"//UISlider", SIUISwipeDirectionRight, 50);
 	GHAssertEquals(round(self.testViewController.slider.value), 7.0, @"Slider not slide.");
 }
 
 -(void) testSwipeSliderLeft {
    self.testViewController.slider.value = 5;
-   SISwipeControl(@"//UISlider", SIUISwipeDirectionLeft, 50);
+   SISwipeView(@"//UISlider", SIUISwipeDirectionLeft, 50);
 	GHAssertEquals(round(self.testViewController.slider.value), 3.0, @"Slider not slide.");
 }
 
 -(void) testSwipeThrowsWhenNotFound {
    @try {
-      SISwipeControl(@"//XXX", SIUISwipeDirectionRight, 50);
+      SISwipeView(@"//XXX", SIUISwipeDirectionRight, 50);
       GHFail(@"Exception not thrown");
    }
    @catch (SIUINotFoundException *exception) {

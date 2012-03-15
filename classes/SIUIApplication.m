@@ -151,6 +151,10 @@ static SIUIApplication *application = nil;
 	return (UIView *) [views objectAtIndex:0];
 }
 
+-(BOOL) isViewPresent:(NSString *) query {
+	return [[self findViewsWithQuery:query] count] > 0;
+}
+
 -(void) logUITree {
 	
 	DC_LOG(@"On main thread: %@", DC_PRETTY_BOOL([[NSThread currentThread] isMainThread]));

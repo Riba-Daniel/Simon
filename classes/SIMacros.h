@@ -81,11 +81,19 @@
 #define SIFindViews(query) [[SIUIApplication application] findViewsWithQuery:query]
 
 /**
- Finds the control specified by the path and taps it. How this tap in implemented is very dependent on the control as some controls are dificult to synthensize a tap for.
+ Returns YES if the query returns one or more UIViews.
+ 
+ @param query a NSString containing the path to follow.
+ @return YES if one or more views are found, otherwise NO.
+ */
+#define SIIsViewPresent(query) [[SIUIApplication application] isViewPresent:query]
+
+/**
+ Finds the view specified by the path and taps it. How this tap in implemented is very dependent on the view as some view are difficult to synthensize a tap for.
  
  @param query a NSString containing the path to the control.
  */
-#define SITapControl(query) [[SIUIApplication application] tapViewWithQuery:query]
+#define SITapView(query) [[SIUIApplication application] tapViewWithQuery:query]
 
 /**
  Locates the button with the matching label and taps it.
@@ -110,13 +118,13 @@
 #define SITapTabBarButtonWithLabel(label) [[SIUIApplication application] tapTabBarButtonWithLabel:label]
 
 /**
- Locates a control based on a path and then performs a swipe on it.
+ Locates a view based on a path and then performs a swipe on it.
  
  @param query a NSString containing the path to the control on the UI. This should yield only a single control.
  @param direction a SIUISwipeDirection value which indicates which direction to swipe in.
  @param distance how far to swipe in display points.
  */
-#define SISwipeControl(query, direction, distance) [[SIUIApplication application] swipeViewWithQuery:query inDirection:direction forDistance: distance]
+#define SISwipeView(query, direction, distance) [[SIUIApplication application] swipeViewWithQuery:query inDirection:direction forDistance: distance]
 
 /**
  Pauses the current thread for the specified time. Note that this will only work on a background thread.

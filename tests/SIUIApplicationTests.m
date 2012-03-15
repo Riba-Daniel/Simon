@@ -27,7 +27,7 @@
 
 @implementation SIUIApplicationTests
 
-#pragma mark - findViewWithQuery
+#pragma mark - finding
 
 -(void) testViewWithQueryFindsButton {
 	UIView<DNNode> *button = [[SIUIApplication application] findViewWithQuery:@"//UIRoundedRectButton/UIButtonLabel[@text='Button 1']/.."];
@@ -67,8 +67,6 @@
    }
 }
 
-#pragma mark - findViewsWithQuery
-
 -(void) testFindViewsWithQueryFindsAllButtons {
    [[SIUIApplication application] logUITree];
 	NSArray *controls = [[SIUIApplication application] findViewsWithQuery:@"//UITableViewCell"];
@@ -76,6 +74,14 @@
 	for (UIView *view in controls) {
 		GHAssertTrue([view isKindOfClass:[UITableViewCell class]], @"Non-table view cell found");
 	}
+}
+
+-(void) testIsViewPresentReturnsYes {
+	GHAssertTrue([[SIUIApplication application] isViewPresent:@"//UIRoundedRectButton/UIButtonLabel[@text='Button 1']/.."], @"Should have returned YES");
+}
+
+-(void) testIsViewPresentReturnsNo {
+	GHAssertFalse([[SIUIApplication application] isViewPresent:@"xxxx"], @"Should have returned NO");
 }
 
 #pragma mark - logUITree
@@ -215,9 +221,9 @@
 								  self.testViewController.waitForItButton.center = originalCenter;
 							  }];
 	});
-
+	
 	[[SIUIApplication application]waitForAnimationEndOnViewWithQuery:@"//UIRoundedRectButton[@titleLabel.text='Wait for it!']" retryInterval:0.8];
-
+	
    NSTimeInterval diff = fabs([before timeIntervalSinceNow]);
 	GHAssertGreaterThan(diff, 2.0, @"not long enough, animation not finished.");
 	

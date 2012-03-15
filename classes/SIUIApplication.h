@@ -45,12 +45,19 @@
 -(NSArray *) findViewsWithQuery:(NSString *) query;
 
 /**
- Override of findViewsWithQuery:error: which expects to return only a single view.
+ Override of findViewsWithQuery: which expects to return only a single view.
  This is more strict because it will generate errors if 0 or multiple controls are found instead of the expected control.
  
  @param query an xpath as decribed by the dXpath static library.
  */
 -(UIView *) findViewWithQuery:(NSString *) query;
+
+/**
+ returns YES if the query returns one or more UIViews. 
+ 
+ @param query an xpath as decribed by the dXpath static library.
+ */
+-(BOOL) isViewPresent:(NSString *) query;
 
 #pragma mark - Logging
 

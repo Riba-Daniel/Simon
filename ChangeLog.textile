@@ -1,7 +1,9 @@
 h1. Version 0.1.7
 March 2012
 
-*
+* Added a macro: SIIsViewPresent.
+* Renamed SITapControl to SITapView.
+* Renamed SISWipeControl to SISWipeView.
 
 h1. Version 0.1.6
 March 2012
