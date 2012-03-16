@@ -1,5 +1,11 @@
-h1. Version 0.1.7
-March 2012
+---
+layout: simon-default
+title: Change Log
+root-url: ../
+simon-tab-class: tabbar-tab-highlighted
+---
+
+h1. Version 0.1.7, March 2012
 
 * Added a macro: SIIsViewPresent.
 * Renamed SITapControl to SITapView.
@@ -7,9 +13,9 @@ March 2012
 * Modded SITapView to accept both a NSString *query and a UIView *view as a parameter and to return the view it tapped.
 * Modded SISwipeView to accept both a NSString *query and a UIView *view as a parameter and to return the view it swiped.
 * Cleaned up some old references in SIUIApplication.
+* Added new macros SIAssertViewPresent and SIAssertViewNotPresent
 
-h1. Version 0.1.6
-March 2012
+h1. Version 0.1.6, March 2012
 
 * Added more data to the display of a UI tree by breaking out the visitor code using the visitor pattern and delegate pattern.
 * Added handlers for UIButtons and UILabels so that the print tree function can work better.
@@ -17,27 +23,23 @@ March 2012
 * Updated dNodi to 0.3.4 to fix issues with name clashes on properties of nodes.
 * Added a new macro which waits for animations to finish on a specific UIView.
 
-h1. Version 0.1.5
-March 2012
+h1. Version 0.1.5, March 2012
 
 * Switched in app report to avoid using the root view controller because not every app has one.
 
-h1. Version 0.1.4
-March 2012
+h1. Version 0.1.4, March 2012
 
 * Fixed missing header. 
 * Adjusted so that macros work in ARC projects.
 * Added ARC based test project.
 
-h1. Version 0.1.3
-Febuary 2012
+h1. Version 0.1.3, Febuary 2012
 
 * Rewrote the class scanning to be more reliable when analysing classes for find mappings.
 * Refactored the touch synthesis code.
 * Added swipe gestures.
 
-h1. Version 0.1.2
-Feburary 2012
+h1. Version 0.1.2, Feburary 2012
 
 * Updated dUsefulStuff to obtain access to a better error handling routine.
 * Added KVC complient view attribute analysis.
@@ -57,13 +59,11 @@ Feburary 2012
 * Added basic shortcut macros for tapping.
 * Added custom exceptions.
 
-h1. Version 0.1.1
-July 2011
+h1. Version 0.1.1, July 2011
 
 * Brought in dXPath to handle XPath queries against a UI.
 * Fixed bug in stripping story: prefix.
 
-h1. Version 0.1.0
-July 2011
+h1. Version 0.1.0, July 2011
 
 * Initial release of code. See Readme.

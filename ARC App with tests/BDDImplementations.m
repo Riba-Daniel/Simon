@@ -20,7 +20,8 @@ SIMapStepToSelector(@"Given we are on the first page", firstScreen)
 SIMapStepToSelector(@"Then goto the second page", gotoSecondScreen)
 -(void) gotoSecondScreen {
    SITapTabBarButtonWithLabel(@"Second");
-SIPrintCurrentWindowTree();
+SIPauseFor(0.5);
+
 }
 
 @end

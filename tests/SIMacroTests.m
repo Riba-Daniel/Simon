@@ -14,8 +14,8 @@
 
 #define catchMessage(msg) \
 do { \
-    NSString *newMsg = [NSString stringWithFormat:msg, (__LINE__ - 4)]; \
-   [self verifyException:exception description:newMsg]; \
+NSString *newMsg = [NSString stringWithFormat:msg, (__LINE__ - 4)]; \
+[self verifyException:exception description:newMsg]; \
 } while (NO)
 
 @interface SIMacroTests : AbstractTestWithControlsOnView
@@ -29,19 +29,19 @@ do { \
 
 SIMapStepToSelector(@"abc", dummyMethod)
 -(void) testSIMapStepToSelector {
-	
-	// First find the mapping.
-	SIRuntime *runtime = [[[SIRuntime alloc] init] autorelease];
-	NSArray *methods = [runtime allMappingMethodsInRuntime];
-   
-	for (SIStepMapping *mapping in methods) {
-		if (mapping.targetClass == [self class]
-			 && mapping.selector == @selector(dummyMethod)) {
-			// good so exit.
-			return;
-		}
+
+// First find the mapping.
+SIRuntime *runtime = [[[SIRuntime alloc] init] autorelease];
+NSArray *methods = [runtime allMappingMethodsInRuntime];
+
+for (SIStepMapping *mapping in methods) {
+	if (mapping.targetClass == [self class]
+		 && mapping.selector == @selector(dummyMethod)) {
+		// good so exit.
+		return;
 	}
-	GHFail(@"Mapping has not worked");	
+}
+GHFail(@"Mapping has not worked");	
 }
 
 #pragma mark - Fails tests
@@ -158,6 +158,34 @@ SIMapStepToSelector(@"abc", dummyMethod)
    @catch (NSException *exception) {
       catchMessage(@"-[SIMacroTests testSIAssertFalseThrowsWhenExpression](%i) SIAssertFalse(1 == 1) Expecting '1 == 1' to be NO, but it was YES.");
    }
+}
+
+-(void) testSIAssertViewPresent {
+   SIAssertViewPresent(@"//UIRoundedRectButton[@titleLabel.text='Button 1']");
+}
+
+-(void) testSIAssertViewPresentThrows {
+   @try {
+		SIAssertViewPresent(@"//xxx");
+      GHFail(@"Exception not thrown");
+	}
+	@catch (NSException *exception) {
+		catchMessage(@"-[SIMacroTests testSIAssertViewPresentThrows](%i) SIAssertViewPresent(@\"//xxx\") Expected '@\"//xxx\"' to find a UIView.");
+	}
+}
+
+-(void) testSIAssertViewNotPresent {
+   SIAssertViewNotPresent(@"//xxx");
+}
+
+-(void) testSIAssertViewNotPresentThrows {
+   @try {
+		SIAssertViewNotPresent(@"//UIRoundedRectButton[@titleLabel.text='Button 1']");
+      GHFail(@"Exception not thrown");
+	}
+	@catch (NSException *exception) {
+		catchMessage(@"-[SIMacroTests testSIAssertViewNotPresentThrows](%i) SIAssertViewNotPresent(@\"//UIRoundedRectButton[@titleLabel.text='Button 1']\") Expected '@\"//UIRoundedRectButton[@titleLabel.text='Button 1']\"' to not find a UIView.");
+	}
 }
 
 #pragma mark - Equals tests
@@ -325,7 +353,7 @@ SIMapStepToSelector(@"abc", dummyMethod)
 }
 
 -(void) testTapButtonWithLabelAndWait {
-
+	
    self.testViewController.tappedButton = 0;
    NSDate *before = [NSDate date];
    SITapButtonWithLabelAndWait(@"Button 1",1.0);

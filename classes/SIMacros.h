@@ -209,6 +209,16 @@ do { \
 #define SIAssertTrue(exp) SIAssertTrueM(exp, @"SIAssertTrue(" #exp ") Expecting '" #exp "' to be YES, but it was NO.")
 
 /**
+ Fail if the passed query does not find a UIView.
+ */
+#define SIAssertViewPresent(query) SIAssertViewPresentM(query, @"SIAssertViewPresent(" #query ") Expected '" #query "' to find a UIView.")
+
+/**
+ Fail if the passed query finds a UIView.
+ */
+#define SIAssertViewNotPresent(query) SIAssertViewNotPresentM(query, @"SIAssertViewNotPresent(" #query ") Expected '" #query "' to not find a UIView.")
+
+/**
  Fail if the passed BOOL variable is YES.
  
  @param exp an expression that is expected to resolve to a BOOL value. The expression can just be a simple BOOL variable name.
@@ -262,6 +272,20 @@ do { \
          SIThrowException(ASSERTION_EXCEPTION_NAME, msgTemplate, ##__VA_ARGS__); \
       } \
    } while (NO)
+
+#define SIAssertViewPresentM(query, msgTemplate, ...) \
+	do { \
+		if (!SIIsViewPresent(query)) { \
+			SIThrowException(ASSERTION_EXCEPTION_NAME, msgTemplate, ##__VA_ARGS__); \
+		} \
+	} while (NO)
+
+#define SIAssertViewNotPresentM(query, msgTemplate, ...) \
+	do { \
+		if (SIIsViewPresent(query)) { \
+			SIThrowException(ASSERTION_EXCEPTION_NAME, msgTemplate, ##__VA_ARGS__); \
+		} \
+	} while (NO)
 
 #define SIAssertFalseM(exp, msgTemplate, ...) \
    do { \
