@@ -293,10 +293,18 @@ SIMapStepToSelector(@"abc", dummyMethod)
 
 #pragma mark - UI Tests - Tapping
 
--(void) testSITapView {
+-(void) testSITapViewWithUIView {
    self.testViewController.tappedButton = 0;
-	SITapView(@"//UIRoundedRectButton[@titleLabel.text='Button 1']");
+	UIView *tappedView = SITapView(self.testViewController.button1);
 	GHAssertEquals(self.testViewController.tappedButton, 1, @"Tapped flag not set. Control tapping may not have worked");
+	GHAssertEqualObjects(tappedView, self.testViewController.button1, @"Button not returned");
+}
+
+-(void) testSITapViewWithQuery {
+   self.testViewController.tappedButton = 0;
+	UIView *tappedView = SITapView(@"//UIRoundedRectButton[@titleLabel.text='Button 1']");
+	GHAssertEquals(self.testViewController.tappedButton, 1, @"Tapped flag not set. Control tapping may not have worked");
+	GHAssertEqualObjects(tappedView, self.testViewController.button1, @"Button not returned");
 }
 
 -(void) testSITapButtonWithLabel {
@@ -336,10 +344,19 @@ SIMapStepToSelector(@"abc", dummyMethod)
 }
 
 #pragma mark - UI Tests - Swiping
--(void) testSwipeSliderRight {
+
+-(void) testSwipeSliderRightWithUIView {
    self.testViewController.slider.value = 5;
-   SISwipeView(@"//UISlider", SIUISwipeDirectionRight, 50);
+   UIView *swipedView = SISwipeView(self.testViewController.slider, SIUISwipeDirectionRight, 50);
 	GHAssertEquals(round(self.testViewController.slider.value), 7.0, @"Slider not slide.");
+	GHAssertEquals(swipedView, self.testViewController.slider, @"View not swiped");
+}
+
+-(void) testSwipeSliderRightWithQuery {
+   self.testViewController.slider.value = 5;
+   UIView *swipedView = SISwipeView(@"//UISlider", SIUISwipeDirectionRight, 50);
+	GHAssertEquals(round(self.testViewController.slider.value), 7.0, @"Slider not slide.");
+	GHAssertEquals(swipedView, self.testViewController.slider, @"View not swiped");
 }
 
 -(void) testSwipeSliderLeft {

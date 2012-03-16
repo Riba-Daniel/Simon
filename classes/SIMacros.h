@@ -89,11 +89,15 @@
 #define SIIsViewPresent(query) [[SIUIApplication application] isViewPresent:query]
 
 /**
- Finds the view specified by the path and taps it. How this tap in implemented is very dependent on the view as some view are difficult to synthensize a tap for.
+ Taps a UIView in a given direction and distance. The passed view can be either a UIView or a NSString containing a query which will locate it in the UI.
  
- @param query a NSString containing the path to the control.
+ @param view a NSString containing the path to the view or a UIView reference to the view.
+ @return the UIView that was tapped.
  */
-#define SITapView(query) [[SIUIApplication application] tapViewWithQuery:query]
+#define SITapView(view) \
+	[(view) isKindOfClass:[NSString class]] ? \
+	[[SIUIApplication application] tapViewWithQuery:(NSString *)view] : \
+	[[SIUIApplication application] tapView:(UIView *)view]
 
 /**
  Locates the button with the matching label and taps it.
@@ -118,13 +122,17 @@
 #define SITapTabBarButtonWithLabel(label) [[SIUIApplication application] tapTabBarButtonWithLabel:label]
 
 /**
- Locates a view based on a path and then performs a swipe on it.
+ Swipes a UIView in a given direction and distance. The passed view can be either a UIView or a NSString containing a query which will locate it in the UI.
  
- @param query a NSString containing the path to the control on the UI. This should yield only a single control.
+ @param view a NSString containing the path to the view or a UIView reference to the view.
  @param direction a SIUISwipeDirection value which indicates which direction to swipe in.
  @param distance how far to swipe in display points.
+ @return the UIView that was swiped.
  */
-#define SISwipeView(query, direction, distance) [[SIUIApplication application] swipeViewWithQuery:query inDirection:direction forDistance: distance]
+#define SISwipeView(view, direction, distance) \
+[(view) isKindOfClass:[NSString class]] ? \
+[[SIUIApplication application] swipeViewWithQuery:(NSString *)view inDirection:direction forDistance: distance] : \
+[[SIUIApplication application] swipeView:(UIView *)view inDirection:direction forDistance: distance]
 
 /**
  Pauses the current thread for the specified time. Note that this will only work on a background thread.

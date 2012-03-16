@@ -100,7 +100,7 @@ static SIUIApplication *application = nil;
       
 		dispatch_sync(mainQueue, ^{
          @try {
-            views = [[SIUIApplication application] findViewsWithQuery:query];
+            views = [self findViewsWithQuery:query];
             // Retain so data survives GCDs autorelease pools.
             [views retain];
             DC_LOG(@"Returning %lu views to background thread", [views count]);
@@ -202,14 +202,19 @@ static SIUIApplication *application = nil;
 
 #pragma mark - Tapping
 
--(void) tapViewWithQuery:(NSString *) query {
-   UIView<DNNode> *theView = [[SIUIApplication application] findViewWithQuery:query];
-   [[self viewHandlerForView:theView] tap];
+-(UIView *) tapView:(UIView *) view {
+   [[self viewHandlerForView:view] tap];
+	return view;
+}
+
+-(UIView *) tapViewWithQuery:(NSString *) query {
+   UIView<DNNode> *theView = [self findViewWithQuery:query];
+   return [self tapView:theView];
 }
 
 -(void) tapButtonWithLabel:(NSString *) label {
    @try {
-      [[SIUIApplication application] tapViewWithQuery:[NSString stringWithFormat:@"//UIRoundedRectButton[@titleLabel.text='%@']", label]];
+      [self tapViewWithQuery:[NSString stringWithFormat:@"//UIRoundedRectButton[@titleLabel.text='%@']", label]];
    }
    @catch (SIUINotFoundException *exception) {
       @throw [SIUINotFoundException exceptionWithReason:[NSString stringWithFormat:@"%@ not found.", label]];
@@ -222,14 +227,19 @@ static SIUIApplication *application = nil;
 }
 
 -(void) tapTabBarButtonWithLabel:(NSString *) label {
-   [[SIUIApplication application] tapViewWithQuery:[NSString stringWithFormat:@"//UITabBarButtonLabel[@text='%@']/..", label]];
+   [self tapViewWithQuery:[NSString stringWithFormat:@"//UITabBarButtonLabel[@text='%@']/..", label]];
 }
 
 #pragma mark - Swiping
 
--(void) swipeViewWithQuery:(NSString *) query inDirection:(SIUISwipeDirection) swipeDirection forDistance:(int) distance {
-   UIView<DNNode> *theView = [[SIUIApplication application] findViewWithQuery:query];
-   [[self viewHandlerForView:theView] swipe:swipeDirection distance:distance]; 
+-(UIView *) swipeView:(UIView *) view inDirection:(SIUISwipeDirection) swipeDirection forDistance:(int) distance {
+   [[self viewHandlerForView:view] swipe:swipeDirection distance:distance]; 
+	return view;
+}
+
+-(UIView *) swipeViewWithQuery:(NSString *) query inDirection:(SIUISwipeDirection) swipeDirection forDistance:(int) distance {
+   UIView<DNNode> *theView = [self findViewWithQuery:query];
+   return [self swipeView:theView inDirection:swipeDirection forDistance:distance];
 }
 
 #pragma mark - View handlers

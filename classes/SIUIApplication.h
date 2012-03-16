@@ -76,8 +76,9 @@
  Locates a single UIView based on the passed query and taps at the exact center of that view.
  
  @param query the query that will locate the view. Zero or multiple returns from that query will trigger an error.
+ @return the view that was tapped.
  */
--(void) tapViewWithQuery:(NSString *) query;
+-(UIView *) tapViewWithQuery:(NSString *) query;
 
 /**
  Searches for a button with a specific label taps it.
@@ -85,6 +86,14 @@
  @param label the text label of the icon we want to tap.
  */
 -(void) tapButtonWithLabel:(NSString *) label;
+
+/**
+ Taps the specified view.
+ 
+ @param view the UIView to be tapped.
+ @return the view that was tapped.
+ */
+-(UIView *) tapView:(UIView *) view;
 
 /**
  Searches for a button with a specific label taps it, then waits for the specified period of time before returning. 
@@ -106,13 +115,24 @@
 /// @name Swiping
 
 /**
- Performs a swipe on the specified control. Currently there are 4 basic directions.
+ Performs a swipe on the specified UIView. Currently there are 4 basic directions.
  
- @param query a string containing the DNodi query that will locate the control we want to swipe. The swipe will start from the center of that control.
+ @param view a UIView we want to swipe. The swipe will start from the center of that UIView.
  @param swipeDirection a value from SIUISwipeDirection indicting the direction to swipe in.
  @param distance how far to swipe in the given direction.
+ @return the swiped view.
  */
--(void) swipeViewWithQuery:(NSString *) query inDirection:(SIUISwipeDirection) swipeDirection forDistance:(int) distance;
+-(UIView *) swipeView:(UIView *) view inDirection:(SIUISwipeDirection) swipeDirection forDistance:(int) distance;
+
+/**
+ Performs a swipe on the UIView returned from the query. Currently there are 4 basic directions.
+ 
+ @param query a string containing the DNodi query that will locate the UIView we want to swipe. The swipe will start from the center of that UIView.
+ @param swipeDirection a value from SIUISwipeDirection indicting the direction to swipe in.
+ @param distance how far to swipe in the given direction.
+ @return the swiped view.
+ */
+-(UIView *) swipeViewWithQuery:(NSString *) query inDirection:(SIUISwipeDirection) swipeDirection forDistance:(int) distance;
 
 #pragma mark - Waiting and holding
 

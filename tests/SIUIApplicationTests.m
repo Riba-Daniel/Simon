@@ -92,16 +92,25 @@
 
 #pragma mark - taps
 
+-(void) testTapViewTapsButton1 {
+   self.testViewController.tappedButton = 0;
+   UIView *tappedView = [[SIUIApplication application] tapView:self.testViewController.button1];
+   GHAssertEquals(self.testViewController.tappedButton, 1, @"Button not tapped");
+	GHAssertEqualObjects(tappedView, self.testViewController.button1, @"button not returned");
+}
+
 -(void) testTapViewWithQueryTapsButton1 {
    self.testViewController.tappedButton = 0;
-   [[SIUIApplication application] tapViewWithQuery:@"//UIRoundedRectButton[@titleLabel.text='Button 1']"];
+   UIView *tappedView = [[SIUIApplication application] tapViewWithQuery:@"//UIRoundedRectButton[@titleLabel.text='Button 1']"];
    GHAssertEquals(self.testViewController.tappedButton, 1, @"Button not tapped");
+	GHAssertEqualObjects(tappedView, self.testViewController.button1, @"button not returned");
 }
 
 -(void) testTapViewWithQueryTapsButton2 {
    self.testViewController.tappedButton = 0;
-   [[SIUIApplication application] tapViewWithQuery:@"//UIRoundedRectButton[@titleLabel.text='Button 2']"];
+   UIView *tappedView = [[SIUIApplication application] tapViewWithQuery:@"//UIRoundedRectButton[@titleLabel.text='Button 2']"];
    GHAssertEquals(self.testViewController.tappedButton, 2, @"Button not tapped");
+	GHAssertEqualObjects(tappedView, self.testViewController.button2, @"button not returned");
 }
 
 -(void) testTapTabBarButtonWithLabelTapsButton1 {
@@ -136,11 +145,20 @@
 
 #pragma mark - Swipes
 
--(void) testSwipeSlider {
+-(void) testSwipeSliderUsingView {
    self.testViewController.slider.value = 5;
-   [[SIUIApplication application] swipeViewWithQuery:@"//UISlider" inDirection:SIUISwipeDirectionRight forDistance: 80];
+   UIView *swipedView = [[SIUIApplication application] swipeView:self.testViewController.slider inDirection:SIUISwipeDirectionRight forDistance: 80];
    
    GHAssertEquals(round(self.testViewController.slider.value), 8.0, @"Slider not swiped.");
+	GHAssertEquals(swipedView, self.testViewController.slider, @"Incorrect view returned");
+}
+
+-(void) testSwipeSliderUsingQuery {
+   self.testViewController.slider.value = 5;
+   UIView *swipedView = [[SIUIApplication application] swipeViewWithQuery:@"//UISlider" inDirection:SIUISwipeDirectionRight forDistance: 80];
+   
+   GHAssertEquals(round(self.testViewController.slider.value), 8.0, @"Slider not swiped.");
+	GHAssertEquals(swipedView, self.testViewController.slider, @"Incorrect view returned");
 }
 
 -(void) testTableViewSwipingDown {

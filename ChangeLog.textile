@@ -4,6 +4,9 @@ March 2012
 * Added a macro: SIIsViewPresent.
 * Renamed SITapControl to SITapView.
 * Renamed SISWipeControl to SISWipeView.
+* Modded SITapView to accept both a NSString *query and a UIView *view as a parameter and to return the view it tapped.
+* Modded SISwipeView to accept both a NSString *query and a UIView *view as a parameter and to return the view it swiped.
+* Cleaned up some old references in SIUIApplication.
 
 h1. Version 0.1.6
 March 2012

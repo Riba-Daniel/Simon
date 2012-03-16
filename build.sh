@@ -35,6 +35,9 @@ $DC_SCRIPTS_DIR/createDocumentation.sh
 rm -fr ../drekka.github.com/simon/api/*
 cp -vR build/appledoc/html/* ../drekka.github.com/simon/api
 
+# Copy change log.
+cp -v ChangeLog.textile ../drekka.github.com/simon
+
 # Check for a doco only build.
 if [ -n "$DC_BUILD_DOCO_ONLY" ]; then
    echo "Only building documentation so exiting."
