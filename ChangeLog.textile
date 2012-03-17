@@ -15,6 +15,8 @@ h1. Version 0.1.7, March 2012
 * Cleaned up some old references in SIUIApplication.
 * Added new macros SIAssertViewPresent and SIAssertViewNotPresent.
 * Added new macro SIAssertLabelTextEquals.
+* Fixed issue where creating UITouch and UIEvents on a background thread would trigger a 0xbbadbeef crash.
+* Refactored SIUIEventGenerator into an abstract class. 
 
 h1. Version 0.1.6, March 2012
 
