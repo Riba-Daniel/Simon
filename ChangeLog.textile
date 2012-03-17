@@ -13,7 +13,8 @@ h1. Version 0.1.7, March 2012
 * Modded SITapView to accept both a NSString *query and a UIView *view as a parameter and to return the view it tapped.
 * Modded SISwipeView to accept both a NSString *query and a UIView *view as a parameter and to return the view it swiped.
 * Cleaned up some old references in SIUIApplication.
-* Added new macros SIAssertViewPresent and SIAssertViewNotPresent
+* Added new macros SIAssertViewPresent and SIAssertViewNotPresent.
+* Added new macro SIAssertLabelTextEquals.
 
 h1. Version 0.1.6, March 2012
 

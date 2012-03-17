@@ -170,7 +170,7 @@ GHFail(@"Mapping has not worked");
       GHFail(@"Exception not thrown");
 	}
 	@catch (NSException *exception) {
-		catchMessage(@"-[SIMacroTests testSIAssertViewPresentThrows](%i) SIAssertViewPresent(@\"//xxx\") Expected '@\"//xxx\"' to find a UIView.");
+		catchMessage(@"-[SIMacroTests testSIAssertViewPresentThrows](%i) SIAssertViewPresent(@\"//xxx\") Expected '//xxx' to find a UIView.");
 	}
 }
 
@@ -184,7 +184,26 @@ GHFail(@"Mapping has not worked");
       GHFail(@"Exception not thrown");
 	}
 	@catch (NSException *exception) {
-		catchMessage(@"-[SIMacroTests testSIAssertViewNotPresentThrows](%i) SIAssertViewNotPresent(@\"//UIRoundedRectButton[@titleLabel.text='Button 1']\") Expected '@\"//UIRoundedRectButton[@titleLabel.text='Button 1']\"' to not find a UIView.");
+		catchMessage(@"-[SIMacroTests testSIAssertViewNotPresentThrows](%i) SIAssertViewNotPresent(@\"//UIRoundedRectButton[@titleLabel.text='Button 1']\") Expected '//UIRoundedRectButton[@titleLabel.text='Button 1']' to not find a UIView.");
+	}
+}
+
+-(void) testSIAssertLabelTextEqualsWithQuery {
+   SIAssertLabelTextEquals(@"//UILabel[@tag='101']", @"Tapable Label");
+}
+
+-(void) testSIAssertLabelTextEqualsWithLabel {
+	UILabel *label = (UILabel *) SIFindView(@"//UILabel[@tag='101']");
+   SIAssertLabelTextEquals(label, @"Tapable Label");
+}
+
+-(void) testSIAssertLabelTextEqualsThrows {
+   @try {
+		SIAssertLabelTextEquals(@"//UILabel[@tag='101']", @"XXX");
+      GHFail(@"Exception not thrown");
+	}
+	@catch (NSException *exception) {
+		catchMessage(@"-[SIMacroTests testSIAssertLabelTextEqualsThrows](%i) SIAssertLabelTextEquals(@\"//UILabel[@tag='101']\", @\"XXX\") failed: label text does equal 'XXX'");
 	}
 }
 

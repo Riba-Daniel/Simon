@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface SecondViewController : UIViewController
+- (IBAction)helloButton:(id)sender;
+@property (weak, nonatomic) IBOutlet UILabel *outputLabel;
 
 @end

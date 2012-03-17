@@ -27,11 +27,12 @@
          dispatch_queue_t mainQueue = dispatch_get_main_queue();
          __block NSArray *results = nil;
          dispatch_sync(mainQueue, ^{
-            results = [self allMappingMethodsInRuntime];
+				// retain so we don't get random EXEC_BAD_ACCESS's.
+            results = [[self allMappingMethodsInRuntime] retain];
          });
          
-         // return with retain/autorelease to ensure we don't loose the data.
-         return [[results retain] autorelease];
+         // return with autorelease.
+         return [results autorelease];
       }
    }
 	

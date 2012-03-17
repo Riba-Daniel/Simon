@@ -13,6 +13,7 @@
 @end
 
 @implementation SecondViewController
+@synthesize outputLabel;
 
 - (void)viewDidLoad
 {
@@ -22,6 +23,7 @@
 
 - (void)viewDidUnload
 {
+    [self setOutputLabel:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
@@ -31,4 +33,7 @@
    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 
+- (IBAction)helloButton:(id)sender {
+	self.outputLabel.text = @"hello";
+}
 @end

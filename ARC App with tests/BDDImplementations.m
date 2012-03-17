@@ -7,21 +7,53 @@
 //
 
 #import "SISimon.h"
+#import <dUsefulStuff/DCCommon.h>
 
 @interface BDDImplementations : NSObject
 @end
 
+#define LABEL_FIRST @"//UILabel[@text='First View']"
+#define LABEL_SECOND @"//UILabel[@text='Second View']"
+
 @implementation BDDImplementations
 
-SIMapStepToSelector(@"Given we are on the first page", firstScreen)
--(void) firstScreen {
+SIMapStepToSelector(@"Given we are on the first page", startOnFirstScreen);
+-(void) startOnFirstScreen {
+	SIPrintCurrentWindowTree();
+	DC_LOG(@"%@", LABEL_FIRST);
+	if (!SIIsViewPresent(LABEL_FIRST)) {
+		SITapTabBarButtonWithLabel(@"First");
+		SIPauseFor(0.5);
+	}
+	SIAssertViewPresent(LABEL_FIRST);
 }
 
-SIMapStepToSelector(@"Then goto the second page", gotoSecondScreen)
--(void) gotoSecondScreen {
-   SITapTabBarButtonWithLabel(@"Second");
-SIPauseFor(0.5);
+SIMapStepToSelector(@"Given I am on the second page", startOnSecondScreen);
+-(void)startOnSecondScreen {
+	if (!SIIsViewPresent(LABEL_SECOND)) {
+		SITapTabBarButtonWithLabel(@"Second");
+		SIPauseFor(0.5);
+	}
+	SIAssertViewPresent(LABEL_SECOND);
+}
 
+SIMapStepToSelector(@"Then goto the second page", gotoSecondScreen);
+-(void) gotoSecondScreen {
+	SIAssertViewNotPresent(LABEL_SECOND);
+	SITapTabBarButtonWithLabel(@"Second");
+	SIPauseFor(0.5);
+	SIAssertViewPresent(LABEL_SECOND);
+}
+
+SIMapStepToSelector(@"Then I can tap a button", tapSecondPageHelloButton);
+-(void) tapSecondPageHelloButton {
+	SITapButtonWithLabel(@"Hello");
+}
+
+SIMapStepToSelector(@"and see \"(.*)\" in the label", verifyLabel:);
+-(void) verifyLabel:(NSString *) text {
+	UILabel *label = (UILabel *)SIFindView(@"//UILabel[1]");
+	SIAssertObjectEquals(label.text, @"hello");
 }
 
 @end
