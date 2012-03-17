@@ -19,12 +19,15 @@
 		324108BA1509C23200AFBF66 /* SIUIViewDescriptionVisitorDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 324108B91509C23200AFBF66 /* SIUIViewDescriptionVisitorDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		324108BC1509C61E00AFBF66 /* SIUIViewDescriptionVisitorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 324108BB1509C61E00AFBF66 /* SIUIViewDescriptionVisitorTests.m */; };
 		325683D914EF6CEB00F7C189 /* SIUIConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 325683D814EF6CEB00F7C189 /* SIUIConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3265B0231514487100BE0930 /* Macro.stories in Resources */ = {isa = PBXBuildFile; fileRef = 3265B0211514487100BE0930 /* Macro.stories */; };
+		3265B0241514487100BE0930 /* MacroStoryImplementations.m in Sources */ = {isa = PBXBuildFile; fileRef = 3265B0221514487100BE0930 /* MacroStoryImplementations.m */; };
+		3265B02715144DB400BE0930 /* SIUIAbstractEventGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 3265B02515144DB300BE0930 /* SIUIAbstractEventGenerator.h */; };
+		3265B02815144DB400BE0930 /* SIUIAbstractEventGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3265B02615144DB300BE0930 /* SIUIAbstractEventGenerator.m */; };
 		32741D7814EB581E00093E0F /* UITouch+Simon.h in Headers */ = {isa = PBXBuildFile; fileRef = 32741D7614EB581E00093E0F /* UITouch+Simon.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32741D7914EB581E00093E0F /* UITouch+Simon.m in Sources */ = {isa = PBXBuildFile; fileRef = 32741D7714EB581E00093E0F /* UITouch+Simon.m */; };
 		32741D7C14EB5BAE00093E0F /* UIEvent+Simon.h in Headers */ = {isa = PBXBuildFile; fileRef = 32741D7A14EB5BAE00093E0F /* UIEvent+Simon.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32741D7D14EB5BAE00093E0F /* UIEvent+Simon.m in Sources */ = {isa = PBXBuildFile; fileRef = 32741D7B14EB5BAE00093E0F /* UIEvent+Simon.m */; };
 		32793BAE14F4FB5800B93621 /* SIUIEventSenderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32793BAD14F4FB5800B93621 /* SIUIEventSenderTests.m */; };
-		3296322314F7516400D9310A /* SIUIEventGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 3296322214F7516400D9310A /* SIUIEventGenerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3296322614F751D300D9310A /* SIUITapGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 3296322414F751D300D9310A /* SIUITapGenerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3296322714F751D300D9310A /* SIUITapGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3296322514F751D300D9310A /* SIUITapGenerator.m */; };
 		3298250F15039FE300631203 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 653D0E9D13A783A500A5AB82 /* UIKit.framework */; };
@@ -97,24 +100,6 @@
 		6551A98A13AC8A5300679B94 /* NSString+Simon.h in Headers */ = {isa = PBXBuildFile; fileRef = 6551A98813AC8A5200679B94 /* NSString+Simon.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6551A98B13AC8A5300679B94 /* NSString+Simon.m in Sources */ = {isa = PBXBuildFile; fileRef = 6551A98913AC8A5200679B94 /* NSString+Simon.m */; };
 		6551A99313ACDEBE00679B94 /* SISimon.h in Headers */ = {isa = PBXBuildFile; fileRef = 6551A99213ACDEBE00679B94 /* SISimon.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		659E625C13D9BE9600ACD34C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 653D0E9D13A783A500A5AB82 /* UIKit.framework */; };
-		659E625D13D9BE9600ACD34C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 653D0E8D13A782AD00A5AB82 /* Foundation.framework */; };
-		659E625E13D9BE9600ACD34C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 653D0EA013A783A500A5AB82 /* CoreGraphics.framework */; };
-		659E626413D9BE9600ACD34C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 659E626213D9BE9600ACD34C /* InfoPlist.strings */; };
-		659E626613D9BE9600ACD34C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 659E626513D9BE9600ACD34C /* main.m */; };
-		659E626A13D9BE9600ACD34C /* TestApp2AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 659E626913D9BE9600ACD34C /* TestApp2AppDelegate.m */; };
-		659E626D13D9BE9600ACD34C /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 659E626C13D9BE9600ACD34C /* FirstViewController.m */; };
-		659E626F13D9BE9600ACD34C /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = 659E626E13D9BE9600ACD34C /* first.png */; };
-		659E627113D9BE9600ACD34C /* first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 659E627013D9BE9600ACD34C /* first@2x.png */; };
-		659E627413D9BE9600ACD34C /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 659E627313D9BE9600ACD34C /* SecondViewController.m */; };
-		659E627613D9BE9600ACD34C /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = 659E627513D9BE9600ACD34C /* second.png */; };
-		659E627813D9BE9600ACD34C /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 659E627713D9BE9600ACD34C /* second@2x.png */; };
-		659E627B13D9BE9600ACD34C /* FirstViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 659E627913D9BE9600ACD34C /* FirstViewController.xib */; };
-		659E627E13D9BE9600ACD34C /* SecondViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 659E627C13D9BE9600ACD34C /* SecondViewController.xib */; };
-		659E628513D9BEB000ACD34C /* libSimon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 653D0E8A13A782AD00A5AB82 /* libSimon.a */; };
-		659E628613D9BF0E00ACD34C /* dUsefulStuff.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65D09A6313D99C5900D1A74B /* dUsefulStuff.framework */; };
-		659E628A13D9C08700ACD34C /* First.stories in Resources */ = {isa = PBXBuildFile; fileRef = 659E628913D9C08700ACD34C /* First.stories */; };
-		659E628D13D9C0D000ACD34C /* StoryImplementations.m in Sources */ = {isa = PBXBuildFile; fileRef = 659E628C13D9C0D000ACD34C /* StoryImplementations.m */; };
 		659E629113D9C3E200ACD34C /* UIView+Simon.h in Headers */ = {isa = PBXBuildFile; fileRef = 659E628F13D9C3E200ACD34C /* UIView+Simon.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		659E629213D9C3E200ACD34C /* UIView+Simon.m in Sources */ = {isa = PBXBuildFile; fileRef = 659E629013D9C3E200ACD34C /* UIView+Simon.m */; };
 		659E629D13DAFC4000ACD34C /* SIUIApplication.h in Headers */ = {isa = PBXBuildFile; fileRef = 659E629B13DAFC4000ACD34C /* SIUIApplication.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -149,7 +134,6 @@
 		942F7F67141F9197009F3550 /* SIUIViewHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 942F7F65141F9197009F3550 /* SIUIViewHandler.m */; };
 		94327D7213E44F9A0003646C /* dNodi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94327D7113E44F9A0003646C /* dNodi.framework */; };
 		94327D7313E451810003646C /* dNodi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94327D7113E44F9A0003646C /* dNodi.framework */; };
-		94327D7413E451820003646C /* dNodi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94327D7113E44F9A0003646C /* dNodi.framework */; };
 		943A3969143DD2D0000D506C /* SIConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 943A3967143DD2D0000D506C /* SIConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		943A396A143DD2D0000D506C /* SIConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 943A3968143DD2D0000D506C /* SIConstants.m */; };
 		9465773F141B97B90026F1FB /* SIUIViewHandlerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9465773E141B97B90026F1FB /* SIUIViewHandlerTests.m */; };
@@ -162,8 +146,6 @@
 		9499DB6E13F017190053BEEA /* SIUIViewHandlerFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 9499DB6C13F017190053BEEA /* SIUIViewHandlerFactory.m */; };
 		9499DB7213F017DC0053BEEA /* SIUIAction.h in Headers */ = {isa = PBXBuildFile; fileRef = 9499DB7013F017DC0053BEEA /* SIUIAction.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		94AED1541420DB660070D3BB /* SIUIHandlerFactoryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 94AED1511420DB070070D3BB /* SIUIHandlerFactoryTests.m */; };
-		94C18E8A1439DBEB00B28D44 /* Macro.stories in Resources */ = {isa = PBXBuildFile; fileRef = 94C18E891439DBEB00B28D44 /* Macro.stories */; };
-		94C18E8D1439DC7B00B28D44 /* MacroStoryImplementations.m in Sources */ = {isa = PBXBuildFile; fileRef = 94C18E8C1439DC7B00B28D44 /* MacroStoryImplementations.m */; };
 		94DC535D14445C5300C3E586 /* SIStorySource.h in Headers */ = {isa = PBXBuildFile; fileRef = 94DC535B14445C5300C3E586 /* SIStorySource.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		94DC535E14445C5300C3E586 /* SIStorySource.m in Sources */ = {isa = PBXBuildFile; fileRef = 94DC535C14445C5300C3E586 /* SIStorySource.m */; };
 		94E3753914544A5100FB86AA /* SIStoryDetailsTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 94E3753714544A5000FB86AA /* SIStoryDetailsTableViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -172,13 +154,6 @@
 
 /* Begin PBXContainerItemProxy section */
 		329825321503A01300631203 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 653D0E8113A782AC00A5AB82 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 653D0E8913A782AD00A5AB82;
-			remoteInfo = Simon;
-		};
-		659E628313D9BEA000ACD34C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 653D0E8113A782AC00A5AB82 /* Project object */;
 			proxyType = 1;
@@ -207,12 +182,15 @@
 		324108B91509C23200AFBF66 /* SIUIViewDescriptionVisitorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIViewDescriptionVisitorDelegate.h; sourceTree = "<group>"; };
 		324108BB1509C61E00AFBF66 /* SIUIViewDescriptionVisitorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUIViewDescriptionVisitorTests.m; sourceTree = "<group>"; };
 		325683D814EF6CEB00F7C189 /* SIUIConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIConstants.h; sourceTree = "<group>"; };
+		3265B0211514487100BE0930 /* Macro.stories */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Macro.stories; sourceTree = "<group>"; };
+		3265B0221514487100BE0930 /* MacroStoryImplementations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MacroStoryImplementations.m; sourceTree = "<group>"; };
+		3265B02515144DB300BE0930 /* SIUIAbstractEventGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIAbstractEventGenerator.h; sourceTree = "<group>"; };
+		3265B02615144DB300BE0930 /* SIUIAbstractEventGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUIAbstractEventGenerator.m; sourceTree = "<group>"; };
 		32741D7614EB581E00093E0F /* UITouch+Simon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITouch+Simon.h"; sourceTree = "<group>"; };
 		32741D7714EB581E00093E0F /* UITouch+Simon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITouch+Simon.m"; sourceTree = "<group>"; };
 		32741D7A14EB5BAE00093E0F /* UIEvent+Simon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIEvent+Simon.h"; sourceTree = "<group>"; };
 		32741D7B14EB5BAE00093E0F /* UIEvent+Simon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIEvent+Simon.m"; sourceTree = "<group>"; };
 		32793BAD14F4FB5800B93621 /* SIUIEventSenderTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUIEventSenderTests.m; sourceTree = "<group>"; };
-		3296322214F7516400D9310A /* SIUIEventGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIEventGenerator.h; sourceTree = "<group>"; };
 		3296322414F751D300D9310A /* SIUITapGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUITapGenerator.h; sourceTree = "<group>"; };
 		3296322514F751D300D9310A /* SIUITapGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUITapGenerator.m; sourceTree = "<group>"; };
 		3298250D15039FE300631203 /* ARC App with tests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ARC App with tests.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -292,25 +270,6 @@
 		6583B3EB13CF2220005E13F3 /* License.textile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = License.textile; sourceTree = "<group>"; };
 		6583B3EC13CF2220005E13F3 /* ReadMe.textile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ReadMe.textile; sourceTree = "<group>"; };
 		6583B3EE13CF2242005E13F3 /* ChangeLog.textile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ChangeLog.textile; sourceTree = "<group>"; };
-		659E625A13D9BE9600ACD34C /* App with tests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "App with tests.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		659E626113D9BE9600ACD34C /* TestApp2-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TestApp2-Info.plist"; sourceTree = "<group>"; };
-		659E626313D9BE9600ACD34C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		659E626513D9BE9600ACD34C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		659E626713D9BE9600ACD34C /* TestApp2-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TestApp2-Prefix.pch"; sourceTree = "<group>"; };
-		659E626813D9BE9600ACD34C /* TestApp2AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestApp2AppDelegate.h; sourceTree = "<group>"; };
-		659E626913D9BE9600ACD34C /* TestApp2AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestApp2AppDelegate.m; sourceTree = "<group>"; };
-		659E626B13D9BE9600ACD34C /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
-		659E626C13D9BE9600ACD34C /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
-		659E626E13D9BE9600ACD34C /* first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = first.png; sourceTree = "<group>"; };
-		659E627013D9BE9600ACD34C /* first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "first@2x.png"; sourceTree = "<group>"; };
-		659E627213D9BE9600ACD34C /* SecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
-		659E627313D9BE9600ACD34C /* SecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondViewController.m; sourceTree = "<group>"; };
-		659E627513D9BE9600ACD34C /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
-		659E627713D9BE9600ACD34C /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
-		659E627A13D9BE9600ACD34C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/FirstViewController.xib; sourceTree = "<group>"; };
-		659E627D13D9BE9600ACD34C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SecondViewController.xib; sourceTree = "<group>"; };
-		659E628913D9C08700ACD34C /* First.stories */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = First.stories; sourceTree = "<group>"; };
-		659E628C13D9C0D000ACD34C /* StoryImplementations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StoryImplementations.m; sourceTree = "<group>"; };
 		659E628F13D9C3E200ACD34C /* UIView+Simon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Simon.h"; sourceTree = "<group>"; };
 		659E629013D9C3E200ACD34C /* UIView+Simon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Simon.m"; sourceTree = "<group>"; };
 		659E629B13DAFC4000ACD34C /* SIUIApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIApplication.h; sourceTree = "<group>"; };
@@ -354,8 +313,6 @@
 		9499DB6C13F017190053BEEA /* SIUIViewHandlerFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUIViewHandlerFactory.m; sourceTree = "<group>"; };
 		9499DB7013F017DC0053BEEA /* SIUIAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIAction.h; sourceTree = "<group>"; };
 		94AED1511420DB070070D3BB /* SIUIHandlerFactoryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUIHandlerFactoryTests.m; sourceTree = "<group>"; };
-		94C18E891439DBEB00B28D44 /* Macro.stories */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Macro.stories; sourceTree = "<group>"; };
-		94C18E8C1439DC7B00B28D44 /* MacroStoryImplementations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MacroStoryImplementations.m; sourceTree = "<group>"; };
 		94DC535B14445C5300C3E586 /* SIStorySource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIStorySource.h; sourceTree = "<group>"; };
 		94DC535C14445C5300C3E586 /* SIStorySource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIStorySource.m; sourceTree = "<group>"; };
 		94E3753714544A5000FB86AA /* SIStoryDetailsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIStoryDetailsTableViewController.h; sourceTree = "<group>"; };
@@ -403,19 +360,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		659E625713D9BE9600ACD34C /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				659E628513D9BEB000ACD34C /* libSimon.a in Frameworks */,
-				659E625C13D9BE9600ACD34C /* UIKit.framework in Frameworks */,
-				659E625D13D9BE9600ACD34C /* Foundation.framework in Frameworks */,
-				659E625E13D9BE9600ACD34C /* CoreGraphics.framework in Frameworks */,
-				659E628613D9BF0E00ACD34C /* dUsefulStuff.framework in Frameworks */,
-				94327D7413E451820003646C /* dNodi.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -441,9 +385,10 @@
 			children = (
 				32F7F3E414EE1E5800F94F65 /* GSEventProxy.h */,
 				32F7F3E514EE1E5800F94F65 /* GSEventProxy.m */,
+				3265B02515144DB300BE0930 /* SIUIAbstractEventGenerator.h */,
+				3265B02615144DB300BE0930 /* SIUIAbstractEventGenerator.m */,
 				32BF7CF514F9035400A0B197 /* SIUIBackgroundThreadSender.h */,
 				32BF7CF614F9035400A0B197 /* SIUIBackgroundThreadSender.m */,
-				3296322214F7516400D9310A /* SIUIEventGenerator.h */,
 				32BF7CF014F9032C00A0B197 /* SIUIEventSender.h */,
 				32BF7CF114F9032C00A0B197 /* SIUIEventSender.m */,
 				32BF7CF914F90EA300A0B197 /* SIUIMainThreadSender.h */,
@@ -514,6 +459,8 @@
 		329825371503A0E500631203 /* Stories */ = {
 			isa = PBXGroup;
 			children = (
+				3265B0211514487100BE0930 /* Macro.stories */,
+				3265B0221514487100BE0930 /* MacroStoryImplementations.m */,
 				329825381503A0FF00631203 /* BDD.stories */,
 				3298253B1504C87600631203 /* BDDImplementations.m */,
 			);
@@ -546,7 +493,6 @@
 				6583B3EB13CF2220005E13F3 /* License.textile */,
 				6583B3EC13CF2220005E13F3 /* ReadMe.textile */,
 				3298251215039FE300631203 /* ARC App with tests */,
-				659E625F13D9BE9600ACD34C /* App with tests */,
 				653D0EB113A783C000A5AB82 /* classes */,
 				653D0E8C13A782AD00A5AB82 /* Frameworks */,
 				653D0E8B13A782AD00A5AB82 /* Products */,
@@ -559,7 +505,6 @@
 			children = (
 				653D0E8A13A782AD00A5AB82 /* libSimon.a */,
 				653D0E9B13A783A500A5AB82 /* Unit tests.app */,
-				659E625A13D9BE9600ACD34C /* App with tests.app */,
 				3298250D15039FE300631203 /* ARC App with tests.app */,
 			);
 			name = Products;
@@ -681,49 +626,6 @@
 			name = GHUnit;
 			sourceTree = "<group>";
 		};
-		659E625F13D9BE9600ACD34C /* App with tests */ = {
-			isa = PBXGroup;
-			children = (
-				659E626E13D9BE9600ACD34C /* first.png */,
-				659E627013D9BE9600ACD34C /* first@2x.png */,
-				659E626B13D9BE9600ACD34C /* FirstViewController.h */,
-				659E626C13D9BE9600ACD34C /* FirstViewController.m */,
-				659E627913D9BE9600ACD34C /* FirstViewController.xib */,
-				659E627513D9BE9600ACD34C /* second.png */,
-				659E627713D9BE9600ACD34C /* second@2x.png */,
-				659E627213D9BE9600ACD34C /* SecondViewController.h */,
-				659E627313D9BE9600ACD34C /* SecondViewController.m */,
-				659E627C13D9BE9600ACD34C /* SecondViewController.xib */,
-				659E628813D9C06300ACD34C /* stories */,
-				659E626013D9BE9600ACD34C /* Supporting Files */,
-				659E626813D9BE9600ACD34C /* TestApp2AppDelegate.h */,
-				659E626913D9BE9600ACD34C /* TestApp2AppDelegate.m */,
-			);
-			path = "App with tests";
-			sourceTree = "<group>";
-		};
-		659E626013D9BE9600ACD34C /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				659E626113D9BE9600ACD34C /* TestApp2-Info.plist */,
-				659E626213D9BE9600ACD34C /* InfoPlist.strings */,
-				659E626513D9BE9600ACD34C /* main.m */,
-				659E626713D9BE9600ACD34C /* TestApp2-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		659E628813D9C06300ACD34C /* stories */ = {
-			isa = PBXGroup;
-			children = (
-				659E628913D9C08700ACD34C /* First.stories */,
-				659E628C13D9C0D000ACD34C /* StoryImplementations.m */,
-				94C18E891439DBEB00B28D44 /* Macro.stories */,
-				94C18E8C1439DC7B00B28D44 /* MacroStoryImplementations.m */,
-			);
-			name = stories;
-			sourceTree = "<group>";
-		};
 		659E628E13D9C37200ACD34C /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -814,7 +716,6 @@
 				32741D7C14EB5BAE00093E0F /* UIEvent+Simon.h in Headers */,
 				32F7F3E614EE1E5800F94F65 /* GSEventProxy.h in Headers */,
 				325683D914EF6CEB00F7C189 /* SIUIConstants.h in Headers */,
-				3296322314F7516400D9310A /* SIUIEventGenerator.h in Headers */,
 				3296322614F751D300D9310A /* SIUITapGenerator.h in Headers */,
 				32F742D814F75F58005E5E97 /* SIUISwipeGenerator.h in Headers */,
 				32BF7CF214F9032C00A0B197 /* SIUIEventSender.h in Headers */,
@@ -825,6 +726,7 @@
 				3221C79E150C9365003CA286 /* SIUIViewInfo.h in Headers */,
 				3221C7A1150C956A003CA286 /* SIUIButtonHandler.h in Headers */,
 				3221C7A7150CD1DE003CA286 /* SIUILabelHandler.h in Headers */,
+				3265B02715144DB400BE0930 /* SIUIAbstractEventGenerator.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -884,24 +786,6 @@
 			productReference = 653D0E9B13A783A500A5AB82 /* Unit tests.app */;
 			productType = "com.apple.product-type.application";
 		};
-		659E625913D9BE9600ACD34C /* App with tests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 659E628113D9BE9600ACD34C /* Build configuration list for PBXNativeTarget "App with tests" */;
-			buildPhases = (
-				659E625613D9BE9600ACD34C /* Sources */,
-				659E625713D9BE9600ACD34C /* Frameworks */,
-				659E625813D9BE9600ACD34C /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				659E628413D9BEA000ACD34C /* PBXTargetDependency */,
-			);
-			name = "App with tests";
-			productName = TestApp2;
-			productReference = 659E625A13D9BE9600ACD34C /* App with tests.app */;
-			productType = "com.apple.product-type.application";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -925,7 +809,6 @@
 			targets = (
 				653D0E8913A782AD00A5AB82 /* Simon */,
 				653D0E9A13A783A500A5AB82 /* Unit tests */,
-				659E625913D9BE9600ACD34C /* App with tests */,
 				3298250C15039FE300631203 /* ARC App with tests */,
 			);
 		};
@@ -943,6 +826,7 @@
 				3298252C15039FE300631203 /* second.png in Resources */,
 				3298252E15039FE300631203 /* second@2x.png in Resources */,
 				329825391503A0FF00631203 /* BDD.stories in Resources */,
+				3265B0231514487100BE0930 /* Macro.stories in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -962,22 +846,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		659E625813D9BE9600ACD34C /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				659E626413D9BE9600ACD34C /* InfoPlist.strings in Resources */,
-				659E626F13D9BE9600ACD34C /* first.png in Resources */,
-				659E627113D9BE9600ACD34C /* first@2x.png in Resources */,
-				659E627613D9BE9600ACD34C /* second.png in Resources */,
-				659E627813D9BE9600ACD34C /* second@2x.png in Resources */,
-				659E627B13D9BE9600ACD34C /* FirstViewController.xib in Resources */,
-				659E627E13D9BE9600ACD34C /* SecondViewController.xib in Resources */,
-				659E628A13D9C08700ACD34C /* First.stories in Resources */,
-				94C18E8A1439DBEB00B28D44 /* Macro.stories in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -990,6 +858,7 @@
 				3298252315039FE300631203 /* FirstViewController.m in Sources */,
 				3298252A15039FE300631203 /* SecondViewController.m in Sources */,
 				3298253C1504C87700631203 /* BDDImplementations.m in Sources */,
+				3265B0241514487100BE0930 /* MacroStoryImplementations.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1031,6 +900,7 @@
 				324108B71509C19400AFBF66 /* SIUIViewDescriptionVisitor.m in Sources */,
 				3221C7A2150C956A003CA286 /* SIUIButtonHandler.m in Sources */,
 				3221C7A8150CD1DE003CA286 /* SIUILabelHandler.m in Sources */,
+				3265B02815144DB400BE0930 /* SIUIAbstractEventGenerator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1064,19 +934,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		659E625613D9BE9600ACD34C /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				659E626613D9BE9600ACD34C /* main.m in Sources */,
-				659E626A13D9BE9600ACD34C /* TestApp2AppDelegate.m in Sources */,
-				659E626D13D9BE9600ACD34C /* FirstViewController.m in Sources */,
-				659E627413D9BE9600ACD34C /* SecondViewController.m in Sources */,
-				659E628D13D9C0D000ACD34C /* StoryImplementations.m in Sources */,
-				94C18E8D1439DC7B00B28D44 /* MacroStoryImplementations.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -1084,11 +941,6 @@
 			isa = PBXTargetDependency;
 			target = 653D0E8913A782AD00A5AB82 /* Simon */;
 			targetProxy = 329825321503A01300631203 /* PBXContainerItemProxy */;
-		};
-		659E628413D9BEA000ACD34C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 653D0E8913A782AD00A5AB82 /* Simon */;
-			targetProxy = 659E628313D9BEA000ACD34C /* PBXContainerItemProxy */;
 		};
 		65D09AAD13D9AEC300D1A74B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1112,30 +964,6 @@
 				3298251F15039FE300631203 /* en */,
 			);
 			name = MainStoryboard.storyboard;
-			sourceTree = "<group>";
-		};
-		659E626213D9BE9600ACD34C /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				659E626313D9BE9600ACD34C /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		659E627913D9BE9600ACD34C /* FirstViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				659E627A13D9BE9600ACD34C /* en */,
-			);
-			name = FirstViewController.xib;
-			sourceTree = "<group>";
-		};
-		659E627C13D9BE9600ACD34C /* SecondViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				659E627D13D9BE9600ACD34C /* en */,
-			);
-			name = SecondViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -1339,47 +1167,6 @@
 			};
 			name = Release;
 		};
-		659E627F13D9BE9600ACD34C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_ARC = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../Releases/dUsefulStuff/v0.0.14\"",
-					"\"$(SRCROOT)/../Releases/dNodi/v0.3.4\"",
-					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
-				);
-				GCC_PREFIX_HEADER = "App with tests/TestApp2-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"$(inherited)",
-					DC_DEBUG,
-				);
-				GCC_THUMB_SUPPORT = NO;
-				INFOPLIST_FILE = "App with tests/TestApp2-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = app;
-			};
-			name = Debug;
-		};
-		659E628013D9BE9600ACD34C /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_ARC = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../Releases/dUsefulStuff/v0.0.14\"",
-					"\"$(SRCROOT)/../Releases/dNodi/v0.3.4\"",
-					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
-				);
-				GCC_PREFIX_HEADER = "App with tests/TestApp2-Prefix.pch";
-				GCC_THUMB_SUPPORT = NO;
-				INFOPLIST_FILE = "App with tests/TestApp2-Info.plist";
-				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = app;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1415,15 +1202,6 @@
 			buildConfigurations = (
 				653D0EAF13A783A500A5AB82 /* Debug */,
 				653D0EB013A783A500A5AB82 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		659E628113D9BE9600ACD34C /* Build configuration list for PBXNativeTarget "App with tests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				659E627F13D9BE9600ACD34C /* Debug */,
-				659E628013D9BE9600ACD34C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

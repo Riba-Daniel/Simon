@@ -17,7 +17,7 @@
 
 @implementation BDDImplementations
 
-SIMapStepToSelector(@"Given we are on the first page", startOnFirstScreen);
+SIMapStepToSelector(@"Given I am on the first page", startOnFirstScreen);
 -(void) startOnFirstScreen {
 	SIPrintCurrentWindowTree();
 	DC_LOG(@"%@", LABEL_FIRST);
@@ -52,8 +52,12 @@ SIMapStepToSelector(@"Then I can tap a button", tapSecondPageHelloButton);
 
 SIMapStepToSelector(@"and see \"(.*)\" in the label", verifyLabel:);
 -(void) verifyLabel:(NSString *) text {
-	UILabel *label = (UILabel *)SIFindView(@"//UILabel[1]");
-	SIAssertObjectEquals(label.text, @"hello");
+	SIAssertLabelTextEquals(@"//UILabel[1]", @"hello");
+}
+
+SIMapStepToSelector(@"then I can enter \"(.*)\" into the name field", enterTextIntoNameField:);
+-(void) enterTextIntoNameField:(NSString *) text {
+	SITapView(@"//UITextField[1]");
 }
 
 @end

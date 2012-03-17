@@ -13,36 +13,12 @@
 
 @implementation SIUITapGenerator
 
-@synthesize view = view_;
-
--(void) dealloc {
-   self.view = nil;
-   [super dealloc];
-}
-
--(id) initWithView:(UIView *) view {
-   self = [super init];
-   if (self) {
-      self.view = view;
-   }
-   return self;
-}
-
-
 -(void) sendEvents {
-   
    DC_LOG(@"Creating tap sequence for a %@", NSStringFromClass([self.view class]));
-   
-   UITouch *touch = [[[UITouch alloc] initInView:self.view] autorelease];
-   UIEvent *event = [[[NSClassFromString(@"UITouchesEvent") alloc] initWithTouch:touch] autorelease];
-
    SIUIEventSender *sender = [SIUIEventSender sender];
-   
    [sender sendEvent:event];
-   
    [touch setPhase:UITouchPhaseEnded];
    [sender sendEvent:event];
-
 }
 
 @end

@@ -13,21 +13,14 @@
 
 @implementation SIUISwipeGenerator
 
-@synthesize view = view_;
 @synthesize distance = distance_;
 @synthesize eps = eps_;
 @synthesize duration = duration_;
 @synthesize swipeDirection = swipeDirection_;
 
--(void) dealloc {
-   self.view = nil;
-   [super dealloc];
-}
-
 -(id) initWithView:(UIView *) view {
-   self = [super init];
+   self = [super initWithView:view];
    if (self) {
-      self.view = view;
       self.distance = 80;
       self.eps = 50;
       self.duration = 0.5;
@@ -52,10 +45,6 @@
    
    SIUIEventSender *sender = [SIUIEventSender sender];
 
-   // Send the touch and trigger the run loop, then pause for the amount of time needed between touches.
-   UITouch *touch = [[[UITouch alloc] initInView:self.view] autorelease];
-   UIEvent *event = [[[NSClassFromString(@"UITouchesEvent") alloc] initWithTouch:touch] autorelease];
-   
    // Send the starting event.
    [sender sendEvent:event];
    [NSThread sleepForTimeInterval:frameDuration];
@@ -83,7 +72,6 @@
    touch.locationInWindow = CGPointMake(touch.locationInWindow.x + touchAdjustX, touch.locationInWindow.y + touchAdjustY);
    [touch setPhase:UITouchPhaseEnded];
    [sender sendEvent:event];
-   
 }
 
 @end

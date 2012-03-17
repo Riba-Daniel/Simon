@@ -7,18 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SIUIEventGenerator.h"
 #import "SIUIConstants.h"
+#import "SIUIAbstractEventGenerator.h"
 
 /**
  Generates the series of events which simulate a swipe event. To do this we need to know how far to swipe, how long in time to take to do it, and how many events to generate per second. This last is specified by the eps value.
  */
-@interface SIUISwipeGenerator : NSObject<SIUIEventGenerator>
-
-/// @name Properties
-
-/// The view that will be tapped.
-@property (nonatomic, retain) UIView *view;
+@interface SIUISwipeGenerator : SIUIAbstractEventGenerator
 
 /// The distance to swipe in display points. Defaults to 80.
 @property(nonatomic) NSUInteger distance;
@@ -31,14 +26,5 @@
 
 /// THe direction of the swipe. Defaults to left.
 @property(nonatomic) SIUISwipeDirection swipeDirection;
-
-/// @name INitialiser
-
-/**
- Default initialiser.
- 
- @param view the view we are going to tap.
- */
--(id) initWithView:(UIView *) view;
 
 @end
