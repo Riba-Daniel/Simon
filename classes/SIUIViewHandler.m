@@ -50,6 +50,13 @@
    [tapGenerator release];
 }
 
+-(void) tapAtPoint:(CGPoint)atPoint {
+   SIUITapGenerator *tapGenerator = [[SIUITapGenerator alloc] initWithView:self.view];
+	tapGenerator.tapPoint = atPoint;
+   [tapGenerator sendEvents];
+   [tapGenerator release];
+}
+
 -(void) swipe:(SIUISwipeDirection) swipeDirection distance:(int) distance {
    SIUISwipeGenerator *swipeGenerator = [[SIUISwipeGenerator alloc] initWithView:self.view];
    swipeGenerator.swipeDirection = swipeDirection;

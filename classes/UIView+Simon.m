@@ -39,12 +39,20 @@
 	 [[[SIUIApplication application].viewHandlerFactory handlerForView:self] tap];
 }
 
+-(void) tapAtPoint:(CGPoint) atPoint {
+	[[[SIUIApplication application].viewHandlerFactory handlerForView:self] tapAtPoint:atPoint];
+}
+
 -(void) swipe:(SIUISwipeDirection) swipeDirection distance:(int) distance {
    [[[SIUIApplication application].viewHandlerFactory handlerForView:self] swipe:swipeDirection distance:distance];
 }
 
 -(NSDictionary *) kvcAttributes {
    return [[[SIUIApplication application].viewHandlerFactory handlerForView:self] kvcAttributes];
+}
+
+-(CGPoint) pointInWindowFromPointInView:(CGPoint) pointInView {
+	return [self convertPoint:pointInView toView:nil];
 }
 
 @end

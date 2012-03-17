@@ -81,6 +81,15 @@
 -(UIView *) tapViewWithQuery:(NSString *) query;
 
 /**
+ Locates a single UIView based on the passed query and taps at the specified location.
+ 
+ @param query the query that will locate the view. Zero or multiple returns from that query will trigger an error.
+ @param atPoint where to tap the view.
+ @return the view that was tapped.
+ */
+-(UIView *) tapViewWithQuery:(NSString *) query atPoint:(CGPoint) atPoint;
+
+/**
  Searches for a button with a specific label taps it.
  
  @param label the text label of the icon we want to tap.
@@ -94,6 +103,15 @@
  @return the view that was tapped.
  */
 -(UIView *) tapView:(UIView *) view;
+
+/**
+ Taps the specified view at the specified location.
+ 
+ @param view the UIView to be tapped.
+ @param atPoint where to tap the view.
+ @return the view that was tapped.
+ */
+-(UIView *) tapView:(UIView *) view atPoint:(CGPoint) atPoint;
 
 /**
  Searches for a button with a specific label taps it, then waits for the specified period of time before returning. 

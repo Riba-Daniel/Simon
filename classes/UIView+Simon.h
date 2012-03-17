@@ -20,4 +20,14 @@
  */
 @interface UIView (Simon) <DNNode, SIUIAction, SIUIViewInfo>
 
+/// @name Tasks
+
+/**
+ Convert a point within the view to the matching co-orinates within the window.
+ 
+ @param pointInView a CGPoint specifying the point within the we want converted.
+ @return a CGPoint containing the same points in the windows co-ordinates.
+ */
+-(CGPoint) pointInWindowFromPointInView:(CGPoint) pointInView;
+
 @end

@@ -17,6 +17,7 @@ h1. Version 0.1.7, March 2012
 * Added new macro SIAssertLabelTextEquals.
 * Fixed issue where creating UITouch and UIEvents on a background thread would trigger a 0xbbadbeef crash.
 * Refactored SIUIEventGenerator into an abstract class. 
+* Updated logging of UI to include all windows being displayed. This now picks up the keyboard.
 
 h1. Version 0.1.6, March 2012
 

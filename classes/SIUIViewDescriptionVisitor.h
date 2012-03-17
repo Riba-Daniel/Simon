@@ -36,4 +36,9 @@
  */
 -(void) visitView:(UIView *) view;
 
+/**
+ Gets all the windows from the Application and visits them all. This includes keyboards which are added as a separate window.
+ */
+-(void) visitAllWindows;
+
 @end

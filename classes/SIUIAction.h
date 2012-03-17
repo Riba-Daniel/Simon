@@ -20,6 +20,13 @@
 -(void) tap;
 
 /**
+ Perform a tap on the view at a specific location.
+ 
+ @param atPoint where you want the tap to occur.
+ */
+-(void) tapAtPoint:(CGPoint) atPoint;
+
+/**
  Performs a swipe is the specified direction.
  
  @param swipeDirection a SIUISwipeDirection specifying the direction to swipe.

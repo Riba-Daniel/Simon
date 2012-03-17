@@ -26,6 +26,8 @@
 @interface SIUIApplication(_privates)
 -(SIUIViewHandler *) viewHandlerForView:(UIView *) view;
 -(BOOL) animationsRunningOnViewHierarchy:(UIView *) view;
+-(NSArray *) findViewsOnKeyWindowWithQuery:(NSString *) query;
+-(NSArray *) findViewsOnAllWindowsWithQuery:(NSString *) query;
 @end
 
 @implementation SIUIApplication
@@ -87,37 +89,41 @@ static SIUIApplication *application = nil;
 
 -(NSArray *) findViewsWithQuery:(NSString *) query {
 	
-	DC_LOG(@"On main thread: %@", DC_PRETTY_BOOL([[NSThread currentThread] isMainThread]));
+	// If on main thread then analyse the UI.
+	if ([[NSThread currentThread] isMainThread]) {
+		return [self findViewsOnKeyWindowWithQuery:query];
+	}
 	
 	// Redirect to the main thread.
-	if (![[NSThread currentThread] isMainThread]) {
-		
-		DC_LOG(@"Redirecting to main thread via GCD");
-		dispatch_queue_t mainQueue = dispatch_get_main_queue();
-		
-		__block NSArray *views;
-      __block NSException *exception = nil;
-      
-		dispatch_sync(mainQueue, ^{
-         @try {
-            views = [self findViewsWithQuery:query];
-            // Retain so data survives GCDs autorelease pools.
-            [views retain];
-            DC_LOG(@"Returning %lu views to background thread", [views count]);
-         }
-         @catch (NSException *e) {
-            // Retain the exception.
-            exception = [e retain];
-         }
-		});
-      
-		if (exception != nil) {
-         @throw [exception autorelease];
-      }
-      
-		// Now autorelease and return.
-		return [views autorelease];
+	DC_LOG(@"Redirecting to main thread via GCD");
+	dispatch_queue_t mainQueue = dispatch_get_main_queue();
+	
+	__block NSArray *views;
+	__block NSException *exception = nil;
+	
+	dispatch_sync(mainQueue, ^{
+		@try {
+			views = [self findViewsWithQuery:query];
+			// Retain so data survives GCDs autorelease pools.
+			[views retain];
+			DC_LOG(@"Returning %lu views to background thread", [views count]);
+		}
+		@catch (NSException *e) {
+			// Retain the exception.
+			exception = [e retain];
+		}
+	});
+	
+	if (exception != nil) {
+		@throw [exception autorelease];
 	}
+	
+	// Now autorelease and return.
+	return [views autorelease];
+	
+}
+
+-(NSArray *) findViewsOnKeyWindowWithQuery:(NSString *) query {
 	
 	// Get the window as the root node.
 	DC_LOG(@"Searching for views based on the query \"%@\"", query);
@@ -131,8 +137,26 @@ static SIUIApplication *application = nil;
    if (results == nil) {
       @throw [SISyntaxException exceptionWithReason: [error localizedFailureReason]]; 
    }
-   
+	
    return results;
+}
+
+-(NSArray *) findViewsOnAllWindowsWithQuery:(NSString *) query {
+	
+	NSMutableArray *results = [NSMutableArray array];
+	NSArray *windowResults = nil;
+	
+	for (UIWindow *window in [UIApplication sharedApplication].windows) {
+		// Create an executor and search the tree.
+		DNExecutor *executor = [[[DNExecutor alloc] initWithRootNode: window] autorelease];
+		NSError *error = nil;
+		windowResults = [executor executeQuery: query error:&error];
+		if (windowResults == nil) {
+			@throw [SISyntaxException exceptionWithReason: [error localizedFailureReason]]; 
+		}
+		[results addObjectsFromArray:windowResults];
+	}
+	return results;
 	
 }
 
@@ -173,7 +197,8 @@ static SIUIApplication *application = nil;
 	NSLog(@"====================================================");
 	
 	SIUIViewDescriptionVisitor *visitor = [[SIUIViewDescriptionVisitor alloc] initWithDelegate:self];
-	[visitor visitView:[UIApplication sharedApplication].keyWindow];
+	[visitor visitAllWindows];
+	//[visitor visitView:[UIApplication sharedApplication].keyWindow];
 	DC_DEALLOC(visitor);
 }
 
@@ -207,9 +232,19 @@ static SIUIApplication *application = nil;
 	return view;
 }
 
+-(UIView *) tapView:(UIView *) view atPoint:(CGPoint) atPoint {
+   [[self viewHandlerForView:view] tapAtPoint:atPoint];
+	return view;
+}
+
 -(UIView *) tapViewWithQuery:(NSString *) query {
    UIView<DNNode> *theView = [self findViewWithQuery:query];
    return [self tapView:theView];
+}
+
+-(UIView *) tapViewWithQuery:(NSString *) query atPoint:(CGPoint) atPoint {
+   UIView<DNNode> *theView = [self findViewWithQuery:query];
+   return [self tapView:theView atPoint:atPoint];
 }
 
 -(void) tapButtonWithLabel:(NSString *) label {
@@ -318,5 +353,7 @@ static SIUIApplication *application = nil;
 	} while (checkView != nil);
 	return NO;
 }
+
+#pragma mark - Text handling
 
 @end

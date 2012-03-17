@@ -39,6 +39,20 @@
 	[self visitView:view indexPath:indexPath siblingNames:siblingNames];
 }
 
+-(void) visitAllWindows {
+
+	// Create the initial index path and sibling array. 
+	NSMutableArray *siblingNames = [NSMutableArray array];
+	
+	// Get the window list.
+	NSArray *windows = [UIApplication sharedApplication].windows;
+	for (int i = 0;i < [windows count];i++) {
+		UIWindow *window = [windows objectAtIndex:i];
+		[self visitView:window indexPath:[NSIndexPath indexPathWithIndex:i] siblingNames:siblingNames];
+	}
+}
+
+
 // Main processing method.
 -(void) visitView:(UIView *) view
 		  indexPath:(NSIndexPath *) indexPath
