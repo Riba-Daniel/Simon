@@ -24,6 +24,10 @@
 		3265B02715144DB400BE0930 /* SIUIAbstractEventGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 3265B02515144DB300BE0930 /* SIUIAbstractEventGenerator.h */; };
 		3265B02815144DB400BE0930 /* SIUIAbstractEventGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3265B02615144DB300BE0930 /* SIUIAbstractEventGenerator.m */; };
 		3265B02A1514887600BE0930 /* UIViewSimonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3265B0291514887600BE0930 /* UIViewSimonTests.m */; };
+		3265B02E1514B4E700BE0930 /* SIUIiPadKeyboard.h in Headers */ = {isa = PBXBuildFile; fileRef = 3265B02C1514B4E700BE0930 /* SIUIiPadKeyboard.h */; };
+		3265B02F1514B4E700BE0930 /* SIUIiPadKeyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = 3265B02D1514B4E700BE0930 /* SIUIiPadKeyboard.m */; };
+		3265B0311514B53700BE0930 /* SIUIKeyboard.h in Headers */ = {isa = PBXBuildFile; fileRef = 3265B0301514B53700BE0930 /* SIUIKeyboard.h */; };
+		3265B0351514C66800BE0930 /* SIUIiPadKeyboardTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3265B0341514C66800BE0930 /* SIUIiPadKeyboardTests.m */; };
 		32741D7814EB581E00093E0F /* UITouch+Simon.h in Headers */ = {isa = PBXBuildFile; fileRef = 32741D7614EB581E00093E0F /* UITouch+Simon.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32741D7914EB581E00093E0F /* UITouch+Simon.m in Sources */ = {isa = PBXBuildFile; fileRef = 32741D7714EB581E00093E0F /* UITouch+Simon.m */; };
 		32741D7C14EB5BAE00093E0F /* UIEvent+Simon.h in Headers */ = {isa = PBXBuildFile; fileRef = 32741D7A14EB5BAE00093E0F /* UIEvent+Simon.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -170,6 +174,18 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		3265B0361514C93A00BE0930 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 7;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		3221C79D150C9365003CA286 /* SIUIViewInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIViewInfo.h; sourceTree = "<group>"; };
 		3221C79F150C956A003CA286 /* SIUIButtonHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIButtonHandler.h; sourceTree = "<group>"; };
@@ -188,6 +204,10 @@
 		3265B02515144DB300BE0930 /* SIUIAbstractEventGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIAbstractEventGenerator.h; sourceTree = "<group>"; };
 		3265B02615144DB300BE0930 /* SIUIAbstractEventGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUIAbstractEventGenerator.m; sourceTree = "<group>"; };
 		3265B0291514887600BE0930 /* UIViewSimonTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewSimonTests.m; sourceTree = "<group>"; };
+		3265B02C1514B4E700BE0930 /* SIUIiPadKeyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIiPadKeyboard.h; sourceTree = "<group>"; };
+		3265B02D1514B4E700BE0930 /* SIUIiPadKeyboard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUIiPadKeyboard.m; sourceTree = "<group>"; };
+		3265B0301514B53700BE0930 /* SIUIKeyboard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIKeyboard.h; sourceTree = "<group>"; };
+		3265B0341514C66800BE0930 /* SIUIiPadKeyboardTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUIiPadKeyboardTests.m; sourceTree = "<group>"; };
 		32741D7614EB581E00093E0F /* UITouch+Simon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITouch+Simon.h"; sourceTree = "<group>"; };
 		32741D7714EB581E00093E0F /* UITouch+Simon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITouch+Simon.m"; sourceTree = "<group>"; };
 		32741D7A14EB5BAE00093E0F /* UIEvent+Simon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIEvent+Simon.h"; sourceTree = "<group>"; };
@@ -405,6 +425,24 @@
 				32741D7714EB581E00093E0F /* UITouch+Simon.m */,
 			);
 			name = Events;
+			sourceTree = "<group>";
+		};
+		3265B02B1514B4C100BE0930 /* Keyboard */ = {
+			isa = PBXGroup;
+			children = (
+				3265B02C1514B4E700BE0930 /* SIUIiPadKeyboard.h */,
+				3265B02D1514B4E700BE0930 /* SIUIiPadKeyboard.m */,
+				3265B0301514B53700BE0930 /* SIUIKeyboard.h */,
+			);
+			name = Keyboard;
+			sourceTree = "<group>";
+		};
+		3265B0331514C65100BE0930 /* Keyboard */ = {
+			isa = PBXGroup;
+			children = (
+				3265B0341514C66800BE0930 /* SIUIiPadKeyboardTests.m */,
+			);
+			name = Keyboard;
 			sourceTree = "<group>";
 		};
 		32793BAA14F4F95600B93621 /* View Handlers */ = {
@@ -632,6 +670,7 @@
 		659E628E13D9C37200ACD34C /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				3265B02B1514B4C100BE0930 /* Keyboard */,
 				3232A9F514EDFD25002010FF /* Events */,
 				325683D814EF6CEB00F7C189 /* SIUIConstants.h */,
 				324108B41509C19400AFBF66 /* SIUIViewDescriptionVisitor.h */,
@@ -647,6 +686,7 @@
 		659E62A013DB026400ACD34C /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				3265B0331514C65100BE0930 /* Keyboard */,
 				32793BAC14F4F97700B93621 /* Events */,
 				32793BAA14F4F95600B93621 /* View Handlers */,
 				94AED1511420DB070070D3BB /* SIUIHandlerFactoryTests.m */,
@@ -730,6 +770,8 @@
 				3221C7A1150C956A003CA286 /* SIUIButtonHandler.h in Headers */,
 				3221C7A7150CD1DE003CA286 /* SIUILabelHandler.h in Headers */,
 				3265B02715144DB400BE0930 /* SIUIAbstractEventGenerator.h in Headers */,
+				3265B02E1514B4E700BE0930 /* SIUIiPadKeyboard.h in Headers */,
+				3265B0311514B53700BE0930 /* SIUIKeyboard.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -761,6 +803,7 @@
 				653D0E8613A782AD00A5AB82 /* Sources */,
 				653D0E8713A782AD00A5AB82 /* Frameworks */,
 				653D0E8813A782AD00A5AB82 /* Headers */,
+				3265B0361514C93A00BE0930 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -904,6 +947,7 @@
 				3221C7A2150C956A003CA286 /* SIUIButtonHandler.m in Sources */,
 				3221C7A8150CD1DE003CA286 /* SIUILabelHandler.m in Sources */,
 				3265B02815144DB400BE0930 /* SIUIAbstractEventGenerator.m in Sources */,
+				3265B02F1514B4E700BE0930 /* SIUIiPadKeyboard.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -935,6 +979,7 @@
 				3221C7A4150CBD75003CA286 /* SIUIButtonHandlerTests.m in Sources */,
 				3221C7AA150CD24C003CA286 /* SIUILabelHandlerTests.m in Sources */,
 				3265B02A1514887600BE0930 /* UIViewSimonTests.m in Sources */,
+				3265B0351514C66800BE0930 /* SIUIiPadKeyboardTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

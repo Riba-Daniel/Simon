@@ -16,6 +16,7 @@
 @property (retain, nonatomic) IBOutlet UITabBar *tabBar;
 @property (retain, nonatomic) IBOutlet UILabel *tapableLabel;
 @property (retain, nonatomic) IBOutlet UILabel *displayLabel;
+@property (retain, nonatomic) IBOutlet UITextField *textField;
 
 @property (nonatomic) NSInteger tappedButton;
 @property (nonatomic) NSInteger tappedTabBarItem;

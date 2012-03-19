@@ -187,4 +187,16 @@
 */ 
 -(void) waitForAnimationEndOnViewWithQuery:(NSString *) query retryInterval:(NSTimeInterval) interval;
 
+#pragma mark - Text
+
+/// @name Text
+
+/**
+ Ensures that the specified view has focus and then enters the text into it.
+ 
+ @param text the text we want to enter.
+ @param view the view to enter the text into.
+ */
+-(void) enterText:(NSString *) text intoView:(UIView *) view;
+
 @end

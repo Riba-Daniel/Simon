@@ -240,11 +240,20 @@
 							  }];
 	});
 	
-	[[SIUIApplication application]waitForAnimationEndOnViewWithQuery:@"//UIRoundedRectButton[@titleLabel.text='Wait for it!']" retryInterval:0.8];
+	[[SIUIApplication application] waitForAnimationEndOnViewWithQuery:@"//UIRoundedRectButton[@titleLabel.text='Wait for it!']" retryInterval:0.8];
 	
    NSTimeInterval diff = fabs([before timeIntervalSinceNow]);
 	GHAssertGreaterThan(diff, 2.0, @"not long enough, animation not finished.");
 	
+}
+
+#pragma mark - Text 
+
+-(void) testTextEntryWithView {
+	NSString *text = @"abcdefghijklmnopqrstuvwxyz";
+	self.testViewController.textField.text = @"";
+	[[SIUIApplication application] enterText:text intoView:self.testViewController.textField];
+	GHAssertEqualStrings(self.testViewController.textField.text, text, @"typing failed");
 }
 
 

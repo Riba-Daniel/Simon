@@ -28,6 +28,7 @@
 	SIUIViewHandler *handler = [handlerCache objectForKey:viewClass];
 	if (handler == nil) {
 		handler = [self createHandlerForView:view];
+		//DC_LOG(@"Creating view handler for class %@", NSStringFromClass(viewClass));
 		[handlerCache setObject:handler forKey:viewClass];
 	}
 	
@@ -37,11 +38,14 @@
 
 -(SIUIViewHandler *) createHandlerForView:(UIView<DNNode> *) view {
 	if ([view isKindOfClass:[UIButton class]]) {
+		//DC_LOG(@"Creating new Button handler");
 		return [[[SIUIButtonHandler alloc] init] autorelease];
 	}
 	if ([view isKindOfClass:[UILabel class]]) {
+		//DC_LOG(@"Creating new label handler");
 		return [[[SIUILabelHandler alloc] init] autorelease];
 	}
+	//DC_LOG(@"Creating new view handler");
    return [[[SIUIViewHandler alloc] init] autorelease];
 }
 

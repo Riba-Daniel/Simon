@@ -20,6 +20,7 @@
 @synthesize tabBar = tabBar_;
 @synthesize tapableLabel = tapableLabel_;
 @synthesize displayLabel = displayLabel_;
+@synthesize textField = textField_;
 @synthesize tappedButton = tappedButton_;
 @synthesize tappedTabBarItem = tappedTabBarItem_;
 @synthesize slider = slider_;
@@ -40,6 +41,7 @@
    self.displayLabel = nil;
    self.startDragTime = nil;
    self.endDragTime = nil;
+	self.textField = nil;
    [super dealloc];
 }
 
@@ -84,12 +86,6 @@
    UIGestureRecognizer *gr = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(detectedRecognizerTap:)] autorelease];
    gr.enabled = YES;
    [self.tapableLabel addGestureRecognizer:gr];
-}
-
-- (void)viewDidUnload {
-   [self setTableView:nil];
-   [self setTapableLabel:nil];
-   [super viewDidUnload];
 }
 
 #pragma mark - Table methods

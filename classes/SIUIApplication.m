@@ -20,6 +20,7 @@
 #import "SIUIViewHandlerFactory.h"
 #import "SIUIException.h"
 #import "SIUIViewDescriptionVisitor.h"
+#import "SIUIiPadKeyboard.h"
 
 #import <QuartzCore/CALayer.h>
 
@@ -355,5 +356,21 @@ static SIUIApplication *application = nil;
 }
 
 #pragma mark - Text handling
+
+-(void) enterText:(NSString *) text intoView:(UIView *) view {
+	
+	// If the view does not have focus then make sure it does.
+	if (![view isFirstResponder]) {
+		[self tapView:view];
+	}
+
+	// Now type the text using the keyboard.
+	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+		// The device is an iPad running iPhone 3.2 or later.
+		//SIUIiPadKeyboard *keyboard = [[SIUIiPadKeyboard alloc] init];
+	} else {
+		// The device is an iPhone or iPod touch.
+	}
+}
 
 @end
