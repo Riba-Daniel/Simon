@@ -24,7 +24,7 @@
 }
 
 -(void) sendEvents {
-   DC_LOG(@"Creating tap sequence for a %@", NSStringFromClass([self.view class]));
+   DC_LOG(@"Creating tap sequence for UIView: %p", self.view);
 	
 	// Position the tap if needed.
 	if (!CGPointEqualToPoint(self.tapPoint, CGPointMake(CGFLOAT_MAX, CGFLOAT_MAX))) {

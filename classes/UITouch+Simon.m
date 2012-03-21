@@ -41,7 +41,7 @@
       // If a table view we need to tap the table view, not the control within it.
 		UIView *target = [view.window hitTest:self.locationInWindow withEvent:nil];
       //target = view;
-		DC_LOG(@"Deepest target at point is a: %@", NSStringFromClass([target class]));
+		DC_LOG(@"Deepest target at point is a: %@: %p ", NSStringFromClass([target class]), target);
       
 		_window = [view.window retain];
 		_view = [target retain];

@@ -20,7 +20,7 @@
 #import "SIUIViewHandlerFactory.h"
 #import "SIUIException.h"
 #import "SIUIViewDescriptionVisitor.h"
-#import "SIUIiPadKeyboard.h"
+#import "SIUIKeyboard.h"
 
 #import <QuartzCore/CALayer.h>
 
@@ -173,7 +173,9 @@ static SIUIApplication *application = nil;
       @throw [SIUITooManyFoundException exceptionWithReason: [NSString stringWithFormat:@"Path %@ should return one view only, got %lu instead.", query, [views count]]];
 	}
 	
-	return (UIView *) [views objectAtIndex:0];
+	UIView *view = [views objectAtIndex:0];
+	DC_LOG(@"Found view %@", view);
+	return view;
 }
 
 -(BOOL) isViewPresent:(NSString *) query {
@@ -181,8 +183,6 @@ static SIUIApplication *application = nil;
 }
 
 -(void) logUITree {
-	
-	DC_LOG(@"On main thread: %@", DC_PRETTY_BOOL([[NSThread currentThread] isMainThread]));
 	
 	// Redirect to the main thread.
 	if (![[NSThread currentThread] isMainThread]) {

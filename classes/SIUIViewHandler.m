@@ -45,6 +45,7 @@
 #pragma mark - SIUIAction
 
 -(void) tap {
+	DC_LOG(@"Tapping %p", self.view);
    SIUITapGenerator *tapGenerator = [[SIUITapGenerator alloc] initWithView:self.view];
    [tapGenerator sendEvents];
    [tapGenerator release];

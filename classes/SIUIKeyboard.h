@@ -8,8 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-@protocol SIUIKeyboard <NSObject>
+/**
+ Class which handles the keyboard and sends key strokes to it. To use, simply pass the text you want it to type.
+ */
+@interface SIUIKeyboard : NSObject
 
--(void) enterText:(NSString *) text;
+-(void) enterText:(NSString *) text keyRate:(NSTimeInterval) keyRate;
 
 @end

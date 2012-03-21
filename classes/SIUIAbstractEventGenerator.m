@@ -24,8 +24,9 @@
 		// Touches and events must be created on the main queue.
 		// Otherwise a 0xbbadbeef crash may occur.
 		// Use a block to conserve code.
+		DC_LOG(@"Creating touch and event for UIView: %p", view);
 		void (^createObjects)() = ^{
-			touch = [[UITouch alloc] initInView:self.view];
+			touch = [[UITouch alloc] initInView:view];
 			event = [[NSClassFromString(@"UITouchesEvent") alloc] initWithTouch:touch];
 		};
 		
@@ -44,6 +45,7 @@
 }
 
 -(void) dealloc {
+	DC_LOG(@"Releasing event and touch");
 	self.view = nil;
 	DC_DEALLOC(touch);
 	DC_DEALLOC(event);

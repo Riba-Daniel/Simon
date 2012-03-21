@@ -29,11 +29,13 @@
 #ifdef DC_DEBUG
       UITouch *touch = [[event allTouches] anyObject];
       CGPoint loc = [touch locationInView:touch.window];
-      DC_LOG(@"Sending touch event type %i @ %i x %i", touch.phase, (int)loc.x, (int)loc.y);
+      DC_LOG(@"Sending touch event type %i @ %i x %i to UIView: %p", touch.phase, (int)loc.x, (int)loc.y, touch.view);
 #endif
       
       // Send the event.
       [event updateTimeStamp];
+		DC_LOG(@"Touch view %@", touch.view);
+		DC_LOG(@"Touch Count %i", [[event allTouches] count]);
       [[UIApplication sharedApplication] sendEvent:event];
       [[NSRunLoop currentRunLoop] runUntilDate:[NSDate date]];
    });

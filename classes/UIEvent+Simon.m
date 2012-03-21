@@ -32,6 +32,7 @@
 	if (self != nil)
 	{
       // following line is inserted to support gesture recognizer  
+		DC_LOG(@"Adding gesture recognisers to UITouch: %p", touch);
       [self _addGestureRecognizersForView:touch.view toTouch:touch currentTouchMap:nil newTouchMap:nil];
 	}
 	return self;

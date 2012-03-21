@@ -48,8 +48,13 @@
       return;
    }
 
+	DC_LOG(@"Unloading test view");
    [self.testViewController.view removeFromSuperview];
    self.testViewController = nil;
+
+   // get the view off screen.
+   [[NSRunLoop currentRunLoop] runUntilDate:[NSDate date]];
+
 }
 
 #pragma mark - Helpers
