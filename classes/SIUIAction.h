@@ -34,4 +34,13 @@
  */
 -(void) swipe:(SIUISwipeDirection) swipeDirection distance:(int) distance;
 
+/**
+ This allows UIViews which accept text to have text entered. It will only work on UIViews that implement the UITextInput protocol.
+ 
+ @param text the text you want entered into the control. This will be sent via a private API on the keyboard.
+ @param keyRate how fast the text should be entered. This is the amunt of time to wait between sending each key.
+ @param autoCorrect if YES (default) allows text entered to be autocorrected.
+ */
+-(void) enterText:(NSString *) text keyRate:(NSTimeInterval) keyRate autoCorrect:(BOOL) autoCorrect;
+
 @end

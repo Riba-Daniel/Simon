@@ -9,6 +9,8 @@
 #import "AbstractTestWithControlsOnView.h"
 #import <dUsefulStuff/DCCommon.h>
 #import <UIKit/UIKit.h>
+#import "NSObject+Simon.h"
+#import "NSObject+Simon.h"
 
 @implementation AbstractTestWithControlsOnView
 
@@ -25,52 +27,34 @@
 }
 
 -(void) setupTestView {
-   
-	if (![NSThread isMainThread]) {
-      [self performSelectorOnMainThread:@selector(setupTestView) withObject:nil waitUntilDone:YES];
-      return;
-   }
-   
-   DC_LOG(@"Loading test view");
-   self.testViewController = (TestViewController *)[[[TestViewController alloc] initWithNibName:@"TestView" bundle:[NSBundle mainBundle]] autorelease];
-   self.testViewController.view.center = [UIApplication sharedApplication].keyWindow.center;
-	[[UIApplication sharedApplication].keyWindow addSubview:self.testViewController.view];
-   
-   // get the view on screen.
-   [[NSRunLoop currentRunLoop] runUntilDate:[NSDate date]];
-   
+	[self executeBlockOnMainThread:^{
+		DC_LOG(@"Loading test view");
+		self.testViewController = (TestViewController *)[[[TestViewController alloc] initWithNibName:@"TestView" bundle:[NSBundle mainBundle]] autorelease];
+		self.testViewController.view.center = [UIApplication sharedApplication].keyWindow.center;
+		[[UIApplication sharedApplication].keyWindow addSubview:self.testViewController.view];
+		
+		// get the view on screen.
+		[[NSRunLoop currentRunLoop] runUntilDate:[NSDate date]];
+	}];   
 }
 
 -(void) removeTestView {
-   
-   if (![NSThread isMainThread]) {
-      [self performSelectorOnMainThread:@selector(removeTestView) withObject:nil waitUntilDone:YES];
-      return;
-   }
-
-	DC_LOG(@"Unloading test view");
-   [self.testViewController.view removeFromSuperview];
-   self.testViewController = nil;
-
-   // get the view off screen.
-   [[NSRunLoop currentRunLoop] runUntilDate:[NSDate date]];
-
+	[self executeBlockOnMainThread:^{
+		DC_LOG(@"Unloading test view");
+		[self.testViewController.view removeFromSuperview];
+		self.testViewController = nil;
+		
+		// get the view off screen.
+		[[NSRunLoop currentRunLoop] runUntilDate:[NSDate date]];
+	}];   
 }
 
 #pragma mark - Helpers
 -(void) scrollTableViewToIndex:(int) index atScrollPosition:(UITableViewScrollPosition) position {
-   
-   // Whatch for the main thread because re-running a test from GHUnit test view runs it on the main thread. Known bug in GHUnit.
-   if ([NSThread isMainThread]) {
-      [self.testViewController.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0] atScrollPosition:position animated:NO];
-      [[NSRunLoop currentRunLoop] runUntilDate: [NSDate date]];
-   } else {
-      dispatch_queue_t mainQ = dispatch_get_main_queue();
-      dispatch_sync(mainQ, ^{
-         [self.testViewController.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0] atScrollPosition:position animated:NO];
-         [[NSRunLoop currentRunLoop] runUntilDate: [NSDate date]];
-      });
-   }   
+   [self executeBlockOnMainThread:^{
+		[self.testViewController.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0] atScrollPosition:position animated:NO];
+		[[NSRunLoop currentRunLoop] runUntilDate: [NSDate date]];
+	}];
 }
 
 @end

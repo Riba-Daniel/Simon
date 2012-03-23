@@ -22,7 +22,7 @@
    SIUISwipeGenerator *swipeGenerator = [[[SIUISwipeGenerator alloc] initWithView:self.testViewController.slider] autorelease];
    swipeGenerator.swipeDirection = SIUISwipeDirectionRight;
    swipeGenerator.distance = 100;
-   [swipeGenerator sendEvents];
+   [swipeGenerator generateEvents];
    
    [NSThread sleepForTimeInterval:0.5];
    GHAssertEquals(round(self.testViewController.slider.value), 8.0, @"Slider not swiped.");
@@ -34,7 +34,7 @@
    SIUISwipeGenerator *swipeGenerator = [[[SIUISwipeGenerator alloc] initWithView:self.testViewController.slider] autorelease];
    swipeGenerator.swipeDirection = SIUISwipeDirectionLeft;
    swipeGenerator.distance = 100;
-   [swipeGenerator sendEvents];
+   [swipeGenerator generateEvents];
 
    [NSThread sleepForTimeInterval:0.5];
    GHAssertEquals(round(self.testViewController.slider.value), 2.0, @"Slider not swiped.");
@@ -46,11 +46,11 @@
    
    SIUISwipeGenerator *swipeGenerator = [[[SIUISwipeGenerator alloc] initWithView:self.testViewController.tableView] autorelease];
    swipeGenerator.swipeDirection = SIUISwipeDirectionUp;
-   [swipeGenerator sendEvents];
+   [swipeGenerator generateEvents];
    
    [NSThread sleepForTimeInterval:0.1];
    SIUITapGenerator *tapGenerator = [[[SIUITapGenerator alloc] initWithView:self.testViewController.tableView] autorelease];
-   [tapGenerator sendEvents];
+   [tapGenerator generateEvents];
    
    [NSThread sleepForTimeInterval:0.1];
    GHAssertEquals(self.testViewController.selectedRow, (NSInteger)7, @"Swipe or tap failed");
@@ -64,11 +64,11 @@
 
    SIUISwipeGenerator *swipeGenerator = [[[SIUISwipeGenerator alloc] initWithView:self.testViewController.tableView] autorelease];
    swipeGenerator.swipeDirection = SIUISwipeDirectionDown;
-   [swipeGenerator sendEvents];
+   [swipeGenerator generateEvents];
 
    [NSThread sleepForTimeInterval:0.1];
    SIUITapGenerator *tapGenerator = [[[SIUITapGenerator alloc] initWithView:self.testViewController.tableView] autorelease];
-   [tapGenerator sendEvents];
+   [tapGenerator generateEvents];
    
    [NSThread sleepForTimeInterval:0.1];
    GHAssertEquals(self.testViewController.selectedRow, (NSInteger)3, @"Swipe or tap failed");

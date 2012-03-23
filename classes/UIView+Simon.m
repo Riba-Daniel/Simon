@@ -22,58 +22,41 @@
 #pragma mark - Querying
 
 -(NSString *)dnName {
-	SIUIViewHandler *handler = [[SIUIApplication application].viewHandlerFactory handlerForView:self];
-	NSString * name = handler.dnName;
-	handler.view = nil;
-	return name;
+	return [[SIUIApplication application].viewHandlerFactory handlerForView:self].dnName;
 }
 
 -(NSObject<DNNode> *)dnParentNode {
-	SIUIViewHandler *handler = [[SIUIApplication application].viewHandlerFactory handlerForView:self];
-	NSObject<DNNode> * parent = handler.dnParentNode;
-	handler.view = nil;
-	return parent;
+	return [[SIUIApplication application].viewHandlerFactory handlerForView:self].dnParentNode;
 }
 
 -(NSArray *)dnSubNodes {
-	SIUIViewHandler *handler = [[SIUIApplication application].viewHandlerFactory handlerForView:self];
-	NSArray * subnodes = handler.dnSubNodes;
-	handler.view = nil;
-	return subnodes;
+	return [[SIUIApplication application].viewHandlerFactory handlerForView:self].dnSubNodes;
 }
 
 -(BOOL) dnHasAttribute:(NSString *)attribute withValue:(id)value {
-	SIUIViewHandler *handler = [[SIUIApplication application].viewHandlerFactory handlerForView:self];
-	BOOL hasAttribute = [handler dnHasAttribute:attribute withValue:value];
-	handler.view = nil;
-	return hasAttribute;
+	return [[[SIUIApplication application].viewHandlerFactory handlerForView:self] dnHasAttribute:attribute withValue:value];
 }
 
 #pragma mark - Actions
 
 -(void) tap {
-	SIUIViewHandler *handler = [[SIUIApplication application].viewHandlerFactory handlerForView:self];
-	[handler tap];
-	handler.view = nil;
+	[[[SIUIApplication application].viewHandlerFactory handlerForView:self] tap];
 }
 
 -(void) tapAtPoint:(CGPoint) atPoint {
-	SIUIViewHandler *handler = [[SIUIApplication application].viewHandlerFactory handlerForView:self];
-	[handler tapAtPoint:atPoint];
-	handler.view = nil;
+	[[[SIUIApplication application].viewHandlerFactory handlerForView:self] tapAtPoint:atPoint];
 }
 
 -(void) swipe:(SIUISwipeDirection) swipeDirection distance:(int) distance {
-	SIUIViewHandler *handler = [[SIUIApplication application].viewHandlerFactory handlerForView:self];
-	[handler swipe:swipeDirection distance:distance];
-	handler.view = nil;
+   [[[SIUIApplication application].viewHandlerFactory handlerForView:self] swipe:swipeDirection distance:distance];
 }
 
 -(NSDictionary *) kvcAttributes {
-	SIUIViewHandler *handler = [[SIUIApplication application].viewHandlerFactory handlerForView:self];
-	NSDictionary * attribute = [handler kvcAttributes];
-	handler.view = nil;
-	return attribute;
+   return [[[SIUIApplication application].viewHandlerFactory handlerForView:self] kvcAttributes];
+}
+
+-(void) enterText:(NSString *) text keyRate:(NSTimeInterval) keyRate autoCorrect:(BOOL)autoCorrect {
+	[[[SIUIApplication application].viewHandlerFactory handlerForView:self] enterText:text keyRate:keyRate autoCorrect:autoCorrect];
 }
 
 -(CGPoint) pointInWindowFromPointInView:(CGPoint) pointInView {

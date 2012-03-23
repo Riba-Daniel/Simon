@@ -19,7 +19,7 @@
 -(void) testTapButton2 {
    self.testViewController.tappedButton = 0;
    SIUITapGenerator *tapGenerator = [[[SIUITapGenerator alloc] initWithView:self.testViewController.button2] autorelease];
-   [tapGenerator sendEvents];
+   [tapGenerator generateEvents];
    [NSThread sleepForTimeInterval:0.1];
    GHAssertEquals(self.testViewController.tappedButton, 2, @"Button not tapped");
 }
@@ -27,7 +27,7 @@
 -(void) testGestureRecognizerOnLabelTapped {
    self.testViewController.gestureRecognizerTapped = NO;
    SIUITapGenerator *tapGenerator = [[[SIUITapGenerator alloc] initWithView:self.testViewController.tapableLabel] autorelease];
-   [tapGenerator sendEvents];
+   [tapGenerator generateEvents];
    [NSThread sleepForTimeInterval:0.1];
    GHAssertTrue(self.testViewController.gestureRecognizerTapped, @"gesture recognizer not fired");
 }
@@ -37,7 +37,7 @@
    [self scrollTableViewToIndex:0 atScrollPosition:UITableViewScrollPositionTop];
    [NSThread sleepForTimeInterval:0.1];
    SIUITapGenerator *tapGenerator = [[[SIUITapGenerator alloc] initWithView:self.testViewController.tableView] autorelease];
-   [tapGenerator sendEvents];
+   [tapGenerator generateEvents];
    [NSThread sleepForTimeInterval:0.1];
    GHAssertEquals(self.testViewController.selectedRow, (NSInteger) 1, @"Row not selected");
 }

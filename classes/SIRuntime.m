@@ -10,6 +10,7 @@
 
 #import "SISimon.h"
 #import "SIRuntime.h"
+#import "NSObject+Simon.h"
 
 @interface SIRuntime()
 -(void) addMappingMethodsFromClass:(Class) class toArray:(NSMutableArray *) array;
@@ -20,68 +21,57 @@
 
 -(NSArray *) allMappingMethodsInRuntime {
    
-   // Redirect to the main thread.
-   if (![NSThread isMainThread]) {
-      if (![[NSThread currentThread] isMainThread]) {
-         DC_LOG(@"Redirecting to main thread via GCD");
-         dispatch_queue_t mainQueue = dispatch_get_main_queue();
-         __block NSArray *results = nil;
-         dispatch_sync(mainQueue, ^{
-				// retain so we don't get random EXEC_BAD_ACCESS's.
-            results = [[self allMappingMethodsInRuntime] retain];
-         });
-         
-         // return with autorelease.
-         return [results autorelease];
-      }
-   }
+	__block NSMutableArray *stepMappings = nil;
 	
-	int numClasses = objc_getClassList(NULL, 0);
-	DC_LOG(@"Found %i classes in runtime", numClasses);
-	
-	NSMutableArray * stepMappings = [[[NSMutableArray alloc] init] autorelease];
-	if (numClasses > 0 ) {
+	[self executeBlockOnMainThread:^{
+
+		int numClasses = objc_getClassList(NULL, 0);
+		DC_LOG(@"Found %i classes in runtime", numClasses);
 		
-		Class * classes = malloc(sizeof(Class) * numClasses);
-		// Don't use the return number from this call because it's often wrong. Reported as a Bug to Apple.
-		objc_getClassList(classes, numClasses);
-		DC_LOG(@"When returning classes, %i classes in runtime", numClasses);
-		
-      Class nextClass;
-      Class superClass;
-      NSBundle * classBundle;
-      NSBundle *mainBundle = [NSBundle mainBundle];
-		for (int index = 0; index < numClasses; index++) {
+		stepMappings = [[NSMutableArray alloc] init];
+		if (numClasses > 0 ) {
 			
-         nextClass = classes[index];
+			Class * classes = malloc(sizeof(Class) * numClasses);
+			// Don't use the return number from this call because it's often wrong. Reported as a Bug to Apple.
+			objc_getClassList(classes, numClasses);
+			DC_LOG(@"When returning classes, %i classes in runtime", numClasses);
 			
-         // Ignore nulls.
-			if (nextClass == NULL 
-             || nextClass == nil) {
-				continue;
-			}
-         
-         // Check to see where it comes from.
-         superClass = [self getUltimateSuperClass:nextClass];
-         if (nextClass == superClass || superClass != [NSObject class]) {
-            continue;
-         }
-			
-			// Ignore if the class does not belong to the application bundle.
-			classBundle = [NSBundle bundleForClass:nextClass];
-			if (![classBundle isEqual:mainBundle]) {
-				continue;
+			Class nextClass;
+			Class superClass;
+			NSBundle * classBundle;
+			NSBundle *mainBundle = [NSBundle mainBundle];
+			for (int index = 0; index < numClasses; index++) {
+				
+				nextClass = classes[index];
+				
+				// Ignore nulls.
+				if (nextClass == NULL 
+					 || nextClass == nil) {
+					continue;
+				}
+				
+				// Check to see where it comes from.
+				superClass = [self getUltimateSuperClass:nextClass];
+				if (nextClass == superClass || superClass != [NSObject class]) {
+					continue;
+				}
+				
+				// Ignore if the class does not belong to the application bundle.
+				classBundle = [NSBundle bundleForClass:nextClass];
+				if (![classBundle isEqual:mainBundle]) {
+					continue;
+				}
+				
+				// Now locate the mapping methods.
+				[self addMappingMethodsFromClass:nextClass toArray:stepMappings];
+				
 			}
 			
-			// Now locate the mapping methods.
-			[self addMappingMethodsFromClass:nextClass toArray:stepMappings];
-			
+			free(classes);
 		}
-		
-		free(classes);
-	}
+	}];
 	
-	return stepMappings;
+	return [stepMappings autorelease];
 	
 }
 

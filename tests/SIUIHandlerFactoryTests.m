@@ -54,12 +54,4 @@
 	GHAssertEqualObjects(handler.view, view, @"View not set on handler");
 }
 
--(void) testReturnsSameInstanceForMultipleRequests {
-	UIView *view1 = [[[UIView alloc] init] autorelease];
-	UIView *view2 = [[[UIView alloc] init] autorelease];
-	SIUIViewHandler *handler1 = [factory handlerForView:view1];
-	SIUIViewHandler *handler2 = [factory handlerForView:view2];
-	GHAssertEqualObjects(handler1, handler2, @"Different handlers returned when expecting the same instance");
-}
-
 @end

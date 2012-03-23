@@ -10,6 +10,15 @@
 #import "SIUIViewHandler.h"
 #import "SIUITapGenerator.h"
 #import "SIUISwipeGenerator.h"
+#import "NSObject+Simon.h"
+
+// We need access to the private API of the keyboard layout so we can send keys.
+@interface UIKeyboardLayout : UIView
+- (id)simulateTouchForCharacter:(id)arg1 errorVector:(CGPoint)arg2 shouldTypeVariants:(BOOL)arg3 baseKeyForVariants:(BOOL)arg4;
+@end
+@interface UIKeyboardImpl : UIView
+- (void)_setAutocorrects:(BOOL)arg1;
+@end
 
 @implementation SIUIViewHandler
 
@@ -47,14 +56,14 @@
 -(void) tap {
 	DC_LOG(@"Tapping %p", self.view);
    SIUITapGenerator *tapGenerator = [[SIUITapGenerator alloc] initWithView:self.view];
-   [tapGenerator sendEvents];
+   [tapGenerator generateEvents];
    [tapGenerator release];
 }
 
 -(void) tapAtPoint:(CGPoint)atPoint {
    SIUITapGenerator *tapGenerator = [[SIUITapGenerator alloc] initWithView:self.view];
 	tapGenerator.tapPoint = atPoint;
-   [tapGenerator sendEvents];
+   [tapGenerator generateEvents];
    [tapGenerator release];
 }
 
@@ -62,9 +71,47 @@
    SIUISwipeGenerator *swipeGenerator = [[SIUISwipeGenerator alloc] initWithView:self.view];
    swipeGenerator.swipeDirection = swipeDirection;
    swipeGenerator.distance = distance;
-   [swipeGenerator sendEvents];
+   [swipeGenerator generateEvents];
    [swipeGenerator release];
 }
+
+-(void) enterText:(NSString *) text keyRate:(NSTimeInterval) keyRate autoCorrect:(BOOL) autoCorrect {
+	
+	// Here we assume that the 
+	
+	[self executeBlockOnMainThread:^{
+		
+		// First navigate the keyboard hierarchy to the keyboard layout.
+		NSArray *windows = [UIApplication sharedApplication].windows;
+		UIWindow *effectsWindow = [windows objectAtIndex:1];
+		UIView *hostView = (UIView *) [effectsWindow.subviews objectAtIndex:0];
+		UIView *keyboardAuto = (UIView *) [hostView.subviews objectAtIndex:0];
+		UIKeyboardImpl *kbImpl = (UIKeyboardImpl *) [keyboardAuto.subviews objectAtIndex:0];
+		UIKeyboardLayout *kbLayout = (UIKeyboardLayout *) [kbImpl.subviews objectAtIndex:0];
+		
+		// Turn off auto correct. 
+		[kbImpl _setAutocorrects:autoCorrect];
+		
+		// Loop and send each character.
+		NSRange subStringRange;
+		for (int i = 0; i < [text length]; i++) {
+
+			subStringRange = NSMakeRange(i,1);
+			
+			// shouldTypeVariant controls whether characters which are variants of a base key should be typed.
+			// baseKeyForVariants controls wether to type the base key instead of a variant.
+			id sentChar = [kbLayout simulateTouchForCharacter:[text substringWithRange:subStringRange]
+															  errorVector:CGPointMake(0,0) 
+													 shouldTypeVariants:YES 
+													 baseKeyForVariants:NO];
+			
+			[[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:keyRate]];
+			DC_LOG(@"Sent character %@", sentChar);
+		}
+		DC_LOG(@"Text entry finished");
+	}];
+} 
+
 
 #pragma mark - View info
 

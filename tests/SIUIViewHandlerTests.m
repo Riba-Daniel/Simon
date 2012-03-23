@@ -4,6 +4,7 @@
 #import "SIUIViewHandler.h"
 #import <dUsefulStuff/DCCommon.h>
 #import "AbstractTestWithControlsOnView.h"
+#import "NSObject+Simon.h"
 
 @interface SIUIViewHandlerTests : AbstractTestWithControlsOnView {
 @private 
@@ -53,7 +54,7 @@
 -(void) testSubnodes {
    handler.view = self.testViewController.view;
 	NSArray *subNodes = handler.dnSubNodes;
-	GHAssertEquals([subNodes count], (NSUInteger) 8, @"Should be one sub view");
+	GHAssertEquals([subNodes count], (NSUInteger) 10, @"Should be one sub view");
 	GHAssertEquals([subNodes objectAtIndex:0], self.testViewController.button1, @"Returned node was not button 1.");
 	GHAssertEquals([subNodes objectAtIndex:1], self.testViewController.button2, @"Returned node was not button 2.");
 	GHAssertEquals([subNodes objectAtIndex:2], self.testViewController.tabBar, @"Returned node was not the tab bar.");
@@ -62,6 +63,7 @@
 	GHAssertEquals([subNodes objectAtIndex:5], self.testViewController.tapableLabel, @"Returned node was not the tapable label.");
 	GHAssertEquals([subNodes objectAtIndex:6], self.testViewController.displayLabel, @"Returned node was not the display label.");
 	GHAssertEquals([subNodes objectAtIndex:7], self.testViewController.waitForItButton, @"Returned node was not the wait for it button.");
+	// There are more but at this point we can be sure it's pretty correct.
 }
 
 -(void) testKvcAttributesReturnsNilWhenNoTag {
@@ -100,5 +102,88 @@
 	GHAssertNotNil(attributes, @"Expected attributes");
 	GHAssertEquals([attributes objectForKey:@"accessibilityValue"], @"abc", @"Attribute not returned");
 }
+
+#pragma mark - SIUIAction tests
+
+-(void) testTextEntryLowercase {
+	handler.view = self.testViewController.textField;
+	[self executeBlockOnMainThread:^{
+		self.testViewController.textField.text = @"";
+	}];
+	[handler tap];
+	NSString *text = @"abcdefghijklmnopqrstuvwxyz";
+	[handler enterText:text keyRate:0.1 autoCorrect:NO];
+	__block NSString *enteredText = nil;
+	[self executeBlockOnMainThread:^{
+		enteredText = [self.testViewController.textField.text retain];
+	}];
+	[enteredText autorelease];
+	GHAssertEqualStrings(enteredText, text, @"Text not correct");
+}
+
+-(void) testTextEntryUppercase {
+	handler.view = self.testViewController.textField;
+	[self executeBlockOnMainThread:^{
+		self.testViewController.textField.text = @"";
+	}];
+	[handler tap];
+	NSString *text = @"ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	[handler enterText:text keyRate:0.1 autoCorrect:NO];
+	__block NSString *enteredText = nil;
+	[self executeBlockOnMainThread:^{
+		enteredText = [self.testViewController.textField.text retain];
+	}];
+	[enteredText autorelease];
+	GHAssertEqualStrings(enteredText, text, @"Text not correct");
+}
+
+-(void) testTextEntryUnShiftedCharacters {
+	handler.view = self.testViewController.textField;
+	[self executeBlockOnMainThread:^{
+		self.testViewController.textField.text = @"";
+	}];
+	[handler tap];
+	NSString *text = @"1234567890-/:;()$&@\".,?!'";
+	[handler enterText:text keyRate:0.1 autoCorrect:NO];
+	__block NSString *enteredText = nil;
+	[self executeBlockOnMainThread:^{
+		enteredText = [self.testViewController.textField.text retain];
+	}];
+	[enteredText autorelease];
+	GHAssertEqualStrings(enteredText, text, @"Text not correct");
+}
+
+-(void) testTextEntryShiftedCharacters {
+	handler.view = self.testViewController.textField;
+	[self executeBlockOnMainThread:^{
+		self.testViewController.textField.text = @"";
+	}];
+	[handler tap];
+	NSString *text = @"[]{}#%^*+=_\\|~<>\u20AC\u00A3\u00A5\u2022"; // Note that the bullet works even on the ipad keyboard which does not have the symbol.
+	[handler enterText:text keyRate:0.1 autoCorrect:NO];
+	__block NSString *enteredText = nil;
+	[self executeBlockOnMainThread:^{
+		enteredText = [self.testViewController.textField.text retain];
+	}];
+	[enteredText autorelease];
+	GHAssertEqualStrings(enteredText, text, @"Text not correct");
+}
+
+-(void) testTextEntryAllowsAutoCorrect {
+	handler.view = self.testViewController.textField;
+	[self executeBlockOnMainThread:^{
+		self.testViewController.textField.text = @"";
+	}];
+	[handler tap];
+	NSString *text = @"cirrect tixt "; // Note that the bullet works even on the ipad keyboard which does not have the symbol.
+	[handler enterText:text keyRate:0.1 autoCorrect:YES];
+	__block NSString *enteredText = nil;
+	[self executeBlockOnMainThread:^{
+		enteredText = [self.testViewController.textField.text retain];
+	}];
+	[enteredText autorelease];
+	GHAssertEqualStrings(enteredText, @"correct text ", @"Text not correct");
+}
+
 
 @end

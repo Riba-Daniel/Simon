@@ -10,7 +10,7 @@
 #import "SIAbstractException.h"
 
 /**
- Thrown when a search o teh interface for a specific view fails to find it.
+ Thrown when a search a specific view fails to find it.
  */
 @interface SIUINotFoundException : SIAbstractException
 @end

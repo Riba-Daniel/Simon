@@ -20,6 +20,8 @@
 #import "SIUINotFoundException.h"
 #import "SISyntaxException.h"
 #import "SIUIException.h"
+#import "NSObject+Simon.h"
+#import "SIUINotAnInputViewException.h"
 
 @interface SIUIApplicationTests : AbstractTestWithControlsOnView
 
@@ -249,11 +251,31 @@
 
 #pragma mark - Text 
 
--(void) testTextEntryWithView {
-	NSString *text = @"abcdefghijklmnopqrstuvwxyz";
-	self.testViewController.textField.text = @"";
+-(void) testEnterTextIntoView {
+	[self executeBlockOnMainThread:^{
+		self.testViewController.textField.text = @"";
+	}];
+
+	NSString *text = @"ABC DEF GHI klm nop qrs tuv-w.y,y:z";
+	[SIUIApplication application].disableKeyboardAutocorrect = YES;
 	[[SIUIApplication application] enterText:text intoView:self.testViewController.textField];
-	GHAssertEqualStrings(self.testViewController.textField.text, text, @"typing failed");
+	
+	__block NSString *enteredText = nil;
+	[self executeBlockOnMainThread:^{
+		enteredText = [self.testViewController.textField.text retain];
+	}];
+	[enteredText autorelease];
+	GHAssertEqualStrings(enteredText, text, @"Text not correct");
+}
+
+-(void) testEnterTextIntoViewFailIfNotCorrectInputProtocol {
+	@try {
+      [[SIUIApplication application] enterText:@"" intoView:self.testViewController.waitForItButton];
+      GHFail(@"Exception not thrown");
+   }
+   @catch (SIUINotAnInputViewException *exception) {
+      // Good
+   }
 }
 
 

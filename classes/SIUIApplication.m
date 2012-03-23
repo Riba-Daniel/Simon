@@ -20,7 +20,8 @@
 #import "SIUIViewHandlerFactory.h"
 #import "SIUIException.h"
 #import "SIUIViewDescriptionVisitor.h"
-#import "SIUIKeyboard.h"
+#import "NSObject+Simon.h"
+#import "SIUINotAnInputViewException.h"
 
 #import <QuartzCore/CALayer.h>
 
@@ -36,6 +37,7 @@
 static SIUIApplication *application = nil;
 
 @synthesize viewHandlerFactory = viewHandlerFactory_;
+@synthesize disableKeyboardAutocorrect = disableAutoCorrect_;
 
 #pragma mark - Accessors
 
@@ -90,21 +92,12 @@ static SIUIApplication *application = nil;
 
 -(NSArray *) findViewsWithQuery:(NSString *) query {
 	
-	// If on main thread then analyse the UI.
-	if ([[NSThread currentThread] isMainThread]) {
-		return [self findViewsOnKeyWindowWithQuery:query];
-	}
-	
-	// Redirect to the main thread.
-	DC_LOG(@"Redirecting to main thread via GCD");
-	dispatch_queue_t mainQueue = dispatch_get_main_queue();
-	
 	__block NSArray *views;
 	__block NSException *exception = nil;
 	
-	dispatch_sync(mainQueue, ^{
+	[self executeBlockOnMainThread: ^{
 		@try {
-			views = [self findViewsWithQuery:query];
+			views = [self findViewsOnKeyWindowWithQuery:query];
 			// Retain so data survives GCDs autorelease pools.
 			[views retain];
 			DC_LOG(@"Returning %lu views to background thread", [views count]);
@@ -113,7 +106,7 @@ static SIUIApplication *application = nil;
 			// Retain the exception.
 			exception = [e retain];
 		}
-	});
+	}];
 	
 	if (exception != nil) {
 		@throw [exception autorelease];
@@ -184,23 +177,17 @@ static SIUIApplication *application = nil;
 
 -(void) logUITree {
 	
-	// Redirect to the main thread.
-	if (![[NSThread currentThread] isMainThread]) {
-		DC_LOG(@"Redirecting to main thread via GCD");
-		dispatch_queue_t mainQueue = dispatch_get_main_queue();
-		dispatch_sync(mainQueue, ^{
-			[self logUITree];
-		});
-		return;
-	}
+	[self executeBlockOnMainThread:^{
+		
+		NSLog(@"Tree view of current window"); 
+		NSLog(@"====================================================");
+		
+		SIUIViewDescriptionVisitor *visitor = [[SIUIViewDescriptionVisitor alloc] initWithDelegate:self];
+		[visitor visitAllWindows];
+		//[visitor visitView:[UIApplication sharedApplication].keyWindow];
+		DC_DEALLOC(visitor);
+	}];
 	
-	NSLog(@"Tree view of current window"); 
-	NSLog(@"====================================================");
-	
-	SIUIViewDescriptionVisitor *visitor = [[SIUIViewDescriptionVisitor alloc] initWithDelegate:self];
-	[visitor visitAllWindows];
-	//[visitor visitView:[UIApplication sharedApplication].keyWindow];
-	DC_DEALLOC(visitor);
 }
 
 -(void) visitedView:(UIView *) view 
@@ -359,18 +346,18 @@ static SIUIApplication *application = nil;
 
 -(void) enterText:(NSString *) text intoView:(UIView *) view {
 	
+	if (![view conformsToProtocol:@protocol(UITextInput)]) {
+		@throw [SIUINotAnInputViewException exceptionWithReason: [NSString stringWithFormat:@"%@ is not an input field.", NSStringFromClass([view class])]];
+	}
+	
 	// If the view does not have focus then make sure it does.
 	if (![view isFirstResponder]) {
 		[self tapView:view];
 	}
-
-	// Now type the text using the keyboard.
-	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
-		// The device is an iPad running iPhone 3.2 or later.
-		//SIUIiPadKeyboard *keyboard = [[SIUIiPadKeyboard alloc] init];
-	} else {
-		// The device is an iPhone or iPod touch.
-	}
+	
+	// Enter the text.
+	[[self viewHandlerForView:view] enterText:text keyRate:0.1 autoCorrect: ! self.disableKeyboardAutocorrect];
+	
 }
 
 @end

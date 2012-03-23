@@ -18,6 +18,8 @@ h1. Version 0.1.7, March 2012
 * Fixed issue where creating UITouch and UIEvents on a background thread would trigger a 0xbbadbeef crash.
 * Refactored SIUIEventGenerator into an abstract class. 
 * Updated logging of UI to include all windows being displayed. This now picks up the keyboard.
+* Refactored event sending code and background sending detection. Now a lot simpler due to using blocks.
+* Removed caching of view handers because we simply don't need it. Also made code simpler.
 
 h1. Version 0.1.6, March 2012
 

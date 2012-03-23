@@ -14,8 +14,9 @@
 
 /**
  Handlers encompass all aspects of dealing with a particular UI widget. This class
- is he base class for handlers and provides the core infrastructure they need. Handlers are automatically allocated
- based on the class of the node dNodi is processing.
+ is the base class for handlers and provides the core infrastructure they need. Handlers are automatically allocated
+ based on the class of the node dNodi is processing. This is another point where Simon makes use of private APIs to access
+ and control the keyboard.
  */
 @interface SIUIViewHandler : NSObject<DNNode, SIUIAction, SIUIViewInfo> 
 

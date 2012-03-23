@@ -9,7 +9,6 @@
 #import "SIUISwipeGenerator.h"
 #import "UITouch+Simon.h"
 #import "UIEvent+Simon.h"
-#import "SIUIEventSender.h"
 
 @implementation SIUISwipeGenerator
 
@@ -30,7 +29,7 @@
 }
 
 
--(void) sendEvents {
+-(void) generateEvents {
    
    // Calculate the number of events to generate and the distance between them.
    int nbrMoves = round(self.eps * self.duration);
@@ -43,10 +42,8 @@
    CGFloat touchAdjustX = self.swipeDirection == SIUISwipeDirectionRight ? touchAdjust : self.swipeDirection == SIUISwipeDirectionLeft ? -touchAdjust : 0;
    CGFloat touchAdjustY = self.swipeDirection == SIUISwipeDirectionDown ? touchAdjust : self.swipeDirection == SIUISwipeDirectionUp ? -touchAdjust : 0;
    
-   SIUIEventSender *sender = [SIUIEventSender sender];
-
    // Send the starting event.
-   [sender sendEvent:event];
+   [self sendEvent];
    [NSThread sleepForTimeInterval:frameDuration];
    
    DC_LOG(@"Swipe setup:-");
@@ -64,14 +61,14 @@
    for (int i = 1; i < nbrMoves; i++) {
       // Setup the dispatch time.
       touch.locationInWindow = CGPointMake(touch.locationInWindow.x + touchAdjustX, touch.locationInWindow.y + touchAdjustY);
-      [sender sendEvent:event];
+      [self sendEvent];
       [NSThread sleepForTimeInterval:frameDuration];
    }
    
    // Send the ending event.
    touch.locationInWindow = CGPointMake(touch.locationInWindow.x + touchAdjustX, touch.locationInWindow.y + touchAdjustY);
    [touch setPhase:UITouchPhaseEnded];
-   [sender sendEvent:event];
+   [self sendEvent];
 }
 
 @end

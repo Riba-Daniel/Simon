@@ -7,7 +7,6 @@
 //
 
 #import "SIUITapGenerator.h"
-#import "SIUIEventSender.h"
 #import "UITouch+Simon.h"
 #import "UIEvent+Simon.h"
 
@@ -23,7 +22,8 @@
    return self;
 }
 
--(void) sendEvents {
+-(void) generateEvents {
+	
    DC_LOG(@"Creating tap sequence for UIView: %p", self.view);
 	
 	// Position the tap if needed.
@@ -32,10 +32,9 @@
 	}
 	
 	// Now tap.
-   SIUIEventSender *sender = [SIUIEventSender sender];
-   [sender sendEvent:event];
+   [self sendEvent];
    [touch setPhase:UITouchPhaseEnded];
-   [sender sendEvent:event];
+   [self sendEvent];
 }
 
 @end

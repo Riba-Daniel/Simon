@@ -10,6 +10,7 @@
 #import "UITouch+Simon.h"
 #import "UIEvent+Simon.h"
 #import <dUsefulStuff/DCCommon.h>
+#import "NSObject+Simon.h"
 
 @implementation SIUIAbstractEventGenerator
 
@@ -23,23 +24,11 @@
 		
 		// Touches and events must be created on the main queue.
 		// Otherwise a 0xbbadbeef crash may occur.
-		// Use a block to conserve code.
-		DC_LOG(@"Creating touch and event for UIView: %p", view);
-		void (^createObjects)() = ^{
+		DC_LOG(@"Creating touch and event for %@: %p", NSStringFromClass([view class]), view);
+		[self executeBlockOnMainThread: ^{
 			touch = [[UITouch alloc] initInView:view];
 			event = [[NSClassFromString(@"UITouchesEvent") alloc] initWithTouch:touch];
-		};
-		
-		if ([NSThread isMainThread]) {
-			createObjects();
-		} else {
-			// Goto the main Q.
-			dispatch_queue_t mainQ = dispatch_get_main_queue();
-			dispatch_sync(mainQ, ^{
-				createObjects();
-			});
-		}
-		
+		}];
 	}
 	return self;
 }
@@ -52,6 +41,23 @@
 	[super dealloc];
 }
 
--(void) sendEvents{}
+-(void) generateEvents{}
+
+
+-(void) sendEvent {
+	[self executeBlockOnMainThread:^{
+		
+#ifdef DC_DEBUG
+      CGPoint loc = [touch locationInView:touch.window];
+      DC_LOG(@"Sending touch event type %i @ %i x %i to UIView: %p", touch.phase, (int)loc.x, (int)loc.y, touch.view);
+#endif
+      
+      // Send the event.
+      [event updateTimeStamp];
+      [[UIApplication sharedApplication] sendEvent:event];
+      [[NSRunLoop currentRunLoop] runUntilDate:[NSDate date]];
+   }];
+}
+
 
 @end

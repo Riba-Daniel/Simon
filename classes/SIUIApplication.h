@@ -23,6 +23,9 @@
 /// Factory which is used to generate view handlers for talking to UIView objects returned from queries. You can set this to a custom factory for implementing your own view handlers.
 @property (retain, nonatomic) SIUIViewHandlerFactory *viewHandlerFactory;
 
+/// If set to YES, disables the auto correction of entered text via the keyboard when using the enterText:intoField: method. This is useful for testing.
+@property (nonatomic) BOOL disableKeyboardAutocorrect;
+
 #pragma mark - Accessors
 /// @name Singleton Accessors
 

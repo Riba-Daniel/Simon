@@ -37,6 +37,12 @@
 /**
  Create and send the events. This is the main method to call from external classes.
  */
--(void) sendEvents;
+-(void) generateEvents;
+
+/**
+ Directly sends the event to the UI. Internal method.
+ */
+-(void) sendEvent;
+
 
 @end
