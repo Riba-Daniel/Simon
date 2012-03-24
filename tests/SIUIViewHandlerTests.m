@@ -54,7 +54,7 @@
 -(void) testSubnodes {
    handler.view = self.testViewController.view;
 	NSArray *subNodes = handler.dnSubNodes;
-	GHAssertEquals([subNodes count], (NSUInteger) 10, @"Should be one sub view");
+	GHAssertEquals([subNodes count], (NSUInteger) 12, @"Should be one sub view");
 	GHAssertEquals([subNodes objectAtIndex:0], self.testViewController.button1, @"Returned node was not button 1.");
 	GHAssertEquals([subNodes objectAtIndex:1], self.testViewController.button2, @"Returned node was not button 2.");
 	GHAssertEquals([subNodes objectAtIndex:2], self.testViewController.tabBar, @"Returned node was not the tab bar.");
@@ -65,6 +65,8 @@
 	GHAssertEquals([subNodes objectAtIndex:7], self.testViewController.waitForItButton, @"Returned node was not the wait for it button.");
 	// There are more but at this point we can be sure it's pretty correct.
 }
+
+#pragma mark - KVC
 
 -(void) testKvcAttributesReturnsNilWhenNoTag {
    handler.view = [[[UIView alloc] init] autorelease];

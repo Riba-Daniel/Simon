@@ -278,5 +278,41 @@
    }
 }
 
+-(void) testEnterTextIntoViewWithQuery {
+	[self executeBlockOnMainThread:^{
+		self.testViewController.textField.text = @"";
+	}];
+	
+	NSString *text = @"Hello world";
+	[[SIUIApplication application] enterText:text intoViewWithQuery:@"//UITextField[0]"];
+	
+	__block NSString *enteredText = nil;
+	[self executeBlockOnMainThread:^{
+		enteredText = [self.testViewController.textField.text retain];
+	}];
+	[enteredText autorelease];
+	GHAssertEqualStrings(enteredText, text, @"Text not correct");
+}
+
+-(void) testEnterPhoneNumber {
+	[self executeBlockOnMainThread:^{
+		self.testViewController.phoneNumberField.text = @"";
+	}];
+	
+	NSString *text = @"0404 053 463\n";
+	[[SIUIApplication application] enterText:text intoView:self.testViewController.phoneNumberField];
+	
+	__block NSString *enteredText = nil;
+	[self executeBlockOnMainThread:^{
+		enteredText = [self.testViewController.phoneNumberField.text retain];
+	}];
+	[enteredText autorelease];
+	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+		GHAssertEqualStrings(enteredText, @"0404 053 463", @"Text not correct");
+	} else {
+		GHAssertEqualStrings(enteredText, @"0404053463", @"Text not correct");
+	}
+}
+
 
 @end

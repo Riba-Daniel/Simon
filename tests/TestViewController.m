@@ -21,6 +21,7 @@
 @synthesize tapableLabel = tapableLabel_;
 @synthesize displayLabel = displayLabel_;
 @synthesize textField = textField_;
+@synthesize phoneNumberField = phoneNumberField_;
 @synthesize tappedButton = tappedButton_;
 @synthesize tappedTabBarItem = tappedTabBarItem_;
 @synthesize slider = slider_;
@@ -42,6 +43,7 @@
    self.startDragTime = nil;
    self.endDragTime = nil;
 	self.textField = nil;
+	self.phoneNumberField = nil;
    [super dealloc];
 }
 

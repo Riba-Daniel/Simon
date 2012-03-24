@@ -360,4 +360,9 @@ static SIUIApplication *application = nil;
 	
 }
 
+-(void) enterText:(NSString *) text intoViewWithQuery:(NSString *) query {
+	UIView<DNNode> *theView = [self findViewWithQuery:query];
+	[self enterText:text intoView:theView];
+}
+
 @end

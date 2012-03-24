@@ -15,9 +15,11 @@
 // We need access to the private API of the keyboard layout so we can send keys.
 @interface UIKeyboardLayout : UIView
 - (id)simulateTouchForCharacter:(id)arg1 errorVector:(CGPoint)arg2 shouldTypeVariants:(BOOL)arg3 baseKeyForVariants:(BOOL)arg4;
+- (BOOL)performReturnAction;
 @end
 @interface UIKeyboardImpl : UIView
 - (void)_setAutocorrects:(BOOL)arg1;
+- (id)returnKeyDisplayName;
 @end
 
 @implementation SIUIViewHandler
@@ -89,7 +91,7 @@
 		UIKeyboardImpl *kbImpl = (UIKeyboardImpl *) [keyboardAuto.subviews objectAtIndex:0];
 		UIKeyboardLayout *kbLayout = (UIKeyboardLayout *) [kbImpl.subviews objectAtIndex:0];
 		
-		// Turn off auto correct. 
+		// Turn on or off auto correct. 
 		[kbImpl _setAutocorrects:autoCorrect];
 		
 		// Loop and send each character.
@@ -108,7 +110,7 @@
 			[[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:keyRate]];
 			DC_LOG(@"Sent character %@", sentChar);
 		}
-		DC_LOG(@"Text entry finished");
+		DC_LOG(@"Text entry finished, return key %@", [kbImpl returnKeyDisplayName]);
 	}];
 } 
 

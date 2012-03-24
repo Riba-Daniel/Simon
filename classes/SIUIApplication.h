@@ -202,4 +202,12 @@
  */
 -(void) enterText:(NSString *) text intoView:(UIView *) view;
 
+/**
+ Ensures that the specified view based on a query has focus and then enters the text into it.
+ 
+ @param text the text we want to enter.
+ @param query the query that should find the control.
+ */
+-(void) enterText:(NSString *) text intoViewWithQuery:(NSString *) query;
+
 @end
