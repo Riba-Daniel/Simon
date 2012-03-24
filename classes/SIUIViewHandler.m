@@ -111,7 +111,10 @@
 			
 			// shouldTypeVariant controls whether characters which are variants of a base key should be typed.
 			// baseKeyForVariants controls wether to type the base key instead of a variant.
-			id sentChar = [kbLayout simulateTouchForCharacter:[text substringWithRange:subStringRange]
+#ifdef DEBUG
+			id sentChar = 
+#endif
+			[kbLayout simulateTouchForCharacter:[text substringWithRange:subStringRange]
 															  errorVector:CGPointMake(0,0) 
 													 shouldTypeVariants:YES 
 													 baseKeyForVariants:NO];

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		321A346A1519FA9E00B22EDD /* NSObject+Simon.h in Headers */ = {isa = PBXBuildFile; fileRef = 321A34681519FA9E00B22EDD /* NSObject+Simon.h */; };
+		321A346A1519FA9E00B22EDD /* NSObject+Simon.h in Headers */ = {isa = PBXBuildFile; fileRef = 321A34681519FA9E00B22EDD /* NSObject+Simon.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		321A346B1519FA9E00B22EDD /* NSObject+Simon.m in Sources */ = {isa = PBXBuildFile; fileRef = 321A34691519FA9E00B22EDD /* NSObject+Simon.m */; };
 		3221C79E150C9365003CA286 /* SIUIViewInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 3221C79D150C9365003CA286 /* SIUIViewInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3221C7A1150C956A003CA286 /* SIUIButtonHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 3221C79F150C956A003CA286 /* SIUIButtonHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -21,11 +21,11 @@
 		324108BA1509C23200AFBF66 /* SIUIViewDescriptionVisitorDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 324108B91509C23200AFBF66 /* SIUIViewDescriptionVisitorDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		324108BC1509C61E00AFBF66 /* SIUIViewDescriptionVisitorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 324108BB1509C61E00AFBF66 /* SIUIViewDescriptionVisitorTests.m */; };
 		325683D914EF6CEB00F7C189 /* SIUIConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 325683D814EF6CEB00F7C189 /* SIUIConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3260B810151CB81C005A5AAA /* SIUINotAnInputViewException.h in Headers */ = {isa = PBXBuildFile; fileRef = 3260B80E151CB81C005A5AAA /* SIUINotAnInputViewException.h */; };
+		3260B810151CB81C005A5AAA /* SIUINotAnInputViewException.h in Headers */ = {isa = PBXBuildFile; fileRef = 3260B80E151CB81C005A5AAA /* SIUINotAnInputViewException.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3260B811151CB81C005A5AAA /* SIUINotAnInputViewException.m in Sources */ = {isa = PBXBuildFile; fileRef = 3260B80F151CB81C005A5AAA /* SIUINotAnInputViewException.m */; };
 		3265B0231514487100BE0930 /* Macro.stories in Resources */ = {isa = PBXBuildFile; fileRef = 3265B0211514487100BE0930 /* Macro.stories */; };
 		3265B0241514487100BE0930 /* MacroStoryImplementations.m in Sources */ = {isa = PBXBuildFile; fileRef = 3265B0221514487100BE0930 /* MacroStoryImplementations.m */; };
-		3265B02715144DB400BE0930 /* SIUIAbstractEventGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 3265B02515144DB300BE0930 /* SIUIAbstractEventGenerator.h */; };
+		3265B02715144DB400BE0930 /* SIUIAbstractEventGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 3265B02515144DB300BE0930 /* SIUIAbstractEventGenerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3265B02815144DB400BE0930 /* SIUIAbstractEventGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3265B02615144DB300BE0930 /* SIUIAbstractEventGenerator.m */; };
 		3265B02A1514887600BE0930 /* UIViewSimonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3265B0291514887600BE0930 /* UIViewSimonTests.m */; };
 		32741D7814EB581E00093E0F /* UITouch+Simon.h in Headers */ = {isa = PBXBuildFile; fileRef = 32741D7614EB581E00093E0F /* UITouch+Simon.h */; settings = {ATTRIBUTES = (Public, ); }; };
