@@ -66,6 +66,21 @@
 	// There are more but at this point we can be sure it's pretty correct.
 }
 
+#pragma mark - Special attributes
+
+-(void) testAttributeProtocol {
+	handler.view = [[[UITextField alloc] init] autorelease];
+	GHAssertTrue([handler dnHasAttribute:@"protocol" withValue:@"UITextInput"], @"Protocol not being detected");
+	GHAssertFalse([handler dnHasAttribute:@"protocol" withValue:@"xxx"], @"Protocol not being detected");
+}
+
+-(void) testAttributeIsKindOfClass {
+	handler.view = [[[UITextField alloc] init] autorelease];
+	GHAssertTrue([handler dnHasAttribute:@"isKindOfClass" withValue:@"UIResponder"], @"Protocol not being detected");
+	GHAssertFalse([handler dnHasAttribute:@"isKindOfClass" withValue:@"xxx"], @"Protocol not being detected");
+}
+
+
 #pragma mark - KVC
 
 -(void) testKvcAttributesReturnsNilWhenNoTag {

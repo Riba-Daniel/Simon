@@ -20,6 +20,8 @@ h1. Version 0.1.7, March 2012
 * Updated logging of UI to include all windows being displayed. This now picks up the keyboard.
 * Refactored event sending code and background sending detection. Now a lot simpler due to using blocks.
 * Removed caching of view handers because we simply don't need it. Also made code simpler.
+* Added the SIEnterText macro.
+* New dNodi query attributes: protocol and isKindOfClass.
 
 h1. Version 0.1.6, March 2012
 

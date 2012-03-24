@@ -161,6 +161,17 @@
 */
 #define SIWaitForViewAnimationsToFinish(query, checkEvery) [[SIUIApplication application] waitForAnimationEndOnViewWithQuery:query retryInterval:checkEvery];
 
+/**
+ Brings up the keyboard and enters text into the field. If a query is passed this first finds the field before activating the keyboard.
+ A SIUINotAnInputFieldException will be thrown if the passed view does not implement the UITextInput protocol.
+ 
+ @param query the query path that should locate the control.
+ @param text the text that you want entered. It is assumed that the text can be entered. I.e. that the field accepts it.
+ */ 
+#define SIEnterText(view, text) \
+[(view) isKindOfClass:[NSString class]] ? \
+[[SIUIApplication application] enterText: text intoViewWithQuery:(NSString *)view] : \
+[[SIUIApplication application] enterText: text intoView:(UIView *)view]
  
 /**
  But first some reuseable logic embedded in a macro.

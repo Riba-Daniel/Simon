@@ -48,6 +48,15 @@
 }
 
 -(BOOL) dnHasAttribute:(NSString *)attribute withValue:(id)value {
+	
+	// Check for special attribute requests.
+	if ([attribute isEqualToString:@"protocol"]) {
+		return [self.view conformsToProtocol:NSProtocolFromString(value)];
+	}
+	if ([attribute isEqualToString:@"isKindOfClass"]) {
+		return [self.view isKindOfClass:NSClassFromString(value)];
+	}
+	
 	// Use KVC to test the value.
 	id propertyValue = [self.view valueForKeyPath:attribute];
 	return [propertyValue isEqual:value];
