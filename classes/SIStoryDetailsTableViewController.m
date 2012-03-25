@@ -32,8 +32,9 @@
 @end
 
 @interface SIStoryDetailsTableViewController()
--(NSString *) storyText;
+-(void) assembleStoryText;
 -(void) processTrace;
+@property (nonatomic, retain) NSString *storyText;
 @property (nonatomic, retain) NSString *trace;
 @property (nonatomic, retain) UIFont *reportFont;
 @property (nonatomic, retain) UIFont *traceFont;
@@ -44,11 +45,13 @@
 @synthesize source = source_;
 @synthesize story = story_;
 @synthesize trace = trace_;
+@synthesize storyText = storyText_;
 @synthesize reportFont = reportFont_;
 @synthesize traceFont = traceFont_;
 
 -(void) dealloc {
    self.story = nil;
+	self.storyText = nil;
    self.source = nil;
    self.traceFont = nil;
    self.reportFont = nil;
@@ -59,14 +62,11 @@
 #pragma mark - UIView methods
 
 -(void) viewDidLoad {
-   self.tableView.backgroundColor = [UIColor clearColor];
-   self.tableView.backgroundView = nil;
-   self.tableView.separatorColor = [UIColor lightGrayColor];
-   self.tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
    self.reportFont = [UIFont systemFontOfSize:14.0f];
    self.traceFont = [UIFont fontWithName:@"Courier" size:12];
+	
+	[self assembleStoryText];
    
-   // If there is a trace we need to process it.
    if (self.story.mappingWithError.exception != nil) {
       [self processTrace];
    }
@@ -75,40 +75,40 @@
 #pragma mark - Delegate methods
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-   switch (indexPath.section) {
+	
+	NSString *text;
+   switch (indexPath.row) {
       case 0:
-         return [self.story.steps count] * self.reportFont.lineHeight + 12.0f;
+         text = self.storyText;
+			break;
          
       case 1:
-         if (indexPath.row == 2) {
-            DC_LOG(@"Working out height for trace");
-            CGSize size = [self.trace sizeWithFont:self.traceFont constrainedToSize:CGSizeMake(580, CGFLOAT_MAX)];
-            return fmax(size.height + 12, 45);
-         }
+			text = [self.source.source lastPathComponent];
          break;
+		case 2:
+			text = [self.story.error localizedFailureReason];
+			break;
          
       default:
+			text = self.trace;
          break;
    }
-   return 45;
+	
+	if (text == nil) {
+		text = @"X";
+	}
+	CGSize size = [text sizeWithFont:self.traceFont constrainedToSize:CGSizeMake(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? 580 : 204, CGFLOAT_MAX)];
+	return size.height + 12;
 }
 
 #pragma mark - Data source methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-   return 2;
+   return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-   switch (section) {
-      case 0:
-         return 1;
-         break;
-         
-      default:
-         return 3;
-         break;
-   }
+	return 4;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -122,47 +122,41 @@
       cell.selectionStyle = UITableViewCellSelectionStyleNone;
    }
    
-   switch (indexPath.section) {
-      case 0:
-         cell.textLabel.text = @"Story";
-         cell.detailTextLabel.text = [self storyText];
-         cell.detailTextLabel.numberOfLines = 0;
-         break;
-         
-      default:
-         switch (indexPath.row) {
-            case 0:
-               cell.textLabel.text = @"Story file";
-               cell.detailTextLabel.text = [self.source.source lastPathComponent];
-               break;
-            case 1:
-               cell.textLabel.text = @"Error";
-               cell.detailTextLabel.text = [self.story.error localizedDescription];
-               cell.detailTextLabel.numberOfLines = 0;
-               break;
-            case 2:
-               cell.textLabel.text = @"Error details";
-               cell.textLabel.numberOfLines = 0;
-               cell.detailTextLabel.text = self.trace;
-               cell.detailTextLabel.numberOfLines = 0;
-               cell.detailTextLabel.font = [UIFont fontWithName:@"Courier" size:12];
-               break;
-            default:
-               break;
-         }
-   }
-   
+	switch (indexPath.row) {
+		case 0:
+			cell.textLabel.text = @"Story";
+			cell.detailTextLabel.text = [self storyText];
+			break;
+		case 1:
+			cell.textLabel.text = @"Story file";
+			cell.detailTextLabel.text = [self.source.source lastPathComponent];
+			break;
+		case 2:
+			cell.textLabel.text = @"Error";
+			cell.detailTextLabel.text = [self.story.error localizedFailureReason];
+			break;
+		case 3:
+			cell.textLabel.text = @"Stack trace";
+			cell.detailTextLabel.text = self.trace;
+			cell.detailTextLabel.font = [UIFont fontWithName:@"Courier" size:12];
+			break;
+		default:
+			break;
+	}
+	
+	cell.detailTextLabel.numberOfLines = 0;
+	
    return cell;
 }
 
 #pragma mark - Private methods
 
--(NSString *) storyText {
+-(void) assembleStoryText {
    NSMutableString *text = [NSMutableString string];
    [self.story.steps enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL* stop) {
       [text appendFormat:@"%@%@", (NSString *) idx > 0 ? @"\n" : @"",((SIStep *)obj).command];
    }];
-   return text;
+   self.storyText = text;
 }
 
 -(void) processTrace {
@@ -199,7 +193,7 @@
    
    // Find longest source string.
    __block NSUInteger maxSourceLength = 0;
-   DC_LOG(@"FInding max source text length");
+   DC_LOG(@"Finding max source text length");
    [traceLines enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
       SITraceLineData *lineData = (SITraceLineData *) obj;
       if (! DC_EQUALS_NOT_FOUND_RANGE(lineData.sourceRange)) {
@@ -209,22 +203,36 @@
       }
    }];
    
+	// Work out the stack trace line.
+	NSString *lineFormatString;
+	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+		lineFormatString = [NSString stringWithFormat:@"\n%%-3i %%-%is %%@ %%@", maxSourceLength];
+	} else {
+		lineFormatString = @"\n%@";
+	}
+	DC_LOG(@"Format string is %@", lineFormatString);
+	
    // Now format the lines.
    NSMutableString *stackTrace = [NSMutableString string];
-   NSString *lineFormatString = [NSString stringWithFormat:@"\n%%i %%-%is %%@ %%@", maxSourceLength];
-   DC_LOG(@"Format string is %@", lineFormatString);
+	SITraceLineData *lineData;
    for (int i = 0; i < [traceLines count]; i++) {
-      SITraceLineData *lineData = [traceLines objectAtIndex: i];
-      if (! DC_EQUALS_NOT_FOUND_RANGE(lineData.sourceRange)) {
-         [stackTrace appendFormat:lineFormatString, i, 
-          [[lineData.line substringWithRange:lineData.sourceRange] UTF8String],
-          [lineData.line substringWithRange:lineData.addressRange],
-          [lineData.line substringWithRange:lineData.methodRange]
-          ];
-      } else {
+      
+		lineData = [traceLines objectAtIndex: i];
+      
+		if (DC_EQUALS_NOT_FOUND_RANGE(lineData.sourceRange)) {
          [stackTrace appendString:lineData.line];
+      } else {
+			if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+				[stackTrace appendFormat:lineFormatString, i, 
+				 [[lineData.line substringWithRange:lineData.sourceRange] UTF8String],
+				 [lineData.line substringWithRange:lineData.addressRange],
+				 [lineData.line substringWithRange:lineData.methodRange]
+				 ];
+			} else {
+				[stackTrace appendFormat:lineFormatString, [lineData.line substringWithRange:lineData.methodRange]];
+			}
       }
-    }
+	}
    DC_LOG(@"Formatted trace: %@", stackTrace);
    
    self.trace = [NSString stringWithFormat:@"%@%@", [self.story.error localizedFailureReason], stackTrace];

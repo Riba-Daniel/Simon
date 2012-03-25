@@ -35,7 +35,7 @@
 
 -(void) displayReportOnStorySources:(NSArray *) sources andMappings:(NSArray *) mappings {
 	
-	SIStoryReportTableViewController *reportController = [[[SIStoryReportTableViewController alloc] initWithStyle:UITableViewStyleGrouped] autorelease];
+	SIStoryReportTableViewController *reportController = [[[SIStoryReportTableViewController alloc] initWithStyle:UITableViewStylePlain] autorelease];
 	reportController.storySources = sources;
 	reportController.mappings = mappings;
 	reportController.navigationItem.title = @"Simon's simple report";
@@ -50,8 +50,12 @@
 																						 action:@selector(closeSimon)] autorelease];
 	reportController.navigationItem.rightBarButtonItem = closeButton;
 
-	// Get the front most view and add our report to it.
-	UIView *rootView = [[UIApplication sharedApplication].keyWindow.subviews lastObject];
+	// Resign the keyboard
+	[[UIApplication sharedApplication].keyWindow endEditing:YES];
+	
+	
+	// Get the front most view and add our report to it, dont use the window due to rotation.
+	UIView *rootView = [[[[UIApplication sharedApplication].windows objectAtIndex:0] subviews] lastObject];
    DC_LOG(@"Root View: %@", rootView);
    
 	// Position the new view offscreen.
