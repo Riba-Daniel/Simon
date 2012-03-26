@@ -57,10 +57,16 @@
 	
 	switch (story.status) {
 		case SIStoryStatusError:
-			cell.detailTextLabel.textColor = [UIColor redColor];
+			cell.textLabel.textColor = [UIColor redColor];
+			cell.detailTextLabel.textColor = [UIColor blackColor];
+			break;
+		case SIStoryStatusNotMapped:
+			cell.textLabel.textColor = [UIColor lightGrayColor];
+			cell.detailTextLabel.textColor = [UIColor lightGrayColor];
 			break;
 		default:
-			cell.textLabel.textColor = [UIColor lightGrayColor];
+			cell.textLabel.textColor = [UIColor colorWithRed:0.0 green:0.5 blue:0.0 alpha:1.0];
+			cell.detailTextLabel.textColor = [UIColor blackColor];
 			break;
 	}
 	

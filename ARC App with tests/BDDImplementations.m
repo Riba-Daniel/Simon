@@ -59,11 +59,9 @@ SIMapStepToSelector(@"then I can enter \"(.*)\" into the name field", enterTextI
 -(void) enterTextIntoNameField:(NSString *) text {
 	SITapView(@"//UITextField[1]");
 	SIPauseFor(0.5);
-	DC_LOG(@"!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 	SIPrintCurrentWindowTree();
 	UIView *view = SIFindView(@"//UIKBKeyplaneView");
 	[view tapAtPoint:CGPointMake(20, 20)];
-	//SITapView(@"//UIKBKeyplaneView");
 	SIPauseFor(0.5);
 }
 
