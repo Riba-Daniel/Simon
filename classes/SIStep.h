@@ -27,7 +27,7 @@
 @property (nonatomic, retain) SIStepMapping * stepMapping;
 
 /**
- Indicates whether the mapping was exexcuted. 
+ Indicates whether the mapping was executed. 
  */
 @property (nonatomic, assign) BOOL executed;
 

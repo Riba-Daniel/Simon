@@ -55,8 +55,8 @@
 
 -(BOOL) invokeWithObject:(id) object error:(NSError **) error {
 	@try {
-		BOOL success = [self.stepMapping invokeWithCommand:self.command object:object error:error];
 		self.executed = YES;
+		BOOL success = [self.stepMapping invokeWithCommand:self.command object:object error:error];
 		return success;
 	}
 	@catch (NSException *thrownException) {

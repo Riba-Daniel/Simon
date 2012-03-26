@@ -7,7 +7,9 @@
 //
 
 #import "SIStoryDetailsTableViewController.h"
+#import "SIStep.h"
 
+// Stores a line from the back trace.
 @interface SITraceLineData : NSObject
 
 @property (nonatomic, retain) NSString *line;
@@ -31,6 +33,7 @@
 
 @end
 
+// Private methods.
 @interface SIStoryDetailsTableViewController()
 -(void) assembleStoryText;
 -(void) processTrace;
@@ -62,7 +65,8 @@
 #pragma mark - UIView methods
 
 -(void) viewDidLoad {
-   self.reportFont = [UIFont systemFontOfSize:14.0f];
+	self.reportFont = [UIFont systemFontOfSize:16.0f];
+	DC_LOG(@"ReportFont = %@", self.reportFont);
    self.traceFont = [UIFont fontWithName:@"Courier" size:12];
 	
 	[self assembleStoryText];
@@ -70,45 +74,85 @@
    if (self.story.stepWithError.exception != nil) {
       [self processTrace];
    }
+	
+	// This should stop extra divider lines from appearing down the screen when
+	// there are not enough cells.
+	UIView *footerView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 1)] autorelease];
+	footerView.backgroundColor = [UIColor clearColor];
+	[self.tableView setTableFooterView:footerView];
+	
 }
 
 #pragma mark - Delegate methods
 
+-(NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+	if (section == 0) {
+		return nil;
+	}
+	return @"Exception details";
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	
 	NSString *text;
-   switch (indexPath.row) {
-      case 0:
-         text = self.storyText;
+	UIFont *font = self.reportFont;
+	switch (indexPath.section) {
+		case 0:
+			// Story details.
+			switch (indexPath.row) {
+				case 0:
+					text = self.story.title;
+					break;
+					
+				default:
+					text = [self.source.source lastPathComponent];
+					break;
+			}
 			break;
-         
-      case 1:
-			text = [self.source.source lastPathComponent];
-         break;
-		case 2:
-			text = [self.story.error localizedFailureReason];
+			
+		case 1:
+			// Step details.
+			text = ((SIStep *)[self.story.steps objectAtIndex:indexPath.row]).command;
 			break;
-         
-      default:
-			text = self.trace;
-         break;
-   }
-	
-	if (text == nil) {
-		text = @"X";
+			
+		default:
+			// Exception
+			switch (indexPath.row) {
+				case 0:
+					text = [self.story.error localizedFailureReason];
+					break;
+					
+				default:
+					text = self.trace;
+					font = self.traceFont;
+					break;
+			}
+			break;
 	}
-	CGSize size = [text sizeWithFont:self.traceFont constrainedToSize:CGSizeMake(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? 580 : 204, CGFLOAT_MAX)];
-	return size.height + 12;
+	
+	// Calculate size depending on the device and orientation.
+	CGSize size = [text sizeWithFont:font constrainedToSize:CGSizeMake(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? 580 : 204, CGFLOAT_MAX)];
+	return size.height + (32 - font.lineHeight);
 }
 
 #pragma mark - Data source methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-   return 1;
+   return self.story.error == nil ? 2:3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return 4;
+	switch (section) {
+		case 0:
+			// Story details.
+			return 2;
+		case 1:
+			// Step details
+			return [self.story.steps count];
+		default:
+			// Exception details.
+			return 2;
+	}
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -121,26 +165,61 @@
       cell.detailTextLabel.font = self.reportFont;
       cell.selectionStyle = UITableViewCellSelectionStyleNone;
    }
-   
-	switch (indexPath.row) {
+
+	cell.detailTextLabel.font = self.reportFont;
+
+	switch (indexPath.section) {
 		case 0:
-			cell.textLabel.text = @"Story";
-			cell.detailTextLabel.text = [self storyText];
+			// Story details
+			switch (indexPath.row) {
+				case 0:
+					cell.textLabel.text = @"Story";
+					cell.detailTextLabel.text = self.story.title;
+					break;
+				default:
+					cell.textLabel.text = @"Story file";
+					cell.detailTextLabel.text = [self.source.source lastPathComponent];
+					break;
+			}
 			break;
-		case 1:
-			cell.textLabel.text = @"Story file";
-			cell.detailTextLabel.text = [self.source.source lastPathComponent];
+			
+		case 1: {
+			// Step details.
+			SIStep *step = [self.story.steps objectAtIndex:indexPath.row];
+			if ([step isMapped]) {
+				if (step.executed) {
+					if (step.exception == nil) {
+						cell.textLabel.text = @"Success";
+						cell.textLabel.textColor = [UIColor colorWithRed:81.0/256 green:102.0/265 blue:145.0/256 alpha:1.0];
+					} else {
+						cell.textLabel.text = @"Error!";
+						cell.textLabel.textColor = [UIColor redColor];
+					}
+				} else {
+					cell.textLabel.text = @"Not executed";
+					cell.textLabel.textColor = [UIColor darkTextColor];
+				}
+			} else {
+				cell.textLabel.text = @"Not mapped";
+				cell.textLabel.textColor = [UIColor redColor];
+			}
+			cell.detailTextLabel.text = step.command;
 			break;
-		case 2:
-			cell.textLabel.text = @"Error";
-			cell.detailTextLabel.text = [self.story.error localizedFailureReason];
-			break;
-		case 3:
-			cell.textLabel.text = @"Stack trace";
-			cell.detailTextLabel.text = self.trace;
-			cell.detailTextLabel.font = [UIFont fontWithName:@"Courier" size:12];
-			break;
+		}
+			
 		default:
+			//Exception
+			switch (indexPath.row) {
+				case 0:
+					cell.textLabel.text = @"Error";
+					cell.detailTextLabel.text = [self.story.error localizedFailureReason];
+					break;
+				default:
+					cell.textLabel.text = @"Stack trace";
+					cell.detailTextLabel.text = self.trace;
+					cell.detailTextLabel.font = [UIFont fontWithName:@"Courier" size:12];
+					break;
+			}
 			break;
 	}
 	

@@ -66,6 +66,8 @@
 	
 	step.stepMapping = mockMapping;
 	[step invokeWithObject:self error:&error];
+	
+	GHAssertTrue(step.executed, @"Executed flag incorrect");
 
 	[mockMapping verify];
 	
@@ -83,6 +85,7 @@
 	step.stepMapping = mockMapping;
 	BOOL success = [step invokeWithObject:self error:&error];
 	
+	GHAssertTrue(step.executed, @"Executed flag incorrect");
 	GHAssertFalse(success, @"Step did not indicate an error");
 	GHAssertNotNil(error, @"Error not populated");
 	GHAssertEqualStrings([error localizedFailureReason], @"Exception caught: test", @"reason not returned.");

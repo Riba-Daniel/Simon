@@ -104,7 +104,7 @@
 					NSStringFromSelector(step.stepMapping.selector),
 					stepStatus);
 		} else {
-			NSLog(@"   Step: %@, NOT MAPPED", step.command);
+			NSLog(@"   Step: %@, not mapped", step.command);
 		}
 	}
 

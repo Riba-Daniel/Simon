@@ -26,6 +26,17 @@
 	[super dealloc];
 }
 
+#pragma mark - UIView methods
+
+-(void) viewDidLoad {
+	// This should stop extra divider lines from appearing down the screen when
+	// there are not enough cells.
+	UIView *footerView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 1)] autorelease];
+	footerView.backgroundColor = [UIColor clearColor];
+	[self.tableView setTableFooterView:footerView];
+}
+
+
 #pragma mark - Table view datasource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -83,12 +94,12 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
 	SIStoryDetailsTableViewController *details = [[[SIStoryDetailsTableViewController alloc] initWithStyle:UITableViewStylePlain] autorelease];
-   DC_LOG(@"Loading details for story %@", details.story);
 	
    details.source = [self.storySources objectAtIndex:indexPath.section];
 	details.story = (SIStory *)[details.source.stories objectAtIndex:indexPath.row];
 	details.navigationItem.title = details.story.title;
 
+   DC_LOG(@"Loading details for story %@", details.story.title);
 	[self.navigationController pushViewController:details animated:YES];
 }
 

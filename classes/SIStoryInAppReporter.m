@@ -53,7 +53,6 @@
 	// Resign the keyboard
 	[[UIApplication sharedApplication].keyWindow endEditing:YES];
 	
-	
 	// Get the front most view and add our report to it, dont use the window due to rotation.
 	UIView *rootView = [[[[UIApplication sharedApplication].windows objectAtIndex:0] subviews] lastObject];
    DC_LOG(@"Root View: %@", rootView);
