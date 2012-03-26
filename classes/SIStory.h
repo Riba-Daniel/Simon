@@ -51,9 +51,9 @@
 @property (nonatomic, retain, readonly) NSError *error;
 
 /**
- If there is an error this refers to the step mapping that has the error.
+ If an error occured then this refers to the step that has the error.
  */
-@property (nonatomic, retain, readonly) SIStepMapping *mappingWithError;
+@property (nonatomic, retain, readonly) SIStep *stepWithError;
 
 /**
  This is the title of the story as read from the story file. It contains all the text after the "Story" keword.

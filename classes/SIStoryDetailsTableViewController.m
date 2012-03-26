@@ -67,7 +67,7 @@
 	
 	[self assembleStoryText];
    
-   if (self.story.mappingWithError.exception != nil) {
+   if (self.story.stepWithError.exception != nil) {
       [self processTrace];
    }
 }
@@ -167,7 +167,7 @@
                                                                             error:&error];
    // Read in the data from the stack trace.
    NSMutableArray *traceLines = [NSMutableArray array];
-   NSArray *callStackSymbols = [self.story.mappingWithError.exception callStackSymbols];
+   NSArray *callStackSymbols = [self.story.stepWithError.exception callStackSymbols];
    [callStackSymbols enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
       
       // Create an object to store the trace line.

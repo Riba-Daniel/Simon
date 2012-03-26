@@ -71,4 +71,26 @@
 	
 }
 
+-(void) testCallsInvokeAndDetectsException {
+	
+	SIStep * step = [[[SIStep alloc] initWithKeyword:SIKeywordGiven command:@"abc"] autorelease];
+	
+	NSError *error = nil;
+	
+	id mockMapping = [OCMockObject mockForClass:[SIStepMapping class]];
+	[[[mockMapping expect] andThrow:[NSException exceptionWithName:@"test" reason:@"test" userInfo:nil]] invokeWithCommand:@"abc" object:self error:&error];
+	
+	step.stepMapping = mockMapping;
+	BOOL success = [step invokeWithObject:self error:&error];
+	
+	GHAssertFalse(success, @"Step did not indicate an error");
+	GHAssertNotNil(error, @"Error not populated");
+	GHAssertEqualStrings([error localizedFailureReason], @"Exception caught: test", @"reason not returned.");
+	GHAssertEqualStrings([error domain], @"SIError", @"Incorrect domain.");
+	GHAssertEqualStrings([error localizedDescription], @"Exception caught", @"description incorrect.");
+	
+	[mockMapping verify];
+	
+}
+
 @end

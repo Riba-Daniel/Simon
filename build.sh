@@ -17,6 +17,8 @@ DC_COMPANY=$DC_AUTHOR
 
 DC_SIMULATOR_SDK=iphonesimulator5.1
 DC_DEVICE_SDK=iphoneos5.1
+DC_DEVICE_ARCHS="armv7"
+DC_DEVICE_VALID_ARCHS="armv7"
 
 DC_SCRIPTS_DIR=../dUsefulStuff/scripts
 DC_TOOLS_DIR=../tools

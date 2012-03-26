@@ -13,12 +13,7 @@
 /**
  Represents a step within a SIStory. It stores the text of the step as read from the story file and the SISTepMapping which is then used to execute the implementation code.
  */
-@interface SIStep : NSObject {
-@private
-	SIKeyword keyword;
-	NSString *command;
-	SIStepMapping * stepMapping;
-}
+@interface SIStep : NSObject
 
 /// @name Properties
 
@@ -30,6 +25,16 @@
 
 /// The SIStepMapping which was matched to the step by the [SIStepMapping regex] expression.
 @property (nonatomic, retain) SIStepMapping * stepMapping;
+
+/**
+ Indicates whether the mapping was exexcuted. 
+ */
+@property (nonatomic, assign) BOOL executed;
+
+/**
+ If an exception is caught, it is stored here.
+ */
+@property (nonatomic, retain) NSException *exception;
 
 /// @name Initialisation
 
@@ -62,6 +67,7 @@
  
  @param object an instance of the class stored in [SIStepMapping targetClass]. This is created and cached by the SIStory which this step belongs to.
  @param error a reference to a pointer to an NSError object. If there is an error, the pointer will be set to point to an error object containing the details.
+ @return YES if the execution was succcessful, NO if not.
  */
 -(BOOL) invokeWithObject:(id) object error:(NSError **) error;
 

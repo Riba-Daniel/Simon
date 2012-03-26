@@ -10,7 +10,7 @@
 #import "SIStepMapping.h"
 #import "NSString+Simon.h"
 #import <dUsefulStuff/DCCommon.h>
-#import <dUsefulStuff/NSobject+dUsefulStuff.h>
+#import <dUsefulStuff/NSObject+dUsefulStuff.h>
 #import "SIConstants.h"
 
 @interface SIStepMapping()
@@ -24,7 +24,6 @@
 	 onInvocation:(NSInvocation *) invocation 
 		atArgIndex:(NSUInteger) index 
 			  error:(NSError **) error;
--(NSError *) errorForException;
 @end
 
 @implementation SIStepMapping
@@ -32,23 +31,13 @@
 @synthesize regex = regex_;
 @synthesize selector = selector_;
 @synthesize targetClass = targetClass_;
-@synthesize executed = executed_;
-@synthesize exception = exception_;
+@synthesize mapped = mapped_;
 
 -(void) dealloc {
 	self.targetClass = nil;
 	self.regex = nil;
 	self.selector = nil;
-	self.exception = nil;
 	[super dealloc];
-}
-
--(id) init {
-	self = [super init];
-	if (self) {
-		self.exception = nil;
-	}
-	return self;
 }
 
 +(SIStepMapping *) stepMappingWithClass:(Class) theClass selector:(SEL) aSelector regex:(NSString *) theRegex error:(NSError **) error {
@@ -100,13 +89,14 @@
 
 -(BOOL) canMapToStep:(NSString *) step {
 	NSRange rangeOfFirstMatch = [self.regex rangeOfFirstMatchInString:step options:0 range:NSMakeRange(0, [step length])];
-	return ! NSEqualRanges(rangeOfFirstMatch, NSMakeRange(NSNotFound, 0));
+	BOOL canMap = ! DC_EQUALS_NOT_FOUND_RANGE(rangeOfFirstMatch);
+	if (canMap) {
+		self.mapped = YES;
+	}
+	return canMap;
 }
 
 -(BOOL) invokeWithCommand:(NSString *) command object:(id) object error:(NSError **) error {
-	
-	// flag that we have been called.
-	self.executed = YES;
 	
 	// Inject a reference to the step mapping so it can be accessed for data. Note we assign so we don't have 
 	// to worry about retains. This is fine as the story will be around longer than the test class.
@@ -124,33 +114,9 @@
 	
 	// Now perform the invocation.
 	DC_LOG(@"Invoking methods on class");
-	
-	@try {
-		invocation.target = object;
-		[invocation invoke];
-	}
-	@catch (NSException *thrownException) {
-		self.exception = thrownException;
-		DC_LOG(@"Caught exception: %@", [self.exception reason]);
-		*error = [self errorForException];
-		return NO;
-	}
-	
+	invocation.target = object;
+	[invocation invoke];
 	return YES;
-}
-
--(NSError *) errorForException {
-	
-	if ([self.exception.name isEqualToString:@"NSUnknownKeyException"]) {
-		return [self errorForCode:SIErrorUnknownProperty 
-						  errorDomain:SIMON_ERROR_DOMAIN 
-					shortDescription:@"Unknown property" 
-						failureReason:[NSString stringWithFormat:@"Unknown property: %@",[self.exception reason]]];
-	} 
-	return [self errorForCode:SIErrorExceptionCaught 
-					  errorDomain:SIMON_ERROR_DOMAIN 
-				shortDescription:@"Exception caught"
-					failureReason:[NSString stringWithFormat:@"Exception caught: %@",[self.exception reason]]];
 }
 
 -(NSInvocation *) createInvocationForMethod:(Method) method 

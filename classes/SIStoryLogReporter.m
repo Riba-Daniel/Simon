@@ -93,8 +93,8 @@
 	NSString *stepStatus;
 	for (SIStep * step in story.steps) {
 		if ([step isMapped]) {
-			if (step.stepMapping.executed) {
-				stepStatus = step.stepMapping.exception != nil ? @"Failed!" : @"Success";
+			if (step.executed) {
+				stepStatus = step.exception != nil ? @"Failed!" : @"Success";
 			} else {
 				stepStatus = @"Not executed";
 			}
@@ -113,17 +113,18 @@
 }
 
 -(void) reportUnusedMappings:(NSArray *) mappings {
-
-	NSLog(@" ");
+	BOOL orphans = NO;
 	if ([mappings count] > 0) {
-		NSLog(@"Step mappings not mapped to stories");
 		for (SIStepMapping * mapping in mappings) {
-			if (mapping.selector == nil && !mapping.executed) {
+			if (!mapping.mapped) {
+				if (!orphans) {
+					orphans = YES;
+					NSLog(@"Orphaned step mappings");
+					NSLog(@" ");
+				}
 				NSLog(@"\tMapping \"%@\" -> %@::%@", mapping.regex.pattern, NSStringFromClass(mapping.targetClass), NSStringFromSelector(mapping.selector));
 			}
 		}
-	} else {
-		NSLog(@"All step mappings where mapped to stories.");
 	}
 }
 

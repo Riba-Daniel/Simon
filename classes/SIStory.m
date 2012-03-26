@@ -21,7 +21,7 @@
 @implementation SIStory
 
 @synthesize status = status_;
-@synthesize mappingWithError = mappingWithError_;
+@synthesize stepWithError = stepWithError_;
 @synthesize steps = steps_;
 @synthesize title = title_;
 @synthesize error = error_;
@@ -30,7 +30,7 @@
 	DC_LOG(@"Deallocing");
 	DC_DEALLOC(error_);
 	DC_DEALLOC(steps_);
-	DC_DEALLOC(mappingWithError_);
+	DC_DEALLOC(stepWithError_);
 	self.title = nil;
 	DC_DEALLOC(instanceCache);
 	DC_DEALLOC(storyCache);
@@ -82,7 +82,7 @@
 		if (![step invokeWithObject:instance error:&error_]) {
 			// Retain the error because it will be an autoreleased one.
 			[error_ retain];
-         mappingWithError_ = [step.stepMapping retain];
+         stepWithError_ = [step retain];
 			status_ = SIStoryStatusError;
 			return NO;
 		}

@@ -12,7 +12,7 @@
  Used to store a cross reference between a step mapping method and the class that contains it. The mapping is tested by using a regular expression. If the text of a step is matched by this regular expression, then the SIStepMapping instance is mapped to the step. Any given SIStep can only map to a single SIStepMapping. but a SIStepMapping instance can execute with data from any number of steps from any number of stories. This provides a way to centralise the code across multiple stories.
  */
 @interface SIStepMapping : NSObject {
-	@private
+@private
 }
 
 /// @name Properties
@@ -33,14 +33,9 @@
 @property (nonatomic, assign) Class targetClass;
 
 /**
- Indicates whether the maping was exexcuted. Mainly used for reporting mappings that are not being used. Returns YES if the mapping was executed at least once.
+ Indicates whether the mapping was mapped.
  */
-@property (nonatomic, assign) BOOL executed;
-
-/**
- If an exception is caught, it is stored here.
- */
-@property (nonatomic, retain) NSException *exception;
+@property (nonatomic, assign) BOOL mapped;
 
 /// @name Initialisers
 
@@ -56,7 +51,7 @@
 +(SIStepMapping *) stepMappingWithClass:(Class) theClass selector:(SEL) aSelector regex:(NSString *) theRegex error:(NSError **) error;
 
 /**
- Checks whether this instance can be applied to the passed SIStep. This executes the regular expression against the step and return whether it matched.
+ Checks whether this instance can be applied to the passed SIStep. This executes the regular expression against the step and return whether it matched. If a match is made then the mapped property is set to indicate that the step mapping was mapped.
  
  @param step the step to check.
  @return `YES` if the regular expression matches. `NO` otherwise.
@@ -68,8 +63,8 @@
  
  @param command the text line from the story.
  @param object the instantiated targetClass which contains the implementation code.
- @param error a pointer to a reference to an NSError that will be populated if there is a problem.
- @return `YES` if the invocation was successful. `NO` if there was an error.
+ @param error a pointer to a reference to an NSError. This is populated if there is an error.
+ @return `YES` if the invokation was successful. `NO` otherwise.
  */
 -(BOOL) invokeWithCommand:(NSString *) command object:(id) object error:(NSError **) error;
 

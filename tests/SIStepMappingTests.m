@@ -68,7 +68,6 @@
 	
 	GHAssertTrue(ok, @"Invocation should have worked");
 	GHAssertTrue(methodCalled, @"Method not called");
-	GHAssertTrue(mapping.executed, @"Maping thinks it has not been executed");
 }
 
 -(void) testInvokePassesStringValue {
@@ -103,19 +102,6 @@
 	[self invokeWithRegex: @"abc (.*)" selector:@selector(doSomethingWithBoolean:) command:@"abc yes"];
 }
 
--(void) testExceptionIsCaught {
-	NSError *error = nil;
-	SIStepMapping * mapping = [SIStepMapping stepMappingWithClass:[self class] selector:@selector(throwAnException) regex:@".*" error:&error];
-	GHAssertNotNil(mapping, @"nil mapping, error says %@", error.localizedDescription);
-	
-	BOOL ok = [mapping invokeWithCommand:@"abc" object:self error:&error];
-	
-	GHAssertTrue(methodCalled, @"Method not called");
-	GHAssertFalse(ok, @"Invocation should NOT have worked");
-	GHAssertTrue(mapping.executed, @"Mapping thinks it has not been executed");
-   GHAssertEqualStrings(@"ExceptionName", mapping.exception.name, @"Incorrect exception");
-}
-
 // Helpers
 
 -(void) invokeWithRegex:(NSString *) regex selector:(SEL) selector command:(NSString *) command {
@@ -127,7 +113,6 @@
 	
 	GHAssertTrue(ok, @"Invocation should have worked, error %@", error.localizedDescription);
 	GHAssertTrue(methodCalled, @"Method not called");
-	GHAssertTrue(mapping.executed, @"Mapping thinks it has not been executed");
 }
 
 // Called Methods.

@@ -6,6 +6,9 @@ simon-tab-class: tabbar-tab-highlighted
 ---
 h1. Version 0.1.8, March 2012
 
+* Switched to only building for armv7 devices instea of both armv6 and armv7.
+* Moved execution recording and exception handling to SIStory to facilitate better reporting.
+
 
 h1. Version 0.1.7, March 2012
 
