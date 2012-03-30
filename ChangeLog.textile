@@ -8,6 +8,9 @@ h1. Version 0.1.8, March 2012
 
 * Switched to only building for armv7 devices instea of both armv6 and armv7.
 * Moved execution recording and exception handling to SIStory to facilitate better reporting.
+* Refactoring the backpack and runner to enable running of individual tests.
+* Revamped UI for a better summary.
+* Refactored so that the UI can be displayed without running tests.
 
 
 h1. Version 0.1.7, March 2012

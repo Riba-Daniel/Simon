@@ -27,25 +27,60 @@
 @synthesize autorun = autorun_;
 
 // Static reference to self to keep alive in an ARC environment.
-static SIAppBackpack *keepMeAlive;
+static SIAppBackpack *backpack_;
 
-// Static reference to the current story runner.
-static SIStoryRunner *runner;
+#pragma mark - Accessors
+
++ (SIAppBackpack *)backpack {
+   if (backpack_ == nil) {
+      backpack_ = [[super allocWithZone:NULL] init];
+   }
+   return backpack_;
+}
+
+#pragma mark - Singleton overrides
+
++ (id)allocWithZone:(NSZone*)zone {
+   return [[self backpack] retain];
+}
+
+- (id)copyWithZone:(NSZone *)zone {
+   return self;
+}
+
+- (id)retain {
+   return self;
+}
+
+- (NSUInteger)retainCount {
+   return NSUIntegerMax;
+}
+
+- (oneway void)release {
+}
+
+- (id)autorelease {
+   return self;
+}
+
+#pragma mark - Instance methods
+
+-(void) dealloc {
+	DC_LOG(@"Freeing memory and exiting");
+	DC_DEALLOC(runner);
+	DC_DEALLOC(ui);
+	[super dealloc];
+}
 
 - (id)init {
 	self = [super init];
 	if (self) {
-      keepMeAlive = [self retain];
 		runner = [[SIStoryRunner alloc] init];
+		ui = [[SIStoryInAppReporter alloc] init];
 		self.autorun = YES;
 		[self addNotificationObservers];
 	}
 	return self;
-}
-
-// Provides a class based access to the current story runner.
-+(SIStoryRunner *) runner {
-	return runner;
 }
 
 -(void) addNotificationObservers {
@@ -54,6 +89,10 @@ static SIStoryRunner *runner;
 	[[NSNotificationCenter defaultCenter] addObserver:self 
 														  selector:@selector(startUp:) 
 																name:UIApplicationDidBecomeActiveNotification 
+															 object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self 
+														  selector:@selector(displayUI) 
+																name:SI_RUN_FINISHED_NOTIFICATION  
 															 object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self 
 														  selector:@selector(shutDown:) 
@@ -68,8 +107,9 @@ static SIStoryRunner *runner;
 	[runner loadStories];
 	if(self.autorun) {
 		[runner runStories];
+	} else {
+		[self displayUI];
 	}
-	[runner displayUI];
 }
 
 // Callbacks.
@@ -83,20 +123,18 @@ static SIStoryRunner *runner;
    
 }
 
+-(void) displayUI {
+	[ui reportOnStorySources:runner.storySources andMappings:runner.mappings];
+}
+
 -(void) shutDown:(NSNotification *) notification  {
 	
 	// Release program hooks and dealloc self.
 	DC_LOG(@"ShutDown requested, deallocing the keep me alive self reference.");
-   DC_DEALLOC(keepMeAlive);
+   DC_DEALLOC(backpack_);
 	
 	// Remove all notification watching.
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
--(void) dealloc {
-	DC_LOG(@"Freeing memory and exiting");
-	DC_DEALLOC(runner);
-	[super dealloc];
 }
 
 @end

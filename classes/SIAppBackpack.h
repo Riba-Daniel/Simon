@@ -8,11 +8,16 @@
 
 #import <Foundation/Foundation.h>
 #import "SIStoryRunner.h"
+#import "SIStoryInAppReporter.h"
 
 /**
  This class backpack's on a UIApplication in order to allow Simon to run in the background. You add it through the SIRun macro.
  */
-@interface SIAppBackpack : NSObject
+@interface SIAppBackpack : NSObject {
+@private
+	SIStoryInAppReporter *ui;
+	SIStoryRunner *runner;
+}
 
 /// @name Properties 
 
@@ -24,8 +29,8 @@
 /// @name Tasks
 
 /**
- Acess to the static story runner.
+ Gets access to the backpack singleton.
  */
-+(SIStoryRunner *) runner;
++ (SIAppBackpack *)backpack;
 
 @end

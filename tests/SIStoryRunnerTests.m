@@ -29,7 +29,6 @@
 	SIStoryRunner * runner = [[[SIStoryRunner alloc] init] autorelease];
 	SIStoryFileReader *reader = [[[SIStoryFileReader alloc] initWithFileName:@"Story files"] autorelease];
 	runner.reader = reader;
-	runner.reporters = [NSArray array];
 	[runner runStories];
 }
 
@@ -37,7 +36,6 @@
 	SIStoryRunner * runner = [[[SIStoryRunner alloc] init] autorelease];
 	SIStoryFileReader *reader = [[[SIStoryFileReader alloc] initWithFileName:@"Communication"] autorelease];
 	runner.reader = reader;
-	runner.reporters = [NSArray array];
 	[runner runStories];
 }
 

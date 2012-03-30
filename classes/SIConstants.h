@@ -19,6 +19,11 @@ extern const NSString * SI_INSTANCE_STEP_MAPPING_REF_KEY;
 /**
  Key of the notification sent when we want to shutdown Simon.
  */
+extern NSString * SI_RUN_FINISHED_NOTIFICATION;
+
+/**
+ Key of the notification sent when we want to shutdown Simon.
+ */
 extern NSString * SI_SHUTDOWN_NOTIFICATION;
 
 /**

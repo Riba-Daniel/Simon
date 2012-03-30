@@ -16,8 +16,9 @@
 #import "SIStoryInAppReporter.h"
 #import <dUsefulStuff/DCDialogs.h>
 
-@interface SIStoryRunner()
+@interface SIStoryRunner(_private)
 -(void) displayMessage:(NSString *) message;
+-(void) displayUI;
 @end
 
 @implementation SIStoryRunner
@@ -35,7 +36,6 @@
 	self.storySources = nil;
 	self.stories = nil;
 	self.mappings = nil;
-	DC_DEALLOC(ui);
 	[super dealloc];
 }
 
@@ -111,13 +111,9 @@
 	SIStoryLogReporter *logger = [[SIStoryLogReporter alloc] init];
 	[logger reportOnStorySources:self.storySources andMappings:self.mappings];
 	[logger release];
-}
-
--(void) displayUI {
-	if (ui == nil) {
-		ui = [[SIStoryInAppReporter alloc] init];
-	}
-	[ui reportOnStorySources:self.storySources andMappings:self.mappings];
+	
+	// Let the backpack know we have finished running stories.
+	[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:SI_RUN_FINISHED_NOTIFICATION object:nil]];
 }
 
 -(void) displayMessage:(NSString *) message {
