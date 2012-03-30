@@ -14,9 +14,7 @@
 /**
  Provides tools for accessing the UI of a running application.
  */
-@interface SIUIApplication : NSObject<SIUIViewDescriptionVisitorDelegate> {
-	@private
-}
+@interface SIUIApplication : NSObject<SIUIViewDescriptionVisitorDelegate> 
 
 /// @name Properties
 

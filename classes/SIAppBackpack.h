@@ -14,6 +14,13 @@
  */
 @interface SIAppBackpack : NSObject
 
+/// @name Properties 
+
+/**
+ YES by default, this tells Simon to automatically start running stories after the app is ready to receive events. Otherwise Simon's report window is loaded for manual story running.
+ */
+@property (nonatomic) BOOL autorun;
+
 /// @name Tasks
 
 /**

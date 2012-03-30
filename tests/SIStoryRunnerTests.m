@@ -30,14 +30,7 @@
 	SIStoryFileReader *reader = [[[SIStoryFileReader alloc] initWithFileName:@"Story files"] autorelease];
 	runner.reader = reader;
 	runner.reporters = [NSArray array];
-	
-	NSError *error = nil;
-	BOOL success = [runner runStories:&error];
-	
-	GHAssertFalse(success, @"Run should not have returned success.");
-	GHAssertNotNil(error, @"Error should have been returned");
-	GHAssertEquals(error.code, SIErrorStoryFailures, @"Incorrect error code returned");
-
+	[runner runStories];
 }
 
 -(void) testIsAbleToPassValuesBetweenClassInstances {
@@ -45,12 +38,7 @@
 	SIStoryFileReader *reader = [[[SIStoryFileReader alloc] initWithFileName:@"Communication"] autorelease];
 	runner.reader = reader;
 	runner.reporters = [NSArray array];
-	
-	NSError *error = nil;
-	BOOL success = [runner runStories:&error];
-	
-	GHAssertTrue(success, @"Run should have returned success.");
-	GHAssertNil(error, @"Error should nil, error %@", error.localizedFailureReason);
+	[runner runStories];
 }
 
 // ### Methods which are called by Simon ###

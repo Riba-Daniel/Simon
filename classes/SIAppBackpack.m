@@ -24,6 +24,8 @@
 
 @implementation SIAppBackpack
 
+@synthesize autorun = autorun_;
+
 // Static reference to self to keep alive in an ARC environment.
 static SIAppBackpack *keepMeAlive;
 
@@ -34,6 +36,8 @@ static SIStoryRunner *runner;
 	self = [super init];
 	if (self) {
       keepMeAlive = [self retain];
+		runner = [[SIStoryRunner alloc] init];
+		self.autorun = YES;
 		[self addNotificationObservers];
 	}
 	return self;
@@ -59,19 +63,13 @@ static SIStoryRunner *runner;
 
 // Background method
 -(void) start {
-	
 	DC_LOG(@"Simon's background task starting");
 	[NSThread currentThread].name = @"Simon";
-	
-	DC_DEALLOC(runner);
-	runner = [[SIStoryRunner alloc] init];
-	
-	NSError *error = nil;
-	DC_LOG(@"Calling story runner");
-	if (![runner runStories:&error]) {
-		// Do nothing as runner has code to deal with the error.
+	[runner loadStories];
+	if(self.autorun) {
+		[runner runStories];
 	}
-   
+	[runner displayUI];
 }
 
 // Callbacks.
@@ -86,11 +84,11 @@ static SIStoryRunner *runner;
 }
 
 -(void) shutDown:(NSNotification *) notification  {
-
+	
 	// Release program hooks and dealloc self.
 	DC_LOG(@"ShutDown requested, deallocing the keep me alive self reference.");
    DC_DEALLOC(keepMeAlive);
-
+	
 	// Remove all notification watching.
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
