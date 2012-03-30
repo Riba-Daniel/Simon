@@ -43,7 +43,7 @@
 /// @name Stories
 
 /**
- Executes the stories. See SIStory for details on hwo this happens.
+ Executes the stories. See SIStory for details on how this happens.
  
  @see SIStory
  @param error a pointer to a reference which is populated with a NSError instance if there is an error.

@@ -85,8 +85,6 @@
 	// Now execute the stories.
    // Only run the stories if we are autorunning.
 	BOOL success = YES;
-#ifndef SI_DONT_AUTORUN
-
 	DC_LOG(@"Running %lu stories", [stories count]);
    
 	for (SIStory *story in stories) {
@@ -109,7 +107,6 @@
 	}
 	
 	DC_LOG(@"Done. All stories succeeded ? %@", DC_PRETTY_BOOL(success));
-#endif
 
 	return success;
 }

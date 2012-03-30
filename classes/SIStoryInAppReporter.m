@@ -84,7 +84,7 @@
 							  DC_DEALLOC(navController);
 						  } ];
 	
-	[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"Simon shutdown" object:nil]];
+	[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:SI_SHUTDOWN_NOTIFICATION object:nil]];
 }
 
 @end

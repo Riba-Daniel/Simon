@@ -35,6 +35,7 @@
 	if (self) {
 		keyword_ = aKeyword;
 		self.command = theCommand;
+		[self reset];
 	}
 	return self;
 }
@@ -65,6 +66,12 @@
 		*error = [self errorForException];
 		return NO;
 	}
+}
+
+-(void) reset {
+	self.executed = NO;
+	self.exception = nil;
+	[self.stepMapping reset];
 }
 
 -(NSError *) errorForException {

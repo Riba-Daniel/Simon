@@ -53,7 +53,7 @@ static SIStoryRunner *runner;
 															 object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self 
 														  selector:@selector(shutDown:) 
-																name:@"Simon shutdown" 
+																name:SI_SHUTDOWN_NOTIFICATION  
 															 object:nil];
 }
 

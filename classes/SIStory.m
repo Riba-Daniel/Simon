@@ -14,8 +14,9 @@
 #import "SISimon.h"
 #import "SIConstants.h"
 
-@interface SIStory()
+@interface SIStory(_private)
 -(id) instanceForTargetClass:(Class) targetClass;
+-(BOOL) invokeSteps;
 @end
 
 @implementation SIStory
@@ -41,9 +42,7 @@
 	self = [super init];
 	if (self) {
 		steps_ = [[NSMutableArray alloc] init];
-		instanceCache = [[NSMutableDictionary alloc] init];
-		storyCache = [[NSMutableDictionary alloc] init];
-		status_ = SIStoryStatusNotRun;
+		[self reset];
 	}
 	return self;
 }
@@ -60,7 +59,34 @@
 }
 
 -(BOOL) invoke {
+
+	// Allocate the caches.
+	instanceCache = [[NSMutableDictionary alloc] init];
+	storyCache = [[NSMutableDictionary alloc] init];
+
+	BOOL result = [self invokeSteps];
+
+	// Clear the caches.
+	DC_DEALLOC(instanceCache);
+	DC_DEALLOC(storyCache);
 	
+	return result;
+}
+
+-(void) reset {
+
+	// Reset any current result data.
+	status_ = SIStoryStatusNotRun;
+	DC_DEALLOC(stepWithError_);
+	DC_DEALLOC(error_);
+
+	for (SIStep *step in self.steps) {
+		
+	}
+}
+
+-(BOOL) invokeSteps {
+
 	// If the story is not fully mapped then exit because we cannot run it.
 	for (SIStep *step in self.steps) {
 		if (![step isMapped]) {
@@ -90,6 +116,7 @@
 	
 	status_ = SIStoryStatusSuccess;
 	return YES;
+	
 }
 
 -(id) instanceForTargetClass:(Class) targetClass {

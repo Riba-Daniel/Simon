@@ -119,6 +119,10 @@
 	return YES;
 }
 
+-(void) reset {
+	// Nothing doing at this time.
+}
+
 -(NSInvocation *) createInvocationForMethod:(Method) method 
 										  withCommand:(NSString *) command {
 	DC_LOG(@"Creating invocation for %@::%@", NSStringFromClass(self.targetClass), NSStringFromSelector(self.selector));

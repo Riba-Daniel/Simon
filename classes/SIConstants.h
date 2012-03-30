@@ -14,7 +14,22 @@ extern const NSString * SI_INSTANCE_STORY_REF_KEY;
 /**
 The name of the field dynamically added to classes which contain step implementations. A reference to the parent story is set on this key effectively giving the class access to the story without the author having to write any code.
 */
- extern const NSString * SI_INSTANCE_STEP_MAPPING_REF_KEY;
+extern const NSString * SI_INSTANCE_STEP_MAPPING_REF_KEY;
+
+/**
+ Key of the notification sent when we want to shutdown Simon.
+ */
+extern NSString * SI_SHUTDOWN_NOTIFICATION;
+
+/**
+ Key of the notification sent when we want to re-run a single story.
+ */
+extern NSString * SI_RERUN_SINGLE_NOTIFICATION;
+
+/**
+ Key of the notification sent when we want to re-run a group of stories.
+ */
+extern NSString * SI_RERUN_GROUP_NOTIFICATION;
 
 /**
  Id of our main background thread. Note this is a const char "*", i.e. no '@' to declare a NSString.

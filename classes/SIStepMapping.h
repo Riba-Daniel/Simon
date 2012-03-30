@@ -68,4 +68,9 @@
  */
 -(BOOL) invokeWithCommand:(NSString *) command object:(id) object error:(NSError **) error;
 
+/**
+ Returns `YES` if the step has been mapping during the findMappingInList: method.
+ */
+-(void) reset;
+
 @end

@@ -71,4 +71,9 @@
  */
 -(BOOL) invokeWithObject:(id) object error:(NSError **) error;
 
+/**
+ Called when we want to reset the state. Usually this is part of re-running a story.
+ */
+-(void) reset;
+
 @end

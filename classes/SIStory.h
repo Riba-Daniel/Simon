@@ -95,6 +95,11 @@
  */
 -(BOOL) invoke;
 
+/**
+ Called to reset the state of the story before rerunning it.
+ */
+-(void) reset;
+
 /// @name Data access
 
 /**
