@@ -136,8 +136,8 @@
 		943A396A143DD2D0000D506C /* SIConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 943A3968143DD2D0000D506C /* SIConstants.m */; };
 		9465773F141B97B90026F1FB /* SIUIViewHandlerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9465773E141B97B90026F1FB /* SIUIViewHandlerTests.m */; };
 		94657743141C95160026F1FB /* AbstractTestWithControlsOnView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94657742141C95160026F1FB /* AbstractTestWithControlsOnView.m */; };
-		9490248C144089A3006132A5 /* SIStoryInAppReporter.h in Headers */ = {isa = PBXBuildFile; fileRef = 9490248A144089A3006132A5 /* SIStoryInAppReporter.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		9490248D144089A3006132A5 /* SIStoryInAppReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9490248B144089A3006132A5 /* SIStoryInAppReporter.m */; };
+		9490248C144089A3006132A5 /* SIUIReportManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 9490248A144089A3006132A5 /* SIUIReportManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9490248D144089A3006132A5 /* SIUIReportManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9490248B144089A3006132A5 /* SIUIReportManager.m */; };
 		9490249414408DC4006132A5 /* SIStoryReportTableViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 9490249214408DC4006132A5 /* SIStoryReportTableViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9490249514408DC4006132A5 /* SIStoryReportTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9490249314408DC4006132A5 /* SIStoryReportTableViewController.m */; };
 		9499DB6D13F017190053BEEA /* SIUIViewHandlerFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 9499DB6B13F017190053BEEA /* SIUIViewHandlerFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -313,8 +313,8 @@
 		9465773E141B97B90026F1FB /* SIUIViewHandlerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUIViewHandlerTests.m; sourceTree = "<group>"; };
 		94657741141C95160026F1FB /* AbstractTestWithControlsOnView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractTestWithControlsOnView.h; sourceTree = "<group>"; };
 		94657742141C95160026F1FB /* AbstractTestWithControlsOnView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractTestWithControlsOnView.m; sourceTree = "<group>"; };
-		9490248A144089A3006132A5 /* SIStoryInAppReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIStoryInAppReporter.h; sourceTree = "<group>"; };
-		9490248B144089A3006132A5 /* SIStoryInAppReporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIStoryInAppReporter.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		9490248A144089A3006132A5 /* SIUIReportManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIReportManager.h; sourceTree = "<group>"; };
+		9490248B144089A3006132A5 /* SIUIReportManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIUIReportManager.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		9490249214408DC4006132A5 /* SIStoryReportTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIStoryReportTableViewController.h; sourceTree = "<group>"; };
 		9490249314408DC4006132A5 /* SIStoryReportTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIStoryReportTableViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		9499DB6B13F017190053BEEA /* SIUIViewHandlerFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIViewHandlerFactory.h; sourceTree = "<group>"; };
@@ -678,15 +678,15 @@
 		9490249114408D11006132A5 /* Reporting */ = {
 			isa = PBXGroup;
 			children = (
-				9490248A144089A3006132A5 /* SIStoryInAppReporter.h */,
-				9490248B144089A3006132A5 /* SIStoryInAppReporter.m */,
+				94E3753714544A5000FB86AA /* SIStoryDetailsTableViewController.h */,
+				94E3753814544A5000FB86AA /* SIStoryDetailsTableViewController.m */,
 				65D03BD813BA099700A3F0FA /* SIStoryLogReporter.h */,
 				65D03BD913BA099700A3F0FA /* SIStoryLogReporter.m */,
 				65D03BD613BA096700A3F0FA /* SIStoryReporter.h */,
 				9490249214408DC4006132A5 /* SIStoryReportTableViewController.h */,
 				9490249314408DC4006132A5 /* SIStoryReportTableViewController.m */,
-				94E3753714544A5000FB86AA /* SIStoryDetailsTableViewController.h */,
-				94E3753814544A5000FB86AA /* SIStoryDetailsTableViewController.m */,
+				9490248A144089A3006132A5 /* SIUIReportManager.h */,
+				9490248B144089A3006132A5 /* SIUIReportManager.m */,
 			);
 			name = Reporting;
 			sourceTree = "<group>";
@@ -717,7 +717,7 @@
 				9499DB7213F017DC0053BEEA /* SIUIAction.h in Headers */,
 				942F7F66141F9197009F3550 /* SIUIViewHandler.h in Headers */,
 				943A3969143DD2D0000D506C /* SIConstants.h in Headers */,
-				9490248C144089A3006132A5 /* SIStoryInAppReporter.h in Headers */,
+				9490248C144089A3006132A5 /* SIUIReportManager.h in Headers */,
 				9490249414408DC4006132A5 /* SIStoryReportTableViewController.h in Headers */,
 				94DC535D14445C5300C3E586 /* SIStorySource.h in Headers */,
 				94E3753914544A5100FB86AA /* SIStoryDetailsTableViewController.h in Headers */,
@@ -894,7 +894,7 @@
 				9499DB6E13F017190053BEEA /* SIUIViewHandlerFactory.m in Sources */,
 				942F7F67141F9197009F3550 /* SIUIViewHandler.m in Sources */,
 				943A396A143DD2D0000D506C /* SIConstants.m in Sources */,
-				9490248D144089A3006132A5 /* SIStoryInAppReporter.m in Sources */,
+				9490248D144089A3006132A5 /* SIUIReportManager.m in Sources */,
 				9490249514408DC4006132A5 /* SIStoryReportTableViewController.m in Sources */,
 				94DC535E14445C5300C3E586 /* SIStorySource.m in Sources */,
 				94E3753A14544A5100FB86AA /* SIStoryDetailsTableViewController.m in Sources */,

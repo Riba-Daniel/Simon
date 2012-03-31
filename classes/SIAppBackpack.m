@@ -16,10 +16,11 @@
 
 
 @interface SIAppBackpack()
--(void) start;
 -(void) startUp:(NSNotification *) notification;
 -(void) shutDown:(NSNotification *) notification;
 -(void) addNotificationObservers;
+-(void) rerunGroup:(NSNotification *) notification;
+-(void) executeOnSimonThread:(void (^)()) block;
 @end
 
 @implementation SIAppBackpack
@@ -33,34 +34,9 @@ static SIAppBackpack *backpack_;
 
 + (SIAppBackpack *)backpack {
    if (backpack_ == nil) {
-      backpack_ = [[super allocWithZone:NULL] init];
+      backpack_ = [[SIAppBackpack alloc] init];
    }
    return backpack_;
-}
-
-#pragma mark - Singleton overrides
-
-+ (id)allocWithZone:(NSZone*)zone {
-   return [[self backpack] retain];
-}
-
-- (id)copyWithZone:(NSZone *)zone {
-   return self;
-}
-
-- (id)retain {
-   return self;
-}
-
-- (NSUInteger)retainCount {
-   return NSUIntegerMax;
-}
-
-- (oneway void)release {
-}
-
-- (id)autorelease {
-   return self;
 }
 
 #pragma mark - Instance methods
@@ -76,7 +52,7 @@ static SIAppBackpack *backpack_;
 	self = [super init];
 	if (self) {
 		runner = [[SIStoryRunner alloc] init];
-		ui = [[SIStoryInAppReporter alloc] init];
+		ui = [[SIUIReportManager alloc] init];
 		self.autorun = YES;
 		[self addNotificationObservers];
 	}
@@ -98,29 +74,39 @@ static SIAppBackpack *backpack_;
 														  selector:@selector(shutDown:) 
 																name:SI_SHUTDOWN_NOTIFICATION  
 															 object:nil];
-}
-
-// Background method
--(void) start {
-	DC_LOG(@"Simon's background task starting");
-	[NSThread currentThread].name = @"Simon";
-	[runner loadStories];
-	if(self.autorun) {
-		[runner runStories];
-	} else {
-		[self displayUI];
-	}
+	[[NSNotificationCenter defaultCenter] addObserver:self 
+														  selector:@selector(rerunGroup:) 
+																name:SI_RERUN_GROUP_NOTIFICATION  
+															 object:nil];
 }
 
 // Callbacks.
 -(void) startUp:(NSNotification *) notification {
-	DC_LOG(@"App is up so starting Simon's background queue");
+	[self executeOnSimonThread: ^{
+		[runner loadStories];
+		if(self.autorun) {
+			[runner runStories];
+		} else {
+			[self displayUI];
+		}
+	}];
+}
+
+-(void) rerunGroup:(NSNotification *) notification {
+	[self executeOnSimonThread: ^{
+		[runner runStories];
+	}];
+}
+
+-(void) executeOnSimonThread:(void (^)()) block {
 	dispatch_queue_t queue = dispatch_queue_create(SI_QUEUE_NAME, NULL);
 	dispatch_async(queue, ^{
-		[self start];
+		DC_LOG(@"Simon's background task starting");
+		[NSThread currentThread].name = @"Simon";
+		block();
 	});
    dispatch_release(queue);
-   
+	
 }
 
 -(void) displayUI {

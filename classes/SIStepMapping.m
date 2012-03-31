@@ -120,6 +120,7 @@
 }
 
 -(void) reset {
+	DC_LOG(@"Resetting");
 	// Nothing doing at this time.
 }
 

@@ -69,6 +69,7 @@
 }
 
 -(void) reset {
+	DC_LOG(@"Resetting");
 	self.executed = NO;
 	self.exception = nil;
 	[self.stepMapping reset];

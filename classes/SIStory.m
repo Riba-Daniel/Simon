@@ -76,12 +76,13 @@
 -(void) reset {
 
 	// Reset any current result data.
+	DC_LOG(@"Resetting");
 	status_ = SIStoryStatusNotRun;
 	DC_DEALLOC(stepWithError_);
 	DC_DEALLOC(error_);
 
 	for (SIStep *step in self.steps) {
-		
+		[step reset];
 	}
 }
 

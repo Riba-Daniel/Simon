@@ -13,7 +13,6 @@
 #import "SIStepMapping.h"
 #import "NSString+Simon.h"
 #import "SIStoryLogReporter.h"
-#import "SIStoryInAppReporter.h"
 #import <dUsefulStuff/DCDialogs.h>
 
 @interface SIStoryRunner(_private)
@@ -97,7 +96,13 @@
 -(void) runStories {
 	
 	DC_LOG(@"Running %lu stories", [self.stories count]);
+	
+	// First reset all the stories we are going to run.
+	for (SIStory *story in self.stories) {
+		[story reset];
+	}
    
+	// Now execute them.
 	for (SIStory *story in self.stories) {
 		if (![story invoke]) {
 			if (story.status == SIStoryStatusNotMapped || story.status == SIStoryStatusError) {
