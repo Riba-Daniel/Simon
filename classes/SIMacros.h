@@ -12,14 +12,18 @@
 /**
  This macro must be placed in your startup code. It loads Simon into the background and automatically runs the stories once the application is active and ready.
  If you want a particular story file to be run, just enter it's name as a parameter.
- */
-#if __has_feature(objc_arc)
+
+ #if __has_feature(objc_arc)
 #define SIRun() DC_LOG(@"Started backpack with ARC enabled"); \
-[[SIAppBackpack alloc] init];
+[SIAppBackpack backpack];
 #else
 #define SIRun() DC_LOG(@"Started backpack with manual memory management"); \
-[[[SIAppBackpack alloc] init] release];
+[SIAppBackpack backpack];
 #endif
+
+ */
+#define SIRun() DC_LOG(@"Started backpack"); \
+[SIAppBackpack backpack];
 
 #pragma mark - Step mapping
 
@@ -27,7 +31,7 @@
  This macro maps a regex to a selector in the current class. Simon expects that the order and type of any groups in the regex will
  match the order and types of arguments in the selector. So we recommend that the this is used before the selector like this
  `
- SIMapStepToSelector(@"", thisIsMyMethod:)
+ SIMapStepToSelector(@"then use \"(.*)\" as the string value", thisIsMyMethod:)
  -(void) thisIsMyMethod:(NSString *) stringValue {
  ...
  }
