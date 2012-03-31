@@ -318,6 +318,11 @@
    
 }
 
+-(void) rerunStory {
+	
+}
+
+
 #pragma mark - View rotation
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
    return YES;

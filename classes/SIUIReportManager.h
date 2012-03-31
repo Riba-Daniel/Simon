@@ -16,7 +16,11 @@
 @interface SIUIReportManager : NSObject<SIStoryReporter> {
 	@private 
 	UINavigationController *navController;
-	BOOL triggerRerun;
 }
+
+/**
+ Called to remove the window from the screen.
+ */
+-(void) removeWindow;
 
 @end

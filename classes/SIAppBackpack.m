@@ -16,10 +16,13 @@
 
 
 @interface SIAppBackpack()
+-(void) displayUI;
+-(void) addNotificationObservers;
 -(void) startUp:(NSNotification *) notification;
 -(void) shutDown:(NSNotification *) notification;
--(void) addNotificationObservers;
+-(void) runFinished:(NSNotification *) notification;
 -(void) rerunGroup:(NSNotification *) notification;
+-(void) windowRemoved:(NSNotification *) notification;
 -(void) executeOnSimonThread:(void (^)()) block;
 @end
 
@@ -78,6 +81,10 @@ static SIAppBackpack *backpack_;
 														  selector:@selector(rerunGroup:) 
 																name:SI_RERUN_GROUP_NOTIFICATION  
 															 object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self 
+														  selector:@selector(windowRemoved:) 
+																name:SI_WINDOW_REMOVED_NOTIFICATION  
+															 object:nil];
 }
 
 // Callbacks.
@@ -92,11 +99,22 @@ static SIAppBackpack *backpack_;
 	}];
 }
 
+-(void) runFinished:(NSNotification *) notification {
+	[self displayUI];
+}
+
 -(void) rerunGroup:(NSNotification *) notification {
+	DC_LOG(@"Rerunning group");
+	[ui removeWindow];
+}
+
+-(void) windowRemoved:(NSNotification *) notification {
+	DC_LOG(@"UI Removed");
 	[self executeOnSimonThread: ^{
 		[runner runStories];
 	}];
 }
+
 
 -(void) executeOnSimonThread:(void (^)()) block {
 	dispatch_queue_t queue = dispatch_queue_create(SI_QUEUE_NAME, NULL);
@@ -115,6 +133,8 @@ static SIAppBackpack *backpack_;
 
 -(void) shutDown:(NSNotification *) notification  {
 	
+	[ui removeWindow];
+
 	// Release program hooks and dealloc self.
 	DC_LOG(@"ShutDown requested, deallocing the keep me alive self reference.");
    DC_DEALLOC(backpack_);

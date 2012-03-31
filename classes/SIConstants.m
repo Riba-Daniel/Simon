@@ -15,5 +15,6 @@ NSString * SI_RUN_FINISHED_NOTIFICATION = @"Simon run finished";
 NSString * SI_SHUTDOWN_NOTIFICATION = @"Simon shutdown"; 
 NSString * SI_RERUN_SINGLE_NOTIFICATION = @"Simon rerun story"; 
 NSString * SI_RERUN_GROUP_NOTIFICATION = @"Simon rerun group"; 
+NSString * SI_WINDOW_REMOVED_NOTIFICATION = @"Simon window removed"; 
 
 const char * SI_QUEUE_NAME = "au.com.derekclarkson.simon";

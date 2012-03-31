@@ -15,7 +15,6 @@
 @interface SIUIReportManager(_private)
 -(void) closeSimon;
 -(void) runStories;
--(void) removeWindow;
 -(UIView *) uiParentView;
 @end
 
@@ -40,7 +39,6 @@
 		
 		// Set a nav controller as the top controller and keep a reference to it.
 		navController = [[UINavigationController alloc] initWithRootViewController:reportController];
-		[reportController release];
 		
 		// Add buttons
 		UIBarButtonItem *closeButton = [[UIBarButtonItem alloc] initWithTitle:@"Close Simon" 
@@ -49,12 +47,13 @@
 																							action:@selector(closeSimon)];
 		UIBarButtonItem *rerunButton = [[UIBarButtonItem alloc] initWithTitle:@"Run" 
 																							 style:UIBarButtonItemStylePlain 
-																							target:self 
-																							action:@selector(runStories)];
+																							target:reportController 
+																							action:@selector(rerunStories)];
 		reportController.navigationItem.leftBarButtonItem = closeButton;
 		reportController.navigationItem.rightBarButtonItem = rerunButton;
 		[closeButton release];
 		[rerunButton release];
+		[reportController release];
 		
 		// Resign the keyboard in case it is visible.
 		[[UIApplication sharedApplication].keyWindow endEditing:YES];
@@ -77,17 +76,13 @@
 	
 }
 
--(void) runStories {
-	triggerRerun = YES;
-	[self removeWindow];
-}
-
 -(void) closeSimon {
-	[self removeWindow];
 	[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:SI_SHUTDOWN_NOTIFICATION object:nil]];
 }
 
 -(void) removeWindow {
+	
+	DC_LOG(@"Removing window");
 	
 	UIView *parentView = [self uiParentView];
 	CGRect windowFrame = parentView.frame;
@@ -95,22 +90,14 @@
 	
 	[UIView animateWithDuration:1.0f  
 						  animations:^{
-							  
 							  CGRect offScreen = CGRectMake(0, windowFrame.size.height, viewFrame.size.width, viewFrame.size.height);
 							  navController.view.frame = offScreen;
-							  
 						  }
 	 
 						  completion:^(BOOL finished){
-							  
 							  [navController.view removeFromSuperview];
 							  DC_DEALLOC(navController);
-							  
-							  // Let the runner know it can run stories.
-							  if (triggerRerun) {
-								  triggerRerun = NO;
-								  [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:SI_RERUN_GROUP_NOTIFICATION object:nil]];
-							  }
+							  [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:SI_WINDOW_REMOVED_NOTIFICATION object:nil]];
 						  }];
 }
 

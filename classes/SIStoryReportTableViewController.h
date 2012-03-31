@@ -21,4 +21,6 @@
 /// A list of all the SIStepMapping objects that where created.
 @property (nonatomic, retain) NSArray *mappings;
 
+-(void) rerunStories;
+
 @end

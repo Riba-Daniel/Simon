@@ -37,6 +37,11 @@ extern NSString * SI_RERUN_SINGLE_NOTIFICATION;
 extern NSString * SI_RERUN_GROUP_NOTIFICATION;
 
 /**
+ Key of the notification sent when we want to re-run a group of stories.
+ */
+extern NSString * SI_WINDOW_REMOVED_NOTIFICATION;
+
+/**
  Id of our main background thread. Note this is a const char "*", i.e. no '@' to declare a NSString.
  */
 extern const char * SI_QUEUE_NAME;

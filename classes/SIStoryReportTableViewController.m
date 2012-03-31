@@ -13,6 +13,10 @@
 #import <dUsefulStuff/DCDialogs.h>
 #import "SIStoryDetailsTableViewController.h"
 
+@interface SIStoryReportTableViewController (_private)
+-(void) rerunStories;
+@end
+
 @implementation SIStoryReportTableViewController
 
 @synthesize storySources = storySources_;
@@ -98,9 +102,24 @@
    details.source = [self.storySources objectAtIndex:indexPath.section];
 	details.story = (SIStory *)[details.source.stories objectAtIndex:indexPath.row];
 	details.navigationItem.title = details.story.title;
+	
+	UIBarButtonItem *rerunButton = [[UIBarButtonItem alloc] initWithTitle:@"Run" 
+																						 style:UIBarButtonItemStylePlain 
+																						target:details 
+																						action:@selector(rerunStory)];
+	
+	details.navigationItem.rightBarButtonItem = rerunButton;
+	[rerunButton release];
 
    DC_LOG(@"Loading details for story %@", details.story.title);
 	[self.navigationController pushViewController:details animated:YES];
+}
+
+#pragma mark - Running stories
+
+-(void) rerunStories {
+	DC_LOG(@"Rerunning stories");
+	[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:SI_RERUN_GROUP_NOTIFICATION object:nil]];
 }
 
 #pragma mark - View rotation
