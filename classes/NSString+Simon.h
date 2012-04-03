@@ -43,4 +43,15 @@
  */
 +(NSString *) stringFromKeyword:(SIKeyword) keyword;
 
+/**
+ A more complex prefix check which applies the passed options. Typically these specify such things as case sensitivity.
+ 
+ @param prefix the string to test for a prefix match.
+ @param options the options to use in the match. See NSString:compare:options:range: for details on the options.
+ @see NSString:compare:options:range:
+ @return YES if there is a match.
+ */
+-(BOOL) hasPrefix:(NSString *) prefix options:(int) options;
+
+
 @end

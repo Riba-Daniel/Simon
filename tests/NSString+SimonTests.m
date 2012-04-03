@@ -11,11 +11,11 @@
 #import "SIConstants.h"
 #import "NSString+Simon.h"
 
-@interface NSObject_UtilsTests : GHTestCase {}
+@interface NSString_SimonTests : GHTestCase {}
 
 @end
 
-@implementation NSObject_UtilsTests
+@implementation NSString_SimonTests
 
 -(void) testStringToKeywordGivenWrongCase {
 	GHAssertEquals([@"GiVeN" keywordFromString] , SIKeywordGiven, @"Unexpected keyword returned");
@@ -75,6 +75,26 @@
 
 -(void) testStripsDoubleQuotesButLeavesEmbeddedQuotes {
 	GHAssertEqualStrings([@"\"a\"b\"c\"" stringByRemovingQuotes], @"a\"b\"c", @"Quotes not removed");
+}
+
+-(void) testHasPrefixWithOptionsNoMatch {
+	GHAssertFalse([@"abcdef" hasPrefix:@"xyz" options:0], @"Should not have matched");
+}
+
+-(void) testHasPrefixWithOptionsTooShortToMatch {
+	GHAssertFalse([@"abc" hasPrefix:@"abcdef" options:0], @"Should not have matched");
+}
+
+-(void) testHasPrefixWithOptionsExactMatch {
+	GHAssertTrue([@"abcdef" hasPrefix:@"abc" options:0], @"Should not have matched");
+}
+
+-(void) testHasPrefixWithOptionsCaseInsensitiveMatch {
+	GHAssertTrue([@"aBCdef" hasPrefix:@"abc" options:NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch], @"Should not have matched");
+}
+
+-(void) testHasPrefixWithOptionsDiacraticInsensitiveMatch {
+	GHAssertTrue([@"defg" hasPrefix:@"dË" options:NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch], @"Should not have matched");
 }
 
 

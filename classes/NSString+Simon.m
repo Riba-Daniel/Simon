@@ -85,5 +85,16 @@
 	}
 }
 
+-(BOOL) hasPrefix:(NSString *) prefix options:(int) options {
+	
+	// Avoid out of range exceptions.
+	if (self.length <= [prefix length]) {
+		return NO;
+	}
+	
+	// Check using options.
+	NSComparisonResult result = [self compare:prefix options:options range:NSMakeRange(0, [prefix length])];
+	return result == NSOrderedSame;
+}
 
 @end

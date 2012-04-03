@@ -34,7 +34,6 @@
 		
 		SIStoryReportTableViewController *reportController = [[SIStoryReportTableViewController alloc] initWithStyle:UITableViewStylePlain];
 		reportController.storySources = sources;
-		reportController.mappings = mappings;
 		reportController.navigationItem.title = @"Simon's simple report";
 		
 		// Set a nav controller as the top controller and keep a reference to it.

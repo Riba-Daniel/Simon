@@ -11,15 +11,14 @@
 /**
  Table view controller for the report on all the stories which where run.
  */
-@interface SIStoryReportTableViewController : UITableViewController {
+@interface SIStoryReportTableViewController : UITableViewController<UISearchDisplayDelegate, UISearchBarDelegate> {
 @private
+	NSMutableArray *filteredSources;
+	UISearchDisplayController *searchController;
 }
 
 /// A list of the story source files.
 @property (nonatomic, retain) NSArray *storySources;
-
-/// A list of all the SIStepMapping objects that where created.
-@property (nonatomic, retain) NSArray *mappings;
 
 -(void) rerunStories;
 
