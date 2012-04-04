@@ -27,19 +27,19 @@ extern NSString * SI_RUN_FINISHED_NOTIFICATION;
 extern NSString * SI_SHUTDOWN_NOTIFICATION;
 
 /**
- Key of the notification sent when we want to re-run a single story.
+ Key of the notification sent when we want to run some stories.
  */
-extern NSString * SI_RERUN_SINGLE_NOTIFICATION;
-
-/**
- Key of the notification sent when we want to re-run a group of stories.
- */
-extern NSString * SI_RERUN_GROUP_NOTIFICATION;
+extern NSString * SI_RUN_STORIES_NOTIFICATION;
 
 /**
  Key of the notification sent when we want to re-run a group of stories.
  */
 extern NSString * SI_WINDOW_REMOVED_NOTIFICATION;
+
+/**
+ Key of the list of stories to be run in the notification sent to the back pack by the UI.
+ */
+extern NSString * SI_STORIES_TO_RUN_LIST;
 
 /**
  Id of our main background thread. Note this is a const char "*", i.e. no '@' to declare a NSString.

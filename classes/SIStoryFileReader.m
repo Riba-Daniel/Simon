@@ -20,70 +20,43 @@
 -(SIKeyword) keywordFromLine:(NSString *) line 
 							  error:(NSError **) error;
 -(NSString *)failureReasonWithContent:(NSString *) content;
--(void) mainInit;
 
 @end
 
 @implementation SIStoryFileReader
 
-@synthesize files = files_;
-@synthesize currentLineNumber = currentLineNumber_;
-@synthesize currentSource = currentSource_;
+@synthesize storySources = storySources_;
 
 -(void) dealloc {
+	DC_LOG(@"Deallocing");
+	self.storySources = nil;
+	DC_DEALLOC(currentSource);
 	DC_DEALLOC(trimChars);
-	self.files = nil;
-	self.currentSource = nil;
 	[super dealloc];
 }
 
 -(id) init {
 	self = [super init];
 	if (self) {
-		[self mainInit];
-		self.files = [[NSBundle mainBundle] pathsForResourcesOfType:STORY_EXTENSION inDirectory:nil];
+		trimChars = [[NSMutableCharacterSet whitespaceCharacterSet] retain];
+		[(NSMutableCharacterSet *)trimChars formUnionWithCharacterSet:[NSCharacterSet characterSetWithCharactersInString:@".,;:!?"]];
 	}
 	return self;
-}
-
--(id) initWithFileName:(NSString *) fileName {
-	self = [super init];
-	if (self) {
-		[self mainInit];
-      
-		NSString * file = [[NSBundle mainBundle] pathForResource:[fileName stringByDeletingPathExtension] ofType:STORY_EXTENSION];
-		DC_LOG(@"Found file %@", file);
-		if (file == nil) {
-			NSException* myException = [NSException
-												 exceptionWithName:@"FileNotFoundException"
-												 reason:@"File Not Found on System"
-												 userInfo:nil];
-			@throw myException;
-		}
-		self.files = [NSArray arrayWithObject:file];
-	}
-	return self;
-}
-
--(void) mainInit {
-	trimChars = [[NSMutableCharacterSet whitespaceCharacterSet] retain];
-	[(NSMutableCharacterSet *)trimChars formUnionWithCharacterSet:[NSCharacterSet characterSetWithCharactersInString:@".,;:!?"]];
 }
 
 -(NSArray *) readStorySources:(NSError **) error {
-	
-	NSMutableArray * storySources = [[[NSMutableArray alloc] init] autorelease];
-	
-	for (NSString * file in self.files) {
+
+	NSArray *files = [[NSBundle mainBundle] pathsForResourcesOfType:STORY_EXTENSION inDirectory:nil];
+	self.storySources = [NSMutableArray array];
+
+	for (NSString *file in files) {
 		
 		priorKeyword = SIKeywordStartOfFile;
 		
 		// Add the file as source.
-		SIStorySource *source = [[[SIStorySource alloc] init] autorelease];
-		source.source = file;
-		[storySources addObject:source];
-		
-		self.currentSource = source;
+		currentSource = [[SIStorySource alloc] init];
+		currentSource.source = file;
+		[(NSMutableArray *)self.storySources addObject:currentSource];
 		
 		// Read the file.
 		DC_LOG(@"Reading file: %@", file);
@@ -96,14 +69,18 @@
 		// Break it up and process the lines.
 		NSUInteger lineNbr = 0;
 		for (NSString * line in [contents componentsSeparatedByString:@"\n"]) {
-			self.currentLineNumber = ++lineNbr;
+			currentLineNumber = ++lineNbr;
 			if (![self processLine: line error:error]) {
+				// Error reading the source.
 				return nil;
 			}
 		}
+		
+		DC_DEALLOC(currentSource);
 	}
-	
-	return storySources;
+
+	DC_LOG(@"Number of stories loaded: %i", [(NSArray *)[self.storySources valueForKeyPath:@"@unionOfArrays.stories"] count]);
+	return self.storySources;
 }
 
 -(BOOL) processLine:(NSString *) line 
@@ -212,7 +189,7 @@
 	
 	// Now add the step to the current story.
 	DC_LOG(@"Adding step: %@", cleanLine);
-	SIStory *story = [self.currentSource.stories lastObject];
+	SIStory *story = [currentSource.stories lastObject];
 	[story createStepWithKeyword:keyword command:cleanLine];
 	
 	return YES;
@@ -252,7 +229,7 @@
 	// Create the new one and store it in the return array.
 	DC_LOG(@"Creating new story");
 	SIStory *story = [[[SIStory alloc] init] autorelease];
-	[self.currentSource.stories addObject:story];
+	[currentSource.stories addObject:story];
 	
 	// Store the title.
 	NSString *storyTitle = [[title substringFromIndex: 5] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
@@ -264,7 +241,7 @@
 }
 
 -(NSString *)failureReasonWithContent:(NSString *) content {
-	return [NSString stringWithFormat:@"%@[line %i]: %@", [self.currentSource.source lastPathComponent], self.currentLineNumber, content];
+	return [NSString stringWithFormat:@"%@[line %i]: %@", [currentSource.source lastPathComponent], currentLineNumber, content];
 }
 
 

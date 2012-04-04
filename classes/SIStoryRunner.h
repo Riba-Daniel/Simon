@@ -24,19 +24,9 @@
 @property (retain, nonatomic) SIStoryFileReader * reader;
 
 /**
- The runtime to source mappings from. This is read only.
+ The runtime to source mappings from.
  */
 @property (retain, nonatomic) SIRuntime *runtime;
-
-/**
- After loading this will be populated with the sources of all the stories. This allows access to interrogate them for reporting.
- */
-@property (retain, nonatomic) NSArray *storySources;
-
-/**
- After loading this will be populated with the all the stories.
- */
-@property (retain, nonatomic) NSArray *stories;
 
 /**
  After loading this will be populated with the all the implementation mappings.
@@ -54,8 +44,9 @@
 /**
  Executes the stories. See SIStory for details on how this happens.
  
+ @param sources a list of SIStorySource objects which contain the stories to be run.
  @see SIStory
  */
--(void) runStories;
+-(void) runStoriesInSources:(NSArray *) sources;
 
 @end

@@ -11,6 +11,8 @@ h1. Version 0.1.8, March 2012
 * Refactoring the backpack and runner to enable running of individual tests.
 * Revamped UI for a better summary.
 * Refactored so that the UI can be displayed without running tests.
+* Added a search bar to the story report.
+* Added ability to rerun all tests and search result tests.
 
 
 h1. Version 0.1.7, March 2012

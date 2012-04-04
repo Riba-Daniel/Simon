@@ -17,6 +17,7 @@
 @private
 	SIUIReportManager *ui;
 	SIStoryRunner *runner;
+	NSArray *storiesToRun;
 }
 
 /// @name Properties 

@@ -75,7 +75,7 @@
 	
 }
 
--(void) closeSimon {
+-(void) closeSimon {	
 	[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:SI_SHUTDOWN_NOTIFICATION object:nil]];
 }
 

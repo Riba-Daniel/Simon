@@ -24,16 +24,12 @@
 
 @synthesize reader = reader_;
 @synthesize runtime = runtime_;
-@synthesize storySources = storySources_;
-@synthesize stories = stories_;
 @synthesize mappings = mappings_;
 
 -(void) dealloc {
 	DC_LOG(@"Deallocing");
 	self.reader = nil;
 	self.runtime = nil;
-	self.storySources = nil;
-	self.stories = nil;
 	self.mappings = nil;
 	[super dealloc];
 }
@@ -43,7 +39,7 @@
 	self = [super init];
 	if (self) {
 		// Now setup the defaults.
-		DC_LOG(@"Setting up reader, runtime ad reporters");
+		DC_LOG(@"Setting up reader and runtime");
 		self.reader = [[[SIStoryFileReader alloc] init] autorelease];
 		self.runtime = [[[SIRuntime alloc] init] autorelease];
 	}
@@ -55,10 +51,10 @@
 	// Read the stories.
 	DC_LOG(@"Reading stories");
 	NSError *error = nil;
-	self.storySources = [self.reader readStorySources: &error];
+	NSArray *storySources = [self.reader readStorySources: &error];
 	
 	// If there was an error then return.
-	if (self.storySources == nil) {
+	if (storySources == nil) {
 		DC_LOG(@"Error reading story files - exiting. Error %@", [error localizedFailureReason]);
 		[self performSelectorOnMainThread:@selector(displayMessage:)
 									  withObject:[error localizedFailureReason] waitUntilDone:NO];
@@ -66,8 +62,8 @@
 	}
 	
 	// If no stories where read then generate an error and return.
-	NSNumber *numberOfStories = [self.storySources valueForKeyPath:@"@count.stories"];
-	if ([self.storySources count] == 0 || [numberOfStories integerValue] == 0) {
+	NSUInteger numberOfStories = [(NSArray *)[storySources valueForKeyPath:@"@unionOfArrays.stories"] count];
+	if ([storySources count] == 0 || numberOfStories == 0) {
 		[self setError:&error 
 					 code:SIErrorNoStoriesFound 
 			errorDomain:SIMON_ERROR_DOMAIN 
@@ -83,27 +79,28 @@
 	self.mappings = [self.runtime allMappingMethodsInRuntime];
 	
    // Get a union of all the stories.
-	self.stories = [self.storySources valueForKeyPath:@"@unionOfArrays.stories"];
+	NSArray *stories = [storySources valueForKeyPath:@"@unionOfArrays.stories"];
 	
 	// Find the mapping for each story.
 	DC_LOG(@"Mappin steps to story steps");
-	for (SIStory *story in self.stories) {
+	for (SIStory *story in stories) {
 		[story mapSteps:(NSArray *) self.mappings];
 	}
 	
 }
 
--(void) runStories {
+-(void) runStoriesInSources:(NSArray *) sources {
 	
-	DC_LOG(@"Running %lu stories", [self.stories count]);
+	NSArray *stories = [sources valueForKeyPath:@"@unionOfArrays.stories"];
+	DC_LOG(@"Running %lu stories", [stories count]);
 	
 	// First reset all the stories we are going to run.
-	for (SIStory *story in self.stories) {
+	for (SIStory *story in stories) {
 		[story reset];
 	}
    
 	// Now execute them.
-	for (SIStory *story in self.stories) {
+	for (SIStory *story in stories) {
 		if (![story invoke]) {
 			if (story.status == SIStoryStatusNotMapped || story.status == SIStoryStatusError) {
 				DC_LOG(@"Error executing y %@", [story.error localizedFailureReason]);
@@ -114,7 +111,7 @@
 	// Publish the results.
 	DC_LOG(@"Logging report");
 	SIStoryLogReporter *logger = [[SIStoryLogReporter alloc] init];
-	[logger reportOnStorySources:self.storySources andMappings:self.mappings];
+	[logger reportOnStorySources:sources andMappings:self.mappings];
 	[logger release];
 	
 	// Let the backpack know we have finished running stories.

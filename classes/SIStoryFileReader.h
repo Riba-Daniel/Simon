@@ -17,35 +17,16 @@
 	@private
 	NSCharacterSet *trimChars;
 	SIKeyword priorKeyword;
+	SIStorySource *currentSource;
+	NSUInteger currentLineNumber;
 }
 
 /// @name Properties
 
-/**
- The current source file we are reading.
- */
-@property (nonatomic, retain) SIStorySource *currentSource;
+/// List of the SIStorySource instances created from the files read in.
+@property (retain, nonatomic) NSArray *storySources;
 
-/**
- The current line number we are on in the story file.
- */
-@property (nonatomic) NSUInteger currentLineNumber;
-
-/**
- List of the files found in the file system which will be processed to produce stories. Multi stories can be stored in any given file.
- */
-@property (retain, nonatomic) NSArray * files;
-
-/// @name Initialisation
-
-/**
- Used to load tests from just one file out of many.
- 
- @param fileName the name of the file without the extension.
- */
--(id) initWithFileName:(NSString *) fileName;
-
-// @name Stories
+/// @name Stories
 
 /**
  Reads the files and returns a list of SIStory objects.

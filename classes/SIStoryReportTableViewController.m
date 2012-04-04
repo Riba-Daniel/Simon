@@ -147,19 +147,22 @@
 	[rerunButton release];
 	
    DC_LOG(@"Loading details for story %@", details.story.title);
-	[self.navigationController pushViewController:details animated:YES];
+   DC_LOG(@"nav %@", super.navigationController);
+	[super.navigationController pushViewController:details animated:YES];
 }
 
 #pragma mark - Running stories
 
 -(void) rerunStories {
-	DC_LOG(@"Rerunning stories");
 	
-	// Build list of all stories in the current list of stories. Which may be filtered.
+	DC_LOG(@"Rerunning stories");
 	DC_LOG(@"Search is active: %@", DC_PRETTY_BOOL(searchController.isActive));
 	
-	
-	//[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:SI_RERUN_GROUP_NOTIFICATION object:nil]];
+	// Send the notification
+	NSArray *sources = searchController.isActive ? filteredSources : self.storySources;
+	DC_LOG(@"Number of stories to run: %i", [(NSArray *)[sources valueForKeyPath:@"@unionOfArrays.stories"] count]);
+	NSDictionary *userInfo = [NSDictionary dictionaryWithObject:sources forKey:SI_STORIES_TO_RUN_LIST];
+	[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:SI_RUN_STORIES_NOTIFICATION object:nil userInfo:userInfo]];
 }
 
 #pragma mark - View rotation

@@ -21,7 +21,7 @@
 -(void) startUp:(NSNotification *) notification;
 -(void) shutDown:(NSNotification *) notification;
 -(void) runFinished:(NSNotification *) notification;
--(void) rerunGroup:(NSNotification *) notification;
+-(void) runStories:(NSNotification *) notification;
 -(void) windowRemoved:(NSNotification *) notification;
 -(void) executeOnSimonThread:(void (^)()) block;
 @end
@@ -78,8 +78,8 @@ static SIAppBackpack *backpack_;
 																name:SI_SHUTDOWN_NOTIFICATION  
 															 object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self 
-														  selector:@selector(rerunGroup:) 
-																name:SI_RERUN_GROUP_NOTIFICATION  
+														  selector:@selector(runStories:) 
+																name:SI_RUN_STORIES_NOTIFICATION  
 															 object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self 
 														  selector:@selector(windowRemoved:) 
@@ -92,7 +92,7 @@ static SIAppBackpack *backpack_;
 	[self executeOnSimonThread: ^{
 		[runner loadStories];
 		if(self.autorun) {
-			[runner runStories];
+			[runner runStoriesInSources:runner.reader.storySources];
 		} else {
 			[self displayUI];
 		}
@@ -103,15 +103,19 @@ static SIAppBackpack *backpack_;
 	[self displayUI];
 }
 
--(void) rerunGroup:(NSNotification *) notification {
-	DC_LOG(@"Rerunning group");
+-(void) runStories:(NSNotification *) notification {
+	
+	// Store the list of stories to be run.
+	storiesToRun = [[notification.userInfo objectForKey:SI_STORIES_TO_RUN_LIST] retain];
+	DC_LOG(@"Number of stories to be run: %i", [(NSArray *)[storiesToRun valueForKeyPath:@"@unionOfArrays.stories"] count]);
 	[ui removeWindow];
 }
 
 -(void) windowRemoved:(NSNotification *) notification {
 	DC_LOG(@"UI Removed");
 	[self executeOnSimonThread: ^{
-		[runner runStories];
+		[runner runStoriesInSources:storiesToRun];
+		DC_DEALLOC(storiesToRun);
 	}];
 }
 
@@ -128,7 +132,8 @@ static SIAppBackpack *backpack_;
 }
 
 -(void) displayUI {
-	[ui reportOnStorySources:runner.storySources andMappings:runner.mappings];
+	DC_LOG(@"Number of stories to display: %i", [(NSArray *)[runner.reader.storySources valueForKeyPath:@"@unionOfArrays.stories"] count]);
+	[ui reportOnStorySources:runner.reader.storySources andMappings:runner.mappings];
 }
 
 -(void) shutDown:(NSNotification *) notification  {
