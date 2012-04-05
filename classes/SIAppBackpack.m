@@ -24,11 +24,13 @@
 -(void) runStories:(NSNotification *) notification;
 -(void) windowRemoved:(NSNotification *) notification;
 -(void) executeOnSimonThread:(void (^)()) block;
+@property (retain, nonatomic) NSDictionary *displayUserInfo;
 @end
 
 @implementation SIAppBackpack
 
 @synthesize autorun = autorun_;
+@synthesize displayUserInfo = displayUserInfo_;
 
 // Static reference to self to keep alive in an ARC environment.
 static SIAppBackpack *backpack_;
@@ -104,18 +106,14 @@ static SIAppBackpack *backpack_;
 }
 
 -(void) runStories:(NSNotification *) notification {
-	
-	// Store the list of stories to be run.
-	storiesToRun = [[notification.userInfo objectForKey:SI_STORIES_TO_RUN_LIST] retain];
-	DC_LOG(@"Number of stories to be run: %i", [(NSArray *)[storiesToRun valueForKeyPath:@"@unionOfArrays.stories"] count]);
+	self.displayUserInfo = notification.userInfo;
 	[ui removeWindow];
 }
 
 -(void) windowRemoved:(NSNotification *) notification {
 	DC_LOG(@"UI Removed");
 	[self executeOnSimonThread: ^{
-		[runner runStoriesInSources:storiesToRun];
-		DC_DEALLOC(storiesToRun);
+		[runner runStoriesInSources:[self.displayUserInfo objectForKey:SI_UI_STORIES_TO_RUN_LIST]];
 	}];
 }
 

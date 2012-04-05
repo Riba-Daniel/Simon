@@ -12,6 +12,10 @@
 #import "SISimon.h"
 #import "SIStoryLogReporter.h"
 
+@interface SIStoryFileReader ()
+-(BOOL) readFile:(NSString *) filename error:(NSError **) error;
+@end
+
 @interface SIStoryRunnerTests : GHTestCase {
 @private
 	BOOL step1Called;
@@ -26,17 +30,23 @@
 @implementation SIStoryRunnerTests
 
 -(void) testRunStories {
-	SIStoryRunner * runner = [[[SIStoryRunner alloc] init] autorelease];
-	SIStoryFileReader *reader = [[[SIStoryFileReader alloc] initWithFileName:@"Story files"] autorelease];
+	SIStoryFileReader *reader = [[[SIStoryFileReader alloc] init] autorelease];
+	reader.storySources = [NSMutableArray array];
+	SIStoryRunner *runner = [[[SIStoryRunner alloc] init] autorelease];
+	NSError *error = nil;
+	[reader readFile:@"Story files" error:&error];
 	runner.reader = reader;
-	[runner runStories];
+	[runner runStoriesInSources:reader.storySources];
 }
 
 -(void) testIsAbleToPassValuesBetweenClassInstances {
-	SIStoryRunner * runner = [[[SIStoryRunner alloc] init] autorelease];
-	SIStoryFileReader *reader = [[[SIStoryFileReader alloc] initWithFileName:@"Communication"] autorelease];
+	SIStoryFileReader *reader = [[[SIStoryFileReader alloc] init] autorelease];
+	reader.storySources = [NSMutableArray array];
+	SIStoryRunner *runner = [[[SIStoryRunner alloc] init] autorelease];
+	NSError *error = nil;
+	[reader readFile:@"Communication" error:&error];
 	runner.reader = reader;
-	[runner runStories];
+	[runner runStoriesInSources:reader.storySources];
 }
 
 // ### Methods which are called by Simon ###

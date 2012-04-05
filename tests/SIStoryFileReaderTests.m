@@ -13,90 +13,81 @@
 #import "SIStory.h"
 #import "SIStorySource.h"
 
-@interface SIStoryFileReaderTests : GHTestCase {}
+@interface SIStoryFileReader ()
+-(BOOL) readFile:(NSString *) filename error:(NSError **) error;
+@end
 
+@interface SIStoryFileReaderTests : GHTestCase {
+@private
+	SIStoryFileReader *reader;
+	NSError *error;
+}
 @end
 
 @implementation SIStoryFileReaderTests
 
--(void) testInitReturnsAllStoryFiles {
-	SIStoryFileReader * fileSystemStoryReader = [[[SIStoryFileReader alloc] init] autorelease];
-	GHAssertEquals([fileSystemStoryReader.files count], (NSUInteger) 8, @"Incorrect number of files returned");
-	GHAssertEqualStrings(STORY_EXTENSION, [(NSString *)[fileSystemStoryReader.files objectAtIndex:0] pathExtension], @"Incorrect extension");
+-(void) setUp {
+	[super setUp];
+	reader = [[SIStoryFileReader alloc] init];
+	reader.storySources = [NSMutableArray array];
+	error = nil;
 }
 
--(void) testInitWithFileNameReturnsStoryFile {
-	SIStoryFileReader * fileSystemStoryReader = [[[SIStoryFileReader alloc] initWithFileName:@"Story files"] autorelease];
-	GHAssertEquals([fileSystemStoryReader.files count], (NSUInteger)1, @"Incorrect number of files returned");
-	GHAssertEqualStrings(@"Story files." STORY_EXTENSION, [[fileSystemStoryReader.files objectAtIndex:0] lastPathComponent], @"Wrong file returned");
-}
-
--(void) testInitWithFileNameAndExtensionReturnsStoryFile {
-	SIStoryFileReader * fileSystemStoryReader = [[[SIStoryFileReader alloc] initWithFileName:@"Story files." STORY_EXTENSION] autorelease];
-	GHAssertEquals([fileSystemStoryReader.files count], (NSUInteger)1, @"Incorrect number of files returned");
-	GHAssertEqualStrings(@"Story files." STORY_EXTENSION, [[fileSystemStoryReader.files objectAtIndex:0] lastPathComponent], @"Wrong file returned");
-}
-
--(void) testThrowsErrorWhenCannotFindAFile {
-	@try {
-		[[[SIStoryFileReader alloc] initWithFileName:@"xxxxx"] autorelease];
-		GHFail(@"Exception not thrown");
-	}
-	@catch (NSException *exception) {
-		// Everything ok.
-	}
+-(void) tearDown {
+	DC_DEALLOC(reader);
+	[super tearDown];
 }
 
 -(void) testReturnsErrorWhenReadingUnknownKeywords {
-	SIStoryFileReader * fileSystemStoryReader = [[[SIStoryFileReader alloc] initWithFileName:@"Non keyword steps"] autorelease];
-	NSError * error = nil;
-	GHAssertNil([fileSystemStoryReader readStorySources:&error], @"Should not have returned an object.");
+	NSString *fileName = [[NSBundle mainBundle] pathForResource:@"Non keyword steps" ofType:STORY_EXTENSION inDirectory:nil];
+	BOOL result = [reader readFile:fileName error:&error];
+	GHAssertFalse(result, @"Should have returned false");
 	GHAssertNotNil(error, @"Error not thrown");
 	GHAssertEquals(error.code, SIErrorInvalidKeyword, @"Incorrect error thrown");
 	GHAssertEqualStrings(error.localizedDescription, @"Story syntax error, unknown keyword", @"Incorrect error message");
 }
 
 -(void) testReturnsErrorWhenReadingNonWords {
-	SIStoryFileReader * fileSystemStoryReader = [[[SIStoryFileReader alloc] initWithFileName:@"Non word steps"] autorelease];
-	NSError * error = nil;
-	GHAssertNil([fileSystemStoryReader readStorySources:&error], @"Should not have returned an object.");
+	NSString *fileName = [[NSBundle mainBundle] pathForResource:@"Non word steps" ofType:STORY_EXTENSION inDirectory:nil];
+	BOOL result = [reader readFile:fileName error:&error];
+	GHAssertFalse(result, @"Should have returned false");
 	GHAssertNotNil(error, @"Error not thrown");
 	GHAssertEquals(error.code, SIErrorInvalidKeyword, @"Incorrect error thrown");
 	GHAssertEqualStrings(error.localizedDescription, @"Story syntax error, unknown keyword", @"Incorrect error message");
 }
 
 -(void) testReturnsErrorWhenAndOutOfOrder {
-	SIStoryFileReader * fileSystemStoryReader = [[[SIStoryFileReader alloc] initWithFileName:@"Out of order steps1"] autorelease];
-	NSError * error = nil;
-	NSArray *stories = [fileSystemStoryReader readStorySources:&error];
-	GHAssertNil(stories, @"Should not have returned an object.");
+	NSString *fileName = [[NSBundle mainBundle] pathForResource:@"Out of order steps1" ofType:STORY_EXTENSION inDirectory:nil];
+	BOOL result = [reader readFile:fileName error:&error];
+	GHAssertFalse(result, @"Should have returned false");
 	GHAssertNotNil(error, @"Error not thrown");
 	GHAssertEquals(error.code, SIErrorInvalidStorySyntax, @"Incorrect error thrown");
 	GHAssertEqualStrings(error.localizedDescription, @"Incorrect keyword order", @"Incorrect error message");
 }
 
 -(void) testReturnsErrorWhenThenOutOfOrder {
-	SIStoryFileReader * fileSystemStoryReader = [[[SIStoryFileReader alloc] initWithFileName:@"Out of order steps2"] autorelease];
-	NSError * error = nil;
-	GHAssertNil([fileSystemStoryReader readStorySources:&error], @"Should not have returned an object.");
+	NSString *fileName = [[NSBundle mainBundle] pathForResource:@"Out of order steps2" ofType:STORY_EXTENSION inDirectory:nil];
+	BOOL result = [reader readFile:fileName error:&error];
+	GHAssertFalse(result, @"Should have returned false");
 	GHAssertNotNil(error, @"Error not thrown");
 	GHAssertEquals(error.code, SIErrorInvalidStorySyntax, @"Incorrect error thrown");
 	GHAssertEqualStrings(error.localizedDescription, @"Incorrect keyword order", @"Incorrect error message");
 }
 
 -(void) testReturnsErrorWhenMultipleThens {
-	SIStoryFileReader * fileSystemStoryReader = [[[SIStoryFileReader alloc] initWithFileName:@"Out of order steps3"] autorelease];
-	NSError * error = nil;
-	GHAssertNil([fileSystemStoryReader readStorySources:&error], @"Shuld not have returned an object.");
+	NSString *fileName = [[NSBundle mainBundle] pathForResource:@"Out of order steps3" ofType:STORY_EXTENSION inDirectory:nil];
+	BOOL result = [reader readFile:fileName error:&error];
+	GHAssertFalse(result, @"Should have returned false");
 	GHAssertNotNil(error, @"Error not thrown");
 	GHAssertEquals(error.code, SIErrorInvalidStorySyntax, @"Incorrect error thrown");
 	GHAssertEqualStrings(error.localizedDescription, @"Incorrect keyword order", @"Incorrect error message");
 }
 
 -(void) testReturnsValidStories {
-	SIStoryFileReader * fileSystemStoryReader = [[[SIStoryFileReader alloc] initWithFileName:@"Story files"] autorelease];
-	NSError * error = nil;
-	NSArray * storySources = [fileSystemStoryReader readStorySources:&error];
+	NSString *fileName = [[NSBundle mainBundle] pathForResource:@"Story files" ofType:STORY_EXTENSION inDirectory:nil];
+	BOOL result = [reader readFile:fileName error:&error];
+	GHAssertTrue(result, @"Should have returned true");
+	NSArray * storySources = reader.storySources;
 	
 	GHAssertNil(error, @"Unexpected error thrown %@", error.localizedDescription);
 	GHAssertEquals([storySources count], (NSUInteger) 1, @"incorrect number of story sources returned");
@@ -109,10 +100,11 @@
 }
 
 -(void) testReturnsValidStoriesFromUnformattedSource {
-	SIStoryFileReader * fileSystemStoryReader = [[[SIStoryFileReader alloc] initWithFileName:@"Unformatted"] autorelease];
-	NSError * error = nil;
-	NSArray * storySources = [fileSystemStoryReader readStorySources:&error];
-	
+	NSString *fileName = [[NSBundle mainBundle] pathForResource:@"Unformatted" ofType:STORY_EXTENSION inDirectory:nil];
+	BOOL result = [reader readFile:fileName error:&error];
+	GHAssertTrue(result, @"Should have returned true");
+	NSArray * storySources = reader.storySources;
+
 	GHAssertNil(error, @"Unexpected error thrown %@", error.localizedDescription);
 	GHAssertEquals([storySources count], (NSUInteger) 1, @"incorrect number of story sources returned");
 	GHAssertTrue([((SIStorySource *)[storySources objectAtIndex:0]).source hasSuffix:@"Unformatted.stories"], @"Title not correct");

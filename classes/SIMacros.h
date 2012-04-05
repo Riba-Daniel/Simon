@@ -7,20 +7,17 @@
 //
 #import <dUsefulStuff/DCCommon.h>
 
+/**
+ These two are used to convert a sequence of chars to a string constant. We used this to convert a selector to a string constant within a macro when part of the macro name is the current line number macro __LINE__. Again we need that extra level of indirection to fix the translation of the parameter when stringification is involved.
+ */
+#define toNSString(chars) _toNSString(chars)
+#define _toNSString(chars) @#chars
+
 #pragma mark - Runners
 
 /**
  This macro must be placed in your startup code. It loads Simon into the background and automatically runs the stories once the application is active and ready.
  If you want a particular story file to be run, just enter it's name as a parameter.
-
- #if __has_feature(objc_arc)
-#define SIRun() DC_LOG(@"Started backpack with ARC enabled"); \
-[SIAppBackpack backpack];
-#else
-#define SIRun() DC_LOG(@"Started backpack with manual memory management"); \
-[SIAppBackpack backpack];
-#endif
-
  */
 #define SIRun() DC_LOG(@"Started backpack"); \
 [SIAppBackpack backpack];

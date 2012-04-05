@@ -7,44 +7,32 @@
 //
 
 /**
- The name of the field dynamically added to classes which contain step implementations. A reference to the parent story is set on this key effectively giving the class access to the story without the author having to write any code.
+ * The prefix used to start the method names for the step definition.
  */
-extern const NSString * SI_INSTANCE_STORY_REF_KEY;
+#define SI_STEP_METHOD_PREFIX __stepMap
 
-/**
-The name of the field dynamically added to classes which contain step implementations. A reference to the parent story is set on this key effectively giving the class access to the story without the author having to write any code.
-*/
-extern const NSString * SI_INSTANCE_STEP_MAPPING_REF_KEY;
+#define IPAD_HEADER_INDENT 55
+#define IPHONE_HEADER_INDENT 20
 
-/**
- Key of the notification sent when we want to shutdown Simon.
- */
-extern NSString * SI_RUN_FINISHED_NOTIFICATION;
+/// Error domain for NSError's that Simon generates.
+#define SIMON_ERROR_DOMAIN @"SIError"
 
-/**
- Key of the notification sent when we want to shutdown Simon.
- */
-extern NSString * SI_SHUTDOWN_NOTIFICATION;
+// keys for references attached to implementation classes.
+#define SI_INSTANCE_STORY_REF_KEY @"__story" 
+#define SI_INSTANCE_STEP_MAPPING_REF_KEY @"__stepMapping" 
 
-/**
- Key of the notification sent when we want to run some stories.
- */
-extern NSString * SI_RUN_STORIES_NOTIFICATION;
+// Notification ids.
+#define SI_RUN_FINISHED_NOTIFICATION @"Simon run finished" 
+#define SI_SHUTDOWN_NOTIFICATION @"Simon shutdown"
+#define SI_RUN_STORIES_NOTIFICATION @"Simon run stories"
+#define SI_WINDOW_REMOVED_NOTIFICATION @"Simon window removed"
 
-/**
- Key of the notification sent when we want to re-run a group of stories.
- */
-extern NSString * SI_WINDOW_REMOVED_NOTIFICATION;
+// Keys for user info dictionary of UI data.
+#define SI_UI_STORIES_TO_RUN_LIST @"Stories to be run"
+#define SI_UI_SEARCH_TERMS @"Search terms"
 
-/**
- Key of the list of stories to be run in the notification sent to the back pack by the UI.
- */
-extern NSString * SI_STORIES_TO_RUN_LIST;
-
-/**
- Id of our main background thread. Note this is a const char "*", i.e. no '@' to declare a NSString.
- */
-extern const char * SI_QUEUE_NAME;
+// Simon's background thread name.
+#define SI_QUEUE_NAME "au.com.derekclarkson.simon"
 
 /**
  This gives the types of keywords read by SIStoryFileReader. SIKeywordNone is used only when the first story is beng read as it designates
@@ -60,9 +48,6 @@ typedef enum {
 	SIKeywordAs,
 	SIKeywordAnd
 } SIKeyword;
-
-/// Error domain for NSError's that Simon generates.
-#define SIMON_ERROR_DOMAIN @"SIError"
 
 /**
  Individual error codes.

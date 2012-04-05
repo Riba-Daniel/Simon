@@ -153,15 +153,14 @@
 
 #pragma mark - Running stories
 
--(void) rerunStories {
+-(void) rerunStories {	
 	
-	DC_LOG(@"Rerunning stories");
-	DC_LOG(@"Search is active: %@", DC_PRETTY_BOOL(searchController.isActive));
+	DC_LOG(@"Rerunning stories, search is active: %@", DC_PRETTY_BOOL(searchController.isActive));
 	
 	// Send the notification
 	NSArray *sources = searchController.isActive ? filteredSources : self.storySources;
 	DC_LOG(@"Number of stories to run: %i", [(NSArray *)[sources valueForKeyPath:@"@unionOfArrays.stories"] count]);
-	NSDictionary *userInfo = [NSDictionary dictionaryWithObject:sources forKey:SI_STORIES_TO_RUN_LIST];
+	NSDictionary *userInfo = [NSDictionary dictionaryWithObject:sources forKey:SI_UI_STORIES_TO_RUN_LIST];
 	[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:SI_RUN_STORIES_NOTIFICATION object:nil userInfo:userInfo]];
 }
 

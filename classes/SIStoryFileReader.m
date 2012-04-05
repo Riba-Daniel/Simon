@@ -14,11 +14,11 @@
 #import "NSString+Simon.h"
 
 @interface SIStoryFileReader()
--(BOOL) processLine:(NSString *) line 
-				  error:(NSError **) error;
+-(BOOL) readFile:(NSString *) filename error:(NSError **) error;
+-(BOOL) processLine:(NSString *) line error:(NSError **) error;
+-(BOOL) checkSyntaxWithKeyword:(SIKeyword) nextKeyword error:(NSError **) error;
+-(SIKeyword) keywordFromLine:(NSString *) line error:(NSError **) error;
 -(void) createNewStoryWithTitle:(NSString *) title;
--(SIKeyword) keywordFromLine:(NSString *) line 
-							  error:(NSError **) error;
 -(NSString *)failureReasonWithContent:(NSString *) content;
 
 @end
@@ -45,43 +45,51 @@
 }
 
 -(NSArray *) readStorySources:(NSError **) error {
-
+	
 	NSArray *files = [[NSBundle mainBundle] pathsForResourcesOfType:STORY_EXTENSION inDirectory:nil];
-	self.storySources = [NSMutableArray array];
-
+	self.storySources = [NSMutableArray arrayWithCapacity:[files count]];
+	
 	for (NSString *file in files) {
-		
-		priorKeyword = SIKeywordStartOfFile;
-		
-		// Add the file as source.
-		currentSource = [[SIStorySource alloc] init];
-		currentSource.source = file;
-		[(NSMutableArray *)self.storySources addObject:currentSource];
-		
-		// Read the file.
-		DC_LOG(@"Reading file: %@", file);
-		NSString *contents = [NSString stringWithContentsOfFile:file encoding:NSUTF8StringEncoding error:error];
-		if (contents == nil) {
-			DC_LOG(@"Failed to read file %@", file);
+		if (![self readFile:file error:error]) {
 			return nil;
 		}
-		
-		// Break it up and process the lines.
-		NSUInteger lineNbr = 0;
-		for (NSString * line in [contents componentsSeparatedByString:@"\n"]) {
-			currentLineNumber = ++lineNbr;
-			if (![self processLine: line error:error]) {
-				// Error reading the source.
-				return nil;
-			}
-		}
-		
-		DC_DEALLOC(currentSource);
 	}
-
+	
 	DC_LOG(@"Number of stories loaded: %i", [(NSArray *)[self.storySources valueForKeyPath:@"@unionOfArrays.stories"] count]);
 	return self.storySources;
 }
+
+-(BOOL) readFile:(NSString *) filename error:(NSError **) error {
+	
+	// Add the file as source.
+	currentSource = [[SIStorySource alloc] init];
+	currentSource.source = filename;
+	[(NSMutableArray *)self.storySources addObject:currentSource];
+	
+	// Read the file.
+	DC_LOG(@"Reading file: %@", filename);
+	NSString *contents = [NSString stringWithContentsOfFile:filename encoding:NSUTF8StringEncoding error:error];
+	if (contents == nil) {
+		DC_LOG(@"Failed to read file %@", filename);
+		return NO;
+	}
+	
+	// Break it up and process the lines.
+	priorKeyword = SIKeywordStartOfFile;
+	NSUInteger lineNbr = 0;
+	for (NSString * line in [contents componentsSeparatedByString:@"\n"]) {
+		currentLineNumber = ++lineNbr;
+		if (![self processLine: line error:error]) {
+			// Error reading the source.
+			return NO;
+		}
+	}
+	
+	DC_DEALLOC(currentSource);
+	return YES;
+	
+}
+
 
 -(BOOL) processLine:(NSString *) line 
 				  error:(NSError **) error {
@@ -105,77 +113,9 @@
 		return NO;
 	}
 	
-	// Validate the order of keywords.
-	DC_LOG(@"Syntax check %@ -> %@", 
-			 [NSString stringFromKeyword: priorKeyword],
-			 [NSString stringFromKeyword: keyword]);
-	
-	// Cross reference the prior keyword and current keyword to decide
-	// whether the syntax is ok.
-	switch (priorKeyword) {
-			
-		case SIKeywordStartOfFile:
-			if (keyword != SIKeywordStory) {
-				NSString *message = [self failureReasonWithContent:@"Incorrect keyword order, the \"Story:\" keyword must be the first keyword."];
-				[self setError:error 
-							 code:SIErrorInvalidStorySyntax 
-					errorDomain:SIMON_ERROR_DOMAIN 
-			 shortDescription:@"Incorrect keyword order" 
-				 failureReason:message];
-				return NO;
-			}
-			break;
-			
-		case SIKeywordStory: // SIKeywordStory so no prior.
-			if (keyword != SIKeywordGiven && keyword != SIKeywordAs) {
-				NSString *message = [self failureReasonWithContent:@"Incorrect keyword order, \"As\" or \"Given\" must appear after \"Story:\""];
-				[self setError:error 
-							 code:SIErrorInvalidStorySyntax 
-					errorDomain:SIMON_ERROR_DOMAIN 
-			 shortDescription:@"Incorrect keyword order" 
-				 failureReason:message];
-				return NO;
-			}
-			break;
-			
-		case SIKeywordGiven:
-			if (keyword == SIKeywordGiven || keyword == SIKeywordAs || keyword == SIKeywordStory) {
-				NSString *message = [self failureReasonWithContent:@"Incorrect keyword order, only \"Then\", \"And\" or \"Story:\" can appear after \"Given\""];
-				[self setError:error 
-							 code:SIErrorInvalidStorySyntax 
-					errorDomain:SIMON_ERROR_DOMAIN 
-			 shortDescription:@"Incorrect keyword order" 
-				 failureReason:message];
-				return NO;
-			}
-			break;
-			
-		case SIKeywordAs:
-			if (keyword != SIKeywordGiven && keyword != SIKeywordThen) {
-				NSString *message = [self failureReasonWithContent:@"Incorrect keyword order, only \"Given\" or \"Then\" can appear after \"As\""];
-				[self setError:error 
-							 code:SIErrorInvalidStorySyntax 
-					errorDomain:SIMON_ERROR_DOMAIN 
-			 shortDescription:@"Incorrect keyword order" 
-				 failureReason:message];
-				return NO;
-			} break;
-			
-		case SIKeywordThen:
-			if (keyword != SIKeywordAnd && keyword != SIKeywordStory) {
-				NSString *message = [self failureReasonWithContent:[NSString stringWithFormat:@"Incorrect keyword order, \"%@\" cannot appear after \"Then\"", [NSString stringFromKeyword:keyword]]];
-				[self setError:error 
-							 code:SIErrorInvalidStorySyntax 
-					errorDomain:SIMON_ERROR_DOMAIN 
-			 shortDescription:@"Incorrect keyword order" 
-				 failureReason:message];
-				return NO;
-			}
-			
-			break;
-			
-		default: // SIKeywordUnknown
-			break;
+	// Check syntax.
+	if (![self checkSyntaxWithKeyword:keyword error:error]) {
+		return NO;
 	}
 	
 	// Valid so store the new keyword as the prior.
@@ -221,6 +161,85 @@
 		 failureReason:message];
 	}
 	return keyword;
+}
+
+-(BOOL) checkSyntaxWithKeyword:(SIKeyword) nextKeyword error:(NSError **) error {
+	
+	// Validate the order of keywords.
+	DC_LOG(@"Syntax check %@ -> %@", 
+			 [NSString stringFromKeyword: priorKeyword],
+			 [NSString stringFromKeyword: nextKeyword]);
+	
+	// Cross reference the prior keyword and current keyword to decide
+	// whether the syntax is ok.
+	switch (priorKeyword) {
+			
+		case SIKeywordStartOfFile:
+			if (nextKeyword != SIKeywordStory) {
+				NSString *message = [self failureReasonWithContent:@"Incorrect keyword order, the \"Story:\" keyword must be the first keyword."];
+				[self setError:error 
+							 code:SIErrorInvalidStorySyntax 
+					errorDomain:SIMON_ERROR_DOMAIN 
+			 shortDescription:@"Incorrect keyword order" 
+				 failureReason:message];
+				return NO;
+			}
+			break;
+			
+		case SIKeywordStory: // SIKeywordStory so no prior.
+			if (nextKeyword != SIKeywordGiven && nextKeyword != SIKeywordAs) {
+				NSString *message = [self failureReasonWithContent:@"Incorrect keyword order, \"As\" or \"Given\" must appear after \"Story:\""];
+				[self setError:error 
+							 code:SIErrorInvalidStorySyntax 
+					errorDomain:SIMON_ERROR_DOMAIN 
+			 shortDescription:@"Incorrect keyword order" 
+				 failureReason:message];
+				return NO;
+			}
+			break;
+			
+		case SIKeywordGiven:
+			if (nextKeyword == SIKeywordGiven || nextKeyword == SIKeywordAs || nextKeyword == SIKeywordStory) {
+				NSString *message = [self failureReasonWithContent:@"Incorrect keyword order, only \"Then\", \"And\" or \"Story:\" can appear after \"Given\""];
+				[self setError:error 
+							 code:SIErrorInvalidStorySyntax 
+					errorDomain:SIMON_ERROR_DOMAIN 
+			 shortDescription:@"Incorrect keyword order" 
+				 failureReason:message];
+				return NO;
+			}
+			break;
+			
+		case SIKeywordAs:
+			if (nextKeyword != SIKeywordGiven && nextKeyword != SIKeywordThen) {
+				NSString *message = [self failureReasonWithContent:@"Incorrect keyword order, only \"Given\" or \"Then\" can appear after \"As\""];
+				[self setError:error 
+							 code:SIErrorInvalidStorySyntax 
+					errorDomain:SIMON_ERROR_DOMAIN 
+			 shortDescription:@"Incorrect keyword order" 
+				 failureReason:message];
+				return NO;
+			} break;
+			
+		case SIKeywordThen:
+			if (nextKeyword != SIKeywordAnd && nextKeyword != SIKeywordStory) {
+				NSString *message = [self failureReasonWithContent:[NSString stringWithFormat:@"Incorrect keyword order, \"%@\" cannot appear after \"Then\"", [NSString stringFromKeyword:nextKeyword]]];
+				[self setError:error 
+							 code:SIErrorInvalidStorySyntax 
+					errorDomain:SIMON_ERROR_DOMAIN 
+			 shortDescription:@"Incorrect keyword order" 
+				 failureReason:message];
+				return NO;
+			}
+			
+			break;
+			
+		default: // SIKeywordUnknown
+			break;
+	}
+	
+	return YES;
+
 }
 
 
