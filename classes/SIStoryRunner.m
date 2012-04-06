@@ -40,8 +40,12 @@
 	if (self) {
 		// Now setup the defaults.
 		DC_LOG(@"Setting up reader and runtime");
-		self.reader = [[[SIStoryFileReader alloc] init] autorelease];
-		self.runtime = [[[SIRuntime alloc] init] autorelease];
+		SIStoryFileReader *reader = [[SIStoryFileReader alloc] init];
+		self.reader = reader;
+		[reader release];
+		SIRuntime *runtime = [[SIRuntime alloc] init];
+		self.runtime = runtime;
+		[runtime release];
 	}
 	
 	return self;

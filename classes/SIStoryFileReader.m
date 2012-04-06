@@ -247,7 +247,7 @@
 	
 	// Create the new one and store it in the return array.
 	DC_LOG(@"Creating new story");
-	SIStory *story = [[[SIStory alloc] init] autorelease];
+	SIStory *story = [[SIStory alloc] init];
 	[currentSource.stories addObject:story];
 	
 	// Store the title.
@@ -257,6 +257,7 @@
 	}
 	DC_LOG(@"Title: %@", storyTitle);
 	story.title = storyTitle;
+	[story release];
 }
 
 -(NSString *)failureReasonWithContent:(NSString *) content {

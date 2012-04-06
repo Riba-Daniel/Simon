@@ -77,9 +77,10 @@
 	
 	// This should stop extra divider lines from appearing down the screen when
 	// there are not enough cells.
-	UIView *footerView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 1)] autorelease];
+	UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 1)];
 	footerView.backgroundColor = [UIColor clearColor];
 	[self.tableView setTableFooterView:footerView];
+	[footerView release];
 	
 }
 

@@ -18,16 +18,16 @@
 	// get the correct handler.
 	SIUIViewHandler *handler = nil;
 	if ([view isKindOfClass:[UIButton class]]) {
-		handler = [[[SIUIButtonHandler alloc] init] autorelease];
+		handler = [[SIUIButtonHandler alloc] init];
 	} else if ([view isKindOfClass:[UILabel class]]) {
-		handler = [[[SIUILabelHandler alloc] init] autorelease];
+		handler = [[SIUILabelHandler alloc] init];
 	} else {
-		handler = [[[SIUIViewHandler alloc] init] autorelease];
+		handler = [[SIUIViewHandler alloc] init];
 	}
 
 	// Set properties and return.
    handler.view = view;
-	return handler;
+	return [handler autorelease];
 }
 
 @end

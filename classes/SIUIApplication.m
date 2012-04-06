@@ -54,7 +54,9 @@ static SIUIApplication *application = nil;
 {
    self = [super init];
    if (self) {
-      self.viewHandlerFactory = [[[SIUIViewHandlerFactory alloc] init] autorelease];
+		SIUIViewHandlerFactory *factory = [[SIUIViewHandlerFactory alloc] init];
+      self.viewHandlerFactory = factory;
+		[factory release];
    }
    return self;
 }
@@ -124,9 +126,10 @@ static SIUIApplication *application = nil;
 	UIView *keyWindow = [UIApplication sharedApplication].keyWindow;
 	
 	// Create an executor and search the tree.
-	DNExecutor *executor = [[[DNExecutor alloc] initWithRootNode: keyWindow] autorelease];
+	DNExecutor *executor = [[DNExecutor alloc] initWithRootNode: keyWindow];
    NSError *error = nil;
 	NSArray *results = [executor executeQuery: query error:&error];
+	[executor release];
    
    if (results == nil) {
       @throw [SISyntaxException exceptionWithReason: [error localizedFailureReason]]; 
@@ -142,9 +145,10 @@ static SIUIApplication *application = nil;
 	
 	for (UIWindow *window in [UIApplication sharedApplication].windows) {
 		// Create an executor and search the tree.
-		DNExecutor *executor = [[[DNExecutor alloc] initWithRootNode: window] autorelease];
+		DNExecutor *executor = [[DNExecutor alloc] initWithRootNode: window];
 		NSError *error = nil;
 		windowResults = [executor executeQuery: query error:&error];
+		[executor release];
 		if (windowResults == nil) {
 			@throw [SISyntaxException exceptionWithReason: [error localizedFailureReason]]; 
 		}

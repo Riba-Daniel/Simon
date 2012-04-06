@@ -51,9 +51,10 @@
 	
 	// This should stop extra divider lines from appearing down the screen when
 	// there are not enough cells.
-	UIView *footerView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 1)] autorelease];
+	UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 1)];
 	footerView.backgroundColor = [UIColor clearColor];
 	[self.tableView setTableFooterView:footerView];
+	[footerView	release];
 	
 	// Create the filtered list.
 	filteredSources = [[NSMutableArray arrayWithCapacity:[self.storySources count]] retain];
@@ -144,7 +145,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	
-	SIStoryDetailsTableViewController *details = [[[SIStoryDetailsTableViewController alloc] initWithStyle:UITableViewStylePlain] autorelease];
+	SIStoryDetailsTableViewController *details = [[SIStoryDetailsTableViewController alloc] initWithStyle:UITableViewStylePlain];
 	
  	NSArray *sources = [self sourcesForTableView:tableView];
 	details.source = [sources objectAtIndex:indexPath.section];
@@ -162,6 +163,7 @@
    DC_LOG(@"Loading details for story %@", details.story.title);
    DC_LOG(@"nav %@", super.navigationController);
 	[super.navigationController pushViewController:details animated:YES];
+	[details release];
 }
 
 #pragma mark - Running stories
