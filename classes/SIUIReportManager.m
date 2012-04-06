@@ -27,13 +27,14 @@
 	[super dealloc];
 }
 
--(void) reportOnStorySources:(NSArray *) sources andMappings:(NSArray *) mappings {
-	
+-(void) displayUIWithUserInfo:(NSDictionary *) userInfo {
+
 	// Refire on the main thread.
 	[self executeBlockOnMainThread: ^{
 		
 		SIStoryReportTableViewController *reportController = [[SIStoryReportTableViewController alloc] initWithStyle:UITableViewStylePlain];
-		reportController.storySources = sources;
+		reportController.storySources = [userInfo objectForKey:SI_UI_ALL_STORIES_LIST];
+		reportController.searchTerms = [userInfo objectForKey:SI_UI_SEARCH_TERMS];
 		reportController.navigationItem.title = @"Simon's simple report";
 		
 		// Set a nav controller as the top controller and keep a reference to it.

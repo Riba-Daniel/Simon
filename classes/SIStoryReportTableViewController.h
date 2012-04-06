@@ -20,6 +20,9 @@
 /// A list of the story source files.
 @property (nonatomic, retain) NSArray *storySources;
 
+/// Search terms currently being used.
+@property (nonatomic, retain) NSString *searchTerms;
+
 -(void) rerunStories;
 
 @end

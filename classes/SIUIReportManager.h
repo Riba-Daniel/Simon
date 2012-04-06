@@ -7,16 +7,22 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SIStoryReporter.h"
 #import "SIStoryReportTableViewController.h"
 
 /**
  An implementation of SIStoryReporter which produces a log of the run on console.
  */
-@interface SIUIReportManager : NSObject<SIStoryReporter> {
+@interface SIUIReportManager : NSObject {
 	@private 
 	UINavigationController *navController;
 }
+
+/**
+ Displays the UI over the top of the app.
+ 
+ @param userInfo a Dictionary containing the information that the UI needs. This is usually the same dictionary that the UI passed back to the backpack when closing the window.
+ */
+-(void) displayUIWithUserInfo:(NSDictionary *) userInfo;
 
 /**
  Called to remove the window from the screen.

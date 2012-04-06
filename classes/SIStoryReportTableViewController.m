@@ -22,11 +22,13 @@
 @implementation SIStoryReportTableViewController
 
 @synthesize storySources = storySources_;
+@synthesize searchTerms = searchTerms_;
 
 -(void) dealloc {
 	DC_LOG(@"Deallocing");
 	self.view = nil;
 	self.storySources = nil;
+	self.searchTerms = nil;
 	DC_DEALLOC(filteredSources);
 	DC_DEALLOC(searchController);
 	[super dealloc];
@@ -34,14 +36,19 @@
 
 -(NSArray *) sourcesForTableView:(UITableView *) tableView {
 	if (tableView == searchController.searchResultsTableView) {
+		DC_LOG(@"filtered sources");
 		return filteredSources;
 	} 
+	DC_LOG(@"All sources");
 	return self.storySources;
 }
 
 #pragma mark - UIView methods
 
 -(void) viewDidLoad {
+	
+	DC_LOG(@"Loading report controller");
+	
 	// This should stop extra divider lines from appearing down the screen when
 	// there are not enough cells.
 	UIView *footerView = [[[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 1)] autorelease];
@@ -59,13 +66,19 @@
 	searchBar.spellCheckingType = UITextSpellCheckingTypeNo;
 	searchBar.delegate = self;
 	
-	searchController = [[UISearchDisplayController alloc]
-																  initWithSearchBar:searchBar contentsController:self];
+	searchController = [[UISearchDisplayController alloc] initWithSearchBar:searchBar contentsController:self];
 	searchController.delegate = self;
 	searchController.searchResultsDataSource = self;
 	searchController.searchResultsDelegate = self;
 	
 	self.tableView.tableHeaderView = searchBar;
+	
+	// If search terms have been passed in then setup a search.
+	if (self.searchTerms != nil) {
+		DC_LOG(@"Initialising with search terms: %@", self.searchTerms);
+		[searchController setActive:YES animated:YES];
+		searchBar.text = self.searchTerms;
+	}
 	
 	[searchBar release];
 }
@@ -160,7 +173,7 @@
 	// Send the notification
 	NSArray *sources = searchController.isActive ? filteredSources : self.storySources;
 	DC_LOG(@"Number of stories to run: %i", [(NSArray *)[sources valueForKeyPath:@"@unionOfArrays.stories"] count]);
-	NSDictionary *userInfo = [NSDictionary dictionaryWithObject:sources forKey:SI_UI_STORIES_TO_RUN_LIST];
+	NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys:sources, SI_UI_STORIES_TO_RUN_LIST, self.searchDisplayController.searchBar.text, SI_UI_SEARCH_TERMS, nil];
 	[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:SI_RUN_STORIES_NOTIFICATION object:nil userInfo:userInfo]];
 }
 
@@ -175,25 +188,29 @@
 	
 	// Clear old search results.
 	[filteredSources removeAllObjects];
-
+	
 	// Loop through each story source.
 	SIStorySource *tmpSource = nil;
 	NSString *fileName;
 	
+	DC_LOG(@"Filtering sources for search terms: %@", searchText);
 	for (SIStorySource *source in self.storySources) {
 		
 		// First test the file name.
 		fileName = [source.source lastPathComponent];
 		// Check length first to avoid exceptions.
 		if ([fileName hasPrefix:searchText options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch)]) {
+			DC_LOG(@"Adding source: %@", [source.source lastPathComponent]);
 			[filteredSources addObject:source];
 		} else {
 			
 			// File name is a no go so test each story name.
 			for (SIStory *story in source.stories) {
-
+				
 				// Check length first to avoid exceptions.
 				if ([story.title hasPrefix:searchText options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch)]) {
+					
+					DC_LOG(@"Adding story: %@", story.title);
 					
 					// Add a source if there is not one.
 					if (tmpSource == nil) {

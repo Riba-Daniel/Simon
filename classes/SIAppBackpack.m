@@ -92,10 +92,15 @@ static SIAppBackpack *backpack_;
 // Callbacks.
 -(void) startUp:(NSNotification *) notification {
 	[self executeOnSimonThread: ^{
+		
+		// Load stories and setup display info.
 		[runner loadStories];
+		
+		// Now run or display.
 		if(self.autorun) {
 			[runner runStoriesInSources:runner.reader.storySources];
 		} else {
+			// Setup default settings.
 			[self displayUI];
 		}
 	}];
@@ -107,6 +112,7 @@ static SIAppBackpack *backpack_;
 
 -(void) runStories:(NSNotification *) notification {
 	self.displayUserInfo = notification.userInfo;
+	DC_LOG(@"Received userInfo: %@", self.displayUserInfo);
 	[ui removeWindow];
 }
 
@@ -130,14 +136,16 @@ static SIAppBackpack *backpack_;
 }
 
 -(void) displayUI {
-	DC_LOG(@"Number of stories to display: %i", [(NSArray *)[runner.reader.storySources valueForKeyPath:@"@unionOfArrays.stories"] count]);
-	[ui reportOnStorySources:runner.reader.storySources andMappings:runner.mappings];
+	NSString *searchTerms = self.displayUserInfo == nil ? nil : [self.displayUserInfo objectForKey:SI_UI_SEARCH_TERMS];
+	DC_LOG(@"Displaying UI with search terms: %@", searchTerms);
+	NSDictionary *displayInfo = [NSMutableDictionary dictionaryWithObjectsAndKeys:runner.reader.storySources, SI_UI_ALL_STORIES_LIST, searchTerms, SI_UI_SEARCH_TERMS, nil]; 
+	[ui displayUIWithUserInfo:displayInfo];
 }
 
 -(void) shutDown:(NSNotification *) notification  {
 	
 	[ui removeWindow];
-
+	
 	// Release program hooks and dealloc self.
 	DC_LOG(@"ShutDown requested, deallocing the keep me alive self reference.");
    DC_DEALLOC(backpack_);
