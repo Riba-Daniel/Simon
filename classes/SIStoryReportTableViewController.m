@@ -23,6 +23,7 @@
 
 @synthesize storySources = storySources_;
 @synthesize searchTerms = searchTerms_;
+@synthesize showDetailsForStory = showDetailsForStory_;
 
 -(void) dealloc {
 	DC_LOG(@"Deallocing");
@@ -31,15 +32,14 @@
 	self.searchTerms = nil;
 	DC_DEALLOC(filteredSources);
 	DC_DEALLOC(searchController);
+	DC_DEALLOC(detailsController);
 	[super dealloc];
 }
 
 -(NSArray *) sourcesForTableView:(UITableView *) tableView {
 	if (tableView == searchController.searchResultsTableView) {
-		DC_LOG(@"filtered sources");
 		return filteredSources;
 	} 
-	DC_LOG(@"All sources");
 	return self.storySources;
 }
 
@@ -82,8 +82,49 @@
 	}
 	
 	[searchBar release];
+	
+	// If we are being asked to show details then do so.
+	if (self.showDetailsForStory != nil) {
+		
+		DC_LOG(@"Showing details for story: %@", [self.showDetailsForStory.stories objectAtIndex:0]);
+		
+		// First find the story is the sources.
+		// Find the surce index.
+		NSArray *sources = searchController.isActive ? filteredSources : self.storySources;
+		NSUInteger sourceIndex = [sources indexOfObjectPassingTest: ^(id obj, NSUInteger idx, BOOL *stop) {
+			return [((SIStorySource *) obj).source isEqualToString:self.showDetailsForStory.source];
+		}];
+		
+		// Now the story index.
+		SIStorySource *foundSource = [sources objectAtIndex:sourceIndex];
+		SIStory *story = [self.showDetailsForStory.stories objectAtIndex:0];
+		NSUInteger storyIndex = [foundSource.stories indexOfObjectPassingTest: ^(id obj, NSUInteger idx, BOOL *stop) {
+			return [((SIStory *) obj).title isEqualToString:story.title];
+		}];
+		
+		// Build a path.
+		NSIndexPath *storyIndexPath = [NSIndexPath indexPathForRow:storyIndex inSection:sourceIndex];
+		DC_LOG(@"Index path of story: %@", storyIndexPath);
+
+		// And scroll to it.
+		if (searchController.isActive) {
+			DC_LOG(@"Selecting in search table view");
+			[searchController.searchResultsTableView selectRowAtIndexPath:storyIndexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+			[searchController.searchResultsTableView.delegate tableView:searchController.searchResultsTableView didSelectRowAtIndexPath:storyIndexPath];
+		} else {
+			DC_LOG(@"Selecting in full table view");
+			[self.tableView selectRowAtIndexPath:storyIndexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+			[self.tableView.delegate tableView:self.tableView didSelectRowAtIndexPath:storyIndexPath];
+		}
+		
+		self.showDetailsForStory = nil;
+	}
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+	// Clear the reference to the details controller.
+	DC_DEALLOC(detailsController);
+}
 
 #pragma mark - Table view datasource
 
@@ -145,25 +186,25 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	
-	SIStoryDetailsTableViewController *details = [[SIStoryDetailsTableViewController alloc] initWithStyle:UITableViewStylePlain];
+	// Load the controller.
+	detailsController = [[SIStoryDetailsTableViewController alloc] initWithStyle:UITableViewStylePlain];
 	
  	NSArray *sources = [self sourcesForTableView:tableView];
-	details.source = [sources objectAtIndex:indexPath.section];
-	details.story = (SIStory *)[details.source.stories objectAtIndex:indexPath.row];
-	details.navigationItem.title = details.story.title;
+	detailsController.source = [sources objectAtIndex:indexPath.section];
+	detailsController.story = (SIStory *)[detailsController.source.stories objectAtIndex:indexPath.row];
+	detailsController.navigationItem.title = detailsController.story.title;
 	
 	UIBarButtonItem *rerunButton = [[UIBarButtonItem alloc] initWithTitle:@"Run" 
 																						 style:UIBarButtonItemStylePlain 
-																						target:details 
+																						target:self 
 																						action:@selector(rerunStory)];
 	
-	details.navigationItem.rightBarButtonItem = rerunButton;
+	detailsController.navigationItem.rightBarButtonItem = rerunButton;
 	[rerunButton release];
 	
-   DC_LOG(@"Loading details for story %@", details.story.title);
+   DC_LOG(@"Loading details for story %@", detailsController.story.title);
    DC_LOG(@"nav %@", super.navigationController);
-	[super.navigationController pushViewController:details animated:YES];
-	[details release];
+	[super.navigationController pushViewController:detailsController animated:YES];
 }
 
 #pragma mark - Running stories
@@ -175,8 +216,29 @@
 	// Send the notification
 	NSArray *sources = searchController.isActive ? filteredSources : self.storySources;
 	DC_LOG(@"Number of stories to run: %i", [(NSArray *)[sources valueForKeyPath:@"@unionOfArrays.stories"] count]);
-	NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys:sources, SI_UI_STORIES_TO_RUN_LIST, self.searchDisplayController.searchBar.text, SI_UI_SEARCH_TERMS, nil];
+	NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+									  sources, SI_UI_STORIES_TO_RUN_LIST, 
+									  [NSNumber numberWithBool:NO], SI_UI_RETURN_TO_DETAILS, 
+									  self.searchDisplayController.searchBar.text, SI_UI_SEARCH_TERMS, 
+									  nil];
 	[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:SI_RUN_STORIES_NOTIFICATION object:nil userInfo:userInfo]];
+}
+
+-(void) rerunStory {
+	
+	// Recreate the source with just a single story.
+	SIStorySource *source = [[SIStorySource alloc] init];
+	source.source = detailsController.source.source;
+	[source.stories addObject:detailsController.story];
+	
+	// Now send that.
+	NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+									  [NSArray arrayWithObject:source], SI_UI_STORIES_TO_RUN_LIST, 
+									  [NSNumber numberWithBool:YES], SI_UI_RETURN_TO_DETAILS, 
+									  self.searchDisplayController.searchBar.text, SI_UI_SEARCH_TERMS,
+									  nil];
+	[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:SI_RUN_STORIES_NOTIFICATION object:nil userInfo:userInfo]];
+	[source release];
 }
 
 #pragma mark - View rotation

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SIStoryDetailsTableViewController.h"
 
 /**
  Table view controller for the report on all the stories which where run.
@@ -15,6 +16,7 @@
 @private
 	NSMutableArray *filteredSources;
 	UISearchDisplayController *searchController;
+	SIStoryDetailsTableViewController *detailsController;
 }
 
 /// A list of the story source files.
@@ -23,6 +25,13 @@
 /// Search terms currently being used.
 @property (nonatomic, retain) NSString *searchTerms;
 
+/// If populated the details screen will be loaded with this story showing in it.
+@property (nonatomic, retain) SIStorySource *showDetailsForStory;
+
+/// Re-runs all the currently visible stories.
 -(void) rerunStories;
+
+/// Called from the details screen to rr-run a single story.
+-(void) rerunStory;
 
 @end

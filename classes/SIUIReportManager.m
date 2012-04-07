@@ -32,9 +32,18 @@
 	// Refire on the main thread.
 	[self executeBlockOnMainThread: ^{
 		
+		DC_LOG(@"Search terms: %@", [userInfo objectForKey:SI_UI_SEARCH_TERMS]);
+		DC_LOG(@"Return to details screen: %@", DC_PRETTY_BOOL(((NSNumber *)[userInfo objectForKey:SI_UI_RETURN_TO_DETAILS]).boolValue));
+		DC_LOG(@"Run stories list: %@", [userInfo objectForKey:SI_UI_STORIES_TO_RUN_LIST]);
+		
 		SIStoryReportTableViewController *reportController = [[SIStoryReportTableViewController alloc] initWithStyle:UITableViewStylePlain];
+
 		reportController.storySources = [userInfo objectForKey:SI_UI_ALL_STORIES_LIST];
 		reportController.searchTerms = [userInfo objectForKey:SI_UI_SEARCH_TERMS];
+		if (((NSNumber *)[userInfo objectForKey:SI_UI_RETURN_TO_DETAILS]).boolValue) {
+			reportController.showDetailsForStory = [((NSArray *)[userInfo objectForKey:SI_UI_STORIES_TO_RUN_LIST]) objectAtIndex:0];
+		}
+		
 		reportController.navigationItem.title = @"Simon's simple report";
 		
 		// Set a nav controller as the top controller and keep a reference to it.

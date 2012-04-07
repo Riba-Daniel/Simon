@@ -137,8 +137,13 @@ static SIAppBackpack *backpack_;
 
 -(void) displayUI {
 	NSString *searchTerms = self.displayUserInfo == nil ? nil : [self.displayUserInfo objectForKey:SI_UI_SEARCH_TERMS];
+	NSNumber *returnToDisplayView = self.displayUserInfo == nil ? [NSNumber numberWithBool:NO] :[self.displayUserInfo objectForKey:SI_UI_RETURN_TO_DETAILS];
 	DC_LOG(@"Displaying UI with search terms: %@", searchTerms);
-	NSDictionary *displayInfo = [NSMutableDictionary dictionaryWithObjectsAndKeys:runner.reader.storySources, SI_UI_ALL_STORIES_LIST, searchTerms, SI_UI_SEARCH_TERMS, nil]; 
+	NSDictionary *displayInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+										  runner.reader.storySources, SI_UI_ALL_STORIES_LIST,
+										  [self.displayUserInfo objectForKey:SI_UI_STORIES_TO_RUN_LIST], SI_UI_STORIES_TO_RUN_LIST,
+										  returnToDisplayView, SI_UI_RETURN_TO_DETAILS,
+										  searchTerms, SI_UI_SEARCH_TERMS, nil]; 
 	[ui displayUIWithUserInfo:displayInfo];
 }
 

@@ -22,6 +22,4 @@
 /// The story being displayed.
 @property (nonatomic, retain) SIStory *story;
 
--(void) rerunStory;
-
 @end

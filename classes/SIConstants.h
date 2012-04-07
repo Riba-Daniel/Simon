@@ -30,6 +30,7 @@
 // Keys for user info dictionary of UI data.
 #define SI_UI_ALL_STORIES_LIST @"All stories"
 #define SI_UI_STORIES_TO_RUN_LIST @"Stories to be run"
+#define SI_UI_RETURN_TO_DETAILS @"Return to details screen"
 #define SI_UI_SEARCH_TERMS @"Search terms"
 
 // Simon's background thread name.
