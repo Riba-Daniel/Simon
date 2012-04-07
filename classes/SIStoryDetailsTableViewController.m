@@ -87,10 +87,14 @@
 #pragma mark - Delegate methods
 
 -(NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-	if (section == 0) {
-		return nil;
+	switch (section) {
+		case 1:
+			return @"Story steps";
+		case 2:
+			return @"Exception details";
+		default:
+			nil;
 	}
-	return @"Exception details";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
