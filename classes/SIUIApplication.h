@@ -25,7 +25,8 @@
 @property (nonatomic) BOOL disableKeyboardAutocorrect;
 
 #pragma mark - Accessors
-/// @name Singleton Accessors
+
+/** @name Singleton accessors */
 
 /**
  Accesses the SIUIApplication singleton.
@@ -34,7 +35,7 @@
 
 #pragma mark - Finding
 
-/// @name Finding things
+/** @name Finding things */
 
 /**
  Executes the given query against the current window to locate one or more UIViews. Given that all interface controls inherit from UIView, this gives us the ability to locate any control on the display.

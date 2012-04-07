@@ -19,6 +19,8 @@
 	SIStoryDetailsTableViewController *detailsController;
 }
 
+/// @name Properties
+
 /// A list of the story source files.
 @property (nonatomic, retain) NSArray *storySources;
 
@@ -27,6 +29,8 @@
 
 /// If populated the details screen will be loaded with this story showing in it.
 @property (nonatomic, retain) SIStorySource *showDetailsForStory;
+
+/// @name Running stories
 
 /// Re-runs all the currently visible stories.
 -(void) rerunStories;

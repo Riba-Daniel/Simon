@@ -16,6 +16,8 @@
 @interface SIStoryDetailsTableViewController : UITableViewController {
 }
 
+/// @name Properties
+
 /// The source file of the story.
 @property (nonatomic, retain) SIStorySource *source;
 

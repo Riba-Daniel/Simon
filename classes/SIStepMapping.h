@@ -50,6 +50,8 @@
  */
 +(SIStepMapping *) stepMappingWithClass:(Class) theClass selector:(SEL) aSelector regex:(NSString *) theRegex error:(NSError **) error;
 
+/// @name Tasks
+
 /**
  Checks whether this instance can be applied to the passed SIStep. This executes the regular expression against the step and return whether it matched. If a match is made then the mapped property is set to indicate that the step mapping was mapped.
  
