@@ -93,7 +93,7 @@
 		case 2:
 			return @"Exception details";
 		default:
-			nil;
+			return nil;
 	}
 }
 
