@@ -4,6 +4,10 @@ title: Change Log
 root-url: ../
 simon-tab-class: tabbar-tab-highlighted
 ---
+h1. Version 0.1.9,
+
+*
+
 h1. Version 0.1.8, April 2012
 
 * Moved execution recording and exception handling to SIStory to facilitate better reporting.
