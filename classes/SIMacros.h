@@ -16,10 +16,9 @@
 #pragma mark - Runners
 
 /**
- This macro must be placed in your startup code. It loads Simon into the background and automatically runs the stories once the application is active and ready.
- If you want a particular story file to be run, just enter it's name as a parameter.
+ This macro must be placed in your startup code. 
  */
-#define SIRun() DC_LOG(@"Started backpack"); \
+#define SIRun() DC_LOG(@"Starting backpack"); \
 [SIAppBackpack backpack];
 
 #pragma mark - Step mapping

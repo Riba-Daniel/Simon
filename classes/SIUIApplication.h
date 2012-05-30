@@ -24,6 +24,9 @@
 /// If set to YES, disables the auto correction of entered text via the keyboard when using the enterText:intoField: method. This is useful for testing.
 @property (nonatomic) BOOL disableKeyboardAutocorrect;
 
+/// If set to YES (Default) Simon will print each action is is asked to do to the log. The intent of this is to help with debugging apps when a story fails.
+@property (nonatomic, getter=isLogActions) BOOL logActions;
+
 #pragma mark - Accessors
 
 /** @name Singleton accessors */

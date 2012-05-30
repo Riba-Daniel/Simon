@@ -44,7 +44,27 @@ static SIAppBackpack *backpack_;
    return backpack_;
 }
 
-#pragma mark - Instance methods
+#pragma mark - Lifecycle
+
++(void) load {
+	@autoreleasepool {
+		
+		// Find out if we are notloading.
+		NSArray * arguments = [[NSProcessInfo processInfo] arguments];
+		__block BOOL runSimon = YES;
+		[arguments enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+			if ([(NSString *) obj isEqualToString:@"--noload"]) {
+				runSimon = NO;
+			}
+		}];
+		
+		// Now start Simon.
+		if (runSimon) {
+			[SIAppBackpack backpack];
+		}
+
+	}
+}
 
 -(void) dealloc {
 	DC_LOG(@"Freeing memory and exiting");
@@ -63,6 +83,8 @@ static SIAppBackpack *backpack_;
 	}
 	return self;
 }
+
+#pragma mark - Backpack
 
 -(void) addNotificationObservers {
 	// Hook into the app startup.
@@ -95,6 +117,14 @@ static SIAppBackpack *backpack_;
 		
 		// Load stories and setup display info.
 		[runner loadStories];
+		
+		// Find out if autorun is disabled.
+		NSArray * arguments = [[NSProcessInfo processInfo] arguments];
+		[arguments enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+			if ([(NSString *) obj isEqualToString:@"--noautorun"]) {
+				self.autorun = NO;
+			}
+		}];
 		
 		// Now run or display.
 		if(self.autorun) {

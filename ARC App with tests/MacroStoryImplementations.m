@@ -9,27 +9,27 @@
 
 @implementation MacroStoryImplementations
 
-SIMapStepToSelector(@"reset test flags", setUp)
+SIMapStepToSelector(@"reset test flags", setUp);
 -(void) setUp {
    gotThere = NO;
 }
 
-SIMapStepToSelector(@"check the flags", checkFlags)
+SIMapStepToSelector(@"check the flags", checkFlags);
 -(void) checkFlags {
-   SIAssertTrue(gotThere);
+	SIAssertTrue(gotThere);
 }
 
-SIMapStepToSelector(@"call the SIFail macro$", doSIFail)
+SIMapStepToSelector(@"call the SIFail macro$", doSIFail);
 -(void) doSIFail {
-   @try {
-      SIFail();
-   }
-   @catch (NSException *e) {
-      SIAssertObjectEquals(@"-[MacroStoryImplementations doSIFail](25) SIFail executed, throwing failure exception.", e.reason);
-   }
+	@try {
+		SIFail();
+	}
+	@catch (NSException *e) {
+		SIAssertObjectEquals(@"-[MacroStoryImplementations doSIFail](25) SIFail executed, throwing failure exception.", e.reason);
+	}
 }
 
-SIMapStepToSelector(@"call the SIFail macro with a message", doSIFailWithMessage)
+SIMapStepToSelector(@"call the SIFail macro with a message", doSIFailWithMessage);
 -(void) doSIFailWithMessage {
    @try {
       SIFailM(@"Hello this is the SIFailM macro");
@@ -41,18 +41,18 @@ SIMapStepToSelector(@"call the SIFail macro with a message", doSIFailWithMessage
    
 }
 
-SIMapStepToSelector(@"calling SIAssertNil with nil should work", doSIAssertNilShouldPassNilOk)
+SIMapStepToSelector(@"calling SIAssertNil with nil should work", doSIAssertNilShouldPassNilOk);
 -(void) doSIAssertNilShouldPassNilOk {
-   @try {
-      SIAssertNil(nil);
-      // This is good.
-      gotThere = YES;
-   }
-   @finally {
-      if (! gotThere) {
-         SIFail();
-      }
-   }
+	@try {
+		SIAssertNil(nil);
+		// This is good.
+		gotThere = YES;
+	}
+	@finally {
+		if (! gotThere) {
+			SIFail();
+		}
+	}
 }
 
 @end

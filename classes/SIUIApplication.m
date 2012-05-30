@@ -38,12 +38,14 @@ static SIUIApplication *application = nil;
 
 @synthesize viewHandlerFactory = viewHandlerFactory_;
 @synthesize disableKeyboardAutocorrect = disableAutoCorrect_;
+@synthesize logActions = logActions_;
 
 #pragma mark - Accessors
 
 + (SIUIApplication *)application {
    if (application == nil) {
       application = [[super allocWithZone:NULL] init];
+		application.logActions = YES;
    }
    return application;
 }
@@ -94,6 +96,10 @@ static SIUIApplication *application = nil;
 
 -(NSArray *) findViewsWithQuery:(NSString *) query {
 	
+	if (self.logActions) {
+		NSLog(@"Finding views with %@", query);
+	}
+
 	__block NSArray *views;
 	__block NSException *exception = nil;
 	
@@ -121,6 +127,10 @@ static SIUIApplication *application = nil;
 
 -(NSArray *) findViewsOnKeyWindowWithQuery:(NSString *) query {
 	
+	if (self.logActions) {
+		NSLog(@"Finding views on key window with %@", query);
+	}
+
 	// Get the window as the root node.
 	DC_LOG(@"Searching for views based on the query \"%@\"", query);
 	UIView *keyWindow = [UIApplication sharedApplication].keyWindow;
@@ -139,7 +149,11 @@ static SIUIApplication *application = nil;
 }
 
 -(NSArray *) findViewsOnAllWindowsWithQuery:(NSString *) query {
-	
+
+	if (self.logActions) {
+		NSLog(@"Finding views on all windows with %@", query);
+	}
+
 	NSMutableArray *results = [NSMutableArray array];
 	NSArray *windowResults = nil;
 	
@@ -160,6 +174,10 @@ static SIUIApplication *application = nil;
 
 -(UIView *) findViewWithQuery:(NSString *) query {
 	
+	if (self.logActions) {
+		NSLog(@"Finding single view with %@", query);
+	}
+
 	NSArray *views = [self findViewsWithQuery:query];
 	
 	// Validate that we only have a single view.
@@ -176,7 +194,11 @@ static SIUIApplication *application = nil;
 }
 
 -(BOOL) isViewPresent:(NSString *) query {
-	return [[self findViewsWithQuery:query] count] > 0;
+	BOOL present = [[self findViewsWithQuery:query] count] > 0;
+	if (self.logActions) {
+		NSLog(@"Checking if view %@ is present: %@", query, DC_PRETTY_BOOL(present));
+	}
+	return present;
 }
 
 -(void) logUITree {
@@ -220,21 +242,33 @@ static SIUIApplication *application = nil;
 #pragma mark - Tapping
 
 -(UIView *) tapView:(UIView *) view {
+	if (self.logActions) {
+		NSLog(@"Tapping a view");
+	}
    [[self viewHandlerForView:view] tap];
 	return view;
 }
 
 -(UIView *) tapView:(UIView *) view atPoint:(CGPoint) atPoint {
+	if (self.logActions) {
+		NSLog(@"Tapping a view at point %f x %f", atPoint.x, atPoint.y);
+	}
    [[self viewHandlerForView:view] tapAtPoint:atPoint];
 	return view;
 }
 
 -(UIView *) tapViewWithQuery:(NSString *) query {
+	if (self.logActions) {
+		NSLog(@"Tapping view %@", query);
+	}
    UIView<DNNode> *theView = [self findViewWithQuery:query];
    return [self tapView:theView];
 }
 
 -(UIView *) tapViewWithQuery:(NSString *) query atPoint:(CGPoint) atPoint {
+	if (self.logActions) {
+		NSLog(@"Tapping view %@ at point %f x %f", query, atPoint.x, atPoint.y);
+	}
    UIView<DNNode> *theView = [self findViewWithQuery:query];
    return [self tapView:theView atPoint:atPoint];
 }
