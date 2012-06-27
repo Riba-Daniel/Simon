@@ -1,0 +1,3 @@
+[submodule "frameworks/CocoaHTTPServer"]
+	path = frameworks/CocoaHTTPServer
+	url = https://github.com/drekka/CocoaHTTPServer.git

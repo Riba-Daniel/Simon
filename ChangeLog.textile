@@ -4,11 +4,12 @@ title: Change Log
 root-url: ../
 simon-tab-class: tabbar-tab-highlighted
 ---
-h1. Version 0.1.9,
+h1. Version 0.1.9, May 2012
 
 * Added the boolean property logActions to enabled/isable logging of actions to help debug.
 * Modifed the startup so that the SIAppBackpack is automatically loaded when the runtime starts. This removes the need to manually inject it in the main.m file.
-* Add a --noautorun program argument which can be used to stop the stories from running on startup.
+* Added a --noautorun program argument which can be used to stop the stories from running on startup.
+* Added a --noload program argument which stops Simon from loading. Really useful for unit testing Simon. Not much else.
 
 h1. Version 0.1.8, April 2012
 
