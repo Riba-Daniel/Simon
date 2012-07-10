@@ -8,8 +8,20 @@
 
 #import "UITouch+Simon.h"
 
-@implementation UITouch (Simon)
+// These declarations are copies from the private apis and serve to give us access to the internals of UITouch.
+@interface UITouch (Simon_UITouchInternal)
+@property(retain, nonatomic) UIView* view;
+@property(retain, nonatomic) UIWindow* window;
+@property(assign, nonatomic) unsigned tapCount;
+@property(assign, nonatomic) int phase;
+@property(assign, nonatomic) double timestamp;
+-(void)_pushPhase:(int)phase;
+-(CGPoint)_locationInWindow:(id)window;
+-(void)_setLocationInWindow:(CGPoint)window resetPrevious:(BOOL)previous;
+-(void)_setIsFirstTouchForView:(BOOL)view;
+@end
 
+@implementation UITouch (Simon)
 
 @dynamic locationInWindow;
 //
@@ -40,14 +52,13 @@
       
       // If a table view we need to tap the table view, not the control within it.
 		UIView *target = [view.window hitTest:self.locationInWindow withEvent:nil];
-      //target = view;
 		DC_LOG(@"Deepest target at point is a: %@: %p ", NSStringFromClass([target class]), target);
       
-		_window = [view.window retain];
-		_view = [target retain];
-		_phase = UITouchPhaseBegan;
-		_tapCount = 1;
-      _touchFlags._firstTouchForView = YES;
+		self.window = view.window;
+		self.view = target;
+		self.phase = UITouchPhaseBegan;
+		self.tapCount = 1;
+		[self _setIsFirstTouchForView:YES];
       
    }
    
@@ -57,21 +68,20 @@
 
 - (void)setPhase:(UITouchPhase)phase
 {
-   _savedPhase = _phase;
-	_phase = phase;
-	_timestamp = [NSDate timeIntervalSinceReferenceDate];
+	[self _pushPhase: phase];
+	self.timestamp = [NSDate timeIntervalSinceReferenceDate];
 }
 
 -(CGPoint) locationInWindow {
-   return _locationInWindow;
+   return [self _locationInWindow:self.window];
 }
 
 - (void)setLocationInWindow:(CGPoint)location
 {
-	_previousLocationInWindow = _locationInWindow;
-	_locationInWindow = location;
-	_timestamp = [NSDate timeIntervalSinceReferenceDate];
-   DC_LOG(@"Setting new touch point %f x %f", _locationInWindow.x, _locationInWindow.y);
+	[self _setLocationInWindow:location resetPrevious:NO];
+	self.timestamp = [NSDate timeIntervalSinceReferenceDate];
+	CGPoint loc = [self _locationInWindow:self.window];
+   DC_LOG(@"Setting new touch point %f x %f", loc.x, loc.y);
 }
 
 @end

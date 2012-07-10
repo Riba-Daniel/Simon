@@ -96,7 +96,7 @@
 -(void) runStoriesInSources:(NSArray *) sources {
 	
 	NSArray *stories = [sources valueForKeyPath:@"@unionOfArrays.stories"];
-	DC_LOG(@"Running %lu stories", [stories count]);
+	DC_LOG(@"Running %u stories", [stories count]);
 	
 	// First reset all the stories we are going to run.
 	for (SIStory *story in stories) {

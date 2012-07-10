@@ -108,7 +108,7 @@ static SIUIApplication *application = nil;
 			views = [self findViewsOnKeyWindowWithQuery:query];
 			// Retain so data survives GCDs autorelease pools.
 			[views retain];
-			DC_LOG(@"Returning %lu views to background thread", [views count]);
+			DC_LOG(@"Returning %u views to background thread", [views count]);
 		}
 		@catch (NSException *e) {
 			// Retain the exception.
@@ -185,7 +185,7 @@ static SIUIApplication *application = nil;
       @throw [SIUINotFoundException exceptionWithReason: [NSString stringWithFormat:@"Path %@ failed to find anything.", query]];
 	}
 	if ([views count] > 1) {
-      @throw [SIUITooManyFoundException exceptionWithReason: [NSString stringWithFormat:@"Path %@ should return one view only, got %lu instead.", query, [views count]]];
+      @throw [SIUITooManyFoundException exceptionWithReason: [NSString stringWithFormat:@"Path %@ should return one view only, got %u instead.", query, [views count]]];
 	}
 	
 	UIView *view = [views objectAtIndex:0];
@@ -225,7 +225,7 @@ static SIUIApplication *application = nil;
 	// Build a string of the attributes.
 	NSMutableString *attributeString = [NSMutableString string];
 	[attributes enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
-		[attributeString appendFormat:@", @%2$@='%3$@'", key, obj];
+		[attributeString appendFormat:@", @%@='%@'", key, obj];
 	}];
 	
 	// Log the main details.
