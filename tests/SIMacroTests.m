@@ -11,7 +11,7 @@
 #import "AbstractTestWithControlsOnView.h"
 #import "SIUITooManyFoundException.h"
 #import "SIUINotFoundException.h"
-#import "NSObject+Simon.h"
+#import <Simon-core/NSObject+Simon.h>
 
 #define catchMessage(msg) \
 do { \

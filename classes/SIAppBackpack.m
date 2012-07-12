@@ -7,11 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SIAppBackpack.h"
 #import <dUsefulStuff/DCCommon.h>
 #import <dUsefulStuff/DCDialogs.h>
-#import "SIStoryRunner.h"
 #import <Simon-core/SIConstants.h>
+
+#import <SimonHttpServer/HTTPServer.h>
+
+#import "SIAppBackpack.h"
+#import "SIStoryRunner.h"
 #import "SIUIViewHandlerFactory.h"
 
 
@@ -29,8 +32,8 @@
 
 @implementation SIAppBackpack
 
-@synthesize autorun = autorun_;
-@synthesize displayUserInfo = displayUserInfo_;
+@synthesize autorun = _autorun;
+@synthesize displayUserInfo = _displayUserInfo;
 
 // Static reference to self to keep alive in an ARC environment.
 static SIAppBackpack *backpack_;
@@ -47,6 +50,7 @@ static SIAppBackpack *backpack_;
 #pragma mark - Lifecycle
 
 +(void) load {
+
 	@autoreleasepool {
 		
 		// Find out if we are notloading.

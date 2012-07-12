@@ -13,14 +13,14 @@
 #import "SIUIApplication.h"
 #import "UIView+Simon.h"
 #import "UIView+Simon.h"
-#import "SIConstants.h"
+#import <Simon-core/SIConstants.h>
 #import <dNodi/dNodi.h>
 #import "AbstractTestWithControlsOnView.h"
 #import "SIUITooManyFoundException.h"
 #import "SIUINotFoundException.h"
 #import "SISyntaxException.h"
 #import "SIUIException.h"
-#import "NSObject+Simon.h"
+#import <Simon-core/NSObject+Simon.h>
 #import "SIUINotAnInputViewException.h"
 
 @interface SIUIApplicationTests : AbstractTestWithControlsOnView
