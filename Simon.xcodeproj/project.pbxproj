@@ -170,6 +170,13 @@
 			remoteGlobalIDString = 653D0E8913A782AD00A5AB82;
 			remoteInfo = Simon;
 		};
+		32B13BBA15AEAE7500A0E445 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 32B13B8115AEAE7400A0E445 /* CocoaHTTPServer.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 322DA73F159B4A5C005CFC83;
+			remoteInfo = CocoaHTTPServer;
+		};
 		32D9353615AB08C000E51C8C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 653D0E8113A782AC00A5AB82 /* Project object */;
@@ -271,6 +278,7 @@
 		32B0AC0A14E8E8210020500E /* SIAbstractException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIAbstractException.m; sourceTree = "<group>"; };
 		32B0AC0D14E8EB170020500E /* SIUIException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIException.h; sourceTree = "<group>"; };
 		32B0AC0E14E8EB170020500E /* SIUIException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUIException.m; sourceTree = "<group>"; };
+		32B13B8115AEAE7400A0E445 /* CocoaHTTPServer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CocoaHTTPServer.xcodeproj; path = frameworks/CocoaHTTPServer/CocoaHTTPServer/CocoaHTTPServer.xcodeproj; sourceTree = "<group>"; };
 		32BF7CFD14F9152D00A0B197 /* SIUITapGeneratorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUITapGeneratorTests.m; sourceTree = "<group>"; };
 		32BF7CFF14F9CB2900A0B197 /* SIUISwipeGeneratorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUISwipeGeneratorTests.m; sourceTree = "<group>"; };
 		32D5D98914E1357900D29DD5 /* TestView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestView.xib; sourceTree = "<group>"; };
@@ -552,6 +560,14 @@
 			name = Exceptions;
 			sourceTree = "<group>";
 		};
+		32B13B8215AEAE7400A0E445 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				32B13BBB15AEAE7500A0E445 /* libCocoaHTTPServer.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		32E532851518B26E0027566E /* Generator */ = {
 			isa = PBXGroup;
 			children = (
@@ -568,6 +584,7 @@
 		653D0E7F13A782AC00A5AB82 = {
 			isa = PBXGroup;
 			children = (
+				32B13B8115AEAE7400A0E445 /* CocoaHTTPServer.xcodeproj */,
 				3283D4DE15AE9DC500E52C8F /* Simon-core.xcodeproj */,
 				653D0EF013A7842500A5AB82 /* Simon-Prefix.pch */,
 				6583B3EA13CF2220005E13F3 /* build.sh */,
@@ -910,6 +927,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = 32B13B8215AEAE7400A0E445 /* Products */;
+					ProjectRef = 32B13B8115AEAE7400A0E445 /* CocoaHTTPServer.xcodeproj */;
+				},
+				{
 					ProductGroup = 3283D4DF15AE9DC500E52C8F /* Products */;
 					ProjectRef = 3283D4DE15AE9DC500E52C8F /* Simon-core.xcodeproj */;
 				},
@@ -930,6 +951,13 @@
 			fileType = archive.ar;
 			path = "libSimon-core.xcodeproj.a";
 			remoteRef = 3283D4E515AE9DC600E52C8F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		32B13BBB15AEAE7500A0E445 /* libCocoaHTTPServer.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libCocoaHTTPServer.a;
+			remoteRef = 32B13BBA15AEAE7500A0E445 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
