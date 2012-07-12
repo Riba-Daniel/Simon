@@ -52,6 +52,7 @@
 		3298253C1504C87700631203 /* BDDImplementations.m in Sources */ = {isa = PBXBuildFile; fileRef = 3298253B1504C87600631203 /* BDDImplementations.m */; };
 		32A7E80E15AEB482004AF2C6 /* libSimon-core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3283D4E615AE9DC600E52C8F /* libSimon-core.a */; };
 		32A7E82215AEB6A1004AF2C6 /* libSimon-core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3283D4E615AE9DC600E52C8F /* libSimon-core.a */; };
+		32A7E8DE15AEC1A1004AF2C6 /* libSimonHttpServer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32A7E8DD15AEC19A004AF2C6 /* libSimonHttpServer.a */; };
 		32A8F6841574A819006C5A91 /* libSimon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 653D0E8A13A782AD00A5AB82 /* libSimon.a */; };
 		32A9D11014C907BC00B0CFBD /* NSInvocations.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A9D10F14C907BC00B0CFBD /* NSInvocations.m */; };
 		32A9D11314C914B500B0CFBD /* SIMacroTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A9D11214C914B500B0CFBD /* SIMacroTests.m */; };
@@ -149,12 +150,26 @@
 			remoteGlobalIDString = 3283D4B715AE920900E52C8F;
 			remoteInfo = "Simon-core";
 		};
-		32A7E85B15AEBEAB004AF2C6 /* PBXContainerItemProxy */ = {
+		32A7E8A715AEC069004AF2C6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 32A7E85415AEBEAB004AF2C6 /* CocoaHTTPServer.xcodeproj */;
+			containerPortal = 32A7E86E15AEC068004AF2C6 /* CocoaHTTPServer.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 322DA73F159B4A5C005CFC83;
 			remoteInfo = CocoaHTTPServer;
+		};
+		32A7E8D915AEC199004AF2C6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 32A7E86E15AEC068004AF2C6 /* CocoaHTTPServer.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 32A7E8B715AEC091004AF2C6;
+			remoteInfo = SimonHttpServer;
+		};
+		32A7E8DC15AEC19A004AF2C6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 32A7E86E15AEC068004AF2C6 /* CocoaHTTPServer.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 32A7E8B815AEC091004AF2C6;
+			remoteInfo = SimonHttpServer;
 		};
 		32A8F6821574A80D006C5A91 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -257,7 +272,7 @@
 		3298252D15039FE300631203 /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
 		329825381503A0FF00631203 /* BDD.stories */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BDD.stories; sourceTree = "<group>"; };
 		3298253B1504C87600631203 /* BDDImplementations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDDImplementations.m; sourceTree = "<group>"; };
-		32A7E85415AEBEAB004AF2C6 /* CocoaHTTPServer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CocoaHTTPServer.xcodeproj; path = CocoaHTTPServer/CocoaHTTPServer/CocoaHTTPServer.xcodeproj; sourceTree = "<group>"; };
+		32A7E86E15AEC068004AF2C6 /* CocoaHTTPServer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CocoaHTTPServer.xcodeproj; path = frameworks/CocoaHTTPServer/CocoaHTTPServer/CocoaHTTPServer.xcodeproj; sourceTree = "<group>"; };
 		32A9D10F14C907BC00B0CFBD /* NSInvocations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = NSInvocations.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		32A9D11214C914B500B0CFBD /* SIMacroTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIMacroTests.m; sourceTree = "<group>"; };
 		32B0ABF714E8DF780020500E /* SISyntaxException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SISyntaxException.h; sourceTree = "<group>"; };
@@ -376,6 +391,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32A7E8DE15AEC1A1004AF2C6 /* libSimonHttpServer.a in Frameworks */,
 				32A7E80E15AEB482004AF2C6 /* libSimon-core.a in Frameworks */,
 				32EA6E76150E11E2000A64A1 /* QuartzCore.framework in Frameworks */,
 				94327D7213E44F9A0003646C /* dNodi.framework in Frameworks */,
@@ -523,10 +539,11 @@
 			name = Stories;
 			sourceTree = "<group>";
 		};
-		32A7E85515AEBEAB004AF2C6 /* Products */ = {
+		32A7E86F15AEC068004AF2C6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				32A7E85C15AEBEAB004AF2C6 /* libCocoaHTTPServer.a */,
+				32A7E8A815AEC069004AF2C6 /* libCocoaHTTPServer.a */,
+				32A7E8DD15AEC19A004AF2C6 /* libSimonHttpServer.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -566,7 +583,7 @@
 		653D0E7F13A782AC00A5AB82 = {
 			isa = PBXGroup;
 			children = (
-				32A7E85415AEBEAB004AF2C6 /* CocoaHTTPServer.xcodeproj */,
+				32A7E86E15AEC068004AF2C6 /* CocoaHTTPServer.xcodeproj */,
 				3283D4DE15AE9DC500E52C8F /* Simon-core.xcodeproj */,
 				653D0EF013A7842500A5AB82 /* Simon-Prefix.pch */,
 				6583B3EA13CF2220005E13F3 /* build.sh */,
@@ -826,6 +843,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				32A7E8DA15AEC199004AF2C6 /* PBXTargetDependency */,
 				32B13BD715AEB34900A0E445 /* PBXTargetDependency */,
 			);
 			name = Simon;
@@ -872,8 +890,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 32A7E85515AEBEAB004AF2C6 /* Products */;
-					ProjectRef = 32A7E85415AEBEAB004AF2C6 /* CocoaHTTPServer.xcodeproj */;
+					ProductGroup = 32A7E86F15AEC068004AF2C6 /* Products */;
+					ProjectRef = 32A7E86E15AEC068004AF2C6 /* CocoaHTTPServer.xcodeproj */;
 				},
 				{
 					ProductGroup = 3283D4DF15AE9DC500E52C8F /* Products */;
@@ -898,11 +916,18 @@
 			remoteRef = 3283D4E515AE9DC600E52C8F /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		32A7E85C15AEBEAB004AF2C6 /* libCocoaHTTPServer.a */ = {
+		32A7E8A815AEC069004AF2C6 /* libCocoaHTTPServer.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libCocoaHTTPServer.a;
-			remoteRef = 32A7E85B15AEBEAB004AF2C6 /* PBXContainerItemProxy */;
+			remoteRef = 32A7E8A715AEC069004AF2C6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		32A7E8DD15AEC19A004AF2C6 /* libSimonHttpServer.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libSimonHttpServer.a;
+			remoteRef = 32A7E8DC15AEC19A004AF2C6 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1030,6 +1055,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		32A7E8DA15AEC199004AF2C6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SimonHttpServer;
+			targetProxy = 32A7E8D915AEC199004AF2C6 /* PBXContainerItemProxy */;
+		};
 		32A8F6831574A80D006C5A91 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 653D0E8913A782AD00A5AB82 /* Simon */;

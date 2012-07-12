@@ -1,3 +1,6 @@
 [submodule "core"]
 	path = core
 	url = https://github.com/drekka/Simon-core.git
+[submodule "frameworks/CocoaHTTPServer"]
+	path = frameworks/CocoaHTTPServer
+	url = https://github.com/drekka/Simon.git
