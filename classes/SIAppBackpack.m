@@ -11,7 +11,7 @@
 #import <dUsefulStuff/DCCommon.h>
 #import <dUsefulStuff/DCDialogs.h>
 #import "SIStoryRunner.h"
-#import "SIConstants.h"
+#import <Simon-core/SIConstants.h>
 #import "SIUIViewHandlerFactory.h"
 
 

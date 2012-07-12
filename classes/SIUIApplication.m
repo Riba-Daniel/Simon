@@ -12,7 +12,7 @@
 
 #import "SIUIApplication.h"
 #import "UIView+Simon.h"
-#import "SIConstants.h"
+#import <Simon-core/SIConstants.h>
 #import "SISyntaxException.h"
 #import "SIUITooManyFoundException.m"
 #import "SIUINotFoundException.h"
@@ -20,7 +20,7 @@
 #import "SIUIViewHandlerFactory.h"
 #import "SIUIException.h"
 #import "SIUIViewDescriptionVisitor.h"
-#import "NSObject+Simon.h"
+#import <Simon-core/NSObject+Simon.h>
 #import "SIUINotAnInputViewException.h"
 
 #import <QuartzCore/CALayer.h>

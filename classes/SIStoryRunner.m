@@ -9,9 +9,9 @@
 #import <dUsefulStuff/DCCommon.h>
 #import <dUsefulStuff/NSObject+dUsefulStuff.h>
 #import "SIStoryRunner.h"
-#import "SIStory.h"
-#import "SIStepMapping.h"
-#import "NSString+Simon.h"
+#import <Simon-core/SIStory.h>
+#import <Simon-core/SIStepMapping.h>
+#import <Simon-core/NSString+Simon.h>
 #import "SIStoryLogReporter.h"
 #import <dUsefulStuff/DCDialogs.h>
 

@@ -10,7 +10,7 @@
 #import "SIStoryReportTableViewController.h"
 #import <UIKit/UIKit.h>
 #import <dUsefulStuff/DCCommon.h>
-#import "NSObject+Simon.h"
+#import <Simon-core/NSObject+Simon.h>
 
 @interface SIUIReportManager(_private)
 -(void) closeSimon;

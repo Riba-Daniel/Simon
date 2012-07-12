@@ -1,0 +1,366 @@
+TSimon-core
+v5
+r1
+cCheck dependencies
+cProcessPCH /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/PrecompiledHeaders/Simon-core-Prefix-dcdtmkuprbnsbvajsepqcgcvnlqk/Simon-core-Prefix.pch.pth classes/Simon-core-Prefix.pch normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Objects-normal/i386/SIStep.o /Users/d4rkf1br3/projects/Simon/core/classes/SIStep.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Objects-normal/i386/NSString+Simon.o /Users/d4rkf1br3/projects/Simon/core/classes/NSString+Simon.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Objects-normal/i386/NSObject+Simon.o /Users/d4rkf1br3/projects/Simon/core/classes/NSObject+Simon.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Objects-normal/i386/SIStepMapping.o /Users/d4rkf1br3/projects/Simon/core/classes/SIStepMapping.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Objects-normal/i386/SIStory.o /Users/d4rkf1br3/projects/Simon/core/classes/SIStory.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Objects-normal/i386/SIStorySource.o /Users/d4rkf1br3/projects/Simon/core/classes/SIStorySource.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+cLibtool /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator/libSimon-core.a normal i386
+cCpHeader classes/SIConstants.h /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator/usr/local/include/SIConstants.h
+cCpHeader classes/SIStep.h /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator/usr/local/include/SIStep.h
+cCpHeader classes/SIStepMapping.h /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator/usr/local/include/SIStepMapping.h
+cCpHeader classes/SIStory.h /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator/usr/local/include/SIStory.h
+cCpHeader classes/SIStorySource.h /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator/usr/local/include/SIStorySource.h
+cCpHeader classes/NSObject+Simon.h /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator/usr/local/include/NSObject+Simon.h
+cCpHeader classes/NSString+Simon.h /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator/usr/local/include/NSString+Simon.h
+
+N/Applications/Xcode45-DP2.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.0.sdk
+c000000004FE349250000000000000110
+t1340295461
+s272
+
+N/Applications/Xcode45-DP2.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.0.sdk/System/Library/Frameworks/Foundation.framework/Foundation
+c000000004FE5262D00000000003D8D30
+t1340417581
+s4033840
+
+N/Applications/Xcode45-DP2.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.0.sdk/System/Library/Frameworks/Foundation.framework/Headers/Foundation.h
+c000000004FE5262D00000000000015F7
+t1340417581
+s5623
+
+N/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/PrecompiledHeaders/Simon-core-Prefix-dcdtmkuprbnsbvajsepqcgcvnlqk/Simon-core-Prefix.pch.pth
+t2
+s0
+
+N/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Objects-normal/i386/NSObject+Simon.o
+t2
+s0
+
+N/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Objects-normal/i386/NSString+Simon.o
+t2
+s0
+
+N/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Objects-normal/i386/SIStep.o
+t2
+s0
+
+N/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Objects-normal/i386/SIStepMapping.o
+t2
+s0
+
+N/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Objects-normal/i386/SIStory.o
+t2
+s0
+
+N/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Objects-normal/i386/SIStorySource.o
+t2
+s0
+
+N/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Objects-normal/i386/Simon-core.LinkFileList
+c000000004FFE909E00000000000003C1
+t1342083230
+s961
+
+N/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator/libSimon-core.a
+t2
+s0
+
+N/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator/usr/local/include/NSObject+Simon.h
+t2
+s0
+
+N/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator/usr/local/include/NSString+Simon.h
+t2
+s0
+
+N/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator/usr/local/include/SIConstants.h
+t2
+s0
+
+N/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator/usr/local/include/SIStep.h
+t2
+s0
+
+N/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator/usr/local/include/SIStepMapping.h
+t2
+s0
+
+N/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator/usr/local/include/SIStory.h
+t2
+s0
+
+N/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator/usr/local/include/SIStorySource.h
+t2
+s0
+
+N/Users/d4rkf1br3/projects/Simon/core/../../Releases/dUsefulStuff/v0.0.15/dUsefulStuff.framework/dUsefulStuff
+c000000004FC6F9C500000000000F0F8C
+t1338440133
+s987020
+
+N/Users/d4rkf1br3/projects/Simon/core/classes/NSObject+Simon.h
+c000000004FFE6B1C0000000000000331
+t1342073628
+s817
+
+N/Users/d4rkf1br3/projects/Simon/core/classes/NSObject+Simon.m
+c000000004FFE6B1C0000000000000283
+t1342073628
+s643
+
+N/Users/d4rkf1br3/projects/Simon/core/classes/NSString+Simon.h
+c000000004FFE6B1C000000000000054D
+t1342073628
+s1357
+
+N/Users/d4rkf1br3/projects/Simon/core/classes/NSString+Simon.m
+c000000004FFE6B1C0000000000000813
+t1342073628
+s2067
+
+N/Users/d4rkf1br3/projects/Simon/core/classes/SIConstants.h
+c000000004FFE8B45000000000000088A
+t1342081861
+s2186
+
+N/Users/d4rkf1br3/projects/Simon/core/classes/SIStep.h
+c000000004FFE6B1C0000000000000AC8
+t1342073628
+s2760
+
+N/Users/d4rkf1br3/projects/Simon/core/classes/SIStep.m
+c000000004FFE6B1C000000000000089C
+t1342073628
+s2204
+
+N/Users/d4rkf1br3/projects/Simon/core/classes/SIStepMapping.h
+c000000004FFE6B1C0000000000000B1E
+t1342073628
+s2846
+
+N/Users/d4rkf1br3/projects/Simon/core/classes/SIStepMapping.m
+c000000004FFE6B1C0000000000001F2E
+t1342073628
+s7982
+
+N/Users/d4rkf1br3/projects/Simon/core/classes/SIStory.h
+c000000004FFE6B1C00000000000013A3
+t1342073628
+s5027
+
+N/Users/d4rkf1br3/projects/Simon/core/classes/SIStory.m
+c000000004FFE7EC80000000000000E76
+t1342078664
+s3702
+
+N/Users/d4rkf1br3/projects/Simon/core/classes/SIStorySource.h
+c000000004F2920AA0000000000000218
+t1328095402
+s536
+
+N/Users/d4rkf1br3/projects/Simon/core/classes/SIStorySource.m
+c000000004F2B44C400000000000001FC
+t1328235716
+s508
+
+N/Users/d4rkf1br3/projects/Simon/core/classes/Simon-core-Prefix.pch
+c000000004FFE8B80000000000000009E
+t1342081920
+s158
+i<Foundation/Foundation.h>
+
+CBuild AST from /Users/d4rkf1br3/projects/Simon/core/classes/NSObject+Simon.m
+r0
+
+CBuild AST from /Users/d4rkf1br3/projects/Simon/core/classes/NSString+Simon.m
+r0
+
+CBuild AST from /Users/d4rkf1br3/projects/Simon/core/classes/SIStep.m
+r0
+
+CBuild AST from /Users/d4rkf1br3/projects/Simon/core/classes/SIStepMapping.m
+r0
+
+CBuild AST from /Users/d4rkf1br3/projects/Simon/core/classes/SIStory.m
+r0
+
+CBuild AST from /Users/d4rkf1br3/projects/Simon/core/classes/SIStorySource.m
+r0
+
+CCheck dependencies
+r0
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependenciesc32b451ec8aeb541^f705501ec8aeb541^---0#1#0#--18"Check dependencies36"00A0EF7D-121E-4C47-B953-5AEB35D0886A-
+
+CCompileC /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Objects-normal/i386/NSObject+Simon.o /Users/d4rkf1br3/projects/Simon/core/classes/NSObject+Simon.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s363776030.500186
+e363776030.540311
+r1
+xCompileC
+x/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Objects-normal/i386/NSObject+Simon.o
+x/Users/d4rkf1br3/projects/Simon/core/classes/NSObject+Simon.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection69"Compile /Users/d4rkf1br3/projects/Simon/core/classes/NSObject+Simon.m8c31801ec8aeb541^f4518a1ec8aeb541^---0#0#0#-19%DVTDocumentLocation2@77"file://localhost/Users/d4rkf1br3/projects/Simon/core/classes/NSObject+Simon.m0000000000000000^3912"CompileC /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Objects-normal/i386/NSObject+Simon.o classes/NSObject+Simon.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/d4rkf1br3/projects/Simon/core    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode45-DP2.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode45-DP2.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Applications/Xcode45-DP2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch i386 -fmessage-length=0 -std=gnu99 -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wduplicate-method-match -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-sign-compare -Wno-shorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -isysroot /Applications/Xcode45-DP2.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.0.sdk -fexceptions -fasm-blocks -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -mios-simulator-version-min=5.0 -iquote /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Simon-core-generated-files.hmap -I/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Simon-core-own-target-headers.hmap -I/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Simon-core-all-target-headers.hmap -iquote /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Simon-core-project-headers.hmap -I/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator/include -I/Applications/Xcode45-DP2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/DerivedSources/i386 -I/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/DerivedSources -F/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator -F/Users/d4rkf1br3/projects/Simon/core/../../Releases/dUsefulStuff/v0.0.15 -include /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/PrecompiledHeaders/Simon-core-Prefix-dcdtmkuprbnsbvajsepqcgcvnlqk/Simon-core-Prefix.pch -MMD -MT dependencies -MF /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Objects-normal/i386/NSObject+Simon.d --serialize-diagnostics /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Objects-normal/i386/NSObject+Simon.dia -c /Users/d4rkf1br3/projects/Simon/core/classes/NSObject+Simon.m -o /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Objects-normal/i386/NSObject+Simon.o36"6B905605-4ED6-4B5F-A6E8-20F3FFD6B3D9-
+
+CCompileC /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Objects-normal/i386/NSString+Simon.o /Users/d4rkf1br3/projects/Simon/core/classes/NSString+Simon.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s363776030.500141
+e363776030.540016
+r1
+xCompileC
+x/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Objects-normal/i386/NSString+Simon.o
+x/Users/d4rkf1br3/projects/Simon/core/classes/NSString+Simon.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection69"Compile /Users/d4rkf1br3/projects/Simon/core/classes/NSString+Simon.m672a801ec8aeb541^c03e8a1ec8aeb541^---0#0#0#-19%DVTDocumentLocation2@77"file://localhost/Users/d4rkf1br3/projects/Simon/core/classes/NSString+Simon.m0000000000000000^3912"CompileC /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Objects-normal/i386/NSString+Simon.o classes/NSString+Simon.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/d4rkf1br3/projects/Simon/core    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode45-DP2.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode45-DP2.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Applications/Xcode45-DP2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch i386 -fmessage-length=0 -std=gnu99 -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wduplicate-method-match -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-sign-compare -Wno-shorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -isysroot /Applications/Xcode45-DP2.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.0.sdk -fexceptions -fasm-blocks -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -mios-simulator-version-min=5.0 -iquote /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Simon-core-generated-files.hmap -I/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Simon-core-own-target-headers.hmap -I/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Simon-core-all-target-headers.hmap -iquote /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Simon-core-project-headers.hmap -I/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator/include -I/Applications/Xcode45-DP2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/DerivedSources/i386 -I/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/DerivedSources -F/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator -F/Users/d4rkf1br3/projects/Simon/core/../../Releases/dUsefulStuff/v0.0.15 -include /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/PrecompiledHeaders/Simon-core-Prefix-dcdtmkuprbnsbvajsepqcgcvnlqk/Simon-core-Prefix.pch -MMD -MT dependencies -MF /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Objects-normal/i386/NSString+Simon.d --serialize-diagnostics /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Objects-normal/i386/NSString+Simon.dia -c /Users/d4rkf1br3/projects/Simon/core/classes/NSString+Simon.m -o /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Objects-normal/i386/NSString+Simon.o36"9C3E8A65-3CB8-41CC-ADDA-AD1C81C3F8DF-
+
+CCompileC /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Objects-normal/i386/SIStep.o /Users/d4rkf1br3/projects/Simon/core/classes/SIStep.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s363776030.498911
+e363776030.540711
+r1
+xCompileC
+x/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Objects-normal/i386/SIStep.o
+x/Users/d4rkf1br3/projects/Simon/core/classes/SIStep.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection61"Compile /Users/d4rkf1br3/projects/Simon/core/classes/SIStep.m151e801ec8aeb541^1a6c8a1ec8aeb541^---0#0#0#-19%DVTDocumentLocation2@69"file://localhost/Users/d4rkf1br3/projects/Simon/core/classes/SIStep.m0000000000000000^3864"CompileC /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Objects-normal/i386/SIStep.o classes/SIStep.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/d4rkf1br3/projects/Simon/core    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode45-DP2.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode45-DP2.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Applications/Xcode45-DP2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch i386 -fmessage-length=0 -std=gnu99 -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wduplicate-method-match -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-sign-compare -Wno-shorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -isysroot /Applications/Xcode45-DP2.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.0.sdk -fexceptions -fasm-blocks -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -mios-simulator-version-min=5.0 -iquote /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Simon-core-generated-files.hmap -I/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Simon-core-own-target-headers.hmap -I/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Simon-core-all-target-headers.hmap -iquote /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Simon-core-project-headers.hmap -I/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator/include -I/Applications/Xcode45-DP2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/DerivedSources/i386 -I/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/DerivedSources -F/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator -F/Users/d4rkf1br3/projects/Simon/core/../../Releases/dUsefulStuff/v0.0.15 -include /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/PrecompiledHeaders/Simon-core-Prefix-dcdtmkuprbnsbvajsepqcgcvnlqk/Simon-core-Prefix.pch -MMD -MT dependencies -MF /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Objects-normal/i386/SIStep.d --serialize-diagnostics /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Objects-normal/i386/SIStep.dia -c /Users/d4rkf1br3/projects/Simon/core/classes/SIStep.m -o /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Objects-normal/i386/SIStep.o36"8E3D067B-1EB3-424F-B1F7-04D70C70FBB9-
+
+CCompileC /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Objects-normal/i386/SIStepMapping.o /Users/d4rkf1br3/projects/Simon/core/classes/SIStepMapping.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s363776030.500191
+e363776030.548583
+r1
+xCompileC
+x/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Objects-normal/i386/SIStepMapping.o
+x/Users/d4rkf1br3/projects/Simon/core/classes/SIStepMapping.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection68"Compile /Users/d4rkf1br3/projects/Simon/core/classes/SIStepMapping.m622f801ec8aeb541^54708c1ec8aeb541^---0#0#0#-19%DVTDocumentLocation2@76"file://localhost/Users/d4rkf1br3/projects/Simon/core/classes/SIStepMapping.m0000000000000000^3906"CompileC /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Objects-normal/i386/SIStepMapping.o classes/SIStepMapping.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/d4rkf1br3/projects/Simon/core    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode45-DP2.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode45-DP2.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Applications/Xcode45-DP2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch i386 -fmessage-length=0 -std=gnu99 -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wduplicate-method-match -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-sign-compare -Wno-shorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -isysroot /Applications/Xcode45-DP2.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.0.sdk -fexceptions -fasm-blocks -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -mios-simulator-version-min=5.0 -iquote /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Simon-core-generated-files.hmap -I/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Simon-core-own-target-headers.hmap -I/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Simon-core-all-target-headers.hmap -iquote /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Simon-core-project-headers.hmap -I/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator/include -I/Applications/Xcode45-DP2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/DerivedSources/i386 -I/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/DerivedSources -F/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator -F/Users/d4rkf1br3/projects/Simon/core/../../Releases/dUsefulStuff/v0.0.15 -include /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/PrecompiledHeaders/Simon-core-Prefix-dcdtmkuprbnsbvajsepqcgcvnlqk/Simon-core-Prefix.pch -MMD -MT dependencies -MF /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Objects-normal/i386/SIStepMapping.d --serialize-diagnostics /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Objects-normal/i386/SIStepMapping.dia -c /Users/d4rkf1br3/projects/Simon/core/classes/SIStepMapping.m -o /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Objects-normal/i386/SIStepMapping.o36"0565D1D7-6C49-4FDA-A139-EA73255A091A-
+
+CCompileC /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Objects-normal/i386/SIStory.o /Users/d4rkf1br3/projects/Simon/core/classes/SIStory.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s363776030.500203
+e363776030.543624
+r1
+xCompileC
+x/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Objects-normal/i386/SIStory.o
+x/Users/d4rkf1br3/projects/Simon/core/classes/SIStory.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection62"Compile /Users/d4rkf1br3/projects/Simon/core/classes/SIStory.m0a30801ec8aeb541^cb2b8b1ec8aeb541^---0#0#0#-19%DVTDocumentLocation2@70"file://localhost/Users/d4rkf1br3/projects/Simon/core/classes/SIStory.m0000000000000000^3870"CompileC /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Objects-normal/i386/SIStory.o classes/SIStory.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/d4rkf1br3/projects/Simon/core    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode45-DP2.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode45-DP2.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Applications/Xcode45-DP2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch i386 -fmessage-length=0 -std=gnu99 -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wduplicate-method-match -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-sign-compare -Wno-shorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -isysroot /Applications/Xcode45-DP2.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.0.sdk -fexceptions -fasm-blocks -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -mios-simulator-version-min=5.0 -iquote /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Simon-core-generated-files.hmap -I/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Simon-core-own-target-headers.hmap -I/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Simon-core-all-target-headers.hmap -iquote /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Simon-core-project-headers.hmap -I/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator/include -I/Applications/Xcode45-DP2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/DerivedSources/i386 -I/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/DerivedSources -F/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator -F/Users/d4rkf1br3/projects/Simon/core/../../Releases/dUsefulStuff/v0.0.15 -include /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/PrecompiledHeaders/Simon-core-Prefix-dcdtmkuprbnsbvajsepqcgcvnlqk/Simon-core-Prefix.pch -MMD -MT dependencies -MF /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Objects-normal/i386/SIStory.d --serialize-diagnostics /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Objects-normal/i386/SIStory.dia -c /Users/d4rkf1br3/projects/Simon/core/classes/SIStory.m -o /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Objects-normal/i386/SIStory.o36"B028F60B-A9B0-455A-8470-0700A02CA7FB-
+
+CCompileC /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Objects-normal/i386/SIStorySource.o /Users/d4rkf1br3/projects/Simon/core/classes/SIStorySource.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s363776030.500213
+e363776030.539714
+r1
+xCompileC
+x/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Objects-normal/i386/SIStorySource.o
+x/Users/d4rkf1br3/projects/Simon/core/classes/SIStorySource.m
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection68"Compile /Users/d4rkf1br3/projects/Simon/core/classes/SIStorySource.ma130801ec8aeb541^3d2a8a1ec8aeb541^---0#0#0#-19%DVTDocumentLocation2@76"file://localhost/Users/d4rkf1br3/projects/Simon/core/classes/SIStorySource.m0000000000000000^3906"CompileC /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Objects-normal/i386/SIStorySource.o classes/SIStorySource.m normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/d4rkf1br3/projects/Simon/core    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode45-DP2.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode45-DP2.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Applications/Xcode45-DP2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c -arch i386 -fmessage-length=0 -std=gnu99 -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wduplicate-method-match -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-sign-compare -Wno-shorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -isysroot /Applications/Xcode45-DP2.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.0.sdk -fexceptions -fasm-blocks -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -mios-simulator-version-min=5.0 -iquote /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Simon-core-generated-files.hmap -I/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Simon-core-own-target-headers.hmap -I/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Simon-core-all-target-headers.hmap -iquote /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Simon-core-project-headers.hmap -I/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator/include -I/Applications/Xcode45-DP2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/DerivedSources/i386 -I/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/DerivedSources -F/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator -F/Users/d4rkf1br3/projects/Simon/core/../../Releases/dUsefulStuff/v0.0.15 -include /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/PrecompiledHeaders/Simon-core-Prefix-dcdtmkuprbnsbvajsepqcgcvnlqk/Simon-core-Prefix.pch -MMD -MT dependencies -MF /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Objects-normal/i386/SIStorySource.d --serialize-diagnostics /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Objects-normal/i386/SIStorySource.dia -c /Users/d4rkf1br3/projects/Simon/core/classes/SIStorySource.m -o /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Objects-normal/i386/SIStorySource.o36"2691231A-7C03-453E-A999-5B5FE5913CFF-
+
+CCpHeader classes/NSObject+Simon.h /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator/usr/local/include/NSObject+Simon.h
+s363776030.994057
+e363776030.999629
+r1
+xCpHeader
+xclasses/NSObject+Simon.h
+x/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator/usr/local/include/NSObject+Simon.h
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection126"Copy /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator/usr/local/include/NSObject+Simon.h3cd8fe1ec8aeb541^3aebff1ec8aeb541^---0#0#0#-19%DVTDocumentLocation2@137"file://localhost/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator/usr/local/include/NSObject+Simon.h000000000080d041^748"CpHeader classes/NSObject+Simon.h /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator/usr/local/include/NSObject+Simon.h    cd /Users/d4rkf1br3/projects/Simon/core    setenv PATH "/Applications/Xcode45-DP2.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode45-DP2.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/d4rkf1br3/projects/Simon/core/classes/NSObject+Simon.h /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator/usr/local/include36"A2F51F81-880C-42F4-B80E-87AE0B730597-
+
+CCpHeader classes/NSString+Simon.h /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator/usr/local/include/NSString+Simon.h
+s363776030.996279
+e363776031.001038
+r1
+xCpHeader
+xclasses/NSString+Simon.h
+x/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator/usr/local/include/NSString+Simon.h
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection126"Copy /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator/usr/local/include/NSString+Simon.hd521ff1ec8aeb541^4a44001fc8aeb541^---0#0#0#-19%DVTDocumentLocation2@137"file://localhost/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator/usr/local/include/NSString+Simon.h000000000080d041^748"CpHeader classes/NSString+Simon.h /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator/usr/local/include/NSString+Simon.h    cd /Users/d4rkf1br3/projects/Simon/core    setenv PATH "/Applications/Xcode45-DP2.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode45-DP2.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/d4rkf1br3/projects/Simon/core/classes/NSString+Simon.h /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator/usr/local/include36"631A96B7-40AF-4C39-B9C3-69AEA2EF00DC-
+
+CCpHeader classes/SIConstants.h /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator/usr/local/include/SIConstants.h
+s363776030.975966
+e363776030.996642
+r1
+xCpHeader
+xclasses/SIConstants.h
+x/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator/usr/local/include/SIConstants.h
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection123"Copy /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator/usr/local/include/SIConstants.h41f3f91ec8aeb541^e126ff1ec8aeb541^---0#0#0#-19%DVTDocumentLocation2@134"file://localhost/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator/usr/local/include/SIConstants.h000000000080d041^739"CpHeader classes/SIConstants.h /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator/usr/local/include/SIConstants.h    cd /Users/d4rkf1br3/projects/Simon/core    setenv PATH "/Applications/Xcode45-DP2.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode45-DP2.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/d4rkf1br3/projects/Simon/core/classes/SIConstants.h /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator/usr/local/include36"5BBA500F-E25E-40BE-B843-6749DF66E490-
+
+CCpHeader classes/SIStep.h /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator/usr/local/include/SIStep.h
+s363776030.976207
+e363776030.996877
+r1
+xCpHeader
+xclasses/SIStep.h
+x/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator/usr/local/include/SIStep.h
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection118"Copy /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator/usr/local/include/SIStep.h3202fa1ec8aeb541^5533ff1ec8aeb541^---0#0#0#-19%DVTDocumentLocation2@129"file://localhost/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator/usr/local/include/SIStep.h000000000080d041^724"CpHeader classes/SIStep.h /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator/usr/local/include/SIStep.h    cd /Users/d4rkf1br3/projects/Simon/core    setenv PATH "/Applications/Xcode45-DP2.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode45-DP2.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/d4rkf1br3/projects/Simon/core/classes/SIStep.h /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator/usr/local/include36"8C4CAA70-3F18-492D-8373-3CC9F5CB4355-
+
+CCpHeader classes/SIStepMapping.h /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator/usr/local/include/SIStepMapping.h
+s363776030.976358
+e363776030.997142
+r1
+xCpHeader
+xclasses/SIStepMapping.h
+x/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator/usr/local/include/SIStepMapping.h
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection125"Copy /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator/usr/local/include/SIStepMapping.h321dfa1ec8aeb541^3945ff1ec8aeb541^---0#0#0#-19%DVTDocumentLocation2@136"file://localhost/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator/usr/local/include/SIStepMapping.h000000000080d041^745"CpHeader classes/SIStepMapping.h /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator/usr/local/include/SIStepMapping.h    cd /Users/d4rkf1br3/projects/Simon/core    setenv PATH "/Applications/Xcode45-DP2.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode45-DP2.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/d4rkf1br3/projects/Simon/core/classes/SIStepMapping.h /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator/usr/local/include36"E5043684-6F94-4266-84BE-815F652B2530-
+
+CCpHeader classes/SIStory.h /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator/usr/local/include/SIStory.h
+s363776030.976814
+e363776030.997510
+r1
+xCpHeader
+xclasses/SIStory.h
+x/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator/usr/local/include/SIStory.h
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection119"Copy /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator/usr/local/include/SIStory.hfa25fa1ec8aeb541^895dff1ec8aeb541^---0#0#0#-19%DVTDocumentLocation2@130"file://localhost/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator/usr/local/include/SIStory.h000000000080d041^727"CpHeader classes/SIStory.h /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator/usr/local/include/SIStory.h    cd /Users/d4rkf1br3/projects/Simon/core    setenv PATH "/Applications/Xcode45-DP2.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode45-DP2.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/d4rkf1br3/projects/Simon/core/classes/SIStory.h /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator/usr/local/include36"0B9D106B-A3F1-44C4-AAE6-A7E7797E6EAD-
+
+CCpHeader classes/SIStorySource.h /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator/usr/local/include/SIStorySource.h
+s363776030.976854
+e363776030.999579
+r1
+xCpHeader
+xclasses/SIStorySource.h
+x/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator/usr/local/include/SIStorySource.h
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection125"Copy /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator/usr/local/include/SIStorySource.h382ffa1ec8aeb541^9fe7ff1ec8aeb541^---0#0#0#-19%DVTDocumentLocation2@136"file://localhost/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator/usr/local/include/SIStorySource.h000000000080d041^745"CpHeader classes/SIStorySource.h /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator/usr/local/include/SIStorySource.h    cd /Users/d4rkf1br3/projects/Simon/core    setenv PATH "/Applications/Xcode45-DP2.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode45-DP2.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Users/d4rkf1br3/projects/Simon/core/classes/SIStorySource.h /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator/usr/local/include36"6A952AAB-DA28-4D91-BAAF-F3EF3E4FEB9C-
+
+CLibtool /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator/libSimon-core.a normal i386
+s363776030.614040
+e363776030.936267
+r1
+xLibtool
+x/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator/libSimon-core.a
+xnormal
+xi386
+o/Applications/Xcode45-DP2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool: -dynamic not specified the following flags are invalid: -ObjC 
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection122"Libtool /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator/libSimon-core.a normal i38684499d1ec8aeb541^deaaef1ec8aeb541^-165"/Applications/Xcode45-DP2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool: -dynamic not specified the following flags are invalid: -ObjC -0#0#0#--1168"Libtool /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator/libSimon-core.a normal i386    cd /Users/d4rkf1br3/projects/Simon/core    setenv IPHONEOS_DEPLOYMENT_TARGET 5.0    setenv PATH "/Applications/Xcode45-DP2.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode45-DP2.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Applications/Xcode45-DP2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool -static -arch_only i386 -syslibroot /Applications/Xcode45-DP2.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.0.sdk -L/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator -filelist /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Objects-normal/i386/Simon-core.LinkFileList -ObjC -framework dUsefulStuff -framework Foundation -o /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator/libSimon-core.a36"0FBBE495-EC2D-4E07-869A-A50932C2C61F-
+
+CProcessPCH /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/PrecompiledHeaders/Simon-core-Prefix-dcdtmkuprbnsbvajsepqcgcvnlqk/Simon-core-Prefix.pch.pth classes/Simon-core-Prefix.pch normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler
+s363776030.316455
+e363776030.490170
+r1
+xProcessPCH
+x/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/PrecompiledHeaders/Simon-core-Prefix-dcdtmkuprbnsbvajsepqcgcvnlqk/Simon-core-Prefix.pch.pth
+xclasses/Simon-core-Prefix.pch
+xnormal
+xi386
+xobjective-c
+xcom.apple.compilers.llvm.clang.1_0.compiler
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection40"Precompile classes/Simon-core-Prefix.pchc51b511ec8aeb541^a1847d1ec8aeb541^---0#0#0#-19%DVTDocumentLocation2@82"file://localhost/Users/d4rkf1br3/projects/Simon/core/classes/Simon-core-Prefix.pch0000000000000000^3756"ProcessPCH /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/PrecompiledHeaders/Simon-core-Prefix-dcdtmkuprbnsbvajsepqcgcvnlqk/Simon-core-Prefix.pch.pth classes/Simon-core-Prefix.pch normal i386 objective-c com.apple.compilers.llvm.clang.1_0.compiler    cd /Users/d4rkf1br3/projects/Simon/core    setenv LANG en_US.US-ASCII    setenv PATH "/Applications/Xcode45-DP2.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/bin:/Applications/Xcode45-DP2.app/Contents/Developer/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/opt/local/bin:/usr/local/git/bin"    /Applications/Xcode45-DP2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c-header -arch i386 -fmessage-length=0 -std=gnu99 -Wno-trigraphs -fpascal-strings -O0 -Wno-missing-field-initializers -Wno-missing-prototypes -Wreturn-type -Wno-implicit-atomic-properties -Wno-receiver-is-weak -Wduplicate-method-match -Wformat -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wuninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-sign-compare -Wno-shorten-64-to-32 -Wpointer-sign -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -DDEBUG=1 -isysroot /Applications/Xcode45-DP2.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator6.0.sdk -fexceptions -fasm-blocks -Wprotocol -Wdeprecated-declarations -g -Wno-sign-conversion -fobjc-abi-version=2 -fobjc-legacy-dispatch "-DIBOutlet=__attribute__((iboutlet))" "-DIBOutletCollection(ClassName)=__attribute__((iboutletcollection(ClassName)))" "-DIBAction=void)__attribute__((ibaction)" -mios-simulator-version-min=5.0 -iquote /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Simon-core-generated-files.hmap -I/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Simon-core-own-target-headers.hmap -I/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Simon-core-all-target-headers.hmap -iquote /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/Simon-core-project-headers.hmap -I/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator/include -I/Applications/Xcode45-DP2.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/DerivedSources/i386 -I/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/Simon-core.build/Debug-iphonesimulator/Simon-core.build/DerivedSources -F/Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Products/Debug-iphonesimulator -F/Users/d4rkf1br3/projects/Simon/core/../../Releases/dUsefulStuff/v0.0.15 --serialize-diagnostics /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/PrecompiledHeaders/Simon-core-Prefix-dcdtmkuprbnsbvajsepqcgcvnlqk/Simon-core-Prefix.pch.dia -c /Users/d4rkf1br3/projects/Simon/core/classes/Simon-core-Prefix.pch -o /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/PrecompiledHeaders/Simon-core-Prefix-dcdtmkuprbnsbvajsepqcgcvnlqk/Simon-core-Prefix.pch.pth -MMD -MT dependencies -MF /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Build/Intermediates/PrecompiledHeaders/Simon-core-Prefix-dcdtmkuprbnsbvajsepqcgcvnlqk/Simon-core-Prefix.pch.d36"594459A9-BDB1-411F-928B-76B2FC0BF43C-
+
+CProcessPCH /Users/d4rkf1br3/projects/Simon/DerivedData/Simon/Index/PrecompiledHeaders/Simon-core-Prefix-ddhszevccchymcepmogbfekfsrni_ast/Simon-core-Prefix.pch.pth classes/Simon-core-Prefix.pch normal i386 objective-c com.apple.compilers.llvm.clang.1_0.astbuilder
+r0
+

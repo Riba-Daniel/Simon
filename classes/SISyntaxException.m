@@ -7,7 +7,7 @@
 //
 
 #import "SISyntaxException.h"
-#import "SIConstants.h"
+#import <Simon-core/SIConstants.h>
 
 @implementation SISyntaxException
 

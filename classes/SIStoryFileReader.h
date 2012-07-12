@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SIStory.h"
-#import "SIStorySource.h"
+#import <Simon-core/SIStory.h>
+#import <Simon-core/SIStorySource.h>
 
 /**
  This class is used to read story files from the application. Each file must has the extension *.story*.
