@@ -16,6 +16,9 @@
 		3221C7A7150CD1DE003CA286 /* SIUILabelHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 3221C7A5150CD1DD003CA286 /* SIUILabelHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3221C7A8150CD1DE003CA286 /* SIUILabelHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 3221C7A6150CD1DD003CA286 /* SIUILabelHandler.m */; };
 		3221C7AA150CD24C003CA286 /* SIUILabelHandlerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3221C7A9150CD24C003CA286 /* SIUILabelHandlerTests.m */; };
+		322DA95315A18A4B005CFC83 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 653D0E8D13A782AD00A5AB82 /* Foundation.framework */; };
+		322DA95615A18A4B005CFC83 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 322DA95515A18A4B005CFC83 /* main.m */; };
+		322DA95A15A18A4B005CFC83 /* PieMan.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 322DA95915A18A4B005CFC83 /* PieMan.1 */; };
 		324108B61509C19400AFBF66 /* SIUIViewDescriptionVisitor.h in Headers */ = {isa = PBXBuildFile; fileRef = 324108B41509C19400AFBF66 /* SIUIViewDescriptionVisitor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		324108B71509C19400AFBF66 /* SIUIViewDescriptionVisitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 324108B51509C19400AFBF66 /* SIUIViewDescriptionVisitor.m */; };
 		324108BA1509C23200AFBF66 /* SIUIViewDescriptionVisitorDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 324108B91509C23200AFBF66 /* SIUIViewDescriptionVisitorDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -68,6 +71,9 @@
 		32BF7D0014F9CB2900A0B197 /* SIUISwipeGeneratorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BF7CFF14F9CB2900A0B197 /* SIUISwipeGeneratorTests.m */; };
 		32D5D98A14E1357900D29DD5 /* TestView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32D5D98914E1357900D29DD5 /* TestView.xib */; };
 		32D5D98D14E135A300D29DD5 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D5D98C14E135A300D29DD5 /* TestViewController.m */; };
+		32D9353815AB08CA00E51C8C /* libSimon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 653D0E8A13A782AD00A5AB82 /* libSimon.a */; };
+		32D9353915AB098000E51C8C /* SIStory.m in Sources */ = {isa = PBXBuildFile; fileRef = 653D0EB813A783C000A5AB82 /* SIStory.m */; };
+		32D9353A15AB0A0700E51C8C /* dUsefulStuff.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65D09A6313D99C5900D1A74B /* dUsefulStuff.framework */; };
 		32EA6E76150E11E2000A64A1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32EA6E75150E11E2000A64A1 /* QuartzCore.framework */; };
 		32F742D814F75F58005E5E97 /* SIUISwipeGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F742D614F75F58005E5E97 /* SIUISwipeGenerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32F742D914F75F58005E5E97 /* SIUISwipeGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F742D714F75F58005E5E97 /* SIUISwipeGenerator.m */; };
@@ -157,6 +163,13 @@
 			remoteGlobalIDString = 653D0E8913A782AD00A5AB82;
 			remoteInfo = Simon;
 		};
+		32D9353615AB08C000E51C8C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 653D0E8113A782AC00A5AB82 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 653D0E8913A782AD00A5AB82;
+			remoteInfo = Simon;
+		};
 		65D09AAC13D9AEC300D1A74B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 653D0E8113A782AC00A5AB82 /* Project object */;
@@ -167,6 +180,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		322DA94F15A18A4B005CFC83 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+				322DA95A15A18A4B005CFC83 /* PieMan.1 in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 		3265B0361514C93A00BE0930 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -188,6 +211,10 @@
 		3221C7A5150CD1DD003CA286 /* SIUILabelHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUILabelHandler.h; sourceTree = "<group>"; };
 		3221C7A6150CD1DD003CA286 /* SIUILabelHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUILabelHandler.m; sourceTree = "<group>"; };
 		3221C7A9150CD24C003CA286 /* SIUILabelHandlerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUILabelHandlerTests.m; sourceTree = "<group>"; };
+		322DA95115A18A4B005CFC83 /* PieMan */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = PieMan; sourceTree = BUILT_PRODUCTS_DIR; };
+		322DA95515A18A4B005CFC83 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		322DA95815A18A4B005CFC83 /* PieMan-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PieMan-Prefix.pch"; sourceTree = "<group>"; };
+		322DA95915A18A4B005CFC83 /* PieMan.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = PieMan.1; sourceTree = "<group>"; };
 		324108B41509C19400AFBF66 /* SIUIViewDescriptionVisitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIViewDescriptionVisitor.h; sourceTree = "<group>"; };
 		324108B51509C19400AFBF66 /* SIUIViewDescriptionVisitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUIViewDescriptionVisitor.m; sourceTree = "<group>"; };
 		324108B91509C23200AFBF66 /* SIUIViewDescriptionVisitorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIViewDescriptionVisitorDelegate.h; sourceTree = "<group>"; };
@@ -326,6 +353,16 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		322DA94E15A18A4B005CFC83 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				32D9353815AB08CA00E51C8C /* libSimon.a in Frameworks */,
+				322DA95315A18A4B005CFC83 /* Foundation.framework in Frameworks */,
+				32D9353A15AB0A0700E51C8C /* dUsefulStuff.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3298250A15039FE300631203 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -369,6 +406,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		322DA95415A18A4B005CFC83 /* PieMan */ = {
+			isa = PBXGroup;
+			children = (
+				322DA95515A18A4B005CFC83 /* main.m */,
+				322DA95915A18A4B005CFC83 /* PieMan.1 */,
+				322DA95715A18A4B005CFC83 /* Supporting Files */,
+			);
+			path = PieMan;
+			sourceTree = "<group>";
+		};
+		322DA95715A18A4B005CFC83 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				322DA95815A18A4B005CFC83 /* PieMan-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		3232A9F414EDFCAC002010FF /* View Handlers */ = {
 			isa = PBXGroup;
 			children = (
@@ -504,6 +559,7 @@
 				6583B3EC13CF2220005E13F3 /* ReadMe.textile */,
 				3298251215039FE300631203 /* ARC App with tests */,
 				653D0EB113A783C000A5AB82 /* classes */,
+				322DA95415A18A4B005CFC83 /* PieMan */,
 				653D0E8C13A782AD00A5AB82 /* Frameworks */,
 				653D0E8B13A782AD00A5AB82 /* Products */,
 				653D0ED413A783DC00A5AB82 /* tests */,
@@ -516,6 +572,7 @@
 				653D0E8A13A782AD00A5AB82 /* libSimon.a */,
 				653D0E9B13A783A500A5AB82 /* Unit tests.app */,
 				3298250D15039FE300631203 /* ARC App with tests.app */,
+				322DA95115A18A4B005CFC83 /* PieMan */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -743,6 +800,24 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		322DA95015A18A4B005CFC83 /* PieMan */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 322DA95D15A18A4B005CFC83 /* Build configuration list for PBXNativeTarget "PieMan" */;
+			buildPhases = (
+				322DA94D15A18A4B005CFC83 /* Sources */,
+				322DA94E15A18A4B005CFC83 /* Frameworks */,
+				322DA94F15A18A4B005CFC83 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				32D9353715AB08C000E51C8C /* PBXTargetDependency */,
+			);
+			name = PieMan;
+			productName = PieMan;
+			productReference = 322DA95115A18A4B005CFC83 /* PieMan */;
+			productType = "com.apple.product-type.tool";
+		};
 		3298250C15039FE300631203 /* ARC App with tests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3298252F15039FE300631203 /* Build configuration list for PBXNativeTarget "ARC App with tests" */;
@@ -821,6 +896,7 @@
 				653D0E8913A782AD00A5AB82 /* Simon */,
 				653D0E9A13A783A500A5AB82 /* Unit tests */,
 				3298250C15039FE300631203 /* ARC App with tests */,
+				322DA95015A18A4B005CFC83 /* PieMan */,
 			);
 		};
 /* End PBXProject section */
@@ -860,6 +936,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		322DA94D15A18A4B005CFC83 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				322DA95615A18A4B005CFC83 /* main.m in Sources */,
+				32D9353915AB098000E51C8C /* SIStory.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3298250915039FE300631203 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -951,6 +1036,11 @@
 			target = 653D0E8913A782AD00A5AB82 /* Simon */;
 			targetProxy = 32A8F6821574A80D006C5A91 /* PBXContainerItemProxy */;
 		};
+		32D9353715AB08C000E51C8C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 653D0E8913A782AD00A5AB82 /* Simon */;
+			targetProxy = 32D9353615AB08C000E51C8C /* PBXContainerItemProxy */;
+		};
 		65D09AAD13D9AEC300D1A74B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 653D0E8913A782AD00A5AB82 /* Simon */;
@@ -978,6 +1068,54 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		322DA95B15A18A4B005CFC83 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../Releases/dUsefulStuff/v0.0.15\"",
+				);
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PieMan/PieMan-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx10.7;
+			};
+			name = Debug;
+		};
+		322DA95C15A18A4B005CFC83 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../Releases/dUsefulStuff/v0.0.15\"",
+				);
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "PieMan/PieMan-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx10.7;
+			};
+			name = Release;
+		};
 		3298253015039FE300631203 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1037,7 +1175,8 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				OTHER_LDFLAGS = "-ObjC";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos;
@@ -1064,7 +1203,8 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				OTHER_LDFLAGS = "-ObjC";
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = iphoneos;
@@ -1161,6 +1301,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		322DA95D15A18A4B005CFC83 /* Build configuration list for PBXNativeTarget "PieMan" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				322DA95B15A18A4B005CFC83 /* Debug */,
+				322DA95C15A18A4B005CFC83 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		3298252F15039FE300631203 /* Build configuration list for PBXNativeTarget "ARC App with tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
