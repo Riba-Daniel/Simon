@@ -7,7 +7,6 @@
 //
 
 #import "SIUINotFoundException.h"
-#import <Simon-core/SIConstants.h>
 
 @implementation SIUINotFoundException
 

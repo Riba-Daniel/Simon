@@ -33,6 +33,12 @@
 		32741D7D14EB5BAE00093E0F /* UIEvent+Simon.m in Sources */ = {isa = PBXBuildFile; fileRef = 32741D7B14EB5BAE00093E0F /* UIEvent+Simon.m */; };
 		327FBEB215AF13D600F271BA /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 327FBEB115AF13D600F271BA /* CFNetwork.framework */; };
 		327FBEB415AF146900F271BA /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 327FBEB315AF146900F271BA /* Security.framework */; };
+		327FBEB815AF9D5200F271BA /* SIIncomingHTTPConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 327FBEB615AF9D5200F271BA /* SIIncomingHTTPConnection.h */; };
+		327FBEB915AF9D5200F271BA /* SIIncomingHTTPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 327FBEB715AF9D5200F271BA /* SIIncomingHTTPConnection.m */; };
+		327FBEBA15AFA2E200F271BA /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 327FBEB315AF146900F271BA /* Security.framework */; };
+		327FBEBB15AFA2E200F271BA /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 327FBEB115AF13D600F271BA /* CFNetwork.framework */; };
+		327FBEBE15AFA56800F271BA /* SIServerException.h in Headers */ = {isa = PBXBuildFile; fileRef = 327FBEBC15AFA56800F271BA /* SIServerException.h */; };
+		327FBEBF15AFA56800F271BA /* SIServerException.m in Sources */ = {isa = PBXBuildFile; fileRef = 327FBEBD15AFA56800F271BA /* SIServerException.m */; };
 		3296322614F751D300D9310A /* SIUITapGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 3296322414F751D300D9310A /* SIUITapGenerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3296322714F751D300D9310A /* SIUITapGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3296322514F751D300D9310A /* SIUITapGenerator.m */; };
 		3298250F15039FE300631203 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 653D0E9D13A783A500A5AB82 /* UIKit.framework */; };
@@ -257,6 +263,10 @@
 		32741D7B14EB5BAE00093E0F /* UIEvent+Simon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIEvent+Simon.m"; sourceTree = "<group>"; };
 		327FBEB115AF13D600F271BA /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		327FBEB315AF146900F271BA /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		327FBEB615AF9D5200F271BA /* SIIncomingHTTPConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIIncomingHTTPConnection.h; sourceTree = "<group>"; };
+		327FBEB715AF9D5200F271BA /* SIIncomingHTTPConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIIncomingHTTPConnection.m; sourceTree = "<group>"; };
+		327FBEBC15AFA56800F271BA /* SIServerException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIServerException.h; sourceTree = "<group>"; };
+		327FBEBD15AFA56800F271BA /* SIServerException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIServerException.m; sourceTree = "<group>"; };
 		3283D4DE15AE9DC500E52C8F /* Simon-core.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "Simon-core.xcodeproj"; path = "core/Simon-core.xcodeproj"; sourceTree = "<group>"; };
 		3296322414F751D300D9310A /* SIUITapGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUITapGenerator.h; sourceTree = "<group>"; };
 		3296322514F751D300D9310A /* SIUITapGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUITapGenerator.m; sourceTree = "<group>"; };
@@ -386,6 +396,8 @@
 				329825341503A02A00631203 /* dNodi.framework in Frameworks */,
 				329825351503A02E00631203 /* dUsefulStuff.framework in Frameworks */,
 				32A8F6841574A819006C5A91 /* libSimon.a in Frameworks */,
+				327FBEBA15AFA2E200F271BA /* Security.framework in Frameworks */,
+				327FBEBB15AFA2E200F271BA /* CFNetwork.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -492,6 +504,15 @@
 			name = Events;
 			sourceTree = "<group>";
 		};
+		327FBEB515AF99D500F271BA /* Server */ = {
+			isa = PBXGroup;
+			children = (
+				327FBEB615AF9D5200F271BA /* SIIncomingHTTPConnection.h */,
+				327FBEB715AF9D5200F271BA /* SIIncomingHTTPConnection.m */,
+			);
+			name = Server;
+			sourceTree = "<group>";
+		};
 		3283D4DF15AE9DC500E52C8F /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -567,6 +588,8 @@
 				32B0ABFC14E8DFEC0020500E /* SIUINotFoundException.m */,
 				32B0AC0514E8E2660020500E /* SIUITooManyFoundException.h */,
 				32B0AC0614E8E2660020500E /* SIUITooManyFoundException.m */,
+				327FBEBC15AFA56800F271BA /* SIServerException.h */,
+				327FBEBD15AFA56800F271BA /* SIServerException.m */,
 			);
 			name = Exceptions;
 			sourceTree = "<group>";
@@ -587,7 +610,6 @@
 		653D0E7F13A782AC00A5AB82 = {
 			isa = PBXGroup;
 			children = (
-				327FBEB315AF146900F271BA /* Security.framework */,
 				32A7E86E15AEC068004AF2C6 /* CocoaHTTPServer.xcodeproj */,
 				3283D4DE15AE9DC500E52C8F /* Simon-core.xcodeproj */,
 				653D0EF013A7842500A5AB82 /* Simon-Prefix.pch */,
@@ -618,6 +640,7 @@
 		653D0E8C13A782AD00A5AB82 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				327FBEB315AF146900F271BA /* Security.framework */,
 				327FBEB115AF13D600F271BA /* CFNetwork.framework */,
 				32EA6E75150E11E2000A64A1 /* QuartzCore.framework */,
 				94327D7113E44F9A0003646C /* dNodi.framework */,
@@ -634,6 +657,7 @@
 		653D0EB113A783C000A5AB82 /* classes */ = {
 			isa = PBXGroup;
 			children = (
+				327FBEB515AF99D500F271BA /* Server */,
 				32B0ABF514E8DEE20020500E /* Exceptions */,
 				9490249114408D11006132A5 /* Reporting */,
 				652D4E4B13CDD44300633E51 /* SIAppBackpack.h */,
@@ -783,6 +807,8 @@
 				3221C7A7150CD1DE003CA286 /* SIUILabelHandler.h in Headers */,
 				3265B02715144DB400BE0930 /* SIUIAbstractEventGenerator.h in Headers */,
 				3260B810151CB81C005A5AAA /* SIUINotAnInputViewException.h in Headers */,
+				327FBEB815AF9D5200F271BA /* SIIncomingHTTPConnection.h in Headers */,
+				327FBEBE15AFA56800F271BA /* SIServerException.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1020,6 +1046,8 @@
 				3221C7A8150CD1DE003CA286 /* SIUILabelHandler.m in Sources */,
 				3265B02815144DB400BE0930 /* SIUIAbstractEventGenerator.m in Sources */,
 				3260B811151CB81C005A5AAA /* SIUINotAnInputViewException.m in Sources */,
+				327FBEB915AF9D5200F271BA /* SIIncomingHTTPConnection.m in Sources */,
+				327FBEBF15AFA56800F271BA /* SIServerException.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

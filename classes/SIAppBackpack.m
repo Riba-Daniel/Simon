@@ -12,10 +12,14 @@
 #import <Simon-core/SIConstants.h>
 
 #import <SimonHttpServer/HTTPServer.h>
+#import <SimonHttpServer/DDLog.h>
+#import <SimonHttpServer/DDTTYLogger.h>
 
 #import "SIAppBackpack.h"
 #import "SIStoryRunner.h"
 #import "SIUIViewHandlerFactory.h"
+#import "SIIncomingHTTPConnection.h"
+#import "SIServerException.h"
 
 
 @interface SIAppBackpack()
@@ -27,51 +31,38 @@
 -(void) runStories:(NSNotification *) notification;
 -(void) windowRemoved:(NSNotification *) notification;
 -(void) executeOnSimonThread:(void (^)()) block;
++(BOOL) isArgumentPresentWithName:(NSString *) name;
 @property (retain, nonatomic) NSDictionary *displayUserInfo;
 @end
 
 @implementation SIAppBackpack
 
-@synthesize autorun = _autorun;
 @synthesize displayUserInfo = _displayUserInfo;
 
 // Static reference to self to keep alive in an ARC environment.
-static SIAppBackpack *backpack_;
+static SIAppBackpack *_backpack;
 
 #pragma mark - Accessors
 
 + (SIAppBackpack *)backpack {
-   if (backpack_ == nil) {
-      backpack_ = [[SIAppBackpack alloc] init];
+   if (_backpack == nil) {
+      _backpack = [[SIAppBackpack alloc] init];
    }
-   return backpack_;
+   return _backpack;
 }
 
 #pragma mark - Lifecycle
 
 +(void) load {
-
 	@autoreleasepool {
-		
-		// Find out if we are notloading.
-		NSArray * arguments = [[NSProcessInfo processInfo] arguments];
-		__block BOOL runSimon = YES;
-		[arguments enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-			if ([(NSString *) obj isEqualToString:@"--noload"]) {
-				runSimon = NO;
-			}
-		}];
-		
-		// Now start Simon.
-		if (runSimon) {
-			[SIAppBackpack backpack];
-		}
-
+		[SIAppBackpack backpack];
 	}
 }
 
 -(void) dealloc {
 	DC_LOG(@"Freeing memory and exiting");
+	[server stop];
+	DC_DEALLOC(server);
 	DC_DEALLOC(runner);
 	DC_DEALLOC(ui);
 	[super dealloc];
@@ -81,9 +72,25 @@ static SIAppBackpack *backpack_;
 	self = [super init];
 	if (self) {
 		runner = [[SIStoryRunner alloc] init];
-		ui = [[SIUIReportManager alloc] init];
-		self.autorun = YES;
+		if ([SIAppBackpack isArgumentPresentWithName:ARG_SHOW_UI]) {
+			ui = [[SIUIReportManager alloc] init];
+		}
 		[self addNotificationObservers];
+		
+		// Start the HTTP server.
+		if (ui == nil) {
+			DC_LOG(@"Starting HTTP server");
+			[DDLog addLogger:[DDTTYLogger sharedInstance]];
+			server = [[HTTPServer alloc] init];
+			[server setConnectionClass:[SIIncomingHTTPConnection class]];
+			[server setPort:5678];
+			NSError *error = nil;
+			if(![server start:&error])
+			{
+				@throw [SIServerException exceptionWithReason:[NSString stringWithFormat:@"Error starting HTTP Server: %@", error]];
+			}
+		}
+		
 	}
 	return self;
 }
@@ -93,25 +100,25 @@ static SIAppBackpack *backpack_;
 -(void) addNotificationObservers {
 	// Hook into the app startup.
 	DC_LOG(@"Applying program hooks to notification center: %@", [NSNotificationCenter defaultCenter]);
-	[[NSNotificationCenter defaultCenter] addObserver:self 
-														  selector:@selector(startUp:) 
-																name:UIApplicationDidBecomeActiveNotification 
+	[[NSNotificationCenter defaultCenter] addObserver:self
+														  selector:@selector(startUp:)
+																name:UIApplicationDidBecomeActiveNotification
 															 object:nil];
-	[[NSNotificationCenter defaultCenter] addObserver:self 
-														  selector:@selector(displayUI) 
-																name:SI_RUN_FINISHED_NOTIFICATION  
+	[[NSNotificationCenter defaultCenter] addObserver:self
+														  selector:@selector(displayUI)
+																name:SI_RUN_FINISHED_NOTIFICATION
 															 object:nil];
-	[[NSNotificationCenter defaultCenter] addObserver:self 
-														  selector:@selector(shutDown:) 
-																name:SI_SHUTDOWN_NOTIFICATION  
+	[[NSNotificationCenter defaultCenter] addObserver:self
+														  selector:@selector(shutDown:)
+																name:SI_SHUTDOWN_NOTIFICATION
 															 object:nil];
-	[[NSNotificationCenter defaultCenter] addObserver:self 
-														  selector:@selector(runStories:) 
-																name:SI_RUN_STORIES_NOTIFICATION  
+	[[NSNotificationCenter defaultCenter] addObserver:self
+														  selector:@selector(runStories:)
+																name:SI_RUN_STORIES_NOTIFICATION
 															 object:nil];
-	[[NSNotificationCenter defaultCenter] addObserver:self 
-														  selector:@selector(windowRemoved:) 
-																name:SI_WINDOW_REMOVED_NOTIFICATION  
+	[[NSNotificationCenter defaultCenter] addObserver:self
+														  selector:@selector(windowRemoved:)
+																name:SI_WINDOW_REMOVED_NOTIFICATION
 															 object:nil];
 }
 
@@ -122,26 +129,55 @@ static SIAppBackpack *backpack_;
 		// Load stories and setup display info.
 		[runner loadStories];
 		
-		// Find out if autorun is disabled.
-		NSArray * arguments = [[NSProcessInfo processInfo] arguments];
-		[arguments enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-			if ([(NSString *) obj isEqualToString:@"--noautorun"]) {
-				self.autorun = NO;
+		// Now run or display if we are not running the server.
+		if (ui != nil) {
+			if([SIAppBackpack isArgumentPresentWithName:ARG_NO_AUTORUN]) {
+				[self displayUI];
+			} else {
+				[self runAllStories];
 			}
-		}];
-		
-		// Now run or display.
-		if(self.autorun) {
-			[runner runStoriesInSources:runner.reader.storySources];
-		} else {
-			// Setup default settings.
-			[self displayUI];
 		}
 	}];
 }
 
+-(void) shutDown:(NSNotification *) notification  {
+	
+	DC_LOG(@"ShutDown requested.");
+
+	[ui removeWindow];
+	
+	// Release program hooks and dealloc self.
+	DC_LOG(@"Deallocing the keep me alive self reference.");
+   DC_DEALLOC(_backpack);
+	
+	// Remove all notification watching.
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 -(void) runFinished:(NSNotification *) notification {
-	[self displayUI];
+	if (ui != nil) {
+		[self displayUI];
+	}
+}
+
+- (void) runAllStories {
+	[self executeOnSimonThread: ^{
+		[runner runStoriesInSources:runner.reader.storySources];
+	}];
+}
+
+#pragma mark - UI
+
+-(void) displayUI {
+	NSString *searchTerms = self.displayUserInfo == nil ? nil : [self.displayUserInfo objectForKey:SI_UI_SEARCH_TERMS];
+	NSNumber *returnToDisplayView = self.displayUserInfo == nil ? [NSNumber numberWithBool:NO] :[self.displayUserInfo objectForKey:SI_UI_RETURN_TO_DETAILS];
+	DC_LOG(@"Displaying UI with search terms: %@", searchTerms);
+	NSDictionary *displayInfo = [NSDictionary dictionaryWithObjectsAndKeys:
+										  runner.reader.storySources, SI_UI_ALL_STORIES_LIST,
+										  [self.displayUserInfo objectForKey:SI_UI_STORIES_TO_RUN_LIST], SI_UI_STORIES_TO_RUN_LIST,
+										  returnToDisplayView, SI_UI_RETURN_TO_DETAILS,
+										  searchTerms, SI_UI_SEARCH_TERMS, nil];
+	[ui displayUIWithUserInfo:displayInfo];
 }
 
 -(void) runStories:(NSNotification *) notification {
@@ -157,11 +193,12 @@ static SIAppBackpack *backpack_;
 	}];
 }
 
+#pragma mark - Thread handling
 
 -(void) executeOnSimonThread:(void (^)()) block {
 	dispatch_queue_t queue = dispatch_queue_create(SI_QUEUE_NAME, NULL);
 	dispatch_async(queue, ^{
-		DC_LOG(@"Simon's background task starting");
+		DC_LOG(@"Executing block on Simon's background thread");
 		[NSThread currentThread].name = @"Simon";
 		block();
 	});
@@ -169,28 +206,19 @@ static SIAppBackpack *backpack_;
 	
 }
 
--(void) displayUI {
-	NSString *searchTerms = self.displayUserInfo == nil ? nil : [self.displayUserInfo objectForKey:SI_UI_SEARCH_TERMS];
-	NSNumber *returnToDisplayView = self.displayUserInfo == nil ? [NSNumber numberWithBool:NO] :[self.displayUserInfo objectForKey:SI_UI_RETURN_TO_DETAILS];
-	DC_LOG(@"Displaying UI with search terms: %@", searchTerms);
-	NSDictionary *displayInfo = [NSDictionary dictionaryWithObjectsAndKeys:
-										  runner.reader.storySources, SI_UI_ALL_STORIES_LIST,
-										  [self.displayUserInfo objectForKey:SI_UI_STORIES_TO_RUN_LIST], SI_UI_STORIES_TO_RUN_LIST,
-										  returnToDisplayView, SI_UI_RETURN_TO_DETAILS,
-										  searchTerms, SI_UI_SEARCH_TERMS, nil]; 
-	[ui displayUIWithUserInfo:displayInfo];
+#pragma mark - Utils
+
++(BOOL) isArgumentPresentWithName:(NSString *) name {
+	NSArray * arguments = [[NSProcessInfo processInfo] arguments];
+	__block BOOL response = NO;
+	[arguments enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+		if ([(NSString *) obj isEqualToString:name]) {
+			response = YES;
+			*stop = YES;
+		}
+	}];
+	return response;
 }
 
--(void) shutDown:(NSNotification *) notification  {
-	
-	[ui removeWindow];
-	
-	// Release program hooks and dealloc self.
-	DC_LOG(@"ShutDown requested, deallocing the keep me alive self reference.");
-   DC_DEALLOC(backpack_);
-	
-	// Remove all notification watching.
-	[[NSNotificationCenter defaultCenter] removeObserver:self];
-}
 
 @end

@@ -7,8 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+
+#import <SimonHttpServer/HTTPServer.h>
+
 #import "SIStoryRunner.h"
 #import "SIUIReportManager.h"
+
+#define ARG_SHOW_UI @"--ui"
+#define ARG_NO_AUTORUN @"--no-autorun"
 
 /**
  This class backpack's on a UIApplication in order to allow Simon to run in the background. You add it through the SIRun macro.
@@ -17,14 +23,10 @@
 @private
 	SIUIReportManager *ui;
 	SIStoryRunner *runner;
+	HTTPServer *server;
 }
 
 /// @name Properties 
-
-/**
- YES by default, this tells Simon to automatically start running stories after the app is ready to receive events. Otherwise Simon's report window is loaded for manual story running.
- */
-@property (nonatomic) BOOL autorun;
 
 /// @name Tasks
 
@@ -32,5 +34,10 @@
  Gets access to the backpack singleton.
  */
 + (SIAppBackpack *)backpack;
+
+/**
+ Used by the HTTP server to execute all the stories.
+ */
+- (void) runAllStories;
 
 @end
