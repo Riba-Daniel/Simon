@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#import "SIStory.h"
+#import <Simon-core-OSX/SIStory.h>
 
 // Function declarations.
 int arguments(const char * argv[]);

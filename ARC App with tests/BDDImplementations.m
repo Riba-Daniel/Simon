@@ -57,12 +57,9 @@ SIMapStepToSelector(@"and see \"(.*)\" in the label", verifyLabel:);
 
 SIMapStepToSelector(@"then I can enter \"(.*)\" into the name field", enterTextIntoNameField:);
 -(void) enterTextIntoNameField:(NSString *) text {
-	SITapView(@"//UITextField[1]");
+	UIView *txtField = SITapView(@"//UITextField[1]");
 	SIPauseFor(0.5);
-	SIPrintCurrentWindowTree();
-	UIView *view = SIFindView(@"//UIKBKeyplaneView");
-	[view tapAtPoint:CGPointMake(20, 20)];
-	SIPauseFor(0.5);
+	SIEnterText(txtField, @"Hello there!");
 }
 
 @end

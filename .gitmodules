@@ -1,6 +1,9 @@
-[submodule "core"]
-	path = core
-	url = https://github.com/drekka/Simon-core.git
 [submodule "frameworks/CocoaHTTPServer"]
 	path = frameworks/CocoaHTTPServer
 	url = https://github.com/drekka/Simon.git
+[submodule "frameworks/dUsefulStuff"]
+	path = frameworks/dUsefulStuff
+	url = https://github.com/drekka/dUsefulStuff.git
+[submodule "frameworks/dNodi"]
+	path = frameworks/dNodi
+	url = https://github.com/drekka/dNodi.git
