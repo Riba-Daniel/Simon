@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B14F00A15CBA60500284016 /* libdUsefulStuff.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B14F00915CBA60500284016 /* libdUsefulStuff.a */; };
+		0B14F00C15CBA61500284016 /* libdNodi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B14F00B15CBA61500284016 /* libdNodi.a */; };
+		0B14F00E15CBA65C00284016 /* GHUnitIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B14F00D15CBA65C00284016 /* GHUnitIOS.framework */; };
+		0B14F01815CBA6B600284016 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B14F00F15CBA66F00284016 /* libOCMock.a */; };
 		321A346A1519FA9E00B22EDD /* NSObject+Simon.h in Headers */ = {isa = PBXBuildFile; fileRef = 321A34681519FA9E00B22EDD /* NSObject+Simon.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		321A346B1519FA9E00B22EDD /* NSObject+Simon.m in Sources */ = {isa = PBXBuildFile; fileRef = 321A34691519FA9E00B22EDD /* NSObject+Simon.m */; };
 		3221C79E150C9365003CA286 /* SIUIViewInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 3221C79D150C9365003CA286 /* SIUIViewInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -50,8 +54,6 @@
 		3298252A15039FE300631203 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3298252915039FE300631203 /* SecondViewController.m */; };
 		3298252C15039FE300631203 /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = 3298252B15039FE300631203 /* second.png */; };
 		3298252E15039FE300631203 /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3298252D15039FE300631203 /* second@2x.png */; };
-		329825341503A02A00631203 /* dNodi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94327D7113E44F9A0003646C /* dNodi.framework */; };
-		329825351503A02E00631203 /* dUsefulStuff.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65D09A6313D99C5900D1A74B /* dUsefulStuff.framework */; };
 		329825391503A0FF00631203 /* BDD.stories in Resources */ = {isa = PBXBuildFile; fileRef = 329825381503A0FF00631203 /* BDD.stories */; };
 		3298253C1504C87700631203 /* BDDImplementations.m in Sources */ = {isa = PBXBuildFile; fileRef = 3298253B1504C87600631203 /* BDDImplementations.m */; };
 		32A8F6841574A819006C5A91 /* libSimon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 653D0E8A13A782AD00A5AB82 /* libSimon.a */; };
@@ -73,13 +75,11 @@
 		32D5D98D14E135A300D29DD5 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D5D98C14E135A300D29DD5 /* TestViewController.m */; };
 		32D9353815AB08CA00E51C8C /* libSimon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 653D0E8A13A782AD00A5AB82 /* libSimon.a */; };
 		32D9353915AB098000E51C8C /* SIStory.m in Sources */ = {isa = PBXBuildFile; fileRef = 653D0EB813A783C000A5AB82 /* SIStory.m */; };
-		32D9353A15AB0A0700E51C8C /* dUsefulStuff.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65D09A6313D99C5900D1A74B /* dUsefulStuff.framework */; };
 		32EA6E76150E11E2000A64A1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32EA6E75150E11E2000A64A1 /* QuartzCore.framework */; };
 		32F742D814F75F58005E5E97 /* SIUISwipeGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F742D614F75F58005E5E97 /* SIUISwipeGenerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32F742D914F75F58005E5E97 /* SIUISwipeGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F742D714F75F58005E5E97 /* SIUISwipeGenerator.m */; };
 		32F7F3E614EE1E5800F94F65 /* GSEventProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F7F3E414EE1E5800F94F65 /* GSEventProxy.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32F7F3E714EE1E5800F94F65 /* GSEventProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F7F3E514EE1E5800F94F65 /* GSEventProxy.m */; };
-		6527B7CA13A871DF005A912F /* GHUnitIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 653D0EF813A784C100A5AB82 /* GHUnitIOS.framework */; };
 		652D4E4D13CDD44400633E51 /* SIAppBackpack.h in Headers */ = {isa = PBXBuildFile; fileRef = 652D4E4B13CDD44300633E51 /* SIAppBackpack.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		652D4E4E13CDD44400633E51 /* SIAppBackpack.m in Sources */ = {isa = PBXBuildFile; fileRef = 652D4E4C13CDD44400633E51 /* SIAppBackpack.m */; };
 		653D0E8E13A782AD00A5AB82 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 653D0E8D13A782AD00A5AB82 /* Foundation.framework */; };
@@ -97,7 +97,6 @@
 		653D0EEE13A783DC00A5AB82 /* Non keyword steps.stories in Resources */ = {isa = PBXBuildFile; fileRef = 653D0EDE13A783DC00A5AB82 /* Non keyword steps.stories */; };
 		653D0EEF13A783DC00A5AB82 /* Story files.stories in Resources */ = {isa = PBXBuildFile; fileRef = 653D0EDF13A783DC00A5AB82 /* Story files.stories */; };
 		653D0EF113A7842500A5AB82 /* Simon-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 653D0EF013A7842500A5AB82 /* Simon-Prefix.pch */; };
-		653D0EFE13A7852200A5AB82 /* OCMock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 653D0EF613A784A500A5AB82 /* OCMock.framework */; };
 		6551A98113AB904A00679B94 /* SIStoryRunner.h in Headers */ = {isa = PBXBuildFile; fileRef = 6551A97F13AB904900679B94 /* SIStoryRunner.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6551A98213AB904A00679B94 /* SIStoryRunner.m in Sources */ = {isa = PBXBuildFile; fileRef = 6551A98013AB904A00679B94 /* SIStoryRunner.m */; };
 		6551A98713AB931F00679B94 /* SIStoryRunnerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6551A98613AB931F00679B94 /* SIStoryRunnerTests.m */; };
@@ -123,8 +122,6 @@
 		65D03BE913BCB95000A3F0FA /* CommsASteps.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D03BE813BCB94F00A3F0FA /* CommsASteps.m */; };
 		65D03BEC13BCBA3100A3F0FA /* CommsBSteps.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D03BEB13BCBA3100A3F0FA /* CommsBSteps.m */; };
 		65D03BEE13BDEBE000A3F0FA /* SIMacros.h in Headers */ = {isa = PBXBuildFile; fileRef = 65D03BED13BDEBE000A3F0FA /* SIMacros.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		65D09A6413D99C5900D1A74B /* dUsefulStuff.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65D09A6313D99C5900D1A74B /* dUsefulStuff.framework */; };
-		65D09A7813D9A99D00D1A74B /* dUsefulStuff.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65D09A6313D99C5900D1A74B /* dUsefulStuff.framework */; };
 		65D09AAB13D9AE6D00D1A74B /* libSimon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 653D0E8A13A782AD00A5AB82 /* libSimon.a */; };
 		65D35BC313A8BA130007A8AD /* NSString+SimonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D35BC213A8BA130007A8AD /* NSString+SimonTests.m */; };
 		65FCD11913ADE3F700A90FCA /* SIRuntimeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FCD11713ADE3C200A90FCA /* SIRuntimeTests.m */; };
@@ -136,8 +133,6 @@
 		65FCD13313B23E9100A90FCA /* SIStepMappingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 65FCD13013B23E8400A90FCA /* SIStepMappingTests.m */; };
 		942F7F66141F9197009F3550 /* SIUIViewHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 942F7F64141F9197009F3550 /* SIUIViewHandler.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		942F7F67141F9197009F3550 /* SIUIViewHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 942F7F65141F9197009F3550 /* SIUIViewHandler.m */; };
-		94327D7213E44F9A0003646C /* dNodi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94327D7113E44F9A0003646C /* dNodi.framework */; };
-		94327D7313E451810003646C /* dNodi.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94327D7113E44F9A0003646C /* dNodi.framework */; };
 		943A3969143DD2D0000D506C /* SIConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 943A3967143DD2D0000D506C /* SIConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		9465773F141B97B90026F1FB /* SIUIViewHandlerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9465773E141B97B90026F1FB /* SIUIViewHandlerTests.m */; };
 		94657743141C95160026F1FB /* AbstractTestWithControlsOnView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94657742141C95160026F1FB /* AbstractTestWithControlsOnView.m */; };
@@ -156,13 +151,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		3283D4E515AE9DC600E52C8F /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3283D4DE15AE9DC500E52C8F /* Simon-core.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 3283D4B715AE920900E52C8F;
-			remoteInfo = "Simon-core";
-		};
 		32A8F6821574A80D006C5A91 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 653D0E8113A782AC00A5AB82 /* Project object */;
@@ -209,6 +197,16 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0B14F00915CBA60500284016 /* libdUsefulStuff.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = libdUsefulStuff.a; path = "../dUsefulStuff/build/Release-iphoneos/libdUsefulStuff.a"; sourceTree = "<group>"; };
+		0B14F00B15CBA61500284016 /* libdNodi.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = libdNodi.a; path = "../dNodi/build/Release-iphoneos/libdNodi.a"; sourceTree = "<group>"; };
+		0B14F00D15CBA65C00284016 /* GHUnitIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GHUnitIOS.framework; path = ../frameworks/GHUnit/0.5.2/GHUnitIOS.framework; sourceTree = "<group>"; };
+		0B14F00F15CBA66F00284016 /* libOCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOCMock.a; path = ../frameworks/OCMock/2.0.1/iOS/libOCMock.a; sourceTree = "<group>"; };
+		0B14F01115CBA66F00284016 /* NSNotificationCenter+OCMAdditions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+OCMAdditions.h"; sourceTree = "<group>"; };
+		0B14F01215CBA66F00284016 /* OCMArg.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCMArg.h; sourceTree = "<group>"; };
+		0B14F01315CBA66F00284016 /* OCMConstraint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCMConstraint.h; sourceTree = "<group>"; };
+		0B14F01415CBA66F00284016 /* OCMock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCMock.h; sourceTree = "<group>"; };
+		0B14F01515CBA66F00284016 /* OCMockObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCMockObject.h; sourceTree = "<group>"; };
+		0B14F01615CBA66F00284016 /* OCMockRecorder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCMockRecorder.h; sourceTree = "<group>"; };
 		321A34681519FA9E00B22EDD /* NSObject+Simon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Simon.h"; sourceTree = "<group>"; };
 		321A34691519FA9E00B22EDD /* NSObject+Simon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Simon.m"; sourceTree = "<group>"; };
 		3221C79D150C9365003CA286 /* SIUIViewInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIViewInfo.h; sourceTree = "<group>"; };
@@ -238,7 +236,6 @@
 		32741D7714EB581E00093E0F /* UITouch+Simon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITouch+Simon.m"; sourceTree = "<group>"; };
 		32741D7A14EB5BAE00093E0F /* UIEvent+Simon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIEvent+Simon.h"; sourceTree = "<group>"; };
 		32741D7B14EB5BAE00093E0F /* UIEvent+Simon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIEvent+Simon.m"; sourceTree = "<group>"; };
-		3283D4DE15AE9DC500E52C8F /* Simon-core.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "Simon-core.xcodeproj"; path = "core/Simon-core.xcodeproj"; sourceTree = "<group>"; };
 		3296322414F751D300D9310A /* SIUITapGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUITapGenerator.h; sourceTree = "<group>"; };
 		3296322514F751D300D9310A /* SIUITapGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUITapGenerator.m; sourceTree = "<group>"; };
 		3298250D15039FE300631203 /* ARC App with tests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ARC App with tests.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -300,8 +297,6 @@
 		653D0EDE13A783DC00A5AB82 /* Non keyword steps.stories */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Non keyword steps.stories"; sourceTree = "<group>"; };
 		653D0EDF13A783DC00A5AB82 /* Story files.stories */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Story files.stories"; sourceTree = "<group>"; };
 		653D0EF013A7842500A5AB82 /* Simon-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Simon-Prefix.pch"; sourceTree = "<group>"; };
-		653D0EF613A784A500A5AB82 /* OCMock.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OCMock.framework; path = ../Releases/OCMock/v0.2.0/OCMock.framework; sourceTree = "<group>"; };
-		653D0EF813A784C100A5AB82 /* GHUnitIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GHUnitIOS.framework; path = "../tools/GHUnit 0.5.1/GHUnitIOS.framework"; sourceTree = "<group>"; };
 		6551A97F13AB904900679B94 /* SIStoryRunner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIStoryRunner.h; sourceTree = "<group>"; };
 		6551A98013AB904A00679B94 /* SIStoryRunner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIStoryRunner.m; sourceTree = "<group>"; };
 		6551A98613AB931F00679B94 /* SIStoryRunnerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIStoryRunnerTests.m; sourceTree = "<group>"; };
@@ -330,7 +325,6 @@
 		65D03BE813BCB94F00A3F0FA /* CommsASteps.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommsASteps.m; sourceTree = "<group>"; };
 		65D03BEB13BCBA3100A3F0FA /* CommsBSteps.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommsBSteps.m; sourceTree = "<group>"; };
 		65D03BED13BDEBE000A3F0FA /* SIMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SIMacros.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		65D09A6313D99C5900D1A74B /* dUsefulStuff.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = dUsefulStuff.framework; path = ../Releases/dUsefulStuff/v0.0.15/dUsefulStuff.framework; sourceTree = "<group>"; };
 		65D35BC213A8BA130007A8AD /* NSString+SimonTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SimonTests.m"; sourceTree = "<group>"; };
 		65FCD11713ADE3C200A90FCA /* SIRuntimeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIRuntimeTests.m; sourceTree = "<group>"; };
 		65FCD11C13AE2D6900A90FCA /* SIStepMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIStepMapping.h; sourceTree = "<group>"; };
@@ -341,7 +335,6 @@
 		65FCD13013B23E8400A90FCA /* SIStepMappingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIStepMappingTests.m; sourceTree = "<group>"; };
 		942F7F64141F9197009F3550 /* SIUIViewHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIViewHandler.h; sourceTree = "<group>"; };
 		942F7F65141F9197009F3550 /* SIUIViewHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUIViewHandler.m; sourceTree = "<group>"; };
-		94327D7113E44F9A0003646C /* dNodi.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = dNodi.framework; path = ../Releases/dNodi/v0.3.4/dNodi.framework; sourceTree = "<group>"; };
 		943A3967143DD2D0000D506C /* SIConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIConstants.h; sourceTree = "<group>"; };
 		9465773E141B97B90026F1FB /* SIUIViewHandlerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUIViewHandlerTests.m; sourceTree = "<group>"; };
 		94657741141C95160026F1FB /* AbstractTestWithControlsOnView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractTestWithControlsOnView.h; sourceTree = "<group>"; };
@@ -367,7 +360,6 @@
 			files = (
 				32D9353815AB08CA00E51C8C /* libSimon.a in Frameworks */,
 				322DA95315A18A4B005CFC83 /* Foundation.framework in Frameworks */,
-				32D9353A15AB0A0700E51C8C /* dUsefulStuff.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -378,8 +370,6 @@
 				3298250F15039FE300631203 /* UIKit.framework in Frameworks */,
 				3298251015039FE300631203 /* Foundation.framework in Frameworks */,
 				3298251115039FE300631203 /* CoreGraphics.framework in Frameworks */,
-				329825341503A02A00631203 /* dNodi.framework in Frameworks */,
-				329825351503A02E00631203 /* dUsefulStuff.framework in Frameworks */,
 				32A8F6841574A819006C5A91 /* libSimon.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -388,9 +378,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B14F00C15CBA61500284016 /* libdNodi.a in Frameworks */,
+				0B14F00A15CBA60500284016 /* libdUsefulStuff.a in Frameworks */,
 				32EA6E76150E11E2000A64A1 /* QuartzCore.framework in Frameworks */,
-				94327D7213E44F9A0003646C /* dNodi.framework in Frameworks */,
-				65D09A6413D99C5900D1A74B /* dUsefulStuff.framework in Frameworks */,
 				653D0E8E13A782AD00A5AB82 /* Foundation.framework in Frameworks */,
 				659E629F13DAFEF500ACD34C /* UIKit.framework in Frameworks */,
 			);
@@ -400,20 +390,46 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B14F00E15CBA65C00284016 /* GHUnitIOS.framework in Frameworks */,
 				653D0E9E13A783A500A5AB82 /* UIKit.framework in Frameworks */,
 				653D0E9F13A783A500A5AB82 /* Foundation.framework in Frameworks */,
 				653D0EA113A783A500A5AB82 /* CoreGraphics.framework in Frameworks */,
-				653D0EFE13A7852200A5AB82 /* OCMock.framework in Frameworks */,
-				6527B7CA13A871DF005A912F /* GHUnitIOS.framework in Frameworks */,
-				65D09A7813D9A99D00D1A74B /* dUsefulStuff.framework in Frameworks */,
 				65D09AAB13D9AE6D00D1A74B /* libSimon.a in Frameworks */,
-				94327D7313E451810003646C /* dNodi.framework in Frameworks */,
+				0B14F01815CBA6B600284016 /* libOCMock.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B14F01015CBA66F00284016 /* OCMock */ = {
+			isa = PBXGroup;
+			children = (
+				0B14F01115CBA66F00284016 /* NSNotificationCenter+OCMAdditions.h */,
+				0B14F01215CBA66F00284016 /* OCMArg.h */,
+				0B14F01315CBA66F00284016 /* OCMConstraint.h */,
+				0B14F01415CBA66F00284016 /* OCMock.h */,
+				0B14F01515CBA66F00284016 /* OCMockObject.h */,
+				0B14F01615CBA66F00284016 /* OCMockRecorder.h */,
+			);
+			name = OCMock;
+			path = ../frameworks/OCMock/2.0.1/iOS/OCMock;
+			sourceTree = "<group>";
+		};
+		0B14F01715CBA67E00284016 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				0B14F00F15CBA66F00284016 /* libOCMock.a */,
+				0B14F01015CBA66F00284016 /* OCMock */,
+				0B14F00D15CBA65C00284016 /* GHUnitIOS.framework */,
+				32EA6E75150E11E2000A64A1 /* QuartzCore.framework */,
+				653D0E8D13A782AD00A5AB82 /* Foundation.framework */,
+				653D0E9D13A783A500A5AB82 /* UIKit.framework */,
+				653D0EA013A783A500A5AB82 /* CoreGraphics.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
 		322DA95415A18A4B005CFC83 /* PieMan */ = {
 			isa = PBXGroup;
 			children = (
@@ -481,14 +497,6 @@
 				3265B0291514887600BE0930 /* UIViewSimonTests.m */,
 			);
 			name = Events;
-			sourceTree = "<group>";
-		};
-		3283D4DF15AE9DC500E52C8F /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				3283D4E615AE9DC600E52C8F /* libSimon-core.xcodeproj.a */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		3298251215039FE300631203 /* ARC App with tests */ = {
@@ -568,7 +576,8 @@
 		653D0E7F13A782AC00A5AB82 = {
 			isa = PBXGroup;
 			children = (
-				3283D4DE15AE9DC500E52C8F /* Simon-core.xcodeproj */,
+				0B14F00B15CBA61500284016 /* libdNodi.a */,
+				0B14F00915CBA60500284016 /* libdUsefulStuff.a */,
 				653D0EF013A7842500A5AB82 /* Simon-Prefix.pch */,
 				6583B3EA13CF2220005E13F3 /* build.sh */,
 				6583B3EE13CF2242005E13F3 /* ChangeLog.textile */,
@@ -597,14 +606,7 @@
 		653D0E8C13A782AD00A5AB82 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				32EA6E75150E11E2000A64A1 /* QuartzCore.framework */,
-				94327D7113E44F9A0003646C /* dNodi.framework */,
-				65D09A6313D99C5900D1A74B /* dUsefulStuff.framework */,
-				653D0EF813A784C100A5AB82 /* GHUnitIOS.framework */,
-				653D0EF613A784A500A5AB82 /* OCMock.framework */,
-				653D0E8D13A782AD00A5AB82 /* Foundation.framework */,
-				653D0E9D13A783A500A5AB82 /* UIKit.framework */,
-				653D0EA013A783A500A5AB82 /* CoreGraphics.framework */,
+				0B14F01715CBA67E00284016 /* iOS */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -908,12 +910,6 @@
 			mainGroup = 653D0E7F13A782AC00A5AB82;
 			productRefGroup = 653D0E8B13A782AD00A5AB82 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 3283D4DF15AE9DC500E52C8F /* Products */;
-					ProjectRef = 3283D4DE15AE9DC500E52C8F /* Simon-core.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				653D0E8913A782AD00A5AB82 /* Simon */,
@@ -923,16 +919,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		3283D4E615AE9DC600E52C8F /* libSimon-core.xcodeproj.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = "libSimon-core.xcodeproj.a";
-			remoteRef = 3283D4E515AE9DC600E52C8F /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		3298250B15039FE300631203 /* Resources */ = {
@@ -1193,11 +1179,6 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = NO;
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../Releases/dUsefulStuff/v0.0.15\"",
-					"\"$(SRCROOT)/../Releases/dNodi/v0.3.4\"",
-				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1224,11 +1205,6 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ENABLE_OBJC_ARC = NO;
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../Releases/dUsefulStuff/v0.0.15\"",
-					"\"$(SRCROOT)/../Releases/dNodi/v0.3.4\"",
-				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = "";
@@ -1266,6 +1242,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_LABEL = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "include/${TARGET_NAME}";
 				SKIP_INSTALL = YES;
 			};
 			name = Debug;
@@ -1286,6 +1263,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_LABEL = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PUBLIC_HEADERS_FOLDER_PATH = "include/${TARGET_NAME}";
 				SKIP_INSTALL = YES;
 			};
 			name = Release;
@@ -1295,8 +1273,7 @@
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../Releases/OCMock/v0.2.0\"",
-					"\"$(SRCROOT)/../tools/GHUnit 0.5.1\"",
+					"\"$(SRCROOT)/../frameworks/GHUnit/0.5.2\"",
 				);
 				GCC_PREFIX_HEADER = "Simon-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1304,7 +1281,12 @@
 					DC_DEBUG,
 				);
 				GCC_THUMB_SUPPORT = NO;
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../frameworks/OCMock/2.0.1/iOS\"";
 				INFOPLIST_FILE = "tests/GHUnit-Tests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../frameworks/OCMock/2.0.1/iOS\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -1315,8 +1297,7 @@
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../Releases/OCMock/v0.2.0\"",
-					"\"$(SRCROOT)/../tools/GHUnit 0.5.1\"",
+					"\"$(SRCROOT)/../frameworks/GHUnit/0.5.2\"",
 				);
 				GCC_PREFIX_HEADER = "Simon-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -1324,7 +1305,12 @@
 					DC_DEBUG,
 				);
 				GCC_THUMB_SUPPORT = NO;
+				HEADER_SEARCH_PATHS = "\"$(SRCROOT)/../frameworks/OCMock/2.0.1/iOS\"";
 				INFOPLIST_FILE = "tests/GHUnit-Tests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../frameworks/OCMock/2.0.1/iOS\"",
+				);
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
