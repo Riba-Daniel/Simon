@@ -10,7 +10,7 @@
 
 #import "SISimon.h"
 #import "SIRuntime.h"
-#import "NSObject+Simon.h"
+#import <Simon-core/NSObject+Simon.h>
 
 @interface SIRuntime()
 -(void) addMappingMethodsFromClass:(Class) class toArray:(NSMutableArray *) array;
@@ -49,16 +49,16 @@
 					 || nextClass == nil) {
 					continue;
 				}
+
+				// Ignore if the class does not belong to the application bundle.
+				classBundle = [NSBundle bundleForClass:nextClass];
+				if (![classBundle isEqual:mainBundle]) {
+					continue;
+				}
 				
 				// Check to see where it comes from.
 				superClass = [self getUltimateSuperClass:nextClass];
 				if (nextClass == superClass || superClass != [NSObject class]) {
-					continue;
-				}
-				
-				// Ignore if the class does not belong to the application bundle.
-				classBundle = [NSBundle bundleForClass:nextClass];
-				if (![classBundle isEqual:mainBundle]) {
 					continue;
 				}
 				
@@ -96,9 +96,9 @@
    Method currMethod;
    SEL sel;
    id returnValue;
-	for (size_t j = 0; j < methodCount; ++j) {
+	for (size_t idx = 0; idx < methodCount; ++idx) {
 		
-      currMethod = methods[j];
+      currMethod = methods[idx];
       sel = method_getName(currMethod);	
       
 		if ([NSStringFromSelector(sel) hasPrefix:prefix]) {

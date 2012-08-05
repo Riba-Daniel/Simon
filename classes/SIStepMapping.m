@@ -224,9 +224,9 @@
 			[self setError:error 
 						 code:SIErrorCannotConvertArgumentToType 
 				errorDomain:SIMON_ERROR_DOMAIN 
-		 shortDescription:[NSString stringWithFormat:@"Cannot handle selector %@, argument %i, type %c", NSStringFromSelector(self.selector), index - 2, type]
-			 failureReason:[NSString stringWithFormat:@"Selector %@ has an argument type of %c at parameter %i, I cannot handle that type at this time.",
-								 NSStringFromSelector(self.selector), type, index - 2]];
+		 shortDescription:[NSString stringWithFormat:@"Cannot handle selector %@, argument %li, type %c", NSStringFromSelector(self.selector), (long)index - 2, type]
+			 failureReason:[NSString stringWithFormat:@"Selector %@ has an argument type of %c at parameter %li, I cannot handle that type at this time.",
+								 NSStringFromSelector(self.selector), type, (long)index - 2]];
 			return NO;
 	}
 	return YES;

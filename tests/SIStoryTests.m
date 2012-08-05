@@ -10,10 +10,9 @@
 #import <dUsefulStuff/DCCommon.h>
 #import <OCMock/OCMock.h>
 #import <OCMock/OCMArg.h>
-#import "SIStep.h"
-#import "SIStory.h"
-#import "SISimon.h"
-#import "SIStepMapping.h"
+#import <Simon-core/SIStep.h>
+#import <Simon-core/SIStory.h>
+#import <Simon-core/SIStepMapping.h>
 
 @interface SIStoryTests : GHTestCase {
 @private

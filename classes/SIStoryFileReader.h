@@ -7,11 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SIStory.h"
-#import "SIStorySource.h"
+#import <Simon-core/SIStory.h>
+#import <Simon-core/SIStorySource.h>
 
 /**
- This class is used to read story files from the application. Each file must has the extension *.story*.
+ This class is used to read story files from the application. Each file must has the extension *.stories*.
  */
 @interface SIStoryFileReader : NSObject {
 	@private
@@ -32,6 +32,7 @@
  Reads the files and returns a list of SIStory objects.
  
  @param error a pointer to a reference where any errors will be stored.
+ @return An NSArry containing SIStorySource instances.
  */
 -(NSArray *) readStorySources:(NSError **) error;
 

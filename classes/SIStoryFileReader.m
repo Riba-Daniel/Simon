@@ -10,8 +10,8 @@
 #import <dUsefulStuff/NSObject+dUsefulStuff.h>
 
 #import "SIStoryFileReader.h"
-#import "SIConstants.h"
-#import "NSString+Simon.h"
+#import <Simon-core/SIConstants.h>
+#import <Simon-core/NSString+Simon.h>
 
 @interface SIStoryFileReader()
 -(BOOL) readFile:(NSString *) filename error:(NSError **) error;

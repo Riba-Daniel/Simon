@@ -6,10 +6,11 @@
 //  Copyright 2011. All rights reserved.
 //
 #import "SIConstants.h"
-#import "SIMacros.h"
-#import "SIUIConstants.h"
 #import "SIStepMapping.h"
 #import "SIStory.h"
+
+#import "SIMacros.h"
+#import "SIUIConstants.h"
 #import "SIAppBackpack.h"
 #import "SIUIApplication.h"
 #import "UIView+Simon.h"

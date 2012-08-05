@@ -11,8 +11,7 @@
 #import "SIStory.h"
 #import "SIStep.h"
 #import "NSString+Simon.h"
-#import "SISimon.h"
-#import "SIConstants.h"
+#import "SICore-Constants.h"
 
 @interface SIStory(_private)
 -(id) instanceForTargetClass:(Class) targetClass;

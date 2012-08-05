@@ -7,7 +7,6 @@
 //
 
 #import "SIUINotFoundException.h"
-#import "SIConstants.h"
 
 @implementation SIUINotFoundException
 

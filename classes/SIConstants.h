@@ -6,6 +6,8 @@
 //  Copyright (c) 2011 Sensis. All rights reserved.
 //
 
+#define STORY_EXTENSION @"stories"
+
 /**
  * The prefix used to start the method names for the step definition.
  */
@@ -37,21 +39,6 @@
 #define SI_QUEUE_NAME "au.com.derekclarkson.simon"
 
 /**
- This gives the types of keywords read by SIStoryFileReader. SIKeywordNone is used only when the first story is beng read as it designates
- the start of the file.
- */
-typedef enum {
-	SIKeywordUnknown = 999,
-	SIKeywordStartOfFile = 0,
-	SIKeywordNone,
-	SIKeywordStory,
-	SIKeywordGiven,
-	SIKeywordThen,
-	SIKeywordAs,
-	SIKeywordAnd
-} SIKeyword;
-
-/**
  Individual error codes.
  */
 typedef enum {
@@ -68,6 +55,21 @@ typedef enum {
 } SIError;
 
 /**
+ This gives the types of keywords read by SIStoryFileReader. SIKeywordNone is used only when the first story is beng read as it designates
+ the start of the file.
+ */
+typedef enum {
+	SIKeywordUnknown = 999,
+	SIKeywordStartOfFile = 0,
+	SIKeywordNone,
+	SIKeywordStory,
+	SIKeywordGiven,
+	SIKeywordThen,
+	SIKeywordAs,
+	SIKeywordAnd
+} SIKeyword;
+
+/**
  Gives the final status of a story after the run.
  */
 typedef enum {
@@ -77,8 +79,6 @@ typedef enum {
 	SIStoryStatusNotMapped,
 	SIStoryStatusNotRun
 } SIStoryStatus;
-
-
 
 
 

@@ -10,7 +10,7 @@
 #import <GHUnitIOS/GHUnit.h>
 #import <dUsefulStuff/DCCommon.h>
 #import <OCMock/OCMock.h>
-#import "SIStep.h"
+#import <Simon-core/SIStep.h>
 
 @interface SIStepTests : GHTestCase {
 @private

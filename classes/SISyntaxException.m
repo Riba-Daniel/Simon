@@ -7,7 +7,6 @@
 //
 
 #import "SISyntaxException.h"
-#import "SIConstants.h"
 
 @implementation SISyntaxException
 

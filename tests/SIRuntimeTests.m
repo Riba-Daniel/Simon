@@ -3,7 +3,7 @@
 #import <dUsefulStuff/DCCommon.h>
 #import "SIStoryRunner.h"
 #import "SIRuntime.h"
-#import "SIStepMapping.h"
+#import <Simon-core/SIStepMapping.h>
 
 
 @interface SIRuntimeTests : GHTestCase {
