@@ -14,28 +14,16 @@
  */
 @interface SIStoryReportTableViewController : UITableViewController<UISearchDisplayDelegate, UISearchBarDelegate> {
 @private
-	NSMutableArray *filteredSources;
 	UISearchDisplayController *searchController;
 	SIStoryDetailsTableViewController *detailsController;
 }
-
-/// @name Properties
-
-/// A list of the story source files.
-@property (nonatomic, retain) NSArray *storySources;
-
-/// Search terms currently being used.
-@property (nonatomic, retain) NSString *searchTerms;
-
-/// If populated the details screen will be loaded with this story showing in it.
-@property (nonatomic, retain) SIStorySource *showDetailsForStory;
 
 /// @name Running stories
 
 /// Re-runs all the currently visible stories.
 -(void) rerunStories;
 
-/// Called from the details screen to rr-run a single story.
+/// Called from the details screen to re-run all the currently display stories.
 -(void) rerunStory;
 
 @end

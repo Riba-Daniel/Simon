@@ -13,6 +13,7 @@
 #import "SIStep.h"
 #import "SIStepMapping.h"
 #import "NSString+Simon.h"
+#import "NSArray+Simon.h"
 
 @interface SIStoryLogReporter()
 -(void) reportStory:(SIStory *) story
@@ -26,7 +27,7 @@
 
 @implementation SIStoryLogReporter
 
--(void) reportOnStorySources:(NSArray *) sources andMappings:(NSArray *) mappings {
+-(void) reportOnSources:(NSArray *) sources andMappings:(NSArray *) mappings {
 	
 	NSLog(@"Simon's run report");
 	NSLog(@"====================================================");
@@ -38,8 +39,7 @@
 	NSMutableArray *ignored = [NSMutableArray array];
 	NSMutableArray *notRun = [NSMutableArray array];
 	
-	NSArray *stories = [sources valueForKeyPath:@"@unionOfArrays.stories"];
-	
+	NSArray *stories = [sources storiesFromSources];
 	for (SIStory * story in stories) {
 		[self reportStory:story successes:successes notMapped:notMapped failures:failures ignored:ignored notRun:notRun];
 	}

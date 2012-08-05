@@ -36,7 +36,7 @@
 	NSError *error = nil;
 	[reader readFile:@"Story files" error:&error];
 	runner.reader = reader;
-	[runner runStoriesInSources:reader.storySources];
+	[runner run];
 }
 
 -(void) testIsAbleToPassValuesBetweenClassInstances {
@@ -46,7 +46,7 @@
 	NSError *error = nil;
 	[reader readFile:@"Communication" error:&error];
 	runner.reader = reader;
-	[runner runStoriesInSources:reader.storySources];
+	[runner run];
 }
 
 // ### Methods which are called by Simon ###

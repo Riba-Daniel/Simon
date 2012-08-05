@@ -11,6 +11,7 @@
 #import <UIKit/UIKit.h>
 #import <dUsefulStuff/DCCommon.h>
 #import "NSObject+Simon.h"
+#import "SIState.h"
 
 @interface SIUIReportManager(_private)
 -(void) closeSimon;
@@ -27,22 +28,12 @@
 	[super dealloc];
 }
 
--(void) displayUIWithUserInfo:(NSDictionary *) userInfo {
-
+-(void) displayUI {
+	
 	// Refire on the main thread.
 	[self executeBlockOnMainThread: ^{
 		
-		DC_LOG(@"Search terms: %@", [userInfo objectForKey:SI_UI_SEARCH_TERMS]);
-		DC_LOG(@"Return to details screen: %@", DC_PRETTY_BOOL(((NSNumber *)[userInfo objectForKey:SI_UI_RETURN_TO_DETAILS]).boolValue));
-		DC_LOG(@"Run stories list: %@", [userInfo objectForKey:SI_UI_STORIES_TO_RUN_LIST]);
-		
 		SIStoryReportTableViewController *reportController = [[SIStoryReportTableViewController alloc] initWithStyle:UITableViewStylePlain];
-
-		reportController.storySources = [userInfo objectForKey:SI_UI_ALL_STORIES_LIST];
-		reportController.searchTerms = [userInfo objectForKey:SI_UI_SEARCH_TERMS];
-		if (((NSNumber *)[userInfo objectForKey:SI_UI_RETURN_TO_DETAILS]).boolValue) {
-			reportController.showDetailsForStory = [((NSArray *)[userInfo objectForKey:SI_UI_STORIES_TO_RUN_LIST]) objectAtIndex:0];
-		}
 		
 		reportController.navigationItem.title = @"Simon's simple report";
 		
@@ -50,13 +41,13 @@
 		navController = [[UINavigationController alloc] initWithRootViewController:reportController];
 		
 		// Add buttons
-		UIBarButtonItem *closeButton = [[UIBarButtonItem alloc] initWithTitle:@"Close Simon" 
-																							 style:UIBarButtonItemStylePlain 
-																							target:self 
+		UIBarButtonItem *closeButton = [[UIBarButtonItem alloc] initWithTitle:@"Close Simon"
+																							 style:UIBarButtonItemStylePlain
+																							target:self
 																							action:@selector(closeSimon)];
-		UIBarButtonItem *rerunButton = [[UIBarButtonItem alloc] initWithTitle:@"Run" 
-																							 style:UIBarButtonItemStylePlain 
-																							target:reportController 
+		UIBarButtonItem *rerunButton = [[UIBarButtonItem alloc] initWithTitle:@"Run"
+																							 style:UIBarButtonItemStylePlain
+																							target:reportController
 																							action:@selector(rerunStories)];
 		reportController.navigationItem.leftBarButtonItem = closeButton;
 		reportController.navigationItem.rightBarButtonItem = rerunButton;
@@ -85,7 +76,7 @@
 	
 }
 
--(void) closeSimon {	
+-(void) closeSimon {
 	[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:SI_SHUTDOWN_NOTIFICATION object:nil]];
 }
 
@@ -97,7 +88,7 @@
 	CGRect windowFrame = parentView.frame;
 	CGRect viewFrame = navController.view.frame;
 	
-	[UIView animateWithDuration:1.0f  
+	[UIView animateWithDuration:1.0f
 						  animations:^{
 							  CGRect offScreen = CGRectMake(0, windowFrame.size.height, viewFrame.size.width, viewFrame.size.height);
 							  navController.view.frame = offScreen;

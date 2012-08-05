@@ -79,7 +79,7 @@
 		return;
 	}
 	
-	// Read the runtime to local all mappings. 
+	// Read the runtime to locate all mappings. 
 	self.mappings = [self.runtime allMappingMethodsInRuntime];
 	
    // Get a union of all the stories.
@@ -93,9 +93,12 @@
 	
 }
 
--(void) runStoriesInSources:(NSArray *) sources {
+-(void) run {
 	
-	NSArray *stories = [sources valueForKeyPath:@"@unionOfArrays.stories"];
+	NSArray *filteredSources = [SIAppBackpack backpack].state.filteredSources;
+	NSArray *sources = filteredSources == nil ? self.reader.storySources : filteredSources;
+	
+	NSArray *stories = [SIAppBackpack backpack].state.filteredSources;
 	DC_LOG(@"Running %u stories", [stories count]);
 	
 	// First reset all the stories we are going to run.
@@ -115,7 +118,7 @@
 	// Publish the results.
 	DC_LOG(@"Logging report");
 	SIStoryLogReporter *logger = [[SIStoryLogReporter alloc] init];
-	[logger reportOnStorySources:sources andMappings:self.mappings];
+	[logger reportOnSources:sources andMappings:self.mappings];
 	[logger release];
 	
 	// Let the backpack know we have finished running stories.

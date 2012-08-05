@@ -16,10 +16,5 @@
 
 @implementation SIAppBackpackTests
 
--(void) testNoLoadArgument {
-	
-	SI
-	
-}
 
 @end

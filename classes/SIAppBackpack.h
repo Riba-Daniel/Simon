@@ -12,6 +12,7 @@
 
 #import "SIStoryRunner.h"
 #import "SIUIReportManager.h"
+#import "SIState.h"
 
 #define ARG_NO_LOAD @"--no-load"
 #define ARG_SHOW_UI @"--ui"
@@ -29,6 +30,12 @@
 
 /// @name Properties 
 
+/// The current state of Simon.
+@property (nonatomic, retain) SIState *state;
+
+/// Readonly reference to the story sources.
+@property (nonatomic, readonly) NSArray *storySources;
+
 /// @name Tasks
 
 /**
@@ -40,5 +47,7 @@
  Used by the HTTP server to execute all the stories.
  */
 - (void) runAllStories;
+
+
 
 @end

@@ -23,22 +23,26 @@
 
 
 @interface SIAppBackpack()
--(void) displayUI;
+
 -(void) addNotificationObservers;
+
 -(void) startUp:(NSNotification *) notification;
 -(void) shutDown:(NSNotification *) notification;
 -(void) runFinished:(NSNotification *) notification;
 -(void) runStories:(NSNotification *) notification;
 -(void) windowRemoved:(NSNotification *) notification;
+
 -(void) executeOnSimonThread:(void (^)()) block;
+
 +(BOOL) isArgumentPresentWithName:(NSString *) name;
 +(NSString *) argumentValueForName:(NSString *) name;
-@property (retain, nonatomic) NSDictionary *displayUserInfo;
+
 @end
 
 @implementation SIAppBackpack
 
-@synthesize displayUserInfo = _displayUserInfo;
+@synthesize state = _state;
+@dynamic storySources;
 
 // Static reference to self to keep alive in an ARC environment.
 static SIAppBackpack *_backpack;
@@ -50,6 +54,10 @@ static SIAppBackpack *_backpack;
       _backpack = [[SIAppBackpack alloc] init];
    }
    return _backpack;
+}
+
+-(NSArray *) storySources {
+	return runner.reader.storySources;
 }
 
 #pragma mark - Lifecycle
@@ -75,6 +83,11 @@ static SIAppBackpack *_backpack;
 - (id)init {
 	self = [super init];
 	if (self) {
+		
+		DC_LOG(@"Simon initing");
+		
+		// Create the state
+		self.state = [[[SIState alloc] init] autorelease];
 		
 		// Create the story runner.
 		runner = [[SIStoryRunner alloc] init];
@@ -140,7 +153,7 @@ static SIAppBackpack *_backpack;
 		// Now run or display if we are not running the server.
 		if (ui != nil) {
 			if([SIAppBackpack isArgumentPresentWithName:ARG_NO_AUTORUN]) {
-				[self displayUI];
+				[ui displayUI];
 			} else {
 				[self runAllStories];
 			}
@@ -164,40 +177,27 @@ static SIAppBackpack *_backpack;
 
 -(void) runFinished:(NSNotification *) notification {
 	if (ui != nil) {
-		[self displayUI];
+		[ui displayUI];
 	}
 }
 
 - (void) runAllStories {
 	[self executeOnSimonThread: ^{
-		[runner runStoriesInSources:runner.reader.storySources];
+		self.state.filteredSources = nil;
+		[runner run];
 	}];
 }
 
 #pragma mark - UI
 
--(void) displayUI {
-	NSString *searchTerms = self.displayUserInfo == nil ? nil : [self.displayUserInfo objectForKey:SI_UI_SEARCH_TERMS];
-	NSNumber *returnToDisplayView = self.displayUserInfo == nil ? [NSNumber numberWithBool:NO] :[self.displayUserInfo objectForKey:SI_UI_RETURN_TO_DETAILS];
-	DC_LOG(@"Displaying UI with search terms: %@", searchTerms);
-	NSDictionary *displayInfo = [NSDictionary dictionaryWithObjectsAndKeys:
-										  runner.reader.storySources, SI_UI_ALL_STORIES_LIST,
-										  [self.displayUserInfo objectForKey:SI_UI_STORIES_TO_RUN_LIST], SI_UI_STORIES_TO_RUN_LIST,
-										  returnToDisplayView, SI_UI_RETURN_TO_DETAILS,
-										  searchTerms, SI_UI_SEARCH_TERMS, nil];
-	[ui displayUIWithUserInfo:displayInfo];
-}
-
 -(void) runStories:(NSNotification *) notification {
-	self.displayUserInfo = notification.userInfo;
-	DC_LOG(@"Received userInfo: %@", self.displayUserInfo);
 	[ui removeWindow];
 }
 
 -(void) windowRemoved:(NSNotification *) notification {
 	DC_LOG(@"UI Removed");
 	[self executeOnSimonThread: ^{
-		[runner runStoriesInSources:[self.displayUserInfo objectForKey:SI_UI_STORIES_TO_RUN_LIST]];
+		[runner run];
 	}];
 }
 

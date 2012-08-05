@@ -12,35 +12,26 @@
 #import "SIStorySource.h"
 #import <dUsefulStuff/DCDialogs.h>
 #import "SIStoryDetailsTableViewController.h"
+#import "NSArray+Simon.h"
 
 @interface SIStoryReportTableViewController (_private)
 -(void) rerunStories;
--(NSArray *) sourcesForTableView:(UITableView *) tableView;
+-(NSArray *) sourcesToDisplay;
 -(void) filterContentForSearchText:(NSString *)searchText scope:(NSString *)scope;
 @end
 
 @implementation SIStoryReportTableViewController
 
-@synthesize storySources = storySources_;
-@synthesize searchTerms = searchTerms_;
-@synthesize showDetailsForStory = showDetailsForStory_;
-
 -(void) dealloc {
 	DC_LOG(@"Deallocing");
 	self.view = nil;
-	self.storySources = nil;
-	self.searchTerms = nil;
-	DC_DEALLOC(filteredSources);
 	DC_DEALLOC(searchController);
 	DC_DEALLOC(detailsController);
 	[super dealloc];
 }
 
--(NSArray *) sourcesForTableView:(UITableView *) tableView {
-	if (tableView == searchController.searchResultsTableView) {
-		return filteredSources;
-	} 
-	return self.storySources;
+-(NSArray *) sourcesToDisplay {
+	return searchController.isActive ? [SIAppBackpack backpack].state.filteredSources : [SIAppBackpack backpack].storySources;
 }
 
 #pragma mark - UIView methods
@@ -49,15 +40,14 @@
 	
 	DC_LOG(@"Loading report controller");
 	
+	SIState *state = [SIAppBackpack backpack].state;
+	
 	// This should stop extra divider lines from appearing down the screen when
 	// there are not enough cells.
 	UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 320, 1)];
 	footerView.backgroundColor = [UIColor clearColor];
 	[self.tableView setTableFooterView:footerView];
 	[footerView	release];
-	
-	// Create the filtered list.
-	filteredSources = [[NSMutableArray arrayWithCapacity:[self.storySources count]] retain];
 	
 	// Add a search bar.
 	UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
@@ -75,31 +65,26 @@
 	self.tableView.tableHeaderView = searchBar;
 	
 	// If search terms have been passed in then setup a search.
-	if (self.searchTerms != nil) {
-		DC_LOG(@"Initialising with search terms: %@", self.searchTerms);
+	if (state.searchTerms != nil) {
+		DC_LOG(@"Initialising with search terms: %@", state.searchTerms);
 		[searchController setActive:YES animated:YES];
-		searchBar.text = self.searchTerms;
+		searchBar.text = state.searchTerms;
 	}
 	
 	[searchBar release];
 	
 	// If we are being asked to show details then do so.
-	if (self.showDetailsForStory != nil) {
+	if (state.viewStory != nil) {
 		
-		DC_LOG(@"Showing details for story: %@", [self.showDetailsForStory.stories objectAtIndex:0]);
+		DC_LOG(@"Showing details for story: %@", state.viewStory);
 		
-		// First find the story is the sources.
-		// Find the surce index.
-		NSArray *sources = searchController.isActive ? filteredSources : self.storySources;
-		NSUInteger sourceIndex = [sources indexOfObjectPassingTest: ^(id obj, NSUInteger idx, BOOL *stop) {
-			return [((SIStorySource *) obj).source isEqualToString:self.showDetailsForStory.source];
-		}];
-		
-		// Now the story index.
-		SIStorySource *foundSource = [sources objectAtIndex:sourceIndex];
-		SIStory *story = [self.showDetailsForStory.stories objectAtIndex:0];
-		NSUInteger storyIndex = [foundSource.stories indexOfObjectPassingTest: ^(id obj, NSUInteger idx, BOOL *stop) {
-			return [((SIStory *) obj).title isEqualToString:story.title];
+		// Find the indexs we need
+		__block NSUInteger storyIndex = NSNotFound;
+		NSUInteger sourceIndex = [[self sourcesToDisplay] indexOfObjectPassingTest: ^BOOL (id srcObj, NSUInteger srcIdx, BOOL *srcStop) {
+			storyIndex = [((SIStorySource *) srcObj).stories indexOfObjectPassingTest: ^BOOL (id obj, NSUInteger idx, BOOL *stop) {
+				return [((SIStory *) obj).title isEqualToString:state.viewStory.title];
+			}];
+			return storyIndex != NSNotFound;
 		}];
 		
 		// Build a path.
@@ -117,7 +102,6 @@
 			[self.tableView.delegate tableView:self.tableView didSelectRowAtIndexPath:storyIndexPath];
 		}
 		
-		self.showDetailsForStory = nil;
 	}
 }
 
@@ -129,11 +113,11 @@
 #pragma mark - Table view datasource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	return [[self sourcesForTableView:tableView] count];
+	return [[self sourcesToDisplay] count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	NSArray *sources = [self sourcesForTableView:tableView];
+	NSArray *sources = [self sourcesToDisplay];
 	NSInteger count = [((SIStorySource *)[sources objectAtIndex:section]).stories count];
 	DC_LOG(@"There are %i stories in section %i", count, section);
 	return count;
@@ -148,7 +132,7 @@
 	}
 	
 	// Get the source and story.
-	NSArray *sources = [self sourcesForTableView:tableView];
+	NSArray *sources = [self sourcesToDisplay];
 	NSArray *stories = ((SIStorySource *)[sources objectAtIndex:indexPath.section]).stories;
 	SIStory *story = (SIStory *)[stories objectAtIndex:indexPath.row];
    
@@ -180,7 +164,7 @@
 #pragma mark - Table view delegate
 
 -(NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-	NSArray *sources = [self sourcesForTableView:tableView];
+	NSArray *sources = [self sourcesToDisplay];
 	return [((SIStorySource *)[sources objectAtIndex:section]).source lastPathComponent];
 }
 
@@ -189,7 +173,7 @@
 	// Load the controller.
 	detailsController = [[SIStoryDetailsTableViewController alloc] initWithStyle:UITableViewStylePlain];
 	
- 	NSArray *sources = [self sourcesForTableView:tableView];
+ 	NSArray *sources = [self sourcesToDisplay];
 	detailsController.source = [sources objectAtIndex:indexPath.section];
 	detailsController.story = (SIStory *)[detailsController.source.stories objectAtIndex:indexPath.row];
 	detailsController.navigationItem.title = detailsController.story.title;
@@ -210,35 +194,12 @@
 #pragma mark - Running stories
 
 -(void) rerunStories {	
-	
 	DC_LOG(@"Rerunning stories, search is active: %@", DC_PRETTY_BOOL(searchController.isActive));
-	
-	// Send the notification
-	NSArray *sources = searchController.isActive ? filteredSources : self.storySources;
-	DC_LOG(@"Number of stories to run: %i", [(NSArray *)[sources valueForKeyPath:@"@unionOfArrays.stories"] count]);
-	NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys:
-									  sources, SI_UI_STORIES_TO_RUN_LIST, 
-									  [NSNumber numberWithBool:NO], SI_UI_RETURN_TO_DETAILS, 
-									  self.searchDisplayController.searchBar.text, SI_UI_SEARCH_TERMS, 
-									  nil];
-	[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:SI_RUN_STORIES_NOTIFICATION object:nil userInfo:userInfo]];
+	[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:SI_RUN_STORIES_NOTIFICATION object:nil userInfo:nil]];
 }
 
 -(void) rerunStory {
-	
-	// Recreate the source with just a single story.
-	SIStorySource *source = [[SIStorySource alloc] init];
-	source.source = detailsController.source.source;
-	[source.stories addObject:detailsController.story];
-	
-	// Now send that.
-	NSDictionary *userInfo = [NSDictionary dictionaryWithObjectsAndKeys:
-									  [NSArray arrayWithObject:source], SI_UI_STORIES_TO_RUN_LIST, 
-									  [NSNumber numberWithBool:YES], SI_UI_RETURN_TO_DETAILS, 
-									  self.searchDisplayController.searchBar.text, SI_UI_SEARCH_TERMS,
-									  nil];
-	[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:SI_RUN_STORIES_NOTIFICATION object:nil userInfo:userInfo]];
-	[source release];
+	[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:SI_RUN_STORIES_NOTIFICATION object:nil userInfo:nil]];
 }
 
 #pragma mark - View rotation
@@ -249,56 +210,12 @@
 #pragma mark - Search bar delegate
 
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope {
-	
-	// Clear old search results.
-	[filteredSources removeAllObjects];
-	
-	// Loop through each story source.
-	SIStorySource *tmpSource = nil;
-	NSString *fileName;
-	
-	DC_LOG(@"Filtering sources for search terms: %@", searchText);
-	for (SIStorySource *source in self.storySources) {
-		
-		// First test the file name.
-		fileName = [source.source lastPathComponent];
-		// Check length first to avoid exceptions.
-		if ([fileName hasPrefix:searchText options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch)]) {
-			DC_LOG(@"Adding source: %@", [source.source lastPathComponent]);
-			[filteredSources addObject:source];
-		} else {
-			
-			// File name is a no go so test each story name.
-			for (SIStory *story in source.stories) {
-				
-				// Check length first to avoid exceptions.
-				if ([story.title hasPrefix:searchText options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch)]) {
-					
-					DC_LOG(@"Adding story: %@", story.title);
-					
-					// Add a source if there is not one.
-					if (tmpSource == nil) {
-						tmpSource = [[SIStorySource alloc] init];
-						tmpSource.source = source.source;
-					}
-					[tmpSource.stories addObject:story];
-				}
-			}
-			
-			// Now add the source if there are matching stories.
-			if (tmpSource != nil) {
-				[filteredSources addObject:tmpSource];
-				DC_DEALLOC(tmpSource);
-			}
-		}
-	}
+	[SIAppBackpack backpack].state.filteredSources = [[SIAppBackpack backpack].storySources filter:searchText];
 }
 
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
 {
 	[self filterContentForSearchText:searchString scope:[[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]]];
-	
-	// Return YES to cause the search result table view to be reloaded.
 	return YES;
 }
 
@@ -306,8 +223,6 @@
 - (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption
 {
 	[self filterContentForSearchText:[self.searchDisplayController.searchBar text] scope:[[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:searchOption]];
-	
-	// Return YES to cause the search result table view to be reloaded.
 	return YES;
 }
 

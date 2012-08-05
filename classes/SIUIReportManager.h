@@ -19,10 +19,8 @@
 
 /**
  Displays the UI over the top of the app.
- 
- @param userInfo a Dictionary containing the information that the UI needs. This is usually the same dictionary that the UI passed back to the backpack when closing the window.
  */
--(void) displayUIWithUserInfo:(NSDictionary *) userInfo;
+-(void) displayUI;
 
 /**
  Called to remove the window from the screen.

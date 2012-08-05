@@ -42,11 +42,8 @@
 -(void) loadStories;
 
 /**
- Executes the stories. See SIStory for details on how this happens.
- 
- @param sources a list of SIStorySource objects which contain the stories to be run.
- @see SIStory
+ Executes the passed list of stories. See SIStory for details on how this happens.
  */
--(void) runStoriesInSources:(NSArray *) sources;
+-(void) run;
 
 @end
