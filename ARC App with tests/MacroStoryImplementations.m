@@ -1,6 +1,6 @@
 
 #import "SISimon.h"
-#import <Simon-core/NSString+Simon.h>
+#import "NSString+Simon.h"
 
 @interface MacroStoryImplementations : NSObject {
 	BOOL gotThere;

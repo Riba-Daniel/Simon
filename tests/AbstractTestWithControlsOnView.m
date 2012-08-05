@@ -9,8 +9,8 @@
 #import "AbstractTestWithControlsOnView.h"
 #import <dUsefulStuff/DCCommon.h>
 #import <UIKit/UIKit.h>
-#import <Simon-core/NSObject+Simon.h>
-#import <Simon-core/NSObject+Simon.h>
+#import "NSObject+Simon.h"
+#import "NSObject+Simon.h"
 
 @implementation AbstractTestWithControlsOnView
 

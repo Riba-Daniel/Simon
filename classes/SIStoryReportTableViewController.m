@@ -7,9 +7,9 @@
 //
 
 #import "SIStoryReportTableViewController.h"
-#import <Simon-core/SIStory.h>
-#import <Simon-core/NSString+Simon.h>
-#import <Simon-core/SIStorySource.h>
+#import "SIStory.h"
+#import "NSString+Simon.h"
+#import "SIStorySource.h"
 #import <dUsefulStuff/DCDialogs.h>
 #import "SIStoryDetailsTableViewController.h"
 

@@ -9,7 +9,7 @@
 #import <GHUnitIOS/GHUnit.h>
 #import <dUsefulStuff/DCCommon.h>
 #import "SIConstants.h"
-#import <Simon-core/NSString+Simon.h>
+#import "NSString+Simon.h"
 
 @interface NSString_SimonTests : GHTestCase {}
 

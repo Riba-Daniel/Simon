@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <Simon-core/SIStorySource.h>
-#import <Simon-core/SIStory.h>
+#import "SIStorySource.h"
+#import "SIStory.h"
 
 /**
  Table view controller for the details window.

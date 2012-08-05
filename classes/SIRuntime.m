@@ -10,7 +10,7 @@
 
 #import "SISimon.h"
 #import "SIRuntime.h"
-#import <Simon-core/NSObject+Simon.h>
+#import "NSObject+Simon.h"
 
 @interface SIRuntime()
 -(void) addMappingMethodsFromClass:(Class) class toArray:(NSMutableArray *) array;

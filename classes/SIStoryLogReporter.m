@@ -9,10 +9,10 @@
 #import <dUsefulStuff/DCCommon.h>
 
 #import "SIStoryLogReporter.h"
-#import <Simon-core/SIStory.h>
-#import <Simon-core/SIStep.h>
-#import <Simon-core/SIStepMapping.h>
-#import <Simon-core/NSString+Simon.h>
+#import "SIStory.h"
+#import "SIStep.h"
+#import "SIStepMapping.h"
+#import "NSString+Simon.h"
 
 @interface SIStoryLogReporter()
 -(void) reportStory:(SIStory *) story

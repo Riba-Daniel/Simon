@@ -10,7 +10,7 @@
 #import "UITouch+Simon.h"
 #import "UIEvent+Simon.h"
 #import <dUsefulStuff/DCCommon.h>
-#import <Simon-core/NSObject+Simon.h>
+#import "NSObject+Simon.h"
 
 @implementation SIUIAbstractEventGenerator
 

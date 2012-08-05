@@ -4,7 +4,7 @@
 #import "SIUIViewHandler.h"
 #import <dUsefulStuff/DCCommon.h>
 #import "AbstractTestWithControlsOnView.h"
-#import <Simon-core/NSObject+Simon.h>
+#import "NSObject+Simon.h"
 
 @interface SIUIViewHandlerTests : AbstractTestWithControlsOnView {
 @private 

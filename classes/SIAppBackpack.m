@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <dUsefulStuff/DCCommon.h>
 #import <dUsefulStuff/DCDialogs.h>
-#import <Simon-core/SIConstants.h>
+#import "SIConstants.h"
 
 #import <SimonHttpServer/HTTPServer.h>
 #import <SimonHttpServer/DDLog.h>
@@ -32,6 +32,7 @@
 -(void) windowRemoved:(NSNotification *) notification;
 -(void) executeOnSimonThread:(void (^)()) block;
 +(BOOL) isArgumentPresentWithName:(NSString *) name;
++(NSString *) argumentValueForName:(NSString *) name;
 @property (retain, nonatomic) NSDictionary *displayUserInfo;
 @end
 
@@ -55,7 +56,10 @@ static SIAppBackpack *_backpack;
 
 +(void) load {
 	@autoreleasepool {
-		[SIAppBackpack backpack];
+		// Load Simon automatically.
+		if (![SIAppBackpack isArgumentPresentWithName:ARG_NO_LOAD]) {
+			[SIAppBackpack backpack];
+		}
 	}
 }
 
@@ -71,13 +75,17 @@ static SIAppBackpack *_backpack;
 - (id)init {
 	self = [super init];
 	if (self) {
+		
+		// Create the story runner.
 		runner = [[SIStoryRunner alloc] init];
+
+		// IF a UI is requested, load the report manager.
 		if ([SIAppBackpack isArgumentPresentWithName:ARG_SHOW_UI]) {
 			ui = [[SIUIReportManager alloc] init];
 		}
 		[self addNotificationObservers];
 		
-		// Start the HTTP server.
+		// Start the HTTP server only if there is no UI.
 		if (ui == nil) {
 			DC_LOG(@"Starting HTTP server");
 			[DDLog addLogger:[DDTTYLogger sharedInstance]];
@@ -143,7 +151,7 @@ static SIAppBackpack *_backpack;
 -(void) shutDown:(NSNotification *) notification  {
 	
 	DC_LOG(@"ShutDown requested.");
-
+	
 	[ui removeWindow];
 	
 	// Release program hooks and dealloc self.
@@ -220,5 +228,8 @@ static SIAppBackpack *_backpack;
 	return response;
 }
 
++(NSString *) argumentValueForName:(NSString *) name {
+	return nil;
+}
 
 @end

@@ -13,6 +13,7 @@
 #import "SIStoryRunner.h"
 #import "SIUIReportManager.h"
 
+#define ARG_NO_LOAD @"--no-load"
 #define ARG_SHOW_UI @"--ui"
 #define ARG_NO_AUTORUN @"--no-autorun"
 

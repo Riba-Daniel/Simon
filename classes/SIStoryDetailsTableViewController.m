@@ -7,7 +7,7 @@
 //
 
 #import "SIStoryDetailsTableViewController.h"
-#import <Simon-core/SIStep.h>
+#import "SIStep.h"
 
 // Stores a line from the back trace.
 @interface SITraceLineData : NSObject
