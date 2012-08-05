@@ -33,10 +33,24 @@
 	NSArray *sources = [NSArray arrayWithObjects:source1, source2, nil];
 
 	NSArray *allStories = [sources storiesFromSources];
-	GHAssertEquals([allStories count], (NSUInteger) 3, @"All stories not returned");
-	GHAssertTrue([allStories containsObject:story1], @"Story not included");
-	GHAssertTrue([allStories containsObject:story2], @"Story not included");
-	GHAssertTrue([allStories containsObject:story3], @"Story not included");
+	GHAssertEquals([allStories count], (NSUInteger) 3, nil);
+	GHAssertTrue([allStories containsObject:story1], nil);
+	GHAssertTrue([allStories containsObject:story2], nil);
+	GHAssertTrue([allStories containsObject:story3], nil);
+	
+}
+
+-(void) testFilteringSources {
+
+	SIStorySource *source1 = [[[SIStorySource alloc] init] autorelease];
+	source1.source = @"abc";
+	SIStorySource *source2 = [[[SIStorySource alloc] init] autorelease];
+	source1.source = @"def";
+	
+	NSArray *sources = [NSArray arrayWithObjects:source1, source2, nil];
+
+	NSArray *filteredSources = [sources filter:@"abc"];
+	GHAssertEquals([sources count], (NSUInteger) 1, nil);
 	
 }
 
