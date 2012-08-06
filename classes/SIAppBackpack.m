@@ -34,9 +34,6 @@
 
 -(void) executeOnSimonThread:(void (^)()) block;
 
-+(BOOL) isArgumentPresentWithName:(NSString *) name;
-+(NSString *) argumentValueForName:(NSString *) name;
-
 @end
 
 @implementation SIAppBackpack

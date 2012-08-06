@@ -16,9 +16,12 @@
 #import <dUsefulStuff/DCDialogs.h>
 #import "NSArray+Simon.h"
 
+typedef void (^StoryBlock)(SIStorySource *, SIStory *);
+
 @interface SIStoryRunner(_private)
 -(void) displayMessage:(NSString *) message;
 -(void) displayUI;
+-(void) executeOnSources:(NSArray *) sources block:(StoryBlock) block;
 @end
 
 @implementation SIStoryRunner
@@ -69,10 +72,10 @@
 	// If no stories where read then generate an error and return.
 	NSUInteger numberOfStories = [(NSArray *)[storySources valueForKeyPath:@"@unionOfArrays.stories"] count];
 	if ([storySources count] == 0 || numberOfStories == 0) {
-		[self setError:&error 
-					 code:SIErrorNoStoriesFound 
-			errorDomain:SIMON_ERROR_DOMAIN 
-	 shortDescription:@"No stories read" 
+		[self setError:&error
+					 code:SIErrorNoStoriesFound
+			errorDomain:SIMON_ERROR_DOMAIN
+	 shortDescription:@"No stories read"
 		 failureReason:@"No stories where read from the files."];
 		DC_LOG(@"Error reading story files - exiting. Error %@", [error localizedFailureReason]);
 		[self performSelectorOnMainThread:@selector(displayMessage:)
@@ -80,7 +83,7 @@
 		return;
 	}
 	
-	// Read the runtime to locate all mappings. 
+	// Read the runtime to locate all mappings.
 	self.mappings = [self.runtime allMappingMethodsInRuntime];
 	
    // Get a union of all the stories.
@@ -98,32 +101,41 @@
 	
 	NSArray *filteredSources = [SIAppBackpack backpack].state.filteredSources;
 	NSArray *sources = filteredSources == nil ? self.reader.storySources : filteredSources;
-	
+
+	SIStoryLogReporter *logger = [[SIStoryLogReporter alloc] init];
+
 	// First reset all the stories we are going to run.
 	DC_LOG(@"Starting run");
-	NSArray *stories = [sources storiesFromSources];
-	for (SIStory *story in stories) {
+	[self executeOnSources:sources block:^(SIStorySource *source, SIStory *story){
 		[story reset];
-	}
+	}];
    
 	// Now execute them.
-	for (SIStory *story in stories) {
-		if (![story invoke]) {
-			if (story.status == SIStoryStatusNotMapped || story.status == SIStoryStatusError) {
-				DC_LOG(@"Error executing y %@", [story.error localizedFailureReason]);
-			}
-		}
-	}
+	[self executeOnSources:sources block:^(SIStorySource *source, SIStory *story){
+		[story invoke];
+		
+		// Let the loggers know the story has executed.
+		NSDictionary *userData = [NSDictionary dictionaryWithObjectsAndKeys:source, SI_NOTIFICATION_KEY_SOURCE, story, SI_NOTIFICATION_KEY_STORY, nil];
+		[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:SI_STORY_EXECUTED_NOTIFICATION object:nil userInfo:userData]];
+	}];
 	
 	// Publish the results.
 	DC_LOG(@"Logging report");
-	SIStoryLogReporter *logger = [[SIStoryLogReporter alloc] init];
 	[logger reportOnSources:sources andMappings:self.mappings];
 	[logger release];
 	
 	// Let the backpack know we have finished running stories.
 	[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:SI_RUN_FINISHED_NOTIFICATION object:nil]];
 }
+
+-(void) executeOnSources:(NSArray *) sources block:(StoryBlock) block {
+	for (SIStorySource *source in sources) {
+		for (SIStory *story in source.stories) {
+			block(source, story);
+		}
+	}
+}
+
 
 -(void) displayMessage:(NSString *) message {
 	[DCDialogs displayMessage:message];

@@ -14,10 +14,6 @@
 #import "SIUIReportManager.h"
 #import "SIState.h"
 
-#define ARG_NO_LOAD @"--no-load"
-#define ARG_SHOW_UI @"--ui"
-#define ARG_NO_AUTORUN @"--no-autorun"
-
 /**
  This class backpack's on a UIApplication in order to allow Simon to run in the background. You add it through the SIRun macro.
  */
@@ -48,6 +44,20 @@
  */
 - (void) runAllStories;
 
+/**
+ Returns true is the argument was presented to the process.
+ 
+@name name the name of the argument.
+ @return YES if the argument is present.
+ */
++(BOOL) isArgumentPresentWithName:(NSString *) name;
 
+/**
+ Returns the value associated with the argument presented to the process.
+ 
+ @name name the name of the argument.
+ @return the value as a string.
+ */
++(NSString *) argumentValueForName:(NSString *) name;
 
 @end

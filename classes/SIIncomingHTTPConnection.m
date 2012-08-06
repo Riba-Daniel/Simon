@@ -20,6 +20,7 @@
 "</testsuite>"
 
 @implementation SIIncomingHTTPConnection
+
 - (BOOL)supportsMethod:(NSString *)method atPath:(NSString *)path
 {
 	if ([method isEqualToString:@"POST"]) {

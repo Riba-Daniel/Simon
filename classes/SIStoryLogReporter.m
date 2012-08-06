@@ -23,9 +23,58 @@
 				ignored:(NSMutableArray *) ignored
 				 notRun:(NSMutableArray *) notRun;
 -(void) reportUnusedMappings:(NSArray *) mappings;
+-(void) storyExecuted:(NSNotification *) notification;
+
 @end
 
 @implementation SIStoryLogReporter
+
+-(id) init {
+	self = [super init];
+	if (self) {
+		[[NSNotificationCenter defaultCenter] addObserver:self
+															  selector:@selector(storyExecuted:)
+																	name:SI_STORY_EXECUTED_NOTIFICATION
+																 object:nil];
+	}
+	return self;
+}
+
+-(void) storyExecuted:(NSNotification *) notification {
+	SIStorySource *source = [[notification userInfo] valueForKey:SI_NOTIFICATION_KEY_SOURCE];
+	SIStory *story = [[notification userInfo] valueForKey:SI_NOTIFICATION_KEY_STORY];
+
+	NSString *statusAsString = [NSString stringStatusWithStory:story];
+	NSLog(@" ");
+	NSLog(@"Story executed: %@", story.title);
+	NSLog(@"Source: %@", source.source);
+	
+	NSString *stepStatus;
+	for (SIStep * step in story.steps) {
+		if ([step isMapped]) {
+			if (step.executed) {
+				stepStatus = step.exception != nil ? @"Failed!" : @"Success";
+			} else {
+				stepStatus = @"Not executed";
+			}
+			
+			NSLog(@"   Step: \"%@\" (%@::%@) - %@", step.command,
+					NSStringFromClass(step.stepMapping.targetClass),
+					NSStringFromSelector(step.stepMapping.selector),
+					stepStatus);
+		} else {
+			NSLog(@"   Step: %@, not mapped", step.command);
+		}
+	}
+	
+	NSLog(@"Result: %@", statusAsString);
+
+}
+
+-(void) dealloc {
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
+	[super dealloc];
+}
 
 -(void) reportOnSources:(NSArray *) sources andMappings:(NSArray *) mappings {
 	

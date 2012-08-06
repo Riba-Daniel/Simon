@@ -22,6 +22,7 @@
 #import "SIUIViewDescriptionVisitor.h"
 #import "NSObject+Simon.h"
 #import "SIUINotAnInputViewException.h"
+#import "SIAppBackpack.h"
 
 #import <QuartzCore/CALayer.h>
 
@@ -45,7 +46,6 @@ static SIUIApplication *application = nil;
 + (SIUIApplication *)application {
    if (application == nil) {
       application = [[super allocWithZone:NULL] init];
-		application.logActions = YES;
    }
    return application;
 }
@@ -58,6 +58,7 @@ static SIUIApplication *application = nil;
    if (self) {
 		SIUIViewHandlerFactory *factory = [[SIUIViewHandlerFactory alloc] init];
       self.viewHandlerFactory = factory;
+		self.logActions = [SIAppBackpack isArgumentPresentWithName:ARG_LOG_ACTIONS];
 		[factory release];
    }
    return self;

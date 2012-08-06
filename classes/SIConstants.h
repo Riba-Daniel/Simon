@@ -24,10 +24,21 @@
 #define SI_INSTANCE_STEP_MAPPING_REF_KEY @"__stepMapping" 
 
 // Notification ids.
-#define SI_RUN_FINISHED_NOTIFICATION @"Simon run finished" 
+#define SI_STORY_EXECUTED_NOTIFICATION @"Story has executed"
+#define SI_RUN_FINISHED_NOTIFICATION @"Simon run finished"
 #define SI_SHUTDOWN_NOTIFICATION @"Simon shutdown"
 #define SI_RUN_STORIES_NOTIFICATION @"Simon run stories"
 #define SI_WINDOW_REMOVED_NOTIFICATION @"Simon window removed"
+
+// Keys for notification dictionaries.
+#define SI_NOTIFICATION_KEY_SOURCE @"Source"
+#define SI_NOTIFICATION_KEY_STORY @"Story"
+
+// Program arguments.
+#define ARG_NO_LOAD @"--no-load"
+#define ARG_SHOW_UI @"--ui"
+#define ARG_NO_AUTORUN @"--no-autorun"
+#define ARG_LOG_ACTIONS @"--log-actions"
 
 // Simon's background thread name.
 #define SI_QUEUE_NAME "au.com.derekclarkson.simon"

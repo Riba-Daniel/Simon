@@ -80,8 +80,10 @@
 {
 	[self _setLocationInWindow:location resetPrevious:NO];
 	self.timestamp = [NSDate timeIntervalSinceReferenceDate];
+#ifdef DC_DEBUG
 	CGPoint loc = [self _locationInWindow:self.window];
    DC_LOG(@"Setting new touch point %f x %f", loc.x, loc.y);
+#endif
 }
 
 @end
