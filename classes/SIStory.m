@@ -40,19 +40,22 @@
 -(id) init {
 	self = [super init];
 	if (self) {
-		NSArray *steps = [[NSArray alloc] init];
-		self.steps = steps;
-		[steps release];
+		self.steps = [NSMutableArray array];
 		[self reset];
 	}
 	return self;
 }
 
 -(SIStep *) createStepWithKeyword:(SIKeyword) keyword command:(NSString *) theCommand {
-	SIStep * step = [[SIStep alloc] initWithKeyword:keyword command:theCommand];
+	
+	if (![self.steps isKindOfClass:[NSMutableArray class]]) {
+		self.steps = [NSMutableArray arrayWithArray:self.steps];
+	}
+	
+	SIStep * step = [[[SIStep alloc] initWithKeyword:keyword command:theCommand] autorelease];
 	DC_LOG(@"Adding new step with keyword %i and command \"%@\"", keyword, theCommand);
-	self.steps = [self.steps arrayByAddingObject:step];
-	DC_DEALLOC(step);
+	[(NSMutableArray *)self.steps addObject:step];
+
 	return step;
 }
 
