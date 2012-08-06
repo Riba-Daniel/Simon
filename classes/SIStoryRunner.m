@@ -14,6 +14,7 @@
 #import "NSString+Simon.h"
 #import "SIStoryLogReporter.h"
 #import <dUsefulStuff/DCDialogs.h>
+#import "NSArray+Simon.h"
 
 @interface SIStoryRunner(_private)
 -(void) displayMessage:(NSString *) message;
@@ -98,10 +99,9 @@
 	NSArray *filteredSources = [SIAppBackpack backpack].state.filteredSources;
 	NSArray *sources = filteredSources == nil ? self.reader.storySources : filteredSources;
 	
-	NSArray *stories = [SIAppBackpack backpack].state.filteredSources;
-	DC_LOG(@"Running %u stories", [stories count]);
-	
 	// First reset all the stories we are going to run.
+	DC_LOG(@"Starting run");
+	NSArray *stories = [sources storiesFromSources];
 	for (SIStory *story in stories) {
 		[story reset];
 	}

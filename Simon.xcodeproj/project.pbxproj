@@ -28,6 +28,9 @@
 		324108B71509C19400AFBF66 /* SIUIViewDescriptionVisitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 324108B51509C19400AFBF66 /* SIUIViewDescriptionVisitor.m */; };
 		324108BA1509C23200AFBF66 /* SIUIViewDescriptionVisitorDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 324108B91509C23200AFBF66 /* SIUIViewDescriptionVisitorDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		324108BC1509C61E00AFBF66 /* SIUIViewDescriptionVisitorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 324108BB1509C61E00AFBF66 /* SIUIViewDescriptionVisitorTests.m */; };
+		3243AA2F15CFE5B2000205E2 /* libSimon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 653D0E8A13A782AD00A5AB82 /* libSimon.a */; };
+		3243AA3015CFE613000205E2 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32AF045115CEB73600501B1E /* CFNetwork.framework */; };
+		3243AA3115CFE619000205E2 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32AF045315CEB75F00501B1E /* Security.framework */; };
 		325683D914EF6CEB00F7C189 /* SIUIConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 325683D814EF6CEB00F7C189 /* SIUIConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3260B810151CB81C005A5AAA /* SIUINotAnInputViewException.h in Headers */ = {isa = PBXBuildFile; fileRef = 3260B80E151CB81C005A5AAA /* SIUINotAnInputViewException.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3260B811151CB81C005A5AAA /* SIUINotAnInputViewException.m in Sources */ = {isa = PBXBuildFile; fileRef = 3260B80F151CB81C005A5AAA /* SIUINotAnInputViewException.m */; };
@@ -57,7 +60,6 @@
 		3298252E15039FE300631203 /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3298252D15039FE300631203 /* second@2x.png */; };
 		329825391503A0FF00631203 /* BDD.stories in Resources */ = {isa = PBXBuildFile; fileRef = 329825381503A0FF00631203 /* BDD.stories */; };
 		3298253C1504C87700631203 /* BDDImplementations.m in Sources */ = {isa = PBXBuildFile; fileRef = 3298253B1504C87600631203 /* BDDImplementations.m */; };
-		32A8F6841574A819006C5A91 /* libSimon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 653D0E8A13A782AD00A5AB82 /* libSimon.a */; };
 		32A9D11014C907BC00B0CFBD /* NSInvocations.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A9D10F14C907BC00B0CFBD /* NSInvocations.m */; };
 		32A9D11314C914B500B0CFBD /* SIMacroTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A9D11214C914B500B0CFBD /* SIMacroTests.m */; };
 		32AF044215CE36C500501B1E /* SIAppBackpackTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AF044115CE36C500501B1E /* SIAppBackpackTests.m */; };
@@ -165,13 +167,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		32A8F6821574A80D006C5A91 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 653D0E8113A782AC00A5AB82 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 653D0E8913A782AD00A5AB82;
-			remoteInfo = Simon;
-		};
 		32D9353615AB08C000E51C8C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 653D0E8113A782AC00A5AB82 /* Project object */;
@@ -395,10 +390,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3243AA3115CFE619000205E2 /* Security.framework in Frameworks */,
+				3243AA3015CFE613000205E2 /* CFNetwork.framework in Frameworks */,
+				3243AA2F15CFE5B2000205E2 /* libSimon.a in Frameworks */,
 				3298250F15039FE300631203 /* UIKit.framework in Frameworks */,
 				3298251015039FE300631203 /* Foundation.framework in Frameworks */,
 				3298251115039FE300631203 /* CoreGraphics.framework in Frameworks */,
-				32A8F6841574A819006C5A91 /* libSimon.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -897,7 +894,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				32A8F6831574A80D006C5A91 /* PBXTargetDependency */,
 			);
 			name = "ARC App with tests";
 			productName = "ARC App with tests";
@@ -1106,11 +1102,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		32A8F6831574A80D006C5A91 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 653D0E8913A782AD00A5AB82 /* Simon */;
-			targetProxy = 32A8F6821574A80D006C5A91 /* PBXContainerItemProxy */;
-		};
 		32D9353715AB08C000E51C8C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 653D0E8913A782AD00A5AB82 /* Simon */;

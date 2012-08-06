@@ -147,6 +147,8 @@ static SIAppBackpack *_backpack;
 -(void) startUp:(NSNotification *) notification {
 	[self executeOnSimonThread: ^{
 		
+		DC_LOG(@"Starting Simon");
+		
 		// Load stories and setup display info.
 		[runner loadStories];
 		
