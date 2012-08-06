@@ -9,6 +9,7 @@
 #import "NSArray+Simon.h"
 #import "SIStory.h"
 #import "SIStorySource.h"
+#import "NSString+Simon.h"
 
 @implementation NSArray (Simon)
 
@@ -17,48 +18,38 @@
 }
 
 -(NSArray *) filter:(NSString *) filterText {
-	return nil;
 	
 	DC_LOG(@"Filtering sources for search terms: %@", filterText);
 	NSMutableArray *filteredSources = [NSMutableArray array];
-	/*
-	for (SIStorySource *source in [SIAppBackpack backpack].storySources) {
+
+	for (SIStorySource *source in self) {
 		
-		// First test the file name.
+		// First test the file name in the source.
 		NSString *fileName = [source.source lastPathComponent];
-		// Check length first to avoid exceptions.
-		if ([fileName hasPrefix:searchText options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch)]) {
-			DC_LOG(@"Adding source: %@", [source.source lastPathComponent]);
+		SIStorySource *newSource = [source copy];
+		
+		// Accept the source and all it's stories if it passes based on the filter being a prefix.
+		if ([fileName hasPrefix:filterText options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch)]) {
+
+			DC_LOG(@"Adding source: %@", fileName);
+			[filteredSources addObject:newSource];
 			
 		} else {
 			
-			// File name is a no go so test each story name.
-			for (SIStory *story in source.stories) {
-				
-				// Check length first to avoid exceptions.
-				if ([story.title hasPrefix:searchText options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch)]) {
-					
-					DC_LOG(@"Adding story: %@", story.title);
-					
-					// Add a source if there is not one.
-					if (tmpSource == nil) {
-						tmpSource = [[SIStorySource alloc] init];
-						tmpSource.source = source.source;
-					}
-					[tmpSource.stories addObject:story];
-				}
+			// Source file name is a no go so test each story name.
+			NSArray *filteredStories = [source storiesWithPrefix:filterText];
+			if ([filteredStories count] > 0) {
+				newSource.stories = filteredStories;
+				[filteredSources addObject:newSource];
 			}
 			
-			// Now add the source if there are matching stories.
-			if (tmpSource != nil) {
-				[filteredSources addObject:tmpSource];
-				DC_DEALLOC(tmpSource);
-			}
 		}
+		
+		// Free
+		[newSource release];
 	}
-	*/
+
 	return filteredSources;
 }
-
 
 @end

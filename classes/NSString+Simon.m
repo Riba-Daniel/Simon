@@ -88,7 +88,7 @@
 -(BOOL) hasPrefix:(NSString *) prefix options:(int) options {
 	
 	// Avoid out of range exceptions.
-	if (self.length <= [prefix length]) {
+	if (self.length < [prefix length]) {
 		return NO;
 	}
 	

@@ -8,11 +8,12 @@
 
 #import "SIStorySource.h"
 #import <dUsefulStuff/DCCommon.h>
+#import "NSString+Simon.h"
 
 @implementation SIStorySource
 
-@synthesize stories = stories_;
-@synthesize source = source_;
+@synthesize stories = _stories;
+@synthesize source = _source;
 
 -(void) dealloc {
 	DC_LOG(@"Deallocing");
@@ -21,12 +22,25 @@
 	[super dealloc];
 }
 
--(id) init {
-	self = [super init];
-	if (self) {
-		self.stories = [NSMutableArray array];
-	}
-	return self;
+-(void) addStory:(SIStory *) story {
+	self.stories = [self.stories arrayByAddingObject:story];
+}
+
+-(id) copyWithZone:(NSZone *)zone {
+	
+	SIStorySource *newSource = [[SIStorySource alloc] init];
+	
+	newSource.stories = self.stories;
+	newSource.source = self.source;
+	
+	return newSource;
+}
+
+-(NSArray *) storiesWithPrefix:(NSString *) prefix {
+	NSArray *filteredStories = [self.stories objectsAtIndexes:[self.stories indexesOfObjectsPassingTest:^BOOL (id obj, NSUInteger idx, BOOL *stop) {
+		return [((SIStory *) obj).title hasPrefix:prefix options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch)];
+	}]];
+	return filteredStories;
 }
 
 @end

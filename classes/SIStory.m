@@ -20,18 +20,18 @@
 
 @implementation SIStory
 
-@synthesize status = status_;
-@synthesize stepWithError = stepWithError_;
-@synthesize steps = steps_;
-@synthesize title = title_;
-@synthesize error = error_;
+@synthesize status = _status;
+@synthesize stepWithError = _stepWithError;
+@synthesize steps = _steps;
+@synthesize title = _title;
+@synthesize error = _error;
 
 -(void) dealloc {
 	DC_LOG(@"Deallocing");
-	DC_DEALLOC(error_);
-	DC_DEALLOC(steps_);
-	DC_DEALLOC(stepWithError_);
+	self.steps = nil;
 	self.title = nil;
+	DC_DEALLOC(_error);
+	DC_DEALLOC(_stepWithError);
 	DC_DEALLOC(instanceCache);
 	DC_DEALLOC(storyCache);
 	[super dealloc];
@@ -40,16 +40,19 @@
 -(id) init {
 	self = [super init];
 	if (self) {
-		steps_ = [[NSMutableArray alloc] init];
+		NSArray *steps = [[NSArray alloc] init];
+		self.steps = steps;
+		[steps release];
 		[self reset];
 	}
 	return self;
 }
 
 -(SIStep *) createStepWithKeyword:(SIKeyword) keyword command:(NSString *) theCommand {
-	SIStep * step = [[[SIStep alloc] initWithKeyword:keyword command:theCommand] autorelease];
+	SIStep * step = [[SIStep alloc] initWithKeyword:keyword command:theCommand];
 	DC_LOG(@"Adding new step with keyword %i and command \"%@\"", keyword, theCommand);
-	[self.steps addObject:step];
+	self.steps = [self.steps arrayByAddingObject:step];
+	DC_DEALLOC(step);
 	return step;
 }
 
@@ -76,9 +79,9 @@
 
 	// Reset any current result data.
 	DC_LOG(@"Resetting");
-	status_ = SIStoryStatusNotRun;
-	DC_DEALLOC(stepWithError_);
-	DC_DEALLOC(error_);
+	_status = SIStoryStatusNotRun;
+	DC_DEALLOC(_stepWithError);
+	DC_DEALLOC(_error);
 
 	for (SIStep *step in self.steps) {
 		[step reset];
@@ -91,7 +94,7 @@
 	for (SIStep *step in self.steps) {
 		if (![step isMapped]) {
 			DC_LOG(@"Story is not fully mapped. Cannot execute step %@", step.command);
-			status_ = SIStoryStatusNotMapped;
+			_status = SIStoryStatusNotMapped;
 			return NO;
 		}
 	}
@@ -105,16 +108,16 @@
 		
 		// Now invoke the step on the class.
       
-		if (![step invokeWithObject:instance error:&error_]) {
+		if (![step invokeWithObject:instance error:&_error]) {
 			// Retain the error because it will be an autoreleased one.
-			[error_ retain];
-         stepWithError_ = [step retain];
-			status_ = SIStoryStatusError;
+			[_error retain];
+         _stepWithError = [step retain];
+			_status = SIStoryStatusError;
 			return NO;
 		}
 	}
 	
-	status_ = SIStoryStatusSuccess;
+	_status = SIStoryStatusSuccess;
 	return YES;
 	
 }

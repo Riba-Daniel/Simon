@@ -248,7 +248,7 @@
 	// Create the new one and store it in the return array.
 	DC_LOG(@"Creating new story");
 	SIStory *story = [[SIStory alloc] init];
-	[currentSource.stories addObject:story];
+	[currentSource addStory:story];
 	
 	// Store the title.
 	NSString *storyTitle = [[title substringFromIndex: 5] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];

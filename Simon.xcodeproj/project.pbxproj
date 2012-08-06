@@ -11,6 +11,7 @@
 		0B14F00C15CBA61500284016 /* libdNodi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B14F00B15CBA61500284016 /* libdNodi.a */; };
 		0B14F00E15CBA65C00284016 /* GHUnitIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B14F00D15CBA65C00284016 /* GHUnitIOS.framework */; };
 		0B14F01815CBA6B600284016 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B14F00F15CBA66F00284016 /* libOCMock.a */; };
+		0B9D8FF015CF82540005CBBF /* SIStorySourceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9D8FEF15CF82540005CBBF /* SIStorySourceTests.m */; };
 		321A346A1519FA9E00B22EDD /* NSObject+Simon.h in Headers */ = {isa = PBXBuildFile; fileRef = 321A34681519FA9E00B22EDD /* NSObject+Simon.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		321A346B1519FA9E00B22EDD /* NSObject+Simon.m in Sources */ = {isa = PBXBuildFile; fileRef = 321A34691519FA9E00B22EDD /* NSObject+Simon.m */; };
 		3221C79E150C9365003CA286 /* SIUIViewInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 3221C79D150C9365003CA286 /* SIUIViewInfo.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -220,6 +221,7 @@
 		0B14F01415CBA66F00284016 /* OCMock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCMock.h; sourceTree = "<group>"; };
 		0B14F01515CBA66F00284016 /* OCMockObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCMockObject.h; sourceTree = "<group>"; };
 		0B14F01615CBA66F00284016 /* OCMockRecorder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCMockRecorder.h; sourceTree = "<group>"; };
+		0B9D8FEF15CF82540005CBBF /* SIStorySourceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIStorySourceTests.m; sourceTree = "<group>"; };
 		321A34681519FA9E00B22EDD /* NSObject+Simon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Simon.h"; sourceTree = "<group>"; };
 		321A34691519FA9E00B22EDD /* NSObject+Simon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Simon.m"; sourceTree = "<group>"; };
 		3221C79D150C9365003CA286 /* SIUIViewInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIViewInfo.h; sourceTree = "<group>"; };
@@ -680,8 +682,10 @@
 				94657741141C95160026F1FB /* AbstractTestWithControlsOnView.h */,
 				94657742141C95160026F1FB /* AbstractTestWithControlsOnView.m */,
 				6583B43113D1CB4F005E13F3 /* GHUnit */,
+				32AF044F15CEA95E00501B1E /* NSArray+SimonTests.m */,
 				32A9D10F14C907BC00B0CFBD /* NSInvocations.m */,
 				65D35BC213A8BA130007A8AD /* NSString+SimonTests.m */,
+				32AF044115CE36C500501B1E /* SIAppBackpackTests.m */,
 				32A9D11214C914B500B0CFBD /* SIMacroTests.m */,
 				65FCD11713ADE3C200A90FCA /* SIRuntimeTests.m */,
 				653D0ED913A783DC00A5AB82 /* SIStoryFileReaderTests.m */,
@@ -693,8 +697,6 @@
 				32D5D98B14E135A300D29DD5 /* TestViewController.h */,
 				32D5D98C14E135A300D29DD5 /* TestViewController.m */,
 				659E62A013DB026400ACD34C /* UI */,
-				32AF044115CE36C500501B1E /* SIAppBackpackTests.m */,
-				32AF044F15CEA95E00501B1E /* NSArray+SimonTests.m */,
 			);
 			path = tests;
 			sourceTree = "<group>";
@@ -736,6 +738,7 @@
 				65B647CA13B8AE5E0083C114 /* SIStoryTests.m */,
 				653D0ED713A783DC00A5AB82 /* SIStepTests.m */,
 				65FCD13013B23E8400A90FCA /* SIStepMappingTests.m */,
+				0B9D8FEF15CF82540005CBBF /* SIStorySourceTests.m */,
 			);
 			name = Stories;
 			sourceTree = "<group>";
@@ -1096,6 +1099,7 @@
 				3265B02A1514887600BE0930 /* UIViewSimonTests.m in Sources */,
 				32AF044215CE36C500501B1E /* SIAppBackpackTests.m in Sources */,
 				32AF045015CEA95E00501B1E /* NSArray+SimonTests.m in Sources */,
+				0B9D8FF015CF82540005CBBF /* SIStorySourceTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -37,7 +37,7 @@
 /**
  This array stores references to the SIStep objects that represent the steps of the story.
  */
-@property (nonatomic, readonly) NSMutableArray * steps;
+@property (nonatomic, retain) NSArray * steps;
 
 /**
  Gives the final status of the story after all steps have been run. Also may contains statuss that indicate that a story was not run. For example

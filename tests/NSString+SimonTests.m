@@ -86,15 +86,19 @@
 }
 
 -(void) testHasPrefixWithOptionsExactMatch {
-	GHAssertTrue([@"abcdef" hasPrefix:@"abc" options:0], @"Should not have matched");
+	GHAssertTrue([@"abc" hasPrefix:@"abc" options:0], @"Should have matched");
+}
+
+-(void) testHasPrefixWithOptionsPrefixMatch {
+	GHAssertTrue([@"abcdef" hasPrefix:@"abc" options:0], @"Should have matched");
 }
 
 -(void) testHasPrefixWithOptionsCaseInsensitiveMatch {
-	GHAssertTrue([@"aBCdef" hasPrefix:@"abc" options:NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch], @"Should not have matched");
+	GHAssertTrue([@"aBCdef" hasPrefix:@"abc" options:NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch], @"Should have matched");
 }
 
 -(void) testHasPrefixWithOptionsDiacraticInsensitiveMatch {
-	GHAssertTrue([@"defg" hasPrefix:@"dË" options:NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch], @"Should not have matched");
+	GHAssertTrue([@"defg" hasPrefix:@"dË" options:NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch], @"Should have matched");
 }
 
 
