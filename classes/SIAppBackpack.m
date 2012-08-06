@@ -126,7 +126,7 @@ static SIAppBackpack *_backpack;
 																name:UIApplicationDidBecomeActiveNotification
 															 object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self
-														  selector:@selector(displayUI)
+														  selector:@selector(runFinished:)
 																name:SI_RUN_FINISHED_NOTIFICATION
 															 object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self

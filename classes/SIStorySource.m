@@ -15,6 +15,14 @@
 @synthesize stories = _stories;
 @synthesize source = _source;
 
+-(id) init {
+	self = [super init];
+	if (self) {
+		self.stories = [NSMutableArray array];
+	}
+	return self;
+}
+
 -(void) dealloc {
 	DC_LOG(@"Deallocing");
 	self.stories = nil;
@@ -23,7 +31,11 @@
 }
 
 -(void) addStory:(SIStory *) story {
-	self.stories = [self.stories arrayByAddingObject:story];
+	assert(self.stories != nil);
+	if (![self.stories isKindOfClass:[NSMutableArray class]]) {
+		self.stories = [NSMutableArray arrayWithArray:self.stories];
+	}
+	[(NSMutableArray *)self.stories addObject:story];
 }
 
 -(id) copyWithZone:(NSZone *)zone {

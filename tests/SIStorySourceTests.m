@@ -42,4 +42,17 @@
 	GHAssertEquals([stories lastObject], story1, nil);
 }
 
+-(void) testConvertsArrayToMutableArrayOnAddStory {
+	
+	SIStorySource *source = [[[SIStorySource alloc] init] autorelease];
+	GHAssertTrue([source.stories isKindOfClass:[NSMutableArray class]], nil);
+	NSArray *nonMutable = [NSArray array];
+	source.stories = nonMutable;
+	SIStory *story = [[[SIStory alloc] init] autorelease];
+	[source addStory:story];
+	GHAssertNotEquals(source.stories, nonMutable, nil);
+	GHAssertTrue([source.stories isKindOfClass:[NSMutableArray class]], nil);
+	
+}
+
 @end

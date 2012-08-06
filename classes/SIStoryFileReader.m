@@ -51,6 +51,7 @@
 	
 	for (NSString *file in files) {
 		if (![self readFile:file error:error]) {
+			DC_LOG(@"Error reading story file: %@", [*error localizedFailureReason]);
 			return nil;
 		}
 	}
