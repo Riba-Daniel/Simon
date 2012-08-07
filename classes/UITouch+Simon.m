@@ -6,6 +6,7 @@
 //  Copyright (c) 2012 Sensis. All rights reserved.
 //
 
+#import <dUsefulStuff/DCCommon.h>
 #import "UITouch+Simon.h"
 
 // These declarations are copies from the private apis and serve to give us access to the internals of UITouch.

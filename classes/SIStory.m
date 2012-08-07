@@ -63,13 +63,18 @@
 	return [self.steps objectAtIndex:index];
 }
 
--(BOOL) invoke {
+-(BOOL) invokeWithSource:(SIStorySource *) source {
 
 	// Allocate the caches.
 	instanceCache = [[NSMutableDictionary alloc] init];
 	storyCache = [[NSMutableDictionary alloc] init];
 
 	BOOL result = [self invokeSteps];
+
+	// Let the loggers know the story has executed.
+	DC_LOG(@"Firing story finished notification");
+	NSDictionary *userData = [NSDictionary dictionaryWithObjectsAndKeys:source, SI_NOTIFICATION_KEY_SOURCE, self, SI_NOTIFICATION_KEY_STORY, nil];
+	[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:SI_STORY_EXECUTED_NOTIFICATION object:self userInfo:userData]];
 
 	// Clear the caches.
 	DC_DEALLOC(instanceCache);

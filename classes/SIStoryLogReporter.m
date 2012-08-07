@@ -9,6 +9,7 @@
 #import <dUsefulStuff/DCCommon.h>
 
 #import "SIStoryLogReporter.h"
+#import "SIStorySource.h"
 #import "SIStory.h"
 #import "SIStep.h"
 #import "SIStepMapping.h"

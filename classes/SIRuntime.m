@@ -45,8 +45,7 @@
 				nextClass = classes[index];
 				
 				// Ignore nulls.
-				if (nextClass == NULL 
-					 || nextClass == nil) {
+				if (nextClass == NULL || nextClass == nil) {
 					continue;
 				}
 
@@ -55,6 +54,8 @@
 				if (![classBundle isEqual:mainBundle]) {
 					continue;
 				}
+
+				DC_LOG(@"Checking class %@ for mappings", NSStringFromClass(nextClass));
 				
 				// Check to see where it comes from.
 				superClass = [self getUltimateSuperClass:nextClass];
@@ -99,7 +100,8 @@
 	for (size_t idx = 0; idx < methodCount; ++idx) {
 		
       currMethod = methods[idx];
-      sel = method_getName(currMethod);	
+      sel = method_getName(currMethod);
+		DC_LOG(@"Checking method: %@", NSStringFromSelector(sel));
       
 		if ([NSStringFromSelector(sel) hasPrefix:prefix]) {
 			DC_LOG(@"\tStep method found %@::%@", NSStringFromClass(class), NSStringFromSelector(sel));

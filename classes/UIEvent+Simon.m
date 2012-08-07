@@ -7,6 +7,7 @@
 //
 
 #import <objc/runtime.h>
+#import <dUsefulStuff/DCCommon.h>
 
 #import "UIEvent+Simon.h"
 #import "GSEventProxy.h"

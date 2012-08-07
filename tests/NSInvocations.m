@@ -8,6 +8,7 @@
 
 #import <GHUnitIOS/GHUnit.h>
 #import <objc/runtime.h>
+#import <dUsefulStuff/DCCommon.h>
 
 @interface NSInvocations : GHTestCase
 -(void) throwAnException;

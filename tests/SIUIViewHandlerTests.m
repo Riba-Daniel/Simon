@@ -1,10 +1,10 @@
 
 
 #import <GHUnitIOS/GHUnit.h>
-#import "SIUIViewHandler.h"
+#import <Simon/SIUIViewHandler.h>
 #import <dUsefulStuff/DCCommon.h>
 #import "AbstractTestWithControlsOnView.h"
-#import "NSObject+Simon.h"
+#import <Simon/NSObject+Simon.h>
 
 @interface SIUIViewHandlerTests : AbstractTestWithControlsOnView {
 @private 
@@ -27,32 +27,32 @@
 #pragma mark - DNNode test
 
 -(void) testName {
-	handler.view = self.testViewController.button1;
+	handler.view = (UIView<DNNode> *) self.testViewController.button1;
 	GHAssertEqualStrings(handler.dnName, @"UIRoundedRectButton", @"Incorrect node returned");
 }
 
 -(void) testParentName {
-	handler.view = self.testViewController.button1;
+	handler.view = (UIView<DNNode> *) self.testViewController.button1;
 	GHAssertEquals(handler.dnParentNode, self.testViewController.view, @"Incorrect name returned");
 }
 
 -(void) testAttributeQueryFailsWithInvalidPropertyName {
-	handler.view = self.testViewController.button1;
+	handler.view = (UIView<DNNode> *) self.testViewController.button1;
 	GHAssertThrowsSpecificNamed([handler dnHasAttribute:@"xyz" withValue:nil], NSException, @"NSUnknownKeyException", @"Handler should have failed request.");
 }
 
 -(void) testAttributeQueryMatchesPropertyValue {
-	handler.view = self.testViewController.button1;
+	handler.view = (UIView<DNNode> *) self.testViewController.button1;
 	GHAssertTrue([handler dnHasAttribute:@"alpha" withValue:[NSNumber numberWithInt:1]], @"Handler fails to match attribute data");
 }
 
 -(void) testAttributeQueryMatchesNestedPropertyValue {
-	handler.view = self.testViewController.button1;
+	handler.view = (UIView<DNNode> *) self.testViewController.button1;
 	GHAssertTrue([handler dnHasAttribute:@"titleLabel.text" withValue:@"Button 1"], @"Handler fails to match attribute data");
 }
 
 -(void) testSubnodes {
-   handler.view = self.testViewController.view;
+   handler.view = (UIView<DNNode> *) self.testViewController.view;
 	NSArray *subNodes = handler.dnSubNodes;
 	GHAssertEquals([subNodes count], (NSUInteger) 12, @"Should be one sub view");
 	GHAssertEquals([subNodes objectAtIndex:0], self.testViewController.button1, @"Returned node was not button 1.");
@@ -69,13 +69,13 @@
 #pragma mark - Special attributes
 
 -(void) testAttributeProtocol {
-	handler.view = [[[UITextField alloc] init] autorelease];
+	handler.view = (UIView<DNNode> *) [[[UITextField alloc] init] autorelease];
 	GHAssertTrue([handler dnHasAttribute:@"protocol" withValue:@"UITextInput"], @"Protocol not being detected");
 	GHAssertFalse([handler dnHasAttribute:@"protocol" withValue:@"xxx"], @"Protocol not being detected");
 }
 
 -(void) testAttributeIsKindOfClass {
-	handler.view = [[[UITextField alloc] init] autorelease];
+	handler.view = (UIView<DNNode> *) [[[UITextField alloc] init] autorelease];
 	GHAssertTrue([handler dnHasAttribute:@"isKindOfClass" withValue:@"UIResponder"], @"Protocol not being detected");
 	GHAssertFalse([handler dnHasAttribute:@"isKindOfClass" withValue:@"xxx"], @"Protocol not being detected");
 }
@@ -84,12 +84,12 @@
 #pragma mark - KVC
 
 -(void) testKvcAttributesReturnsNilWhenNoTag {
-   handler.view = [[[UIView alloc] init] autorelease];
+   handler.view = (UIView<DNNode> *) [[[UIView alloc] init] autorelease];
 	GHAssertNil([handler kvcAttributes], @"Expected a nil");
 }
 
 -(void) testKvcAttributesReturnsAttributesWhenTagSet {
-   handler.view = [[[UIView alloc] init] autorelease];
+   handler.view = (UIView<DNNode> *) [[[UIView alloc] init] autorelease];
 	handler.view.tag = 1;
 	NSDictionary *attributes = [handler kvcAttributes];
 	GHAssertNotNil(attributes, @"Expected aattributes");
@@ -97,7 +97,7 @@
 }
 
 -(void) testKvcAttributesReturnsAttributesWhenAccessibilityIndentifierSet {
-   handler.view = [[[UIView alloc] init] autorelease];
+   handler.view = (UIView<DNNode> *) [[[UIView alloc] init] autorelease];
 	handler.view.accessibilityIdentifier = @"abc";
 	NSDictionary *attributes = [handler kvcAttributes];
 	GHAssertNotNil(attributes, @"Expected aattributes");
@@ -105,7 +105,7 @@
 }
 
 -(void) testKvcAttributesReturnsAttributesWhenAccessibilityLabelSet {
-   handler.view = [[[UIView alloc] init] autorelease];
+   handler.view = (UIView<DNNode> *) [[[UIView alloc] init] autorelease];
 	handler.view.accessibilityLabel = @"abc";
 	NSDictionary *attributes = [handler kvcAttributes];
 	GHAssertNotNil(attributes, @"Expected aattributes");
@@ -113,7 +113,7 @@
 }
 
 -(void) testKvcAttributesReturnsAttributesWhenAccessibilityValueSet {
-   handler.view = [[[UIView alloc] init] autorelease];
+   handler.view = (UIView<DNNode> *) [[[UIView alloc] init] autorelease];
 	handler.view.accessibilityValue = @"abc";
 	NSDictionary *attributes = [handler kvcAttributes];
 	GHAssertNotNil(attributes, @"Expected attributes");
@@ -123,7 +123,7 @@
 #pragma mark - SIUIAction tests
 
 -(void) testTextEntryLowercase {
-	handler.view = self.testViewController.textField;
+	handler.view = (UIView<DNNode> *) self.testViewController.textField;
 	[self executeBlockOnMainThread:^{
 		self.testViewController.textField.text = @"";
 	}];
@@ -139,7 +139,7 @@
 }
 
 -(void) testTextEntryUppercase {
-	handler.view = self.testViewController.textField;
+	handler.view = (UIView<DNNode> *) self.testViewController.textField;
 	[self executeBlockOnMainThread:^{
 		self.testViewController.textField.text = @"";
 	}];
@@ -155,7 +155,7 @@
 }
 
 -(void) testTextEntryUnShiftedCharacters {
-	handler.view = self.testViewController.textField;
+	handler.view = (UIView<DNNode> *) self.testViewController.textField;
 	[self executeBlockOnMainThread:^{
 		self.testViewController.textField.text = @"";
 	}];
@@ -171,7 +171,7 @@
 }
 
 -(void) testTextEntryShiftedCharacters {
-	handler.view = self.testViewController.textField;
+	handler.view = (UIView<DNNode> *) self.testViewController.textField;
 	[self executeBlockOnMainThread:^{
 		self.testViewController.textField.text = @"";
 	}];
@@ -187,7 +187,7 @@
 }
 
 -(void) testTextEntryAllowsAutoCorrect {
-	handler.view = self.testViewController.textField;
+	handler.view = (UIView<DNNode> *) self.testViewController.textField;
 	[self executeBlockOnMainThread:^{
 		self.testViewController.textField.text = @"";
 	}];

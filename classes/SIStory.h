@@ -10,6 +10,9 @@
 #import "SIConstants.h"
 #import "SIStep.h"
 
+// Stops circular reference in headers.
+@class SIStorySource;
+
 /**
  The story is the heart of BDD. This class encapsulates the information for one specific story. It stores a list of the steps that 
  the story has and also provides functionality for communicating between steps. SISteps can map to a single class or several classes which means you can have a clean seperation between step methods that are specific to you story and methods that are more generic. Because the classes which contain the step methods are actually instantiated, it amkes it possible to pass values from one step method to another by using a class property. However SIStory also provides methods that access a story based object cache so it's possible to pass objects between methods on completely different classes.
@@ -92,8 +95,11 @@
 /**
  Invokes the story. In turn, tells each SIStep in the steps array to invoke using the [SIStep invokeWithObject:error:] method.
  Before invoking, it first retrieves or creates a matching instance of the [SIStepMapping targetClass] and stores it in the instanceCache. This cache is used only for storying references to classes that contain implementations of steps.
+ 
+ @param source the source that owns the story.
+ @return YES if the story executed successfully, NO if it was not executable or had an error.
  */
--(BOOL) invoke;
+-(BOOL) invokeWithSource:(SIStorySource *) source;
 
 /**
  Called to reset the state of the story before rerunning it.

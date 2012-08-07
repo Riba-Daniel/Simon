@@ -6,6 +6,7 @@
 //  Copyright (c) 2011 Sensis. All rights reserved.
 //
 
+#import <dUsefulStuff/DCCommon.h>
 #import "SIStoryReportTableViewController.h"
 #import "SIStory.h"
 #import "NSString+Simon.h"
@@ -13,6 +14,7 @@
 #import <dUsefulStuff/DCDialogs.h>
 #import "SIStoryDetailsTableViewController.h"
 #import "NSArray+Simon.h"
+#import "SIAppBackpack.h"
 
 @interface SIStoryReportTableViewController (_private)
 -(void) rerunStories;

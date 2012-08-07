@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Sensis. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 /**
  Abstract parent class of event generators. This class provides basic infrastructure for the actual generators. It creates and stores the touch and event objects so 

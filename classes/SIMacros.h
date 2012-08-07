@@ -6,6 +6,9 @@
 //  Copyright 2011. All rights reserved.
 //
 #import <dUsefulStuff/DCCommon.h>
+#import "SIStepMapping.h"
+#import "SIUIApplication.h"
+#import "SIConstants.h"
 
 /**
  These two are used to convert a sequence of chars to a string constant. We used this to convert a selector to a string constant within a macro when part of the macro name is the current line number macro __LINE__. Again we need that extra level of indirection to fix the translation of the parameter when stringification is involved.
@@ -25,9 +28,9 @@
 
 /**
  This macro maps a regex to a selector in the current class. Simon expects that the order and type of any groups in the regex will
- match the order and types of arguments in the selector. So we recommend that the this is used before the selector like this
+ match the order and types of arguments in the selector. So we recommend that this is used before the selector like this
  `
- SIMapStepToSelector(@"then use \"(.*)\" as the string value", thisIsMyMethod:)
+ SIMapStepToSelector(@"then use \"(.*)\" as the string value", thisIsMyMethod:);
  -(void) thisIsMyMethod:(NSString *) stringValue {
  ...
  }

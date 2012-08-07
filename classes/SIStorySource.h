@@ -6,7 +6,7 @@
 //  Copyright (c) 2011 Sensis. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "SIStory.h"
 
 /**
  Represents a source of stories. Mainly used for reporting purposes.

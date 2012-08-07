@@ -8,6 +8,7 @@
 
 #import <dUsefulStuff/DCCommon.h>
 #import <dUsefulStuff/NSObject+dUsefulStuff.h>
+#import "SIAppBackpack.h"
 #import "SIStoryRunner.h"
 #import "SIStory.h"
 #import "SIStepMapping.h"
@@ -106,17 +107,15 @@ typedef void (^StoryBlock)(SIStorySource *, SIStory *);
 
 	// First reset all the stories we are going to run.
 	DC_LOG(@"Starting run");
+	DC_LOG(@"Resetting stories");
 	[self executeOnSources:sources block:^(SIStorySource *source, SIStory *story){
 		[story reset];
 	}];
    
 	// Now execute them.
+	DC_LOG(@"Executing");
 	[self executeOnSources:sources block:^(SIStorySource *source, SIStory *story){
-		[story invoke];
-		
-		// Let the loggers know the story has executed.
-		NSDictionary *userData = [NSDictionary dictionaryWithObjectsAndKeys:source, SI_NOTIFICATION_KEY_SOURCE, story, SI_NOTIFICATION_KEY_STORY, nil];
-		[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:SI_STORY_EXECUTED_NOTIFICATION object:nil userInfo:userData]];
+		[story invokeWithSource:source];
 	}];
 	
 	// Publish the results.

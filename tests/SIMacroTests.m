@@ -7,11 +7,12 @@
 //
 
 #import <GHUnitIOS/GHUnit.h>
-#import "SIMacros.h"
+#import <Simon/SIMacros.h>
 #import "AbstractTestWithControlsOnView.h"
-#import "SIUITooManyFoundException.h"
-#import "SIUINotFoundException.h"
-#import "NSObject+Simon.h"
+#import <Simon/SIUITooManyFoundException.h>
+#import <Simon/SIUINotFoundException.h>
+#import <Simon/NSObject+Simon.h>
+#import <Simon/SIRuntime.h>
 
 #define catchMessage(msg) \
 do { \
@@ -28,21 +29,21 @@ NSString *newMsg = [NSString stringWithFormat:msg, (__LINE__ - 4)]; \
 
 #pragma mark - Mappings
 
-SIMapStepToSelector(@"abc", dummyMethod)
+SIMapStepToSelector(@"abc", dummyMethod);
 -(void) testSIMapStepToSelector {
-
-// First find the mapping.
-SIRuntime *runtime = [[[SIRuntime alloc] init] autorelease];
-NSArray *methods = [runtime allMappingMethodsInRuntime];
-
-for (SIStepMapping *mapping in methods) {
-	if (mapping.targetClass == [self class]
-		 && mapping.selector == @selector(dummyMethod)) {
-		// good so exit.
-		return;
+	
+	// First find the mapping.
+	SIRuntime *runtime = [[[SIRuntime alloc] init] autorelease];
+	NSArray *methods = [runtime allMappingMethodsInRuntime];
+	
+	for (SIStepMapping *mapping in methods) {
+		if (mapping.targetClass == [self class]
+			 && mapping.selector == @selector(dummyMethod)) {
+			// good so exit.
+			return;
+		}
 	}
-}
-GHFail(@"Mapping has not worked");	
+	GHFail(@"Mapping not found in runtime");
 }
 
 #pragma mark - Fails tests
@@ -450,11 +451,11 @@ GHFail(@"Mapping has not worked");
    NSDate *before = [NSDate date];
 	dispatch_async(mainQueue, ^{
 		CGPoint originalCenter = self.testViewController.waitForItButton.center;
-		[UIView animateWithDuration:1.0 
+		[UIView animateWithDuration:1.0
 									 delay:0.0
 								  options:UIViewAnimationOptionAutoreverse
 							  animations: ^{
-								  self.testViewController.waitForItButton.center = CGPointMake(originalCenter.x + 100, originalCenter.y); 
+								  self.testViewController.waitForItButton.center = CGPointMake(originalCenter.x + 100, originalCenter.y);
 							  }
 							  completion:^(BOOL finished) {
 								  self.testViewController.waitForItButton.center = originalCenter;
@@ -477,7 +478,7 @@ GHFail(@"Mapping has not worked");
 	
 	NSString *text = @"ABC DEF GHI klm nop qrs tuv-w.y,y:z";
 	[SIUIApplication application].disableKeyboardAutocorrect = YES;
-
+	
 	SIEnterText(self.testViewController.textField, text);
 	
 	__block NSString *enteredText = nil;

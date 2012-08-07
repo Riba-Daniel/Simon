@@ -7,6 +7,7 @@
 //
 
 #import "TestViewController.h"
+#import <dUsefulStuff/DCCommon.h>
 
 @interface TestViewController (_private)
 -(void) updateDisplayLabel:(NSString *) text;

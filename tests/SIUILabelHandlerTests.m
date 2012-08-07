@@ -19,7 +19,7 @@
 	
 	UILabel *label = [[[UILabel alloc] init] autorelease];
 	SIUILabelHandler *handler = [[[SIUILabelHandler alloc] init] autorelease];
-	handler.view = label;
+	handler.view = (UIView<DNNode> *) label;
 	
 	GHAssertNil([handler kvcAttributes], @"expected a nil");
 }
@@ -29,7 +29,7 @@
 	UILabel *label = [[[UILabel alloc] init] autorelease];
 	label.tag = 1;
 	SIUILabelHandler *handler = [[[SIUILabelHandler alloc] init] autorelease];
-	handler.view = label;
+	handler.view = (UIView<DNNode> *) label;
 	
 	NSDictionary *attributes = [handler kvcAttributes];
 	GHAssertEquals([[attributes objectForKey:@"tag"] intValue], 1, @"Incorrect value");
@@ -40,7 +40,7 @@
 	UILabel *label = [[[UILabel alloc] init] autorelease];
 	label.text = @"Hello";
 	SIUILabelHandler *handler = [[[SIUILabelHandler alloc] init] autorelease];
-	handler.view = label;
+	handler.view = (UIView<DNNode> *) label;
 	
 	NSDictionary *attributes = [handler kvcAttributes];
 	GHAssertEqualStrings([attributes objectForKey:@"text"], @"Hello", @"Incorrect value");

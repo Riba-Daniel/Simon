@@ -6,9 +6,13 @@
 //  Copyright (c) 2012 Sensis. All rights reserved.
 //
 
+#import <dUsefulStuff/DCCommon.h>
+#import <UIKit/UIKit.h>
+
 #import "SIUITapGenerator.h"
 #import "UITouch+Simon.h"
 #import "UIEvent+Simon.h"
+#import "UIView+Simon.h"
 
 @implementation SIUITapGenerator
 
