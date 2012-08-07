@@ -40,6 +40,7 @@
 
 @synthesize state = _state;
 @dynamic storySources;
+@dynamic mappings;
 
 // Static reference to self to keep alive in an ARC environment.
 static SIAppBackpack *_backpack;
@@ -55,6 +56,10 @@ static SIAppBackpack *_backpack;
 
 -(NSArray *) storySources {
 	return runner.reader.storySources;
+}
+
+-(NSArray *) mappings {
+	return runner.mappings;
 }
 
 #pragma mark - Lifecycle
@@ -73,6 +78,7 @@ static SIAppBackpack *_backpack;
 	[server stop];
 	DC_DEALLOC(server);
 	DC_DEALLOC(runner);
+	DC_DEALLOC(logger);
 	DC_DEALLOC(ui);
 	[super dealloc];
 }
@@ -88,6 +94,10 @@ static SIAppBackpack *_backpack;
 		
 		// Create the story runner.
 		runner = [[SIStoryRunner alloc] init];
+		
+		// Create the logger
+		logger = [[SIStoryLogReporter alloc] init];
+
 
 		// IF a UI is requested, load the report manager.
 		if ([SIAppBackpack isArgumentPresentWithName:ARG_SHOW_UI]) {

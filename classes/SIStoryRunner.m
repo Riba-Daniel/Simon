@@ -13,7 +13,6 @@
 #import "SIStory.h"
 #import "SIStepMapping.h"
 #import "NSString+Simon.h"
-#import "SIStoryLogReporter.h"
 #import <dUsefulStuff/DCDialogs.h>
 #import "NSArray+Simon.h"
 
@@ -103,8 +102,6 @@ typedef void (^StoryBlock)(SIStorySource *, SIStory *);
 	NSArray *filteredSources = [SIAppBackpack backpack].state.filteredSources;
 	NSArray *sources = filteredSources == nil ? self.reader.storySources : filteredSources;
 
-	SIStoryLogReporter *logger = [[SIStoryLogReporter alloc] init];
-
 	// First reset all the stories we are going to run.
 	DC_LOG(@"Starting run");
 	DC_LOG(@"Resetting stories");
@@ -117,11 +114,6 @@ typedef void (^StoryBlock)(SIStorySource *, SIStory *);
 	[self executeOnSources:sources block:^(SIStorySource *source, SIStory *story){
 		[story invokeWithSource:source];
 	}];
-	
-	// Publish the results.
-	DC_LOG(@"Logging report");
-	[logger reportOnSources:sources andMappings:self.mappings];
-	[logger release];
 	
 	// Let the backpack know we have finished running stories.
 	[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:SI_RUN_FINISHED_NOTIFICATION object:nil]];

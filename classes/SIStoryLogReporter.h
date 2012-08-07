@@ -10,5 +10,4 @@
  Logs a report to the console via NSLog(...) commands.
  */
 @interface SIStoryLogReporter : NSObject
--(void) reportOnSources:(NSArray *) sources andMappings:(NSArray *) mappings;
 @end

@@ -21,9 +21,11 @@
 	SIStory *story;
 	BOOL abcMethodCalled;
 	BOOL defMethodCalled;
-	BOOL notificationFired;
+	BOOL startNotificationFired;
+	BOOL finishedNotificationFired;
 }
 
+-(void) storyStarted:(NSNotification *) notification;
 -(void) storyExecuted:(NSNotification *) notification;
 @end
 
@@ -32,9 +34,11 @@
 -(void) setUp {
 	source = [[SIStorySource alloc] init];
 	story = [[SIStory alloc] init];
-	notificationFired = NO;
+	finishedNotificationFired = NO;
+	startNotificationFired = NO;
 	abcMethodCalled = NO;
 	defMethodCalled = NO;
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(storyStarted:) name:SI_STORY_STARTING_EXECUTION_NOTIFICATION object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(storyExecuted:) name:SI_STORY_EXECUTED_NOTIFICATION object:nil];
 }
 
@@ -52,7 +56,8 @@
 	[[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
 	
 	GHAssertTrue(success, @"Invoked should have worked");
-	GHAssertTrue(notificationFired, @"Notification not sent.");
+	GHAssertTrue(startNotificationFired, @"Notification not sent.");
+	GHAssertTrue(finishedNotificationFired, @"Notification not sent.");
 	
 }
 
@@ -132,9 +137,19 @@
 	GHAssertTrue(abcMethodCalled, @"Appear to in a different instance of the class.");
 }
 
+-(void) storyStarted:(NSNotification *) notification {
+	DC_LOG(@"Story starting notification received");
+	startNotificationFired = YES;
+	NSDictionary *userData = [notification userInfo];
+	GHAssertTrue([[userData allKeys] containsObject:SI_NOTIFICATION_KEY_SOURCE], nil);
+	GHAssertTrue([[userData allKeys] containsObject:SI_NOTIFICATION_KEY_STORY], nil);
+	GHAssertEquals([userData valueForKey:SI_NOTIFICATION_KEY_SOURCE], source, nil);
+	GHAssertEquals([userData valueForKey:SI_NOTIFICATION_KEY_STORY], story, nil);
+}
+
 -(void) storyExecuted:(NSNotification *) notification {
 	DC_LOG(@"Story executed notification received");
-	notificationFired = YES;
+	finishedNotificationFired = YES;
 	NSDictionary *userData = [notification userInfo];
 	GHAssertTrue([[userData allKeys] containsObject:SI_NOTIFICATION_KEY_SOURCE], nil);
 	GHAssertTrue([[userData allKeys] containsObject:SI_NOTIFICATION_KEY_STORY], nil);
