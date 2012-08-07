@@ -7,15 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SIStoryDetailsTableViewController.h"
+#import "SIStoryDetailsController.h"
 
 /**
  Table view controller for the report on all the stories which where run.
  */
-@interface SIStoryReportTableViewController : UITableViewController<UISearchDisplayDelegate, UISearchBarDelegate> {
+@interface SIStoryListController : UITableViewController<UISearchDisplayDelegate, UISearchBarDelegate> {
 @private
 	UISearchDisplayController *searchController;
-	SIStoryDetailsTableViewController *detailsController;
+	SIStoryDetailsController *detailsController;
 }
 
 /// @name Running stories

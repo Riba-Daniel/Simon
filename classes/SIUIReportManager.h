@@ -6,11 +6,10 @@
 //  Copyright (c) 2011 Sensis. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "SIStoryReportTableViewController.h"
+#import "SIStoryListController.h"
 
 /**
- An implementation of SIStoryReporter which produces a log of the run on console.
+ Manages the UI display of the results of a run of stories.
  */
 @interface SIUIReportManager : NSObject {
 	@private 

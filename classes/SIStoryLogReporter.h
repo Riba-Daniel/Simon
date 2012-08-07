@@ -6,11 +6,9 @@
 //  Copyright 2011. All rights reserved.
 //
 
-#import "SIStoryReporter.h"
-
 /**
- An instance of the SIStoryReporter protocol that logs a report to the console via NSLog(...) commands.
+ Logs a report to the console via NSLog(...) commands.
  */
-@interface SIStoryLogReporter : NSObject<SIStoryReporter>
-
+@interface SIStoryLogReporter : NSObject
+-(void) reportOnSources:(NSArray *) sources andMappings:(NSArray *) mappings;
 @end

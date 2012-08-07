@@ -7,22 +7,22 @@
 //
 
 #import <dUsefulStuff/DCCommon.h>
-#import "SIStoryReportTableViewController.h"
+#import "SIStoryListController.h"
 #import "SIStory.h"
 #import "NSString+Simon.h"
 #import "SIStorySource.h"
 #import <dUsefulStuff/DCDialogs.h>
-#import "SIStoryDetailsTableViewController.h"
+#import "SIStoryDetailsController.h"
 #import "NSArray+Simon.h"
 #import "SIAppBackpack.h"
 
-@interface SIStoryReportTableViewController (_private)
+@interface SIStoryListController (_private)
 -(void) rerunStories;
 -(NSArray *) sourcesToDisplay;
 -(void) filterContentForSearchText:(NSString *)searchText scope:(NSString *)scope;
 @end
 
-@implementation SIStoryReportTableViewController
+@implementation SIStoryListController
 
 -(void) dealloc {
 	DC_LOG(@"Deallocing");
@@ -173,7 +173,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	
 	// Load the controller.
-	detailsController = [[SIStoryDetailsTableViewController alloc] initWithStyle:UITableViewStylePlain];
+	detailsController = [[SIStoryDetailsController alloc] initWithStyle:UITableViewStylePlain];
 	
  	NSArray *sources = [self sourcesToDisplay];
 	detailsController.source = [sources objectAtIndex:indexPath.section];

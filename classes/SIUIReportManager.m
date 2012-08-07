@@ -7,7 +7,7 @@
 //
 
 #import "SIUIReportManager.h"
-#import "SIStoryReportTableViewController.h"
+#import "SIStoryListController.h"
 #import <UIKit/UIKit.h>
 #import <dUsefulStuff/DCCommon.h>
 #import "NSObject+Simon.h"
@@ -33,7 +33,7 @@
 	// Refire on the main thread.
 	[self executeBlockOnMainThread: ^{
 		
-		SIStoryReportTableViewController *reportController = [[SIStoryReportTableViewController alloc] initWithStyle:UITableViewStylePlain];
+		SIStoryListController *reportController = [[SIStoryListController alloc] initWithStyle:UITableViewStylePlain];
 		
 		reportController.navigationItem.title = @"Simon's simple report";
 		

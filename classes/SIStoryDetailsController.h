@@ -13,7 +13,7 @@
 /**
  Table view controller for the details window.
  */
-@interface SIStoryDetailsTableViewController : UITableViewController {
+@interface SIStoryDetailsController : UITableViewController {
 }
 
 /// @name Properties

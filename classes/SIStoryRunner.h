@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "SIStoryFileReader.h"
 #import "SIRuntime.h"
-#import "SIStoryReporter.h"
 
 /**
  SIStoryRunner is the main class used to run stories. It makes use of a SIStoryFileReader to locate and read in the stories to run, and an instance of a SIRuntime instance to which is used to locate the SIStepMapping instances which provide implmentations for the story steps. Finally it uses a SIStoryReporter instance to provide a report on the results of the run.

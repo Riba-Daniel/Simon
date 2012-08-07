@@ -7,7 +7,7 @@
 //
 
 #import <dUsefulStuff/DCCommon.h>
-#import "SIStoryDetailsTableViewController.h"
+#import "SIStoryDetailsController.h"
 #import "SIStep.h"
 
 // Stores a line from the back trace.
@@ -35,7 +35,7 @@
 @end
 
 // Private methods.
-@interface SIStoryDetailsTableViewController()
+@interface SIStoryDetailsController()
 -(void) assembleStoryText;
 -(void) processTrace;
 @property (nonatomic, retain) NSString *storyText;
@@ -44,7 +44,7 @@
 @property (nonatomic, retain) UIFont *traceFont;
 @end
 
-@implementation SIStoryDetailsTableViewController
+@implementation SIStoryDetailsController
 
 @synthesize source = source_;
 @synthesize story = story_;
