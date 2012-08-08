@@ -1,34 +1,14 @@
 //
-//  SIStoryLogReporter.m
-//  Simon
+//  SIResultListener.m
+//  
 //
-//  Created by Derek Clarkson on 6/28/11.
-//  Copyright 2011. All rights reserved.
+//  Created by Sensis on 8/08/12.
+//
 //
 
-#import <dUsefulStuff/DCCommon.h>
+#import "SIResultListener.h"
 
-#import "SIStoryLogReporter.h"
-#import "SIStorySource.h"
-#import "SIStory.h"
-#import "SIStep.h"
-#import "SIStepMapping.h"
-#import "NSString+Simon.h"
-#import "NSArray+Simon.h"
-#import "SIAppBackpack.h"
-
-@interface SIStoryLogReporter() {
-	@private
-	NSUInteger statusCounts[5];
-
-}
--(void) storyStarting:(NSNotification *) notification;
--(void) storyExecuted:(NSNotification *) notification;
--(void) runFinished:(NSNotification *) notification;
-
-@end
-
-@implementation SIStoryLogReporter
+@implementation SIResultListener
 
 -(id) init {
 	self = [super init];
@@ -48,6 +28,7 @@
 	}
 	return self;
 }
+
 -(void) storyStarting:(NSNotification *) notification {
 	SIStorySource *source = [[notification userInfo] valueForKey:SI_NOTIFICATION_KEY_SOURCE];
 	SIStory *story = [[notification userInfo] valueForKey:SI_NOTIFICATION_KEY_STORY];
@@ -88,11 +69,6 @@
 
 }
 
--(void) dealloc {
-	[[NSNotificationCenter defaultCenter] removeObserver:self];
-	[super dealloc];
-}
-
 -(void) runFinished:(NSNotification *) notification {
 
 	NSLog(@"Simon's run report");
@@ -130,5 +106,9 @@
 
 }
 
+-(void) dealloc {
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
+	[super dealloc];
+}
 
 @end

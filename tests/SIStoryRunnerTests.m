@@ -8,9 +8,9 @@
 
 #import <GHUnitIOS/GHUnit.h>
 #import <dUsefulStuff/DCCommon.h>
-#import "SIStoryRunner.h"
-#import "SISimon.h"
-#import "SIStoryLogReporter.h"
+#import <Simon/SIStoryRunner.h>
+#import <Simon/SISimon.h>
+#import <Simon/SIStoryLogger.h>
 
 @interface SIStoryFileReader ()
 -(BOOL) readFile:(NSString *) filename error:(NSError **) error;

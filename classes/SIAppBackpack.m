@@ -89,15 +89,10 @@ static SIAppBackpack *_backpack;
 		
 		DC_LOG(@"Simon initing");
 		
-		// Create the state
+		// Instantiate required instances
 		self.state = [[[SIState alloc] init] autorelease];
-		
-		// Create the story runner.
 		runner = [[SIStoryRunner alloc] init];
-		
-		// Create the logger
-		logger = [[SIStoryLogReporter alloc] init];
-
+		logger = [[SIStoryLogger alloc] init];
 
 		// IF a UI is requested, load the report manager.
 		if ([SIAppBackpack isArgumentPresentWithName:ARG_SHOW_UI]) {
@@ -156,7 +151,7 @@ static SIAppBackpack *_backpack;
 		
 		DC_LOG(@"Starting Simon");
 		
-		// Load stories and setup display info.
+		// Load stories.
 		[runner loadStories];
 		
 		// Now run or display if we are not running the server.
