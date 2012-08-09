@@ -98,7 +98,9 @@ typedef void (^StoryBlock)(SIStorySource *, SIStory *);
 }
 
 -(void) run {
-	
+
+	[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:SI_RUN_STARTING_NOTIFICATION object:nil]];
+
 	NSArray *filteredSources = [SIAppBackpack backpack].state.filteredSources;
 	NSArray *sources = filteredSources == nil ? self.reader.storySources : filteredSources;
 

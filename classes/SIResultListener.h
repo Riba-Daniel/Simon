@@ -28,9 +28,16 @@
 -(void) storyExecuted:(NSNotification *) notification;
 
 /**
+ Called before all the stories have been executed. If overridden, super should be called to ensure that the result data structures are built correctly.
+ 
+ @param notification the notification.
+ */
+-(void) runStarting:(NSNotification *) notification;
+
+/**
  Called when all the stories have been executed. If overridden, super should be called to ensure that the result data structures are built correctly.
  
- @param notification the notification containing userInfo data which refers to the SIStory and SIStorySource.
+ @param notification the notification.
  */
 -(void) runFinished:(NSNotification *) notification;
 

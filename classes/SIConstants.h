@@ -23,6 +23,7 @@
 // Notification ids.
 #define SI_STORY_STARTING_EXECUTION_NOTIFICATION @"Story starting execution"
 #define SI_STORY_EXECUTED_NOTIFICATION @"Story has executed"
+#define SI_RUN_STARTING_NOTIFICATION @"Simon run starting"
 #define SI_RUN_FINISHED_NOTIFICATION @"Simon run finished"
 #define SI_SHUTDOWN_NOTIFICATION @"Simon shutdown"
 #define SI_RUN_STORIES_NOTIFICATION @"Simon run stories"

@@ -9,19 +9,15 @@
 #import <Foundation/Foundation.h>
 
 #import "SIStoryRunner.h"
-#import "SIUIReportManager.h"
 #import "SIState.h"
 #import "SIStoryLogger.h"
-#import <CocoaHTTPServer/HTTPServer.h>
+#import "SIAppBackpackImplementation.h"
 
 /**
  This class backpack's on a UIApplication in order to allow Simon to run in the background. You add it through the SIRun macro.
  */
-@interface SIAppBackpack : NSObject {
+@interface SIAppBackpack : NSObject<SIAppBackpackImplementation> {
 @private
-	SIUIReportManager *ui;
-	SIStoryRunner *runner;
-	HTTPServer *server;
 	SIStoryLogger *logger;
 }
 
@@ -44,14 +40,9 @@
 + (SIAppBackpack *)backpack;
 
 /**
- Used by the HTTP server to execute all the stories.
- */
-- (void) runAllStories;
-
-/**
  Returns true is the argument was presented to the process.
  
-@name name the name of the argument.
+ @param name the name of the argument.
  @return YES if the argument is present.
  */
 +(BOOL) isArgumentPresentWithName:(NSString *) name;

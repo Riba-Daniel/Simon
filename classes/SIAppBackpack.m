@@ -11,36 +11,15 @@
 #import <dUsefulStuff/DCDialogs.h>
 #import "SIConstants.h"
 
-#import <CocoaHTTPServer/HTTPServer.h>
-#import <CocoaHTTPServer/DDLog.h>
-#import <CocoaHTTPServer/DDTTYLogger.h>
-
-
 #import "SIAppBackpack.h"
 #import "SIStoryRunner.h"
-#import "SIUIViewHandlerFactory.h"
-#import "SIIncomingHTTPConnection.h"
-#import "SIServerException.h"
-
-
-@interface SIAppBackpack()
-
--(void) addNotificationObservers;
-
--(void) startUp:(NSNotification *) notification;
--(void) shutDown:(NSNotification *) notification;
--(void) runFinished:(NSNotification *) notification;
--(void) runStories:(NSNotification *) notification;
--(void) windowRemoved:(NSNotification *) notification;
-
--(void) executeOnSimonThread:(void (^)()) block;
-
-@end
-
+#import "SIUIAppBackpack.h"
+#import "SIHttpAppBackpack.h"
 
 @implementation SIAppBackpack
 
 @synthesize state = _state;
+@synthesize runner = _runner;
 @dynamic storySources;
 @dynamic mappings;
 
@@ -50,18 +29,15 @@ static SIAppBackpack *_backpack;
 #pragma mark - Accessors
 
 + (SIAppBackpack *)backpack {
-   if (_backpack == nil) {
-      //_backpack = [[SIAppBackpack alloc] init];
-   }
    return _backpack;
 }
 
 -(NSArray *) storySources {
-	return runner.reader.storySources;
+	return self.runner.reader.storySources;
 }
 
 -(NSArray *) mappings {
-	return runner.mappings;
+	return self.runner.mappings;
 }
 
 #pragma mark - Lifecycle
@@ -70,19 +46,19 @@ static SIAppBackpack *_backpack;
 	@autoreleasepool {
 		// Load Simon automatically.
 		if (![SIAppBackpack isArgumentPresentWithName:ARG_NO_LOAD]) {
-			_backpack = [[SIAppBackpack alloc] init];
-			//[SIAppBackpack backpack];
+			if ([SIAppBackpack isArgumentPresentWithName:ARG_SHOW_UI]) {
+				_backpack = [[SIUIAppBackpack alloc] init];
+			} else {
+				_backpack = [[SIHttpAppBackpack alloc] init];
+			}
 		}
 	}
 }
 
 -(void) dealloc {
 	DC_LOG(@"Freeing memory and exiting");
-	[server stop];
-	DC_DEALLOC(server);
-	DC_DEALLOC(runner);
+	DC_DEALLOC(_runner);
 	DC_DEALLOC(logger);
-	DC_DEALLOC(ui);
 	[super dealloc];
 }
 
@@ -90,32 +66,30 @@ static SIAppBackpack *_backpack;
 	self = [super init];
 	if (self) {
 		
+		// Instantiate required instances
 		DC_LOG(@"Simon initing");
 		
-		// Instantiate required instances
 		self.state = [[[SIState alloc] init] autorelease];
-		runner = [[SIStoryRunner alloc] init];
+		_runner = [[SIStoryRunner alloc] init];
 		logger = [[SIStoryLogger alloc] init];
 
-		// IF a UI is requested, load the report manager.
-		if ([SIAppBackpack isArgumentPresentWithName:ARG_SHOW_UI]) {
-			ui = [[SIUIReportManager alloc] init];
-		}
-		[self addNotificationObservers];
-		
-		// Start the HTTP server only if there is no UI.
-		if (ui == nil) {
-			DC_LOG(@"Starting HTTP server");
-			[DDLog addLogger:[DDTTYLogger sharedInstance]];
-			server = [[HTTPServer alloc] init];
-			[server setConnectionClass:[SIIncomingHTTPConnection class]];
-			[server setPort:5678];
-			NSError *error = nil;
-			if(![server start:&error])
-			{
-				@throw [SIServerException exceptionWithReason:[NSString stringWithFormat:@"Error starting HTTP Server: %@", error]];
-			}
-		}
+		DC_LOG(@"Applying program hooks to notification center: %@", [NSNotificationCenter defaultCenter]);
+		[[NSNotificationCenter defaultCenter] addObserver:self
+															  selector:@selector(startUp:)
+																	name:UIApplicationDidBecomeActiveNotification
+																 object:nil];
+		[[NSNotificationCenter defaultCenter] addObserver:self
+															  selector:@selector(runFinished:)
+																	name:SI_RUN_FINISHED_NOTIFICATION
+																 object:nil];
+		[[NSNotificationCenter defaultCenter] addObserver:self
+															  selector:@selector(shutDown:)
+																	name:SI_SHUTDOWN_NOTIFICATION
+																 object:nil];
+		[[NSNotificationCenter defaultCenter] addObserver:self
+															  selector:@selector(runStories:)
+																	name:SI_RUN_STORIES_NOTIFICATION
+																 object:nil];
 		
 	}
 	return self;
@@ -123,88 +97,25 @@ static SIAppBackpack *_backpack;
 
 #pragma mark - Backpack
 
--(void) addNotificationObservers {
-	// Hook into the app startup.
-	DC_LOG(@"Applying program hooks to notification center: %@", [NSNotificationCenter defaultCenter]);
-	[[NSNotificationCenter defaultCenter] addObserver:self
-														  selector:@selector(startUp:)
-																name:UIApplicationDidBecomeActiveNotification
-															 object:nil];
-	[[NSNotificationCenter defaultCenter] addObserver:self
-														  selector:@selector(runFinished:)
-																name:SI_RUN_FINISHED_NOTIFICATION
-															 object:nil];
-	[[NSNotificationCenter defaultCenter] addObserver:self
-														  selector:@selector(shutDown:)
-																name:SI_SHUTDOWN_NOTIFICATION
-															 object:nil];
-	[[NSNotificationCenter defaultCenter] addObserver:self
-														  selector:@selector(runStories:)
-																name:SI_RUN_STORIES_NOTIFICATION
-															 object:nil];
-	[[NSNotificationCenter defaultCenter] addObserver:self
-														  selector:@selector(windowRemoved:)
-																name:SI_WINDOW_REMOVED_NOTIFICATION
-															 object:nil];
-}
-
 // Callbacks.
 -(void) startUp:(NSNotification *) notification {
 	[self executeOnSimonThread: ^{
-		
 		DC_LOG(@"Starting Simon");
-		
-		// Load stories.
-		[runner loadStories];
-		
-		// Now run or display if we are not running the server.
-		if (ui != nil) {
-			if([SIAppBackpack isArgumentPresentWithName:ARG_NO_AUTORUN]) {
-				[ui displayUI];
-			} else {
-				[self runAllStories];
-			}
-		}
+		[self.runner loadStories];
 	}];
 }
 
 -(void) shutDown:(NSNotification *) notification  {
-	
 	DC_LOG(@"ShutDown requested.");
-	
-	[ui removeWindow];
-	
-	// Release program hooks and dealloc self.
-	DC_LOG(@"Deallocing the keep me alive self reference.");
    DC_DEALLOC(_backpack);
-	
-	// Remove all notification watching.
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
--(void) runFinished:(NSNotification *) notification {
-	if (ui != nil) {
-		[ui displayUI];
-	}
-}
-
-- (void) runAllStories {
-	[self executeOnSimonThread: ^{
-		self.state.filteredSources = nil;
-		[runner run];
-	}];
-}
-
-#pragma mark - UI
+-(void) runFinished:(NSNotification *) notification {}
 
 -(void) runStories:(NSNotification *) notification {
-	[ui removeWindow];
-}
-
--(void) windowRemoved:(NSNotification *) notification {
-	DC_LOG(@"UI Removed");
 	[self executeOnSimonThread: ^{
-		[runner run];
+		[self.runner run];
 	}];
 }
 

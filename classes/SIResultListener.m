@@ -33,6 +33,10 @@
 																	name:SI_STORY_EXECUTED_NOTIFICATION
 																 object:nil];
 		[[NSNotificationCenter defaultCenter] addObserver:self
+															  selector:@selector(runStarting:)
+																	name:SI_RUN_STARTING_NOTIFICATION
+																 object:nil];
+		[[NSNotificationCenter defaultCenter] addObserver:self
 															  selector:@selector(runFinished:)
 																	name:SI_RUN_FINISHED_NOTIFICATION
 																 object:nil];
@@ -48,6 +52,13 @@
 -(void) storyExecuted:(NSNotification *) notification {
 	SIStory *story = [[notification userInfo] valueForKey:SI_NOTIFICATION_KEY_STORY];
 	[storiesWithStatus[story.status] addObject:story];
+}
+
+-(void) runStarting:(NSNotification *)notification {
+	for (int i = 0; i < SIStoryStatusCount; i++) {
+		DC_DEALLOC(storiesWithStatus[i]);
+		storiesWithStatus[i] = [[NSMutableArray alloc] init];
+	}
 }
 
 -(void) runFinished:(NSNotification *) notification {}

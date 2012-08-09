@@ -7,10 +7,14 @@
 //
 
 #import "SIAppBackpack.h"
+#import "SIUIReportManager.h"
 
 /**
  SIAppBackpack implementation which is used when Simon is running in a standalone mode.
  */
-@interface SIUIAppBackpack : SIAppBackpack
+@interface SIUIAppBackpack : SIAppBackpack {
+	@private
+	SIUIReportManager *ui;
+}
 
 @end

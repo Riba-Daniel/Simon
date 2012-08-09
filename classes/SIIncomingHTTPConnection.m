@@ -38,7 +38,8 @@
 
 - (NSObject<HTTPResponse> *)httpResponseForMethod:(NSString *)method URI:(NSString *)path {
 	if ([method isEqualToString:@"POST"] && [path isEqualToString:@"/run/all"]) {
-		[[SIAppBackpack backpack] runAllStories];
+		NSNotification *notification = [NSNotification notificationWithName:SI_RUN_STORIES_NOTIFICATION object:self];
+		[[NSNotificationCenter defaultCenter] postNotification:notification];
 		NSString *responseBody = REPORT;
 		return [[[HTTPDataResponse alloc] initWithData:DC_STRING_TO_DATA(responseBody)] autorelease];
 	}
