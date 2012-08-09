@@ -47,6 +47,7 @@
 		32741D7D14EB5BAE00093E0F /* UIEvent+Simon.m in Sources */ = {isa = PBXBuildFile; fileRef = 32741D7B14EB5BAE00093E0F /* UIEvent+Simon.m */; };
 		328DE12515D35C43009A16C1 /* libCocoaHTTPServer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 328DE12415D35C43009A16C1 /* libCocoaHTTPServer.a */; };
 		328DE14015D368D2009A16C1 /* SIResultListenerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 328DE13F15D368D2009A16C1 /* SIResultListenerTests.m */; };
+		328DE14315D37566009A16C1 /* GHTestCase+GHTestCase_TestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 328DE14215D37566009A16C1 /* GHTestCase+GHTestCase_TestUtils.m */; };
 		3296322614F751D300D9310A /* SIUITapGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 3296322414F751D300D9310A /* SIUITapGenerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3296322714F751D300D9310A /* SIUITapGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3296322514F751D300D9310A /* SIUITapGenerator.m */; };
 		3298250F15039FE300631203 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 653D0E9D13A783A500A5AB82 /* UIKit.framework */; };
@@ -252,6 +253,8 @@
 		32741D7B14EB5BAE00093E0F /* UIEvent+Simon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "UIEvent+Simon.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		328DE12415D35C43009A16C1 /* libCocoaHTTPServer.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = libCocoaHTTPServer.a; path = "../CocoaHTTPServer/CocoaHTTPServer/build/Release-iphoneos/libCocoaHTTPServer.a"; sourceTree = "<group>"; };
 		328DE13F15D368D2009A16C1 /* SIResultListenerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIResultListenerTests.m; sourceTree = "<group>"; };
+		328DE14115D37566009A16C1 /* GHTestCase+GHTestCase_TestUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GHTestCase+GHTestCase_TestUtils.h"; sourceTree = "<group>"; };
+		328DE14215D37566009A16C1 /* GHTestCase+GHTestCase_TestUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GHTestCase+GHTestCase_TestUtils.m"; sourceTree = "<group>"; };
 		3296322414F751D300D9310A /* SIUITapGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SIUITapGenerator.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		3296322514F751D300D9310A /* SIUITapGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIUITapGenerator.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		3298250D15039FE300631203 /* ARC App with tests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ARC App with tests.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -709,6 +712,8 @@
 				32D5D98B14E135A300D29DD5 /* TestViewController.h */,
 				32D5D98C14E135A300D29DD5 /* TestViewController.m */,
 				659E62A013DB026400ACD34C /* UI */,
+				328DE14115D37566009A16C1 /* GHTestCase+GHTestCase_TestUtils.h */,
+				328DE14215D37566009A16C1 /* GHTestCase+GHTestCase_TestUtils.m */,
 			);
 			path = tests;
 			sourceTree = "<group>";
@@ -1120,6 +1125,7 @@
 				32AF045015CEA95E00501B1E /* NSArray+SimonTests.m in Sources */,
 				0B9D8FF015CF82540005CBBF /* SIStorySourceTests.m in Sources */,
 				328DE14015D368D2009A16C1 /* SIResultListenerTests.m in Sources */,
+				328DE14315D37566009A16C1 /* GHTestCase+GHTestCase_TestUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

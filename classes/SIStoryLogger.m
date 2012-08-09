@@ -83,7 +83,13 @@
 			}
 		}
 	}
-	
+
+	NSLog(@"Failures:");
+	NSLog(@"====================================================");
+	for (SIStory *story in [self storiesWithStatus:SIStoryStatusError]) {
+		NSLog(@"Failed story: %@", story.title);
+	}
+
 	NSLog(@" ");
 	NSLog(@"Final Report:");
 	NSLog(@"====================================================");
@@ -92,12 +98,6 @@
 	NSLog(@"Not fully mapped : %u", [[self storiesWithStatus:SIStoryStatusNotMapped] count]);
 	NSLog(@"Ignored          : %u", [[self storiesWithStatus:SIStoryStatusIgnored] count]);
 	NSLog(@"Failures         : %u", [[self storiesWithStatus:SIStoryStatusError] count]);
-	
-	/*
-	 for (SIStory *story in failures) {
-	 NSLog(@"Failed story: %@", story.title);
-	 }
-	 */
 	
 }
 

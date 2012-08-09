@@ -12,6 +12,7 @@
 #import <Simon/SIStory.h>
 #import <Simon/SIConstants.h>
 #import <OCMock/OCMock.h>
+#import "GHTestCase+GHTestCase_TestUtils.h"
 
 @interface SIResultListenerTests : GHTestCase
 
@@ -21,42 +22,30 @@
 
 -(void) testStoresResultsAsExpectedForSuccess {
 
+	NSNotification *storyNotification = [self createMockedNotification:SI_STORY_EXECUTED_NOTIFICATION forStoryStatus:SIStoryStatusSuccess];
+	id storyMock = [storyNotification.userInfo valueForKey:SI_NOTIFICATION_KEY_STORY];
 	SIResultListener *listener = [[[SIResultListener alloc] init] autorelease];
 	
-	id storyMock1 = [OCMockObject mockForClass:[SIStory class]];
-	SIStoryStatus status = SIStoryStatusSuccess;
-	[[[storyMock1 expect] andReturnValue:OCMOCK_VALUE(status)] status];
-	NSDictionary *userData = [NSDictionary dictionaryWithObject:storyMock1 forKey:SI_NOTIFICATION_KEY_STORY];
-	NSNotification *story1Notification = [NSNotification notificationWithName:SI_STORY_EXECUTED_NOTIFICATION object:self userInfo:userData];
-	
-	[listener storyExecuted:story1Notification];
-	
-	[storyMock1 verify];
+	[listener storyExecuted:storyNotification];
 
 	NSArray *successfulStories = [listener storiesWithStatus:SIStoryStatusSuccess];
 	GHAssertNotNil(successfulStories, nil);
 	GHAssertEquals([successfulStories count], (NSUInteger) 1, nil);
-	GHAssertEquals([successfulStories lastObject], storyMock1, nil);
+	GHAssertEquals([successfulStories lastObject], storyMock, nil);
 	
 }
 
 -(void) testReceivesNotifications {
 	
+	NSNotification *storyNotification = [self createMockedNotification:SI_STORY_EXECUTED_NOTIFICATION forStoryStatus:SIStoryStatusSuccess];
+	id storyMock = [storyNotification.userInfo valueForKey:SI_NOTIFICATION_KEY_STORY];
 	SIResultListener *listener = [[[SIResultListener alloc] init] autorelease];
-	
-	id storyMock1 = [OCMockObject mockForClass:[SIStory class]];
-	SIStoryStatus status = SIStoryStatusSuccess;
-	[[[storyMock1 expect] andReturnValue:OCMOCK_VALUE(status)] status];
-	NSDictionary *userData = [NSDictionary dictionaryWithObject:storyMock1 forKey:SI_NOTIFICATION_KEY_STORY];
-	NSNotification *story1Notification = [NSNotification notificationWithName:SI_STORY_EXECUTED_NOTIFICATION object:self userInfo:userData];
 
-	[[NSNotificationCenter defaultCenter] postNotification:story1Notification];
+	[[NSNotificationCenter defaultCenter] postNotification:storyNotification];
 	[[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
 	
-	[storyMock1 verify];
-	
 	NSArray *successfulStories = [listener storiesWithStatus:SIStoryStatusSuccess];
-	GHAssertEquals([successfulStories lastObject], storyMock1, nil);
+	GHAssertEquals([successfulStories lastObject], storyMock, nil);
 	
 }
 
