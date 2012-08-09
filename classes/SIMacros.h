@@ -9,6 +9,7 @@
 #import "SIStepMapping.h"
 #import "SIUIApplication.h"
 #import "SIConstants.h"
+#import "SIStory.h"
 
 /**
  These two are used to convert a sequence of chars to a string constant. We used this to convert a selector to a string constant within a macro when part of the macro name is the current line number macro __LINE__. Again we need that extra level of indirection to fix the translation of the parameter when stringification is involved.

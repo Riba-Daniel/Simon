@@ -8,9 +8,10 @@
 #import <dUsefulStuff/DCCommon.h>
 #import <objc/message.h>
 
-#import "SISimon.h"
 #import "SIRuntime.h"
 #import "NSObject+Simon.h"
+#import "SIConstants.h"
+#import "SIMacros.h"
 
 @interface SIRuntime()
 -(void) addMappingMethodsFromClass:(Class) class toArray:(NSMutableArray *) array;

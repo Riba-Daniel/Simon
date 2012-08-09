@@ -37,6 +37,7 @@
 
 @end
 
+
 @implementation SIAppBackpack
 
 @synthesize state = _state;
@@ -50,7 +51,7 @@ static SIAppBackpack *_backpack;
 
 + (SIAppBackpack *)backpack {
    if (_backpack == nil) {
-      _backpack = [[SIAppBackpack alloc] init];
+      //_backpack = [[SIAppBackpack alloc] init];
    }
    return _backpack;
 }
@@ -69,7 +70,8 @@ static SIAppBackpack *_backpack;
 	@autoreleasepool {
 		// Load Simon automatically.
 		if (![SIAppBackpack isArgumentPresentWithName:ARG_NO_LOAD]) {
-			[SIAppBackpack backpack];
+			_backpack = [[SIAppBackpack alloc] init];
+			//[SIAppBackpack backpack];
 		}
 	}
 }

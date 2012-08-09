@@ -9,7 +9,7 @@
 #import <GHUnitIOS/GHUnit.h>
 #import <dUsefulStuff/DCCommon.h>
 #import <Simon/SIStoryRunner.h>
-#import <Simon/SISimon.h>
+#import <Simon/Simon.h>
 #import <Simon/SIStoryLogger.h>
 
 @interface SIStoryFileReader ()

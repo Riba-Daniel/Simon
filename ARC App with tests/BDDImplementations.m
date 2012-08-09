@@ -6,8 +6,8 @@
 //  Copyright (c) 2012 Sensis. All rights reserved.
 //
 
-#import "SISimon.h"
 #import <dUsefulStuff/DCCommon.h>
+#import <Simon/Simon.h>
 
 @interface BDDImplementations : NSObject
 @end

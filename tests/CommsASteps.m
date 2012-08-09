@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SISimon.h"
+#import <Simon/Simon.h>
 #import <objc/runtime.h>
 
 

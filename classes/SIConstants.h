@@ -13,9 +13,6 @@
  */
 #define SI_STEP_METHOD_PREFIX __stepMap
 
-#define IPAD_HEADER_INDENT 55
-#define IPHONE_HEADER_INDENT 20
-
 /// Error domain for NSError's that Simon generates.
 #define SIMON_ERROR_DOMAIN @"SIError"
 

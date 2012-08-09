@@ -1,5 +1,5 @@
 //
-//  SIUIUtils.h
+//  SIUIApplication.h
 //  Simon
 //
 //  Created by Derek Clarkson on 7/23/11.
