@@ -7,12 +7,12 @@
 //
 
 #import <GHUnitIOS/GHUnit.h>
-#import "SIUIViewHandlerFactory.h"
+#import <Simon/SIUIViewHandlerFactory.h>
 #import <dUSefulStuff/DCCommon.h>
-#import "SIUIViewHandler.h"
-#import "SIUIButtonHandler.h"
-#import "SIUILabelHandler.h"
-#import "UIView+Simon.h"
+#import <Simon/SIUIViewHandler.h>
+#import <Simon/SIUIButtonHandler.h>
+#import <Simon/SIUILabelHandler.h>
+#import <Simon/UIView+Simon.h>
 
 @interface SIUIHandlerFactoryTests : GHTestCase {
 @private

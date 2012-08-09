@@ -8,12 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-#import <SimonHttpServer/HTTPServer.h>
-
 #import "SIStoryRunner.h"
 #import "SIUIReportManager.h"
 #import "SIState.h"
 #import "SIStoryLogger.h"
+#import <CocoaHTTPServer/HTTPServer.h>
 
 /**
  This class backpack's on a UIApplication in order to allow Simon to run in the background. You add it through the SIRun macro.

@@ -10,18 +10,18 @@
 #import <dUsefulStuff/DCCommon.h>
 #import <UIKit/UIKit.h>
 
-#import "SIUIApplication.h"
-#import "UIView+Simon.h"
-#import "UIView+Simon.h"
-#import "SIConstants.h"
+#import <Simon/SIUIApplication.h>
+#import <Simon/UIView+Simon.h>
+#import <Simon/UIView+Simon.h>
+#import <Simon/SIConstants.h>
 #import <dNodi/dNodi.h>
 #import "AbstractTestWithControlsOnView.h"
-#import "SIUITooManyFoundException.h"
-#import "SIUINotFoundException.h"
-#import "SISyntaxException.h"
-#import "SIUIException.h"
-#import "NSObject+Simon.h"
-#import "SIUINotAnInputViewException.h"
+#import <Simon/SIUITooManyFoundException.h>
+#import <Simon/SIUINotFoundException.h>
+#import <Simon/SISyntaxException.h>
+#import <Simon/SIUIException.h>
+#import <Simon/NSObject+Simon.h>
+#import <Simon/SIUINotAnInputViewException.h>
 
 @interface SIUIApplicationTests : AbstractTestWithControlsOnView
 

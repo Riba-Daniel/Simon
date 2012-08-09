@@ -11,9 +11,10 @@
 #import <dUsefulStuff/DCDialogs.h>
 #import "SIConstants.h"
 
-#import <SimonHttpServer/HTTPServer.h>
-#import <SimonHttpServer/DDLog.h>
-#import <SimonHttpServer/DDTTYLogger.h>
+#import <CocoaHTTPServer/HTTPServer.h>
+#import <CocoaHTTPServer/DDLog.h>
+#import <CocoaHTTPServer/DDTTYLogger.h>
+
 
 #import "SIAppBackpack.h"
 #import "SIStoryRunner.h"

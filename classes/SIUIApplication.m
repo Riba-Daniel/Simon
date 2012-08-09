@@ -10,7 +10,6 @@
 #import <dUsefulStuff/DCCommon.h>
 #import <dUsefulStuff/NSObject+dUsefulStuff.h>
 
-#import "SIUIApplication.h"
 #import "UIView+Simon.h"
 #import "SIConstants.h"
 #import "SISyntaxException.h"
@@ -23,6 +22,7 @@
 #import "NSObject+Simon.h"
 #import "SIUINotAnInputViewException.h"
 #import "SIAppBackpack.h"
+#import "SIUIApplication.h"
 
 #import <QuartzCore/CALayer.h>
 

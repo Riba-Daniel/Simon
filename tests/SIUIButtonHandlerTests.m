@@ -7,7 +7,7 @@
 //
 
 #import <GHUnitIOS/GHUnit.h>
-#import "SIUIButtonHandler.h"
+#import <Simon/SIUIButtonHandler.h>
 
 @interface SIUIButtonHandlerTests : GHTestCase
 

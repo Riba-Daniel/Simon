@@ -25,7 +25,6 @@
 	- Passes the instance of the mapping class to the step and asks it to invoke the step method on it.
  - Returns the fial status to the SIStoryRunner.
  
- 
  Steps implementations which have been mapped by the SIStepMapping class
  can come from more than just one class. Therefore this class also provides a cache in which you can store objects which you want to use across more than one instance.
  */

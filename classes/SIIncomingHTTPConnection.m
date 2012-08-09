@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Sensis. All rights reserved.
 //
 
+#import <CocoaHTTPServer/HTTPDataResponse.h>
 #import "SIIncomingHTTPConnection.h"
 #import <dUsefulStuff/DCCommon.h>
-#import <SimonHttpServer/HTTPDataResponse.h>
 #import "SIAppBackpack.h"
 
 #define REPORT @"<testsuite>" \

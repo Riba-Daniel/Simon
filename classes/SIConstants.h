@@ -83,7 +83,8 @@ typedef enum {
 	SIStoryStatusIgnored,
 	SIStoryStatusError,
 	SIStoryStatusNotMapped,
-	SIStoryStatusNotRun
+	SIStoryStatusNotRun,
+	SIStoryStatusCount
 } SIStoryStatus;
 
 

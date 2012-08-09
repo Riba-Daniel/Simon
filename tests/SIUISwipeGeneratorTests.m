@@ -8,8 +8,8 @@
 
 #import <GHUnitIOS/GHUnit.h>
 #import "AbstractTestWithControlsOnView.h"
-#import "SIUISwipeGenerator.h"
-#import "SIUITapGenerator.h"
+#import <Simon/SIUISwipeGenerator.h>
+#import <Simon/SIUITapGenerator.h>
 
 @interface SIUISwipeGeneratorTests : AbstractTestWithControlsOnView
 

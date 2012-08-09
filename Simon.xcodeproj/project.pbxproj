@@ -12,7 +12,7 @@
 		0B14F00E15CBA65C00284016 /* GHUnitIOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B14F00D15CBA65C00284016 /* GHUnitIOS.framework */; };
 		0B14F01815CBA6B600284016 /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B14F00F15CBA66F00284016 /* libOCMock.a */; };
 		0B9D8FF015CF82540005CBBF /* SIStorySourceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9D8FEF15CF82540005CBBF /* SIStorySourceTests.m */; };
-		0BF2104515D25412006BB2CA /* SIResultListener.h in Headers */ = {isa = PBXBuildFile; fileRef = 0BF2104315D25412006BB2CA /* SIResultListener.h */; };
+		0BF2104515D25412006BB2CA /* SIResultListener.h in Headers */ = {isa = PBXBuildFile; fileRef = 0BF2104315D25412006BB2CA /* SIResultListener.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0BF2104615D25412006BB2CA /* SIResultListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BF2104415D25412006BB2CA /* SIResultListener.m */; };
 		321A346A1519FA9E00B22EDD /* NSObject+Simon.h in Headers */ = {isa = PBXBuildFile; fileRef = 321A34681519FA9E00B22EDD /* NSObject+Simon.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		321A346B1519FA9E00B22EDD /* NSObject+Simon.m in Sources */ = {isa = PBXBuildFile; fileRef = 321A34691519FA9E00B22EDD /* NSObject+Simon.m */; };
@@ -45,6 +45,7 @@
 		32741D7914EB581E00093E0F /* UITouch+Simon.m in Sources */ = {isa = PBXBuildFile; fileRef = 32741D7714EB581E00093E0F /* UITouch+Simon.m */; };
 		32741D7C14EB5BAE00093E0F /* UIEvent+Simon.h in Headers */ = {isa = PBXBuildFile; fileRef = 32741D7A14EB5BAE00093E0F /* UIEvent+Simon.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32741D7D14EB5BAE00093E0F /* UIEvent+Simon.m in Sources */ = {isa = PBXBuildFile; fileRef = 32741D7B14EB5BAE00093E0F /* UIEvent+Simon.m */; };
+		328DE12515D35C43009A16C1 /* libCocoaHTTPServer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 328DE12415D35C43009A16C1 /* libCocoaHTTPServer.a */; };
 		3296322614F751D300D9310A /* SIUITapGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 3296322414F751D300D9310A /* SIUITapGenerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3296322714F751D300D9310A /* SIUITapGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3296322514F751D300D9310A /* SIUITapGenerator.m */; };
 		3298250F15039FE300631203 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 653D0E9D13A783A500A5AB82 /* UIKit.framework */; };
@@ -93,7 +94,6 @@
 		32D9353815AB08CA00E51C8C /* libSimon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 653D0E8A13A782AD00A5AB82 /* libSimon.a */; };
 		32D9353915AB098000E51C8C /* SIStory.m in Sources */ = {isa = PBXBuildFile; fileRef = 653D0EB813A783C000A5AB82 /* SIStory.m */; };
 		32EA6E76150E11E2000A64A1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32EA6E75150E11E2000A64A1 /* QuartzCore.framework */; };
-		32F3080215CE2FA00032F4B9 /* libSimonHttpServer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32F3080115CE2FA00032F4B9 /* libSimonHttpServer.a */; };
 		32F742D814F75F58005E5E97 /* SIUISwipeGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F742D614F75F58005E5E97 /* SIUISwipeGenerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32F742D914F75F58005E5E97 /* SIUISwipeGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F742D714F75F58005E5E97 /* SIUISwipeGenerator.m */; };
 		32F7F3E614EE1E5800F94F65 /* GSEventProxy.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F7F3E414EE1E5800F94F65 /* GSEventProxy.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -217,40 +217,41 @@
 		0B14F01415CBA66F00284016 /* OCMock.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCMock.h; sourceTree = "<group>"; };
 		0B14F01515CBA66F00284016 /* OCMockObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCMockObject.h; sourceTree = "<group>"; };
 		0B14F01615CBA66F00284016 /* OCMockRecorder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCMockRecorder.h; sourceTree = "<group>"; };
-		0B9D8FEF15CF82540005CBBF /* SIStorySourceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIStorySourceTests.m; sourceTree = "<group>"; };
-		0BF2104315D25412006BB2CA /* SIResultListener.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 3; lastKnownFileType = sourcecode.c.h; path = SIResultListener.h; sourceTree = "<group>"; tabWidth = 3; usesTabs = 1; wrapsLines = 1; };
-		0BF2104415D25412006BB2CA /* SIResultListener.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 3; lastKnownFileType = sourcecode.c.objc; path = SIResultListener.m; sourceTree = "<group>"; tabWidth = 3; usesTabs = 1; wrapsLines = 1; };
+		0B9D8FEF15CF82540005CBBF /* SIStorySourceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIStorySourceTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		0BF2104315D25412006BB2CA /* SIResultListener.h */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 3; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SIResultListener.h; sourceTree = "<group>"; tabWidth = 3; usesTabs = 1; wrapsLines = 1; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		0BF2104415D25412006BB2CA /* SIResultListener.m */ = {isa = PBXFileReference; fileEncoding = 4; indentWidth = 3; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIResultListener.m; sourceTree = "<group>"; tabWidth = 3; usesTabs = 1; wrapsLines = 1; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		321A34681519FA9E00B22EDD /* NSObject+Simon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Simon.h"; sourceTree = "<group>"; };
-		321A34691519FA9E00B22EDD /* NSObject+Simon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Simon.m"; sourceTree = "<group>"; };
+		321A34691519FA9E00B22EDD /* NSObject+Simon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "NSObject+Simon.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		3221C79D150C9365003CA286 /* SIUIViewInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIViewInfo.h; sourceTree = "<group>"; };
-		3221C79F150C956A003CA286 /* SIUIButtonHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIButtonHandler.h; sourceTree = "<group>"; };
-		3221C7A0150C956A003CA286 /* SIUIButtonHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUIButtonHandler.m; sourceTree = "<group>"; };
-		3221C7A3150CBD75003CA286 /* SIUIButtonHandlerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUIButtonHandlerTests.m; sourceTree = "<group>"; };
-		3221C7A5150CD1DD003CA286 /* SIUILabelHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUILabelHandler.h; sourceTree = "<group>"; };
-		3221C7A6150CD1DD003CA286 /* SIUILabelHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUILabelHandler.m; sourceTree = "<group>"; };
-		3221C7A9150CD24C003CA286 /* SIUILabelHandlerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUILabelHandlerTests.m; sourceTree = "<group>"; };
+		3221C79F150C956A003CA286 /* SIUIButtonHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SIUIButtonHandler.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		3221C7A0150C956A003CA286 /* SIUIButtonHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIUIButtonHandler.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		3221C7A3150CBD75003CA286 /* SIUIButtonHandlerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIUIButtonHandlerTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		3221C7A5150CD1DD003CA286 /* SIUILabelHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SIUILabelHandler.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		3221C7A6150CD1DD003CA286 /* SIUILabelHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIUILabelHandler.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		3221C7A9150CD24C003CA286 /* SIUILabelHandlerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIUILabelHandlerTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		322DA95115A18A4B005CFC83 /* PieMan */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = PieMan; sourceTree = BUILT_PRODUCTS_DIR; };
 		322DA95515A18A4B005CFC83 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		322DA95815A18A4B005CFC83 /* PieMan-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PieMan-Prefix.pch"; sourceTree = "<group>"; };
 		322DA95915A18A4B005CFC83 /* PieMan.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = PieMan.1; sourceTree = "<group>"; };
-		324108B41509C19400AFBF66 /* SIUIViewDescriptionVisitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIViewDescriptionVisitor.h; sourceTree = "<group>"; };
-		324108B51509C19400AFBF66 /* SIUIViewDescriptionVisitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUIViewDescriptionVisitor.m; sourceTree = "<group>"; };
+		324108B41509C19400AFBF66 /* SIUIViewDescriptionVisitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SIUIViewDescriptionVisitor.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		324108B51509C19400AFBF66 /* SIUIViewDescriptionVisitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIUIViewDescriptionVisitor.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		324108B91509C23200AFBF66 /* SIUIViewDescriptionVisitorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIViewDescriptionVisitorDelegate.h; sourceTree = "<group>"; };
-		324108BB1509C61E00AFBF66 /* SIUIViewDescriptionVisitorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUIViewDescriptionVisitorTests.m; sourceTree = "<group>"; };
+		324108BB1509C61E00AFBF66 /* SIUIViewDescriptionVisitorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIUIViewDescriptionVisitorTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		325683D814EF6CEB00F7C189 /* SIUIConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIConstants.h; sourceTree = "<group>"; };
-		3260B80E151CB81C005A5AAA /* SIUINotAnInputViewException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUINotAnInputViewException.h; sourceTree = "<group>"; };
-		3260B80F151CB81C005A5AAA /* SIUINotAnInputViewException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUINotAnInputViewException.m; sourceTree = "<group>"; };
+		3260B80E151CB81C005A5AAA /* SIUINotAnInputViewException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SIUINotAnInputViewException.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		3260B80F151CB81C005A5AAA /* SIUINotAnInputViewException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIUINotAnInputViewException.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		3265B0211514487100BE0930 /* Macro.stories */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Macro.stories; sourceTree = "<group>"; };
 		3265B0221514487100BE0930 /* MacroStoryImplementations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = MacroStoryImplementations.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		3265B02515144DB300BE0930 /* SIUIAbstractEventGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIAbstractEventGenerator.h; sourceTree = "<group>"; };
-		3265B02615144DB300BE0930 /* SIUIAbstractEventGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUIAbstractEventGenerator.m; sourceTree = "<group>"; };
-		3265B0291514887600BE0930 /* UIViewSimonTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewSimonTests.m; sourceTree = "<group>"; };
+		3265B02615144DB300BE0930 /* SIUIAbstractEventGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIUIAbstractEventGenerator.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		3265B0291514887600BE0930 /* UIViewSimonTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = UIViewSimonTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		32741D7614EB581E00093E0F /* UITouch+Simon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITouch+Simon.h"; sourceTree = "<group>"; };
-		32741D7714EB581E00093E0F /* UITouch+Simon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITouch+Simon.m"; sourceTree = "<group>"; };
+		32741D7714EB581E00093E0F /* UITouch+Simon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "UITouch+Simon.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		32741D7A14EB5BAE00093E0F /* UIEvent+Simon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIEvent+Simon.h"; sourceTree = "<group>"; };
-		32741D7B14EB5BAE00093E0F /* UIEvent+Simon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIEvent+Simon.m"; sourceTree = "<group>"; };
-		3296322414F751D300D9310A /* SIUITapGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUITapGenerator.h; sourceTree = "<group>"; };
-		3296322514F751D300D9310A /* SIUITapGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUITapGenerator.m; sourceTree = "<group>"; };
+		32741D7B14EB5BAE00093E0F /* UIEvent+Simon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "UIEvent+Simon.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		328DE12415D35C43009A16C1 /* libCocoaHTTPServer.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = libCocoaHTTPServer.a; path = "../CocoaHTTPServer/CocoaHTTPServer/build/Release-iphoneos/libCocoaHTTPServer.a"; sourceTree = "<group>"; };
+		3296322414F751D300D9310A /* SIUITapGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SIUITapGenerator.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		3296322514F751D300D9310A /* SIUITapGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIUITapGenerator.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		3298250D15039FE300631203 /* ARC App with tests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ARC App with tests.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3298251415039FE300631203 /* ARC App with tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ARC App with tests-Info.plist"; sourceTree = "<group>"; };
 		3298251615039FE300631203 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -268,112 +269,111 @@
 		3298252B15039FE300631203 /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = second.png; sourceTree = "<group>"; };
 		3298252D15039FE300631203 /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
 		329825381503A0FF00631203 /* BDD.stories */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BDD.stories; sourceTree = "<group>"; };
-		3298253B1504C87600631203 /* BDDImplementations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDDImplementations.m; sourceTree = "<group>"; };
+		3298253B1504C87600631203 /* BDDImplementations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BDDImplementations.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		32A9D10F14C907BC00B0CFBD /* NSInvocations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = NSInvocations.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		32A9D11214C914B500B0CFBD /* SIMacroTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIMacroTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		32AF044115CE36C500501B1E /* SIAppBackpackTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIAppBackpackTests.m; sourceTree = "<group>"; };
-		32AF044515CE5E4800501B1E /* SIState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIState.h; sourceTree = "<group>"; };
-		32AF044615CE5E4800501B1E /* SIState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIState.m; sourceTree = "<group>"; };
+		32AF044115CE36C500501B1E /* SIAppBackpackTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIAppBackpackTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		32AF044515CE5E4800501B1E /* SIState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SIState.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		32AF044615CE5E4800501B1E /* SIState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIState.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		32AF044B15CEA81400501B1E /* NSArray+Simon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Simon.h"; sourceTree = "<group>"; };
-		32AF044C15CEA81400501B1E /* NSArray+Simon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Simon.m"; sourceTree = "<group>"; };
-		32AF044F15CEA95E00501B1E /* NSArray+SimonTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+SimonTests.m"; sourceTree = "<group>"; };
+		32AF044C15CEA81400501B1E /* NSArray+Simon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "NSArray+Simon.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		32AF044F15CEA95E00501B1E /* NSArray+SimonTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "NSArray+SimonTests.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		32AF045115CEB73600501B1E /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		32AF045315CEB75F00501B1E /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		32AF045515CEB7BA00501B1E /* SIIncomingHTTPConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIIncomingHTTPConnection.h; sourceTree = "<group>"; };
-		32AF045615CEB7BA00501B1E /* SIIncomingHTTPConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIIncomingHTTPConnection.m; sourceTree = "<group>"; };
+		32AF045615CEB7BA00501B1E /* SIIncomingHTTPConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIIncomingHTTPConnection.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		32AF045715CEB7BA00501B1E /* SIServerException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIServerException.h; sourceTree = "<group>"; };
-		32AF045815CEB7BA00501B1E /* SIServerException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIServerException.m; sourceTree = "<group>"; };
-		32B0ABF714E8DF780020500E /* SISyntaxException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SISyntaxException.h; sourceTree = "<group>"; };
-		32B0ABF814E8DF780020500E /* SISyntaxException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SISyntaxException.m; sourceTree = "<group>"; };
-		32B0ABFB14E8DFEC0020500E /* SIUINotFoundException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUINotFoundException.h; sourceTree = "<group>"; };
-		32B0ABFC14E8DFEC0020500E /* SIUINotFoundException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUINotFoundException.m; sourceTree = "<group>"; };
-		32B0AC0514E8E2660020500E /* SIUITooManyFoundException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUITooManyFoundException.h; sourceTree = "<group>"; };
-		32B0AC0614E8E2660020500E /* SIUITooManyFoundException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUITooManyFoundException.m; sourceTree = "<group>"; };
+		32AF045815CEB7BA00501B1E /* SIServerException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIServerException.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		32B0ABF714E8DF780020500E /* SISyntaxException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SISyntaxException.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		32B0ABF814E8DF780020500E /* SISyntaxException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SISyntaxException.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		32B0ABFB14E8DFEC0020500E /* SIUINotFoundException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SIUINotFoundException.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		32B0ABFC14E8DFEC0020500E /* SIUINotFoundException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIUINotFoundException.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		32B0AC0514E8E2660020500E /* SIUITooManyFoundException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SIUITooManyFoundException.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		32B0AC0614E8E2660020500E /* SIUITooManyFoundException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIUITooManyFoundException.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		32B0AC0914E8E8210020500E /* SIAbstractException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIAbstractException.h; sourceTree = "<group>"; };
-		32B0AC0A14E8E8210020500E /* SIAbstractException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIAbstractException.m; sourceTree = "<group>"; };
-		32B0AC0D14E8EB170020500E /* SIUIException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIException.h; sourceTree = "<group>"; };
-		32B0AC0E14E8EB170020500E /* SIUIException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUIException.m; sourceTree = "<group>"; };
-		32BF7CFD14F9152D00A0B197 /* SIUITapGeneratorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUITapGeneratorTests.m; sourceTree = "<group>"; };
-		32BF7CFF14F9CB2900A0B197 /* SIUISwipeGeneratorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUISwipeGeneratorTests.m; sourceTree = "<group>"; };
+		32B0AC0A14E8E8210020500E /* SIAbstractException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIAbstractException.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		32B0AC0D14E8EB170020500E /* SIUIException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SIUIException.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		32B0AC0E14E8EB170020500E /* SIUIException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIUIException.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		32BF7CFD14F9152D00A0B197 /* SIUITapGeneratorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIUITapGeneratorTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		32BF7CFF14F9CB2900A0B197 /* SIUISwipeGeneratorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIUISwipeGeneratorTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		32D5D98914E1357900D29DD5 /* TestView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestView.xib; sourceTree = "<group>"; };
 		32D5D98B14E135A300D29DD5 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
 		32D5D98C14E135A300D29DD5 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 		32EA6E75150E11E2000A64A1 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		32F3080115CE2FA00032F4B9 /* libSimonHttpServer.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSimonHttpServer.a; path = "../CocoaHTTPServer/CocoaHTTPServer/build/Release-iphoneos/libSimonHttpServer.a"; sourceTree = "<group>"; };
-		32F742D614F75F58005E5E97 /* SIUISwipeGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUISwipeGenerator.h; sourceTree = "<group>"; };
-		32F742D714F75F58005E5E97 /* SIUISwipeGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUISwipeGenerator.m; sourceTree = "<group>"; };
+		32F742D614F75F58005E5E97 /* SIUISwipeGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SIUISwipeGenerator.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		32F742D714F75F58005E5E97 /* SIUISwipeGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIUISwipeGenerator.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		32F7F3E414EE1E5800F94F65 /* GSEventProxy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSEventProxy.h; sourceTree = "<group>"; };
 		32F7F3E514EE1E5800F94F65 /* GSEventProxy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSEventProxy.m; sourceTree = "<group>"; };
-		652D4E4B13CDD44300633E51 /* SIAppBackpack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIAppBackpack.h; sourceTree = "<group>"; };
+		652D4E4B13CDD44300633E51 /* SIAppBackpack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SIAppBackpack.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		652D4E4C13CDD44400633E51 /* SIAppBackpack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIAppBackpack.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		653D0E8A13A782AD00A5AB82 /* libSimon.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSimon.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		653D0E8D13A782AD00A5AB82 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		653D0E9B13A783A500A5AB82 /* Unit tests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Unit tests.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		653D0E9D13A783A500A5AB82 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		653D0EA013A783A500A5AB82 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		653D0EB513A783C000A5AB82 /* SIStep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIStep.h; sourceTree = "<group>"; };
-		653D0EB613A783C000A5AB82 /* SIStep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIStep.m; sourceTree = "<group>"; };
-		653D0EB713A783C000A5AB82 /* SIStory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIStory.h; sourceTree = "<group>"; };
-		653D0EB813A783C000A5AB82 /* SIStory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIStory.m; sourceTree = "<group>"; };
-		653D0EBC13A783C000A5AB82 /* SIStoryFileReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIStoryFileReader.h; sourceTree = "<group>"; };
-		653D0EBD13A783C000A5AB82 /* SIStoryFileReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIStoryFileReader.m; sourceTree = "<group>"; };
+		653D0EB513A783C000A5AB82 /* SIStep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SIStep.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		653D0EB613A783C000A5AB82 /* SIStep.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIStep.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		653D0EB713A783C000A5AB82 /* SIStory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SIStory.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		653D0EB813A783C000A5AB82 /* SIStory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIStory.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		653D0EBC13A783C000A5AB82 /* SIStoryFileReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SIStoryFileReader.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		653D0EBD13A783C000A5AB82 /* SIStoryFileReader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIStoryFileReader.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		653D0ED513A783DC00A5AB82 /* GHUnit-Tests-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GHUnit-Tests-Info.plist"; sourceTree = "<group>"; };
 		653D0ED713A783DC00A5AB82 /* SIStepTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIStepTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		653D0ED913A783DC00A5AB82 /* SIStoryFileReaderTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIStoryFileReaderTests.m; sourceTree = "<group>"; };
 		653D0EDE13A783DC00A5AB82 /* Non keyword steps.stories */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Non keyword steps.stories"; sourceTree = "<group>"; };
 		653D0EDF13A783DC00A5AB82 /* Story files.stories */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Story files.stories"; sourceTree = "<group>"; };
 		653D0EF013A7842500A5AB82 /* Simon-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Simon-Prefix.pch"; sourceTree = "<group>"; };
-		6551A97F13AB904900679B94 /* SIStoryRunner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIStoryRunner.h; sourceTree = "<group>"; };
-		6551A98013AB904A00679B94 /* SIStoryRunner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIStoryRunner.m; sourceTree = "<group>"; };
-		6551A98613AB931F00679B94 /* SIStoryRunnerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIStoryRunnerTests.m; sourceTree = "<group>"; };
-		6551A98813AC8A5200679B94 /* NSString+Simon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Simon.h"; sourceTree = "<group>"; };
-		6551A98913AC8A5200679B94 /* NSString+Simon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Simon.m"; sourceTree = "<group>"; };
-		6551A99213ACDEBE00679B94 /* SISimon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SISimon.h; sourceTree = "<group>"; };
+		6551A97F13AB904900679B94 /* SIStoryRunner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SIStoryRunner.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		6551A98013AB904A00679B94 /* SIStoryRunner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIStoryRunner.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		6551A98613AB931F00679B94 /* SIStoryRunnerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIStoryRunnerTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		6551A98813AC8A5200679B94 /* NSString+Simon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = "NSString+Simon.h"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		6551A98913AC8A5200679B94 /* NSString+Simon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "NSString+Simon.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		6551A99213ACDEBE00679B94 /* SISimon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SISimon.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		6583B3EA13CF2220005E13F3 /* build.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = build.sh; sourceTree = "<group>"; };
 		6583B3EB13CF2220005E13F3 /* License.textile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = License.textile; sourceTree = "<group>"; };
 		6583B3EC13CF2220005E13F3 /* ReadMe.textile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ReadMe.textile; sourceTree = "<group>"; };
 		6583B3EE13CF2242005E13F3 /* ChangeLog.textile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ChangeLog.textile; sourceTree = "<group>"; };
-		659E628F13D9C3E200ACD34C /* UIView+Simon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Simon.h"; sourceTree = "<group>"; };
-		659E629013D9C3E200ACD34C /* UIView+Simon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Simon.m"; sourceTree = "<group>"; };
-		659E629B13DAFC4000ACD34C /* SIUIApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIApplication.h; sourceTree = "<group>"; };
-		659E629C13DAFC4000ACD34C /* SIUIApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUIApplication.m; sourceTree = "<group>"; };
-		659E62A213DB027E00ACD34C /* SIUIApplicationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUIApplicationTests.m; sourceTree = "<group>"; };
+		659E628F13D9C3E200ACD34C /* UIView+Simon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = "UIView+Simon.h"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		659E629013D9C3E200ACD34C /* UIView+Simon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "UIView+Simon.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		659E629B13DAFC4000ACD34C /* SIUIApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SIUIApplication.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		659E629C13DAFC4000ACD34C /* SIUIApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIUIApplication.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		659E62A213DB027E00ACD34C /* SIUIApplicationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIUIApplicationTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		65A85A6313A86C6600599E31 /* GHUnitIOSTestMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHUnitIOSTestMain.m; sourceTree = "<group>"; };
-		65B647CA13B8AE5E0083C114 /* SIStoryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIStoryTests.m; sourceTree = "<group>"; };
-		65D03BD813BA099700A3F0FA /* SIStoryLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIStoryLogger.h; sourceTree = "<group>"; };
-		65D03BD913BA099700A3F0FA /* SIStoryLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIStoryLogger.m; sourceTree = "<group>"; };
+		65B647CA13B8AE5E0083C114 /* SIStoryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIStoryTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		65D03BD813BA099700A3F0FA /* SIStoryLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SIStoryLogger.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		65D03BD913BA099700A3F0FA /* SIStoryLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIStoryLogger.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		65D03BDD13BB3DE300A3F0FA /* Out of order steps1.stories */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Out of order steps1.stories"; sourceTree = "<group>"; };
 		65D03BDF13BB3E1200A3F0FA /* Out of order steps2.stories */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Out of order steps2.stories"; sourceTree = "<group>"; };
 		65D03BE113BB3EFD00A3F0FA /* Out of order steps3.stories */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Out of order steps3.stories"; sourceTree = "<group>"; };
 		65D03BE313BB4BF700A3F0FA /* Non word steps.stories */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Non word steps.stories"; sourceTree = "<group>"; };
 		65D03BE513BCB8CE00A3F0FA /* Communication.stories */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Communication.stories; sourceTree = "<group>"; };
-		65D03BE813BCB94F00A3F0FA /* CommsASteps.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommsASteps.m; sourceTree = "<group>"; };
-		65D03BEB13BCBA3100A3F0FA /* CommsBSteps.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommsBSteps.m; sourceTree = "<group>"; };
+		65D03BE813BCB94F00A3F0FA /* CommsASteps.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CommsASteps.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		65D03BEB13BCBA3100A3F0FA /* CommsBSteps.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = CommsBSteps.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		65D03BED13BDEBE000A3F0FA /* SIMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SIMacros.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		65D35BC213A8BA130007A8AD /* NSString+SimonTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "NSString+SimonTests.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		65FCD11713ADE3C200A90FCA /* SIRuntimeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIRuntimeTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		65FCD11C13AE2D6900A90FCA /* SIStepMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIStepMapping.h; sourceTree = "<group>"; };
-		65FCD11D13AE2D6900A90FCA /* SIStepMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIStepMapping.m; sourceTree = "<group>"; };
+		65FCD11D13AE2D6900A90FCA /* SIStepMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIStepMapping.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		65FCD12413AF622300A90FCA /* SIRuntime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIRuntime.h; sourceTree = "<group>"; };
 		65FCD12513AF622300A90FCA /* SIRuntime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIRuntime.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		65FCD12D13B2245D00A90FCA /* Unformatted.stories */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Unformatted.stories; sourceTree = "<group>"; };
 		65FCD13013B23E8400A90FCA /* SIStepMappingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIStepMappingTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		942F7F64141F9197009F3550 /* SIUIViewHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIViewHandler.h; sourceTree = "<group>"; };
-		942F7F65141F9197009F3550 /* SIUIViewHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUIViewHandler.m; sourceTree = "<group>"; };
+		942F7F64141F9197009F3550 /* SIUIViewHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SIUIViewHandler.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		942F7F65141F9197009F3550 /* SIUIViewHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIUIViewHandler.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		943A3967143DD2D0000D506C /* SIConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIConstants.h; sourceTree = "<group>"; };
-		9465773E141B97B90026F1FB /* SIUIViewHandlerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUIViewHandlerTests.m; sourceTree = "<group>"; };
+		9465773E141B97B90026F1FB /* SIUIViewHandlerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIUIViewHandlerTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		94657741141C95160026F1FB /* AbstractTestWithControlsOnView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractTestWithControlsOnView.h; sourceTree = "<group>"; };
 		94657742141C95160026F1FB /* AbstractTestWithControlsOnView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AbstractTestWithControlsOnView.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		9490248A144089A3006132A5 /* SIUIReportManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIReportManager.h; sourceTree = "<group>"; };
+		9490248A144089A3006132A5 /* SIUIReportManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SIUIReportManager.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		9490248B144089A3006132A5 /* SIUIReportManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIUIReportManager.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		9490249214408DC4006132A5 /* SIStoryListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIStoryListController.h; sourceTree = "<group>"; };
 		9490249314408DC4006132A5 /* SIStoryListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIStoryListController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		9499DB6B13F017190053BEEA /* SIUIViewHandlerFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIViewHandlerFactory.h; sourceTree = "<group>"; };
-		9499DB6C13F017190053BEEA /* SIUIViewHandlerFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUIViewHandlerFactory.m; sourceTree = "<group>"; };
-		9499DB7013F017DC0053BEEA /* SIUIAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIAction.h; sourceTree = "<group>"; };
-		94AED1511420DB070070D3BB /* SIUIHandlerFactoryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUIHandlerFactoryTests.m; sourceTree = "<group>"; };
-		94DC535B14445C5300C3E586 /* SIStorySource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIStorySource.h; sourceTree = "<group>"; };
-		94DC535C14445C5300C3E586 /* SIStorySource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIStorySource.m; sourceTree = "<group>"; };
+		9499DB6B13F017190053BEEA /* SIUIViewHandlerFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SIUIViewHandlerFactory.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		9499DB6C13F017190053BEEA /* SIUIViewHandlerFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIUIViewHandlerFactory.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		9499DB7013F017DC0053BEEA /* SIUIAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SIUIAction.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		94AED1511420DB070070D3BB /* SIUIHandlerFactoryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIUIHandlerFactoryTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		94DC535B14445C5300C3E586 /* SIStorySource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SIStorySource.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		94DC535C14445C5300C3E586 /* SIStorySource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIStorySource.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		94E3753714544A5000FB86AA /* SIStoryDetailsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SIStoryDetailsController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		94E3753814544A5000FB86AA /* SIStoryDetailsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIStoryDetailsController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 /* End PBXFileReference section */
@@ -405,7 +405,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				32F3080215CE2FA00032F4B9 /* libSimonHttpServer.a in Frameworks */,
+				328DE12515D35C43009A16C1 /* libCocoaHTTPServer.a in Frameworks */,
 				0B14F00C15CBA61500284016 /* libdNodi.a in Frameworks */,
 				0B14F00A15CBA60500284016 /* libdUsefulStuff.a in Frameworks */,
 				32EA6E76150E11E2000A64A1 /* QuartzCore.framework in Frameworks */,
@@ -449,9 +449,9 @@
 		0B14F01715CBA67E00284016 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
+				328DE12415D35C43009A16C1 /* libCocoaHTTPServer.a */,
 				32AF045315CEB75F00501B1E /* Security.framework */,
 				32AF045115CEB73600501B1E /* CFNetwork.framework */,
-				32F3080115CE2FA00032F4B9 /* libSimonHttpServer.a */,
 				0B14F00B15CBA61500284016 /* libdNodi.a */,
 				0B14F00915CBA60500284016 /* libdUsefulStuff.a */,
 				0B14F00F15CBA66F00284016 /* libOCMock.a */,
@@ -855,13 +855,13 @@
 				3221C7A1150C956A003CA286 /* SIUIButtonHandler.h in Headers */,
 				3221C7A7150CD1DE003CA286 /* SIUILabelHandler.h in Headers */,
 				32AF045915CEB7BA00501B1E /* SIIncomingHTTPConnection.h in Headers */,
+				0BF2104515D25412006BB2CA /* SIResultListener.h in Headers */,
 				32AF045B15CEB7BA00501B1E /* SIServerException.h in Headers */,
 				3265B02715144DB400BE0930 /* SIUIAbstractEventGenerator.h in Headers */,
 				321A346A1519FA9E00B22EDD /* NSObject+Simon.h in Headers */,
 				3260B810151CB81C005A5AAA /* SIUINotAnInputViewException.h in Headers */,
 				32AF044715CE5E4800501B1E /* SIState.h in Headers */,
 				32AF044D15CEA81400501B1E /* NSArray+Simon.h in Headers */,
-				0BF2104515D25412006BB2CA /* SIResultListener.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

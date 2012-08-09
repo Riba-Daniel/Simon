@@ -8,7 +8,7 @@
 
 #import <GHUnitIOS/GHUnit.h>
 #import "AbstractTestWithControlsOnView.h"
-#import "SIUITapGenerator.h"
+#import <Simon/SIUITapGenerator.h>
 
 @interface SIUITapGeneratorTests : AbstractTestWithControlsOnView
 

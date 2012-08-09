@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Sensis. All rights reserved.
 //
 
-#import <SimonHTTPServer/HTTPConnection.h>
+#import <CocoaHTTPServer/HTTPConnection.h>
 
 @interface SIIncomingHTTPConnection : HTTPConnection
 

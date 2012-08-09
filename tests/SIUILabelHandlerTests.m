@@ -7,7 +7,7 @@
 //
 
 #import <GHUnitIOS/GHUnit.h>
-#import "SIUILabelHandler.h"
+#import <Simon/SIUILabelHandler.h>
 
 @interface SIUILabelHandlerTests : GHTestCase
 

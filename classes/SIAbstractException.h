@@ -6,8 +6,6 @@
 //  Copyright (c) 2012 Sensis. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
 /**
  Parent of all SI Exceptions. This contains code to shorten the act of creating an exception and to standardize the name field.
  */

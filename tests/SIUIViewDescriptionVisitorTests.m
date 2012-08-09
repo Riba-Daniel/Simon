@@ -7,8 +7,8 @@
 //
 
 #import <GHUnitIOS/GHUnit.h>
-#import "SIUIViewDescriptionVisitor.h"
-#import "SIUIViewDescriptionVisitorDelegate.h"
+#import <Simon/SIUIViewDescriptionVisitor.h>
+#import <Simon/SIUIViewDescriptionVisitorDelegate.h>
 #import <OCMock/OCMock.h>
 
 @interface SIUIViewDescriptionVisitorTests : GHTestCase {

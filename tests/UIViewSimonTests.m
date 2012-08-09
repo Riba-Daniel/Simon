@@ -7,7 +7,7 @@
 //
 
 #import <GHUnitIOS/GHUnit.h>
-#import "UIView+Simon.h"
+#import <Simon/UIView+Simon.h>
 
 @interface UIViewSimonTests : GHTestCase
 

@@ -8,8 +8,8 @@
 
 #import <GHUnitIOS/GHUnit.h>
 #import <dUsefulStuff/DCCommon.h>
-#import "SIConstants.h"
-#import "NSString+Simon.h"
+#import <Simon/SIConstants.h>
+#import <Simon/NSString+Simon.h>
 
 @interface NSString_SimonTests : GHTestCase {}
 

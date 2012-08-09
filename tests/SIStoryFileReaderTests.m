@@ -8,10 +8,10 @@
 
 #import <GHUnitIOS/GHUnit.h>
 #import <dUsefulStuff/DCCommon.h>
-#import "SIStoryFileReader.h"
-#import "SIConstants.h"
-#import "SIStory.h"
-#import "SIStorySource.h"
+#import <Simon/SIStoryFileReader.h>
+#import <Simon/SIConstants.h>
+#import <Simon/SIStory.h>
+#import <Simon/SIStorySource.h>
 
 @interface SIStoryFileReader ()
 -(BOOL) readFile:(NSString *) filename error:(NSError **) error;
