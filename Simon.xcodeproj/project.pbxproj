@@ -48,6 +48,8 @@
 		328DE12515D35C43009A16C1 /* libCocoaHTTPServer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 328DE12415D35C43009A16C1 /* libCocoaHTTPServer.a */; };
 		328DE14015D368D2009A16C1 /* SIResultListenerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 328DE13F15D368D2009A16C1 /* SIResultListenerTests.m */; };
 		328DE14315D37566009A16C1 /* GHTestCase+GHTestCase_TestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 328DE14215D37566009A16C1 /* GHTestCase+GHTestCase_TestUtils.m */; };
+		328DE14615D3792C009A16C1 /* SIHttpResultSender.h in Headers */ = {isa = PBXBuildFile; fileRef = 328DE14415D3792C009A16C1 /* SIHttpResultSender.h */; };
+		328DE14715D3792C009A16C1 /* SIHttpResultSender.m in Sources */ = {isa = PBXBuildFile; fileRef = 328DE14515D3792C009A16C1 /* SIHttpResultSender.m */; };
 		3296322614F751D300D9310A /* SIUITapGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 3296322414F751D300D9310A /* SIUITapGenerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3296322714F751D300D9310A /* SIUITapGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3296322514F751D300D9310A /* SIUITapGenerator.m */; };
 		3298250F15039FE300631203 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 653D0E9D13A783A500A5AB82 /* UIKit.framework */; };
@@ -255,6 +257,8 @@
 		328DE13F15D368D2009A16C1 /* SIResultListenerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIResultListenerTests.m; sourceTree = "<group>"; };
 		328DE14115D37566009A16C1 /* GHTestCase+GHTestCase_TestUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GHTestCase+GHTestCase_TestUtils.h"; sourceTree = "<group>"; };
 		328DE14215D37566009A16C1 /* GHTestCase+GHTestCase_TestUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GHTestCase+GHTestCase_TestUtils.m"; sourceTree = "<group>"; };
+		328DE14415D3792C009A16C1 /* SIHttpResultSender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIHttpResultSender.h; sourceTree = "<group>"; };
+		328DE14515D3792C009A16C1 /* SIHttpResultSender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIHttpResultSender.m; sourceTree = "<group>"; };
 		3296322414F751D300D9310A /* SIUITapGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SIUITapGenerator.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		3296322514F751D300D9310A /* SIUITapGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIUITapGenerator.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		3298250D15039FE300631203 /* ARC App with tests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ARC App with tests.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -829,6 +833,8 @@
 				65D03BD913BA099700A3F0FA /* SIStoryLogger.m */,
 				9490248A144089A3006132A5 /* SIUIReportManager.h */,
 				9490248B144089A3006132A5 /* SIUIReportManager.m */,
+				328DE14415D3792C009A16C1 /* SIHttpResultSender.h */,
+				328DE14515D3792C009A16C1 /* SIHttpResultSender.m */,
 			);
 			name = Reporting;
 			sourceTree = "<group>";
@@ -886,6 +892,7 @@
 				3260B810151CB81C005A5AAA /* SIUINotAnInputViewException.h in Headers */,
 				32AF044715CE5E4800501B1E /* SIState.h in Headers */,
 				32AF044D15CEA81400501B1E /* NSArray+Simon.h in Headers */,
+				328DE14615D3792C009A16C1 /* SIHttpResultSender.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1091,6 +1098,7 @@
 				32AF045A15CEB7BA00501B1E /* SIIncomingHTTPConnection.m in Sources */,
 				32AF045C15CEB7BA00501B1E /* SIServerException.m in Sources */,
 				0BF2104615D25412006BB2CA /* SIResultListener.m in Sources */,
+				328DE14715D3792C009A16C1 /* SIHttpResultSender.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
