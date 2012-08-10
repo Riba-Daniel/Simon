@@ -21,9 +21,4 @@
  */
 -(void) displayUI;
 
-/**
- Called to remove the window from the screen.
- */
--(void) removeWindow;
-
 @end

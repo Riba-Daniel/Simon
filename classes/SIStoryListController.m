@@ -17,7 +17,7 @@
 #import "SIAppBackpack.h"
 
 @interface SIStoryListController (_private)
--(void) rerunStories;
+-(void) runSingleStory;
 -(NSArray *) sourcesToDisplay;
 -(void) filterContentForSearchText:(NSString *)searchText scope:(NSString *)scope;
 @end
@@ -55,7 +55,6 @@
 	UISearchBar *searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)];
 	searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
 	searchBar.autocapitalizationType = UITextAutocapitalizationTypeNone;
-	searchBar.showsCancelButton = YES;
 	searchBar.spellCheckingType = UITextSpellCheckingTypeNo;
 	searchBar.delegate = self;
 	
@@ -67,7 +66,7 @@
 	self.tableView.tableHeaderView = searchBar;
 	
 	// If search terms have been passed in then setup a search.
-	if (state.searchTerms != nil) {
+	if (![NSString isEmpty:state.searchTerms]) {
 		DC_LOG(@"Initialising with search terms: %@", state.searchTerms);
 		[searchController setActive:YES animated:YES];
 		searchBar.text = state.searchTerms;
@@ -183,7 +182,7 @@
 	UIBarButtonItem *rerunButton = [[UIBarButtonItem alloc] initWithTitle:@"Run" 
 																						 style:UIBarButtonItemStylePlain 
 																						target:self 
-																						action:@selector(rerunStory)];
+																						action:@selector(runSingleStory)];
 	
 	detailsController.navigationItem.rightBarButtonItem = rerunButton;
 	[rerunButton release];
@@ -195,13 +194,9 @@
 
 #pragma mark - Running stories
 
--(void) rerunStories {	
-	DC_LOG(@"Rerunning stories, search is active: %@", DC_PRETTY_BOOL(searchController.isActive));
-	[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:SI_RUN_STORIES_NOTIFICATION object:nil userInfo:nil]];
-}
-
--(void) rerunStory {
-	[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:SI_RUN_STORIES_NOTIFICATION object:nil userInfo:nil]];
+-(void) runSingleStory {	
+	DC_LOG(@"Rerunning story");
+	[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:SI_RUN_STORIES_NOTIFICATION object:self userInfo:nil]];
 }
 
 #pragma mark - View rotation
@@ -212,21 +207,26 @@
 #pragma mark - Search bar delegate
 
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope {
-	[SIAppBackpack backpack].state.filteredSources = [[SIAppBackpack backpack].storySources filter:searchText];
+	DC_LOG(@"Filtering sources for text: %@", searchText);
+	SIState *state = [SIAppBackpack backpack].state;
+	state.searchTerms	= searchText;
+	state.filteredSources = [[SIAppBackpack backpack].storySources filter:searchText];
 }
 
-- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
-{
-	[self filterContentForSearchText:searchString scope:[[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]]];
-	return YES;
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+	[self filterContentForSearchText:searchText scope:[searchBar.scopeButtonTitles objectAtIndex:searchBar.selectedScopeButtonIndex]];
 }
 
-
-- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchScope:(NSInteger)searchOption
-{
-	[self filterContentForSearchText:[self.searchDisplayController.searchBar text] scope:[[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:searchOption]];
-	return YES;
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
+	DC_LOG(@"Cancelling search function");
+	SIState *state = [SIAppBackpack backpack].state;
+	state.searchTerms	= nil;
+	state.filteredSources = nil;
+	[self.searchDisplayController setActive:NO animated:YES];
+	[self.tableView reloadData];
 }
+
+#pragma mark - Other stuff
 
 /**
  This dirty trick fools the search bar into not hiding the navigation bar above it.

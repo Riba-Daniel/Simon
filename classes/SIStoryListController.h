@@ -18,12 +18,4 @@
 	SIStoryDetailsController *detailsController;
 }
 
-/// @name Running stories
-
-/// Re-runs all the currently visible stories.
--(void) rerunStories;
-
-/// Called from the details screen to re-run all the currently display stories.
--(void) rerunStory;
-
 @end

@@ -295,7 +295,6 @@
 	} else {
 		lineFormatString = @"\n%@";
 	}
-	DC_LOG(@"Format string is %@", lineFormatString);
 	
    // Now format the lines.
    NSMutableString *stackTrace = [NSMutableString string];

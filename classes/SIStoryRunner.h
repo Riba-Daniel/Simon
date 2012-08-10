@@ -37,8 +37,11 @@
 /**
  This was original part of runStories. It was seperated because it allows us to load up a UI for manual running. It's job is to load all the stories
  from the story readers, match them to step implementations and generally get ready to run them.
+ 
+ @param error reference to a NSError variable which will be loaded if an error occurs.
+ @return YES if the load was successful.
 */
--(void) loadStories;
+-(BOOL) loadStories:(NSError **) error;
 
 /**
  Executes the passed list of stories. See SIStory for details on how this happens.

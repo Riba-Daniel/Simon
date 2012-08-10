@@ -21,6 +21,11 @@
 -(NSArray *) filter:(NSString *) filterText {
 	
 	DC_LOG(@"Filtering sources for search terms: %@", filterText);
+	
+	if ([NSString isEmpty:filterText]) {
+		return nil;
+	}
+	
 	NSMutableArray *filteredSources = [NSMutableArray array];
 
 	for (SIStorySource *source in self) {

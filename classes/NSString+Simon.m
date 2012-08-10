@@ -97,4 +97,9 @@
 	return result == NSOrderedSame;
 }
 
++ (BOOL) isEmpty:(NSString *) value {
+	return ([[value stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]length] == 0);
+}
+
+
 @end

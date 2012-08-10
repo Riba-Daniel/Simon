@@ -243,7 +243,6 @@
 
 }
 
-
 -(void) createNewStoryWithTitle:(NSString *) title {
 	
 	// Create the new one and store it in the return array.

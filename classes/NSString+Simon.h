@@ -52,5 +52,11 @@
  */
 -(BOOL) hasPrefix:(NSString *) prefix options:(int) options;
 
+/**
+ Returns YES if the value is nil or contains no actual textural data. All whitespace is ignored.
+
+ @return YES if the value is nil, empty or contains only whitespace characters.
+ */
++ (BOOL) isEmpty:(NSString *) value;
 
 @end

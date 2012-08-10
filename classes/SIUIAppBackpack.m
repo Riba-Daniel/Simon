@@ -9,10 +9,6 @@
 #import "SIUIAppBackpack.h"
 #import <dUsefulStuff/DCCommon.h>
 
-@interface SIUIAppBackpack ()
--(void) windowRemoved:(NSNotification *) notification;
-@end
-
 @implementation SIUIAppBackpack
 
 -(void) dealloc {
@@ -24,30 +20,10 @@
 - (id)init {
 	self = [super init];
 	if (self) {
-		[[NSNotificationCenter defaultCenter] addObserver:self
-															  selector:@selector(windowRemoved:)
-																	name:SI_WINDOW_REMOVED_NOTIFICATION
-																 object:nil];
+		// Load the display manager.
 		ui = [[SIUIReportManager alloc] init];
 	}
 	return self;
-}
-
--(void) startUp:(NSNotification *) notification {
-	[super startUp:notification];
-	[self executeOnSimonThread: ^{
-		if([SIAppBackpack isArgumentPresentWithName:ARG_NO_AUTORUN]) {
-			[ui displayUI];
-		} else {
-			self.state.filteredSources = nil;
-			[self.runner run];
-		}
-	}];
-}
-
--(void) shutDown:(NSNotification *) notification {
-	[super shutDown:notification];
-	[ui removeWindow];
 }
 
 -(void) runFinished:(NSNotification *) notification {
@@ -56,16 +32,15 @@
 }
 
 -(void) runStories:(NSNotification *) notification {
-	// Override and remove window first.
-	[ui removeWindow];
-}
-
--(void) windowRemoved:(NSNotification *) notification {
-	DC_LOG(@"UI Removed");
+	// Override to show ui if necessary when starting up.
 	[self executeOnSimonThread: ^{
-		[self.runner run];
+		// If the notification originated from self and we are not autorunning, then it's startup so go straight to the ui.
+		if(notification.object == self && ![SIAppBackpack isArgumentPresentWithName:ARG_AUTORUN]) {
+			[ui displayUI];
+		} else {
+			[self.runner run];
+		}
 	}];
 }
-
 
 @end

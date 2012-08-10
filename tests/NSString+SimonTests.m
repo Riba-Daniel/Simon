@@ -101,5 +101,24 @@
 	GHAssertTrue([@"defg" hasPrefix:@"dË" options:NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch], @"Should have matched");
 }
 
+-(void) testIsEmptyWithNil {
+	GHAssertTrue([NSString isEmpty:nil], nil);
+}
+
+-(void) testIsEmptyWithZeroLength {
+	GHAssertTrue([NSString isEmpty:@""], nil);
+}
+
+-(void) testIsEmptyWithWhitespace {
+	GHAssertTrue([NSString isEmpty:@"\n\t"], nil);
+}
+
+-(void) testIsEmptyWithSpaces {
+	GHAssertTrue([NSString isEmpty:@"   "], nil);
+}
+
+-(void) testIsEmptyWithText {
+	GHAssertFalse([NSString isEmpty:@"  Hello \n world"], nil);
+}
 
 @end

@@ -58,6 +58,7 @@ static SIAppBackpack *_backpack;
 -(void) dealloc {
 	DC_LOG(@"Freeing memory and exiting");
 	DC_DEALLOC(_runner);
+	DC_DEALLOC(_state);
 	DC_DEALLOC(logger);
 	[super dealloc];
 }
@@ -65,32 +66,13 @@ static SIAppBackpack *_backpack;
 - (id)init {
 	self = [super init];
 	if (self) {
-		
-		// Instantiate required instances
-		DC_LOG(@"Simon initing");
-		
-		self.state = [[[SIState alloc] init] autorelease];
-		_runner = [[SIStoryRunner alloc] init];
-		logger = [[SIStoryLogger alloc] init];
 
-		DC_LOG(@"Applying program hooks to notification center: %@", [NSNotificationCenter defaultCenter]);
+		// Because this is executing during +load just hook onto the app start notification.
+		DC_LOG(@"Adding hook to application start");
 		[[NSNotificationCenter defaultCenter] addObserver:self
 															  selector:@selector(startUp:)
 																	name:UIApplicationDidBecomeActiveNotification
 																 object:nil];
-		[[NSNotificationCenter defaultCenter] addObserver:self
-															  selector:@selector(runFinished:)
-																	name:SI_RUN_FINISHED_NOTIFICATION
-																 object:nil];
-		[[NSNotificationCenter defaultCenter] addObserver:self
-															  selector:@selector(shutDown:)
-																	name:SI_SHUTDOWN_NOTIFICATION
-																 object:nil];
-		[[NSNotificationCenter defaultCenter] addObserver:self
-															  selector:@selector(runStories:)
-																	name:SI_RUN_STORIES_NOTIFICATION
-																 object:nil];
-		
 	}
 	return self;
 }
@@ -99,16 +81,50 @@ static SIAppBackpack *_backpack;
 
 // Callbacks.
 -(void) startUp:(NSNotification *) notification {
+
+	// Instantiate required instances
+	DC_LOG(@"Simon initialising");
+	
+	_state = [[SIState alloc] init];
+	_runner = [[SIStoryRunner alloc] init];
+	logger = [[SIStoryLogger alloc] init];
+	
+	DC_LOG(@"Applying program hooks to notification center: %@", [NSNotificationCenter defaultCenter]);
+	[[NSNotificationCenter defaultCenter] addObserver:self
+														  selector:@selector(runFinished:)
+																name:SI_RUN_FINISHED_NOTIFICATION
+															 object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self
+														  selector:@selector(shutDown:)
+																name:SI_SHUTDOWN_NOTIFICATION
+															 object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self
+														  selector:@selector(runStories:)
+																name:SI_RUN_STORIES_NOTIFICATION
+															 object:nil];
+	
 	[self executeOnSimonThread: ^{
+
 		DC_LOG(@"Starting Simon");
-		[self.runner loadStories];
+		
+		NSError *error = nil;
+		if ([self.runner loadStories:&error]) {
+			// Tell the state to generate a set of run indexes to indicate all stories should be run.
+			[[NSNotificationCenter defaultCenter] postNotificationName:SI_RUN_STORIES_NOTIFICATION object:self];
+		} else {
+			NSDictionary *userData = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInteger:error.code], SI_NOTIFICATION_KEY_STATUS,
+											  [error localizedFailureReason], SI_NOTIFICATION_KEY_MESSAGE, nil];
+			NSNotification *runFinished = [NSNotification notificationWithName:SI_SHUTDOWN_NOTIFICATION object:self userInfo:userData];
+			[[NSNotificationCenter defaultCenter] postNotification:runFinished];
+		}
+		
 	}];
 }
 
 -(void) shutDown:(NSNotification *) notification  {
 	DC_LOG(@"ShutDown requested.");
-   DC_DEALLOC(_backpack);
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
+   DC_DEALLOC(_backpack);
 }
 
 -(void) runFinished:(NSNotification *) notification {}

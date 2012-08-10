@@ -13,14 +13,11 @@
 #import "SIStory.h"
 #import "SIStepMapping.h"
 #import "NSString+Simon.h"
-#import <dUsefulStuff/DCDialogs.h>
 #import "NSArray+Simon.h"
 
 typedef void (^StoryBlock)(SIStorySource *, SIStory *);
 
 @interface SIStoryRunner(_private)
--(void) displayMessage:(NSString *) message;
--(void) displayUI;
 -(void) executeOnSources:(NSArray *) sources block:(StoryBlock) block;
 @end
 
@@ -55,45 +52,43 @@ typedef void (^StoryBlock)(SIStorySource *, SIStory *);
 	return self;
 }
 
--(void) loadStories {
+-(BOOL) loadStories:(NSError **) error {
+
 	// Read the stories.
 	DC_LOG(@"Reading stories");
-	NSError *error = nil;
-	NSArray *storySources = [self.reader readStorySources: &error];
+	NSArray *storySources = [self.reader readStorySources: error];
 	
 	// If there was an error then return.
 	if (storySources == nil) {
-		DC_LOG(@"Error reading story files - exiting. Error %@", [error localizedFailureReason]);
-		[self performSelectorOnMainThread:@selector(displayMessage:)
-									  withObject:[error localizedFailureReason] waitUntilDone:NO];
-		return;
+		DC_LOG(@"Error reading story files: %@", [*error localizedFailureReason]);
+		return NO;
 	}
 	
+   // Get a union of all the stories.
+	NSArray *stories = [storySources storiesFromSources];
+
 	// If no stories where read then generate an error and return.
-	NSUInteger numberOfStories = [(NSArray *)[storySources valueForKeyPath:@"@unionOfArrays.stories"] count];
+	NSUInteger numberOfStories = [stories count];
 	if ([storySources count] == 0 || numberOfStories == 0) {
-		[self setError:&error
+		[self setError:error
 					 code:SIErrorNoStoriesFound
 			errorDomain:SIMON_ERROR_DOMAIN
 	 shortDescription:@"No stories read"
 		 failureReason:@"No stories where read from the files."];
-		DC_LOG(@"Error reading story files - exiting. Error %@", [error localizedFailureReason]);
-		[self performSelectorOnMainThread:@selector(displayMessage:)
-									  withObject:[error localizedFailureReason] waitUntilDone:NO];
-		return;
+		DC_LOG(@"Error reading story files: %@", [*error localizedFailureReason]);
+		return NO;
 	}
 	
 	// Read the runtime to locate all mappings.
 	self.mappings = [self.runtime allMappingMethodsInRuntime];
-	
-   // Get a union of all the stories.
-	NSArray *stories = [storySources valueForKeyPath:@"@unionOfArrays.stories"];
 	
 	// Find the mapping for each story.
 	DC_LOG(@"Mappin steps to story steps");
 	for (SIStory *story in stories) {
 		[story mapSteps:(NSArray *) self.mappings];
 	}
+	
+	return YES;
 	
 }
 
@@ -127,11 +122,6 @@ typedef void (^StoryBlock)(SIStorySource *, SIStory *);
 			block(source, story);
 		}
 	}
-}
-
-
--(void) displayMessage:(NSString *) message {
-	[DCDialogs displayMessage:message];
 }
 
 @end

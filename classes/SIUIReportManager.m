@@ -13,11 +13,15 @@
 #import "NSObject+Simon.h"
 #import "SIState.h"
 
+typedef void (^completion)();
+
 @interface SIUIReportManager(_private)
--(void) closeSimon;
--(void) runStories;
 -(UIView *) uiParentView;
+-(void) closeSimon;
+-(void) removeWindowAndRunStories;
+-(void) removeWindowWithCompletion:(completion) completion;
 @end
+
 
 
 @implementation SIUIReportManager
@@ -47,8 +51,8 @@
 																							action:@selector(closeSimon)];
 		UIBarButtonItem *rerunButton = [[UIBarButtonItem alloc] initWithTitle:@"Run"
 																							 style:UIBarButtonItemStylePlain
-																							target:reportController
-																							action:@selector(rerunStories)];
+																							target:self
+																							action:@selector(removeWindowAndRunStories)];
 		reportController.navigationItem.leftBarButtonItem = closeButton;
 		reportController.navigationItem.rightBarButtonItem = rerunButton;
 		[closeButton release];
@@ -77,10 +81,18 @@
 }
 
 -(void) closeSimon {
-	[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:SI_SHUTDOWN_NOTIFICATION object:nil]];
+	[self removeWindowWithCompletion:^(){
+		[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:SI_SHUTDOWN_NOTIFICATION object:nil]];
+	}];
 }
 
--(void) removeWindow {
+-(void) removeWindowAndRunStories {
+	[self removeWindowWithCompletion:^(){
+		[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:SI_RUN_STORIES_NOTIFICATION object:self]];
+	}];
+}
+
+-(void) removeWindowWithCompletion:(completion) completion {
 	
 	DC_LOG(@"Removing window");
 	
@@ -97,7 +109,7 @@
 						  completion:^(BOOL finished){
 							  [navController.view removeFromSuperview];
 							  DC_DEALLOC(navController);
-							  [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:SI_WINDOW_REMOVED_NOTIFICATION object:nil]];
+							  completion();
 						  }];
 }
 

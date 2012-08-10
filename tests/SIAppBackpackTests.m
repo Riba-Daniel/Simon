@@ -9,12 +9,24 @@
 #import <GHUnitIOS/GHUnit.h>
 
 #import <Simon/SIAppBackpack.h>
+#import <Simon/SIConstants.h>
 
 @interface SIAppBackpackTests : GHTestCase
 
 @end
 
 @implementation SIAppBackpackTests
+
+-(void) testStartupLoadsStories {
+	
+	SIAppBackpack *backpack = [[[SIAppBackpack alloc] init] autorelease];
+	NSNotification *notification = [NSNotification notificationWithName:UIApplicationDidBecomeActiveNotification object:self];
+	
+	[backpack startUp:notification];
+	
+	GHAssertTrue(backpack.storySources > 0, nil);
+	
+}
 
 
 @end
