@@ -13,24 +13,30 @@
 #import "SIConstants.h"
 #import "NSString+Simon.h"
 
-@interface SIStoryFileReader()
+@interface SIStoryFileReader() {
+@private
+	NSCharacterSet *trimChars;
+	SIKeyword priorKeyword;
+	NSUInteger currentLineNumber;
+}
+
 -(BOOL) readFile:(NSString *) filename error:(NSError **) error;
--(BOOL) processLine:(NSString *) line error:(NSError **) error;
--(BOOL) checkSyntaxWithKeyword:(SIKeyword) nextKeyword error:(NSError **) error;
--(SIKeyword) keywordFromLine:(NSString *) line error:(NSError **) error;
--(void) createNewStoryWithTitle:(NSString *) title;
--(NSString *)failureReasonWithContent:(NSString *) content;
+-(BOOL) processLine:(NSString *) line
+			  inSource:(SIStorySource *) source
+				  error:(NSError **) error;
+-(BOOL) checkSyntaxWithKeyword:(SIKeyword) nextKeyword forSource:(SIStorySource *) source error:(NSError **) error;
+-(SIKeyword) keywordFromLine:(NSString *) line forSource:(SIStorySource *) source error:(NSError **) error;
+-(NSString *)failureReasonWithContent:(NSString *) content forSource:(SIStorySource *) source;
 
 @end
 
 @implementation SIStoryFileReader
 
-@synthesize storySources = storySources_;
+@synthesize storySources = _storySources;
 
 -(void) dealloc {
 	DC_LOG(@"Deallocing");
-	self.storySources = nil;
-	DC_DEALLOC(currentSource);
+	DC_DEALLOC(_storySources);
 	DC_DEALLOC(trimChars);
 	[super dealloc];
 }
@@ -38,34 +44,34 @@
 -(id) init {
 	self = [super init];
 	if (self) {
+		_storySources = [[SIStorySources alloc] init];
 		trimChars = [[NSMutableCharacterSet whitespaceCharacterSet] retain];
 		[(NSMutableCharacterSet *)trimChars formUnionWithCharacterSet:[NSCharacterSet characterSetWithCharactersInString:@".,;:!?"]];
 	}
 	return self;
 }
 
--(NSArray *) readStorySources:(NSError **) error {
+-(BOOL) readStorySources:(NSError **) error {
 	
 	NSArray *files = [[NSBundle mainBundle] pathsForResourcesOfType:STORY_EXTENSION inDirectory:nil];
-	self.storySources = [NSMutableArray arrayWithCapacity:[files count]];
 	
 	for (NSString *file in files) {
 		if (![self readFile:file error:error]) {
 			DC_LOG(@"Error reading story file: %@", [*error localizedFailureReason]);
-			return nil;
+			return NO;
 		}
 	}
 	
-	DC_LOG(@"Number of stories loaded: %i", [(NSArray *)[self.storySources valueForKeyPath:@"@unionOfArrays.stories"] count]);
-	return self.storySources;
+	DC_LOG(@"Number of stories loaded: %i", [(NSArray *)[self.storySources.sources valueForKeyPath:@"@unionOfArrays.stories"] count]);
+	return YES;
 }
 
 -(BOOL) readFile:(NSString *) filename error:(NSError **) error {
 	
 	// Add the file as source.
-	currentSource = [[SIStorySource alloc] init];
+	SIStorySource *currentSource = [[[SIStorySource alloc] init] autorelease];
 	currentSource.source = filename;
-	[(NSMutableArray *)self.storySources addObject:currentSource];
+	[_storySources addSource:currentSource];
 	
 	// Read the file.
 	DC_LOG(@"Reading file: %@", filename);
@@ -80,19 +86,19 @@
 	NSUInteger lineNbr = 0;
 	for (NSString * line in [contents componentsSeparatedByString:@"\n"]) {
 		currentLineNumber = ++lineNbr;
-		if (![self processLine: line error:error]) {
+		if (![self processLine:line inSource:currentSource error:error]) {
 			// Error reading the source.
 			return NO;
 		}
 	}
 	
-	DC_DEALLOC(currentSource);
 	return YES;
 	
 }
 
 
--(BOOL) processLine:(NSString *) line 
+-(BOOL) processLine:(NSString *) line
+			  inSource:(SIStorySource *) source
 				  error:(NSError **) error {
 	
 	DC_LOG(@"Line: %@", line);
@@ -106,16 +112,16 @@
 	}
 	
 	// Attempt to figure out what the keyword is.
-	SIKeyword keyword = [self keywordFromLine:cleanLine error:error];
+	SIKeyword keyword = [self keywordFromLine:cleanLine forSource:source error:error];
 	if (keyword == SIKeywordUnknown) {
 		DC_LOG(@"Detected unknown keyword in step: %@", cleanLine);
-		NSString *msg = [self failureReasonWithContent:[NSString stringWithFormat:@"Story syntax error, unknown keyword on step \"%@\"", cleanLine]];
+		NSString *msg = [self failureReasonWithContent:[NSString stringWithFormat:@"Story syntax error, unknown keyword on step \"%@\"", cleanLine] forSource:source];
 		[self setError:error code:SIErrorInvalidKeyword errorDomain:SIMON_ERROR_DOMAIN shortDescription:@"Story syntax error, unknown keyword" failureReason:msg];
 		return NO;
 	}
 	
 	// Check syntax.
-	if (![self checkSyntaxWithKeyword:keyword error:error]) {
+	if (![self checkSyntaxWithKeyword:keyword forSource:source error:error]) {
 		return NO;
 	}
 	
@@ -124,50 +130,50 @@
 	
 	// Create a new story if its the story keyword and return without add a step.
 	if (keyword == SIKeywordStory) {
-		[self createNewStoryWithTitle:cleanLine];
+		[self createNewStoryWithTitle:cleanLine forSource:source];
 		return YES;
 	}
 	
 	// Now add the step to the current story.
 	DC_LOG(@"Adding step: %@", cleanLine);
-	SIStory *story = [currentSource.stories lastObject];
+	SIStory *story = [source.stories lastObject];
 	[story createStepWithKeyword:keyword command:cleanLine];
 	
 	return YES;
 }
 
--(SIKeyword) keywordFromLine:(NSString *) line error:(NSError **) error {
+-(SIKeyword) keywordFromLine:(NSString *) line forSource:(SIStorySource *) source error:(NSError **) error {
 	NSString *firstWord = nil;
-	BOOL foundWord = [[NSScanner scannerWithString:line] 
-							scanCharactersFromSet:[NSCharacterSet alphanumericCharacterSet] 
+	BOOL foundWord = [[NSScanner scannerWithString:line]
+							scanCharactersFromSet:[NSCharacterSet alphanumericCharacterSet]
 							intoString:&firstWord];
 	
 	if (!foundWord) {
-		NSString *message = [self failureReasonWithContent:@"Each line of a story must start with a valid keyword (Story, Given, Then, As or And) or a comment."];
-		[self setError:error 
-					 code:SIErrorInvalidStorySyntax 
-			errorDomain:SIMON_ERROR_DOMAIN 
-	 shortDescription:@"Story syntax error, step does not begin with a word" 
+		NSString *message = [self failureReasonWithContent:@"Each line of a story must start with a valid keyword (Story, Given, Then, As or And) or a comment." forSource:source];
+		[self setError:error
+					 code:SIErrorInvalidStorySyntax
+			errorDomain:SIMON_ERROR_DOMAIN
+	 shortDescription:@"Story syntax error, step does not begin with a word"
 		 failureReason:message];
 		return SIKeywordUnknown;
 	}
 	
 	SIKeyword keyword = [firstWord keywordFromString];
 	if (keyword == SIKeywordUnknown) {
-		NSString *message = [self failureReasonWithContent:[NSString stringWithFormat:@"Each line of a story must start with a valid keyword (Given, Then, As or And) or a comment. \"%@\" is not a keyword.", firstWord]];
-		[self setError:error 
-					 code:SIErrorInvalidStorySyntax 
-			errorDomain:SIMON_ERROR_DOMAIN 
-	 shortDescription:[NSString stringWithFormat:@"Story syntax error, unknown keyword %@", firstWord] 
+		NSString *message = [self failureReasonWithContent:[NSString stringWithFormat:@"Each line of a story must start with a valid keyword (Given, Then, As or And) or a comment. \"%@\" is not a keyword.", firstWord] forSource:source];
+		[self setError:error
+					 code:SIErrorInvalidStorySyntax
+			errorDomain:SIMON_ERROR_DOMAIN
+	 shortDescription:[NSString stringWithFormat:@"Story syntax error, unknown keyword %@", firstWord]
 		 failureReason:message];
 	}
 	return keyword;
 }
 
--(BOOL) checkSyntaxWithKeyword:(SIKeyword) nextKeyword error:(NSError **) error {
+-(BOOL) checkSyntaxWithKeyword:(SIKeyword) nextKeyword forSource:(SIStorySource *) source error:(NSError **) error {
 	
 	// Validate the order of keywords.
-	DC_LOG(@"Syntax check %@ -> %@", 
+	DC_LOG(@"Syntax check %@ -> %@",
 			 [NSString stringFromKeyword: priorKeyword],
 			 [NSString stringFromKeyword: nextKeyword]);
 	
@@ -177,11 +183,11 @@
 			
 		case SIKeywordStartOfFile:
 			if (nextKeyword != SIKeywordStory) {
-				NSString *message = [self failureReasonWithContent:@"Incorrect keyword order, the \"Story:\" keyword must be the first keyword."];
-				[self setError:error 
-							 code:SIErrorInvalidStorySyntax 
-					errorDomain:SIMON_ERROR_DOMAIN 
-			 shortDescription:@"Incorrect keyword order" 
+				NSString *message = [self failureReasonWithContent:@"Incorrect keyword order, the \"Story:\" keyword must be the first keyword." forSource:source];
+				[self setError:error
+							 code:SIErrorInvalidStorySyntax
+					errorDomain:SIMON_ERROR_DOMAIN
+			 shortDescription:@"Incorrect keyword order"
 				 failureReason:message];
 				return NO;
 			}
@@ -189,11 +195,11 @@
 			
 		case SIKeywordStory: // SIKeywordStory so no prior.
 			if (nextKeyword != SIKeywordGiven && nextKeyword != SIKeywordAs) {
-				NSString *message = [self failureReasonWithContent:@"Incorrect keyword order, \"As\" or \"Given\" must appear after \"Story:\""];
-				[self setError:error 
-							 code:SIErrorInvalidStorySyntax 
-					errorDomain:SIMON_ERROR_DOMAIN 
-			 shortDescription:@"Incorrect keyword order" 
+				NSString *message = [self failureReasonWithContent:@"Incorrect keyword order, \"As\" or \"Given\" must appear after \"Story:\"" forSource:source];
+				[self setError:error
+							 code:SIErrorInvalidStorySyntax
+					errorDomain:SIMON_ERROR_DOMAIN
+			 shortDescription:@"Incorrect keyword order"
 				 failureReason:message];
 				return NO;
 			}
@@ -201,11 +207,11 @@
 			
 		case SIKeywordGiven:
 			if (nextKeyword == SIKeywordGiven || nextKeyword == SIKeywordAs || nextKeyword == SIKeywordStory) {
-				NSString *message = [self failureReasonWithContent:@"Incorrect keyword order, only \"Then\", \"And\" or \"Story:\" can appear after \"Given\""];
-				[self setError:error 
-							 code:SIErrorInvalidStorySyntax 
-					errorDomain:SIMON_ERROR_DOMAIN 
-			 shortDescription:@"Incorrect keyword order" 
+				NSString *message = [self failureReasonWithContent:@"Incorrect keyword order, only \"Then\", \"And\" or \"Story:\" can appear after \"Given\"" forSource:source];
+				[self setError:error
+							 code:SIErrorInvalidStorySyntax
+					errorDomain:SIMON_ERROR_DOMAIN
+			 shortDescription:@"Incorrect keyword order"
 				 failureReason:message];
 				return NO;
 			}
@@ -213,22 +219,22 @@
 			
 		case SIKeywordAs:
 			if (nextKeyword != SIKeywordGiven && nextKeyword != SIKeywordThen) {
-				NSString *message = [self failureReasonWithContent:@"Incorrect keyword order, only \"Given\" or \"Then\" can appear after \"As\""];
-				[self setError:error 
-							 code:SIErrorInvalidStorySyntax 
-					errorDomain:SIMON_ERROR_DOMAIN 
-			 shortDescription:@"Incorrect keyword order" 
+				NSString *message = [self failureReasonWithContent:@"Incorrect keyword order, only \"Given\" or \"Then\" can appear after \"As\"" forSource:source];
+				[self setError:error
+							 code:SIErrorInvalidStorySyntax
+					errorDomain:SIMON_ERROR_DOMAIN
+			 shortDescription:@"Incorrect keyword order"
 				 failureReason:message];
 				return NO;
 			} break;
 			
 		case SIKeywordThen:
 			if (nextKeyword != SIKeywordAnd && nextKeyword != SIKeywordStory) {
-				NSString *message = [self failureReasonWithContent:[NSString stringWithFormat:@"Incorrect keyword order, \"%@\" cannot appear after \"Then\"", [NSString stringFromKeyword:nextKeyword]]];
-				[self setError:error 
-							 code:SIErrorInvalidStorySyntax 
-					errorDomain:SIMON_ERROR_DOMAIN 
-			 shortDescription:@"Incorrect keyword order" 
+				NSString *message = [self failureReasonWithContent:[NSString stringWithFormat:@"Incorrect keyword order, \"%@\" cannot appear after \"Then\"", [NSString stringFromKeyword:nextKeyword]] forSource:source];
+				[self setError:error
+							 code:SIErrorInvalidStorySyntax
+					errorDomain:SIMON_ERROR_DOMAIN
+			 shortDescription:@"Incorrect keyword order"
 				 failureReason:message];
 				return NO;
 			}
@@ -240,15 +246,15 @@
 	}
 	
 	return YES;
-
+	
 }
 
--(void) createNewStoryWithTitle:(NSString *) title {
+-(void) createNewStoryWithTitle:(NSString *) title forSource:(SIStorySource *) source {
 	
 	// Create the new one and store it in the return array.
 	DC_LOG(@"Creating new story");
 	SIStory *story = [[SIStory alloc] init];
-	[currentSource addStory:story];
+	[source addStory:story];
 	
 	// Store the title.
 	NSString *storyTitle = [[title substringFromIndex: 5] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
@@ -260,8 +266,8 @@
 	[story release];
 }
 
--(NSString *)failureReasonWithContent:(NSString *) content {
-	return [NSString stringWithFormat:@"%@[line %i]: %@", [currentSource.source lastPathComponent], currentLineNumber, content];
+-(NSString *)failureReasonWithContent:(NSString *) content forSource:(SIStorySource *) source{
+	return [NSString stringWithFormat:@"%@[line %i]: %@", [source.source lastPathComponent], currentLineNumber, content];
 }
 
 

@@ -7,72 +7,69 @@
 //
 
 #import <GHUnitIOS/GHUnit.h>
+#import <OCMock/OCMock.h>
 #import <dUsefulStuff/DCCommon.h>
 #import <Simon/SIStoryRunner.h>
-#import <Simon/Simon.h>
-#import <Simon/SIStoryLogger.h>
-
-@interface SIStoryFileReader ()
--(BOOL) readFile:(NSString *) filename error:(NSError **) error;
-@end
 
 @interface SIStoryRunnerTests : GHTestCase {
-@private
-	BOOL step1Called;
-	BOOL step2Called;
-	BOOL step3Called;
+	@private
+	BOOL startSent;
+	BOOL endSent;
+	SIStoryRunner *runner;
 }
--(void) stepAs:(NSString *) name;
--(void) stepGivenThisFileExists;
--(void) stepThenIShouldBeAbleToRead:(NSNumber *) aNumber and:(NSString *) aString;
+-(void) runStart:(NSNotification *) notification;
+-(void) runEnd:(NSNotification *) notification;
 @end
 
 @implementation SIStoryRunnerTests
 
--(void) testRunStories {
-	SIStoryFileReader *reader = [[[SIStoryFileReader alloc] init] autorelease];
-	reader.storySources = [NSMutableArray array];
-	SIStoryRunner *runner = [[[SIStoryRunner alloc] init] autorelease];
-	NSError *error = nil;
-	[reader readFile:@"Story files" error:&error];
-	runner.reader = reader;
+-(void) setUp {
+	startSent = NO;
+	endSent = NO;
+	[[NSNotificationCenter defaultCenter] addObserver:self
+														  selector:@selector(runStart:)
+																name:SI_RUN_STARTING_NOTIFICATION
+															 object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self
+														  selector:@selector(runEnd:)
+																name:SI_RUN_FINISHED_NOTIFICATION
+															 object:nil];
+	runner = [[SIStoryRunner alloc] init];
+}
+
+-(void) tearDown {
+	DC_DEALLOC(runner);
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+-(void) testExecuting {
+	
+	SIStorySources *sources = [[[SIStorySources alloc] init] autorelease];
+	SIStorySource *source = [[[SIStorySource alloc] init] autorelease];
+	[sources addSource:source];
+	id mockStory = [OCMockObject mockForClass:[SIStory class]];
+	[[mockStory expect] reset];
+	BOOL yes = YES;
+	[[[mockStory expect] andReturnValue:OCMOCK_VALUE(yes)] invokeWithSource:source];
+	[source addStory:mockStory];
+	runner.storySources = sources;
+
 	[runner run];
+	
+	[[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+	
+	[mockStory verify];
+	GHAssertTrue(startSent, nil);
+	GHAssertTrue(endSent, nil);
 }
 
--(void) testIsAbleToPassValuesBetweenClassInstances {
-	SIStoryFileReader *reader = [[[SIStoryFileReader alloc] init] autorelease];
-	reader.storySources = [NSMutableArray array];
-	SIStoryRunner *runner = [[[SIStoryRunner alloc] init] autorelease];
-	NSError *error = nil;
-	[reader readFile:@"Communication" error:&error];
-	runner.reader = reader;
-	[runner run];
+
+-(void) runStart:(NSNotification *) notification {
+	startSent = YES;
 }
 
-// ### Methods which are called by Simon ###
-
-SIMapStepToSelector(@"As ([A-Z][a-z]+)", stepAs:)
--(void) stepAs:(NSString *) name {
-	DC_LOG(@"As %@", name);
-	GHAssertEqualStrings(name, @"Simon", @"Incorrect name passed to step.");
-	step1Called = YES;
-}
-
-SIMapStepToSelector(@"Given this file exists", stepGivenThisFileExists)
--(void) stepGivenThisFileExists {
-	DC_LOG(@"Given this file exists");
-	GHAssertTrue(step1Called, @"Step 1 not called");
-	step2Called = YES;
-}
-
-SIMapStepToSelector(@"then I should be able to read (\\d+) and ([a-z]+) from it", stepThenIShouldBeAbleToRead:and:)
--(void) stepThenIShouldBeAbleToRead:(NSNumber *) aNumber and:(NSString *) aString {
-	DC_LOG(@"Then I should be able to read %f and %@", [aNumber floatValue], aString);
-	GHAssertEquals([aNumber floatValue], (float) 5.0, @"Incorrect float value passed to step.");
-	GHAssertEqualStrings(aString, @"abc", @"Incorrect value passed to step.");
-	GHAssertTrue(step1Called, @"Step 1 not called");
-	GHAssertTrue(step2Called, @"Step 2 not called");
-	step3Called = YES;
+-(void) runEnd:(NSNotification *) notification {
+	endSent = YES;
 }
 
 @end

@@ -29,7 +29,6 @@
 -(void) setUp {
 	[super setUp];
 	reader = [[SIStoryFileReader alloc] init];
-	reader.storySources = [NSMutableArray array];
 	error = nil;
 }
 
@@ -87,7 +86,7 @@
 	NSString *fileName = [[NSBundle mainBundle] pathForResource:@"Story files" ofType:STORY_EXTENSION inDirectory:nil];
 	BOOL result = [reader readFile:fileName error:&error];
 	GHAssertTrue(result, @"Should have returned true");
-	NSArray * storySources = reader.storySources;
+	NSArray * storySources = reader.storySources.sources;
 	
 	GHAssertNil(error, @"Unexpected error thrown %@", error.localizedDescription);
 	GHAssertEquals([storySources count], (NSUInteger) 1, @"incorrect number of story sources returned");
@@ -103,7 +102,7 @@
 	NSString *fileName = [[NSBundle mainBundle] pathForResource:@"Unformatted" ofType:STORY_EXTENSION inDirectory:nil];
 	BOOL result = [reader readFile:fileName error:&error];
 	GHAssertTrue(result, @"Should have returned true");
-	NSArray * storySources = reader.storySources;
+	NSArray * storySources = reader.storySources.sources;
 
 	GHAssertNil(error, @"Unexpected error thrown %@", error.localizedDescription);
 	GHAssertEquals([storySources count], (NSUInteger) 1, @"incorrect number of story sources returned");
@@ -112,6 +111,11 @@
 	NSArray *stories = ((SIStorySource *)[storySources objectAtIndex:0]).stories;
 	GHAssertEquals([stories count], (NSUInteger) 1, @"incorrect number of stories returned");
 	GHAssertEqualStrings([(SIStory *)[stories objectAtIndex:0] title], @"NoSpaceInStoryTitleAndUnformatted", @"Title not correct");
+}
+
+-(void) testReadStories {
+	GHAssertFalse([reader readStorySources:&error], nil);
+	GHAssertEquals(error.code, SIErrorInvalidKeyword, nil);
 }
 
 @end

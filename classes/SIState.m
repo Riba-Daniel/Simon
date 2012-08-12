@@ -11,7 +11,6 @@
 @implementation SIState
 
 @synthesize searchTerms = _searchTerms;
-@synthesize filteredSources = _filteredSources;
 @synthesize viewStory = _viewStory;
 
 @end

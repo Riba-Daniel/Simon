@@ -18,7 +18,7 @@
 	SIRuntime * runtime = [[[SIRuntime alloc] init] autorelease];
 	NSArray * mappings = [runtime allMappingMethodsInRuntime];
 
-	GHAssertEquals([mappings count], (NSUInteger)6, @"incorrect number of classes returned");
+	GHAssertEquals([mappings count], (NSUInteger)3, @"incorrect number of classes returned");
 
 }
 

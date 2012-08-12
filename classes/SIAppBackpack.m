@@ -15,16 +15,37 @@
 #import "SIStoryRunner.h"
 #import "SIUIAppBackpack.h"
 #import "SIHttpAppBackpack.h"
+#import <dUsefulStuff/NSObject+dUsefulStuff.h>
+
+@interface SIAppBackpack (){
+@private
+	SIStoryLogger *logger;
+}
+
+@end
 
 @implementation SIAppBackpack
 
 @synthesize state = _state;
 @synthesize runner = _runner;
+@synthesize mappings = _mappings;
+@synthesize reader = _reader;
+
 @dynamic storySources;
-@dynamic mappings;
 
 // Static reference to self to keep alive in an ARC environment.
 static SIAppBackpack *_backpack;
+
+-(void) dealloc {
+	DC_LOG(@"Freeing memory and exiting");
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
+	self.reader = nil;
+	DC_DEALLOC(_runner);
+	DC_DEALLOC(_state);
+	DC_DEALLOC(logger);
+	DC_DEALLOC(_mappings);
+	[super dealloc];
+}
 
 #pragma mark - Accessors
 
@@ -32,12 +53,12 @@ static SIAppBackpack *_backpack;
    return _backpack;
 }
 
--(NSArray *) storySources {
-	return self.runner.reader.storySources;
+-(NSArray *) mappings {
+	return _mappings;
 }
 
--(NSArray *) mappings {
-	return self.runner.mappings;
+-(SIStorySources *) storySources {
+	return self.reader.storySources;
 }
 
 #pragma mark - Lifecycle
@@ -55,17 +76,16 @@ static SIAppBackpack *_backpack;
 	}
 }
 
--(void) dealloc {
-	DC_LOG(@"Freeing memory and exiting");
-	DC_DEALLOC(_runner);
-	DC_DEALLOC(_state);
-	DC_DEALLOC(logger);
-	[super dealloc];
-}
-
 - (id)init {
 	self = [super init];
 	if (self) {
+
+		// Instantiate required instances
+		DC_LOG(@"Simon initialising");
+		self.reader = [[[SIStoryFileReader alloc] init] autorelease];
+		_state = [[SIState alloc] init];
+		_runner = [[SIStoryRunner alloc] init];
+		logger = [[SIStoryLogger alloc] init];
 
 		// Because this is executing during +load just hook onto the app start notification.
 		DC_LOG(@"Adding hook to application start");
@@ -81,13 +101,6 @@ static SIAppBackpack *_backpack;
 
 // Callbacks.
 -(void) startUp:(NSNotification *) notification {
-
-	// Instantiate required instances
-	DC_LOG(@"Simon initialising");
-	
-	_state = [[SIState alloc] init];
-	_runner = [[SIStoryRunner alloc] init];
-	logger = [[SIStoryLogger alloc] init];
 	
 	DC_LOG(@"Applying program hooks to notification center: %@", [NSNotificationCenter defaultCenter]);
 	[[NSNotificationCenter defaultCenter] addObserver:self
@@ -104,20 +117,59 @@ static SIAppBackpack *_backpack;
 															 object:nil];
 	
 	[self executeOnSimonThread: ^{
-
+		
 		DC_LOG(@"Starting Simon");
 		
 		NSError *error = nil;
-		if ([self.runner loadStories:&error]) {
-			// Tell the state to generate a set of run indexes to indicate all stories should be run.
-			[[NSNotificationCenter defaultCenter] postNotificationName:SI_RUN_STORIES_NOTIFICATION object:self];
-		} else {
+		
+		// Read the stories.
+		DC_LOG(@"Reading stories");
+		BOOL storiesRead = [self.reader readStorySources: &error];
+
+		if (!storiesRead) {
+			DC_LOG(@"Error reading story files: %@", [error localizedFailureReason]);
 			NSDictionary *userData = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInteger:error.code], SI_NOTIFICATION_KEY_STATUS,
 											  [error localizedFailureReason], SI_NOTIFICATION_KEY_MESSAGE, nil];
 			NSNotification *runFinished = [NSNotification notificationWithName:SI_SHUTDOWN_NOTIFICATION object:self userInfo:userData];
 			[[NSNotificationCenter defaultCenter] postNotification:runFinished];
+			return;
 		}
 		
+		self.runner.storySources = self.storySources;
+		
+		// If no stories where read then generate an error and return.
+		if ([self.storySources.sources count] == 0) {
+			[self setError:&error
+						 code:SIErrorNoStoriesFound
+				errorDomain:SIMON_ERROR_DOMAIN
+		 shortDescription:@"No stories read"
+			 failureReason:@"No stories where read from the files."];
+			DC_LOG(@"Error reading story files: %@", [error localizedFailureReason]);
+			NSDictionary *userData = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInteger:error.code], SI_NOTIFICATION_KEY_STATUS,
+											  [error localizedFailureReason], SI_NOTIFICATION_KEY_MESSAGE, nil];
+			NSNotification *runFinished = [NSNotification notificationWithName:SI_SHUTDOWN_NOTIFICATION object:self userInfo:userData];
+			[[NSNotificationCenter defaultCenter] postNotification:runFinished];
+			return;
+		}
+		
+		// Read the runtime to locate all mappings.
+		SIRuntime *runtime = [[SIRuntime alloc] init];
+		_mappings = [[runtime allMappingMethodsInRuntime] retain];
+		DC_DEALLOC(runtime);
+		
+		// Find the mapping for each story.
+		DC_LOG(@"Mappin steps to story steps");
+		[self.storySources.sources enumerateObjectsUsingBlock:^(id sourceObj, NSUInteger sourceIdx, BOOL *sourceStop) {
+			SIStorySource *source = (SIStorySource *) sourceObj;
+			[source.stories enumerateObjectsUsingBlock:^(id storyObj, NSUInteger storyIdx, BOOL *storyStop) {
+				SIStory *story = (SIStory *) storyObj;
+				[story mapSteps:(NSArray *) self.mappings];
+			}];
+		}];
+
+		// Everything is loaded and ready to go so post a notification to run.
+		[[NSNotificationCenter defaultCenter] postNotificationName:SI_RUN_STORIES_NOTIFICATION object:self];
+
 	}];
 }
 

@@ -10,49 +10,75 @@
 #import <dUsefulStuff/DCCommon.h>
 #import "NSString+Simon.h"
 
+@interface SIStorySource () {
+	@private
+}
+@end
+
 @implementation SIStorySource
 
 @synthesize stories = _stories;
+@synthesize selectedStories = _selectedStories;
 @synthesize source = _source;
+
+-(void) dealloc {
+	DC_LOG(@"Deallocing");
+	self.source = nil;
+	DC_DEALLOC(_stories);
+	DC_DEALLOC(_selectedStories);
+	[super dealloc];
+}
 
 -(id) init {
 	self = [super init];
 	if (self) {
-		self.stories = [NSMutableArray array];
+		_stories = [[NSMutableArray alloc] init];
 	}
 	return self;
 }
 
--(void) dealloc {
-	DC_LOG(@"Deallocing");
-	self.stories = nil;
-	self.source = nil;
-	[super dealloc];
+-(NSArray *) selectedStories {
+	if (_selectedStories == nil) {
+		[self selectAll];
+	}
+	return _selectedStories;
 }
 
 -(void) addStory:(SIStory *) story {
-	assert(self.stories != nil);
-	if (![self.stories isKindOfClass:[NSMutableArray class]]) {
-		self.stories = [NSMutableArray arrayWithArray:self.stories];
-	}
 	[(NSMutableArray *)self.stories addObject:story];
+	// Clear so next request for selected gets everything.
+	DC_DEALLOC(_selectedStories);
 }
 
--(id) copyWithZone:(NSZone *)zone {
+-(void) selectWithPrefix:(NSString *) prefix {
 	
-	SIStorySource *newSource = [[SIStorySource alloc] init];
+	// First see if the source name matches.
+	NSString *filename = [_source lastPathComponent];
+	if ([filename hasPrefix:prefix options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch)]) {
+		[self selectAll];
+		return;
+	}
 	
-	newSource.stories = self.stories;
-	newSource.source = self.source;
-	
-	return newSource;
+	// Now check each story title.
+	DC_DEALLOC(_selectedStories);
+	NSMutableIndexSet *selectedIndexes = [[NSMutableIndexSet alloc] init];
+	[self.stories enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+		if ([((SIStory *) obj).title hasPrefix:prefix options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch)]) {
+			[selectedIndexes addIndex:idx];
+		}
+	}];
+	_selectedStories = [[_stories objectsAtIndexes:selectedIndexes] retain];
+	DC_DEALLOC(selectedIndexes);
 }
 
--(NSArray *) storiesWithPrefix:(NSString *) prefix {
-	NSArray *filteredStories = [self.stories objectsAtIndexes:[self.stories indexesOfObjectsPassingTest:^BOOL (id obj, NSUInteger idx, BOOL *stop) {
-		return [((SIStory *) obj).title hasPrefix:prefix options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch)];
-	}]];
-	return filteredStories;
+-(void) selectAll {
+	DC_DEALLOC(_selectedStories);
+	_selectedStories = [[NSArray arrayWithArray:_stories] retain];
+}
+
+-(void) selectNone {
+	DC_DEALLOC(_selectedStories);
+	_selectedStories = [[NSArray alloc] init];
 }
 
 @end

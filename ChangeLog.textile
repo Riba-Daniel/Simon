@@ -47,6 +47,9 @@ h1. Version 0.1.7, March 2012
 * Removed caching of view handers because we simply don't need it. Also made code simpler.
 * Added the SIEnterText macro.
 * New dNodi query attributes: protocol and isKindOfClass.
+* Moved processing of runtime and mappings out of the SIStoryReader.
+* Created a SIStorySources class to manage SIStorySource instances and handle selections.
+* Refactored SIAppBackpack out to SIUIAppBackpack and SIHttpAppBackpack.
 
 h1. Version 0.1.6, March 2012
 

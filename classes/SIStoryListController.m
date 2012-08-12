@@ -13,7 +13,6 @@
 #import "SIStorySource.h"
 #import <dUsefulStuff/DCDialogs.h>
 #import "SIStoryDetailsController.h"
-#import "NSArray+Simon.h"
 #import "SIAppBackpack.h"
 
 @interface SIStoryListController (_private)
@@ -33,7 +32,7 @@
 }
 
 -(NSArray *) sourcesToDisplay {
-	return searchController.isActive ? [SIAppBackpack backpack].state.filteredSources : [SIAppBackpack backpack].storySources;
+	return searchController.isActive ? [SIAppBackpack backpack].storySources.selectedSources : [SIAppBackpack backpack].storySources.sources;
 }
 
 #pragma mark - UIView methods
@@ -210,7 +209,7 @@
 	DC_LOG(@"Filtering sources for text: %@", searchText);
 	SIState *state = [SIAppBackpack backpack].state;
 	state.searchTerms	= searchText;
-	state.filteredSources = [[SIAppBackpack backpack].storySources filter:searchText];
+	[[SIAppBackpack backpack].storySources selectWithPrefix:searchText];
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
@@ -221,7 +220,7 @@
 	DC_LOG(@"Cancelling search function");
 	SIState *state = [SIAppBackpack backpack].state;
 	state.searchTerms	= nil;
-	state.filteredSources = nil;
+	[[SIAppBackpack backpack].runner.storySources selectAll];
 	[self.searchDisplayController setActive:NO animated:YES];
 	[self.tableView reloadData];
 }

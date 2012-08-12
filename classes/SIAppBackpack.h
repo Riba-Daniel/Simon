@@ -12,25 +12,27 @@
 #import "SIState.h"
 #import "SIStoryLogger.h"
 #import "SIAppBackpackImplementation.h"
+#import "SIStorySources.h"
+#import "SIStoryFileReader.h"
 
 /**
  This class backpack's on a UIApplication in order to allow Simon to run in the background. You add it through the SIRun macro.
  */
-@interface SIAppBackpack : NSObject<SIAppBackpackImplementation> {
-@private
-	SIStoryLogger *logger;
-}
+@interface SIAppBackpack : NSObject<SIAppBackpackImplementation> 
 
-/// @name Properties 
+/// @name Properties
 
 /// The current state of Simon.
 @property (nonatomic, readonly) SIState *state;
 
 /// Readonly reference to the story sources.
-@property (nonatomic, readonly) NSArray *storySources;
+@property (nonatomic, readonly) SIStorySources *storySources;
 
 /// Readonly reference to the list of loaded SIStepMapping instances.
 @property (nonatomic, readonly) NSArray *mappings;
+
+/// The file reader to read story files with.
+@property (nonatomic, retain) SIStoryFileReader *reader;
 
 /// @name Tasks
 

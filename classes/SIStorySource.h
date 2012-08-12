@@ -11,7 +11,7 @@
 /**
  Represents a source of stories. Mainly used for reporting purposes.
  */
-@interface SIStorySource : NSObject<NSCopying>
+@interface SIStorySource : NSObject
 
 /**
  The source file which the story was read from.
@@ -21,7 +21,10 @@
 /**
  A list of the stories read from the file. These are SIStory implementations.
  */
-@property (nonatomic, retain) NSArray *stories;
+@property (nonatomic, readonly) NSArray *stories;
+
+/// THe stories that have been selected.
+@property (nonatomic, readonly) NSArray *selectedStories;
 
 /**
  Adds a story to the array of stories.
@@ -29,10 +32,18 @@
 -(void) addStory:(SIStory *) story;
 
 /**
- Returns a new array containing all the stories with the matching prefix based on their title.
+ Selects all stories whose titles start with the prefix or if the prefix matches the filename, selects all stories.
  
- @param prefix the text which a story's title must start with.
+ @param prefix the prefix to look for.
  */
--(NSArray *) storiesWithPrefix:(NSString *) prefix;
+-(void) selectWithPrefix:(NSString *) prefix;
+
+/**
+ Selects all stories.
+ */
+-(void) selectAll;
+
+/// Deselects all stories.
+-(void) selectNone;
 
 @end

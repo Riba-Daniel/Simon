@@ -7,33 +7,26 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SIStory.h"
-#import "SIStorySource.h"
+#import "SIStorySources.h"
 
 /**
  This class is used to read story files from the application. Each file must has the extension *.stories*.
  */
-@interface SIStoryFileReader : NSObject {
-	@private
-	NSCharacterSet *trimChars;
-	SIKeyword priorKeyword;
-	SIStorySource *currentSource;
-	NSUInteger currentLineNumber;
-}
+@interface SIStoryFileReader : NSObject
 
 /// @name Properties
 
-/// List of the SIStorySource instances created from the files read in.
-@property (retain, nonatomic) NSArray *storySources;
+/// Storage for the SIStorySource objects.
+@property (nonatomic, readonly) SIStorySources *storySources;
 
 /// @name Stories
 
 /**
- Reads the files and returns a list of SIStory objects.
+ Reads the files and load them into the storySources storage.
  
  @param error a pointer to a reference where any errors will be stored.
- @return An NSArry containing SIStorySource instances.
+ @return YES if the reading of stories was successful. If NO there will be an NSError in the error variable.
  */
--(NSArray *) readStorySources:(NSError **) error;
+-(BOOL) readStorySources:(NSError **) error;
 
 @end

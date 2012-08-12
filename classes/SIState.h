@@ -18,9 +18,6 @@
 /// The search terms entered by the user in the UI.
 @property (nonatomic, retain) NSString *searchTerms;
 
-/// This is a list of all the sources and stories that have been filtered down to those that the developer is interested in.
-@property (nonatomic, retain) NSArray *filteredSources;
-
 /// If not nil, then the UI should return to viewing the details of this story next time it is displayed.
 @property (nonatomic, retain) SIStory *viewStory;
 

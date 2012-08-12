@@ -9,50 +9,75 @@
 #import <GHUnitIOS/GHUnit.h>
 #import <Simon/SIStorySource.h>
 #import <Simon/SIStory.h>
+#import <dUsefulStuff/DCCommon.h>
 
-@interface SIStorySourceTests : GHTestCase
+@interface SIStorySourceTests : GHTestCase {
+	@private
+	SIStorySource *source;
+	SIStory *story1;
+	SIStory *story2;
+	SIStory *story3;
+}
 
 @end
 
 @implementation SIStorySourceTests
 
--(void) testCopy {
-	SIStorySource *source = [[[SIStorySource alloc] init] autorelease];
-	SIStory *story = [[[SIStory alloc] init] autorelease];
-	source.stories = [NSArray arrayWithObject:story];
-	source.source = @"abc";
-	
-	SIStorySource *newSource = [source copy];
-	GHAssertNotEquals(source, newSource, nil);
-	GHAssertEquals(source.stories, newSource.stories, nil);
-	GHAssertEquals(source.source, newSource.source, nil);
-	
-}
-
--(void) testStoriesWithPrefix {
-	SIStorySource *source = [[[SIStorySource alloc] init] autorelease];
-	SIStory *story1 = [[[SIStory alloc] init] autorelease];
+-(void) setUp {
+	source = [[SIStorySource alloc] init];
+	story1 = [[SIStory alloc] init];
 	story1.title = @"Abc";
-	SIStory *story2 = [[[SIStory alloc] init] autorelease];
+	[source addStory:story1];
+	story2 = [[SIStory alloc] init];
 	story2.title = @"def";
-	source.stories = [NSArray arrayWithObjects:story1, story2, nil];
-	
-	NSArray *stories = [source storiesWithPrefix:@"ab"];
-	GHAssertEquals([stories count], (NSUInteger) 1, nil);
-	GHAssertEquals([stories lastObject], story1, nil);
+	[source addStory:story2];
+	story3 = [[SIStory alloc] init];
+	story3.title = @"abc";
+	[source addStory:story3];
 }
 
--(void) testConvertsArrayToMutableArrayOnAddStory {
-	
-	SIStorySource *source = [[[SIStorySource alloc] init] autorelease];
-	GHAssertTrue([source.stories isKindOfClass:[NSMutableArray class]], nil);
-	NSArray *nonMutable = [NSArray array];
-	source.stories = nonMutable;
-	SIStory *story = [[[SIStory alloc] init] autorelease];
-	[source addStory:story];
-	GHAssertNotEquals(source.stories, nonMutable, nil);
-	GHAssertTrue([source.stories isKindOfClass:[NSMutableArray class]], nil);
-	
+-(void) tearDown {
+	DC_DEALLOC(source);
+	DC_DEALLOC(story1);
+	DC_DEALLOC(story2);
+	DC_DEALLOC(story3);
+}
+
+-(void) testStories {
+	NSArray *stories = source.stories;
+	GHAssertEquals([stories count], (NSUInteger) 3, nil);
+	GHAssertEquals([stories objectAtIndex:0], story1, nil);
+	GHAssertEquals([stories objectAtIndex:1], story2, nil);
+	GHAssertEquals([stories objectAtIndex:2], story3, nil);
+}
+
+-(void) testSelectingStories {
+	[source selectWithPrefix:@"ab"];
+	NSArray *stories = source.selectedStories;
+	GHAssertEquals([stories count], (NSUInteger) 2, nil);
+	GHAssertEquals([stories objectAtIndex:0], story1, nil);
+	GHAssertEquals([stories objectAtIndex:1], story3, nil);
+}
+
+-(void) testSelectStoriesCachesTheArray {
+	[source selectWithPrefix:@"ab"];
+	GHAssertEquals([source selectedStories], [source selectedStories], nil);
+}
+
+-(void) testSelectStoriesSelectsAllWhenMatchingSourceName {
+	source.source = @"/a/b/c/mno.stories";
+	[source selectWithPrefix:@"mn"];
+	GHAssertEquals([[source selectedStories] count], (NSUInteger) 3, nil);
+}
+
+-(void) testSelectAll {
+	[source selectAll];
+	GHAssertEquals([[source selectedStories] count], (NSUInteger) 3, nil);
+}
+
+-(void) testSelectNone {
+	[source selectNone];
+	GHAssertEquals([[source selectedStories] count], (NSUInteger) 0, nil);
 }
 
 @end
