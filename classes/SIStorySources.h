@@ -20,6 +20,12 @@
 /// Only the sources which contain selected stories.
 @property (nonatomic, readonly) NSArray *selectedSources;
 
+/// Returns the text used as a criteria for selecting stories.
+@property (nonatomic, readonly) NSString *selectionCriteria;
+
+/// If not nil, indicates the index path to the story for individual viewing. Usually this is set and retrieved by the UI. Setting it does not effect selection. This is mainly a place to store this value between displays.
+@property (nonatomic, retain) NSIndexPath *currentIndexPath;
+
 /// @name Tasks
 
 /**
@@ -36,10 +42,7 @@
  */
 -(void) selectWithPrefix:(NSString *) prefix;
 
-/// Selects all stories and therefore all sources.
+/// Selects all stories and therefore all sources. This automatically clears any search criteria.
 -(void) selectAll;
-
-// Deselects all stories.
--(void) selectNone;
 
 @end

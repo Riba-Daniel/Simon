@@ -16,7 +16,8 @@
 #import "SIAppBackpack.h"
 
 @interface SIStoryListController (_private)
--(void) runSingleStory;
+-(void) runStories;
+-(void) backToStoryList;
 -(NSArray *) sourcesToDisplay;
 -(void) filterContentForSearchText:(NSString *)searchText scope:(NSString *)scope;
 @end
@@ -32,7 +33,7 @@
 }
 
 -(NSArray *) sourcesToDisplay {
-	return searchController.isActive ? [SIAppBackpack backpack].storySources.selectedSources : [SIAppBackpack backpack].storySources.sources;
+	return [SIAppBackpack backpack].storySources.selectedSources;
 }
 
 #pragma mark - UIView methods
@@ -40,8 +41,6 @@
 -(void) viewDidLoad {
 	
 	DC_LOG(@"Loading report controller");
-	
-	SIState *state = [SIAppBackpack backpack].state;
 	
 	// This should stop extra divider lines from appearing down the screen when
 	// there are not enough cells.
@@ -63,43 +62,33 @@
 	searchController.searchResultsDelegate = self;
 	
 	self.tableView.tableHeaderView = searchBar;
-	
+
+	SIStorySources *storySources = [SIAppBackpack backpack].storySources;
+
 	// If search terms have been passed in then setup a search.
-	if (![NSString isEmpty:state.searchTerms]) {
-		DC_LOG(@"Initialising with search terms: %@", state.searchTerms);
+	NSString *searchTerms = storySources.selectionCriteria;
+	if (![NSString isEmpty:searchTerms]) {
+		DC_LOG(@"Initialising with search terms: %@", searchTerms);
 		[searchController setActive:YES animated:YES];
-		searchBar.text = state.searchTerms;
+		searchBar.text = searchTerms;
 	}
 	
 	[searchBar release];
 	
 	// If we are being asked to show details then do so.
-	if (state.viewStory != nil) {
+	if (storySources.currentIndexPath != nil) {
 		
-		DC_LOG(@"Showing details for story: %@", state.viewStory);
+		DC_LOG(@"Showing details for story at index path: %@", storySources.currentIndexPath);
 		
-		// Find the indexs we need
-		__block NSUInteger storyIndex = NSNotFound;
-		NSUInteger sourceIndex = [[self sourcesToDisplay] indexOfObjectPassingTest: ^BOOL (id srcObj, NSUInteger srcIdx, BOOL *srcStop) {
-			storyIndex = [((SIStorySource *) srcObj).stories indexOfObjectPassingTest: ^BOOL (id obj, NSUInteger idx, BOOL *stop) {
-				return [((SIStory *) obj).title isEqualToString:state.viewStory.title];
-			}];
-			return storyIndex != NSNotFound;
-		}];
-		
-		// Build a path.
-		NSIndexPath *storyIndexPath = [NSIndexPath indexPathForRow:storyIndex inSection:sourceIndex];
-		DC_LOG(@"Index path of story: %@", storyIndexPath);
-
 		// And scroll to it.
 		if (searchController.isActive) {
 			DC_LOG(@"Selecting in search table view");
-			[searchController.searchResultsTableView selectRowAtIndexPath:storyIndexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
-			[searchController.searchResultsTableView.delegate tableView:searchController.searchResultsTableView didSelectRowAtIndexPath:storyIndexPath];
+			[searchController.searchResultsTableView selectRowAtIndexPath:storySources.currentIndexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+			[searchController.searchResultsTableView.delegate tableView:searchController.searchResultsTableView didSelectRowAtIndexPath:storySources.currentIndexPath];
 		} else {
 			DC_LOG(@"Selecting in full table view");
-			[self.tableView selectRowAtIndexPath:storyIndexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
-			[self.tableView.delegate tableView:self.tableView didSelectRowAtIndexPath:storyIndexPath];
+			[self.tableView selectRowAtIndexPath:storySources.currentIndexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+			[self.tableView.delegate tableView:self.tableView didSelectRowAtIndexPath:storySources.currentIndexPath];
 		}
 		
 	}
@@ -170,6 +159,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	
+	// Track the selected story.
+	[SIAppBackpack backpack].storySources.currentIndexPath = indexPath;
+	
 	// Load the controller.
 	detailsController = [[SIStoryDetailsController alloc] initWithStyle:UITableViewStylePlain];
 	
@@ -181,20 +173,33 @@
 	UIBarButtonItem *rerunButton = [[UIBarButtonItem alloc] initWithTitle:@"Run" 
 																						 style:UIBarButtonItemStylePlain 
 																						target:self 
-																						action:@selector(runSingleStory)];
-	
+																						action:@selector(runStories)];
 	detailsController.navigationItem.rightBarButtonItem = rerunButton;
 	[rerunButton release];
-	
+
+	UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back"
+																						style:UIBarButtonItemStylePlain
+																					  target:self
+																					  action:@selector(backToStoryList)];
+	detailsController.navigationItem.leftBarButtonItem = backButton;
+	[backButton release];
+
    DC_LOG(@"Loading details for story %@", detailsController.story.title);
    DC_LOG(@"nav %@", super.navigationController);
 	[super.navigationController pushViewController:detailsController animated:YES];
 }
 
-#pragma mark - Running stories
+#pragma mark - Button actions
 
--(void) runSingleStory {	
-	DC_LOG(@"Rerunning story");
+-(void) backToStoryList {
+	// Coming back so clear the selected story. This is the only time we do this.
+	DC_LOG(@"Clearing current story and returning to story list");
+	[SIAppBackpack backpack].storySources.currentIndexPath = nil;
+	[super.navigationController popViewControllerAnimated:YES];
+}
+
+-(void) runStories {
+	DC_LOG(@"Rerunning stories, run single story only indexPath: %@", [SIAppBackpack backpack].storySources.currentIndexPath);
 	[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:SI_RUN_STORIES_NOTIFICATION object:self userInfo:nil]];
 }
 
@@ -207,8 +212,6 @@
 
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope {
 	DC_LOG(@"Filtering sources for text: %@", searchText);
-	SIState *state = [SIAppBackpack backpack].state;
-	state.searchTerms	= searchText;
 	[[SIAppBackpack backpack].storySources selectWithPrefix:searchText];
 }
 
@@ -218,9 +221,7 @@
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
 	DC_LOG(@"Cancelling search function");
-	SIState *state = [SIAppBackpack backpack].state;
-	state.searchTerms	= nil;
-	[[SIAppBackpack backpack].runner.storySources selectAll];
+	[[SIAppBackpack backpack].storySources selectAll];
 	[self.searchDisplayController setActive:NO animated:YES];
 	[self.tableView reloadData];
 }

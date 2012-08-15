@@ -16,6 +16,13 @@
 	BOOL startSent;
 	BOOL endSent;
 	SIStoryRunner *runner;
+	SIStorySources *sources;
+	SIStorySource *source1;
+	SIStorySource *source2;
+	id mockStory1;
+	id mockStory2;
+	id mockStory3;
+	
 }
 -(void) runStart:(NSNotification *) notification;
 -(void) runEnd:(NSNotification *) notification;
@@ -34,35 +41,76 @@
 														  selector:@selector(runEnd:)
 																name:SI_RUN_FINISHED_NOTIFICATION
 															 object:nil];
+	
+	sources = [[SIStorySources alloc] init];
+	
+	source1 = [[SIStorySource alloc] init];
+	[sources addSource:source1];
+
+	source2 = [[SIStorySource alloc] init];
+	[sources addSource:source2];
+
+	mockStory1 = [OCMockObject mockForClass:[SIStory class]];
+	[source1 addStory:mockStory1];
+
+	mockStory2 = [OCMockObject mockForClass:[SIStory class]];
+	[source2 addStory:mockStory2];
+
+	mockStory3 = [OCMockObject mockForClass:[SIStory class]];
+	[source2 addStory:mockStory3];
+
 	runner = [[SIStoryRunner alloc] init];
+	runner.storySources = sources;
 }
 
 -(void) tearDown {
+	[mockStory1 verify];
+	[mockStory2 verify];
+	[mockStory3 verify];
 	DC_DEALLOC(runner);
+	DC_DEALLOC(sources);
+	DC_DEALLOC(source1);
+	DC_DEALLOC(source2);
+	DC_DEALLOC(mockStory1);
+	DC_DEALLOC(mockStory2);
+	DC_DEALLOC(mockStory3);
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
--(void) testExecuting {
-	
-	SIStorySources *sources = [[[SIStorySources alloc] init] autorelease];
-	SIStorySource *source = [[[SIStorySource alloc] init] autorelease];
-	[sources addSource:source];
-	id mockStory = [OCMockObject mockForClass:[SIStory class]];
-	[[mockStory expect] reset];
+-(void) testExecutingAllStories {
+
+	[[mockStory1 expect] reset];
+	[[mockStory2 expect] reset];
+	[[mockStory3 expect] reset];
 	BOOL yes = YES;
-	[[[mockStory expect] andReturnValue:OCMOCK_VALUE(yes)] invokeWithSource:source];
-	[source addStory:mockStory];
-	runner.storySources = sources;
+	[[[mockStory1 expect] andReturnValue:OCMOCK_VALUE(yes)] invokeWithSource:source1];
+	[[[mockStory2 expect] andReturnValue:OCMOCK_VALUE(yes)] invokeWithSource:source2];
+	[[[mockStory3 expect] andReturnValue:OCMOCK_VALUE(yes)] invokeWithSource:source2];
 
 	[runner run];
 	
-	[[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+	[[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.2]];
+	[NSThread sleepForTimeInterval:0.2];
 	
-	[mockStory verify];
 	GHAssertTrue(startSent, nil);
 	GHAssertTrue(endSent, nil);
 }
 
+-(void) testRunCurrentStoryOnly {
+	[[mockStory2 expect] reset];
+	BOOL yes = YES;
+	[[[mockStory2 expect] andReturnValue:OCMOCK_VALUE(yes)] invokeWithSource:source2];
+
+	NSIndexPath *currentStory = [NSIndexPath indexPathForRow:0 inSection:1];
+	sources.currentIndexPath = currentStory;
+	[runner run];
+	
+	[[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.2]];
+	[NSThread sleepForTimeInterval:0.2];
+	
+	GHAssertTrue(startSent, nil);
+	GHAssertTrue(endSent, nil);
+}
 
 -(void) runStart:(NSNotification *) notification {
 	startSent = YES;

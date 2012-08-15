@@ -30,6 +30,7 @@
 		322DA95315A18A4B005CFC83 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 653D0E8D13A782AD00A5AB82 /* Foundation.framework */; };
 		322DA95615A18A4B005CFC83 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 322DA95515A18A4B005CFC83 /* main.m */; };
 		322DA95A15A18A4B005CFC83 /* PieMan.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 322DA95915A18A4B005CFC83 /* PieMan.1 */; };
+		32326CD715DA8F6D00C8B1DC /* NSObject+SimonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32326CD615DA8F6D00C8B1DC /* NSObject+SimonTests.m */; };
 		324108B61509C19400AFBF66 /* SIUIViewDescriptionVisitor.h in Headers */ = {isa = PBXBuildFile; fileRef = 324108B41509C19400AFBF66 /* SIUIViewDescriptionVisitor.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		324108B71509C19400AFBF66 /* SIUIViewDescriptionVisitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 324108B51509C19400AFBF66 /* SIUIViewDescriptionVisitor.m */; };
 		324108BA1509C23200AFBF66 /* SIUIViewDescriptionVisitorDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 324108B91509C23200AFBF66 /* SIUIViewDescriptionVisitorDelegate.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -77,8 +78,6 @@
 		32A9D11014C907BC00B0CFBD /* NSInvocations.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A9D10F14C907BC00B0CFBD /* NSInvocations.m */; };
 		32A9D11314C914B500B0CFBD /* SIMacroTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A9D11214C914B500B0CFBD /* SIMacroTests.m */; };
 		32AF044215CE36C500501B1E /* SIAppBackpackTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AF044115CE36C500501B1E /* SIAppBackpackTests.m */; };
-		32AF044715CE5E4800501B1E /* SIState.h in Headers */ = {isa = PBXBuildFile; fileRef = 32AF044515CE5E4800501B1E /* SIState.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		32AF044815CE5E4800501B1E /* SIState.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AF044615CE5E4800501B1E /* SIState.m */; };
 		32AF045215CEB73600501B1E /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32AF045115CEB73600501B1E /* CFNetwork.framework */; };
 		32AF045415CEB75F00501B1E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32AF045315CEB75F00501B1E /* Security.framework */; };
 		32AF045915CEB7BA00501B1E /* SIIncomingHTTPConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 32AF045515CEB7BA00501B1E /* SIIncomingHTTPConnection.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -246,6 +245,7 @@
 		322DA95515A18A4B005CFC83 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		322DA95815A18A4B005CFC83 /* PieMan-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PieMan-Prefix.pch"; sourceTree = "<group>"; };
 		322DA95915A18A4B005CFC83 /* PieMan.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = PieMan.1; sourceTree = "<group>"; };
+		32326CD615DA8F6D00C8B1DC /* NSObject+SimonTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SimonTests.m"; sourceTree = "<group>"; };
 		324108B41509C19400AFBF66 /* SIUIViewDescriptionVisitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SIUIViewDescriptionVisitor.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		324108B51509C19400AFBF66 /* SIUIViewDescriptionVisitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIUIViewDescriptionVisitor.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		324108B91509C23200AFBF66 /* SIUIViewDescriptionVisitorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIViewDescriptionVisitorDelegate.h; sourceTree = "<group>"; };
@@ -294,8 +294,6 @@
 		32A9D10F14C907BC00B0CFBD /* NSInvocations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = NSInvocations.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		32A9D11214C914B500B0CFBD /* SIMacroTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIMacroTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		32AF044115CE36C500501B1E /* SIAppBackpackTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIAppBackpackTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		32AF044515CE5E4800501B1E /* SIState.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SIState.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		32AF044615CE5E4800501B1E /* SIState.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIState.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		32AF045115CEB73600501B1E /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		32AF045315CEB75F00501B1E /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		32AF045515CEB7BA00501B1E /* SIIncomingHTTPConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIIncomingHTTPConnection.h; sourceTree = "<group>"; };
@@ -557,6 +555,7 @@
 			isa = PBXGroup;
 			children = (
 				65D35BC213A8BA130007A8AD /* NSString+SimonTests.m */,
+				32326CD615DA8F6D00C8B1DC /* NSObject+SimonTests.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -699,8 +698,6 @@
 				65FCD12513AF622300A90FCA /* SIRuntime.m */,
 				32AF045715CEB7BA00501B1E /* SIServerException.h */,
 				32AF045815CEB7BA00501B1E /* SIServerException.m */,
-				32AF044515CE5E4800501B1E /* SIState.h */,
-				32AF044615CE5E4800501B1E /* SIState.m */,
 				328DE14815D39945009A16C1 /* SIUIAppBackpack.h */,
 				328DE14915D39945009A16C1 /* SIUIAppBackpack.m */,
 				659E629B13DAFC4000ACD34C /* SIUIApplication.h */,
@@ -898,7 +895,6 @@
 				0BF2104515D25412006BB2CA /* SIResultListener.h in Headers */,
 				32AF045B15CEB7BA00501B1E /* SIServerException.h in Headers */,
 				3265B02715144DB400BE0930 /* SIUIAbstractEventGenerator.h in Headers */,
-				32AF044715CE5E4800501B1E /* SIState.h in Headers */,
 				321A346A1519FA9E00B22EDD /* NSObject+Simon.h in Headers */,
 				328DE14615D3792C009A16C1 /* SIHttpResultSender.h in Headers */,
 				328DE14A15D39946009A16C1 /* SIUIAppBackpack.h in Headers */,
@@ -1111,7 +1107,6 @@
 				3265B02815144DB400BE0930 /* SIUIAbstractEventGenerator.m in Sources */,
 				321A346B1519FA9E00B22EDD /* NSObject+Simon.m in Sources */,
 				3260B811151CB81C005A5AAA /* SIUINotAnInputViewException.m in Sources */,
-				32AF044815CE5E4800501B1E /* SIState.m in Sources */,
 				32AF045A15CEB7BA00501B1E /* SIIncomingHTTPConnection.m in Sources */,
 				32AF045C15CEB7BA00501B1E /* SIServerException.m in Sources */,
 				0BF2104615D25412006BB2CA /* SIResultListener.m in Sources */,
@@ -1154,6 +1149,7 @@
 				328DE14015D368D2009A16C1 /* SIResultListenerTests.m in Sources */,
 				328DE14315D37566009A16C1 /* GHTestCase+GHTestCase_TestUtils.m in Sources */,
 				3210989115D6896C00567D6D /* SIStorySourcesTests.m in Sources */,
+				32326CD715DA8F6D00C8B1DC /* NSObject+SimonTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

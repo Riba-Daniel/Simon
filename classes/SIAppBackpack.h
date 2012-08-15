@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 
 #import "SIStoryRunner.h"
-#import "SIState.h"
 #import "SIStoryLogger.h"
 #import "SIAppBackpackImplementation.h"
 #import "SIStorySources.h"
@@ -21,9 +20,6 @@
 @interface SIAppBackpack : NSObject<SIAppBackpackImplementation> 
 
 /// @name Properties
-
-/// The current state of Simon.
-@property (nonatomic, readonly) SIState *state;
 
 /// Readonly reference to the story sources.
 @property (nonatomic, readonly) SIStorySources *storySources;

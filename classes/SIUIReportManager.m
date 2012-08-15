@@ -11,7 +11,6 @@
 #import <UIKit/UIKit.h>
 #import <dUsefulStuff/DCCommon.h>
 #import "NSObject+Simon.h"
-#import "SIState.h"
 
 typedef void (^completion)();
 

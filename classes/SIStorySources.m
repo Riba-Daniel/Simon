@@ -20,10 +20,14 @@
 
 @synthesize sources = _sources;
 @synthesize selectedSources = _selectedSources;
+@synthesize selectionCriteria = _selectionCriteria;
+@synthesize currentIndexPath = _currentIndexPath;
 
 -(void) dealloc {
+	self.currentIndexPath = nil;
 	DC_DEALLOC(_sources);
 	DC_DEALLOC(_selectedSources);
+	DC_DEALLOC(_selectionCriteria);
 	[super dealloc];
 }
 
@@ -58,10 +62,11 @@
 		}
 	}];
 	
-	// Clear any old cached data.
 	DC_DEALLOC(_selectedSources);
 	_selectedSources = [[_sources objectsAtIndexes:selectedIndexes] retain];
 	DC_DEALLOC(selectedIndexes);
+	DC_DEALLOC(_selectionCriteria);
+	_selectionCriteria = [prefix retain];
 }
 
 -(void) selectAll {
@@ -70,14 +75,7 @@
 		[(SIStorySource *) obj selectAll];
 	}];
 	_selectedSources = [[NSArray arrayWithArray:_sources] retain];
-}
-
--(void) selectNone {
-	DC_DEALLOC(_selectedSources);
-	[_sources enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-		[(SIStorySource *) obj selectNone];
-	}];
-	_selectedSources = [[NSArray alloc] init];
+	_selectionCriteria = nil;
 }
 
 @end

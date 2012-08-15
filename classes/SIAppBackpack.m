@@ -26,7 +26,6 @@
 
 @implementation SIAppBackpack
 
-@synthesize state = _state;
 @synthesize runner = _runner;
 @synthesize mappings = _mappings;
 @synthesize reader = _reader;
@@ -41,7 +40,6 @@ static SIAppBackpack *_backpack;
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	self.reader = nil;
 	DC_DEALLOC(_runner);
-	DC_DEALLOC(_state);
 	DC_DEALLOC(logger);
 	DC_DEALLOC(_mappings);
 	[super dealloc];
@@ -83,7 +81,6 @@ static SIAppBackpack *_backpack;
 		// Instantiate required instances
 		DC_LOG(@"Simon initialising");
 		self.reader = [[[SIStoryFileReader alloc] init] autorelease];
-		_state = [[SIState alloc] init];
 		_runner = [[SIStoryRunner alloc] init];
 		logger = [[SIStoryLogger alloc] init];
 

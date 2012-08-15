@@ -72,10 +72,15 @@
 	GHAssertEquals([sourcesList count], (NSUInteger) 2, nil);
 }
 
--(void) testSelectNone {
-	[sources selectNone];
-	NSArray *sourcesList = sources.selectedSources;
-	GHAssertEquals([sourcesList count], (NSUInteger) 0, nil);
+-(void) testSelectAllClearsCriteria {
+	[sources selectWithPrefix:@"ab"];
+	[sources selectAll];
+	GHAssertNil(sources.selectionCriteria, nil);
+}
+
+-(void) testSelectingStoriesReturnsSelectionCriteria {
+	[sources selectWithPrefix:@"ab"];
+	GHAssertEquals(sources.selectionCriteria, @"ab", nil);
 }
 
 @end

@@ -22,10 +22,21 @@
 	} else {
 		// Goto the main Q.
 		DC_LOG(@"Dispatching to main thread");
+		__block NSException *exception = nil;
 		dispatch_queue_t mainQ = dispatch_get_main_queue();
 		dispatch_sync(mainQ, ^{
-			block();
+			@try {
+				block();
+			}
+			@catch (NSException *e) {
+				DC_LOG(@"Exception caught: %@", e);
+				exception = [e retain];
+			}
 		});
+		if (exception != nil) {
+			DC_LOG(@"throwing exception");
+			@throw [exception autorelease];
+		}
 	}
 }
 
