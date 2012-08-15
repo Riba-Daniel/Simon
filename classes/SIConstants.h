@@ -26,6 +26,7 @@
 #define SI_RUN_STARTING_NOTIFICATION @"Simon run starting"
 #define SI_RUN_FINISHED_NOTIFICATION @"Simon run finished"
 #define SI_SHUTDOWN_NOTIFICATION @"Simon shutdown"
+#define SI_HIDE_WINDOW_RUN_STORIES_NOTIFICATION @"Simon hide window and run stories"
 #define SI_RUN_STORIES_NOTIFICATION @"Simon run stories"
 
 // Keys for notification dictionaries.

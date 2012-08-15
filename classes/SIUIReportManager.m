@@ -17,7 +17,7 @@ typedef void (^completion)();
 @interface SIUIReportManager(_private)
 -(UIView *) uiParentView;
 -(void) closeSimon;
--(void) removeWindowAndRunStories;
+-(void) removeWindowAndRun:(NSNotification *) notification;
 -(void) removeWindowWithCompletion:(completion) completion;
 @end
 
@@ -26,9 +26,21 @@ typedef void (^completion)();
 @implementation SIUIReportManager
 
 -(void) dealloc {
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	DC_DEALLOC(navController);
 	DC_LOG(@"Deallocing");
 	[super dealloc];
+}
+
+-(id) init {
+	self = [super init];
+	if (self) {
+		[[NSNotificationCenter defaultCenter] addObserver:self
+															  selector:@selector(removeWindowAndRun:)
+																	name:SI_HIDE_WINDOW_RUN_STORIES_NOTIFICATION
+																 object:nil];
+	}
+	return self;
 }
 
 -(void) displayUI {
@@ -51,7 +63,7 @@ typedef void (^completion)();
 		UIBarButtonItem *rerunButton = [[UIBarButtonItem alloc] initWithTitle:@"Run"
 																							 style:UIBarButtonItemStylePlain
 																							target:self
-																							action:@selector(removeWindowAndRunStories)];
+																							action:@selector(removeWindowAndRun:)];
 		reportController.navigationItem.leftBarButtonItem = closeButton;
 		reportController.navigationItem.rightBarButtonItem = rerunButton;
 		[closeButton release];
@@ -85,7 +97,7 @@ typedef void (^completion)();
 	}];
 }
 
--(void) removeWindowAndRunStories {
+-(void) removeWindowAndRun:(NSNotification *) notification {
 	[self removeWindowWithCompletion:^(){
 		[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:SI_RUN_STORIES_NOTIFICATION object:self]];
 	}];

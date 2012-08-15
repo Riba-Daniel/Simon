@@ -192,15 +192,16 @@
 #pragma mark - Button actions
 
 -(void) backToStoryList {
-	// Coming back so clear the selected story. This is the only time we do this.
+	// Coming back so clear the selected story. This is the only time we do this because everything else needs to know what is currently selected(displayed).
 	DC_LOG(@"Clearing current story and returning to story list");
 	[SIAppBackpack backpack].storySources.currentIndexPath = nil;
 	[super.navigationController popViewControllerAnimated:YES];
 }
 
 -(void) runStories {
+	// Post back to the UI manager so that it can remove the window.
 	DC_LOG(@"Rerunning stories, run single story only indexPath: %@", [SIAppBackpack backpack].storySources.currentIndexPath);
-	[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:SI_RUN_STORIES_NOTIFICATION object:self userInfo:nil]];
+	[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:SI_HIDE_WINDOW_RUN_STORIES_NOTIFICATION object:self userInfo:nil]];
 }
 
 #pragma mark - View rotation
