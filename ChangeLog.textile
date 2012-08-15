@@ -4,7 +4,7 @@ title: Change Log
 root-url: ../
 simon-tab-class: tabbar-tab-highlighted
 ---
-h1. Version 0.2.0, Aug 2012
+h1. Version 0.1.9, Aug 2012
 
 * Incremented minor version to 0.2.0 because we are adding HTTP functionality for CI build boxes.
 * Added the boolean property logActions to enabled/isable logging of actions to help debug.
