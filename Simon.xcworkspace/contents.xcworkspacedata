@@ -2,15 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:../CocoaHTTPServer/CocoaHTTPServer/CocoaHTTPServer.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:../dNodi/dNodi.xcodeproj">
-   </FileRef>
-   <FileRef
-      location = "group:../dUsefulStuff/dUsefulStuff.xcodeproj">
-   </FileRef>
-   <FileRef
       location = "group:Simon.xcodeproj">
    </FileRef>
 </Workspace>

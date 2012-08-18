@@ -27,7 +27,7 @@ $DC_SCRIPTS_DIR/clean.sh
 $DC_SCRIPTS_DIR/createDocumentation.sh
 
 compileWorkspace iphonesimulator5.1 i386 i386
-compileWorkspace iphoneos6.0 "armv6 armv7" "armv6 armv7"
+compileWorkspace iphoneos6.0 "armv7" "armv7"
 
 $DC_SCRIPTS_DIR/buildStaticLibrary.sh
 $DC_SCRIPTS_DIR/assembleFramework.sh
