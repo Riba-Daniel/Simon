@@ -16,7 +16,7 @@
 @implementation SIHttpAppBackpack
 
 -(void) dealloc {
-	DC_LOG(@"Freeing memory and exiting");
+	DC_LOG(@"Stopping server");
 	[server stop];
 	DC_DEALLOC(server);
 	[super dealloc];
@@ -26,11 +26,17 @@
 	self = [super init];
 	if (self) {
 		
-		int port = HTTP_SIMON_PORT;
+		// Get a custom port value from the process args.
+		NSInteger port = HTTP_SIMON_PORT;
 		if ([SIAppBackpack isArgumentPresentWithName:ARG_SIMON_PORT]) {
-			//NSString *strValue = [SIAppBackpack argumentValueForName:ARG_SIMON_PORT];
+			NSString *strValue = [SIAppBackpack argumentValueForName:ARG_SIMON_PORT];
+			if (strValue != nil) {
+				NSInteger argValue = [strValue integerValue];
+				if (argValue > 0) {
+					port = argValue;
+				}
+			}
 		}
-		
 		
 		DC_LOG(@"Starting HTTP server on port: %i", port);
 		[DDLog addLogger:[DDTTYLogger sharedInstance]];

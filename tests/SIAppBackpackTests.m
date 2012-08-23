@@ -13,22 +13,11 @@
 #import <Simon/SIAppBackpack.h>
 #import <Simon/SIConstants.h>
 #import <Simon/SIStoryFileReader.h>
-#import <Simon/SIHttpAppBackpack.h>
 #import <CocoaHTTPServer/HTTPServer.h>
 
 // Hack into the process to update arguments for testing.
-@interface NSProcessInfo (_hack)
+@interface NSProcessInfo (SIAppBackpackTests)
 - (void)setArguments:(id)arg1;
-@end
-
-@interface SIHttpAppBackpack (_hack)
--(HTTPServer *) server;
-@end
-
-@implementation SIHttpAppBackpack (_hack)
--(HTTPServer *) server {
-	return server;
-}
 @end
 
 @interface SIAppBackpackTests : GHTestCase {

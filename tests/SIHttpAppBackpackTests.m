@@ -16,15 +16,15 @@
 #import <CocoaHTTPServer/HTTPServer.h>
 
 // Hack into the process to update arguments for testing.
-@interface NSProcessInfo (_hack)
+@interface NSProcessInfo (SIHttpAppBackpackTests)
 - (void)setArguments:(id)arg1;
 @end
 
-@interface SIHttpAppBackpack (_hack)
+@interface SIHttpAppBackpack (SIHttpAppBackpackTests)
 -(HTTPServer *) server;
 @end
 
-@implementation SIHttpAppBackpack (_hack)
+@implementation SIHttpAppBackpack (SIHttpAppBackpackTests)
 -(HTTPServer *) server {
 	return server;
 }
@@ -59,6 +59,15 @@
 	SIHttpAppBackpack *backpack = [[[SIHttpAppBackpack alloc] init] autorelease];
 	HTTPServer *server = [backpack server];
 	GHAssertEquals([server port], (UInt16) HTTP_SIMON_PORT, nil);
+}
+
+-(void) testHttpBackpackStartsServerOnCustomPort {
+	NSArray *args = [NSArray arrayWithObjects:@"--simon-port", @"12345", nil];
+	[[NSProcessInfo processInfo] setArguments:args];
+	
+	SIHttpAppBackpack *backpack = [[[SIHttpAppBackpack alloc] init] autorelease];
+	HTTPServer *server = [backpack server];
+	GHAssertEquals([server port], (UInt16) 12345, nil);
 }
 
 
