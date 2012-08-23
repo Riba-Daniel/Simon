@@ -97,6 +97,7 @@
 		32B9594115E5E6D100470287 /* libCocoaHTTPServer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32B9592D15E5E62F00470287 /* libCocoaHTTPServer.a */; };
 		32B9594215E5E6D100470287 /* libdNodi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32B9593515E5E62F00470287 /* libdNodi.a */; };
 		32B9594315E5E6D100470287 /* libdUsefulStuff.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32CDF2EF15E5E5DA001F4317 /* libdUsefulStuff.a */; };
+		32B9594515E6054700470287 /* SIHttpAppBackpackTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B9594415E6054700470287 /* SIHttpAppBackpackTests.m */; };
 		32BF7CFE14F9152D00A0B197 /* SIUITapGeneratorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BF7CFD14F9152D00A0B197 /* SIUITapGeneratorTests.m */; };
 		32BF7D0014F9CB2900A0B197 /* SIUISwipeGeneratorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BF7CFF14F9CB2900A0B197 /* SIUISwipeGeneratorTests.m */; };
 		32C30DD715D3A73100AA7347 /* SIHttpAppBackpack.h in Headers */ = {isa = PBXBuildFile; fileRef = 32C30DD515D3A73100AA7347 /* SIHttpAppBackpack.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -397,6 +398,7 @@
 		32B0AC0A14E8E8210020500E /* SIAbstractException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIAbstractException.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		32B0AC0D14E8EB170020500E /* SIUIException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SIUIException.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		32B0AC0E14E8EB170020500E /* SIUIException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIUIException.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		32B9594415E6054700470287 /* SIHttpAppBackpackTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIHttpAppBackpackTests.m; sourceTree = "<group>"; };
 		32BF7CFD14F9152D00A0B197 /* SIUITapGeneratorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIUITapGeneratorTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		32BF7CFF14F9CB2900A0B197 /* SIUISwipeGeneratorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIUISwipeGeneratorTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		32C30DD515D3A73100AA7347 /* SIHttpAppBackpack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIHttpAppBackpack.h; sourceTree = "<group>"; };
@@ -836,13 +838,16 @@
 		653D0ED413A783DC00A5AB82 /* tests */ = {
 			isa = PBXGroup;
 			children = (
-				328DE13E15D368B9009A16C1 /* Reporting */,
-				328DE13D15D3688D009A16C1 /* Categories */,
 				94657741141C95160026F1FB /* AbstractTestWithControlsOnView.h */,
 				94657742141C95160026F1FB /* AbstractTestWithControlsOnView.m */,
+				328DE13D15D3688D009A16C1 /* Categories */,
+				328DE14115D37566009A16C1 /* GHTestCase+GHTestCase_TestUtils.h */,
+				328DE14215D37566009A16C1 /* GHTestCase+GHTestCase_TestUtils.m */,
 				6583B43113D1CB4F005E13F3 /* GHUnit */,
 				32A9D10F14C907BC00B0CFBD /* NSInvocations.m */,
+				328DE13E15D368B9009A16C1 /* Reporting */,
 				32AF044115CE36C500501B1E /* SIAppBackpackTests.m */,
+				32B9594415E6054700470287 /* SIHttpAppBackpackTests.m */,
 				32A9D11214C914B500B0CFBD /* SIMacroTests.m */,
 				65FCD11713ADE3C200A90FCA /* SIRuntimeTests.m */,
 				659E62A213DB027E00ACD34C /* SIUIApplicationTests.m */,
@@ -852,8 +857,6 @@
 				32D5D98B14E135A300D29DD5 /* TestViewController.h */,
 				32D5D98C14E135A300D29DD5 /* TestViewController.m */,
 				659E62A013DB026400ACD34C /* UI */,
-				328DE14115D37566009A16C1 /* GHTestCase+GHTestCase_TestUtils.h */,
-				328DE14215D37566009A16C1 /* GHTestCase+GHTestCase_TestUtils.m */,
 			);
 			path = tests;
 			sourceTree = "<group>";
@@ -1352,6 +1355,7 @@
 				328DE14315D37566009A16C1 /* GHTestCase+GHTestCase_TestUtils.m in Sources */,
 				3210989115D6896C00567D6D /* SIStorySourcesTests.m in Sources */,
 				32326CD715DA8F6D00C8B1DC /* NSObject+SimonTests.m in Sources */,
+				32B9594515E6054700470287 /* SIHttpAppBackpackTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

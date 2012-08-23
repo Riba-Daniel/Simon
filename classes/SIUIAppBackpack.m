@@ -31,8 +31,8 @@
 	[ui displayUI];
 }
 
+// Override to show ui if necessary when starting up.
 -(void) runStories:(NSNotification *) notification {
-	// Override to show ui if necessary when starting up.
 	[self executeOnSimonThread: ^{
 		// If the notification originated from self and we are not autorunning, then it's startup so go straight to the ui.
 		if(notification.object == self && ![SIAppBackpack isArgumentPresentWithName:ARG_AUTORUN]) {

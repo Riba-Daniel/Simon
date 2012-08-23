@@ -21,7 +21,7 @@
 @private
 	SIStoryLogger *logger;
 }
-
++(int) argIndexForName:(NSString *) name;
 @end
 
 @implementation SIAppBackpack
@@ -77,13 +77,13 @@ static SIAppBackpack *_backpack;
 - (id)init {
 	self = [super init];
 	if (self) {
-
+		
 		// Instantiate required instances
 		DC_LOG(@"Simon initialising");
 		self.reader = [[[SIStoryFileReader alloc] init] autorelease];
 		_runner = [[SIStoryRunner alloc] init];
 		logger = [[SIStoryLogger alloc] init];
-
+		
 		// Because this is executing during +load just hook onto the app start notification.
 		DC_LOG(@"Adding hook to application start");
 		[[NSNotificationCenter defaultCenter] addObserver:self
@@ -122,7 +122,7 @@ static SIAppBackpack *_backpack;
 		// Read the stories.
 		DC_LOG(@"Reading stories");
 		BOOL storiesRead = [self.reader readStorySources: &error];
-
+		
 		if (!storiesRead) {
 			DC_LOG(@"Error reading story files: %@", [error localizedFailureReason]);
 			NSDictionary *userData = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInteger:error.code], SI_NOTIFICATION_KEY_STATUS,
@@ -163,10 +163,10 @@ static SIAppBackpack *_backpack;
 				[story mapSteps:(NSArray *) self.mappings];
 			}];
 		}];
-
+		
 		// Everything is loaded and ready to go so post a notification to run.
 		[[NSNotificationCenter defaultCenter] postNotificationName:SI_RUN_STORIES_NOTIFICATION object:self];
-
+		
 	}];
 }
 
@@ -197,22 +197,47 @@ static SIAppBackpack *_backpack;
 	
 }
 
-#pragma mark - Utils
+#pragma mark - Process arguments
 
 +(BOOL) isArgumentPresentWithName:(NSString *) name {
-	NSArray * arguments = [[NSProcessInfo processInfo] arguments];
-	__block BOOL response = NO;
-	[arguments enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-		if ([(NSString *) obj isEqualToString:name]) {
-			response = YES;
-			*stop = YES;
-		}
-	}];
-	return response;
+	return [self argIndexForName:name] != NSNotFound;
 }
 
 +(NSString *) argumentValueForName:(NSString *) name {
-	return nil;
+	
+	int index = [self argIndexForName:name];
+	NSArray * arguments = [[NSProcessInfo processInfo] arguments];
+	
+	// return nil if not found or no more arguments.
+	if (index == NSNotFound || index + 1 == [arguments count]) {
+		return nil;
+	}
+
+	NSString *argValue = [arguments objectAtIndex:index + 1];
+	
+	// return nil if the value is actually a flag or argument name.
+	if ([argValue characterAtIndex:0] == '-') {
+		return nil;
+	}
+	
+	return argValue;
+}
+
++(int) argIndexForName:(NSString *) name {
+	NSArray * arguments = [[NSProcessInfo processInfo] arguments];
+	__block int argIndex = NSNotFound;
+	NSString *fullArgName = [NSString stringWithFormat:@"--%@", name];
+	
+	// Get the index of the argument.
+	[arguments enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+		if ([(NSString *) obj isEqualToString:fullArgName]) {
+			argIndex = idx;
+			*stop = YES;
+		}
+	}];
+	
+	return argIndex;
+	
 }
 
 @end

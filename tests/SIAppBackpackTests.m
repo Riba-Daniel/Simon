@@ -17,15 +17,15 @@
 #import <CocoaHTTPServer/HTTPServer.h>
 
 // Hack into the process to update arguments for testing.
-@interface NSProcessInfo ()
+@interface NSProcessInfo (_hack)
 - (void)setArguments:(id)arg1;
 @end
 
-@interface SIHttpAppBackpack ()
+@interface SIHttpAppBackpack (_hack)
 -(HTTPServer *) server;
 @end
 
-@implementation SIHttpAppBackpack
+@implementation SIHttpAppBackpack (_hack)
 -(HTTPServer *) server {
 	return server;
 }
@@ -53,7 +53,7 @@
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
--(void) testStartup {
+-(void) testStartupLoadsStoriesAndFiresStartRunNotification {
 	
 	NSNotification *notification = [NSNotification notificationWithName:UIApplicationDidBecomeActiveNotification object:self];
 	
@@ -88,15 +88,54 @@
 	
 }
 
--(void) testStartsHttpServerOnDefaultPort {
-	NSArray *args = [NSArray arrayWithObjects:@"", nil];
+-(void) testPresenceOfArg {
+	NSArray *args = [NSArray arrayWithObjects:@"--hello", nil];
 	[[NSProcessInfo processInfo] setArguments:args];
-
-	SIHttpAppBackpack *backpack = (SIHttpAppBackpack *)[[[SIAppBackpack alloc] init] autorelease];
-	HTTPServer *server = [backpack server];
-	GHAssertEquals([server port], HTTP_SIMON_PORT, nil);
+	GHAssertTrue([SIAppBackpack isArgumentPresentWithName:@"hello"], nil);
 }
 
+-(void) testRetrieveArgValue {
+	NSArray *args = [NSArray arrayWithObjects:@"--hello", @"abc", nil];
+	[[NSProcessInfo processInfo] setArguments:args];
+	GHAssertTrue([SIAppBackpack isArgumentPresentWithName:@"hello"], nil);
+	NSString *argValue = [SIAppBackpack argumentValueForName:@"hello"];
+	GHAssertEqualStrings(argValue, @"abc", nil);
+}
+
+-(void) testRetrieveArgValueNilWhenNotPresent {
+	NSArray *args = [NSArray arrayWithObjects:@"--hello", nil];
+	[[NSProcessInfo processInfo] setArguments:args];
+	GHAssertTrue([SIAppBackpack isArgumentPresentWithName:@"hello"], nil);
+	NSString *argValue = [SIAppBackpack argumentValueForName:@"hello"];
+	GHAssertNil(argValue, nil);
+}
+
+-(void) testRetrieveArgValueNilWhenValueIsNextArg {
+	NSArray *args = [NSArray arrayWithObjects:@"--hello", @"--there", nil];
+	[[NSProcessInfo processInfo] setArguments:args];
+	GHAssertTrue([SIAppBackpack isArgumentPresentWithName:@"hello"], nil);
+	NSString *argValue = [SIAppBackpack argumentValueForName:@"hello"];
+	GHAssertNil(argValue, nil);
+}
+
+-(void) testExecuteOnSimonThreadIsOnBackgroundThread {
+	
+	NSThread *testThread = [NSThread currentThread];
+	__block BOOL executed = NO;
+	SIAppBackpack *backpack = [[[SIAppBackpack alloc] init] autorelease];
+	[backpack executeOnSimonThread:^{
+		DC_LOG(@"Executing on Simon's thread");
+		GHAssertEqualStrings([[NSThread currentThread] name], @"Simon", nil);
+		GHAssertNotEquals([NSThread currentThread], testThread, nil);
+		executed = YES;
+	}];
+
+	// give it some time to execute and then test it did.
+	[[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+	[NSThread sleepForTimeInterval:0.2];
+	GHAssertTrue(executed, nil);
+
+}
 
 // Handlers.
 
