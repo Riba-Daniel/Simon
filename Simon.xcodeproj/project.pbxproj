@@ -17,12 +17,6 @@
 		3210988F15D6893F00567D6D /* SIStorySources.m in Sources */ = {isa = PBXBuildFile; fileRef = 3210988D15D6893E00567D6D /* SIStorySources.m */; };
 		3210989115D6896C00567D6D /* SIStorySourcesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3210989015D6896C00567D6D /* SIStorySourcesTests.m */; };
 		3216D48015DDCE0700CD47C8 /* libSimon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 653D0E8A13A782AD00A5AB82 /* libSimon.a */; };
-		3216D48115DDCE0700CD47C8 /* libCocoaHTTPServer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3216D46A15DDCD7400CD47C8 /* libCocoaHTTPServer.a */; };
-		3216D48215DDCE0700CD47C8 /* libdNodi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32C3C9BE15DDC7C800E495E6 /* libdNodi.a */; };
-		3216D48C15DDD3CA00CD47C8 /* libCocoaHTTPServer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3216D46A15DDCD7400CD47C8 /* libCocoaHTTPServer.a */; };
-		3216D48D15DDD3CA00CD47C8 /* libdNodi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32C3C9BE15DDC7C800E495E6 /* libdNodi.a */; };
-		3216D4B515DDD62D00CD47C8 /* libdUsefulStuff.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3216D4AC15DDD61500CD47C8 /* libdUsefulStuff.a */; };
-		3216D4B615DDD63600CD47C8 /* libdUsefulStuff.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3216D4AC15DDD61500CD47C8 /* libdUsefulStuff.a */; };
 		321A346A1519FA9E00B22EDD /* NSObject+Simon.h in Headers */ = {isa = PBXBuildFile; fileRef = 321A34681519FA9E00B22EDD /* NSObject+Simon.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		321A346B1519FA9E00B22EDD /* NSObject+Simon.m in Sources */ = {isa = PBXBuildFile; fileRef = 321A34691519FA9E00B22EDD /* NSObject+Simon.m */; };
 		3221C79E150C9365003CA286 /* SIUIViewInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 3221C79D150C9365003CA286 /* SIUIViewInfo.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -97,10 +91,17 @@
 		32B0AC0C14E8E8210020500E /* SIAbstractException.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0AC0A14E8E8210020500E /* SIAbstractException.m */; };
 		32B0AC0F14E8EB170020500E /* SIUIException.h in Headers */ = {isa = PBXBuildFile; fileRef = 32B0AC0D14E8EB170020500E /* SIUIException.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32B0AC1014E8EB170020500E /* SIUIException.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0AC0E14E8EB170020500E /* SIUIException.m */; };
+		32B9593E15E5E69300470287 /* libCocoaHTTPServer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32B9592D15E5E62F00470287 /* libCocoaHTTPServer.a */; };
+		32B9593F15E5E69300470287 /* libdNodi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32B9593515E5E62F00470287 /* libdNodi.a */; };
+		32B9594015E5E69300470287 /* libdUsefulStuff.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32CDF2EF15E5E5DA001F4317 /* libdUsefulStuff.a */; };
+		32B9594115E5E6D100470287 /* libCocoaHTTPServer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32B9592D15E5E62F00470287 /* libCocoaHTTPServer.a */; };
+		32B9594215E5E6D100470287 /* libdNodi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32B9593515E5E62F00470287 /* libdNodi.a */; };
+		32B9594315E5E6D100470287 /* libdUsefulStuff.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32CDF2EF15E5E5DA001F4317 /* libdUsefulStuff.a */; };
 		32BF7CFE14F9152D00A0B197 /* SIUITapGeneratorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BF7CFD14F9152D00A0B197 /* SIUITapGeneratorTests.m */; };
 		32BF7D0014F9CB2900A0B197 /* SIUISwipeGeneratorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BF7CFF14F9CB2900A0B197 /* SIUISwipeGeneratorTests.m */; };
 		32C30DD715D3A73100AA7347 /* SIHttpAppBackpack.h in Headers */ = {isa = PBXBuildFile; fileRef = 32C30DD515D3A73100AA7347 /* SIHttpAppBackpack.h */; };
 		32C30DD815D3A73100AA7347 /* SIHttpAppBackpack.m in Sources */ = {isa = PBXBuildFile; fileRef = 32C30DD615D3A73100AA7347 /* SIHttpAppBackpack.m */; };
+		32CDF2F715E5E5E7001F4317 /* CocoaHTTPServer.xcodeproj in Resources */ = {isa = PBXBuildFile; fileRef = 32CDF2F615E5E5E7001F4317 /* CocoaHTTPServer.xcodeproj */; };
 		32D5D98A14E1357900D29DD5 /* TestView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32D5D98914E1357900D29DD5 /* TestView.xib */; };
 		32D5D98D14E135A300D29DD5 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D5D98C14E135A300D29DD5 /* TestViewController.m */; };
 		32D9353815AB08CA00E51C8C /* libSimon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 653D0E8A13A782AD00A5AB82 /* libSimon.a */; };
@@ -179,82 +180,54 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		3216D46915DDCD7400CD47C8 /* PBXContainerItemProxy */ = {
+		32B9592C15E5E62F00470287 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 32D544A715DDCD5A0071F0EB /* CocoaHTTPServer.xcodeproj */;
+			containerPortal = 32CDF2F615E5E5E7001F4317 /* CocoaHTTPServer.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 322DA73F159B4A5C005CFC83;
 			remoteInfo = "CocoaHTTPServer-iOS";
 		};
-		3216D46B15DDCD7400CD47C8 /* PBXContainerItemProxy */ = {
+		32B9592E15E5E62F00470287 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 32D544A715DDCD5A0071F0EB /* CocoaHTTPServer.xcodeproj */;
+			containerPortal = 32CDF2F615E5E5E7001F4317 /* CocoaHTTPServer.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 327FBFD015AFC1FB00F271BA;
 			remoteInfo = "CocoaHTTPServer-OSX";
 		};
-		3216D46D15DDCD7B00CD47C8 /* PBXContainerItemProxy */ = {
+		32B9593415E5E62F00470287 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 32D544A715DDCD5A0071F0EB /* CocoaHTTPServer.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 322DA73E159B4A5C005CFC83;
-			remoteInfo = "CocoaHTTPServer-iOS";
-		};
-		3216D4AB15DDD61500CD47C8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3216D4A415DDD61500CD47C8 /* dUsefulStuff.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 65A0C68F116EF534003AC854;
-			remoteInfo = "iOS lib";
-		};
-		3216D4AD15DDD61500CD47C8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3216D4A415DDD61500CD47C8 /* dUsefulStuff.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 32F3DF4C15B8219700588D21;
-			remoteInfo = "OS X dynlib";
-		};
-		3216D4AF15DDD61500CD47C8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3216D4A415DDD61500CD47C8 /* dUsefulStuff.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 6579F224116E1AC00065C30E;
-			remoteInfo = "Run unit tests";
-		};
-		3216D4B115DDD61500CD47C8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3216D4A415DDD61500CD47C8 /* dUsefulStuff.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 659D2BE5117747BA0056AA74;
-			remoteInfo = "Application Test";
-		};
-		3216D4B315DDD61F00CD47C8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3216D4A415DDD61500CD47C8 /* dUsefulStuff.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 65A0C679116EF534003AC854;
-			remoteInfo = "iOS lib";
-		};
-		32C3C9BD15DDC7C800E495E6 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 32C3C99A15DDC06800E495E6 /* dNodi.xcodeproj */;
+			containerPortal = 32CDF2F815E5E602001F4317 /* dNodi.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 6583B49213D2BD1C005E13F3;
 			remoteInfo = dNodi;
 		};
-		32C3C9BF15DDC7C800E495E6 /* PBXContainerItemProxy */ = {
+		32B9593615E5E62F00470287 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 32C3C99A15DDC06800E495E6 /* dNodi.xcodeproj */;
+			containerPortal = 32CDF2F815E5E602001F4317 /* dNodi.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 6583B4A713D2BDE5005E13F3;
 			remoteInfo = "dNodi Unit Tests";
 		};
-		32C3C9C815DDC80300E495E6 /* PBXContainerItemProxy */ = {
+		32B9593815E5E64100470287 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 32C3C99A15DDC06800E495E6 /* dNodi.xcodeproj */;
+			containerPortal = 32CDF2F815E5E602001F4317 /* dNodi.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = 6583B49113D2BD1C005E13F3;
 			remoteInfo = dNodi;
+		};
+		32B9593A15E5E64100470287 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 32CDF2F615E5E5E7001F4317 /* CocoaHTTPServer.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 322DA73E159B4A5C005CFC83;
+			remoteInfo = "CocoaHTTPServer-iOS";
+		};
+		32B9593C15E5E64100470287 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 32CDF2E715E5E5DA001F4317 /* dUsefulStuff.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 65A0C679116EF534003AC854;
+			remoteInfo = "iOS lib";
 		};
 		32C3C9CC15DDCC5500E495E6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -262,6 +235,34 @@
 			proxyType = 1;
 			remoteGlobalIDString = 653D0E8913A782AD00A5AB82;
 			remoteInfo = Simon;
+		};
+		32CDF2EE15E5E5DA001F4317 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 32CDF2E715E5E5DA001F4317 /* dUsefulStuff.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 65A0C68F116EF534003AC854;
+			remoteInfo = "iOS lib";
+		};
+		32CDF2F015E5E5DA001F4317 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 32CDF2E715E5E5DA001F4317 /* dUsefulStuff.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 32F3DF4C15B8219700588D21;
+			remoteInfo = "OS X dynlib";
+		};
+		32CDF2F215E5E5DA001F4317 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 32CDF2E715E5E5DA001F4317 /* dUsefulStuff.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6579F224116E1AC00065C30E;
+			remoteInfo = "Run unit tests";
+		};
+		32CDF2F415E5E5DA001F4317 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 32CDF2E715E5E5DA001F4317 /* dUsefulStuff.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 659D2BE5117747BA0056AA74;
+			remoteInfo = "Application Test";
 		};
 		32D9353615AB08C000E51C8C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -319,7 +320,6 @@
 		3210988C15D6893E00567D6D /* SIStorySources.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIStorySources.h; sourceTree = "<group>"; };
 		3210988D15D6893E00567D6D /* SIStorySources.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIStorySources.m; sourceTree = "<group>"; };
 		3210989015D6896C00567D6D /* SIStorySourcesTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIStorySourcesTests.m; sourceTree = "<group>"; };
-		3216D4A415DDD61500CD47C8 /* dUsefulStuff.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = dUsefulStuff.xcodeproj; path = /Users/d4rkf1br3/projects/Simon/../dUsefulStuff/dUsefulStuff.xcodeproj; sourceTree = "<absolute>"; };
 		321A34681519FA9E00B22EDD /* NSObject+Simon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Simon.h"; sourceTree = "<group>"; };
 		321A34691519FA9E00B22EDD /* NSObject+Simon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "NSObject+Simon.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		3221C79D150C9365003CA286 /* SIUIViewInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIViewInfo.h; sourceTree = "<group>"; };
@@ -402,8 +402,9 @@
 		32BF7CFF14F9CB2900A0B197 /* SIUISwipeGeneratorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIUISwipeGeneratorTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		32C30DD515D3A73100AA7347 /* SIHttpAppBackpack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIHttpAppBackpack.h; sourceTree = "<group>"; };
 		32C30DD615D3A73100AA7347 /* SIHttpAppBackpack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIHttpAppBackpack.m; sourceTree = "<group>"; };
-		32C3C99A15DDC06800E495E6 /* dNodi.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = dNodi.xcodeproj; path = ../dNodi/dNodi.xcodeproj; sourceTree = "<group>"; };
-		32D544A715DDCD5A0071F0EB /* CocoaHTTPServer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CocoaHTTPServer.xcodeproj; path = ../CocoaHTTPServer/CocoaHTTPServer/CocoaHTTPServer.xcodeproj; sourceTree = "<group>"; };
+		32CDF2E715E5E5DA001F4317 /* dUsefulStuff.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = dUsefulStuff.xcodeproj; path = /Users/d4rkf1br3/projects/Simon/../dUsefulStuff/dUsefulStuff.xcodeproj; sourceTree = "<absolute>"; };
+		32CDF2F615E5E5E7001F4317 /* CocoaHTTPServer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = CocoaHTTPServer.xcodeproj; path = ../CocoaHTTPServer/CocoaHTTPServer/CocoaHTTPServer.xcodeproj; sourceTree = "<group>"; };
+		32CDF2F815E5E602001F4317 /* dNodi.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = dNodi.xcodeproj; path = ../dNodi/dNodi.xcodeproj; sourceTree = "<group>"; };
 		32D5D98914E1357900D29DD5 /* TestView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestView.xib; sourceTree = "<group>"; };
 		32D5D98B14E135A300D29DD5 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
 		32D5D98C14E135A300D29DD5 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
@@ -499,10 +500,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3216D4B615DDD63600CD47C8 /* libdUsefulStuff.a in Frameworks */,
+				32B9594115E5E6D100470287 /* libCocoaHTTPServer.a in Frameworks */,
+				32B9594215E5E6D100470287 /* libdNodi.a in Frameworks */,
+				32B9594315E5E6D100470287 /* libdUsefulStuff.a in Frameworks */,
 				3216D48015DDCE0700CD47C8 /* libSimon.a in Frameworks */,
-				3216D48115DDCE0700CD47C8 /* libCocoaHTTPServer.a in Frameworks */,
-				3216D48215DDCE0700CD47C8 /* libdNodi.a in Frameworks */,
 				3243AA3115CFE619000205E2 /* Security.framework in Frameworks */,
 				3243AA3015CFE613000205E2 /* CFNetwork.framework in Frameworks */,
 				3298250F15039FE300631203 /* UIKit.framework in Frameworks */,
@@ -525,9 +526,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3216D4B515DDD62D00CD47C8 /* libdUsefulStuff.a in Frameworks */,
-				3216D48C15DDD3CA00CD47C8 /* libCocoaHTTPServer.a in Frameworks */,
-				3216D48D15DDD3CA00CD47C8 /* libdNodi.a in Frameworks */,
+				32B9593E15E5E69300470287 /* libCocoaHTTPServer.a in Frameworks */,
+				32B9593F15E5E69300470287 /* libdNodi.a in Frameworks */,
+				32B9594015E5E69300470287 /* libdUsefulStuff.a in Frameworks */,
 				32AF045415CEB75F00501B1E /* Security.framework in Frameworks */,
 				32AF045215CEB73600501B1E /* CFNetwork.framework in Frameworks */,
 				0B14F00E15CBA65C00284016 /* GHUnitIOS.framework in Frameworks */,
@@ -573,26 +574,6 @@
 				653D0EA013A783A500A5AB82 /* CoreGraphics.framework */,
 			);
 			name = iOS;
-			sourceTree = "<group>";
-		};
-		3216D46515DDCD7400CD47C8 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				3216D46A15DDCD7400CD47C8 /* libCocoaHTTPServer.a */,
-				3216D46C15DDCD7400CD47C8 /* libCocoaHTTPServer.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		3216D4A515DDD61500CD47C8 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				3216D4AC15DDD61500CD47C8 /* libdUsefulStuff.a */,
-				3216D4AE15DDD61500CD47C8 /* dUsefulStuff.dylib */,
-				3216D4B015DDD61500CD47C8 /* dUsefulStuff simulator unit tests.app */,
-				3216D4B215DDD61500CD47C8 /* dUsefullStuff Test Program.app */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		322DA95415A18A4B005CFC83 /* PieMan */ = {
@@ -742,11 +723,31 @@
 			name = Exceptions;
 			sourceTree = "<group>";
 		};
-		32C3C9B915DDC7C800E495E6 /* Products */ = {
+		32B9592815E5E62F00470287 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				32C3C9BE15DDC7C800E495E6 /* libdNodi.a */,
-				32C3C9C015DDC7C800E495E6 /* dNodi Unit Tests.app */,
+				32B9592D15E5E62F00470287 /* libCocoaHTTPServer.a */,
+				32B9592F15E5E62F00470287 /* libCocoaHTTPServer.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		32B9593015E5E62F00470287 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				32B9593515E5E62F00470287 /* libdNodi.a */,
+				32B9593715E5E62F00470287 /* dNodi Unit Tests.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		32CDF2E815E5E5DA001F4317 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				32CDF2EF15E5E5DA001F4317 /* libdUsefulStuff.a */,
+				32CDF2F115E5E5DA001F4317 /* dUsefulStuff.dylib */,
+				32CDF2F315E5E5DA001F4317 /* dUsefulStuff simulator unit tests.app */,
+				32CDF2F515E5E5DA001F4317 /* dUsefullStuff Test Program.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -767,9 +768,9 @@
 		653D0E7F13A782AC00A5AB82 = {
 			isa = PBXGroup;
 			children = (
-				3216D4A415DDD61500CD47C8 /* dUsefulStuff.xcodeproj */,
-				32D544A715DDCD5A0071F0EB /* CocoaHTTPServer.xcodeproj */,
-				32C3C99A15DDC06800E495E6 /* dNodi.xcodeproj */,
+				32CDF2F615E5E5E7001F4317 /* CocoaHTTPServer.xcodeproj */,
+				32CDF2F815E5E602001F4317 /* dNodi.xcodeproj */,
+				32CDF2E715E5E5DA001F4317 /* dUsefulStuff.xcodeproj */,
 				653D0EF013A7842500A5AB82 /* Simon-Prefix.pch */,
 				6583B3EA13CF2220005E13F3 /* build.sh */,
 				6583B3EE13CF2242005E13F3 /* ChangeLog.textile */,
@@ -1086,9 +1087,9 @@
 			buildRules = (
 			);
 			dependencies = (
-				3216D4B415DDD61F00CD47C8 /* PBXTargetDependency */,
-				3216D46E15DDCD7B00CD47C8 /* PBXTargetDependency */,
-				32C3C9C915DDC80300E495E6 /* PBXTargetDependency */,
+				32B9593D15E5E64100470287 /* PBXTargetDependency */,
+				32B9593915E5E64100470287 /* PBXTargetDependency */,
+				32B9593B15E5E64100470287 /* PBXTargetDependency */,
 			);
 			name = Simon;
 			productName = Simon;
@@ -1134,16 +1135,16 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 3216D46515DDCD7400CD47C8 /* Products */;
-					ProjectRef = 32D544A715DDCD5A0071F0EB /* CocoaHTTPServer.xcodeproj */;
+					ProductGroup = 32B9592815E5E62F00470287 /* Products */;
+					ProjectRef = 32CDF2F615E5E5E7001F4317 /* CocoaHTTPServer.xcodeproj */;
 				},
 				{
-					ProductGroup = 32C3C9B915DDC7C800E495E6 /* Products */;
-					ProjectRef = 32C3C99A15DDC06800E495E6 /* dNodi.xcodeproj */;
+					ProductGroup = 32B9593015E5E62F00470287 /* Products */;
+					ProjectRef = 32CDF2F815E5E602001F4317 /* dNodi.xcodeproj */;
 				},
 				{
-					ProductGroup = 3216D4A515DDD61500CD47C8 /* Products */;
-					ProjectRef = 3216D4A415DDD61500CD47C8 /* dUsefulStuff.xcodeproj */;
+					ProductGroup = 32CDF2E815E5E5DA001F4317 /* Products */;
+					ProjectRef = 32CDF2E715E5E5DA001F4317 /* dUsefulStuff.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -1157,60 +1158,60 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		3216D46A15DDCD7400CD47C8 /* libCocoaHTTPServer.a */ = {
+		32B9592D15E5E62F00470287 /* libCocoaHTTPServer.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libCocoaHTTPServer.a;
-			remoteRef = 3216D46915DDCD7400CD47C8 /* PBXContainerItemProxy */;
+			remoteRef = 32B9592C15E5E62F00470287 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		3216D46C15DDCD7400CD47C8 /* libCocoaHTTPServer.a */ = {
+		32B9592F15E5E62F00470287 /* libCocoaHTTPServer.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libCocoaHTTPServer.a;
-			remoteRef = 3216D46B15DDCD7400CD47C8 /* PBXContainerItemProxy */;
+			remoteRef = 32B9592E15E5E62F00470287 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		3216D4AC15DDD61500CD47C8 /* libdUsefulStuff.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libdUsefulStuff.a;
-			remoteRef = 3216D4AB15DDD61500CD47C8 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		3216D4AE15DDD61500CD47C8 /* dUsefulStuff.dylib */ = {
-			isa = PBXReferenceProxy;
-			fileType = "compiled.mach-o.dylib";
-			path = dUsefulStuff.dylib;
-			remoteRef = 3216D4AD15DDD61500CD47C8 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		3216D4B015DDD61500CD47C8 /* dUsefulStuff simulator unit tests.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = "dUsefulStuff simulator unit tests.app";
-			remoteRef = 3216D4AF15DDD61500CD47C8 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		3216D4B215DDD61500CD47C8 /* dUsefullStuff Test Program.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = "dUsefullStuff Test Program.app";
-			remoteRef = 3216D4B115DDD61500CD47C8 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		32C3C9BE15DDC7C800E495E6 /* libdNodi.a */ = {
+		32B9593515E5E62F00470287 /* libdNodi.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libdNodi.a;
-			remoteRef = 32C3C9BD15DDC7C800E495E6 /* PBXContainerItemProxy */;
+			remoteRef = 32B9593415E5E62F00470287 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		32C3C9C015DDC7C800E495E6 /* dNodi Unit Tests.app */ = {
+		32B9593715E5E62F00470287 /* dNodi Unit Tests.app */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.application;
 			path = "dNodi Unit Tests.app";
-			remoteRef = 32C3C9BF15DDC7C800E495E6 /* PBXContainerItemProxy */;
+			remoteRef = 32B9593615E5E62F00470287 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		32CDF2EF15E5E5DA001F4317 /* libdUsefulStuff.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libdUsefulStuff.a;
+			remoteRef = 32CDF2EE15E5E5DA001F4317 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		32CDF2F115E5E5DA001F4317 /* dUsefulStuff.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = dUsefulStuff.dylib;
+			remoteRef = 32CDF2F015E5E5DA001F4317 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		32CDF2F315E5E5DA001F4317 /* dUsefulStuff simulator unit tests.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "dUsefulStuff simulator unit tests.app";
+			remoteRef = 32CDF2F215E5E5DA001F4317 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		32CDF2F515E5E5DA001F4317 /* dUsefullStuff Test Program.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "dUsefullStuff Test Program.app";
+			remoteRef = 32CDF2F415E5E5DA001F4317 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -1244,6 +1245,7 @@
 				65D03BE413BB4BFE00A3F0FA /* Non word steps.stories in Resources */,
 				65D03BE613BCB8CE00A3F0FA /* Communication.stories in Resources */,
 				32D5D98A14E1357900D29DD5 /* TestView.xib in Resources */,
+				32CDF2F715E5E5E7001F4317 /* CocoaHTTPServer.xcodeproj in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1358,20 +1360,20 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		3216D46E15DDCD7B00CD47C8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "CocoaHTTPServer-iOS";
-			targetProxy = 3216D46D15DDCD7B00CD47C8 /* PBXContainerItemProxy */;
-		};
-		3216D4B415DDD61F00CD47C8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "iOS lib";
-			targetProxy = 3216D4B315DDD61F00CD47C8 /* PBXContainerItemProxy */;
-		};
-		32C3C9C915DDC80300E495E6 /* PBXTargetDependency */ = {
+		32B9593915E5E64100470287 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = dNodi;
-			targetProxy = 32C3C9C815DDC80300E495E6 /* PBXContainerItemProxy */;
+			targetProxy = 32B9593815E5E64100470287 /* PBXContainerItemProxy */;
+		};
+		32B9593B15E5E64100470287 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "CocoaHTTPServer-iOS";
+			targetProxy = 32B9593A15E5E64100470287 /* PBXContainerItemProxy */;
+		};
+		32B9593D15E5E64100470287 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "iOS lib";
+			targetProxy = 32B9593C15E5E64100470287 /* PBXContainerItemProxy */;
 		};
 		32C3C9CD15DDCC5500E495E6 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
