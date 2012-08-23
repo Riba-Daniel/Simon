@@ -8,10 +8,10 @@
 
 #import <dUsefulStuff/DCCommon.h>
 #import <dUsefulStuff/NSObject+dUsefulStuff.h>
-#import "SIAppBackpack.h"
-#import "SIStoryRunner.h"
-#import "SIStory.h"
-#import "SIStepMapping.h"
+#import <Simon/SIAppBackpack.h>
+#import <Simon/SIStoryRunner.h>
+#import <Simon/SIStory.h>
+#import <Simon/SIStepMapping.h>
 #import "NSString+Simon.h"
 #import <UIKit/UIKit.h>
 

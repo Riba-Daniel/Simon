@@ -7,8 +7,8 @@
 //
 
 #import <dUsefulStuff/DCCommon.h>
-#import "SIStoryDetailsController.h"
-#import "SIStep.h"
+#import <Simon/SIStoryDetailsController.h>
+#import <Simon/SIStep.h>
 
 // Stores a line from the back trace.
 @interface SITraceLineData : NSObject

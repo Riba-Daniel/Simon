@@ -7,11 +7,11 @@
 //
 #import <objc/runtime.h>
 
-#import "SIStepMapping.h"
+#import <Simon/SIStepMapping.h>
 #import "NSString+Simon.h"
 #import <dUsefulStuff/DCCommon.h>
 #import <dUsefulStuff/NSObject+dUsefulStuff.h>
-#import "SIConstants.h"
+#import <Simon/SIConstants.h>
 
 @interface SIStepMapping()
 -(NSInvocation *) createInvocationForMethod:(Method) method withCommand:(NSString *) command;

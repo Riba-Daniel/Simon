@@ -39,7 +39,13 @@
 #define ARG_NO_LOAD @"--no-load"
 #define ARG_SHOW_UI @"--ui"
 #define ARG_AUTORUN @"--autorun"
+#define ARG_SIMON_PORT @"--simon-port"
+#define ARG_PIEMAN_PORT @"--pieman-port"
 #define ARG_LOG_ACTIONS @"--log-actions"
+
+// Http server config.
+#define HTTP_SIMON_PORT 44123
+#define HTTP_PIEMAN_PORT 44321
 
 // Simon's background thread name.
 #define SI_QUEUE_NAME "au.com.derekclarkson.simon"

@@ -8,11 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
-#import "SIStoryRunner.h"
-#import "SIStoryLogger.h"
-#import "SIAppBackpackImplementation.h"
-#import "SIStorySources.h"
-#import "SIStoryFileReader.h"
+#import <Simon/SIStoryRunner.h>
+#import <Simon/SIStoryLogger.h>
+#import <Simon/SIAppBackpackImplementation.h>
+#import <Simon/SIStorySources.h>
+#import <Simon/SIStoryFileReader.h>
 
 /**
  This class backpack's on a UIApplication in order to allow Simon to run in the background. You add it through the SIRun macro.

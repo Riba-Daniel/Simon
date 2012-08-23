@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Sensis. All rights reserved.
 //
 
-#import "SIUIAbstractEventGenerator.h"
+#import <Simon/SIUIAbstractEventGenerator.h>
 #import "UITouch+Simon.h"
 #import "UIEvent+Simon.h"
 #import <dUsefulStuff/DCCommon.h>

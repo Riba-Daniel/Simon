@@ -9,8 +9,8 @@
 #import <dUsefulStuff/DCCommon.h>
 #import <dUsefulStuff/NSObject+dUsefulStuff.h>
 
-#import "SIStoryFileReader.h"
-#import "SIConstants.h"
+#import <Simon/SIStoryFileReader.h>
+#import <Simon/SIConstants.h>
 #import "NSString+Simon.h"
 
 @interface SIStoryFileReader() {

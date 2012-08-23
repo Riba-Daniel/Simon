@@ -7,9 +7,9 @@
 //
 
 #import <dUsefulStuff/DCCommon.h>
-#import "SIUIViewHandler.h"
-#import "SIUITapGenerator.h"
-#import "SIUISwipeGenerator.h"
+#import <Simon/SIUIViewHandler.h>
+#import <Simon/SIUITapGenerator.h>
+#import <Simon/SIUISwipeGenerator.h>
 #import "NSObject+Simon.h"
 
 // We need access to the private API of the keyboard layout so we can send keys.

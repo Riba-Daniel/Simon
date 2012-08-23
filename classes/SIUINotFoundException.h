@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SIAbstractException.h"
+#import <Simon/SIAbstractException.h>
 
 /**
  Thrown when a search a specific view fails to find it.

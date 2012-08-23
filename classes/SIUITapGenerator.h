@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SIUIAbstractEventGenerator.h"
+#import <Simon/SIUIAbstractEventGenerator.h>
 
 /**
  Generates a tap on the specified view.

@@ -6,8 +6,8 @@
 //  Copyright 2011. All rights reserved.
 //
 
-#import "SIConstants.h"
-#import "SIStory.h"
+#import <Simon/SIConstants.h>
+#import <Simon/SIStory.h>
 
 /**
  Utility methods for strings.

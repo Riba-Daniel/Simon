@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Sensis. All rights reserved.
 //
 
-#import "SIAbstractException.h"
+#import <Simon/SIAbstractException.h>
 
 /**
  Exception which is thrown when more UIViews than expected were found as a result of a search query on the UI tree.

@@ -6,8 +6,8 @@
 //  Copyright (c) 2012 Sensis. All rights reserved.
 //
 
-#import "SIAppBackpack.h"
-#import "SIUIReportManager.h"
+#import <Simon/SIAppBackpack.h>
+#import <Simon/SIUIReportManager.h>
 
 /**
  SIAppBackpack implementation which is used when Simon is running in a standalone mode.

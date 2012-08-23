@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SIUIViewDescriptionVisitorDelegate.h"
+#import <Simon/SIUIViewDescriptionVisitorDelegate.h>
 
 /**
  Class which visits each node in a UI tree, gathers information about that node and then notifies a delegate of what it found.

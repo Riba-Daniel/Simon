@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Sensis. All rights reserved.
 //
 
-#import "SIUINotAnInputViewException.h"
+#import <Simon/SIUINotAnInputViewException.h>
 
 @implementation SIUINotAnInputViewException
 

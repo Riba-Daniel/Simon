@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SIUIAction.h"
+#import <Simon/SIUIAction.h>
 #import <dNodi/DNNode.h>
-#import "SIUIConstants.h"
-#import "SIUIViewInfo.h"
+#import <Simon/SIUIConstants.h>
+#import <Simon/SIUIViewInfo.h>
 
 /**
  Handlers encompass all aspects of dealing with a particular UI widget. This class

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SIStorySource.h"
+#import <Simon/SIStorySource.h>
 
 /**
  Stores and manages the story sources.

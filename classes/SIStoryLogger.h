@@ -6,7 +6,7 @@
 //  Copyright 2011. All rights reserved.
 //
 
-#import "SIResultListener.h"
+#import <Simon/SIResultListener.h>
 
 /**
  Logs a run's results to the console via NSLog(...) commands.

@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SIConstants.h"
-#import "SIStep.h"
+#import <Simon/SIConstants.h>
+#import <Simon/SIStep.h>
 
 // Stops circular reference in headers.
 @class SIStorySource;

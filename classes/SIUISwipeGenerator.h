@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SIUIConstants.h"
-#import "SIUIAbstractEventGenerator.h"
+#import <Simon/SIUIConstants.h>
+#import <Simon/SIUIAbstractEventGenerator.h>
 
 /**
  Generates the series of events which simulate a swipe event. To do this we need to know how far to swipe, how long in time to take to do it, and how many events to generate per second. This last is specified by the eps value.

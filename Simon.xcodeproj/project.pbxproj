@@ -12,7 +12,7 @@
 		0B9D8FF015CF82540005CBBF /* SIStorySourceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B9D8FEF15CF82540005CBBF /* SIStorySourceTests.m */; };
 		0BF2104515D25412006BB2CA /* SIResultListener.h in Headers */ = {isa = PBXBuildFile; fileRef = 0BF2104315D25412006BB2CA /* SIResultListener.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		0BF2104615D25412006BB2CA /* SIResultListener.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BF2104415D25412006BB2CA /* SIResultListener.m */; };
-		3210988A15D3D6E200567D6D /* SIAppBackpackImplementation.h in Headers */ = {isa = PBXBuildFile; fileRef = 3210988915D3D6E200567D6D /* SIAppBackpackImplementation.h */; };
+		3210988A15D3D6E200567D6D /* SIAppBackpackImplementation.h in Headers */ = {isa = PBXBuildFile; fileRef = 3210988915D3D6E200567D6D /* SIAppBackpackImplementation.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		3210988E15D6893F00567D6D /* SIStorySources.h in Headers */ = {isa = PBXBuildFile; fileRef = 3210988C15D6893E00567D6D /* SIStorySources.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		3210988F15D6893F00567D6D /* SIStorySources.m in Sources */ = {isa = PBXBuildFile; fileRef = 3210988D15D6893E00567D6D /* SIStorySources.m */; };
 		3210989115D6896C00567D6D /* SIStorySourcesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3210989015D6896C00567D6D /* SIStorySourcesTests.m */; };
@@ -99,7 +99,7 @@
 		32B9594315E5E6D100470287 /* libdUsefulStuff.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32CDF2EF15E5E5DA001F4317 /* libdUsefulStuff.a */; };
 		32BF7CFE14F9152D00A0B197 /* SIUITapGeneratorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BF7CFD14F9152D00A0B197 /* SIUITapGeneratorTests.m */; };
 		32BF7D0014F9CB2900A0B197 /* SIUISwipeGeneratorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32BF7CFF14F9CB2900A0B197 /* SIUISwipeGeneratorTests.m */; };
-		32C30DD715D3A73100AA7347 /* SIHttpAppBackpack.h in Headers */ = {isa = PBXBuildFile; fileRef = 32C30DD515D3A73100AA7347 /* SIHttpAppBackpack.h */; };
+		32C30DD715D3A73100AA7347 /* SIHttpAppBackpack.h in Headers */ = {isa = PBXBuildFile; fileRef = 32C30DD515D3A73100AA7347 /* SIHttpAppBackpack.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		32C30DD815D3A73100AA7347 /* SIHttpAppBackpack.m in Sources */ = {isa = PBXBuildFile; fileRef = 32C30DD615D3A73100AA7347 /* SIHttpAppBackpack.m */; };
 		32CDF2F715E5E5E7001F4317 /* CocoaHTTPServer.xcodeproj in Resources */ = {isa = PBXBuildFile; fileRef = 32CDF2F615E5E5E7001F4317 /* CocoaHTTPServer.xcodeproj */; };
 		32D5D98A14E1357900D29DD5 /* TestView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32D5D98914E1357900D29DD5 /* TestView.xib */; };
@@ -127,7 +127,6 @@
 		653D0EE813A783DC00A5AB82 /* SIStoryFileReaderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 653D0ED913A783DC00A5AB82 /* SIStoryFileReaderTests.m */; };
 		653D0EEE13A783DC00A5AB82 /* Non keyword steps.stories in Resources */ = {isa = PBXBuildFile; fileRef = 653D0EDE13A783DC00A5AB82 /* Non keyword steps.stories */; };
 		653D0EEF13A783DC00A5AB82 /* Story files.stories in Resources */ = {isa = PBXBuildFile; fileRef = 653D0EDF13A783DC00A5AB82 /* Story files.stories */; };
-		653D0EF113A7842500A5AB82 /* Simon-Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 653D0EF013A7842500A5AB82 /* Simon-Prefix.pch */; settings = {ATTRIBUTES = (); }; };
 		6551A98113AB904A00679B94 /* SIStoryRunner.h in Headers */ = {isa = PBXBuildFile; fileRef = 6551A97F13AB904900679B94 /* SIStoryRunner.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		6551A98213AB904A00679B94 /* SIStoryRunner.m in Sources */ = {isa = PBXBuildFile; fileRef = 6551A98013AB904A00679B94 /* SIStoryRunner.m */; };
 		6551A98713AB931F00679B94 /* SIStoryRunnerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6551A98613AB931F00679B94 /* SIStoryRunnerTests.m */; };
@@ -1027,11 +1026,10 @@
 				65D03BEE13BDEBE000A3F0FA /* SIMacros.h in Headers */,
 				652D4E4D13CDD44400633E51 /* SIAppBackpack.h in Headers */,
 				659E629D13DAFC4000ACD34C /* SIUIApplication.h in Headers */,
-				328DE14D15D39B73009A16C1 /* Simon.h in Headers */,
-				3260B810151CB81C005A5AAA /* SIUINotAnInputViewException.h in Headers */,
-				653D0EF113A7842500A5AB82 /* Simon-Prefix.pch in Headers */,
 				32C30DD715D3A73100AA7347 /* SIHttpAppBackpack.h in Headers */,
 				3210988A15D3D6E200567D6D /* SIAppBackpackImplementation.h in Headers */,
+				328DE14D15D39B73009A16C1 /* Simon.h in Headers */,
+				3260B810151CB81C005A5AAA /* SIUINotAnInputViewException.h in Headers */,
 				3210988E15D6893F00567D6D /* SIStorySources.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

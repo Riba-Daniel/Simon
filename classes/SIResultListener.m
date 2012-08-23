@@ -6,14 +6,15 @@
 //
 //
 
-#import "SIResultListener.h"
-#import "SIConstants.h"
+#import <Simon/SIResultListener.h>
+#import <Simon/SIConstants.h>
 #import <dUsefulStuff/DCCommon.h>
-#import "SIStory.h"
+#import <Simon/SIStory.h>
 
 @interface SIResultListener () {
 @private
-	NSMutableArray *storiesWithStatus[SIStoryStatusCount];
+	// An arrar of lists which store the stories for a particular status.
+	NSMutableArray *resultsByStatus[SIStoryStatusCount];
 }
 
 @end
@@ -41,7 +42,7 @@
 																	name:SI_RUN_FINISHED_NOTIFICATION
 																 object:nil];
 		for (int i = 0; i < SIStoryStatusCount; i++) {
-			storiesWithStatus[i] = [[NSMutableArray alloc] init];
+			resultsByStatus[i] = [[NSMutableArray alloc] init];
 		}
 	}
 	return self;
@@ -51,26 +52,26 @@
 
 -(void) storyExecuted:(NSNotification *) notification {
 	SIStory *story = [[notification userInfo] valueForKey:SI_NOTIFICATION_KEY_STORY];
-	[storiesWithStatus[story.status] addObject:story];
+	[resultsByStatus[story.status] addObject:story];
 }
 
 -(void) runStarting:(NSNotification *)notification {
 	for (int i = 0; i < SIStoryStatusCount; i++) {
-		DC_DEALLOC(storiesWithStatus[i]);
-		storiesWithStatus[i] = [[NSMutableArray alloc] init];
+		DC_DEALLOC(resultsByStatus[i]);
+		resultsByStatus[i] = [[NSMutableArray alloc] init];
 	}
 }
 
 -(void) runFinished:(NSNotification *) notification {}
 
 -(NSArray *) storiesWithStatus:(SIStoryStatus) status {
-	return storiesWithStatus[status];
+	return resultsByStatus[status];
 }
 
 -(void) dealloc {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	for (int i = 0; i < SIStoryStatusCount; i++) {
-		DC_DEALLOC(storiesWithStatus[i]);
+		DC_DEALLOC(resultsByStatus[i]);
 	}
 
 	[super dealloc];

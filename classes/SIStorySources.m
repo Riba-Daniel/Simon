@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Sensis. All rights reserved.
 //
 
-#import "SIStorySources.h"
+#import <Simon/SIStorySources.h>
 #import <dUsefulStuff/DCCommon.h>
 
 

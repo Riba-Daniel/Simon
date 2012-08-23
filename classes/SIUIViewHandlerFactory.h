@@ -6,7 +6,7 @@
 //  Copyright 2011. All rights reserved.
 //
 #import <UIKit/UIKit.h>
-#import "SIUIViewHandler.h"
+#import <Simon/SIUIViewHandler.h>
 
 /**
  This factory creates instances of UI hanlders that can respond to dNodi requests for data and perform actions such as taps and swipes on controls.

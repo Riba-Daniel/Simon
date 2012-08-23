@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Sensis. All rights reserved.
 //
 
-#import "SIUIViewHandler.h"
+#import <Simon/SIUIViewHandler.h>
 
 /**
  Hander for label. Derives from SIUIViewHandler. The main reason is to allow returning of label related attributes.

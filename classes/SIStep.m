@@ -6,7 +6,7 @@
 //  Copyright 2011. All rights reserved.
 //
 
-#import "SIStep.h"
+#import <Simon/SIStep.h>
 #import <dUsefulStuff/DCCommon.h>
 #import "NSString+Simon.h"
 #import <dUsefulStuff/NSObject+dUsefulStuff.h>

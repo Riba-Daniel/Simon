@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Sensis. All rights reserved.
 //
 
-#import "SIUIViewHandler.h"
+#import <Simon/SIUIViewHandler.h>
 
 /**
  Hander for buttons. Derives from SIUIViewHandler. The main reason is to allow returning of button related attributes.

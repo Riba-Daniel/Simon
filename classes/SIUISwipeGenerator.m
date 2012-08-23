@@ -7,7 +7,7 @@
 //
 
 #import <dUsefulStuff/DCCommon.h>
-#import "SIUISwipeGenerator.h"
+#import <Simon/SIUISwipeGenerator.h>
 #import "UITouch+Simon.h"
 #import "UIEvent+Simon.h"
 

@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Sensis. All rights reserved.
 //
 
-#import "SIAbstractException.h"
+#import <Simon/SIAbstractException.h>
 
 /**
  For generic exceptions.

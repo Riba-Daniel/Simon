@@ -10,8 +10,8 @@
 #import "UIView+Simon.h"
 #import "UITouch+Simon.h"
 #import "UIEvent+Simon.h"
-#import "SIUIViewHandlerFactory.h"
-#import "SIUIApplication.h"
+#import <Simon/SIUIViewHandlerFactory.h>
+#import <Simon/SIUIApplication.h>
 
 // We need to clear the view after each call so that the handler does not hang onto a view which is no longer valid. Leaving
 // the view retained will trigger zombies. Still not sure exactly why, but it's something to do with the view no longer being 

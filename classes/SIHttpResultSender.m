@@ -6,12 +6,18 @@
 //  Copyright (c) 2012 Sensis. All rights reserved.
 //
 
-#import "SIHttpResultSender.h"
+#import <Simon/SIHttpResultSender.h>
 
 /**
  The intent of this class is to be used to notify listening command line programs of the results of story runs.
  */
 @implementation SIHttpResultSender
+
+-(void) runStarting:(NSNotification *) notification {
+	[super runStarting:notification];
+	// DO something http'y
+}
+
 -(void) storyStarting:(NSNotification *) notification {
 	[super storyStarting:notification];
 	// DO something http'y

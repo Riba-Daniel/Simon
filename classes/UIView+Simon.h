@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <dNodi/DNNode.h>
-#import "SIUIAction.h"
-#import "SIUIViewInfo.h"
+#import <Simon/SIUIAction.h>
+#import <Simon/SIUIViewInfo.h>
 
 /**
  This category hooks into any UIVIew class and adds the methods dNodi

@@ -8,10 +8,10 @@
 
 #import <dUsefulStuff/DCCommon.h>
 #import <objc/runtime.h>
-#import "SIStory.h"
-#import "SIStep.h"
+#import <Simon/SIStory.h>
+#import <Simon/SIStep.h>
 #import "NSString+Simon.h"
-#import "SIConstants.h"
+#import <Simon/SIConstants.h>
 
 @interface SIStory(_private)
 -(id) instanceForTargetClass:(Class) targetClass;

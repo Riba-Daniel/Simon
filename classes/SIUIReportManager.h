@@ -6,7 +6,7 @@
 //  Copyright (c) 2011 Sensis. All rights reserved.
 //
 
-#import "SIStoryListController.h"
+#import <Simon/SIStoryListController.h>
 
 /**
  Manages the UI display of the results of a run of stories.

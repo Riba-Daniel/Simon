@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SIStoryDetailsController.h"
+#import <Simon/SIStoryDetailsController.h>
 
 /**
  Table view controller for the report on all the stories which where run.

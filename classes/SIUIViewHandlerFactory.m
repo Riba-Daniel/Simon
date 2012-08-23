@@ -6,10 +6,10 @@
 //  Copyright 2011. All rights reserved.
 //
 
-#import "SIUIViewHandlerFactory.h"
+#import <Simon/SIUIViewHandlerFactory.h>
 #import <dUsefulStuff/DCCommon.h>
-#import "SIUIButtonHandler.h"
-#import "SIUILabelHandler.h"
+#import <Simon/SIUIButtonHandler.h>
+#import <Simon/SIUILabelHandler.h>
 
 @implementation SIUIViewHandlerFactory
 

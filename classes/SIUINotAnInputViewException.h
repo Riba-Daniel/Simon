@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Sensis. All rights reserved.
 //
 
-#import "SIAbstractException.h"
+#import <Simon/SIAbstractException.h>
 
 /**
  Thrown when the UIView for a keyboard text extry is not an instance of the UITextInput protocol.

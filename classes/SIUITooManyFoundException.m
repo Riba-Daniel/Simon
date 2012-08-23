@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Sensis. All rights reserved.
 //
 
-#import "SIUITooManyFoundException.h"
+#import <Simon/SIUITooManyFoundException.h>
 
 @implementation SIUITooManyFoundException
 

@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Sensis. All rights reserved.
 //
 
-#import "SIServerException.h"
+#import <Simon/SIServerException.h>
 
 @implementation SIServerException
 

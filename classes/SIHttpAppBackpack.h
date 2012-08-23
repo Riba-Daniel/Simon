@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Sensis. All rights reserved.
 //
 
-#import "SIAppBackpack.h"
+#import <Simon/SIAppBackpack.h>
 #import <CocoaHTTPServer/HTTPServer.h>
 
 /**

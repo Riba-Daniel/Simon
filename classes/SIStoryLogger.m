@@ -8,12 +8,12 @@
 
 #import <dUsefulStuff/DCCommon.h>
 
-#import "SIStoryLogger.h"
-#import "SIStorySource.h"
-#import "SIStory.h"
-#import "SIStep.h"
-#import "SIStepMapping.h"
-#import "SIAppBackpack.h"
+#import <Simon/SIStoryLogger.h>
+#import <Simon/SIStorySource.h>
+#import <Simon/SIStory.h>
+#import <Simon/SIStep.h>
+#import <Simon/SIStepMapping.h>
+#import <Simon/SIAppBackpack.h>
 #import "NSString+Simon.h"
 
 @interface SIStoryLogger() {

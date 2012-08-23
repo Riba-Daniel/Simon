@@ -6,8 +6,8 @@
 //  Copyright (c) 2011 Sensis. All rights reserved.
 //
 
-#import "SIUIReportManager.h"
-#import "SIStoryListController.h"
+#import <Simon/SIUIReportManager.h>
+#import <Simon/SIStoryListController.h>
 #import <UIKit/UIKit.h>
 #import <dUsefulStuff/DCCommon.h>
 #import "NSObject+Simon.h"

@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SIStoryFileReader.h"
-#import "SIRuntime.h"
+#import <Simon/SIStoryFileReader.h>
+#import <Simon/SIRuntime.h>
 
 /**
  SIStoryRunner is the main class used to run stories. 

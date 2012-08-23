@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SIAbstractException.h"
+#import <Simon/SIAbstractException.h>
 
 /**
  * Exception to wrap syntax errors coming back from dNodi.

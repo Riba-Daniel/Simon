@@ -13,11 +13,28 @@
 #import <Simon/SIAppBackpack.h>
 #import <Simon/SIConstants.h>
 #import <Simon/SIStoryFileReader.h>
+#import <Simon/SIHttpAppBackpack.h>
+#import <CocoaHTTPServer/HTTPServer.h>
+
+// Hack into the process to update arguments for testing.
+@interface NSProcessInfo ()
+- (void)setArguments:(id)arg1;
+@end
+
+@interface SIHttpAppBackpack ()
+-(HTTPServer *) server;
+@end
+
+@implementation SIHttpAppBackpack
+-(HTTPServer *) server {
+	return server;
+}
+@end
 
 @interface SIAppBackpackTests : GHTestCase {
 @private
-	SIAppBackpack *backpack;
 	BOOL startRun;
+	NSArray *originalArgs;
 }
 -(void) startRun:(NSNotification *) notification;
 @end
@@ -25,14 +42,15 @@
 @implementation SIAppBackpackTests
 
 -(void) setUp {
+	originalArgs = [[[NSProcessInfo processInfo] arguments] retain];
 	startRun = NO;
-	backpack = [[SIAppBackpack alloc] init];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startRun:) name:SI_RUN_STORIES_NOTIFICATION object:nil];
 }
 
 -(void) tearDown {
+	[[NSProcessInfo processInfo] setArguments: originalArgs];
+	DC_DEALLOC(originalArgs);
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
-	DC_DEALLOC(backpack);
 }
 
 -(void) testStartup {
@@ -53,6 +71,7 @@
 	[[[mockReader expect] andReturnValue:OCMOCK_VALUE(yes)] readStorySources:[OCMArg anyPointer]];
 	[[[mockReader stub] andReturn:sources] storySources];
 
+	SIAppBackpack *backpack = [[[SIAppBackpack alloc] init] autorelease];
 	backpack.reader = mockReader;
 	
 	[backpack startUp:notification];
@@ -68,6 +87,18 @@
 	GHAssertTrue([backpack.storySources.sources count] > 0, nil);
 	
 }
+
+-(void) testStartsHttpServerOnDefaultPort {
+	NSArray *args = [NSArray arrayWithObjects:@"", nil];
+	[[NSProcessInfo processInfo] setArguments:args];
+
+	SIHttpAppBackpack *backpack = (SIHttpAppBackpack *)[[[SIAppBackpack alloc] init] autorelease];
+	HTTPServer *server = [backpack server];
+	GHAssertEquals([server port], HTTP_SIMON_PORT, nil);
+}
+
+
+// Handlers.
 
 -(void) startRun:(NSNotification *) notification {
 	startRun = YES;

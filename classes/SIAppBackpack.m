@@ -9,12 +9,12 @@
 #import <UIKit/UIKit.h>
 #import <dUsefulStuff/DCCommon.h>
 #import <dUsefulStuff/DCDialogs.h>
-#import "SIConstants.h"
+#import <Simon/SIConstants.h>
 
-#import "SIAppBackpack.h"
-#import "SIStoryRunner.h"
-#import "SIUIAppBackpack.h"
-#import "SIHttpAppBackpack.h"
+#import <Simon/SIAppBackpack.h>
+#import <Simon/SIStoryRunner.h>
+#import <Simon/SIUIAppBackpack.h>
+#import <Simon/SIHttpAppBackpack.h>
 #import <dUsefulStuff/NSObject+dUsefulStuff.h>
 
 @interface SIAppBackpack (){

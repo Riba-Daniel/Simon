@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Sensis. All rights reserved.
 //
 
-#import "SIUIViewDescriptionVisitor.h"
+#import <Simon/SIUIViewDescriptionVisitor.h>
 #import "UIView+Simon.h"
 
 @interface SIUIViewDescriptionVisitor (_private)

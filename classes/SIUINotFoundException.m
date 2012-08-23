@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Sensis. All rights reserved.
 //
 
-#import "SIUINotFoundException.h"
+#import <Simon/SIUINotFoundException.h>
 
 @implementation SIUINotFoundException
 

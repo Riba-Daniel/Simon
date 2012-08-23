@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Sensis. All rights reserved.
 //
 
-#import "SIResultListener.h"
+#import <Simon/SIResultListener.h>
 
 @interface SIHttpResultSender : SIResultListener
 

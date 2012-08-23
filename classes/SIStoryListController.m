@@ -7,13 +7,13 @@
 //
 
 #import <dUsefulStuff/DCCommon.h>
-#import "SIStoryListController.h"
-#import "SIStory.h"
+#import <Simon/SIStoryListController.h>
+#import <Simon/SIStory.h>
 #import "NSString+Simon.h"
-#import "SIStorySource.h"
+#import <Simon/SIStorySource.h>
 #import <dUsefulStuff/DCDialogs.h>
-#import "SIStoryDetailsController.h"
-#import "SIAppBackpack.h"
+#import <Simon/SIStoryDetailsController.h>
+#import <Simon/SIAppBackpack.h>
 
 @interface SIStoryListController (_private)
 -(void) runStories;

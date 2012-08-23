@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Sensis. All rights reserved.
 //
 
-#import "SIUILabelHandler.h"
+#import <Simon/SIUILabelHandler.h>
 
 @implementation SIUILabelHandler
 

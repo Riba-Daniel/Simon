@@ -6,7 +6,7 @@
 //  Copyright 2011. All rights reserved.
 //
 
-#import "SIUIConstants.h"
+#import <Simon/SIUIConstants.h>
 
 /**
  This protocol outlines the possible actions that can be performed on a control. For example taps, swipes etc. It is implemented 

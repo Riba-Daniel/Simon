@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Sensis. All rights reserved.
 //
 
-#import "SIUIButtonHandler.h"
+#import <Simon/SIUIButtonHandler.h>
 
 @implementation SIUIButtonHandler
 

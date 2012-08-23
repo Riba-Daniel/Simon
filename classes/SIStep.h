@@ -7,8 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "SIConstants.h"
-#import "SIStepMapping.h"
+#import <Simon/SIConstants.h>
+#import <Simon/SIStepMapping.h>
 
 /**
  Represents a step within a SIStory. It stores the text of the step as read from the story file and the SISTepMapping which is then used to execute the implementation code.

@@ -11,18 +11,18 @@
 #import <dUsefulStuff/NSObject+dUsefulStuff.h>
 
 #import "UIView+Simon.h"
-#import "SIConstants.h"
-#import "SISyntaxException.h"
+#import <Simon/SIConstants.h>
+#import <Simon/SISyntaxException.h>
 #import "SIUITooManyFoundException.m"
-#import "SIUINotFoundException.h"
-#import "SIUIViewHandler.h"
-#import "SIUIViewHandlerFactory.h"
-#import "SIUIException.h"
-#import "SIUIViewDescriptionVisitor.h"
+#import <Simon/SIUINotFoundException.h>
+#import <Simon/SIUIViewHandler.h>
+#import <Simon/SIUIViewHandlerFactory.h>
+#import <Simon/SIUIException.h>
+#import <Simon/SIUIViewDescriptionVisitor.h>
 #import "NSObject+Simon.h"
-#import "SIUINotAnInputViewException.h"
-#import "SIAppBackpack.h"
-#import "SIUIApplication.h"
+#import <Simon/SIUINotAnInputViewException.h>
+#import <Simon/SIAppBackpack.h>
+#import <Simon/SIUIApplication.h>
 
 #import <QuartzCore/CALayer.h>
 

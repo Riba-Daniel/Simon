@@ -7,9 +7,9 @@
 //
 
 #import <CocoaHTTPServer/HTTPDataResponse.h>
-#import "SIIncomingHTTPConnection.h"
+#import <Simon/SIIncomingHTTPConnection.h>
 #import <dUsefulStuff/DCCommon.h>
-#import "SIAppBackpack.h"
+#import <Simon/SIAppBackpack.h>
 
 #define REPORT @"<testsuite>" \
 "<testcase classname=\"foo\" name=\"ASuccessfulTest\"/>" \

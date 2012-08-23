@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Sensis. All rights reserved.
 //
 
-#import "SIUIAppBackpack.h"
+#import <Simon/SIUIAppBackpack.h>
 #import <dUsefulStuff/DCCommon.h>
 
 @implementation SIUIAppBackpack

@@ -6,12 +6,12 @@
 //  Copyright (c) 2012 Sensis. All rights reserved.
 //
 
-#import "SIHttpAppBackpack.h"
+#import <Simon/SIHttpAppBackpack.h>
 #import <dUsefulStuff/DCCommon.h>
 #import <CocoaHTTPServer/DDLog.h>
 #import <CocoaHTTPServer/DDTTYLogger.h>
-#import "SIServerException.h"
-#import "SIIncomingHTTPConnection.h"
+#import <Simon/SIServerException.h>
+#import <Simon/SIIncomingHTTPConnection.h>
 
 @implementation SIHttpAppBackpack
 
@@ -25,11 +25,18 @@
 - (id)init {
 	self = [super init];
 	if (self) {
-		DC_LOG(@"Starting HTTP server");
+		
+		int port = HTTP_SIMON_PORT;
+		if ([SIAppBackpack isArgumentPresentWithName:ARG_SIMON_PORT]) {
+			//NSString *strValue = [SIAppBackpack argumentValueForName:ARG_SIMON_PORT];
+		}
+		
+		
+		DC_LOG(@"Starting HTTP server on port: %i", port);
 		[DDLog addLogger:[DDTTYLogger sharedInstance]];
 		server = [[HTTPServer alloc] init];
 		[server setConnectionClass:[SIIncomingHTTPConnection class]];
-		[server setPort:5678];
+		[server setPort:port];
 		NSError *error = nil;
 		if(![server start:&error])
 		{

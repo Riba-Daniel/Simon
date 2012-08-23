@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SIUIConstants.h"
-#import "SIUIViewHandlerFactory.h"
-#import "SIUIViewDescriptionVisitorDelegate.h"
+#import <Simon/SIUIConstants.h>
+#import <Simon/SIUIViewHandlerFactory.h>
+#import <Simon/SIUIViewDescriptionVisitorDelegate.h>
 
 /**
  Provides tools for accessing the UI of a running application.
