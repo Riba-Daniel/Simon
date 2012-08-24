@@ -27,16 +27,9 @@
 	if (self) {
 		
 		// Get a custom port value from the process args.
-		NSInteger port = HTTP_SIMON_PORT;
-		if ([SIAppBackpack isArgumentPresentWithName:ARG_SIMON_PORT]) {
-			NSString *strValue = [SIAppBackpack argumentValueForName:ARG_SIMON_PORT];
-			if (strValue != nil) {
-				NSInteger argValue = [strValue integerValue];
-				if (argValue > 0) {
-					port = argValue;
-				}
-			}
-		}
+		NSString *strValue = [SIAppBackpack argumentValueForName:ARG_SIMON_PORT];
+		NSInteger intValue = [strValue integerValue];
+		NSInteger port = intValue > 0 ? intValue : HTTP_SIMON_PORT;
 		
 		DC_LOG(@"Starting HTTP server on port: %i", port);
 		[DDLog addLogger:[DDTTYLogger sharedInstance]];
