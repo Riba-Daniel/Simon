@@ -6,11 +6,11 @@
 //  Copyright (c) 2012 Sensis. All rights reserved.
 //
 
-#import "GHTestCase+GHTestCase_TestUtils.h"
+#import "GHTestCase+Utils.h"
 #import <OCMock/OCMock.h>
 #import <Simon/SIStory.h>
 
-@implementation GHTestCase (GHTestCase_TestUtils)
+@implementation GHTestCase (Utils)
 
 -(NSNotification *) createMockedNotification:(NSString *) name forStoryStatus:(SIStoryStatus) status {
 	id storyMock = [OCMockObject mockForClass:[SIStory class]];

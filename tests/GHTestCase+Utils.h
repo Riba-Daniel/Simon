@@ -9,7 +9,7 @@
 #import <GHUnitIOS/GHUnit.h>
 #import <Simon/SIConstants.h>
 
-@interface GHTestCase (GHTestCase_TestUtils)
+@interface GHTestCase (Utils)
 
 -(NSNotification *) createMockedNotification:(NSString *) name forStoryStatus:(SIStoryStatus) status;
 
