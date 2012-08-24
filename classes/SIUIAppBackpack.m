@@ -7,6 +7,7 @@
 //
 
 #import <Simon/SIUIAppBackpack.h>
+#import <Simon/NSObject+Simon.h>
 #import <dUsefulStuff/DCCommon.h>
 
 @implementation SIUIAppBackpack

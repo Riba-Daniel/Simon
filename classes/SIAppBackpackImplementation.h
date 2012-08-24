@@ -13,16 +13,9 @@
  */
 @protocol SIAppBackpackImplementation <NSObject>
 
-@property (nonatomic, readonly) SIStoryRunner *runner;
-
 -(void) startUp:(NSNotification *) notification;
 -(void) shutDown:(NSNotification *) notification;
 -(void) runFinished:(NSNotification *) notification;
 -(void) runStories:(NSNotification *) notification;
-
-/**
- Excutes the passed block on Simon's thread.
- */
--(void) executeOnSimonThread:(void (^)()) block;
 
 @end

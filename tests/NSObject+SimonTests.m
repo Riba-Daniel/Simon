@@ -8,6 +8,7 @@
 
 #import <GHUnitIOS/GHUnit.h>
 #import <Simon/NSObject+Simon.h>
+
 @interface NSObject_SimonTests : GHTestCase
 
 @end
@@ -27,6 +28,23 @@
 		GHAssertEqualStrings(exception.name, @"Fred", nil);
 	}
 	GHAssertTrue(caught, nil);
+}
+
+-(void) testExecuteOnSimonThreadIsOnBackgroundThread {
+	
+	NSThread *testThread = [NSThread currentThread];
+	__block BOOL executed = NO;
+	[self executeOnSimonThread:^{
+		GHAssertEqualStrings([[NSThread currentThread] name], @"Simon", nil);
+		GHAssertNotEquals([NSThread currentThread], testThread, nil);
+		executed = YES;
+	}];
+	
+	// give it some time to execute and then test it did.
+	[[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+	[NSThread sleepForTimeInterval:0.2];
+	GHAssertTrue(executed, nil);
+	
 }
 
 @end

@@ -577,6 +577,34 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
+		3224267C15E74DC600F0CB62 /* In app UI */ = {
+			isa = PBXGroup;
+			children = (
+				328DE14815D39945009A16C1 /* SIUIAppBackpack.h */,
+				328DE14915D39945009A16C1 /* SIUIAppBackpack.m */,
+				94E3753714544A5000FB86AA /* SIStoryDetailsController.h */,
+				94E3753814544A5000FB86AA /* SIStoryDetailsController.m */,
+				9490249214408DC4006132A5 /* SIStoryListController.h */,
+				9490249314408DC4006132A5 /* SIStoryListController.m */,
+				9490248A144089A3006132A5 /* SIUIReportManager.h */,
+				9490248B144089A3006132A5 /* SIUIReportManager.m */,
+			);
+			name = "In app UI";
+			sourceTree = "<group>";
+		};
+		3224267D15E74DD300F0CB62 /* Http */ = {
+			isa = PBXGroup;
+			children = (
+				32C30DD515D3A73100AA7347 /* SIHttpAppBackpack.h */,
+				32C30DD615D3A73100AA7347 /* SIHttpAppBackpack.m */,
+				328DE14415D3792C009A16C1 /* SIHttpResultSender.h */,
+				328DE14515D3792C009A16C1 /* SIHttpResultSender.m */,
+				32AF045515CEB7BA00501B1E /* SIIncomingHTTPConnection.h */,
+				32AF045615CEB7BA00501B1E /* SIIncomingHTTPConnection.m */,
+			);
+			name = Http;
+			sourceTree = "<group>";
+		};
 		322DA95415A18A4B005CFC83 /* PieMan */ = {
 			isa = PBXGroup;
 			children = (
@@ -810,27 +838,21 @@
 			children = (
 				65D03BEF13BE014700A3F0FA /* Categories */,
 				32B0ABF514E8DEE20020500E /* Exceptions */,
-				9490249114408D11006132A5 /* Reporting */,
+				9490249114408D11006132A5 /* Interface */,
+				65D03BD813BA099700A3F0FA /* SIStoryLogger.h */,
+				65D03BD913BA099700A3F0FA /* SIStoryLogger.m */,
 				652D4E4B13CDD44300633E51 /* SIAppBackpack.h */,
 				652D4E4C13CDD44400633E51 /* SIAppBackpack.m */,
 				3210988915D3D6E200567D6D /* SIAppBackpackImplementation.h */,
 				943A3967143DD2D0000D506C /* SIConstants.h */,
-				32C30DD515D3A73100AA7347 /* SIHttpAppBackpack.h */,
-				32C30DD615D3A73100AA7347 /* SIHttpAppBackpack.m */,
-				32AF045515CEB7BA00501B1E /* SIIncomingHTTPConnection.h */,
-				32AF045615CEB7BA00501B1E /* SIIncomingHTTPConnection.m */,
 				65D03BED13BDEBE000A3F0FA /* SIMacros.h */,
 				328DE14C15D39B72009A16C1 /* Simon.h */,
 				65FCD12413AF622300A90FCA /* SIRuntime.h */,
 				65FCD12513AF622300A90FCA /* SIRuntime.m */,
 				32AF045715CEB7BA00501B1E /* SIServerException.h */,
 				32AF045815CEB7BA00501B1E /* SIServerException.m */,
-				328DE14815D39945009A16C1 /* SIUIAppBackpack.h */,
-				328DE14915D39945009A16C1 /* SIUIAppBackpack.m */,
-				659E629B13DAFC4000ACD34C /* SIUIApplication.h */,
-				659E629C13DAFC4000ACD34C /* SIUIApplication.m */,
 				6583B42F13D1C9FF005E13F3 /* Stories */,
-				659E628E13D9C37200ACD34C /* UI */,
+				659E628E13D9C37200ACD34C /* Subject */,
 			);
 			path = classes;
 			sourceTree = "<group>";
@@ -923,10 +945,12 @@
 			name = GHUnit;
 			sourceTree = "<group>";
 		};
-		659E628E13D9C37200ACD34C /* UI */ = {
+		659E628E13D9C37200ACD34C /* Subject */ = {
 			isa = PBXGroup;
 			children = (
 				3232A9F514EDFD25002010FF /* Events */,
+				659E629B13DAFC4000ACD34C /* SIUIApplication.h */,
+				659E629C13DAFC4000ACD34C /* SIUIApplication.m */,
 				325683D814EF6CEB00F7C189 /* SIUIConstants.h */,
 				324108B41509C19400AFBF66 /* SIUIViewDescriptionVisitor.h */,
 				324108B51509C19400AFBF66 /* SIUIViewDescriptionVisitor.m */,
@@ -935,7 +959,7 @@
 				659E629013D9C3E200ACD34C /* UIView+Simon.m */,
 				3232A9F414EDFCAC002010FF /* View Handlers */,
 			);
-			name = UI;
+			name = Subject;
 			sourceTree = "<group>";
 		};
 		659E62A013DB026400ACD34C /* UI */ = {
@@ -960,23 +984,15 @@
 			name = Categories;
 			sourceTree = "<group>";
 		};
-		9490249114408D11006132A5 /* Reporting */ = {
+		9490249114408D11006132A5 /* Interface */ = {
 			isa = PBXGroup;
 			children = (
-				94E3753714544A5000FB86AA /* SIStoryDetailsController.h */,
-				94E3753814544A5000FB86AA /* SIStoryDetailsController.m */,
-				9490249214408DC4006132A5 /* SIStoryListController.h */,
-				9490249314408DC4006132A5 /* SIStoryListController.m */,
+				3224267D15E74DD300F0CB62 /* Http */,
+				3224267C15E74DC600F0CB62 /* In app UI */,
 				0BF2104315D25412006BB2CA /* SIResultListener.h */,
 				0BF2104415D25412006BB2CA /* SIResultListener.m */,
-				65D03BD813BA099700A3F0FA /* SIStoryLogger.h */,
-				65D03BD913BA099700A3F0FA /* SIStoryLogger.m */,
-				9490248A144089A3006132A5 /* SIUIReportManager.h */,
-				9490248B144089A3006132A5 /* SIUIReportManager.m */,
-				328DE14415D3792C009A16C1 /* SIHttpResultSender.h */,
-				328DE14515D3792C009A16C1 /* SIHttpResultSender.m */,
 			);
-			name = Reporting;
+			name = Interface;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

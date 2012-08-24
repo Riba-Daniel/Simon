@@ -22,4 +22,11 @@
  */
 -(void) executeBlockOnMainThread:(void (^)()) block;
 
+/**
+ Excutes the passed block on Simon's thread.
+ 
+ @param block the block to be executed.
+ */
+-(void) executeOnSimonThread:(void (^)()) block;
+
 @end

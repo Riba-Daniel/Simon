@@ -15,9 +15,10 @@
 #import <Simon/SIStoryRunner.h>
 #import <Simon/SIUIAppBackpack.h>
 #import <Simon/SIHttpAppBackpack.h>
+#import <Simon/NSObject+Simon.h>
 #import <dUsefulStuff/NSObject+dUsefulStuff.h>
 
-@interface SIAppBackpack (){
+@interface SIAppBackpack () {
 @private
 	SIStoryLogger *logger;
 }
@@ -186,16 +187,6 @@ static SIAppBackpack *_backpack;
 
 #pragma mark - Thread handling
 
--(void) executeOnSimonThread:(void (^)()) block {
-	dispatch_queue_t queue = dispatch_queue_create(SI_QUEUE_NAME, NULL);
-	dispatch_async(queue, ^{
-		DC_LOG(@"Executing block on Simon's background thread");
-		[NSThread currentThread].name = @"Simon";
-		block();
-	});
-   dispatch_release(queue);
-	
-}
 
 #pragma mark - Process arguments
 

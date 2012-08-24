@@ -30,6 +30,9 @@
 /// The file reader to read story files with.
 @property (nonatomic, retain) SIStoryFileReader *reader;
 
+/// The story runner which will execute the stories.
+@property (nonatomic, readonly) SIStoryRunner *runner;
+
 /// @name Tasks
 
 /**

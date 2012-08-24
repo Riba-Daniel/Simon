@@ -6,7 +6,8 @@
 //  Copyright (c) 2012 Sensis. All rights reserved.
 //
 
-#import "NSObject+Simon.h"
+#import <Simon/NSObject+Simon.h>
+#import <Simon/SIConstants.h>
 #import <dUsefulStuff/DCCommon.h>
 
 /**
@@ -38,6 +39,17 @@
 			@throw [exception autorelease];
 		}
 	}
+}
+
+-(void) executeOnSimonThread:(void (^)()) block {
+	dispatch_queue_t queue = dispatch_queue_create(SI_QUEUE_NAME, NULL);
+	dispatch_async(queue, ^{
+		DC_LOG(@"Executing block on Simon's background thread");
+		[NSThread currentThread].name = @"Simon";
+		block();
+	});
+   dispatch_release(queue);
+	
 }
 
 @end
