@@ -12,7 +12,7 @@
 #import <Simon/SIStory.h>
 #import <Simon/SIConstants.h>
 #import <OCMock/OCMock.h>
-#import "GHTestCase+GHTestCase_TestUtils.h"
+#import "GHTestCase+Utils.h"
 
 @interface SIResultListenerTests : GHTestCase
 

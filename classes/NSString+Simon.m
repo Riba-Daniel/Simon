@@ -6,7 +6,8 @@
 //  Copyright 2011. All rights reserved.
 //
 
-#import "NSString+Simon.h"
+#import <Simon/NSString+Simon.h>
+#import <Simon/SIConstants.h>
 
 @implementation NSString (Simon)
 
@@ -37,7 +38,7 @@
 	
 }
 
--(SIKeyword) keywordFromString {
+-(SIKeyword) siKeyword {
 	NSString * upper = [self uppercaseString];
 	if ([@"STORY" isEqualToString:upper]) {
 		return SIKeywordStory;
@@ -53,7 +54,7 @@
 	return SIKeywordUnknown;
 }
 
-+(NSString *) stringFromKeyword:(SIKeyword) keyword {
++(NSString *) stringFromSIKeyword:(SIKeyword) keyword {
 	switch (keyword) {
 		case SIKeywordStartOfFile:
 			return @"Start of file";
@@ -99,6 +100,16 @@
 
 + (BOOL) isEmpty:(NSString *) value {
 	return ([[value stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]length] == 0);
+}
+
+-(SIHttpMethod) siHttpMethod {
+	NSString * upper = [self uppercaseString];
+	if ([@"POST" isEqualToString:upper]) {
+		return SIHttpMethodPost;
+	} else if ([@"GET" isEqualToString:upper]) {
+		return SIHttpMethodGet;
+	}
+	return SIHttpMethodUnknown;
 }
 
 

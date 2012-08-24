@@ -93,5 +93,12 @@ typedef enum {
 	SIStoryStatusCount
 } SIStoryStatus;
 
-
+/**
+ Defines the methods that can be accepted by the http server.
+ */
+typedef enum {
+	SIHttpMethodUnknown,
+	SIHttpMethodGet,
+	SIHttpMethodPost
+} SIHttpMethod;
 

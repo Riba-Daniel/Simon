@@ -17,88 +17,88 @@
 
 @implementation NSString_SimonTests
 
--(void) testStringToKeywordGivenWrongCase {
-	GHAssertEquals([@"GiVeN" keywordFromString] , SIKeywordGiven, @"Unexpected keyword returned");
+-(void) testSIKeywordGivenWrongCase {
+	GHAssertEquals([@"GiVeN" siKeyword] , SIKeywordGiven, nil);
 }
 
--(void) testStringToKeywordGiven {
-	GHAssertEquals([@"Given" keywordFromString] , SIKeywordGiven, @"Unexpected keyword returned");
+-(void) testSIKeywordGiven {
+	GHAssertEquals([@"Given" siKeyword] , SIKeywordGiven, nil);
 }
 
--(void) testStringToKeywordThen {
-	GHAssertEquals([@"Then" keywordFromString] , SIKeywordThen, @"Unexpected keyword returned");
+-(void) testSIToKeywordThen {
+	GHAssertEquals([@"Then" siKeyword] , SIKeywordThen, nil);
 }
 
--(void) testStringToKeywordAs {
-	GHAssertEquals([@"As" keywordFromString] , SIKeywordAs, @"Unexpected keyword returned");
+-(void) testSIKeywordAs {
+	GHAssertEquals([@"As" siKeyword] , SIKeywordAs, nil);
 }
 
--(void) testStringToKeywordAnd {
-	GHAssertEquals([@"And" keywordFromString] , SIKeywordAnd, @"Unexpected keyword returned");
+-(void) testSIKeywordAnd {
+	GHAssertEquals([@"And" siKeyword] , SIKeywordAnd, nil);
 }
 
--(void) testStringToKeywordNonKeyword {
-	GHAssertEquals([@"abc" keywordFromString] , SIKeywordUnknown, @"Unexpected keyword returned");
+-(void) testSIKeywordNonKeyword {
+	GHAssertEquals([@"abc" siKeyword] , SIKeywordUnknown, nil);
 }
 
--(void) testKeywordToStringGiven {
-	GHAssertEqualStrings([NSString stringFromKeyword:SIKeywordGiven], @"Given", @"Incorrect String returned");
+-(void) testStringFromSIKeywordGiven {
+	GHAssertEqualStrings([NSString stringFromSIKeyword:SIKeywordGiven], @"Given", nil);
 }
 
--(void) testKeywordToStringThen {
-	GHAssertEqualStrings([NSString stringFromKeyword:SIKeywordThen], @"Then", @"Incorrect String returned");
+-(void) testStringFromSIKeywordThen {
+	GHAssertEqualStrings([NSString stringFromSIKeyword:SIKeywordThen], @"Then", nil);
 }
 
--(void) testKeywordToStringAs {
-	GHAssertEqualStrings([NSString stringFromKeyword:SIKeywordAs], @"As", @"Incorrect String returned");
+-(void) testStringFromSIKeywordAs {
+	GHAssertEqualStrings([NSString stringFromSIKeyword:SIKeywordAs], @"As", nil);
 }
 
--(void) testKeywordToStringAnd {
-	GHAssertEqualStrings([NSString stringFromKeyword:SIKeywordAnd], @"And", @"Incorrect String returned");
+-(void) testStringFromSIKeywordAnd {
+	GHAssertEqualStrings([NSString stringFromSIKeyword:SIKeywordAnd], @"And", nil);
 }
 
--(void) testKeywordToStringUnknown {
-	GHAssertEqualStrings([NSString stringFromKeyword:SIKeywordUnknown], @"Unknown", @"Incorrect String returned");
+-(void) testStringFromSIKeywordUnknown {
+	GHAssertEqualStrings([NSString stringFromSIKeyword:SIKeywordUnknown], @"Unknown", nil);
 }
 
--(void) testStripsSingleQuotes {
-	GHAssertEqualStrings([@"'abc'" stringByRemovingQuotes], @"abc", @"Quotes not removed");
+-(void) testStringByRemovingQuotesStripsSingleQuotes {
+	GHAssertEqualStrings([@"'abc'" stringByRemovingQuotes], @"abc", nil);
 }
 
--(void) testStripsDoubleQuotes {
-	GHAssertEqualStrings([@"\"abc\"" stringByRemovingQuotes], @"abc", @"Quotes not removed");
+-(void) testStringByRemovingQuotesStripsDoubleQuotes {
+	GHAssertEqualStrings([@"\"abc\"" stringByRemovingQuotes], @"abc", nil);
 }
 
--(void) testLeavesNonQuotedStringAlone {
-	GHAssertEqualStrings([@"abc" stringByRemovingQuotes], @"abc", @"Quotes not removed");
+-(void) testStringByRemovingQuotesLeavesNonQuotedStringAlone {
+	GHAssertEqualStrings([@"abc" stringByRemovingQuotes], @"abc", nil);
 }
 
--(void) testStripsDoubleQuotesButLeavesEmbeddedQuotes {
-	GHAssertEqualStrings([@"\"a\"b\"c\"" stringByRemovingQuotes], @"a\"b\"c", @"Quotes not removed");
+-(void) testStringByRemovingQuotesStripsDoubleQuotesButLeavesEmbeddedQuotes {
+	GHAssertEqualStrings([@"\"a\"b\"c\"" stringByRemovingQuotes], @"a\"b\"c", nil);
 }
 
 -(void) testHasPrefixWithOptionsNoMatch {
-	GHAssertFalse([@"abcdef" hasPrefix:@"xyz" options:0], @"Should not have matched");
+	GHAssertFalse([@"abcdef" hasPrefix:@"xyz" options:0], nil);
 }
 
 -(void) testHasPrefixWithOptionsTooShortToMatch {
-	GHAssertFalse([@"abc" hasPrefix:@"abcdef" options:0], @"Should not have matched");
+	GHAssertFalse([@"abc" hasPrefix:@"abcdef" options:0], nil);
 }
 
 -(void) testHasPrefixWithOptionsExactMatch {
-	GHAssertTrue([@"abc" hasPrefix:@"abc" options:0], @"Should have matched");
+	GHAssertTrue([@"abc" hasPrefix:@"abc" options:0], nil);
 }
 
 -(void) testHasPrefixWithOptionsPrefixMatch {
-	GHAssertTrue([@"abcdef" hasPrefix:@"abc" options:0], @"Should have matched");
+	GHAssertTrue([@"abcdef" hasPrefix:@"abc" options:0], nil);
 }
 
 -(void) testHasPrefixWithOptionsCaseInsensitiveMatch {
-	GHAssertTrue([@"aBCdef" hasPrefix:@"abc" options:NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch], @"Should have matched");
+	GHAssertTrue([@"aBCdef" hasPrefix:@"abc" options:NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch], nil);
 }
 
 -(void) testHasPrefixWithOptionsDiacraticInsensitiveMatch {
-	GHAssertTrue([@"defg" hasPrefix:@"dË" options:NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch], @"Should have matched");
+	GHAssertTrue([@"defg" hasPrefix:@"dË" options:NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch], nil);
 }
 
 -(void) testIsEmptyWithNil {
@@ -119,6 +119,18 @@
 
 -(void) testIsEmptyWithText {
 	GHAssertFalse([NSString isEmpty:@"  Hello \n world"], nil);
+}
+
+-(void) testSIHttpMethodWithPost {
+	GHAssertEquals([@"post" siHttpMethod], SIHttpMethodPost, nil);
+}
+
+-(void) testSIHttpMethodWithGet {
+	GHAssertEquals([@"get" siHttpMethod], SIHttpMethodGet, nil);
+}
+
+-(void) testSIHttpMethodWithUnknown {
+	GHAssertEquals([@"xxx" siHttpMethod], SIHttpMethodUnknown, nil);
 }
 
 @end

@@ -14,11 +14,7 @@
  */
 @interface NSString (Simon)
 
-/**
- * Returns the string with any leading and trail quotes removed. Works with both
- * single and double quotes.
- */
--(NSString *) stringByRemovingQuotes;
+/// @name Class methods
 
 /**
  Returns the string description of a story's status.
@@ -28,19 +24,35 @@
 +(NSString *) stringStatusWithStory:(SIStory *) story;
 
 /**
- Examines a string and returns the matching SIKeyword.
- 
- @return the matching SIkeyword.
- */
--(SIKeyword) keywordFromString;
-
-/**
  Returns a string representation of the keyword.
  
  @param keyword the keyword we want the string for.
  @return an NSString instance.
  */
-+(NSString *) stringFromKeyword:(SIKeyword) keyword;
++(NSString *) stringFromSIKeyword:(SIKeyword) keyword;
+
+/**
+ Returns YES if the value is nil or contains no actual textural data. All whitespace is ignored.
+ 
+ @return YES if the value is nil, empty or contains only whitespace characters.
+ */
++ (BOOL) isEmpty:(NSString *) value;
+
+
+/// @name Instance methods
+
+/**
+ * Returns the string with any leading and trail quotes removed. Works with both
+ * single and double quotes.
+ */
+-(NSString *) stringByRemovingQuotes;
+
+/**
+ Examines a string and returns the matching SIKeyword.
+ 
+ @return the matching SIkeyword.
+ */
+-(SIKeyword) siKeyword;
 
 /**
  A more complex prefix check which applies the passed options. Typically these specify such things as case sensitivity.
@@ -53,10 +65,10 @@
 -(BOOL) hasPrefix:(NSString *) prefix options:(int) options;
 
 /**
- Returns YES if the value is nil or contains no actual textural data. All whitespace is ignored.
-
- @return YES if the value is nil, empty or contains only whitespace characters.
+ Returns the string converted to a SIHttpMethod value.
+ 
+ @return the matching SIHttpMethod.
  */
-+ (BOOL) isEmpty:(NSString *) value;
+-(SIHttpMethod) siHttpMethod;
 
 @end

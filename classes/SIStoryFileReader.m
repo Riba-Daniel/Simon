@@ -158,7 +158,7 @@
 		return SIKeywordUnknown;
 	}
 	
-	SIKeyword keyword = [firstWord keywordFromString];
+	SIKeyword keyword = [firstWord siKeyword];
 	if (keyword == SIKeywordUnknown) {
 		NSString *message = [self failureReasonWithContent:[NSString stringWithFormat:@"Each line of a story must start with a valid keyword (Given, Then, As or And) or a comment. \"%@\" is not a keyword.", firstWord] forSource:source];
 		[self setError:error
@@ -174,8 +174,8 @@
 	
 	// Validate the order of keywords.
 	DC_LOG(@"Syntax check %@ -> %@",
-			 [NSString stringFromKeyword: priorKeyword],
-			 [NSString stringFromKeyword: nextKeyword]);
+			 [NSString stringFromSIKeyword: priorKeyword],
+			 [NSString stringFromSIKeyword: nextKeyword]);
 	
 	// Cross reference the prior keyword and current keyword to decide
 	// whether the syntax is ok.
@@ -230,7 +230,7 @@
 			
 		case SIKeywordThen:
 			if (nextKeyword != SIKeywordAnd && nextKeyword != SIKeywordStory) {
-				NSString *message = [self failureReasonWithContent:[NSString stringWithFormat:@"Incorrect keyword order, \"%@\" cannot appear after \"Then\"", [NSString stringFromKeyword:nextKeyword]] forSource:source];
+				NSString *message = [self failureReasonWithContent:[NSString stringWithFormat:@"Incorrect keyword order, \"%@\" cannot appear after \"Then\"", [NSString stringFromSIKeyword:nextKeyword]] forSource:source];
 				[self setError:error
 							 code:SIErrorInvalidStorySyntax
 					errorDomain:SIMON_ERROR_DOMAIN
