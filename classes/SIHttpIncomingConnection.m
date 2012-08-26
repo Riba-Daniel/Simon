@@ -6,15 +6,15 @@
 //  Copyright (c) 2012 Sensis. All rights reserved.
 //
 
-#import <Simon/SIIncomingHttpConnection.h>
+#import <Simon/SIHttpIncomingConnection.h>
 #import <dUsefulStuff/DCCommon.h>
 #import <Simon/SIAppBackpack.h>
 
-@interface SIIncomingHttpConnection ()
+@interface SIHttpIncomingConnection ()
 @property (retain, nonatomic) NSArray *processors;
 @end
 
-@implementation SIIncomingHttpConnection
+@implementation SIHttpIncomingConnection
 
 @synthesize processors;
 

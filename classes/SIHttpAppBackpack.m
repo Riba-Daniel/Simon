@@ -11,7 +11,7 @@
 #import <CocoaHTTPServer/DDLog.h>
 #import <CocoaHTTPServer/DDTTYLogger.h>
 #import <Simon/SIServerException.h>
-#import <Simon/SIIncomingHttpConnection.h>
+#import <Simon/SIHttpIncomingConnection.h>
 
 @implementation SIHttpAppBackpack
 
@@ -34,7 +34,7 @@
 		DC_LOG(@"Starting HTTP server on port: %i", port);
 		[DDLog addLogger:[DDTTYLogger sharedInstance]];
 		server = [[HTTPServer alloc] init];
-		[server setConnectionClass:[SIIncomingHttpConnection class]];
+		[server setConnectionClass:[SIHttpIncomingConnection class]];
 		[server setPort:port];
 		NSError *error = nil;
 		if(![server start:&error])

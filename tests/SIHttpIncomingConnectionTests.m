@@ -7,18 +7,18 @@
 //
 
 #import <GHUnitIOS/GHUnit.h>
-#import <Simon/SIIncomingHttpConnection.h>
+#import <Simon/SIHttpIncomingConnection.h>
 #import <Simon/SIHttpRequestProcessor.h>
 #import <OCMock/OCMock.h>
 #import <dUsefulStuff/DCCommon.h>
 
-@interface SIIncomingHttpConnection (_hack)
+@interface SIHttpIncomingConnection (_hack)
 @property (retain, nonatomic) NSArray *processors;
 @end
 
-@interface SIIncomingHttpConnectionTests : GHTestCase {
+@interface SIHttpIncomingConnectionTests : GHTestCase {
 	@private
-	SIIncomingHttpConnection *connection;
+	SIHttpIncomingConnection *connection;
 	id processor1;
 	id processor2;
 	BOOL yes;
@@ -27,14 +27,14 @@
 
 @end
 
-@implementation SIIncomingHttpConnectionTests
+@implementation SIHttpIncomingConnectionTests
 
 -(void) setUp {
 	yes = YES;
 	no = YES;
 	processor1 = [OCMockObject mockForProtocol:@protocol(SIHttpRequestProcessor)];
 	processor2 = [OCMockObject mockForProtocol:@protocol(SIHttpRequestProcessor)];
-	connection = [[SIIncomingHttpConnection alloc] initWithAsyncSocket:nil configuration:nil];
+	connection = [[SIHttpIncomingConnection alloc] initWithAsyncSocket:nil configuration:nil];
 
 	// Override default setup.
 	connection.processors = [NSArray arrayWithObjects:processor1, processor2, nil];
