@@ -8,6 +8,6 @@
 
 #import <CocoaHTTPServer/HTTPConnection.h>
 
-@interface SIIncomingHTTPConnection : HTTPConnection
+@interface SIIncomingHttpConnection : HTTPConnection
 
 @end
