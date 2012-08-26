@@ -308,8 +308,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0B14F00915CBA60500284016 /* libdUsefulStuff.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libdUsefulStuff.a; path = "../dUsefulStuff/build/Release-iphoneos/libdUsefulStuff.a"; sourceTree = "<group>"; };
-		0B14F00B15CBA61500284016 /* libdNodi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libdNodi.a; path = "../dNodi/build/Release-iphoneos/libdNodi.a"; sourceTree = "<group>"; };
 		0B14F00D15CBA65C00284016 /* GHUnitIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GHUnitIOS.framework; path = ../frameworks/GHUnit/0.5.2/GHUnitIOS.framework; sourceTree = "<group>"; };
 		0B14F00F15CBA66F00284016 /* libOCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOCMock.a; path = ../frameworks/OCMock/2.0.1/iOS/libOCMock.a; sourceTree = "<group>"; };
 		0B14F01115CBA66F00284016 /* NSNotificationCenter+OCMAdditions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+OCMAdditions.h"; sourceTree = "<group>"; };
@@ -360,7 +358,6 @@
 		32741D7714EB581E00093E0F /* UITouch+Simon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "UITouch+Simon.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		32741D7A14EB5BAE00093E0F /* UIEvent+Simon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIEvent+Simon.h"; sourceTree = "<group>"; };
 		32741D7B14EB5BAE00093E0F /* UIEvent+Simon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "UIEvent+Simon.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		328DE12415D35C43009A16C1 /* libCocoaHTTPServer.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCocoaHTTPServer.a; path = "../CocoaHTTPServer/CocoaHTTPServer/build/Release-iphoneos/libCocoaHTTPServer.a"; sourceTree = "<group>"; };
 		328DE13F15D368D2009A16C1 /* SIResultListenerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIResultListenerTests.m; sourceTree = "<group>"; };
 		328DE14115D37566009A16C1 /* GHTestCase+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GHTestCase+Utils.h"; sourceTree = "<group>"; };
 		328DE14215D37566009A16C1 /* GHTestCase+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GHTestCase+Utils.m"; sourceTree = "<group>"; };
@@ -571,11 +568,8 @@
 		0B14F01715CBA67E00284016 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				328DE12415D35C43009A16C1 /* libCocoaHTTPServer.a */,
 				32AF045315CEB75F00501B1E /* Security.framework */,
 				32AF045115CEB73600501B1E /* CFNetwork.framework */,
-				0B14F00B15CBA61500284016 /* libdNodi.a */,
-				0B14F00915CBA60500284016 /* libdUsefulStuff.a */,
 				0B14F00F15CBA66F00284016 /* libOCMock.a */,
 				0B14F01015CBA66F00284016 /* OCMock */,
 				0B14F00D15CBA65C00284016 /* GHUnitIOS.framework */,

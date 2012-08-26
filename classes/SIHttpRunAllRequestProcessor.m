@@ -25,7 +25,7 @@
 	return method == SIHttpMethodPost && [path isEqualToString:@"/run/all"];
 }
 
--(id<HTTPResponse>) processPath:(NSString *) path withMethod:(SIHttpMethod) method andBody:(NSString *) body {
+-(NSObject<HTTPResponse> *) processPath:(NSString *) path withMethod:(SIHttpMethod) method andBody:(NSString *) body {
 	NSNotification *notification = [NSNotification notificationWithName:SI_RUN_STORIES_NOTIFICATION object:self];
 	[[NSNotificationCenter defaultCenter] postNotification:notification];
 	return nil;
@@ -33,6 +33,10 @@
 	NSString *responseBody = REPORT;
 	return [[[HTTPDataResponse alloc] initWithData:DC_STRING_TO_DATA(responseBody)] autorelease];
 
+}
+
+-(BOOL) expectingHttpBody {
+	return NO;
 }
 
 @end

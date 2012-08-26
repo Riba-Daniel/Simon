@@ -31,13 +31,11 @@
 
 -(void) setUp {
 	yes = YES;
-	no = YES;
+	no = NO;
 	processor1 = [OCMockObject mockForProtocol:@protocol(SIHttpRequestProcessor)];
 	processor2 = [OCMockObject mockForProtocol:@protocol(SIHttpRequestProcessor)];
 	connection = [[SIHttpIncomingConnection alloc] initWithAsyncSocket:nil configuration:nil];
 
-	// Override default setup.
-	connection.processors = [NSArray arrayWithObjects:processor1, processor2, nil];
 }
 
 -(void) tearDown {
@@ -47,12 +45,42 @@
 }
 
 -(void) testSupportsMethodAtPathChecksProcessors {
+
+	// Override default setup.
+	connection.processors = [NSArray arrayWithObjects:processor1, processor2, nil];
 	
-	[[[processor1 expect] andReturnValue:OCMOCK_VALUE(yes)] canProcessPath:@"/" withMethod:SIHttpMethodPost];
 	[[[processor1 expect] andReturnValue:OCMOCK_VALUE(no)] canProcessPath:@"/" withMethod:SIHttpMethodPost];
+	[[[processor2 expect] andReturnValue:OCMOCK_VALUE(yes)] canProcessPath:@"/" withMethod:SIHttpMethodPost];
 	
 	BOOL supports = [connection supportsMethod:@"post" atPath:@"/"];
 	GHAssertTrue(supports, nil);
+	
+}
+
+-(void) testExpectingMethodBody {
+	
+	// Override default setup.
+	connection.processors = [NSArray arrayWithObjects:processor1, processor2, nil];
+	
+	[[[processor1 expect] andReturnValue:OCMOCK_VALUE(yes)] canProcessPath:@"/" withMethod:SIHttpMethodPost];
+	[[[processor1 expect] andReturnValue:OCMOCK_VALUE(yes)] expectingHttpBody];
+	
+	BOOL supports = [connection expectsRequestBodyFromMethod:@"post" atPath:@"/"];
+	GHAssertTrue(supports, nil);
+	
+}
+
+-(void) testExpectingMethodBodyWithNoExpectedBody {
+	
+	// Override default setup.
+	connection.processors = [NSArray arrayWithObjects:processor1, processor2, nil];
+	
+	[[[processor1 expect] andReturnValue:OCMOCK_VALUE(no)] canProcessPath:@"/" withMethod:SIHttpMethodPost];
+	[[[processor2 expect] andReturnValue:OCMOCK_VALUE(yes)] canProcessPath:@"/" withMethod:SIHttpMethodPost];
+	[[[processor2 expect] andReturnValue:OCMOCK_VALUE(no)] expectingHttpBody];
+	
+	BOOL supports = [connection expectsRequestBodyFromMethod:@"post" atPath:@"/"];
+	GHAssertFalse(supports, nil);
 	
 }
 

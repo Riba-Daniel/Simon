@@ -16,6 +16,8 @@
 
 -(BOOL) canProcessPath:(NSString *) path withMethod:(SIHttpMethod) method;
 
--(id<HTTPResponse>) processPath:(NSString *) path withMethod:(SIHttpMethod) method andBody:(NSString *) body;
+-(NSObject<HTTPResponse> *) processPath:(NSString *) path withMethod:(SIHttpMethod) method andBody:(NSString *) body;
+
+-(BOOL) expectingHttpBody;
 
 @end
