@@ -48,6 +48,7 @@
 #define HTTP_PIEMAN_PORT 44321
 #define HTTP_PATH_RUN_ALL @"/run/all"
 #define HTTP_PATH_HEARTBEAT @"/heartbeat"
+#define HTTP_PATH_EXIT @"/exit"
 #define HTTP_STATUS_RESPONSE @"{\"status\":\"%@\"}"
 
 // Simon's background thread name.

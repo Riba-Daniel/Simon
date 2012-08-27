@@ -36,6 +36,8 @@
 		3224269015EB581600F0CB62 /* SIHttpHeartbeatRequestProcessor.h in Headers */ = {isa = PBXBuildFile; fileRef = 3224268E15EB581600F0CB62 /* SIHttpHeartbeatRequestProcessor.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		3224269115EB581600F0CB62 /* SIHttpHeartbeatRequestProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3224268F15EB581600F0CB62 /* SIHttpHeartbeatRequestProcessor.m */; };
 		3224269315EB590800F0CB62 /* SIHttpHeartbeatRequestProcessorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3224269215EB590800F0CB62 /* SIHttpHeartbeatRequestProcessorTests.m */; };
+		3224269715EB9AFA00F0CB62 /* SIHttpExitRequestProcessor.h in Headers */ = {isa = PBXBuildFile; fileRef = 3224269515EB9AFA00F0CB62 /* SIHttpExitRequestProcessor.h */; };
+		3224269815EB9AFA00F0CB62 /* SIHttpExitRequestProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3224269615EB9AFA00F0CB62 /* SIHttpExitRequestProcessor.m */; };
 		322DA95315A18A4B005CFC83 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 653D0E8D13A782AD00A5AB82 /* Foundation.framework */; };
 		322DA95615A18A4B005CFC83 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 322DA95515A18A4B005CFC83 /* main.m */; };
 		322DA95A15A18A4B005CFC83 /* PieMan.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 322DA95915A18A4B005CFC83 /* PieMan.1 */; };
@@ -347,6 +349,8 @@
 		3224268E15EB581600F0CB62 /* SIHttpHeartbeatRequestProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIHttpHeartbeatRequestProcessor.h; sourceTree = "<group>"; };
 		3224268F15EB581600F0CB62 /* SIHttpHeartbeatRequestProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIHttpHeartbeatRequestProcessor.m; sourceTree = "<group>"; };
 		3224269215EB590800F0CB62 /* SIHttpHeartbeatRequestProcessorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIHttpHeartbeatRequestProcessorTests.m; sourceTree = "<group>"; };
+		3224269515EB9AFA00F0CB62 /* SIHttpExitRequestProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIHttpExitRequestProcessor.h; sourceTree = "<group>"; };
+		3224269615EB9AFA00F0CB62 /* SIHttpExitRequestProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIHttpExitRequestProcessor.m; sourceTree = "<group>"; };
 		322DA95115A18A4B005CFC83 /* PieMan */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = PieMan; sourceTree = BUILT_PRODUCTS_DIR; };
 		322DA95515A18A4B005CFC83 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		322DA95815A18A4B005CFC83 /* PieMan-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PieMan-Prefix.pch"; sourceTree = "<group>"; };
@@ -620,6 +624,8 @@
 				3224268315E75F7000F0CB62 /* SIHttpRunAllRequestProcessor.m */,
 				3224268E15EB581600F0CB62 /* SIHttpHeartbeatRequestProcessor.h */,
 				3224268F15EB581600F0CB62 /* SIHttpHeartbeatRequestProcessor.m */,
+				3224269515EB9AFA00F0CB62 /* SIHttpExitRequestProcessor.h */,
+				3224269615EB9AFA00F0CB62 /* SIHttpExitRequestProcessor.m */,
 			);
 			name = Http;
 			sourceTree = "<group>";
@@ -1094,6 +1100,7 @@
 				3224268415E75F7000F0CB62 /* SIHttpRunAllRequestProcessor.h in Headers */,
 				3224268D15EA599C00F0CB62 /* SIJsonAware.h in Headers */,
 				3224269015EB581600F0CB62 /* SIHttpHeartbeatRequestProcessor.h in Headers */,
+				3224269715EB9AFA00F0CB62 /* SIHttpExitRequestProcessor.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1381,6 +1388,7 @@
 				3210988F15D6893F00567D6D /* SIStorySources.m in Sources */,
 				3224268515E75F7000F0CB62 /* SIHttpRunAllRequestProcessor.m in Sources */,
 				3224269115EB581600F0CB62 /* SIHttpHeartbeatRequestProcessor.m in Sources */,
+				3224269815EB9AFA00F0CB62 /* SIHttpExitRequestProcessor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

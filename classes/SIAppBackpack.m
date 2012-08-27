@@ -95,6 +95,20 @@ static SIAppBackpack *_backpack;
 	return self;
 }
 
+-(void) exit {
+	dispatch_async(dispatch_get_main_queue(), ^{
+		int64_t delayInSeconds = 1.0;
+		dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+		dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+			DC_LOG(@"Exiting the application");
+			// Flush all streams and exit.
+			fflush(NULL);
+			fclose(NULL);
+			exit(0);
+		});
+	});
+}
+
 #pragma mark - Backpack
 
 // Callbacks.
@@ -185,9 +199,6 @@ static SIAppBackpack *_backpack;
 		[self.runner run];
 	}];
 }
-
-#pragma mark - Thread handling
-
 
 #pragma mark - Process arguments
 

@@ -56,4 +56,9 @@
  */
 +(NSString *) argumentValueForName:(NSString *) name;
 
+/**
+ Exits the app. 
+ */
+-(void) exit;
+
 @end

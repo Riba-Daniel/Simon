@@ -6,12 +6,14 @@
 //  Copyright (c) 2012 Sensis. All rights reserved.
 //
 
+#import <dUsefulStuff/DCCommon.h>
+
 #import <Simon/SIHttpIncomingConnection.h>
 #import <Simon/SIHttpRequestProcessor.h>
 #import <Simon/SIHttpRunAllRequestProcessor.h>
 #import <Simon/SIHttpHeartbeatRequestProcessor.h>
+#import <Simon/SIHttpExitRequestProcessor.h>
 #import <Simon/NSString+Simon.h>
-#import <dUsefulStuff/DCCommon.h>
 #import <Simon/SIAppBackpack.h>
 
 @interface SIHttpIncomingConnection ()
@@ -31,11 +33,10 @@
 -(id) initWithAsyncSocket:(GCDAsyncSocket *)newSocket configuration:(HTTPConfig *)aConfig {
 	self = [super initWithAsyncSocket:newSocket configuration:aConfig];
 	if (self) {
-		id<SIHttpRequestProcessor> runAllProcessor = [[SIHttpRunAllRequestProcessor alloc] init];
-		id<SIHttpRequestProcessor> heartbeatProcessor = [[SIHttpHeartbeatRequestProcessor alloc] init];
-		self.processors = [NSArray arrayWithObjects:runAllProcessor, heartbeatProcessor, nil];
-		[runAllProcessor release];
-		[heartbeatProcessor release];
+		id<SIHttpRequestProcessor> runAllProcessor = [[[SIHttpRunAllRequestProcessor alloc] init] autorelease];
+		id<SIHttpRequestProcessor> heartbeatProcessor = [[[SIHttpHeartbeatRequestProcessor alloc] init] autorelease];
+		id<SIHttpRequestProcessor> exitProcessor = [[[SIHttpExitRequestProcessor alloc] init] autorelease];
+		self.processors = [NSArray arrayWithObjects:runAllProcessor, heartbeatProcessor, exitProcessor, nil];
 	}
 	return self;
 }
@@ -62,12 +63,11 @@
 	SIHttpMethod siMethod = [method siHttpMethod];
 	id<SIHttpRequestProcessor> processor = [self processorForMethod:siMethod andPath:path];
 	
-	if (processor == nil) {
-		return [super httpResponseForMethod:method URI:path];
+	if (processor != nil) {
+		return [processor processPath:path withMethod:siMethod andBody:nil];
 	}
 
-	return [processor processPath:path withMethod:siMethod andBody:nil];
-
+	return [super httpResponseForMethod:method URI:path];
 }
 
 -(id<SIHttpRequestProcessor>) processorForMethod:(SIHttpMethod) method andPath:(NSString *) path {
