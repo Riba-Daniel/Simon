@@ -10,7 +10,7 @@
 #import <objc/runtime.h>
 #import <Simon/SIStory.h>
 #import <Simon/SIStep.h>
-#import "NSString+Simon.h"
+#import <Simon/NSString+Simon.h>
 #import <Simon/SIConstants.h>
 
 @interface SIStory(_private)
@@ -42,6 +42,26 @@
 	if (self) {
 		self.steps = [NSMutableArray array];
 		[self reset];
+	}
+	return self;
+}
+
+-(id) initWithJsonDictionary:(NSDictionary *) data {
+	self = [self init];
+	if (self) {
+
+		// Add the steps.
+		NSArray *jsonSteps = [data valueForKey:STORY_JSON_KEY_STEPS];
+		NSMutableArray *mSteps = (NSMutableArray *)self.steps;
+		[jsonSteps enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+			NSDictionary *stepData = obj;
+			SIStep *step = [[[SIStep alloc] initWithJsonDictionary:stepData] autorelease];
+			[mSteps addObject:step];
+		}];
+		
+		// and teh rest of the data.
+		self.title = [data valueForKey:STORY_JSON_KEY_TITLE];
+		_status = [(NSNumber *)[data valueForKey:STORY_JSON_KEY_STATUS] intValue];
 	}
 	return self;
 }
@@ -166,5 +186,20 @@
 -(id) retrieveObjectWithKey:(id) key {
 	return [storyCache objectForKey:key];
 }
+
+-(NSDictionary *) jsonDictionary {
+	NSMutableArray *jsonSteps = [NSMutableArray array];
+	[self.steps enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+		id<SIJsonAware> step = obj;
+		[jsonSteps addObject:[step jsonDictionary]];
+	}];
+	
+	return [NSDictionary dictionaryWithObjectsAndKeys:
+			  self.title, STORY_JSON_KEY_TITLE,
+			  jsonSteps, STORY_JSON_KEY_STEPS,
+			  [NSNumber numberWithInt:self.status], STORY_JSON_KEY_STATUS,
+			  nil];
+}
+
 
 @end

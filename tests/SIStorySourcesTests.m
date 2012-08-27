@@ -10,7 +10,6 @@
 #import <dUsefulStuff/DCCommon.h>
 #import <Simon/SIStorySources.h>
 #import <Simon/SIStorySource.h>
-#import <Simon/SIStory.h>
 
 @interface SIStorySourcesTests : GHTestCase {
 	@private

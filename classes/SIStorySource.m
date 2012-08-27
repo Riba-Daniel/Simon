@@ -37,6 +37,19 @@
 	return self;
 }
 
+-(id) initWithJsonDictionary:(NSDictionary *) data {
+	self = [self init];
+	if (self) {
+		self.source = [data valueForKey:SOURCE_JSON_KEY_SOURCE];
+		NSArray *storyData = [data valueForKey:SOURCE_JSON_KEY_STORIES];
+		NSMutableArray *mStories = (NSMutableArray *) self.stories;
+		[storyData enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+			[mStories addObject:[[[SIStory alloc] initWithJsonDictionary: obj] autorelease]];
+		}];
+	}
+	return self;
+}
+
 -(NSArray *) selectedStories {
 	if (_selectedStories == nil) {
 		[self selectAll];
@@ -79,6 +92,21 @@
 -(void) selectNone {
 	DC_DEALLOC(_selectedStories);
 	_selectedStories = [[NSArray alloc] init];
+}
+
+
+/**
+ Returns a dictionary populated by the object.
+ */
+-(NSDictionary *) jsonDictionary {
+	
+	NSMutableArray *jsonStories = [NSMutableArray array];
+	[self.stories enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+		id<SIJsonAware> story = obj;
+		[jsonStories addObject:[story jsonDictionary]];
+	}];
+	
+	return [NSDictionary dictionaryWithObjectsAndKeys:self.source, SOURCE_JSON_KEY_SOURCE, jsonStories, SOURCE_JSON_KEY_STORIES, nil];
 }
 
 @end

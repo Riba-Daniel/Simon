@@ -7,11 +7,15 @@
 //
 
 #import <Simon/SIStory.h>
+#import <Simon/SIJsonAware.h>
+
+#define SOURCE_JSON_KEY_STORIES @"stories"
+#define SOURCE_JSON_KEY_SOURCE @"source"
 
 /**
  Represents a source of stories. Mainly used for reporting purposes.
  */
-@interface SIStorySource : NSObject
+@interface SIStorySource : NSObject<SIJsonAware>
 
 /**
  The source file which the story was read from.

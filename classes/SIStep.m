@@ -40,6 +40,17 @@
 	return self;
 }
 
+-(id) initWithJsonDictionary:(NSDictionary *) data {
+	self = [self initWithKeyword:[[data valueForKey:STEP_JSON_KEY_KEYWORD] intValue] command:[data valueForKey:STEP_JSON_KEY_COMMAND]];
+	if (self) {
+		self.executed = [[data valueForKey:STEP_JSON_KEY_KEYWORD] boolValue];
+		if ([data valueForKey: STEP_JSON_KEY_EXCEPTION_NAME] != nil) {
+			self.exception = [NSException exceptionWithName:[data valueForKey:STEP_JSON_KEY_EXCEPTION_NAME] reason:[data valueForKey:STEP_JSON_KEY_EXCEPTION_REASON] userInfo: nil];
+		}
+	}
+	return self;
+}
+
 -(void) findMappingInList:(NSArray *) mappings {
 	for (SIStepMapping * mapping in mappings) {
 		if ([mapping canMapToStep:self.command]) {
@@ -87,6 +98,18 @@
 					  errorDomain:SIMON_ERROR_DOMAIN 
 				shortDescription:@"Exception caught"
 					failureReason:[NSString stringWithFormat:@"Exception caught: %@",[self.exception reason]]];
+}
+
+-(NSDictionary *) jsonDictionary {
+	NSMutableDictionary *jsonData = [NSMutableDictionary dictionary];
+	[jsonData setObject:[NSNumber numberWithInt:self.keyword] forKey:STEP_JSON_KEY_KEYWORD];
+	[jsonData setObject:self.command forKey:STEP_JSON_KEY_COMMAND];
+	[jsonData setObject:[NSNumber numberWithBool:self.executed] forKey:STEP_JSON_KEY_EXECUTED];
+	if (self.exception != nil) {
+		[jsonData setObject:self.exception.name forKey:STEP_JSON_KEY_EXCEPTION_NAME];
+		[jsonData setObject:self.exception.reason forKey:STEP_JSON_KEY_EXCEPTION_REASON];
+	}
+	return jsonData;
 }
 
 

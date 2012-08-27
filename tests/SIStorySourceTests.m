@@ -7,6 +7,7 @@
 //
 
 #import <GHUnitIOS/GHUnit.h>
+#import <OCMock/OCMock.h>
 #import <Simon/SIStorySource.h>
 #import <Simon/SIStory.h>
 #import <dUsefulStuff/DCCommon.h>
@@ -79,5 +80,44 @@
 	[source selectNone];
 	GHAssertEquals([[source selectedStories] count], (NSUInteger) 0, nil);
 }
+
+-(void) testInitWithJsonDictionary {
+	
+	id mockStoryData = [OCMockObject niceMockForClass:[NSDictionary class]];
+	[[[mockStoryData stub] andReturn:@"story title"] valueForKey:STORY_JSON_KEY_TITLE];
+	
+	NSMutableArray *storyArray = [NSMutableArray arrayWithObject:mockStoryData];
+	NSDictionary *dic = [[[NSDictionary alloc] initWithObjectsAndKeys:
+								 storyArray, SOURCE_JSON_KEY_STORIES,
+								 @"source-file-name", SOURCE_JSON_KEY_SOURCE,
+								 nil] autorelease];
+	
+	SIStorySource *jsonSource = [[[SIStorySource alloc] initWithJsonDictionary:dic] autorelease];
+	
+	GHAssertNotNil(jsonSource, nil);
+	GHAssertEqualObjects(jsonSource.source, @"source-file-name", nil);
+	NSArray *storedStories = jsonSource.stories;
+	GHAssertNotNil(storedStories, nil);
+	GHAssertEquals([storedStories count], (NSUInteger) 1, nil);
+	GHAssertEquals(((SIStory *)[storedStories objectAtIndex:0]).title, @"story title", nil);
+}
+
+-(void) testAsJsonDictionary {
+	
+	source.source = @"abc";
+	
+	NSDictionary *data = [source jsonDictionary];
+
+	GHAssertNotNil([data objectForKey:SOURCE_JSON_KEY_SOURCE], nil);
+	GHAssertNotNil([data objectForKey:SOURCE_JSON_KEY_STORIES], nil);
+	GHAssertEqualStrings([data objectForKey:SOURCE_JSON_KEY_SOURCE], @"abc", nil);
+	
+	NSArray *storyList = [data objectForKey:SOURCE_JSON_KEY_STORIES];
+	GHAssertEquals([storyList count], (NSUInteger) 3, nil);
+	GHAssertEqualObjects([[storyList objectAtIndex:0] valueForKey:STORY_JSON_KEY_TITLE], @"Abc", nil);
+	GHAssertEqualObjects([[storyList objectAtIndex:1] valueForKey:STORY_JSON_KEY_TITLE], @"def", nil);
+	GHAssertEqualObjects([[storyList objectAtIndex:2] valueForKey:STORY_JSON_KEY_TITLE], @"abc", nil);
+}
+
 
 @end

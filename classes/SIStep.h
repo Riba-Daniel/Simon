@@ -9,11 +9,18 @@
 #import <Foundation/Foundation.h>
 #import <Simon/SIConstants.h>
 #import <Simon/SIStepMapping.h>
+#import <Simon/SIJsonAware.h>
+
+#define STEP_JSON_KEY_KEYWORD @"keyword"
+#define STEP_JSON_KEY_COMMAND @"command"
+#define STEP_JSON_KEY_EXECUTED @"executed"
+#define STEP_JSON_KEY_EXCEPTION_NAME @"exceptionName"
+#define STEP_JSON_KEY_EXCEPTION_REASON @"exceptionReason"
 
 /**
  Represents a step within a SIStory. It stores the text of the step as read from the story file and the SISTepMapping which is then used to execute the implementation code.
  */
-@interface SIStep : NSObject
+@interface SIStep : NSObject<SIJsonAware>
 
 /// @name Properties
 

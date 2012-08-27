@@ -9,6 +9,11 @@
 #import <Foundation/Foundation.h>
 #import <Simon/SIConstants.h>
 #import <Simon/SIStep.h>
+#import <Simon/SIJsonAware.h>
+
+#define STORY_JSON_KEY_STEPS @"steps"
+#define STORY_JSON_KEY_STATUS @"status"
+#define STORY_JSON_KEY_TITLE @"title"
 
 // Stops circular reference in headers.
 @class SIStorySource;
@@ -28,7 +33,7 @@
  Steps implementations which have been mapped by the SIStepMapping class
  can come from more than just one class. Therefore this class also provides a cache in which you can store objects which you want to use across more than one instance.
  */
-@interface SIStory : NSObject {
+@interface SIStory : NSObject<SIJsonAware> {
 	@private
 	NSMutableDictionary *instanceCache;
 	NSMutableDictionary *storyCache;

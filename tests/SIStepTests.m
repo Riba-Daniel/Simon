@@ -96,4 +96,41 @@
 	
 }
 
+-(void) testInitWithJsonDictionary {
+	
+	NSDictionary *jsonData = [NSDictionary dictionaryWithObjectsAndKeys:
+									  [NSNumber numberWithInt:SIKeywordGiven], STEP_JSON_KEY_KEYWORD,
+									  @"hello", STEP_JSON_KEY_COMMAND,
+									  @"exception_name", STEP_JSON_KEY_EXCEPTION_NAME,
+									  @"exception_reason", STEP_JSON_KEY_EXCEPTION_REASON,
+									  [NSNumber numberWithBool:YES], STEP_JSON_KEY_EXECUTED,
+									  nil];
+	
+	SIStep *jsonStep = [[[SIStep alloc] initWithJsonDictionary:jsonData] autorelease];
+	
+	GHAssertEquals(jsonStep.keyword, SIKeywordGiven, nil);
+	GHAssertEqualStrings(jsonStep.command, @"hello", nil);
+	NSException *exception = jsonStep.exception;
+	GHAssertEqualStrings(exception.name, @"exception_name", nil);
+	GHAssertEqualStrings(exception.reason, @"exception_reason", nil);
+	GHAssertTrue(jsonStep.executed, nil);
+	
+}
+
+-(void) testJsonDictionary {
+
+	SIStep *step = [[SIStep alloc] initWithKeyword:SIKeywordGiven command:@"hello"];
+	step.executed = YES;
+	step.exception = [NSException exceptionWithName:@"exception_name" reason:@"exception_reason" userInfo:nil];
+	
+	NSDictionary *jsonData = [step jsonDictionary];
+	GHAssertEquals([[jsonData valueForKey:STEP_JSON_KEY_KEYWORD] intValue], SIKeywordGiven, nil);
+	GHAssertEqualStrings([jsonData valueForKey:STEP_JSON_KEY_COMMAND], @"hello", nil);
+	GHAssertEqualStrings([jsonData valueForKey:STEP_JSON_KEY_EXCEPTION_NAME], @"exception_name", nil);
+	GHAssertEqualStrings([jsonData valueForKey:STEP_JSON_KEY_EXCEPTION_REASON], @"exception_reason", nil);
+	GHAssertTrue([[jsonData valueForKey:STEP_JSON_KEY_EXECUTED] boolValue], nil);
+	
+	
+}
+
 @end

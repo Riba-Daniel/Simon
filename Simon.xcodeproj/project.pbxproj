@@ -31,6 +31,8 @@
 		3224268515E75F7000F0CB62 /* SIHttpRunAllRequestProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3224268315E75F7000F0CB62 /* SIHttpRunAllRequestProcessor.m */; };
 		3224268715E7602D00F0CB62 /* SIHttpRunAllRequestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3224268615E7602D00F0CB62 /* SIHttpRunAllRequestTests.m */; };
 		3224268915E9184E00F0CB62 /* SIHttpIncomingConnectionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3224268815E9184E00F0CB62 /* SIHttpIncomingConnectionTests.m */; };
+		3224268B15EA400000F0CB62 /* JSONSerialisationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3224268A15EA400000F0CB62 /* JSONSerialisationTests.m */; };
+		3224268D15EA599C00F0CB62 /* SIJsonAware.h in Headers */ = {isa = PBXBuildFile; fileRef = 3224268C15EA599C00F0CB62 /* SIJsonAware.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		322DA95315A18A4B005CFC83 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 653D0E8D13A782AD00A5AB82 /* Foundation.framework */; };
 		322DA95615A18A4B005CFC83 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 322DA95515A18A4B005CFC83 /* main.m */; };
 		322DA95A15A18A4B005CFC83 /* PieMan.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 322DA95915A18A4B005CFC83 /* PieMan.1 */; };
@@ -337,6 +339,8 @@
 		3224268315E75F7000F0CB62 /* SIHttpRunAllRequestProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIHttpRunAllRequestProcessor.m; sourceTree = "<group>"; };
 		3224268615E7602D00F0CB62 /* SIHttpRunAllRequestTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIHttpRunAllRequestTests.m; sourceTree = "<group>"; };
 		3224268815E9184E00F0CB62 /* SIHttpIncomingConnectionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIHttpIncomingConnectionTests.m; sourceTree = "<group>"; };
+		3224268A15EA400000F0CB62 /* JSONSerialisationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONSerialisationTests.m; sourceTree = "<group>"; };
+		3224268C15EA599C00F0CB62 /* SIJsonAware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIJsonAware.h; sourceTree = "<group>"; };
 		322DA95115A18A4B005CFC83 /* PieMan */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = PieMan; sourceTree = BUILT_PRODUCTS_DIR; };
 		322DA95515A18A4B005CFC83 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		322DA95815A18A4B005CFC83 /* PieMan-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PieMan-Prefix.pch"; sourceTree = "<group>"; };
@@ -618,6 +622,7 @@
 				32B9594415E6054700470287 /* SIHttpAppBackpackTests.m */,
 				3224268615E7602D00F0CB62 /* SIHttpRunAllRequestTests.m */,
 				3224268815E9184E00F0CB62 /* SIHttpIncomingConnectionTests.m */,
+				3224268A15EA400000F0CB62 /* JSONSerialisationTests.m */,
 			);
 			name = Http;
 			sourceTree = "<group>";
@@ -938,6 +943,7 @@
 				94DC535C14445C5300C3E586 /* SIStorySource.m */,
 				3210988C15D6893E00567D6D /* SIStorySources.h */,
 				3210988D15D6893E00567D6D /* SIStorySources.m */,
+				3224268C15EA599C00F0CB62 /* SIJsonAware.h */,
 			);
 			name = Stories;
 			sourceTree = "<group>";
@@ -1077,6 +1083,7 @@
 				3210988E15D6893F00567D6D /* SIStorySources.h in Headers */,
 				3224268115E7567600F0CB62 /* SIHttpRequestProcessor.h in Headers */,
 				3224268415E75F7000F0CB62 /* SIHttpRunAllRequestProcessor.h in Headers */,
+				3224268D15EA599C00F0CB62 /* SIJsonAware.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1402,6 +1409,7 @@
 				32B9594515E6054700470287 /* SIHttpAppBackpackTests.m in Sources */,
 				3224268715E7602D00F0CB62 /* SIHttpRunAllRequestTests.m in Sources */,
 				3224268915E9184E00F0CB62 /* SIHttpIncomingConnectionTests.m in Sources */,
+				3224268B15EA400000F0CB62 /* JSONSerialisationTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
