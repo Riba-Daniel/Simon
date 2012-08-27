@@ -8,6 +8,9 @@
 
 #import <Simon/SIHttpRequestProcessor.h>
 
+/**
+ Class which responds to requests to run all stories.
+ */
 @interface SIHttpRunAllRequestProcessor : NSObject<SIHttpRequestProcessor>
 
 @end

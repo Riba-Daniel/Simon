@@ -9,6 +9,7 @@
 #import <Simon/SIHttpIncomingConnection.h>
 #import <Simon/SIHttpRequestProcessor.h>
 #import <Simon/SIHttpRunAllRequestProcessor.h>
+#import <Simon/SIHttpHeartbeatRequestProcessor.h>
 #import <Simon/NSString+Simon.h>
 #import <dUsefulStuff/DCCommon.h>
 #import <Simon/SIAppBackpack.h>
@@ -31,8 +32,10 @@
 	self = [super initWithAsyncSocket:newSocket configuration:aConfig];
 	if (self) {
 		id<SIHttpRequestProcessor> runAllProcessor = [[SIHttpRunAllRequestProcessor alloc] init];
-		self.processors = [NSArray arrayWithObjects:runAllProcessor, nil];
+		id<SIHttpRequestProcessor> heartbeatProcessor = [[SIHttpHeartbeatRequestProcessor alloc] init];
+		self.processors = [NSArray arrayWithObjects:runAllProcessor, heartbeatProcessor, nil];
 		[runAllProcessor release];
+		[heartbeatProcessor release];
 	}
 	return self;
 }

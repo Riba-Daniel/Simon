@@ -43,7 +43,10 @@
 }
 
 -(void) testStartupLoadsStoriesAndFiresStartRunNotification {
-	
+
+	NSArray *args = [NSArray arrayWithObjects:@"--autorun", nil];
+	[[NSProcessInfo processInfo] setArguments:args];
+
 	NSNotification *notification = [NSNotification notificationWithName:UIApplicationDidBecomeActiveNotification object:self];
 	
 	id mockReader = [OCMockObject mockForClass:[SIStoryFileReader class]];
