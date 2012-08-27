@@ -11,28 +11,17 @@
 #import <CocoaHTTPServer/HTTPDataResponse.h>
 #import <dUsefulStuff/DCCommon.h>
 
-#define REPORT @"<testsuite>" \
-"<testcase classname=\"foo\" name=\"ASuccessfulTest\"/>" \
-"<testcase classname=\"foo\" name=\"AnotherSuccessfulTest\"/>" \
-"<testcase classname=\"foo\" name=\"AFailingTest\">" \
-"<failure type=\"NotEnoughFoo\"> details about failure </failure>" \
-"</testcase>" \
-"</testsuite>"
-
 @implementation SIHttpRunAllRequestProcessor
 
 -(BOOL) canProcessPath:(NSString *) path withMethod:(SIHttpMethod) method {
-	return method == SIHttpMethodPost && [path isEqualToString:@"/run/all"];
+	return method == SIHttpMethodPost && [path isEqualToString:HTTP_PATH_RUN_ALL];
 }
 
 -(NSObject<HTTPResponse> *) processPath:(NSString *) path withMethod:(SIHttpMethod) method andBody:(NSString *) body {
 	NSNotification *notification = [NSNotification notificationWithName:SI_RUN_STORIES_NOTIFICATION object:self];
 	[[NSNotificationCenter defaultCenter] postNotification:notification];
-	return nil;
-	
-	NSString *responseBody = REPORT;
-	return [[[HTTPDataResponse alloc] initWithData:DC_STRING_TO_DATA(responseBody)] autorelease];
-
+	NSString *response = [NSString stringWithFormat:HTTP_STATUS_RESPONSE, DC_PRETTY_BOOL(YES)];
+	return [[[HTTPDataResponse alloc] initWithData:DC_STRING_TO_DATA(response)] autorelease];
 }
 
 -(BOOL) expectingHttpBody {

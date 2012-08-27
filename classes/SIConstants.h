@@ -46,6 +46,9 @@
 // Http server config.
 #define HTTP_SIMON_PORT 44123
 #define HTTP_PIEMAN_PORT 44321
+#define HTTP_PATH_RUN_ALL @"/run/all"
+#define HTTP_PATH_HEARTBEAT @"/heartbeat"
+#define HTTP_STATUS_RESPONSE @"{\"status\":\"%@\"}"
 
 // Simon's background thread name.
 #define SI_QUEUE_NAME "au.com.derekclarkson.simon"

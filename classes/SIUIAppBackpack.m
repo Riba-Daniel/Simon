@@ -27,21 +27,16 @@
 	return self;
 }
 
+-(void) startUp:(NSNotification *) notification {
+	[super startUp:notification];
+	if(![SIAppBackpack isArgumentPresentWithName:ARG_AUTORUN]) {
+		[ui displayUI];
+	}
+}
+
 -(void) runFinished:(NSNotification *) notification {
 	[super runFinished:notification];
 	[ui displayUI];
-}
-
-// Override to show ui if necessary when starting up.
--(void) runStories:(NSNotification *) notification {
-	[self executeOnSimonThread: ^{
-		// If the notification originated from self and we are not autorunning, then it's startup so go straight to the ui.
-		if(notification.object == self && ![SIAppBackpack isArgumentPresentWithName:ARG_AUTORUN]) {
-			[ui displayUI];
-		} else {
-			[self.runner run];
-		}
-	}];
 }
 
 @end

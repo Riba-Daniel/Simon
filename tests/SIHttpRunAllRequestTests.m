@@ -34,17 +34,26 @@
 }
 
 -(void) testCanProcessPathAndMethodWithCorrectRequest {
-	GHAssertTrue([processor canProcessPath:@"/run/all" withMethod:SIHttpMethodPost], nil);
+	GHAssertTrue([processor canProcessPath:HTTP_PATH_RUN_ALL withMethod:SIHttpMethodPost], nil);
 }
 
 -(void) testCanProcessPathAndMethodWithOtherRequest {
 	GHAssertFalse([processor canProcessPath:@"/xxx" withMethod:SIHttpMethodPost], nil);
 }
 
+-(void) testProcessPathWithMethodReturnsSuccess {
+	
+	id<HTTPResponse> response = [processor processPath:HTTP_PATH_RUN_ALL withMethod:SIHttpMethodPost andBody:nil];
+	
+	NSString *expectedResponse = [NSString stringWithFormat:HTTP_STATUS_RESPONSE, DC_PRETTY_BOOL(YES)];
+	NSString *actualResponse = DC_DATA_TO_STRING([response readDataOfLength:NSIntegerMax]);
+	GHAssertEqualStrings(actualResponse, expectedResponse, nil);
+}
+
 -(void) testProcessPathWithMethodFiresNotification {
 	
-	[processor processPath:@"/run/all" withMethod:SIHttpMethodPost andBody:nil];
-	
+	[processor processPath:HTTP_PATH_RUN_ALL withMethod:SIHttpMethodPost andBody:nil];
+
 	[[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
 	
 	GHAssertTrue(notificationFired, nil);

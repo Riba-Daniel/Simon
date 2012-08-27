@@ -166,8 +166,9 @@ static SIAppBackpack *_backpack;
 		}];
 		
 		// Everything is loaded and ready to go so post a notification to run.
-		[[NSNotificationCenter defaultCenter] postNotificationName:SI_RUN_STORIES_NOTIFICATION object:self];
-		
+		if ([SIAppBackpack isArgumentPresentWithName:ARG_AUTORUN]) {
+			[[NSNotificationCenter defaultCenter] postNotificationName:SI_RUN_STORIES_NOTIFICATION object:self];
+		}
 	}];
 }
 
