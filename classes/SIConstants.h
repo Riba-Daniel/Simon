@@ -51,9 +51,6 @@
 #define HTTP_PATH_EXIT @"/exit"
 #define HTTP_STATUS_RESPONSE @"{\"status\":\"%@\"}"
 
-// Simon's background thread name.
-#define SI_QUEUE_NAME "au.com.derekclarkson.simon"
-
 /**
  Individual error codes.
  */

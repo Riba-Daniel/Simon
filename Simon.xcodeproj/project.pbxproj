@@ -38,6 +38,11 @@
 		3224269315EB590800F0CB62 /* SIHttpHeartbeatRequestProcessorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3224269215EB590800F0CB62 /* SIHttpHeartbeatRequestProcessorTests.m */; };
 		3224269715EB9AFA00F0CB62 /* SIHttpExitRequestProcessor.h in Headers */ = {isa = PBXBuildFile; fileRef = 3224269515EB9AFA00F0CB62 /* SIHttpExitRequestProcessor.h */; };
 		3224269815EB9AFA00F0CB62 /* SIHttpExitRequestProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3224269615EB9AFA00F0CB62 /* SIHttpExitRequestProcessor.m */; };
+		3224269915EBA79A00F0CB62 /* SIStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 653D0EB613A783C000A5AB82 /* SIStep.m */; };
+		3224269A15EBA79A00F0CB62 /* SIStorySource.m in Sources */ = {isa = PBXBuildFile; fileRef = 94DC535C14445C5300C3E586 /* SIStorySource.m */; };
+		322426FB15ECF64900F0CB62 /* PIPieMan.m in Sources */ = {isa = PBXBuildFile; fileRef = 322426FA15ECF64900F0CB62 /* PIPieMan.m */; };
+		322426FF15EDD9F800F0CB62 /* PIHeartbeat.m in Sources */ = {isa = PBXBuildFile; fileRef = 322426FE15EDD9F800F0CB62 /* PIHeartbeat.m */; };
+		3224270415EDEDC300F0CB62 /* dUsefulStuff.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 32CDF2F115E5E5DA001F4317 /* dUsefulStuff.dylib */; };
 		322DA95315A18A4B005CFC83 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 653D0E8D13A782AD00A5AB82 /* Foundation.framework */; };
 		322DA95615A18A4B005CFC83 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 322DA95515A18A4B005CFC83 /* main.m */; };
 		322DA95A15A18A4B005CFC83 /* PieMan.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 322DA95915A18A4B005CFC83 /* PieMan.1 */; };
@@ -117,7 +122,6 @@
 		32CDF2F715E5E5E7001F4317 /* CocoaHTTPServer.xcodeproj in Resources */ = {isa = PBXBuildFile; fileRef = 32CDF2F615E5E5E7001F4317 /* CocoaHTTPServer.xcodeproj */; };
 		32D5D98A14E1357900D29DD5 /* TestView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32D5D98914E1357900D29DD5 /* TestView.xib */; };
 		32D5D98D14E135A300D29DD5 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D5D98C14E135A300D29DD5 /* TestViewController.m */; };
-		32D9353815AB08CA00E51C8C /* libSimon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 653D0E8A13A782AD00A5AB82 /* libSimon.a */; };
 		32D9353915AB098000E51C8C /* SIStory.m in Sources */ = {isa = PBXBuildFile; fileRef = 653D0EB813A783C000A5AB82 /* SIStory.m */; };
 		32EA6E76150E11E2000A64A1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32EA6E75150E11E2000A64A1 /* QuartzCore.framework */; };
 		32F742D814F75F58005E5E97 /* SIUISwipeGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F742D614F75F58005E5E97 /* SIUISwipeGenerator.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -192,19 +196,33 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		3224269E15EBA88800F0CB62 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 32CDF2E715E5E5DA001F4317 /* dUsefulStuff.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 32F3DF4B15B8219700588D21;
+			remoteInfo = "OS X dynlib";
+		};
+		322426A415EBA95E00F0CB62 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 32CDF2F615E5E5E7001F4317 /* CocoaHTTPServer.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 327FBFD015AFC1FB00F271BA;
+			remoteInfo = "CocoaHTTPServer-OSX";
+		};
+		322426A615EBA96400F0CB62 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 32CDF2F615E5E5E7001F4317 /* CocoaHTTPServer.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 322426B515ECAE7600F0CB62;
+			remoteInfo = "CocoaHTTPServer-OSX";
+		};
 		32B9592C15E5E62F00470287 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 32CDF2F615E5E5E7001F4317 /* CocoaHTTPServer.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 322DA73F159B4A5C005CFC83;
 			remoteInfo = "CocoaHTTPServer-iOS";
-		};
-		32B9592E15E5E62F00470287 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 32CDF2F615E5E5E7001F4317 /* CocoaHTTPServer.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 327FBFD015AFC1FB00F271BA;
-			remoteInfo = "CocoaHTTPServer-OSX";
 		};
 		32B9593415E5E62F00470287 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -276,13 +294,6 @@
 			remoteGlobalIDString = 659D2BE5117747BA0056AA74;
 			remoteInfo = "Application Test";
 		};
-		32D9353615AB08C000E51C8C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 653D0E8113A782AC00A5AB82 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 653D0E8913A782AD00A5AB82;
-			remoteInfo = Simon;
-		};
 		65D09AAC13D9AEC300D1A74B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 653D0E8113A782AC00A5AB82 /* Project object */;
@@ -351,6 +362,12 @@
 		3224269215EB590800F0CB62 /* SIHttpHeartbeatRequestProcessorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIHttpHeartbeatRequestProcessorTests.m; sourceTree = "<group>"; };
 		3224269515EB9AFA00F0CB62 /* SIHttpExitRequestProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIHttpExitRequestProcessor.h; sourceTree = "<group>"; };
 		3224269615EB9AFA00F0CB62 /* SIHttpExitRequestProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIHttpExitRequestProcessor.m; sourceTree = "<group>"; };
+		322426ED15ECF34600F0CB62 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		322426F915ECF64900F0CB62 /* PIPieMan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PIPieMan.h; sourceTree = "<group>"; };
+		322426FA15ECF64900F0CB62 /* PIPieMan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PIPieMan.m; sourceTree = "<group>"; };
+		322426FD15EDD9F800F0CB62 /* PIHeartbeat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PIHeartbeat.h; sourceTree = "<group>"; };
+		322426FE15EDD9F800F0CB62 /* PIHeartbeat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PIHeartbeat.m; sourceTree = "<group>"; };
+		3224270015EDDB2900F0CB62 /* PIHeartbeatDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PIHeartbeatDelegate.h; sourceTree = "<group>"; };
 		322DA95115A18A4B005CFC83 /* PieMan */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = PieMan; sourceTree = BUILT_PRODUCTS_DIR; };
 		322DA95515A18A4B005CFC83 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		322DA95815A18A4B005CFC83 /* PieMan-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PieMan-Prefix.pch"; sourceTree = "<group>"; };
@@ -513,7 +530,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				32D9353815AB08CA00E51C8C /* libSimon.a in Frameworks */,
+				3224270415EDEDC300F0CB62 /* dUsefulStuff.dylib in Frameworks */,
 				322DA95315A18A4B005CFC83 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -649,12 +666,25 @@
 			name = "In app UI";
 			sourceTree = "<group>";
 		};
+		322426FC15ED927700F0CB62 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Tests;
+			sourceTree = "<group>";
+		};
 		322DA95415A18A4B005CFC83 /* PieMan */ = {
 			isa = PBXGroup;
 			children = (
+				322426FC15ED927700F0CB62 /* Tests */,
 				322DA95515A18A4B005CFC83 /* main.m */,
 				322DA95915A18A4B005CFC83 /* PieMan.1 */,
 				322DA95715A18A4B005CFC83 /* Supporting Files */,
+				322426F915ECF64900F0CB62 /* PIPieMan.h */,
+				322426FA15ECF64900F0CB62 /* PIPieMan.m */,
+				322426FD15EDD9F800F0CB62 /* PIHeartbeat.h */,
+				322426FE15EDD9F800F0CB62 /* PIHeartbeat.m */,
+				3224270015EDDB2900F0CB62 /* PIHeartbeatDelegate.h */,
 			);
 			path = PieMan;
 			sourceTree = "<group>";
@@ -802,7 +832,7 @@
 			isa = PBXGroup;
 			children = (
 				32B9592D15E5E62F00470287 /* libCocoaHTTPServer.a */,
-				32B9592F15E5E62F00470287 /* libCocoaHTTPServer.a */,
+				322426A515EBA95E00F0CB62 /* libCocoaHTTPServer.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -875,6 +905,7 @@
 			isa = PBXGroup;
 			children = (
 				0B14F01715CBA67E00284016 /* iOS */,
+				322426ED15ECF34600F0CB62 /* Foundation.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1118,7 +1149,8 @@
 			buildRules = (
 			);
 			dependencies = (
-				32D9353715AB08C000E51C8C /* PBXTargetDependency */,
+				3224269F15EBA88800F0CB62 /* PBXTargetDependency */,
+				322426A715EBA96400F0CB62 /* PBXTargetDependency */,
 			);
 			name = PieMan;
 			productName = PieMan;
@@ -1226,18 +1258,18 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		322426A515EBA95E00F0CB62 /* libCocoaHTTPServer.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libCocoaHTTPServer.a;
+			remoteRef = 322426A415EBA95E00F0CB62 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		32B9592D15E5E62F00470287 /* libCocoaHTTPServer.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libCocoaHTTPServer.a;
 			remoteRef = 32B9592C15E5E62F00470287 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		32B9592F15E5E62F00470287 /* libCocoaHTTPServer.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libCocoaHTTPServer.a;
-			remoteRef = 32B9592E15E5E62F00470287 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		32B9593515E5E62F00470287 /* libdNodi.a */ = {
@@ -1324,8 +1356,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3224269915EBA79A00F0CB62 /* SIStep.m in Sources */,
+				3224269A15EBA79A00F0CB62 /* SIStorySource.m in Sources */,
 				322DA95615A18A4B005CFC83 /* main.m in Sources */,
 				32D9353915AB098000E51C8C /* SIStory.m in Sources */,
+				322426FB15ECF64900F0CB62 /* PIPieMan.m in Sources */,
+				322426FF15EDD9F800F0CB62 /* PIHeartbeat.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1436,6 +1472,16 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		3224269F15EBA88800F0CB62 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "OS X dynlib";
+			targetProxy = 3224269E15EBA88800F0CB62 /* PBXContainerItemProxy */;
+		};
+		322426A715EBA96400F0CB62 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "CocoaHTTPServer-OSX";
+			targetProxy = 322426A615EBA96400F0CB62 /* PBXContainerItemProxy */;
+		};
 		32B9593915E5E64100470287 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = dNodi;
@@ -1455,11 +1501,6 @@
 			isa = PBXTargetDependency;
 			target = 653D0E8913A782AD00A5AB82 /* Simon */;
 			targetProxy = 32C3C9CC15DDCC5500E495E6 /* PBXContainerItemProxy */;
-		};
-		32D9353715AB08C000E51C8C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 653D0E8913A782AD00A5AB82 /* Simon */;
-			targetProxy = 32D9353615AB08C000E51C8C /* PBXContainerItemProxy */;
 		};
 		65D09AAD13D9AEC300D1A74B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1492,19 +1533,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_ARC = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../Releases/dUsefulStuff/v0.0.15\"",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PieMan/PieMan-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
+					DC_DEBUG,
 				);
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
@@ -1518,16 +1555,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_ARC = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../Releases/dUsefulStuff/v0.0.15\"",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PieMan/PieMan-Prefix.pch";
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;

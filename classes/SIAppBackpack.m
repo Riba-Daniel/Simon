@@ -18,6 +18,9 @@
 #import <Simon/NSObject+Simon.h>
 #import <dUsefulStuff/NSObject+dUsefulStuff.h>
 
+// Simon's background thread name.
+#define SI_QUEUE_NAME "au.com.derekclarkson.simon"
+
 @interface SIAppBackpack () {
 @private
 	SIStoryLogger *logger;
@@ -30,6 +33,7 @@
 @synthesize runner = _runner;
 @synthesize mappings = _mappings;
 @synthesize reader = _reader;
+@synthesize queue = _queue;
 
 @dynamic storySources;
 
@@ -43,6 +47,7 @@ static SIAppBackpack *_backpack;
 	DC_DEALLOC(_runner);
 	DC_DEALLOC(logger);
 	DC_DEALLOC(_mappings);
+   dispatch_release(_queue);
 	[super dealloc];
 }
 
@@ -78,6 +83,9 @@ static SIAppBackpack *_backpack;
 - (id)init {
 	self = [super init];
 	if (self) {
+		
+		// Create Simons background queue.
+		_queue = dispatch_queue_create(SI_QUEUE_NAME, NULL);
 		
 		// Instantiate required instances
 		DC_LOG(@"Simon initialising");

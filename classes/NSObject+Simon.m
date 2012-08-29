@@ -6,9 +6,10 @@
 //  Copyright (c) 2012 Sensis. All rights reserved.
 //
 
-#import <Simon/NSObject+Simon.h>
-#import <Simon/SIConstants.h>
 #import <dUsefulStuff/DCCommon.h>
+
+#import <Simon/NSObject+Simon.h>
+#import <Simon/SIAppBackpack.h>
 
 /**
  General functions which are called from all sorts of places.
@@ -42,13 +43,11 @@
 }
 
 -(void) executeOnSimonThread:(void (^)()) block {
-	dispatch_queue_t queue = dispatch_queue_create(SI_QUEUE_NAME, NULL);
-	dispatch_async(queue, ^{
+	dispatch_async([SIAppBackpack backpack].queue, ^{
 		DC_LOG(@"Executing block on Simon's background thread");
 		[NSThread currentThread].name = @"Simon";
 		block();
 	});
-   dispatch_release(queue);
 	
 }
 

@@ -33,6 +33,9 @@
 /// The story runner which will execute the stories.
 @property (nonatomic, readonly) SIStoryRunner *runner;
 
+/// The Queue that Simon uses in the background to execute tasks.
+@property (nonatomic, readonly) dispatch_queue_t queue;
+
 /// @name Tasks
 
 /**
