@@ -11,6 +11,8 @@
 #import <CocoaHTTPServer/HTTPDataResponse.h>
 #import <dUsefulStuff/DCCommon.h>
 #import <Simon/SIAppBackpack.h>
+#import <Simon/SIHttpRequestProcessor+Simon.h>
+#import <Simon/SIHttpResponseBody.h>
 
 @implementation SIHttpExitRequestProcessor
 
@@ -25,8 +27,9 @@
 	[[SIAppBackpack backpack] exit];
 
 	// Post a success to the caller.
-	NSString *response = [NSString stringWithFormat:HTTP_STATUS_RESPONSE, DC_PRETTY_BOOL(YES)];
-	return [[[HTTPDataResponse alloc] initWithData:DC_STRING_TO_DATA(response)] autorelease];
+	SIHttpResponseBody *responseBody = [[[SIHttpResponseBody alloc] init] autorelease];
+	responseBody.status = SIHttpStatusOk;
+	return [self httpResponseWithBody:responseBody];
 }
 
 -(BOOL) expectingHttpBody {

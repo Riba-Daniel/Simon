@@ -11,6 +11,6 @@
 /**
  Class which responds to requests to run all stories.
  */
-@interface SIHttpRunAllRequestProcessor : NSObject<SIHttpRequestProcessor>
+@interface SIHttpRunAllRequestProcessor : SIHttpRequestProcessor
 
 @end

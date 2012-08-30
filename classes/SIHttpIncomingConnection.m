@@ -18,7 +18,7 @@
 
 @interface SIHttpIncomingConnection ()
 @property (retain, nonatomic) NSArray *processors;
--(id<SIHttpRequestProcessor>) processorForMethod:(SIHttpMethod) method andPath:(NSString *) path;
+-(SIHttpRequestProcessor *) processorForMethod:(SIHttpMethod) method andPath:(NSString *) path;
 @end
 
 @implementation SIHttpIncomingConnection
@@ -33,9 +33,9 @@
 -(id) initWithAsyncSocket:(GCDAsyncSocket *)newSocket configuration:(HTTPConfig *)aConfig {
 	self = [super initWithAsyncSocket:newSocket configuration:aConfig];
 	if (self) {
-		id<SIHttpRequestProcessor> runAllProcessor = [[[SIHttpRunAllRequestProcessor alloc] init] autorelease];
-		id<SIHttpRequestProcessor> heartbeatProcessor = [[[SIHttpHeartbeatRequestProcessor alloc] init] autorelease];
-		id<SIHttpRequestProcessor> exitProcessor = [[[SIHttpExitRequestProcessor alloc] init] autorelease];
+		SIHttpRequestProcessor * runAllProcessor = [[[SIHttpRunAllRequestProcessor alloc] init] autorelease];
+		SIHttpRequestProcessor * heartbeatProcessor = [[[SIHttpHeartbeatRequestProcessor alloc] init] autorelease];
+		SIHttpRequestProcessor * exitProcessor = [[[SIHttpExitRequestProcessor alloc] init] autorelease];
 		self.processors = [NSArray arrayWithObjects:runAllProcessor, heartbeatProcessor, exitProcessor, nil];
 	}
 	return self;
@@ -49,7 +49,7 @@
 - (BOOL)expectsRequestBodyFromMethod:(NSString *)method atPath:(NSString *)path {
 
 	SIHttpMethod siMethod = [method siHttpMethod];
-	id<SIHttpRequestProcessor> processor = [self processorForMethod:siMethod andPath:path];
+	SIHttpRequestProcessor *processor = [self processorForMethod:siMethod andPath:path];
 	if (processor != nil) {
 		return [processor expectingHttpBody];
 	}
@@ -61,7 +61,7 @@
 - (NSObject<HTTPResponse> *)httpResponseForMethod:(NSString *)method URI:(NSString *)path {
 
 	SIHttpMethod siMethod = [method siHttpMethod];
-	id<SIHttpRequestProcessor> processor = [self processorForMethod:siMethod andPath:path];
+	SIHttpRequestProcessor *processor = [self processorForMethod:siMethod andPath:path];
 	
 	if (processor != nil) {
 		return [processor processPath:path withMethod:siMethod andBody:nil];
@@ -70,8 +70,8 @@
 	return [super httpResponseForMethod:method URI:path];
 }
 
--(id<SIHttpRequestProcessor>) processorForMethod:(SIHttpMethod) method andPath:(NSString *) path {
-	for (id<SIHttpRequestProcessor> processor in processors) {
+-(SIHttpRequestProcessor *) processorForMethod:(SIHttpMethod) method andPath:(NSString *) path {
+	for (SIHttpRequestProcessor *processor in processors) {
 		if ([processor canProcessPath:path withMethod:method]) {
 			return processor;
 		}

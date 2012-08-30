@@ -8,11 +8,12 @@
 
 #import <Simon/SIConstants.h>
 #import <CocoaHTTPServer/HTTPResponse.h>
+#import <Simon/SIJsonAware.h>
 
 /**
- Classes which implment this protocol will be tested to see if they can respond to a specific HTTP request.
+ Classes which extend this abstract class will be tested to see if they can respond to a specific HTTP request.
  */
-@protocol SIHttpRequestProcessor <NSObject>
+@interface SIHttpRequestProcessor: NSObject
 
 -(BOOL) canProcessPath:(NSString *) path withMethod:(SIHttpMethod) method;
 
@@ -21,3 +22,4 @@
 -(BOOL) expectingHttpBody;
 
 @end
+

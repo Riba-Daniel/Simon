@@ -33,8 +33,8 @@
 /// The story runner which will execute the stories.
 @property (nonatomic, readonly) SIStoryRunner *runner;
 
-/// The Queue that Simon uses in the background to execute tasks.
-@property (nonatomic, readonly) dispatch_queue_t queue;
+/// The Queue that Simon uses in the background to execute tasks. Normally this is not set, except for testing purposes.
+@property (nonatomic, assign) dispatch_queue_t queue;
 
 /// @name Tasks
 
@@ -42,6 +42,13 @@
  Gets access to the backpack singleton.
  */
 + (SIAppBackpack *)backpack;
+
+/**
+ Mainly used for testing purposes.
+ 
+ @param backpack the instance of SIAppBackpack to be used.
+ */
++ (void) setBackpack:(SIAppBackpack *) backpack;
 
 /**
  Returns true is the argument was presented to the process.

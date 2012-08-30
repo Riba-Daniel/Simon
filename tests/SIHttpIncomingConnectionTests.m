@@ -32,8 +32,8 @@
 -(void) setUp {
 	yes = YES;
 	no = NO;
-	processor1 = [OCMockObject mockForProtocol:@protocol(SIHttpRequestProcessor)];
-	processor2 = [OCMockObject mockForProtocol:@protocol(SIHttpRequestProcessor)];
+	processor1 = [OCMockObject mockForClass:[SIHttpRequestProcessor class]];
+	processor2 = [OCMockObject mockForClass:[SIHttpRequestProcessor class]];
 	connection = [[SIHttpIncomingConnection alloc] initWithAsyncSocket:nil configuration:nil];
 
 }

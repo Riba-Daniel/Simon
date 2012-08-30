@@ -13,8 +13,11 @@
 @implementation GHTestCase (Utils)
 
 -(NSNotification *) createMockedNotification:(NSString *) name forStoryStatus:(SIStoryStatus) status {
-	id storyMock = [OCMockObject mockForClass:[SIStory class]];
+
+	id storyMock = [OCMockObject niceMockForClass:[SIStory class]];
+	
 	[[[storyMock stub] andReturnValue:OCMOCK_VALUE(status)] status];
+	
 	NSDictionary *userData = [NSDictionary dictionaryWithObject:storyMock forKey:SI_NOTIFICATION_KEY_STORY];
 	return [NSNotification notificationWithName:name object:self userInfo:userData];
 }

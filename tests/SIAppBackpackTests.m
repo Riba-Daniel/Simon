@@ -57,16 +57,15 @@
 	[source addStory:mockStory];
 	[[mockStory stub] reset];
 	[[mockStory expect] mapSteps:[OCMArg any]];
-	[[mockStory expect] invokeWithSource:source];
+	[[mockStory stub] invokeWithSource:source];
 
 	BOOL yes = YES;
 	[[[mockReader expect] andReturnValue:OCMOCK_VALUE(yes)] readStorySources:[OCMArg anyPointer]];
 	[[[mockReader stub] andReturn:sources] storySources];
 
-	SIAppBackpack *backpack = [[[SIAppBackpack alloc] init] autorelease];
-	backpack.reader = mockReader;
+	[SIAppBackpack backpack].reader = mockReader;
 	
-	[backpack startUp:notification];
+	[[SIAppBackpack backpack] startUp:notification];
 	
 	// Need to give the code a change to execute.
 	[[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
@@ -76,7 +75,7 @@
 	[mockStory verify];
 	
 	GHAssertTrue(startRun, nil);
-	GHAssertTrue([backpack.storySources.sources count] > 0, nil);
+	GHAssertTrue([[SIAppBackpack backpack].storySources.sources count] > 0, nil);
 	
 }
 

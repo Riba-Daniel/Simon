@@ -22,12 +22,17 @@
 
 -(void) testStoresResultsAsExpectedForSuccess {
 
+	// Setup mocked out notification.
 	NSNotification *storyNotification = [self createMockedNotification:SI_STORY_EXECUTED_NOTIFICATION forStoryStatus:SIStoryStatusSuccess];
 	id storyMock = [storyNotification.userInfo valueForKey:SI_NOTIFICATION_KEY_STORY];
+	
+	// Create listener
 	SIResultListener *listener = [[[SIResultListener alloc] init] autorelease];
 	
+	// test.
 	[listener storyExecuted:storyNotification];
 
+	// Verify.
 	NSArray *successfulStories = [listener storiesWithStatus:SIStoryStatusSuccess];
 	GHAssertNotNil(successfulStories, nil);
 	GHAssertEquals([successfulStories count], (NSUInteger) 1, nil);
@@ -37,13 +42,18 @@
 
 -(void) testReceivesNotifications {
 	
+	// Setup a mocked notification.
 	NSNotification *storyNotification = [self createMockedNotification:SI_STORY_EXECUTED_NOTIFICATION forStoryStatus:SIStoryStatusSuccess];
 	id storyMock = [storyNotification.userInfo valueForKey:SI_NOTIFICATION_KEY_STORY];
+	
+	// Create the listener.
 	SIResultListener *listener = [[[SIResultListener alloc] init] autorelease];
 
+	// Fire the notifications.
 	[[NSNotificationCenter defaultCenter] postNotification:storyNotification];
 	[[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
 	
+	// Test the results.
 	NSArray *successfulStories = [listener storiesWithStatus:SIStoryStatusSuccess];
 	GHAssertEquals([successfulStories lastObject], storyMock, nil);
 	

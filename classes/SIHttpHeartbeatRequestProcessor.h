@@ -11,6 +11,6 @@
 /**
  Simple heard beat request processor which the Pieman calls to detect hung testing.
  */
-@interface SIHttpHeartbeatRequestProcessor : NSObject<SIHttpRequestProcessor>
+@interface SIHttpHeartbeatRequestProcessor : SIHttpRequestProcessor
 
 @end

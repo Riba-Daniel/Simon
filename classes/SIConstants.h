@@ -49,7 +49,6 @@
 #define HTTP_PATH_RUN_ALL @"/run/all"
 #define HTTP_PATH_HEARTBEAT @"/heartbeat"
 #define HTTP_PATH_EXIT @"/exit"
-#define HTTP_STATUS_RESPONSE @"{\"status\":\"%@\"}"
 
 /**
  Individual error codes.
@@ -102,4 +101,12 @@ typedef enum {
 	SIHttpMethodGet,
 	SIHttpMethodPost
 } SIHttpMethod;
+
+/**
+ Defines status codes that can be sent back in Http response bodies.
+ */
+typedef enum {
+	SIHttpStatusOk,
+	SIHttpStatusError
+} SIHttpStatus;
 

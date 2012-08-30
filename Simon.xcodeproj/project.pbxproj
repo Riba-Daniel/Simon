@@ -43,9 +43,16 @@
 		322426FB15ECF64900F0CB62 /* PIPieMan.m in Sources */ = {isa = PBXBuildFile; fileRef = 322426FA15ECF64900F0CB62 /* PIPieMan.m */; };
 		322426FF15EDD9F800F0CB62 /* PIHeartbeat.m in Sources */ = {isa = PBXBuildFile; fileRef = 322426FE15EDD9F800F0CB62 /* PIHeartbeat.m */; };
 		3224270415EDEDC300F0CB62 /* dUsefulStuff.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 32CDF2F115E5E5DA001F4317 /* dUsefulStuff.dylib */; };
+		3224270715EDF41C00F0CB62 /* SIHttpResponseBody.h in Headers */ = {isa = PBXBuildFile; fileRef = 3224270515EDF41B00F0CB62 /* SIHttpResponseBody.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		3224270815EDF41C00F0CB62 /* SIHttpResponseBody.m in Sources */ = {isa = PBXBuildFile; fileRef = 3224270615EDF41C00F0CB62 /* SIHttpResponseBody.m */; };
+		3224270915EDF41C00F0CB62 /* SIHttpResponseBody.m in Sources */ = {isa = PBXBuildFile; fileRef = 3224270615EDF41C00F0CB62 /* SIHttpResponseBody.m */; };
+		3224270B15EDF64C00F0CB62 /* SIHttpResponseBodyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3224270A15EDF64C00F0CB62 /* SIHttpResponseBodyTests.m */; };
+		3224270D15EDFB0800F0CB62 /* SIHttpRequestProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3224270C15EDFB0700F0CB62 /* SIHttpRequestProcessor.m */; };
+		3224271015EDFD6300F0CB62 /* SIHttpRequestProcessor+Simon.h in Headers */ = {isa = PBXBuildFile; fileRef = 3224270E15EDFD6100F0CB62 /* SIHttpRequestProcessor+Simon.h */; };
+		3224271115EDFD6300F0CB62 /* SIHttpRequestProcessor+Simon.m in Sources */ = {isa = PBXBuildFile; fileRef = 3224270F15EDFD6200F0CB62 /* SIHttpRequestProcessor+Simon.m */; };
 		322DA95315A18A4B005CFC83 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 653D0E8D13A782AD00A5AB82 /* Foundation.framework */; };
 		322DA95615A18A4B005CFC83 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 322DA95515A18A4B005CFC83 /* main.m */; };
-		322DA95A15A18A4B005CFC83 /* PieMan.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 322DA95915A18A4B005CFC83 /* PieMan.1 */; };
+		322DA95A15A18A4B005CFC83 /* pieman.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 322DA95915A18A4B005CFC83 /* pieman.1 */; };
 		32326CD715DA8F6D00C8B1DC /* NSObject+SimonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32326CD615DA8F6D00C8B1DC /* NSObject+SimonTests.m */; };
 		324108B61509C19400AFBF66 /* SIUIViewDescriptionVisitor.h in Headers */ = {isa = PBXBuildFile; fileRef = 324108B41509C19400AFBF66 /* SIUIViewDescriptionVisitor.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		324108B71509C19400AFBF66 /* SIUIViewDescriptionVisitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 324108B51509C19400AFBF66 /* SIUIViewDescriptionVisitor.m */; };
@@ -310,7 +317,7 @@
 			dstPath = /usr/share/man/man1/;
 			dstSubfolderSpec = 0;
 			files = (
-				322DA95A15A18A4B005CFC83 /* PieMan.1 in CopyFiles */,
+				322DA95A15A18A4B005CFC83 /* pieman.1 in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
@@ -368,10 +375,16 @@
 		322426FD15EDD9F800F0CB62 /* PIHeartbeat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PIHeartbeat.h; sourceTree = "<group>"; };
 		322426FE15EDD9F800F0CB62 /* PIHeartbeat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PIHeartbeat.m; sourceTree = "<group>"; };
 		3224270015EDDB2900F0CB62 /* PIHeartbeatDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PIHeartbeatDelegate.h; sourceTree = "<group>"; };
-		322DA95115A18A4B005CFC83 /* PieMan */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = PieMan; sourceTree = BUILT_PRODUCTS_DIR; };
+		3224270515EDF41B00F0CB62 /* SIHttpResponseBody.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIHttpResponseBody.h; sourceTree = "<group>"; };
+		3224270615EDF41C00F0CB62 /* SIHttpResponseBody.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIHttpResponseBody.m; sourceTree = "<group>"; };
+		3224270A15EDF64C00F0CB62 /* SIHttpResponseBodyTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIHttpResponseBodyTests.m; sourceTree = "<group>"; };
+		3224270C15EDFB0700F0CB62 /* SIHttpRequestProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIHttpRequestProcessor.m; sourceTree = "<group>"; };
+		3224270E15EDFD6100F0CB62 /* SIHttpRequestProcessor+Simon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SIHttpRequestProcessor+Simon.h"; sourceTree = "<group>"; };
+		3224270F15EDFD6200F0CB62 /* SIHttpRequestProcessor+Simon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SIHttpRequestProcessor+Simon.m"; sourceTree = "<group>"; };
+		322DA95115A18A4B005CFC83 /* pieman */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = pieman; sourceTree = BUILT_PRODUCTS_DIR; };
 		322DA95515A18A4B005CFC83 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		322DA95815A18A4B005CFC83 /* PieMan-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PieMan-Prefix.pch"; sourceTree = "<group>"; };
-		322DA95915A18A4B005CFC83 /* PieMan.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = PieMan.1; sourceTree = "<group>"; };
+		322DA95915A18A4B005CFC83 /* pieman.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = pieman.1; sourceTree = "<group>"; };
 		32326CD615DA8F6D00C8B1DC /* NSObject+SimonTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SimonTests.m"; sourceTree = "<group>"; };
 		324108B41509C19400AFBF66 /* SIUIViewDescriptionVisitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SIUIViewDescriptionVisitor.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		324108B51509C19400AFBF66 /* SIUIViewDescriptionVisitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIUIViewDescriptionVisitor.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -632,17 +645,22 @@
 			children = (
 				32C30DD515D3A73100AA7347 /* SIHttpAppBackpack.h */,
 				32C30DD615D3A73100AA7347 /* SIHttpAppBackpack.m */,
-				328DE14415D3792C009A16C1 /* SIHttpResultSender.h */,
-				328DE14515D3792C009A16C1 /* SIHttpResultSender.m */,
+				3224269515EB9AFA00F0CB62 /* SIHttpExitRequestProcessor.h */,
+				3224269615EB9AFA00F0CB62 /* SIHttpExitRequestProcessor.m */,
+				3224268E15EB581600F0CB62 /* SIHttpHeartbeatRequestProcessor.h */,
+				3224268F15EB581600F0CB62 /* SIHttpHeartbeatRequestProcessor.m */,
 				32AF045515CEB7BA00501B1E /* SIHttpIncomingConnection.h */,
 				32AF045615CEB7BA00501B1E /* SIHttpIncomingConnection.m */,
 				3224268015E7567500F0CB62 /* SIHttpRequestProcessor.h */,
+				3224270C15EDFB0700F0CB62 /* SIHttpRequestProcessor.m */,
+				3224270515EDF41B00F0CB62 /* SIHttpResponseBody.h */,
+				3224270615EDF41C00F0CB62 /* SIHttpResponseBody.m */,
+				328DE14415D3792C009A16C1 /* SIHttpResultSender.h */,
+				328DE14515D3792C009A16C1 /* SIHttpResultSender.m */,
 				3224268215E75F7000F0CB62 /* SIHttpRunAllRequestProcessor.h */,
 				3224268315E75F7000F0CB62 /* SIHttpRunAllRequestProcessor.m */,
-				3224268E15EB581600F0CB62 /* SIHttpHeartbeatRequestProcessor.h */,
-				3224268F15EB581600F0CB62 /* SIHttpHeartbeatRequestProcessor.m */,
-				3224269515EB9AFA00F0CB62 /* SIHttpExitRequestProcessor.h */,
-				3224269615EB9AFA00F0CB62 /* SIHttpExitRequestProcessor.m */,
+				3224270E15EDFD6100F0CB62 /* SIHttpRequestProcessor+Simon.h */,
+				3224270F15EDFD6200F0CB62 /* SIHttpRequestProcessor+Simon.m */,
 			);
 			name = Http;
 			sourceTree = "<group>";
@@ -655,6 +673,7 @@
 				3224268815E9184E00F0CB62 /* SIHttpIncomingConnectionTests.m */,
 				3224268A15EA400000F0CB62 /* JSONSerialisationTests.m */,
 				3224269215EB590800F0CB62 /* SIHttpHeartbeatRequestProcessorTests.m */,
+				3224270A15EDF64C00F0CB62 /* SIHttpResponseBodyTests.m */,
 			);
 			name = Http;
 			sourceTree = "<group>";
@@ -678,7 +697,7 @@
 			children = (
 				322426FC15ED927700F0CB62 /* Tests */,
 				322DA95515A18A4B005CFC83 /* main.m */,
-				322DA95915A18A4B005CFC83 /* PieMan.1 */,
+				322DA95915A18A4B005CFC83 /* pieman.1 */,
 				322DA95715A18A4B005CFC83 /* Supporting Files */,
 				322426F915ECF64900F0CB62 /* PIPieMan.h */,
 				322426FA15ECF64900F0CB62 /* PIPieMan.m */,
@@ -832,7 +851,7 @@
 			isa = PBXGroup;
 			children = (
 				32B9592D15E5E62F00470287 /* libCocoaHTTPServer.a */,
-				322426A515EBA95E00F0CB62 /* libCocoaHTTPServer.a */,
+				322426A515EBA95E00F0CB62 /* CocoaHTTPServer.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -896,7 +915,7 @@
 				653D0E8A13A782AD00A5AB82 /* libSimon.a */,
 				653D0E9B13A783A500A5AB82 /* Unit tests.app */,
 				3298250D15039FE300631203 /* ARC App with tests.app */,
-				322DA95115A18A4B005CFC83 /* PieMan */,
+				322DA95115A18A4B005CFC83 /* pieman */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1132,6 +1151,8 @@
 				3224268D15EA599C00F0CB62 /* SIJsonAware.h in Headers */,
 				3224269015EB581600F0CB62 /* SIHttpHeartbeatRequestProcessor.h in Headers */,
 				3224269715EB9AFA00F0CB62 /* SIHttpExitRequestProcessor.h in Headers */,
+				3224270715EDF41C00F0CB62 /* SIHttpResponseBody.h in Headers */,
+				3224271015EDFD6300F0CB62 /* SIHttpRequestProcessor+Simon.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1154,7 +1175,7 @@
 			);
 			name = PieMan;
 			productName = PieMan;
-			productReference = 322DA95115A18A4B005CFC83 /* PieMan */;
+			productReference = 322DA95115A18A4B005CFC83 /* pieman */;
 			productType = "com.apple.product-type.tool";
 		};
 		3298250C15039FE300631203 /* ARC App with tests */ = {
@@ -1258,10 +1279,10 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		322426A515EBA95E00F0CB62 /* libCocoaHTTPServer.a */ = {
+		322426A515EBA95E00F0CB62 /* CocoaHTTPServer.dylib */ = {
 			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libCocoaHTTPServer.a;
+			fileType = "compiled.mach-o.dylib";
+			path = CocoaHTTPServer.dylib;
 			remoteRef = 322426A415EBA95E00F0CB62 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -1362,6 +1383,7 @@
 				32D9353915AB098000E51C8C /* SIStory.m in Sources */,
 				322426FB15ECF64900F0CB62 /* PIPieMan.m in Sources */,
 				322426FF15EDD9F800F0CB62 /* PIHeartbeat.m in Sources */,
+				3224270915EDF41C00F0CB62 /* SIHttpResponseBody.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1425,6 +1447,9 @@
 				3224268515E75F7000F0CB62 /* SIHttpRunAllRequestProcessor.m in Sources */,
 				3224269115EB581600F0CB62 /* SIHttpHeartbeatRequestProcessor.m in Sources */,
 				3224269815EB9AFA00F0CB62 /* SIHttpExitRequestProcessor.m in Sources */,
+				3224270815EDF41C00F0CB62 /* SIHttpResponseBody.m in Sources */,
+				3224270D15EDFB0800F0CB62 /* SIHttpRequestProcessor.m in Sources */,
+				3224271115EDFD6300F0CB62 /* SIHttpRequestProcessor+Simon.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1466,6 +1491,7 @@
 				3224268915E9184E00F0CB62 /* SIHttpIncomingConnectionTests.m in Sources */,
 				3224268B15EA400000F0CB62 /* JSONSerialisationTests.m in Sources */,
 				3224269315EB590800F0CB62 /* SIHttpHeartbeatRequestProcessorTests.m in Sources */,
+				3224270B15EDF64C00F0CB62 /* SIHttpResponseBodyTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1546,7 +1572,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = pieman;
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -1563,7 +1589,7 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = pieman;
 				SDKROOT = macosx;
 			};
 			name = Release;

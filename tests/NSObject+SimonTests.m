@@ -8,12 +8,26 @@
 
 #import <GHUnitIOS/GHUnit.h>
 #import <Simon/NSObject+Simon.h>
+#import <Simon/SIAppBackpack.h>
 
-@interface NSObject_SimonTests : GHTestCase
+@interface NSObject_SimonTests : GHTestCase {
+@private
+	dispatch_queue_t testQ;
+}
 
 @end
 
 @implementation NSObject_SimonTests
+
+-(void) setUp {
+	testQ = dispatch_queue_create("au.com.derekclarkson.simon.testing", NULL);
+}
+
+-(void) tearDown {
+	dispatch_release(testQ);
+	testQ = NULL;
+}
+
 
 -(void) testExecuteOnMainThreadCatchesExceptions {
 	BOOL caught = NO;
@@ -31,6 +45,9 @@
 }
 
 -(void) testExecuteOnSimonThreadIsOnBackgroundThread {
+
+	[SIAppBackpack setBackpack:[[[SIAppBackpack alloc] init] autorelease]];
+	[SIAppBackpack backpack].queue = testQ;
 	
 	NSThread *testThread = [NSThread currentThread];
 	__block BOOL executed = NO;

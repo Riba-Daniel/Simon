@@ -8,6 +8,6 @@
 
 #import <Simon/SIHttpRequestProcessor.h>
 
-@interface SIHttpExitRequestProcessor : NSObject<SIHttpRequestProcessor>
+@interface SIHttpExitRequestProcessor : SIHttpRequestProcessor
 
 @end

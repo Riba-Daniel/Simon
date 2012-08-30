@@ -10,6 +10,8 @@
 #import <Simon/SIConstants.h>
 #import <CocoaHTTPServer/HTTPDataResponse.h>
 #import <dUsefulStuff/DCCommon.h>
+#import <Simon/SIHttpResponseBody.h>
+#import <Simon/SIHttpRequestProcessor+Simon.h>
 
 @implementation SIHttpRunAllRequestProcessor
 
@@ -18,10 +20,16 @@
 }
 
 -(NSObject<HTTPResponse> *) processPath:(NSString *) path withMethod:(SIHttpMethod) method andBody:(NSString *) body {
+	
+	// Send the notification to start processing.
 	NSNotification *notification = [NSNotification notificationWithName:SI_RUN_STORIES_NOTIFICATION object:self];
 	[[NSNotificationCenter defaultCenter] postNotification:notification];
-	NSString *response = [NSString stringWithFormat:HTTP_STATUS_RESPONSE, DC_PRETTY_BOOL(YES)];
-	return [[[HTTPDataResponse alloc] initWithData:DC_STRING_TO_DATA(response)] autorelease];
+
+	// Post a success to the caller.
+	SIHttpResponseBody *responseBody = [[[SIHttpResponseBody alloc] init] autorelease];
+	responseBody.status = SIHttpStatusOk;
+	return [self httpResponseWithBody:responseBody];
+
 }
 
 -(BOOL) expectingHttpBody {

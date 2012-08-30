@@ -24,6 +24,7 @@
 @interface SIAppBackpack () {
 @private
 	SIStoryLogger *logger;
+	dispatch_queue_t _queue;
 }
 +(int) argIndexForName:(NSString *) name;
 @end
@@ -33,8 +34,8 @@
 @synthesize runner = _runner;
 @synthesize mappings = _mappings;
 @synthesize reader = _reader;
-@synthesize queue = _queue;
 
+@dynamic queue;
 @dynamic storySources;
 
 // Static reference to self to keep alive in an ARC environment.
@@ -47,7 +48,7 @@ static SIAppBackpack *_backpack;
 	DC_DEALLOC(_runner);
 	DC_DEALLOC(logger);
 	DC_DEALLOC(_mappings);
-   dispatch_release(_queue);
+	self.queue = nil;
 	[super dealloc];
 }
 
@@ -57,8 +58,25 @@ static SIAppBackpack *_backpack;
    return _backpack;
 }
 
--(NSArray *) mappings {
-	return _mappings;
++ (void) setBackpack:(SIAppBackpack *) backpack {
+	[backpack retain];
+	[_backpack release];
+	_backpack = backpack;
+}
+
+-(void) setQueue:(dispatch_queue_t)queue {
+	if (queue != nil) {
+		dispatch_retain(queue);
+	}
+	if (_queue != nil) {
+		DC_LOG(@"Releasing the old queue");
+		dispatch_release(_queue);
+	}
+	_queue = queue;
+}
+
+-(dispatch_queue_t) queue {
+	return _queue;
 }
 
 -(SIStorySources *) storySources {
@@ -71,11 +89,14 @@ static SIAppBackpack *_backpack;
 	@autoreleasepool {
 		// Load Simon automatically.
 		if (![SIAppBackpack isArgumentPresentWithName:ARG_NO_LOAD]) {
+			SIAppBackpack *backpack;
 			if ([SIAppBackpack isArgumentPresentWithName:ARG_SHOW_UI]) {
-				_backpack = [[SIUIAppBackpack alloc] init];
+				backpack = [[SIUIAppBackpack alloc] init];
 			} else {
-				_backpack = [[SIHttpAppBackpack alloc] init];
+				backpack = [[SIHttpAppBackpack alloc] init];
 			}
+			[SIAppBackpack setBackpack:backpack];
+			[backpack release];
 		}
 	}
 }
@@ -85,7 +106,7 @@ static SIAppBackpack *_backpack;
 	if (self) {
 		
 		// Create Simons background queue.
-		_queue = dispatch_queue_create(SI_QUEUE_NAME, NULL);
+		self.queue = dispatch_queue_create(SI_QUEUE_NAME, NULL);
 		
 		// Instantiate required instances
 		DC_LOG(@"Simon initialising");
@@ -223,7 +244,7 @@ static SIAppBackpack *_backpack;
 	if (index == NSNotFound || index + 1 == [arguments count]) {
 		return nil;
 	}
-
+	
 	NSString *argValue = [arguments objectAtIndex:index + 1];
 	
 	// return nil if the value is actually a flag or argument name.

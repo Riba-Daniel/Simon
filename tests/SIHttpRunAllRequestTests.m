@@ -45,9 +45,8 @@
 	
 	id<HTTPResponse> response = [processor processPath:HTTP_PATH_RUN_ALL withMethod:SIHttpMethodPost andBody:nil];
 	
-	NSString *expectedResponse = [NSString stringWithFormat:HTTP_STATUS_RESPONSE, DC_PRETTY_BOOL(YES)];
 	NSString *actualResponse = DC_DATA_TO_STRING([response readDataOfLength:NSIntegerMax]);
-	GHAssertEqualStrings(actualResponse, expectedResponse, nil);
+	GHAssertEqualStrings(actualResponse, @"{\"status\":0}", nil);
 }
 
 -(void) testProcessPathWithMethodFiresNotification {
