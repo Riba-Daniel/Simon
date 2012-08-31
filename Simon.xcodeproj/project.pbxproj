@@ -50,7 +50,6 @@
 		3224270D15EDFB0800F0CB62 /* SIHttpRequestProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3224270C15EDFB0700F0CB62 /* SIHttpRequestProcessor.m */; };
 		3224271015EDFD6300F0CB62 /* SIHttpRequestProcessor+Simon.h in Headers */ = {isa = PBXBuildFile; fileRef = 3224270E15EDFD6100F0CB62 /* SIHttpRequestProcessor+Simon.h */; };
 		3224271115EDFD6300F0CB62 /* SIHttpRequestProcessor+Simon.m in Sources */ = {isa = PBXBuildFile; fileRef = 3224270F15EDFD6200F0CB62 /* SIHttpRequestProcessor+Simon.m */; };
-		322DA95315A18A4B005CFC83 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 653D0E8D13A782AD00A5AB82 /* Foundation.framework */; };
 		322DA95615A18A4B005CFC83 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 322DA95515A18A4B005CFC83 /* main.m */; };
 		322DA95A15A18A4B005CFC83 /* pieman.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 322DA95915A18A4B005CFC83 /* pieman.1 */; };
 		32326CD715DA8F6D00C8B1DC /* NSObject+SimonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32326CD615DA8F6D00C8B1DC /* NSObject+SimonTests.m */; };
@@ -96,6 +95,13 @@
 		3298252E15039FE300631203 /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3298252D15039FE300631203 /* second@2x.png */; };
 		329825391503A0FF00631203 /* BDD.stories in Resources */ = {isa = PBXBuildFile; fileRef = 329825381503A0FF00631203 /* BDD.stories */; };
 		3298253C1504C87700631203 /* BDDImplementations.m in Sources */ = {isa = PBXBuildFile; fileRef = 3298253B1504C87600631203 /* BDDImplementations.m */; };
+		32A188A515EF89BE00B8C111 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 32A188A315EF89BE00B8C111 /* InfoPlist.strings */; };
+		32A188AB15EF89BE00B8C111 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 32A188A915EF89BE00B8C111 /* Credits.rtf */; };
+		32A188B115EF89BE00B8C111 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32A188AF15EF89BE00B8C111 /* MainMenu.xib */; };
+		32A188B715EF8A9800B8C111 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32A188B615EF8A9800B8C111 /* Foundation.framework */; };
+		32A188B815EF8ABB00B8C111 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32A188B615EF8A9800B8C111 /* Foundation.framework */; };
+		32A188BB15EF92F200B8C111 /* GHUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32A188BA15EF92F200B8C111 /* GHUnit.framework */; };
+		32A188BD15EF969900B8C111 /* GHUnit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 32A188BA15EF92F200B8C111 /* GHUnit.framework */; };
 		32A9D11014C907BC00B0CFBD /* NSInvocations.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A9D10F14C907BC00B0CFBD /* NSInvocations.m */; };
 		32A9D11314C914B500B0CFBD /* SIMacroTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A9D11214C914B500B0CFBD /* SIMacroTests.m */; };
 		32AF044215CE36C500501B1E /* SIAppBackpackTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AF044115CE36C500501B1E /* SIAppBackpackTests.m */; };
@@ -130,6 +136,8 @@
 		32D5D98A14E1357900D29DD5 /* TestView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32D5D98914E1357900D29DD5 /* TestView.xib */; };
 		32D5D98D14E135A300D29DD5 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D5D98C14E135A300D29DD5 /* TestViewController.m */; };
 		32D9353915AB098000E51C8C /* SIStory.m in Sources */ = {isa = PBXBuildFile; fileRef = 653D0EB813A783C000A5AB82 /* SIStory.m */; };
+		32E3DC2315F09BA5003E7B2B /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32E3DC2215F09BA5003E7B2B /* AppKit.framework */; };
+		32E3DC2515F09C3C003E7B2B /* GHUnitTestMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 32E3DC2415F09C3C003E7B2B /* GHUnitTestMain.m */; };
 		32EA6E76150E11E2000A64A1 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32EA6E75150E11E2000A64A1 /* QuartzCore.framework */; };
 		32F742D814F75F58005E5E97 /* SIUISwipeGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F742D614F75F58005E5E97 /* SIUISwipeGenerator.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		32F742D914F75F58005E5E97 /* SIUISwipeGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 32F742D714F75F58005E5E97 /* SIUISwipeGenerator.m */; };
@@ -330,6 +338,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		32A188BC15EF968B00B8C111 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				32A188BD15EF969900B8C111 /* GHUnit.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -369,7 +387,6 @@
 		3224269215EB590800F0CB62 /* SIHttpHeartbeatRequestProcessorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIHttpHeartbeatRequestProcessorTests.m; sourceTree = "<group>"; };
 		3224269515EB9AFA00F0CB62 /* SIHttpExitRequestProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIHttpExitRequestProcessor.h; sourceTree = "<group>"; };
 		3224269615EB9AFA00F0CB62 /* SIHttpExitRequestProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIHttpExitRequestProcessor.m; sourceTree = "<group>"; };
-		322426ED15ECF34600F0CB62 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		322426F915ECF64900F0CB62 /* PIPieMan.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PIPieMan.h; sourceTree = "<group>"; };
 		322426FA15ECF64900F0CB62 /* PIPieMan.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PIPieMan.m; sourceTree = "<group>"; };
 		322426FD15EDD9F800F0CB62 /* PIHeartbeat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PIHeartbeat.h; sourceTree = "<group>"; };
@@ -430,6 +447,14 @@
 		3298252D15039FE300631203 /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
 		329825381503A0FF00631203 /* BDD.stories */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BDD.stories; sourceTree = "<group>"; };
 		3298253B1504C87600631203 /* BDDImplementations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BDDImplementations.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		32A1889815EF89BE00B8C111 /* Pieman Tests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pieman Tests.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		32A188A215EF89BE00B8C111 /* Pieman Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Pieman Tests-Info.plist"; sourceTree = "<group>"; };
+		32A188A415EF89BE00B8C111 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		32A188A815EF89BE00B8C111 /* Pieman Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Pieman Tests-Prefix.pch"; sourceTree = "<group>"; };
+		32A188AA15EF89BE00B8C111 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		32A188B015EF89BE00B8C111 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		32A188B615EF8A9800B8C111 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		32A188BA15EF92F200B8C111 /* GHUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GHUnit.framework; path = ../frameworks/GHUnit/0.5.1/GHUnit.framework; sourceTree = "<group>"; };
 		32A9D10F14C907BC00B0CFBD /* NSInvocations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = NSInvocations.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		32A9D11214C914B500B0CFBD /* SIMacroTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIMacroTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		32AF044115CE36C500501B1E /* SIAppBackpackTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIAppBackpackTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -460,6 +485,8 @@
 		32D5D98914E1357900D29DD5 /* TestView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestView.xib; sourceTree = "<group>"; };
 		32D5D98B14E135A300D29DD5 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
 		32D5D98C14E135A300D29DD5 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
+		32E3DC2215F09BA5003E7B2B /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/AppKit.framework; sourceTree = DEVELOPER_DIR; };
+		32E3DC2415F09C3C003E7B2B /* GHUnitTestMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GHUnitTestMain.m; sourceTree = "<group>"; };
 		32EA6E75150E11E2000A64A1 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		32F742D614F75F58005E5E97 /* SIUISwipeGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SIUISwipeGenerator.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		32F742D714F75F58005E5E97 /* SIUISwipeGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIUISwipeGenerator.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -543,8 +570,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32A188B715EF8A9800B8C111 /* Foundation.framework in Frameworks */,
 				3224270415EDEDC300F0CB62 /* dUsefulStuff.dylib in Frameworks */,
-				322DA95315A18A4B005CFC83 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -561,6 +588,16 @@
 				3298250F15039FE300631203 /* UIKit.framework in Frameworks */,
 				3298251015039FE300631203 /* Foundation.framework in Frameworks */,
 				3298251115039FE300631203 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		32A1889515EF89BE00B8C111 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				32E3DC2315F09BA5003E7B2B /* AppKit.framework in Frameworks */,
+				32A188BB15EF92F200B8C111 /* GHUnit.framework in Frameworks */,
+				32A188B815EF8ABB00B8C111 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -685,17 +722,9 @@
 			name = "In app UI";
 			sourceTree = "<group>";
 		};
-		322426FC15ED927700F0CB62 /* Tests */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Tests;
-			sourceTree = "<group>";
-		};
 		322DA95415A18A4B005CFC83 /* PieMan */ = {
 			isa = PBXGroup;
 			children = (
-				322426FC15ED927700F0CB62 /* Tests */,
 				322DA95515A18A4B005CFC83 /* main.m */,
 				322DA95915A18A4B005CFC83 /* pieman.1 */,
 				322DA95715A18A4B005CFC83 /* Supporting Files */,
@@ -828,6 +857,37 @@
 			name = Stories;
 			sourceTree = "<group>";
 		};
+		32A188A015EF89BE00B8C111 /* Pieman Tests */ = {
+			isa = PBXGroup;
+			children = (
+				32A188AF15EF89BE00B8C111 /* MainMenu.xib */,
+				32A188A115EF89BE00B8C111 /* Supporting Files */,
+				32E3DC2415F09C3C003E7B2B /* GHUnitTestMain.m */,
+			);
+			path = "Pieman Tests";
+			sourceTree = "<group>";
+		};
+		32A188A115EF89BE00B8C111 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				32A188A215EF89BE00B8C111 /* Pieman Tests-Info.plist */,
+				32A188A315EF89BE00B8C111 /* InfoPlist.strings */,
+				32A188A815EF89BE00B8C111 /* Pieman Tests-Prefix.pch */,
+				32A188A915EF89BE00B8C111 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		32A188B515EF8A6C00B8C111 /* OS X */ = {
+			isa = PBXGroup;
+			children = (
+				32E3DC2215F09BA5003E7B2B /* AppKit.framework */,
+				32A188BA15EF92F200B8C111 /* GHUnit.framework */,
+				32A188B615EF8A9800B8C111 /* Foundation.framework */,
+			);
+			name = "OS X";
+			sourceTree = "<group>";
+		};
 		32B0ABF514E8DEE20020500E /* Exceptions */ = {
 			isa = PBXGroup;
 			children = (
@@ -904,6 +964,7 @@
 				653D0EB113A783C000A5AB82 /* classes */,
 				653D0ED413A783DC00A5AB82 /* tests */,
 				322DA95415A18A4B005CFC83 /* PieMan */,
+				32A188A015EF89BE00B8C111 /* Pieman Tests */,
 				653D0E8C13A782AD00A5AB82 /* Frameworks */,
 				653D0E8B13A782AD00A5AB82 /* Products */,
 			);
@@ -916,6 +977,7 @@
 				653D0E9B13A783A500A5AB82 /* Unit tests.app */,
 				3298250D15039FE300631203 /* ARC App with tests.app */,
 				322DA95115A18A4B005CFC83 /* pieman */,
+				32A1889815EF89BE00B8C111 /* Pieman Tests.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -923,8 +985,8 @@
 		653D0E8C13A782AD00A5AB82 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				32A188B515EF8A6C00B8C111 /* OS X */,
 				0B14F01715CBA67E00284016 /* iOS */,
-				322426ED15ECF34600F0CB62 /* Foundation.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1196,6 +1258,24 @@
 			productReference = 3298250D15039FE300631203 /* ARC App with tests.app */;
 			productType = "com.apple.product-type.application";
 		};
+		32A1889715EF89BE00B8C111 /* Pieman Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 32A188B215EF89BE00B8C111 /* Build configuration list for PBXNativeTarget "Pieman Tests" */;
+			buildPhases = (
+				32A1889415EF89BE00B8C111 /* Sources */,
+				32A1889515EF89BE00B8C111 /* Frameworks */,
+				32A1889615EF89BE00B8C111 /* Resources */,
+				32A188BC15EF968B00B8C111 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pieman Tests";
+			productName = "Pieman Tests";
+			productReference = 32A1889815EF89BE00B8C111 /* Pieman Tests.app */;
+			productType = "com.apple.product-type.application";
+		};
 		653D0E8913A782AD00A5AB82 /* Simon */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 653D0E9413A782AD00A5AB82 /* Build configuration list for PBXNativeTarget "Simon" */;
@@ -1274,6 +1354,7 @@
 				653D0E9A13A783A500A5AB82 /* Unit tests */,
 				3298250C15039FE300631203 /* ARC App with tests */,
 				322DA95015A18A4B005CFC83 /* PieMan */,
+				32A1889715EF89BE00B8C111 /* Pieman Tests */,
 			);
 		};
 /* End PBXProject section */
@@ -1353,6 +1434,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		32A1889615EF89BE00B8C111 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				32A188A515EF89BE00B8C111 /* InfoPlist.strings in Resources */,
+				32A188AB15EF89BE00B8C111 /* Credits.rtf in Resources */,
+				32A188B115EF89BE00B8C111 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		653D0E9913A783A500A5AB82 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1397,6 +1488,14 @@
 				3298252A15039FE300631203 /* SecondViewController.m in Sources */,
 				3298253C1504C87700631203 /* BDDImplementations.m in Sources */,
 				3265B0241514487100BE0930 /* MacroStoryImplementations.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		32A1889415EF89BE00B8C111 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				32E3DC2515F09C3C003E7B2B /* GHUnitTestMain.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1552,6 +1651,30 @@
 			name = MainStoryboard.storyboard;
 			sourceTree = "<group>";
 		};
+		32A188A315EF89BE00B8C111 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				32A188A415EF89BE00B8C111 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		32A188A915EF89BE00B8C111 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				32A188AA15EF89BE00B8C111 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		32A188AF15EF89BE00B8C111 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				32A188B015EF89BE00B8C111 /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -1627,6 +1750,68 @@
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		32A188B315EF89BE00B8C111 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Xcode45-DP4.app/Contents/Developer/Library/Frameworks\"",
+					"\"$(SRCROOT)/../frameworks/GHUnit/0.5.2\"",
+					"\"$(SRCROOT)/../frameworks/GHUnit/0.5.1\"",
+				);
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Pieman Tests/Pieman Tests-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				INFOPLIST_FILE = "Pieman Tests/Pieman Tests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		32A188B415EF89BE00B8C111 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Xcode45-DP4.app/Contents/Developer/Library/Frameworks\"",
+					"\"$(SRCROOT)/../frameworks/GHUnit/0.5.2\"",
+					"\"$(SRCROOT)/../frameworks/GHUnit/0.5.1\"",
+				);
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Pieman Tests/Pieman Tests-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				INFOPLIST_FILE = "Pieman Tests/Pieman Tests-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -1801,6 +1986,15 @@
 			buildConfigurations = (
 				3298253015039FE300631203 /* Debug */,
 				3298253115039FE300631203 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		32A188B215EF89BE00B8C111 /* Build configuration list for PBXNativeTarget "Pieman Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				32A188B315EF89BE00B8C111 /* Debug */,
+				32A188B415EF89BE00B8C111 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
