@@ -3,7 +3,7 @@
 //  Simon
 //
 //  Created by Derek Clarkson on 13/07/12.
-//  Copyright (c) 2012 Sensis. All rights reserved.
+//  Copyright (c) 2012. All rights reserved.
 //
 
 #import <Simon/SIServerException.h>

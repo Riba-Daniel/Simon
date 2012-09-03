@@ -3,10 +3,10 @@
 //  Simon
 //
 //  Created by Derek Clarkson on 28/08/12.
-//  Copyright (c) 2012 Sensis. All rights reserved.
+//  Copyright (c) 2012. All rights reserved.
 //
 
-#import "PIPieMan.h"
+#import "PIPieman.h"
 #import <Simon/SIConstants.h>
 #import <dUsefulStuff/DCCommon.h>
 #import "PIHeartbeat.h"
@@ -14,7 +14,7 @@
 // Pieman's background thread name.
 #define PI_QUEUE_NAME "au.com.derekclarkson.pieman"
 
-@interface PIPieMan () {
+@interface PIPieman () {
 @private
 	dispatch_queue_t queue;
 	PIHeartbeat *heartbeat;
@@ -25,7 +25,7 @@
 
 @end
 
-@implementation PIPieMan
+@implementation PIPieman
 
 @synthesize finished = _finished;
 

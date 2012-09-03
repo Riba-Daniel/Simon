@@ -3,7 +3,7 @@
 //  Simon
 //
 //  Created by Derek Clarkson on 6/10/11.
-//  Copyright (c) 2011 Sensis. All rights reserved.
+//  Copyright (c) 2011. All rights reserved.
 //
 
 #define STORY_EXTENSION @"stories"
@@ -15,6 +15,7 @@
 
 /// Error domain for NSError's that Simon generates.
 #define SIMON_ERROR_DOMAIN @"SIError"
+#define PIEMAN_ERROR_DOMAIN @"PIError"
 
 // keys for references attached to implementation classes.
 #define SI_INSTANCE_STORY_REF_KEY @"__story" 
@@ -63,7 +64,8 @@ typedef enum {
 	SIErrorNoStoriesFound,
 	SIErrorStoryFailures,
 	SIErrorExceptionCaught,
-	SIErrorUnknownProperty
+	SIErrorUnknownProperty,
+	PIErrorDidNotLoadAppIntoSpecifer = 100
 } SIError;
 
 /**

@@ -3,7 +3,7 @@
 //  Simon
 //
 //  Created by Derek Clarkson on 29/08/12.
-//  Copyright (c) 2012 Sensis. All rights reserved.
+//  Copyright (c) 2012. All rights reserved.
 //
 
 #import "SIHttpRequestProcessor+Simon.h"

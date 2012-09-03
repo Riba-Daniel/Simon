@@ -2,7 +2,7 @@
 //  SIStorySourceTests.m
 //  Simon
 //
-//  Created by Sensis on 6/08/12.
+//  Created by on 6/08/12.
 //  Copyright (c) 2012. All rights reserved.
 //
 

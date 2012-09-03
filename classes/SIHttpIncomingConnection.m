@@ -3,7 +3,7 @@
 //  Simon
 //
 //  Created by Derek Clarkson on 13/07/12.
-//  Copyright (c) 2012 Sensis. All rights reserved.
+//  Copyright (c) 2012. All rights reserved.
 //
 
 #import <dUsefulStuff/DCCommon.h>
@@ -33,10 +33,17 @@
 -(id) initWithAsyncSocket:(GCDAsyncSocket *)newSocket configuration:(HTTPConfig *)aConfig {
 	self = [super initWithAsyncSocket:newSocket configuration:aConfig];
 	if (self) {
+		
+		// Load appropriate request processors depending on whether we are in Simon or the Pieman.
+#if TARGET_OS_MAC
+		// Pieman
+#elseif
+		// Simon
 		SIHttpRequestProcessor * runAllProcessor = [[[SIHttpRunAllRequestProcessor alloc] init] autorelease];
 		SIHttpRequestProcessor * heartbeatProcessor = [[[SIHttpHeartbeatRequestProcessor alloc] init] autorelease];
 		SIHttpRequestProcessor * exitProcessor = [[[SIHttpExitRequestProcessor alloc] init] autorelease];
 		self.processors = [NSArray arrayWithObjects:runAllProcessor, heartbeatProcessor, exitProcessor, nil];
+#endif
 	}
 	return self;
 }

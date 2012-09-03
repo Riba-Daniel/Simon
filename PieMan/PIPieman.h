@@ -3,7 +3,7 @@
 //  Simon
 //
 //  Created by Derek Clarkson on 28/08/12.
-//  Copyright (c) 2012 Sensis. All rights reserved.
+//  Copyright (c) 2012. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -12,7 +12,7 @@
 /**
  This is the main class of Pieman.
  */
-@interface PIPieMan : NSObject<PIHeartbeatDelegate>
+@interface PIPieman : NSObject<PIHeartbeatDelegate>
 
 @property (nonatomic, readonly) BOOL finished;
 

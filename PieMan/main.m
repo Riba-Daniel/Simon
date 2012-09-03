@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #import <Simon/SIStory.h>
-#import "PIPieMan.h"
+#import "PIPieman.h"
 
 // Function declarations.
 int arguments(const char * argv[]);
@@ -19,7 +19,7 @@ int main(int argc, const char * argv[]) {
 	int retCode = arguments(argv);
 	
 	@autoreleasepool {
-		PIPieMan *pieman = [[[PIPieMan alloc] init] autorelease];
+		PIPieman *pieman = [[[PIPieman alloc] init] autorelease];
 		[pieman start];
 		
 		NSRunLoop *theRL = [NSRunLoop currentRunLoop];

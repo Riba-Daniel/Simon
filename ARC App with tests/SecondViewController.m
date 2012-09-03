@@ -3,7 +3,7 @@
 //  ARC App with tests
 //
 //  Created by Derek Clarkson on 5/03/12.
-//  Copyright (c) 2012 Sensis. All rights reserved.
+//  Copyright (c) 2012. All rights reserved.
 //
 
 #import "SecondViewController.h"
