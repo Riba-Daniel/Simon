@@ -6,11 +6,9 @@
 //  Copyright (c) 2012. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-
 #import "PIConstants.h"
-
 #import "DTiPhoneSimulatorSessionDelegate.h"
+#import "PISimulatorDelegate.h"
 
 /**
  Wrapper for the private frameworks which manage the simulator. This code is based heavily on the WaxSim code at https://github.com/probablycorey/WaxSim
@@ -19,6 +17,9 @@
 @interface PISimulator : NSObject<DTiPhoneSimulatorSessionDelegate>
 
 /// @name Properties
+
+/// The delegate which watches this simulator.
+@property (nonatomic, assign) id<PISimulatorDelegate> delegate;
 
 /// Path to the application binary to be launched.
 @property (nonatomic, readonly) NSString *appPath;

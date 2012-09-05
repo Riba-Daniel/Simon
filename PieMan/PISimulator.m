@@ -23,20 +23,29 @@
 
 #import <Simon/SIConstants.h>
 
+#define TERMINATION_CHECK_PERIOD 1.0
+#define FORCE_TERMINATE_AFTER 5.0
+#define SESSION_TIMEOUT 30.0
+
 @interface PISimulator () {
 @private
 	DTiPhoneSimulatorSystemRoot *selectedSdk;
 	NSString *_appPath;
+	NSTimeInterval secondsSinceTerminationRequest;
+	NSRunningApplication *simulator;
 }
 
 @property (nonatomic, retain) DTiPhoneSimulatorSession* session;
 
 -(void) shutdownSimulator;
+-(BOOL) delegateHandlesSelector:(SEL) selector;
+-(void) checkForSimulatorTermination;
 
 @end
 
 @implementation PISimulator
 
+@synthesize delegate = _delegate;
 @synthesize appPath = _appPath;
 @synthesize deviceFamily = _deviceFamily;
 @synthesize args = _args;
@@ -93,16 +102,22 @@
 	// and lauch the simulator.
 	DC_LOG(@"Launching");
 	NSError *error;
-	if (![self.session requestStartWithConfig:config timeout:30 error:&error]) {
+	if (![self.session requestStartWithConfig:config timeout:SESSION_TIMEOUT error:&error]) {
 		@throw [PIException exceptionWithReason:[NSString stringWithFormat:@"Error launching simulator: %@", [error localizedFailureReason]]];
 	}
 	DC_LOG(@"Launched");
 	
+	if ([self delegateHandlesSelector:@selector(simulatorDidStart:)]) {
+		[self.delegate simulatorDidStart:self];
+	}
+	
 }
+
+#pragma mark - Termination
 
 -(void) shutdown {
 	DC_LOG(@"requesting shutdown of app and simulator");
-	[self.session requestEndWithTimeout:1.0];
+	[self.session requestEndWithTimeout:SESSION_TIMEOUT];
 	
 	// Shutdown the simulator itself.
 	[self shutdownSimulator];
@@ -116,30 +131,85 @@
 	ProcessSerialNumber processSerialNumber = self.session.processSerialNumber;
 	CFDictionaryRef processInfoDict = ProcessInformationCopyDictionary(&processSerialNumber, kProcessDictionaryIncludeAllInformationMask);
 	
-	if (processInfoDict != nil) {
-
-		// Extract the pid from the data.
-		CFNumberRef pidNumberRef = CFDictionaryGetValue(processInfoDict, CFSTR("pid"));
-		pid_t pid;
-		CFNumberGetValue(pidNumberRef, kCFNumberSInt32Type, &pid);
-		CFRelease(processInfoDict);
+	if (processInfoDict == nil) {
 		
-		// Get the application reference and send it a terminate message.
-		NSRunningApplication *simulator = [NSRunningApplication runningApplicationWithProcessIdentifier:pid];
-		if (simulator != nil && !simulator.terminated) {
-			DC_LOG(@"Running simulator found (%@) on pid %i, shutting it down.", simulator.localizedName, pid);
-			[simulator terminate];
+		// Simulator not running so tell the delegate.
+		if ([self delegateHandlesSelector:@selector(simulatorDidEnd:)]) {
+			[self.delegate simulatorDidEnd:self];
 		}
+		return;
+	}
+	
+	// Extract the pid from the data.
+	CFNumberRef pidNumberRef = CFDictionaryGetValue(processInfoDict, CFSTR("pid"));
+	pid_t pid;
+	CFNumberGetValue(pidNumberRef, kCFNumberSInt32Type, &pid);
+	CFRelease(processInfoDict);
+	
+	// Get the application reference and send it a terminate message.
+	simulator = [[NSRunningApplication runningApplicationWithProcessIdentifier:pid] retain];
+	if (simulator == nil || simulator.terminated) {
+		
+		// Simulator not running so tell the delegate.
+		if ([self delegateHandlesSelector:@selector(simulatorDidEnd:)]) {
+			[self.delegate simulatorDidEnd:self];
+		}
+		
+	} else {
+		
+		DC_LOG(@"Running simulator found (%@) on pid %i, shutting it down.", simulator.localizedName, pid);
+		[simulator terminate];
+		secondsSinceTerminationRequest = 0;
+		[self performSelector:@selector(checkForSimulatorTermination) withObject:self afterDelay:TERMINATION_CHECK_PERIOD];
+		
 	}
 }
 
-#pragma mark - Delegate
+-(void) checkForSimulatorTermination {
+	
+	DC_LOG(@"Checking simulator");
+	if ([simulator isTerminated]) {
+		
+		DC_LOG(@"Simulator terminated.");
+		DC_DEALLOC(simulator);
+		if ([self delegateHandlesSelector:@selector(simulatorDidEnd:)]) {
+			[self.delegate simulatorDidEnd:self];
+		}
+		
+	} else {
+		
+		// If we have waited beyond reason, hard kill the simulator.
+		if (secondsSinceTerminationRequest >= FORCE_TERMINATE_AFTER) {
+			DC_LOG(@"Simulator still alive, force terminating it.");
+			[simulator forceTerminate];
+			DC_DEALLOC(simulator);
+		} else {
+			
+			// Otherwise requeue this method.
+			secondsSinceTerminationRequest++;
+			DC_LOG(@"Simulator not terminated after %f seconds, waiting.", secondsSinceTerminationRequest);
+			[self performSelector:@selector(checkForSimulatorTermination) withObject:self afterDelay:TERMINATION_CHECK_PERIOD];
+		}
+		
+	}
+	
+}
+
+#pragma mark - Simulator delegate
 
 - (void)session:(DTiPhoneSimulatorSession *)session didStart:(BOOL)started withError:(NSError *)error {
 	DC_LOG(@"App started: %@", DC_PRETTY_BOOL(started));
 	if (!started) {
 		DC_LOG(@"Session failed to start. Code: %lu, message: %@", [error code], [error localizedDescription]);
-		// Exit
+		// Notify the delegate.
+		if ([self delegateHandlesSelector:@selector(simulator:appDidFailToStartWithError:)]) {
+			[self.delegate simulator:self appDidFailToStartWithError: error];
+		}
+	} else {
+		// Notify the delegate.
+		if ([self delegateHandlesSelector:@selector(simulatorAppDidStart:)]) {
+			[self.delegate simulatorAppDidStart:self];
+		}
 	}
 }
 
@@ -147,16 +217,29 @@
 	DC_LOG(@"App ended");
 	if (error) {
 		DC_LOG(@"Session ended with error. %@", [error localizedDescription]);
-		if ([error code] != 2) exit(1); // if it is a timeout error, that's cool. We are probably rebooting
+		// if ([error code] != 2) exit(1); // if it is a timeout error, that's cool. We are probably rebooting
 	} else {
 		// Exit
 	}
+	
+	// Notify the delegate.
+	if ([self delegateHandlesSelector:@selector(simulator:appDidEndWithError:)]) {
+		[self.delegate simulator:self appDidEndWithError: error];
+	}
+	
+	// Queue a shutdown of the simulator.
+	[self shutdown];
 	
 }
 
 -(void) sessionWillEnd:(id)arg1 {
 	DC_LOG(@"App about to end");
 }
+
+-(BOOL) delegateHandlesSelector:(SEL) selector {
+	return (self.delegate != nil && [self.delegate respondsToSelector:selector]);
+}
+
 
 #pragma mark - Dynamic properties.
 

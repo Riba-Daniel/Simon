@@ -57,6 +57,7 @@
 	
 	// Start the simulator.
 	simulator = [[PISimulator alloc] initWithApplicationPath:self.appPath];
+	simulator.delegate = self;
 	[simulator launch];
 }
 
@@ -65,7 +66,30 @@
 -(void) heartbeatDidEnd {
 	DC_LOG(@"Heart beat ended, asking simulator to quit.");
 	[simulator shutdown];
+}
+
+-(void) simulatorDidStart:(PISimulator *) simulator {
+	DC_LOG(@"Simulator started");
+}
+
+-(void) simulatorDidEnd:(PISimulator *) simulator {
+	DC_LOG(@"Simulator ended");
+	
+	// If the simulator has shutdown then shutdown this program.
 	_finished = YES;
+}
+
+-(void) simulatorAppDidStart:(PISimulator *) simulator {
+	DC_LOG(@"Simulator session ended");
+	
+}
+
+-(void) simulator:(PISimulator *) simulator appDidEndWithError:(NSError *) error {
+	DC_LOG(@"Simulator session ended with error %@", error);
+}
+
+-(void) simulator:(PISimulator *) simulator appDidFailToStartWithError:(NSError *) error {
+	DC_LOG(@"Simulator session failed to start: %@", error);
 }
 
 #pragma mark - Thread methods

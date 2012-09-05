@@ -466,6 +466,7 @@
 		328DE14C15D39B72009A16C1 /* Simon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Simon.h; sourceTree = "<group>"; };
 		3291243B15F6CD4C00969A86 /* DtiPhoneSimulatorSession+Pieman.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DtiPhoneSimulatorSession+Pieman.h"; sourceTree = "<group>"; };
 		3291243C15F6CD4C00969A86 /* DtiPhoneSimulatorSession+Pieman.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DtiPhoneSimulatorSession+Pieman.m"; sourceTree = "<group>"; };
+		3291243F15F6D2AF00969A86 /* PISimulatorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PISimulatorDelegate.h; sourceTree = "<group>"; };
 		3296322414F751D300D9310A /* SIUITapGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SIUITapGenerator.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		3296322514F751D300D9310A /* SIUITapGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIUITapGenerator.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		3298250D15039FE300631203 /* ARC App with tests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ARC App with tests.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1040,6 +1041,7 @@
 				32E3DC3715F31901003E7B2B /* simulator headers */,
 				32E3DC3E15F319B2003E7B2B /* PISimulator.h */,
 				32E3DC3F15F319B2003E7B2B /* PISimulator.m */,
+				3291243F15F6D2AF00969A86 /* PISimulatorDelegate.h */,
 			);
 			name = simulator;
 			sourceTree = "<group>";
