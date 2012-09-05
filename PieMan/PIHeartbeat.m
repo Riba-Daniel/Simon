@@ -46,6 +46,7 @@
 }
 
 -(void) start {
+	DC_LOG(@"Starting heartbeat");
 	[self notifyDelegate:@selector(heartbeatDidStart)];
 	[self queueHeartbeat];
 }
@@ -61,12 +62,13 @@
 	NSString *response = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&error];
 	DC_LOG(@"Response %@", response);
 	
+	/*
 	if (response == nil) {
-		NSLog(@"Error: %@", [error localizedFailureReason]);
+		NSLog(@"Error from heartbeat query: %@", [error localizedFailureReason]);
 		[self notifyDelegate:@selector(heartbeatDidEnd)];
 		return;
 	}
-	
+	*/
 	if (heartbeats > 4) {
 		DC_LOG(@"Exiting heartbeats");
 		[self notifyDelegate:@selector(heartbeatDidEnd)];

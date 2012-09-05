@@ -14,7 +14,11 @@
  */
 @interface PIPieman : NSObject<PIHeartbeatDelegate>
 
+/// Set to YES when the tests are finished.
 @property (nonatomic, readonly) BOOL finished;
+
+/// The full path to the app to be tested.
+@property (nonatomic, retain) NSString *appPath;
 
 -(void) start;
 

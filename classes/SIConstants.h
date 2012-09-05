@@ -64,8 +64,7 @@ typedef enum {
 	SIErrorNoStoriesFound,
 	SIErrorStoryFailures,
 	SIErrorExceptionCaught,
-	SIErrorUnknownProperty,
-	PIErrorDidNotLoadAppIntoSpecifer = 100
+	SIErrorUnknownProperty
 } SIError;
 
 /**

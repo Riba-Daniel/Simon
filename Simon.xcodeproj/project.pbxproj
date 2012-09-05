@@ -88,6 +88,9 @@
 		328DE14A15D39946009A16C1 /* SIUIAppBackpack.h in Headers */ = {isa = PBXBuildFile; fileRef = 328DE14815D39945009A16C1 /* SIUIAppBackpack.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		328DE14B15D39946009A16C1 /* SIUIAppBackpack.m in Sources */ = {isa = PBXBuildFile; fileRef = 328DE14915D39945009A16C1 /* SIUIAppBackpack.m */; };
 		328DE14D15D39B73009A16C1 /* Simon.h in Headers */ = {isa = PBXBuildFile; fileRef = 328DE14C15D39B72009A16C1 /* Simon.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3291243A15F5E8AE00969A86 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32E3DC2215F09BA5003E7B2B /* AppKit.framework */; };
+		3291243D15F6CD4C00969A86 /* DtiPhoneSimulatorSession+Pieman.m in Sources */ = {isa = PBXBuildFile; fileRef = 3291243C15F6CD4C00969A86 /* DtiPhoneSimulatorSession+Pieman.m */; };
+		3291243E15F6CD4C00969A86 /* DtiPhoneSimulatorSession+Pieman.m in Sources */ = {isa = PBXBuildFile; fileRef = 3291243C15F6CD4C00969A86 /* DtiPhoneSimulatorSession+Pieman.m */; };
 		3296322614F751D300D9310A /* SIUITapGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 3296322414F751D300D9310A /* SIUITapGenerator.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		3296322714F751D300D9310A /* SIUITapGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3296322514F751D300D9310A /* SIUITapGenerator.m */; };
 		3298250F15039FE300631203 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 653D0E9D13A783A500A5AB82 /* UIKit.framework */; };
@@ -395,6 +398,7 @@
 		3209231315F487500076A2BF /* PISDKNotFoundException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PISDKNotFoundException.m; sourceTree = "<group>"; };
 		3209231815F489670076A2BF /* PIException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PIException.h; sourceTree = "<group>"; };
 		3209231915F489670076A2BF /* PIException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PIException.m; sourceTree = "<group>"; };
+		3209231C15F4D41C0076A2BF /* PIConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PIConstants.h; sourceTree = "<group>"; };
 		3210988915D3D6E200567D6D /* SIAppBackpackImplementation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIAppBackpackImplementation.h; sourceTree = "<group>"; };
 		3210988C15D6893E00567D6D /* SIStorySources.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIStorySources.h; sourceTree = "<group>"; };
 		3210988D15D6893E00567D6D /* SIStorySources.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIStorySources.m; sourceTree = "<group>"; };
@@ -460,6 +464,8 @@
 		328DE14815D39945009A16C1 /* SIUIAppBackpack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIAppBackpack.h; sourceTree = "<group>"; };
 		328DE14915D39945009A16C1 /* SIUIAppBackpack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUIAppBackpack.m; sourceTree = "<group>"; };
 		328DE14C15D39B72009A16C1 /* Simon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Simon.h; sourceTree = "<group>"; };
+		3291243B15F6CD4C00969A86 /* DtiPhoneSimulatorSession+Pieman.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DtiPhoneSimulatorSession+Pieman.h"; sourceTree = "<group>"; };
+		3291243C15F6CD4C00969A86 /* DtiPhoneSimulatorSession+Pieman.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DtiPhoneSimulatorSession+Pieman.m"; sourceTree = "<group>"; };
 		3296322414F751D300D9310A /* SIUITapGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SIUITapGenerator.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		3296322514F751D300D9310A /* SIUITapGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIUITapGenerator.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		3298250D15039FE300631203 /* ARC App with tests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ARC App with tests.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -523,7 +529,7 @@
 		32E3DC3815F31901003E7B2B /* DTiPhoneSimulatorApplicationSpecifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTiPhoneSimulatorApplicationSpecifier.h; sourceTree = "<group>"; };
 		32E3DC3915F31901003E7B2B /* DTiPhoneSimulatorSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTiPhoneSimulatorSession.h; sourceTree = "<group>"; };
 		32E3DC3A15F31901003E7B2B /* DTiPhoneSimulatorSessionConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTiPhoneSimulatorSessionConfig.h; sourceTree = "<group>"; };
-		32E3DC3B15F31901003E7B2B /* DTiPhoneSimulatorSessionDelegate-Protocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DTiPhoneSimulatorSessionDelegate-Protocol.h"; sourceTree = "<group>"; };
+		32E3DC3B15F31901003E7B2B /* DTiPhoneSimulatorSessionDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTiPhoneSimulatorSessionDelegate.h; sourceTree = "<group>"; };
 		32E3DC3C15F31901003E7B2B /* DTiPhoneSimulatorSystemRoot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTiPhoneSimulatorSystemRoot.h; sourceTree = "<group>"; };
 		32E3DC3E15F319B2003E7B2B /* PISimulator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PISimulator.h; sourceTree = "<group>"; };
 		32E3DC3F15F319B2003E7B2B /* PISimulator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PISimulator.m; sourceTree = "<group>"; };
@@ -615,6 +621,7 @@
 				32A188B715EF8A9800B8C111 /* Foundation.framework in Frameworks */,
 				3224270415EDEDC300F0CB62 /* dUsefulStuff.dylib in Frameworks */,
 				32E3DC3415F0F9EA003E7B2B /* iPhoneSimulatorRemoteClient.framework in Frameworks */,
+				3291243A15F5E8AE00969A86 /* AppKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -761,15 +768,17 @@
 		322DA95415A18A4B005CFC83 /* PieMan */ = {
 			isa = PBXGroup;
 			children = (
-				32E3DC4115F319B7003E7B2B /* simulator */,
+				326B624315F4DB48002CA603 /* Exceptions */,
 				322DA95515A18A4B005CFC83 /* main.m */,
+				3209231C15F4D41C0076A2BF /* PIConstants.h */,
 				322DA95915A18A4B005CFC83 /* pieman.1 */,
-				322DA95715A18A4B005CFC83 /* Supporting Files */,
-				322426F915ECF64900F0CB62 /* PIPieman.h */,
-				322426FA15ECF64900F0CB62 /* PIPieman.m */,
 				322426FD15EDD9F800F0CB62 /* PIHeartbeat.h */,
 				322426FE15EDD9F800F0CB62 /* PIHeartbeat.m */,
 				3224270015EDDB2900F0CB62 /* PIHeartbeatDelegate.h */,
+				322426F915ECF64900F0CB62 /* PIPieman.h */,
+				322426FA15ECF64900F0CB62 /* PIPieman.m */,
+				32E3DC4115F319B7003E7B2B /* simulator */,
+				322DA95715A18A4B005CFC83 /* Supporting Files */,
 			);
 			path = PieMan;
 			sourceTree = "<group>";
@@ -811,6 +820,17 @@
 				32741D7714EB581E00093E0F /* UITouch+Simon.m */,
 			);
 			name = Events;
+			sourceTree = "<group>";
+		};
+		326B624315F4DB48002CA603 /* Exceptions */ = {
+			isa = PBXGroup;
+			children = (
+				3209231215F487500076A2BF /* PISDKNotFoundException.h */,
+				3209231315F487500076A2BF /* PISDKNotFoundException.m */,
+				3209231815F489670076A2BF /* PIException.h */,
+				3209231915F489670076A2BF /* PIException.m */,
+			);
+			name = Exceptions;
 			sourceTree = "<group>";
 		};
 		32793BAA14F4F95600B93621 /* View Handlers */ = {
@@ -941,10 +961,6 @@
 				32B0ABFC14E8DFEC0020500E /* SIUINotFoundException.m */,
 				32B0AC0514E8E2660020500E /* SIUITooManyFoundException.h */,
 				32B0AC0614E8E2660020500E /* SIUITooManyFoundException.m */,
-				3209231215F487500076A2BF /* PISDKNotFoundException.h */,
-				3209231315F487500076A2BF /* PISDKNotFoundException.m */,
-				3209231815F489670076A2BF /* PIException.h */,
-				3209231915F489670076A2BF /* PIException.m */,
 			);
 			name = Exceptions;
 			sourceTree = "<group>";
@@ -1010,8 +1026,10 @@
 				32E3DC3815F31901003E7B2B /* DTiPhoneSimulatorApplicationSpecifier.h */,
 				32E3DC3915F31901003E7B2B /* DTiPhoneSimulatorSession.h */,
 				32E3DC3A15F31901003E7B2B /* DTiPhoneSimulatorSessionConfig.h */,
-				32E3DC3B15F31901003E7B2B /* DTiPhoneSimulatorSessionDelegate-Protocol.h */,
+				32E3DC3B15F31901003E7B2B /* DTiPhoneSimulatorSessionDelegate.h */,
 				32E3DC3C15F31901003E7B2B /* DTiPhoneSimulatorSystemRoot.h */,
+				3291243B15F6CD4C00969A86 /* DtiPhoneSimulatorSession+Pieman.h */,
+				3291243C15F6CD4C00969A86 /* DtiPhoneSimulatorSession+Pieman.m */,
 			);
 			path = "simulator headers";
 			sourceTree = "<group>";
@@ -1326,6 +1344,7 @@
 				322DA94D15A18A4B005CFC83 /* Sources */,
 				322DA94E15A18A4B005CFC83 /* Frameworks */,
 				322DA94F15A18A4B005CFC83 /* CopyFiles */,
+				326B624915F5A2B4002CA603 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1364,6 +1383,7 @@
 				32A1889515EF89BE00B8C111 /* Frameworks */,
 				32A1889615EF89BE00B8C111 /* Resources */,
 				32A188BC15EF968B00B8C111 /* CopyFiles */,
+				326B624815F5A251002CA603 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1561,6 +1581,35 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		326B624815F5A251002CA603 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "install_name_tool -change /usr/local/lib/CocoaHTTPServer.dylib @executable_path/CocoaHTTPServer.dylib pieman\ninstall_name_tool -change /usr/local/lib/dUsefulStuff.dylib @executable_path/dUsefulStuff.dylib pieman";
+		};
+		326B624915F5A2B4002CA603 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "install_name_tool -change /usr/local/lib/CocoaHTTPServer.dylib @executable_path/CocoaHTTPServer.dylib \"$TARGET_BUILD_DIR/pieman\"\ninstall_name_tool -change /usr/local/lib/dUsefulStuff.dylib @executable_path/dUsefulStuff.dylib \"$TARGET_BUILD_DIR/pieman\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		322DA94D15A18A4B005CFC83 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -1577,6 +1626,7 @@
 				3209231415F487500076A2BF /* PISDKNotFoundException.m in Sources */,
 				3209231615F488760076A2BF /* SIAbstractException.m in Sources */,
 				3209231A15F489670076A2BF /* PIException.m in Sources */,
+				3291243D15F6CD4C00969A86 /* DtiPhoneSimulatorSession+Pieman.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1606,6 +1656,7 @@
 				3209231515F487500076A2BF /* PISDKNotFoundException.m in Sources */,
 				3209231715F488770076A2BF /* SIAbstractException.m in Sources */,
 				3209231B15F489670076A2BF /* PIException.m in Sources */,
+				3291243E15F6CD4C00969A86 /* DtiPhoneSimulatorSession+Pieman.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1800,6 +1851,7 @@
 				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				LD_RUNPATH_SEARCH_PATHS = "\"$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/PrivateFrameworks\" $(DEVELOPER_DIR)/../OtherFrameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = pieman;
@@ -1821,6 +1873,7 @@
 				GCC_PREFIX_HEADER = "PieMan/PieMan-Prefix.pch";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				LD_RUNPATH_SEARCH_PATHS = "\"$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/PrivateFrameworks\" $(DEVELOPER_DIR)/../OtherFrameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = pieman;
 				SDKROOT = macosx;

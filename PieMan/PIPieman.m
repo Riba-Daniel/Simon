@@ -10,6 +10,7 @@
 #import <Simon/SIConstants.h>
 #import <dUsefulStuff/DCCommon.h>
 #import "PIHeartbeat.h"
+#import "PISimulator.h"
 
 // Pieman's background thread name.
 #define PI_QUEUE_NAME "au.com.derekclarkson.pieman"
@@ -18,6 +19,7 @@
 @private
 	dispatch_queue_t queue;
 	PIHeartbeat *heartbeat;
+	PISimulator *simulator;
 	
 }
 
@@ -32,6 +34,7 @@
 -(void) dealloc {
 	dispatch_release(queue);
 	DC_DEALLOC(heartbeat);
+	DC_DEALLOC(simulator);
 	[super dealloc];
 }
 
@@ -47,14 +50,22 @@
 }
 
 -(void) start {
+	
+	DC_LOG(@"Launching app at path %@", self.appPath);
+
 	[heartbeat start];
+	
+	// Start the simulator.
+	simulator = [[PISimulator alloc] initWithApplicationPath:self.appPath];
+	[simulator launch];
 }
 
 #pragma mark - Delegate methods.
 
 -(void) heartbeatDidEnd {
+	DC_LOG(@"Heart beat ended, asking simulator to quit.");
+	[simulator shutdown];
 	_finished = YES;
-	DC_LOG(@"Heart beat ended.");
 }
 
 #pragma mark - Thread methods

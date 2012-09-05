@@ -8,22 +8,21 @@
 
 @interface DTiPhoneSimulatorSystemRoot : NSObject <NSCopying>
 {
-    NSString *sdkRootPath;
-    NSString *sdkVersion;
-    NSString *sdkDisplayName;
+	NSString *sdkRootPath;
+	NSString *sdkVersion;
+	NSString *sdkDisplayName;
 }
 
++ (id)knownRoots;
 + (id)rootWithSDKVersion:(id)arg1;
 + (id)rootWithSDKPath:(id)arg1;
 + (id)defaultRoot;
-+ (id)knownRoots;
-+ (void)initialize;
 @property(copy) NSString *sdkDisplayName; // @synthesize sdkDisplayName;
 @property(copy) NSString *sdkVersion; // @synthesize sdkVersion;
 @property(copy) NSString *sdkRootPath; // @synthesize sdkRootPath;
 - (id)description;
+- (void)dealloc;
 - (id)copyWithZone:(struct _NSZone *)arg1;
-- (BOOL)isEqual:(id)arg1;
 - (id)initWithSDKPath:(id)arg1;
 
 @end

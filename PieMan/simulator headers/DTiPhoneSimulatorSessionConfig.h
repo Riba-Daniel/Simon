@@ -8,38 +8,29 @@
 
 @interface DTiPhoneSimulatorSessionConfig : NSObject <NSCopying>
 {
-    NSString *_localizedClientName;
-    DTiPhoneSimulatorSystemRoot *_simulatedSystemRoot;
-    NSNumber *_simulatedDeviceFamily;
-    DTiPhoneSimulatorApplicationSpecifier *_applicationToSimulateOnStart;
-    NSNumber *_pid;
-    NSArray *_simulatedApplicationLaunchArgs;
-    NSDictionary *_simulatedApplicationLaunchEnvironment;
-    BOOL _simulatedApplicationShouldWaitForDebugger;
-    NSNumber *_simulatedDisplayScale;
-    NSString *_simulatedApplicationStdOutPath;
-    NSString *_simulatedApplicationStdErrPath;
-    NSFileHandle *_stdinFileHandle;
-    NSFileHandle *_stdoutFileHandle;
-    NSFileHandle *_stderrFileHandle;
+	NSString *_localizedClientName;
+	DTiPhoneSimulatorSystemRoot *_simulatedSystemRoot;
+	NSNumber *_simulatedDeviceFamily;
+	DTiPhoneSimulatorApplicationSpecifier *_applicationToSimulateOnStart;
+	NSArray *_simulatedApplicationLaunchArgs;
+	NSDictionary *_simulatedApplicationLaunchEnvironment;
+	BOOL _simulatedApplicationShouldWaitForDebugger;
+	NSString *_simulatedApplicationStdOutPath;
+	NSString *_simulatedApplicationStdErrPath;
 }
 
 + (id)displayNameForDeviceFamily:(id)arg1;
-@property(retain) NSFileHandle *stderrFileHandle; // @synthesize stderrFileHandle=_stderrFileHandle;
-@property(retain) NSFileHandle *stdoutFileHandle; // @synthesize stdoutFileHandle=_stdoutFileHandle;
-@property(retain) NSFileHandle *stdinFileHandle; // @synthesize stdinFileHandle=_stdinFileHandle;
 @property(copy) NSString *simulatedApplicationStdErrPath; // @synthesize simulatedApplicationStdErrPath=_simulatedApplicationStdErrPath;
 @property(copy) NSString *simulatedApplicationStdOutPath; // @synthesize simulatedApplicationStdOutPath=_simulatedApplicationStdOutPath;
-@property(copy) NSNumber *simulatedDisplayScale; // @synthesize simulatedDisplayScale=_simulatedDisplayScale;
 @property BOOL simulatedApplicationShouldWaitForDebugger; // @synthesize simulatedApplicationShouldWaitForDebugger=_simulatedApplicationShouldWaitForDebugger;
 @property(copy) NSDictionary *simulatedApplicationLaunchEnvironment; // @synthesize simulatedApplicationLaunchEnvironment=_simulatedApplicationLaunchEnvironment;
 @property(copy) NSArray *simulatedApplicationLaunchArgs; // @synthesize simulatedApplicationLaunchArgs=_simulatedApplicationLaunchArgs;
-@property(copy) NSNumber *pid; // @synthesize pid=_pid;
 @property(copy) DTiPhoneSimulatorApplicationSpecifier *applicationToSimulateOnStart; // @synthesize applicationToSimulateOnStart=_applicationToSimulateOnStart;
 @property(copy) NSNumber *simulatedDeviceFamily; // @synthesize simulatedDeviceFamily=_simulatedDeviceFamily;
 @property(copy) DTiPhoneSimulatorSystemRoot *simulatedSystemRoot; // @synthesize simulatedSystemRoot=_simulatedSystemRoot;
 @property(copy) NSString *localizedClientName; // @synthesize localizedClientName=_localizedClientName;
 - (id)description;
+- (void)dealloc;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 - (id)init;
 

@@ -37,7 +37,7 @@
 		// Load appropriate request processors depending on whether we are in Simon or the Pieman.
 #if TARGET_OS_MAC
 		// Pieman
-#elseif
+#else
 		// Simon
 		SIHttpRequestProcessor * runAllProcessor = [[[SIHttpRunAllRequestProcessor alloc] init] autorelease];
 		SIHttpRequestProcessor * heartbeatProcessor = [[[SIHttpHeartbeatRequestProcessor alloc] init] autorelease];

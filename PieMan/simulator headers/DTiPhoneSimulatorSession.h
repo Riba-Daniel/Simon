@@ -4,53 +4,39 @@
  *     class-dump is Copyright (C) 1997-1998, 2000-2001, 2004-2011 by Steve Nygard.
  */
 
-#import "NSObject.h"
+#import "DTiPhoneSimulatorSessionDelegate.h"
 
 @class DTiPhoneSimulatorSessionConfig, DVTTask, NSString, NSTimer;
 
 @interface DTiPhoneSimulatorSession : NSObject
 {
-    NSString *_uuid;
-    id <DTiPhoneSimulatorSessionDelegate> _delegate;
-    int _simulatedApplicationPID;
-    NSString *_simulatedAppPath;
-    int _simulatorPID;
-    long long _sessionLifecycleProgress;
-    NSTimer *_timeoutTimer;
-    DTiPhoneSimulatorSessionConfig *_sessionConfig;
-    DVTTask *_simTask;
+	NSString *_uuid;
+	id <DTiPhoneSimulatorSessionDelegate> _delegate;
+	NSNumber *_simulatedApplicationPID;
+	long long _sessionLifecycleProgress;
+	NSTimer *_timeoutTimer;
+	DTiPhoneSimulatorSessionConfig *_sessionConfig;
+	struct ProcessSerialNumber _simulatorPSN;
 }
 
-@property DVTTask *simTask; // @synthesize simTask=_simTask;
 @property(copy, nonatomic) DTiPhoneSimulatorSessionConfig *sessionConfig; // @synthesize sessionConfig=_sessionConfig;
 @property(retain, nonatomic) NSTimer *timeoutTimer; // @synthesize timeoutTimer=_timeoutTimer;
 @property(nonatomic) long long sessionLifecycleProgress; // @synthesize sessionLifecycleProgress=_sessionLifecycleProgress;
-@property int simulatorPID; // @synthesize simulatorPID=_simulatorPID;
-@property(copy) NSString *simulatedAppPath; // @synthesize simulatedAppPath=_simulatedAppPath;
-@property int simulatedApplicationPID; // @synthesize simulatedApplicationPID=_simulatedApplicationPID;
-@property(retain, nonatomic) id <DTiPhoneSimulatorSessionDelegate> delegate; // @synthesize delegate=_delegate;
+@property(copy, nonatomic) NSNumber *simulatedApplicationPID; // @synthesize simulatedApplicationPID=_simulatedApplicationPID;
+@property(nonatomic, assign) id <DTiPhoneSimulatorSessionDelegate> delegate; // @synthesize delegate=_delegate;
 @property(copy, nonatomic) NSString *uuid; // @synthesize uuid=_uuid;
 - (id)_invalidConfigError;
 - (void)_endSimulatorSession;
 - (void)_callDelegateResponseFromSessionEndedInfo:(id)arg1;
-- (void)_callDelegateResponseFromSessionWillEndInfo:(id)arg1;
 - (void)_callDelegateResponseFromSessionStartedInfo:(id)arg1;
 - (BOOL)_fillSessionStartRequestInfo:(id)arg1 fromConfig:(id)arg2 withError:(id *)arg3;
-- (BOOL)_startToolSessionInSimulatorWithError:(id *)arg1;
-- (BOOL)_startApplicationSessionInSimulatorWithError:(id *)arg1;
 - (BOOL)_startSessionInSimulatorWithError:(id *)arg1;
 - (BOOL)_launchSimulatorApplicationGivingError:(id *)arg1;
-- (BOOL)_launchSimulatorGivingError:(id *)arg1;
-- (BOOL)_launchSimulatorApplicationGivingError:(id *)arg1 sessionOnLaunch:(BOOL)arg2;
+- (void)_activateSimulatorIfNeeded;
 - (void)_handleSessionEndedInSimulator:(id)arg1;
-- (void)_handleSessionWillEndInSimulator:(id)arg1;
-- (void)_handleSessionStartedWithSim:(id)arg1;
 - (void)_handleSessionStartedInSimulator:(id)arg1;
 - (void)_handleSimulatorReadyMessage:(id)arg1;
 - (void)_timeoutElapsed:(id)arg1;
-- (BOOL)attachedToTargetWithConfig:(id)arg1;
-- (void)stopLocationSimulation;
-- (void)simulateLocationWithLatitude:(id)arg1 longitude:(id)arg2;
 - (void)requestEndWithTimeout:(double)arg1;
 - (BOOL)requestStartWithConfig:(id)arg1 timeout:(double)arg2 error:(id *)arg3;
 - (id)description;
@@ -58,4 +44,6 @@
 - (id)init;
 
 @end
+
+
 

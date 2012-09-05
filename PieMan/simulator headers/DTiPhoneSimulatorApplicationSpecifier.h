@@ -6,18 +6,16 @@
 
 @interface DTiPhoneSimulatorApplicationSpecifier : NSObject <NSCopying>
 {
-    NSString *appPath;
-    NSString *bundleID;
-    NSString *toolPath;
+	NSString *appPath;
+	NSString *bundleID;
 }
 
-+ (id)specifierWithToolPath:(id)arg1;
 + (id)specifierWithApplicationBundleIdentifier:(id)arg1;
 + (id)specifierWithApplicationPath:(id)arg1;
-@property(copy, nonatomic) NSString *toolPath; // @synthesize toolPath;
 @property(copy, nonatomic) NSString *bundleID; // @synthesize bundleID;
 @property(copy, nonatomic) NSString *appPath; // @synthesize appPath;
 - (id)description;
+- (void)dealloc;
 - (id)copyWithZone:(struct _NSZone *)arg1;
 
 @end
