@@ -258,11 +258,10 @@ static SIAppBackpack *_backpack;
 +(int) argIndexForName:(NSString *) name {
 	NSArray * arguments = [[NSProcessInfo processInfo] arguments];
 	__block int argIndex = NSNotFound;
-	NSString *fullArgName = [NSString stringWithFormat:@"--%@", name];
 	
 	// Get the index of the argument.
 	[arguments enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-		if ([(NSString *) obj isEqualToString:fullArgName]) {
+		if ([(NSString *) obj isEqualToString:name]) {
 			argIndex = idx;
 			*stop = YES;
 		}

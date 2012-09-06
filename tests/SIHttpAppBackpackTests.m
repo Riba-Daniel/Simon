@@ -62,7 +62,7 @@
 }
 
 -(void) testHttpBackpackStartsServerOnCustomPort {
-	NSArray *args = [NSArray arrayWithObjects:@"--simon-port", @"12345", nil];
+	NSArray *args = [NSArray arrayWithObjects:@"-simon-port", @"12345", nil];
 	[[NSProcessInfo processInfo] setArguments:args];
 	
 	SIHttpAppBackpack *backpack = [[[SIHttpAppBackpack alloc] init] autorelease];

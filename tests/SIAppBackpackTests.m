@@ -44,7 +44,7 @@
 
 -(void) testStartupLoadsStoriesAndFiresStartRunNotification {
 
-	NSArray *args = [NSArray arrayWithObjects:@"--autorun", nil];
+	NSArray *args = [NSArray arrayWithObjects:@"-autorun", nil];
 	[[NSProcessInfo processInfo] setArguments:args];
 
 	NSNotification *notification = [NSNotification notificationWithName:UIApplicationDidBecomeActiveNotification object:self];
@@ -80,32 +80,32 @@
 }
 
 -(void) testPresenceOfArg {
-	NSArray *args = [NSArray arrayWithObjects:@"--hello", nil];
+	NSArray *args = [NSArray arrayWithObjects:@"-hello", nil];
 	[[NSProcessInfo processInfo] setArguments:args];
-	GHAssertTrue([SIAppBackpack isArgumentPresentWithName:@"hello"], nil);
+	GHAssertTrue([SIAppBackpack isArgumentPresentWithName:@"-hello"], nil);
 }
 
 -(void) testRetrieveArgValue {
-	NSArray *args = [NSArray arrayWithObjects:@"--hello", @"abc", nil];
+	NSArray *args = [NSArray arrayWithObjects:@"-hello", @"abc", nil];
 	[[NSProcessInfo processInfo] setArguments:args];
-	GHAssertTrue([SIAppBackpack isArgumentPresentWithName:@"hello"], nil);
-	NSString *argValue = [SIAppBackpack argumentValueForName:@"hello"];
+	GHAssertTrue([SIAppBackpack isArgumentPresentWithName:@"-hello"], nil);
+	NSString *argValue = [SIAppBackpack argumentValueForName:@"-hello"];
 	GHAssertEqualStrings(argValue, @"abc", nil);
 }
 
 -(void) testRetrieveArgValueNilWhenNotPresent {
-	NSArray *args = [NSArray arrayWithObjects:@"--hello", nil];
+	NSArray *args = [NSArray arrayWithObjects:@"-hello", nil];
 	[[NSProcessInfo processInfo] setArguments:args];
-	GHAssertTrue([SIAppBackpack isArgumentPresentWithName:@"hello"], nil);
-	NSString *argValue = [SIAppBackpack argumentValueForName:@"hello"];
+	GHAssertTrue([SIAppBackpack isArgumentPresentWithName:@"-hello"], nil);
+	NSString *argValue = [SIAppBackpack argumentValueForName:@"-hello"];
 	GHAssertNil(argValue, nil);
 }
 
 -(void) testRetrieveArgValueNilWhenValueIsNextArg {
-	NSArray *args = [NSArray arrayWithObjects:@"--hello", @"--there", nil];
+	NSArray *args = [NSArray arrayWithObjects:@"-hello", @"-there", nil];
 	[[NSProcessInfo processInfo] setArguments:args];
-	GHAssertTrue([SIAppBackpack isArgumentPresentWithName:@"hello"], nil);
-	NSString *argValue = [SIAppBackpack argumentValueForName:@"hello"];
+	GHAssertTrue([SIAppBackpack isArgumentPresentWithName:@"-hello"], nil);
+	NSString *argValue = [SIAppBackpack argumentValueForName:@"-hello"];
 	GHAssertNil(argValue, nil);
 }
 
