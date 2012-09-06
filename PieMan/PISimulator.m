@@ -21,11 +21,7 @@
 #import <dUsefulStuff/NSObject+dUsefulStuff.h>
 #import <dUsefulStuff/DCCommon.h>
 
-#import <Simon/SIConstants.h>
-
-#define TERMINATION_CHECK_PERIOD 1.0
-#define FORCE_TERMINATE_AFTER 5.0
-#define SESSION_TIMEOUT 30.0
+#import "PIConstants.h"
 
 @interface PISimulator () {
 @private
@@ -33,13 +29,15 @@
 	NSString *_appPath;
 	NSTimeInterval secondsSinceTerminationRequest;
 	NSRunningApplication *simulator;
+	DTiPhoneSimulatorSession* session;
 }
 
-@property (nonatomic, retain) DTiPhoneSimulatorSession* session;
+@property (nonatomic, copy) SimpleBlock postShutdownBlock;
 
 -(void) shutdownSimulator;
 -(BOOL) delegateHandlesSelector:(SEL) selector;
 -(void) checkForSimulatorTermination;
+-(void) finishShutdown;
 
 @end
 
@@ -50,7 +48,7 @@
 @synthesize deviceFamily = _deviceFamily;
 @synthesize args = _args;
 @synthesize environment = _environment;
-@synthesize session = _session;
+@synthesize postShutdownBlock = _postShutdownBlock;
 
 @dynamic availableSdkVersions;
 @dynamic sdkVersion;
@@ -59,8 +57,9 @@
 	DC_DEALLOC(_appPath);
 	self.args = nil;
 	self.environment = nil;
-	self.session = nil;
+	self.postShutdownBlock = nil;
 	DC_DEALLOC(selectedSdk);
+	DC_DEALLOC(session);
 	[super dealloc];
 }
 
@@ -74,161 +73,217 @@
 	return self;
 }
 
+#pragma mark - Running
+
 -(void) launch {
 	
-	// Setup an app specifier.
-	DTiPhoneSimulatorApplicationSpecifier *appSpec = [DTiPhoneSimulatorApplicationSpecifier specifierWithApplicationPath:self.appPath];
-	if (!appSpec) {
-		@throw [PIException exceptionWithReason:[NSString stringWithFormat:@"Error loading app from %@", self.appPath]];
-	}
+	// Clear the delegate so that the shutdown doesn't send messages.
+	id cachedDelegate = self.delegate;
+	self.delegate = nil;
 	
-	// Setup the session config.
-	DC_LOG(@"Creating config");
-	DTiPhoneSimulatorSessionConfig *config = [[[DTiPhoneSimulatorSessionConfig alloc] init] autorelease];
+	self.postShutdownBlock = ^{
+		
+		self.delegate = cachedDelegate;
+		
+		DC_LOG(@"Launching simulator");
+		
+		// Setup an app specifier.
+		DTiPhoneSimulatorApplicationSpecifier *appSpec = [DTiPhoneSimulatorApplicationSpecifier specifierWithApplicationPath:self.appPath];
+		if (!appSpec) {
+			@throw [PIException exceptionWithReason:[NSString stringWithFormat:@"Error loading app from %@", self.appPath]];
+		}
+		
+		// Setup the session config.
+		DC_LOG(@"Creating config");
+		DTiPhoneSimulatorSessionConfig *config = [[[DTiPhoneSimulatorSessionConfig alloc] init] autorelease];
+		
+		[config setLocalizedClientName:@"Pieman"];
+		[config setApplicationToSimulateOnStart:appSpec];
+		[config setSimulatedSystemRoot:selectedSdk];
+		[config setSimulatedDeviceFamily:[NSNumber numberWithInt:self.deviceFamily]];
+		[config setSimulatedApplicationShouldWaitForDebugger:NO];
+		[config setSimulatedApplicationLaunchArgs:self.args];
+		[config setSimulatedApplicationLaunchEnvironment:self.environment];
+		
+		// Setup the session.
+		DC_LOG(@"Creating session");
+		session = [[DTiPhoneSimulatorSession alloc] init];
+		[session setDelegate:self];
+		
+		// and lauch the simulator.
+		DC_LOG(@"Launching");
+		NSError *error;
+		if (![session requestStartWithConfig:config timeout:SESSION_TIMEOUT error:&error]) {
+			@throw [PIException exceptionWithReason:[NSString stringWithFormat:@"Error launching simulator: %@", [error localizedFailureReason]]];
+		}
+		
+		DC_LOG(@"Launched");
+		if ([self delegateHandlesSelector:@selector(simulatorDidStart:)]) {
+			[self.delegate simulatorDidStart:self];
+		}
+	};
 	
-	[config setLocalizedClientName:@"Pieman"];
-	[config setApplicationToSimulateOnStart:appSpec];
-	[config setSimulatedSystemRoot:selectedSdk];
-	[config setSimulatedDeviceFamily:[NSNumber numberWithInt:self.deviceFamily]];
-	[config setSimulatedApplicationShouldWaitForDebugger:NO];
-	[config setSimulatedApplicationLaunchArgs:self.args];
-	[config setSimulatedApplicationLaunchEnvironment:self.environment];
+	// tell any simulators to shutdown before the block starts. After doing so, this triggers the block.
+	[self shutdownSimulator];
 	
-	// Setup the session.
-	DC_LOG(@"Creating session");
-	self.session = [[[DTiPhoneSimulatorSession alloc] init] autorelease];
-	[self.session setDelegate:self];
+}
+
+-(void) reset {
 	
-	// and lauch the simulator.
-	DC_LOG(@"Launching");
-	NSError *error;
-	if (![self.session requestStartWithConfig:config timeout:SESSION_TIMEOUT error:&error]) {
-		@throw [PIException exceptionWithReason:[NSString stringWithFormat:@"Error launching simulator: %@", [error localizedFailureReason]]];
-	}
-	DC_LOG(@"Launched");
+	DC_LOG(@"Resetting content");
 	
-	if ([self delegateHandlesSelector:@selector(simulatorDidStart:)]) {
-		[self.delegate simulatorDidStart:self];
-	}
+	// Nil out the delegate so no messages are sent.
+	id cachedDelegate = self.delegate;
+	self.delegate = nil;
+	
+	// Setup the block to execute after the shutdown occurs.
+	self.postShutdownBlock = ^{
+		// Reset by deleting the content directory.
+		NSString *contentPath = [[NSString stringWithFormat:SIMULATOR_CONTENT_PATH, self.sdkVersion] stringByExpandingTildeInPath];
+		NSError *error = nil;
+		DC_LOG(@"Removing simulator content directory: %@", contentPath);
+		if ([[NSFileManager defaultManager] fileExistsAtPath:contentPath]
+			 && ![[NSFileManager defaultManager] removeItemAtPath:contentPath error:&error]) {
+			DC_LOG(@"Removing simulator content directory failed: %@", error.localizedFailureReason);
+			@throw [PIException exceptionWithReason:[NSString stringWithFormat:@"Error simulator working directory: %@", [error localizedFailureReason]]];
+		}
+		
+		// Reset the delegate.
+		self.delegate = cachedDelegate;
+	};
+	
+	// Shutdown. This will trigger a simulator shutdown message.
+	[self shutdown];
 	
 }
 
 #pragma mark - Termination
 
 -(void) shutdown {
-	DC_LOG(@"requesting shutdown of app and simulator");
-	[self.session requestEndWithTimeout:SESSION_TIMEOUT];
-	
-	// Shutdown the simulator itself.
-	[self shutdownSimulator];
-	
-	self.session = nil;
+	if (session != nil) {
+		DC_LOG(@"Shutdown requested, telling session to end.");
+		[session requestEndWithTimeout:SESSION_TIMEOUT];
+	} else {
+		[self shutdownSimulator];
+	}
 }
 
 -(void) shutdownSimulator {
 	
-	// Get the process data from the system.
-	ProcessSerialNumber processSerialNumber = self.session.processSerialNumber;
-	CFDictionaryRef processInfoDict = ProcessInformationCopyDictionary(&processSerialNumber, kProcessDictionaryIncludeAllInformationMask);
-	
-	if (processInfoDict == nil) {
-		
-		// Simulator not running so tell the delegate.
-		if ([self delegateHandlesSelector:@selector(simulatorDidEnd:)]) {
-			[self.delegate simulatorDidEnd:self];
-		}
+	// Find the running simulator.
+	DC_LOG(@"Looking for a running simulator");
+	NSArray *sims = [NSRunningApplication runningApplicationsWithBundleIdentifier:APPLE_SIMULATOR_BUNDLE_ID];
+	if ([sims count] == 0) {
+		DC_LOG(@"No simulator running");
+		[self finishShutdown];
 		return;
 	}
 	
-	// Extract the pid from the data.
-	CFNumberRef pidNumberRef = CFDictionaryGetValue(processInfoDict, CFSTR("pid"));
-	pid_t pid;
-	CFNumberGetValue(pidNumberRef, kCFNumberSInt32Type, &pid);
-	CFRelease(processInfoDict);
-	
-	// Get the application reference and send it a terminate message.
-	simulator = [[NSRunningApplication runningApplicationWithProcessIdentifier:pid] retain];
-	if (simulator == nil || simulator.terminated) {
+	simulator = [[sims objectAtIndex:0] retain];
+	if (simulator.terminated) {
 		
 		// Simulator not running so tell the delegate.
-		if ([self delegateHandlesSelector:@selector(simulatorDidEnd:)]) {
-			[self.delegate simulatorDidEnd:self];
-		}
+		DC_LOG(@"Simulator is already terminated");
+		[self finishShutdown];
 		
 	} else {
 		
-		DC_LOG(@"Running simulator found (%@) on pid %i, shutting it down.", simulator.localizedName, pid);
+		DC_LOG(@"Running simulator found (%@), shutting it down.", simulator.localizedName);
 		[simulator terminate];
 		secondsSinceTerminationRequest = 0;
 		[self performSelector:@selector(checkForSimulatorTermination) withObject:self afterDelay:TERMINATION_CHECK_PERIOD];
 		
 	}
+	
 }
 
 -(void) checkForSimulatorTermination {
 	
-	DC_LOG(@"Checking simulator");
+	secondsSinceTerminationRequest++;
+	DC_LOG(@"Checking to see if simulator has terminated, seconds %f", secondsSinceTerminationRequest);
 	if ([simulator isTerminated]) {
 		
-		DC_LOG(@"Simulator terminated.");
-		DC_DEALLOC(simulator);
-		if ([self delegateHandlesSelector:@selector(simulatorDidEnd:)]) {
-			[self.delegate simulatorDidEnd:self];
-		}
-		
-	} else {
-		
-		// If we have waited beyond reason, hard kill the simulator.
-		if (secondsSinceTerminationRequest >= FORCE_TERMINATE_AFTER) {
-			DC_LOG(@"Simulator still alive, force terminating it.");
-			[simulator forceTerminate];
-			DC_DEALLOC(simulator);
-		} else {
-			
-			// Otherwise requeue this method.
-			secondsSinceTerminationRequest++;
-			DC_LOG(@"Simulator not terminated after %f seconds, waiting.", secondsSinceTerminationRequest);
-			[self performSelector:@selector(checkForSimulatorTermination) withObject:self afterDelay:TERMINATION_CHECK_PERIOD];
-		}
-		
+		DC_LOG(@"Simulator is now terminated.");
+		[self finishShutdown];
+		return;
 	}
 	
+	// If we have waited beyond reason, hard kill the simulator.
+	if (secondsSinceTerminationRequest >= FORCE_TERMINATE_AFTER) {
+		DC_LOG(@"Simulator still not terminated, forcing termination.");
+		[simulator forceTerminate];
+		[self finishShutdown];
+		return;
+	}
+	
+	// Otherwise requeue this method.
+	DC_LOG(@"Simulator not terminated after %f seconds, waiting.", secondsSinceTerminationRequest);
+	[self performSelector:@selector(checkForSimulatorTermination) withObject:self afterDelay:TERMINATION_CHECK_PERIOD];
+	
+}
+
+-(void) finishShutdown {
+	DC_LOG(@"Simulator has shutdown, finalising.");
+	DC_DEALLOC(simulator);
+	DC_DEALLOC(session);
+
+	if ([self delegateHandlesSelector:@selector(simulatorDidEnd:)]) {
+		DC_LOG(@"Notifying delegate");
+		[self.delegate simulatorDidEnd:self];
+	}
+	
+	if (self.postShutdownBlock != nil) {
+		DC_LOG(@"Executing passed post shutdown block");
+		self.postShutdownBlock();
+		self.postShutdownBlock = nil;
+	}
+	
+	// Now post the the current run loop to trigger Pieman's shutdown.
 }
 
 #pragma mark - Simulator delegate
 
 - (void)session:(DTiPhoneSimulatorSession *)session didStart:(BOOL)started withError:(NSError *)error {
-	DC_LOG(@"App started: %@", DC_PRETTY_BOOL(started));
+	
+	DC_LOG(@"App session started: %@", DC_PRETTY_BOOL(started));
 	if (!started) {
-		DC_LOG(@"Session failed to start. Code: %lu, message: %@", [error code], [error localizedDescription]);
+		DC_LOG(@"Session failed to start. Error code: %li", [error code]);
 		// Notify the delegate.
 		if ([self delegateHandlesSelector:@selector(simulator:appDidFailToStartWithError:)]) {
 			[self.delegate simulator:self appDidFailToStartWithError: error];
 		}
-	} else {
-		// Notify the delegate.
-		if ([self delegateHandlesSelector:@selector(simulatorAppDidStart:)]) {
-			[self.delegate simulatorAppDidStart:self];
-		}
+		return;
 	}
+	
+	// Notify the delegate.
+	DC_LOG(@"Session started");
+	if ([self delegateHandlesSelector:@selector(simulatorAppDidStart:)]) {
+		[self.delegate simulatorAppDidStart:self];
+	}
+	
 }
 
 - (void)session:(DTiPhoneSimulatorSession *)session didEndWithError:(NSError *)error {
-	DC_LOG(@"App ended");
-	if (error) {
-		DC_LOG(@"Session ended with error. %@", [error localizedDescription]);
-		// if ([error code] != 2) exit(1); // if it is a timeout error, that's cool. We are probably rebooting
-	} else {
-		// Exit
+	
+	DC_LOG(@"App session ended");
+	NSError *finalError = error;
+	if (error != nil) {
+		DC_LOG(@"App session ended with error: %@", [error localizedFailureReason]);
+		
+		// We want to ignore timeouts because they will be triggered by shutdowns and restarts.
+		if ([error code] == 2) {
+			DC_LOG(@"But ignoring timeout error.");
+			finalError = nil;
+		}
 	}
 	
 	// Notify the delegate.
 	if ([self delegateHandlesSelector:@selector(simulator:appDidEndWithError:)]) {
-		[self.delegate simulator:self appDidEndWithError: error];
+		[self.delegate simulator:self appDidEndWithError: finalError];
 	}
 	
-	// Queue a shutdown of the simulator.
-	[self shutdown];
+	// Shutdown the simulator itself.
+	[self shutdownSimulator];
 	
 }
 

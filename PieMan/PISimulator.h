@@ -65,4 +65,9 @@
  */
 -(void) shutdown;
 
+/**
+ Resets and re-launches the simulator.
+ */
+-(void) reset;
+
 @end

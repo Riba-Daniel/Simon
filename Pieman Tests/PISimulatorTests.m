@@ -19,7 +19,7 @@
 
 -(void) testAvailableSdks {
 
-	PISimulator *simulator = [[[PISimulator alloc] init] autorelease];
+	PISimulator *simulator = [[[PISimulator alloc] initWithApplicationPath:nil] autorelease];
 	NSArray *availableSdks = simulator.availableSdkVersions;
 	
 	GHAssertNotNil(availableSdks, nil);
@@ -30,18 +30,18 @@
 }
 
 -(void) testSdkVersionSetsDefault {
-	PISimulator *simulator = [[[PISimulator alloc] init] autorelease];
+	PISimulator *simulator = [[[PISimulator alloc] initWithApplicationPath:nil] autorelease];
 	GHAssertEqualStrings(simulator.sdkVersion, @"6.0", nil);
 }
 
 -(void) testSetSdkVersion {
-	PISimulator *simulator = [[[PISimulator alloc] init] autorelease];
+	PISimulator *simulator = [[[PISimulator alloc] initWithApplicationPath:nil] autorelease];
 	simulator.sdkVersion = @"5.0";
 	GHAssertEqualStrings(simulator.sdkVersion, @"5.0", nil);
 }
 
 -(void) testSetSdkVersionThrowsIfUnknownVersion {
-	PISimulator *simulator = [[[PISimulator alloc] init] autorelease];
+	PISimulator *simulator = [[[PISimulator alloc] initWithApplicationPath:nil] autorelease];
 	BOOL thrown = NO;
 	@try {
 		simulator.sdkVersion = @"x.x";

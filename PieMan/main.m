@@ -27,14 +27,11 @@ int main(int argc, const char * argv[]) {
 		pieman.appPath = appPath;
 		[pieman start];
 		
-#ifdef DC_DEBUG
-		NSLog(@"Initialing run loop execution cycle");
-#endif
-		NSRunLoop *theRL = [NSRunLoop currentRunLoop];
-		while (!pieman.finished && [theRL runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]]);
-#ifdef DC_DEBUG
-		NSLog(@"Run loop cycle ended. Exiting Pieman.");
-#endif
+		NSRunLoop *loop = [NSRunLoop currentRunLoop];
+		while (!pieman.finished && [loop runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]]) {
+			NSLog(@"Run loop cycling");
+		};
+
 	}
 	return retCode;
 }

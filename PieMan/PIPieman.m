@@ -51,14 +51,11 @@
 
 -(void) start {
 	
-	DC_LOG(@"Launching app at path %@", self.appPath);
-
-	[heartbeat start];
-	
-	// Start the simulator.
 	simulator = [[PISimulator alloc] initWithApplicationPath:self.appPath];
 	simulator.delegate = self;
+	[heartbeat start];
 	[simulator launch];
+	
 }
 
 #pragma mark - Delegate methods.
@@ -73,19 +70,20 @@
 }
 
 -(void) simulatorDidEnd:(PISimulator *) simulator {
-	DC_LOG(@"Simulator ended");
-	
+	DC_LOG(@"Simulator ended, setting finished flag.");
 	// If the simulator has shutdown then shutdown this program.
 	_finished = YES;
+	
+	// Trigger the run loop processing.
+	CFRunLoopStop(CFRunLoopGetMain());
 }
 
 -(void) simulatorAppDidStart:(PISimulator *) simulator {
-	DC_LOG(@"Simulator session ended");
-	
+	DC_LOG(@"Simulator session started");
 }
 
 -(void) simulator:(PISimulator *) simulator appDidEndWithError:(NSError *) error {
-	DC_LOG(@"Simulator session ended with error %@", error);
+	DC_LOG(@"Simulator session ended with error code: %li", [error code]);
 }
 
 -(void) simulator:(PISimulator *) simulator appDidFailToStartWithError:(NSError *) error {

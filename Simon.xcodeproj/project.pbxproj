@@ -1385,7 +1385,6 @@
 				32A1889515EF89BE00B8C111 /* Frameworks */,
 				32A1889615EF89BE00B8C111 /* Resources */,
 				32A188BC15EF968B00B8C111 /* CopyFiles */,
-				326B624815F5A251002CA603 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -1584,19 +1583,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		326B624815F5A251002CA603 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "install_name_tool -change /usr/local/lib/CocoaHTTPServer.dylib @executable_path/CocoaHTTPServer.dylib pieman\ninstall_name_tool -change /usr/local/lib/dUsefulStuff.dylib @executable_path/dUsefulStuff.dylib pieman";
-		};
 		326B624915F5A2B4002CA603 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
