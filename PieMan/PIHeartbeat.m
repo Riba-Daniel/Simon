@@ -20,6 +20,7 @@
 @private
 	int heartbeats;
 	dispatch_queue_t heartbeatQueue;
+	BOOL shutdown;
 }
 
 -(void) heartbeat;
@@ -33,6 +34,7 @@
 @synthesize delegate = _delegate;
 
 -(void) dealloc {
+	
 	dispatch_release(heartbeatQueue);
 	[super dealloc];
 }
@@ -41,6 +43,7 @@
 	self = [super init];
 	if (self) {
 		heartbeatQueue = dispatch_queue_create(PI_HEARTBEAT_QUEUE_NAME, 0);
+		shutdown = NO;
 	}
 	return self;
 }
@@ -51,7 +54,17 @@
 	[self queueHeartbeat];
 }
 
+-(void) stop {
+	DC_LOG(@"Setting shutdown flag");
+	shutdown = YES;
+}
+
 -(void) heartbeat {
+	
+	if (shutdown) {
+		DC_LOG(@"Shutdown requested. Exiting heartbeat.");
+		return;
+	}
 	
 	heartbeats++;
 	
@@ -71,7 +84,7 @@
 	*/
 	if (heartbeats > 4) {
 		DC_LOG(@"Exiting heartbeats");
-		[self notifyDelegate:@selector(heartbeatDidEnd)];
+		[self notifyDelegate:@selector(heartbeatDidTimeout)];
 		return;
 	}
 	

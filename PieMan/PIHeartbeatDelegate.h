@@ -16,5 +16,6 @@
 @optional
 -(void) heartbeatDidStart;
 -(void) heartbeatDidEnd;
+-(void) heartbeatDidTimeout;
 
 @end

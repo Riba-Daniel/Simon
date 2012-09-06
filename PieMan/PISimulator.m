@@ -252,6 +252,9 @@
 		if ([self delegateHandlesSelector:@selector(simulator:appDidFailToStartWithError:)]) {
 			[self.delegate simulator:self appDidFailToStartWithError: error];
 		}
+		
+		// shutdown the simulator.
+		[self shutdownSimulator];
 		return;
 	}
 	

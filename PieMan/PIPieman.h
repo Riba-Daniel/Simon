@@ -21,6 +21,16 @@
 /// The full path to the app to be tested.
 @property (nonatomic, retain) NSString *appPath;
 
+/// The port that the Pieman will listen on.
+@property (nonatomic, assign) NSInteger piemanPort;
+
+/// The port that Simon will be listening on.
+@property (nonatomic, assign) NSInteger simonPort;
+
+// Args for the app.
+@property (nonatomic, retain) NSArray *appArgs;
+
+/// Start the simulator.
 -(void) start;
 
 @end
