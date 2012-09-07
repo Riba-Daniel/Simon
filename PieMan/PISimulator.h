@@ -61,9 +61,16 @@
 -(void) launch;
 
 /**
- Shut down the simulator and exit.
+ Shut down the app, simulator and exit.
  */
 -(void) shutdown;
+
+/**
+ Can be called just to shutdown the simulator if it is running. Once done, the finish block is run.
+ 
+ @param finishedShutdownBlock a block which is executed once the simulator has been shutdown.
+ */
+-(void) shutdownSimulator:(SimpleBlock) finishedShutdownBlock;
 
 /**
  Resets and re-launches the simulator.

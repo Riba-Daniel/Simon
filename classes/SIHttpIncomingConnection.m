@@ -15,6 +15,7 @@
 #import <Simon/SIHttpExitRequestProcessor.h>
 #import <Simon/NSString+Simon.h>
 #import <Simon/SIAppBackpack.h>
+#import "TargetConditionals.h"
 
 @interface SIHttpIncomingConnection ()
 @property (retain, nonatomic) NSArray *processors;
@@ -35,14 +36,16 @@
 	if (self) {
 		
 		// Load appropriate request processors depending on whether we are in Simon or the Pieman.
-#if TARGET_OS_MAC
-		// Pieman
-#else
+#if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
 		// Simon
+		DC_LOG(@"Loading iOS request processors");
 		SIHttpRequestProcessor * runAllProcessor = [[[SIHttpRunAllRequestProcessor alloc] init] autorelease];
 		SIHttpRequestProcessor * heartbeatProcessor = [[[SIHttpHeartbeatRequestProcessor alloc] init] autorelease];
 		SIHttpRequestProcessor * exitProcessor = [[[SIHttpExitRequestProcessor alloc] init] autorelease];
 		self.processors = [NSArray arrayWithObjects:runAllProcessor, heartbeatProcessor, exitProcessor, nil];
+#else
+		// Pieman
+		DC_LOG(@"Loading OS X request processors");
 #endif
 	}
 	return self;

@@ -54,8 +54,12 @@ int arguments(PIPieman *pieman, int argc, const char * argv[]) {
 	
 	BOOL appArgFound = NO;
 	NSMutableArray *args = [NSMutableArray array];
-	for (int i = 0; i < argc; i++) {
-		
+	for (int i = 1; i < argc; i++) {
+
+#ifdef DC_DEBUG
+		NSLog(@"Command arg: %s", argv[i]);
+#endif
+
 		// Help
 		if (strcmp(argv[i], ARG_HELP) == 0) {
 			printHelp();
@@ -82,7 +86,7 @@ int arguments(PIPieman *pieman, int argc, const char * argv[]) {
 		
 		// If here then it must be the app.
 		if (!appArgFound) {
-			pieman.appPath = [NSString stringWithUTF8String:argv[i]];
+			pieman.appPath = [[NSString stringWithUTF8String:argv[i]] stringByExpandingTildeInPath];
 			appArgFound = YES;
 			continue;
 		} else {

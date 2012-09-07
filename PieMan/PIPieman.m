@@ -74,30 +74,23 @@
 	[args addObjectsFromArray:self.appArgs];
 
 	_simulator = [[PISimulator alloc] initWithApplicationPath:self.appPath];
-	_simulator.delegate = self;
 	_simulator.args = args;
-
-	// Start the simulator
-	[_simulator launch];
-
-	// Start the heartbeat to monitor the simulator.
-	[_heartbeat start];
+	
+	[_simulator shutdownSimulator:^{
+		// Don't set delegate until here so we are not bugged with shutdown notifications.
+		_simulator.delegate = self;
+		[_simulator reset];
+		[_heartbeat start];
+		[_simulator launch];
+	}];
 
 }
 
 #pragma mark - Delegate methods.
 
--(void) heartbeatDidEnd {
-	DC_LOG(@"Heart beat ended");
-}
-
 -(void) heartbeatDidTimeout {
 	DC_LOG(@"Heart beat timed out, asking simulator to quit.");
 	[_simulator shutdown];
-}
-
--(void) simulatorDidStart:(PISimulator *) simulator {
-	DC_LOG(@"Simulator started");
 }
 
 -(void) simulatorDidEnd:(PISimulator *) simulator {
@@ -110,18 +103,6 @@
 	
 	// Trigger the run loop processing.
 	CFRunLoopStop(CFRunLoopGetMain());
-}
-
--(void) simulatorAppDidStart:(PISimulator *) simulator {
-	DC_LOG(@"Simulator session started");
-}
-
--(void) simulator:(PISimulator *) simulator appDidEndWithError:(NSError *) error {
-	DC_LOG(@"Simulator session ended with error code: %li", [error code]);
-}
-
--(void) simulator:(PISimulator *) simulator appDidFailToStartWithError:(NSError *) error {
-	DC_LOG(@"Simulator session failed to start: %@", error);
 }
 
 #pragma mark - Thread methods

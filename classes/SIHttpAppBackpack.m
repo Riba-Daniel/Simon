@@ -37,8 +37,7 @@
 		[server setConnectionClass:[SIHttpIncomingConnection class]];
 		[server setPort:port];
 		NSError *error = nil;
-		if(![server start:&error])
-		{
+		if(![server start:&error]) {
 			@throw [SIServerException exceptionWithReason:[NSString stringWithFormat:@"Error starting HTTP Server: %@", error]];
 		}
 	}

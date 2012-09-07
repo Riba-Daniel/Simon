@@ -7,20 +7,16 @@
 //
 
 #import "PIHeartbeat.h"
+#import "PIConstants.h"
 #import <Simon/SIConstants.h>
 #import <dUsefulStuff/DCCommon.h>
-
-// Pieman's background thread name.
-#define PI_QUEUE_NAME "au.com.derekclarkson.pieman"
-#define PI_HEARTBEAT_QUEUE_NAME "au.com.derekclarkson.pieman.heartbeat"
-
-#define HEARTBEAT_FREQUENCY 2.0
 
 @interface PIHeartbeat () {
 @private
 	int heartbeats;
 	dispatch_queue_t heartbeatQueue;
 	BOOL shutdown;
+	NSURLRequest *request;
 }
 
 -(void) heartbeat;
@@ -34,7 +30,7 @@
 @synthesize delegate = _delegate;
 
 -(void) dealloc {
-	
+	DC_DEALLOC(request);
 	dispatch_release(heartbeatQueue);
 	[super dealloc];
 }
@@ -43,6 +39,11 @@
 	self = [super init];
 	if (self) {
 		heartbeatQueue = dispatch_queue_create(PI_HEARTBEAT_QUEUE_NAME, 0);
+		NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://localhost:%i%@", HTTP_SIMON_PORT, HTTP_PATH_HEARTBEAT]];
+		
+		request = [[NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:HEARTBEAT_TIMEOUT] retain];
+		DC_LOG(@"Checking url %@", request.URL);
+
 		shutdown = NO;
 	}
 	return self;
@@ -66,26 +67,23 @@
 		return;
 	}
 	
-	heartbeats++;
-	
 	// Query Simon
 	NSError *error = nil;
-	NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://localhost:%i%@", HTTP_SIMON_PORT, HTTP_PATH_HEARTBEAT]];
-	DC_LOG(@"Checking url %@", url);
-	NSString *response = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:&error];
-	DC_LOG(@"Response %@", response);
+	NSURLResponse *response = nil;
+	NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
 	
-	/*
-	if (response == nil) {
-		NSLog(@"Error from heartbeat query: %@", [error localizedFailureReason]);
-		[self notifyDelegate:@selector(heartbeatDidEnd)];
-		return;
-	}
-	*/
-	if (heartbeats > 4) {
-		DC_LOG(@"Exiting heartbeats");
-		[self notifyDelegate:@selector(heartbeatDidTimeout)];
-		return;
+	if (data == nil) {
+		DC_LOG(@"Heartbeat failed at attempt %i", heartbeats);
+		heartbeats++;
+		if (heartbeats >= HEARTBEAT_MAX_ATTEMPTS) {
+			[self notifyDelegate:@selector(heartbeatDidTimeout)];
+			DC_LOG(@"Exiting heartbeats");
+			return;
+		}
+	} else {
+		// Reset the heartbeat count.
+		DC_LOG(@"Response %@", DC_DATA_TO_STRING(data));
+		heartbeats = 0;
 	}
 	
 	// Requeue
