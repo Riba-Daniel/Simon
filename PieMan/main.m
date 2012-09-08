@@ -22,6 +22,7 @@ void printHelp(void);
 
 int main(int argc, const char * argv[]) {
 	
+	int exitCode = EXIT_SUCCESS;
 	@autoreleasepool {
 		
 		
@@ -46,8 +47,11 @@ int main(int argc, const char * argv[]) {
 			NSLog(@"Run loop cycling");
 		};
 		
+		// get the final code.
+		exitCode = pieman.exitCode;
+		
 	}
-	return EXIT_SUCCESS;
+	return exitCode;
 }
 
 int arguments(PIPieman *pieman, int argc, const char * argv[]) {

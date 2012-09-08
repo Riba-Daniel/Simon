@@ -22,6 +22,7 @@
 -(NSObject<HTTPResponse> *) processPath:(NSString *) path withMethod:(SIHttpMethod) method andBody:(NSString *) body {
 	
 	// Send the notification to start processing.
+	DC_LOG(@"Pieman has requested to run all tests");
 	NSNotification *notification = [NSNotification notificationWithName:SI_RUN_STORIES_NOTIFICATION object:self];
 	[[NSNotificationCenter defaultCenter] postNotification:notification];
 

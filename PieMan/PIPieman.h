@@ -9,11 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "PIHeartbeatDelegate.h"
 #import "PISimulatorDelegate.h"
+#import "PISimonCommsDelegate.h"
 
 /**
  This is the main class of Pieman.
  */
-@interface PIPieman : NSObject<PIHeartbeatDelegate, PISimulatorDelegate>
+@interface PIPieman : NSObject<PIHeartbeatDelegate, PISimulatorDelegate, PISimonCommsDelegate>
 
 /// Set to YES when the tests are finished.
 @property (nonatomic, readonly) BOOL finished;
@@ -27,8 +28,11 @@
 /// The port that Simon will be listening on.
 @property (nonatomic, assign) NSInteger simonPort;
 
-// Args for the app.
+/// Args for the app.
 @property (nonatomic, retain) NSArray *appArgs;
+
+/// The final exit code to be returned to the command line.
+@property (nonatomic, readonly) int exitCode;
 
 /// Start the simulator.
 -(void) start;

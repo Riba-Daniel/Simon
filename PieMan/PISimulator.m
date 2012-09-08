@@ -98,6 +98,15 @@
 	[config setSimulatedApplicationLaunchArgs:self.args];
 	[config setSimulatedApplicationLaunchEnvironment:self.environment];
 	
+	// Make the simulator output to the current STDERR
+	// We mix them together to avoid buffering issues on STDOUT
+	char path[MAXPATHLEN];
+	
+	fcntl(STDERR_FILENO, F_GETPATH, &path);
+	DC_LOG(@"Setting all output to stderr path %s", path);
+	[config setSimulatedApplicationStdOutPath:[NSString stringWithUTF8String:path]];
+	[config setSimulatedApplicationStdErrPath:[NSString stringWithUTF8String:path]];
+
 	// Setup the session.
 	DC_LOG(@"Creating session");
 	session = [[DTiPhoneSimulatorSession alloc] init];

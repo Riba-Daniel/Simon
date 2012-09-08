@@ -108,6 +108,9 @@
 		3298252E15039FE300631203 /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3298252D15039FE300631203 /* second@2x.png */; };
 		329825391503A0FF00631203 /* BDD.stories in Resources */ = {isa = PBXBuildFile; fileRef = 329825381503A0FF00631203 /* BDD.stories */; };
 		3298253C1504C87700631203 /* BDDImplementations.m in Sources */ = {isa = PBXBuildFile; fileRef = 3298253B1504C87600631203 /* BDDImplementations.m */; };
+		329F9A9915FA36AE0041FD1D /* PISimonComms.m in Sources */ = {isa = PBXBuildFile; fileRef = 329F9A9815FA36AE0041FD1D /* PISimonComms.m */; };
+		329F9A9A15FA36AE0041FD1D /* PISimonComms.m in Sources */ = {isa = PBXBuildFile; fileRef = 329F9A9815FA36AE0041FD1D /* PISimonComms.m */; };
+		329F9A9C15FB35D50041FD1D /* SIHttpResponseBody.m in Sources */ = {isa = PBXBuildFile; fileRef = 3224270615EDF41C00F0CB62 /* SIHttpResponseBody.m */; };
 		32A188A515EF89BE00B8C111 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 32A188A315EF89BE00B8C111 /* InfoPlist.strings */; };
 		32A188B715EF8A9800B8C111 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32A188B615EF8A9800B8C111 /* Foundation.framework */; };
 		32A188B815EF8ABB00B8C111 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32A188B615EF8A9800B8C111 /* Foundation.framework */; };
@@ -487,6 +490,9 @@
 		3298252D15039FE300631203 /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
 		329825381503A0FF00631203 /* BDD.stories */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BDD.stories; sourceTree = "<group>"; };
 		3298253B1504C87600631203 /* BDDImplementations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BDDImplementations.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		329F9A9715FA36AE0041FD1D /* PISimonComms.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PISimonComms.h; sourceTree = "<group>"; };
+		329F9A9815FA36AE0041FD1D /* PISimonComms.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PISimonComms.m; sourceTree = "<group>"; };
+		329F9A9B15FA3BE60041FD1D /* PISimonCommsDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PISimonCommsDelegate.h; sourceTree = "<group>"; };
 		32A1889815EF89BE00B8C111 /* Pieman Tests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pieman Tests.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		32A188A215EF89BE00B8C111 /* Pieman Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Pieman Tests-Info.plist"; sourceTree = "<group>"; };
 		32A188A415EF89BE00B8C111 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -778,6 +784,9 @@
 				3224270015EDDB2900F0CB62 /* PIHeartbeatDelegate.h */,
 				322426F915ECF64900F0CB62 /* PIPieman.h */,
 				322426FA15ECF64900F0CB62 /* PIPieman.m */,
+				329F9A9715FA36AE0041FD1D /* PISimonComms.h */,
+				329F9A9815FA36AE0041FD1D /* PISimonComms.m */,
+				329F9A9B15FA3BE60041FD1D /* PISimonCommsDelegate.h */,
 				32E3DC4115F319B7003E7B2B /* simulator */,
 				322DA95715A18A4B005CFC83 /* Supporting Files */,
 			);
@@ -1629,6 +1638,7 @@
 				3209231615F488760076A2BF /* SIAbstractException.m in Sources */,
 				3209231A15F489670076A2BF /* PIException.m in Sources */,
 				3291243D15F6CD4C00969A86 /* DtiPhoneSimulatorSession+Pieman.m in Sources */,
+				329F9A9915FA36AE0041FD1D /* PISimonComms.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1659,6 +1669,8 @@
 				3209231715F488770076A2BF /* SIAbstractException.m in Sources */,
 				3209231B15F489670076A2BF /* PIException.m in Sources */,
 				3291243E15F6CD4C00969A86 /* DtiPhoneSimulatorSession+Pieman.m in Sources */,
+				329F9A9A15FA36AE0041FD1D /* PISimonComms.m in Sources */,
+				329F9A9C15FB35D50041FD1D /* SIHttpResponseBody.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

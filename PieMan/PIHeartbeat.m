@@ -82,7 +82,7 @@
 		}
 	} else {
 		// Reset the heartbeat count.
-		DC_LOG(@"Response %@", DC_DATA_TO_STRING(data));
+		DC_LOG(@"Heartbeat response %@", DC_DATA_TO_STRING(data));
 		heartbeats = 0;
 	}
 	
