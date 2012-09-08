@@ -7,18 +7,18 @@
 //
 
 #import <GHUnitIOS/GHUnit.h>
-#import <Simon/SIHttpIncomingConnection.h>
-#import <Simon/SIHttpRequestProcessor.h>
+#import <Simon/SICoreHttpIncomingConnection.h>
+#import <Simon/SICoreHttpRequestProcessor.h>
 #import <OCMock/OCMock.h>
 #import <dUsefulStuff/DCCommon.h>
 
-@interface SIHttpIncomingConnection (_hack)
+@interface SICoreHttpIncomingConnection (_hack)
 @property (retain, nonatomic) NSArray *processors;
 @end
 
-@interface SIHttpIncomingConnectionTests : GHTestCase {
+@interface SICoreHttpIncomingConnectionTests : GHTestCase {
 	@private
-	SIHttpIncomingConnection *connection;
+	SICoreHttpIncomingConnection *connection;
 	id processor1;
 	id processor2;
 	BOOL yes;
@@ -27,14 +27,14 @@
 
 @end
 
-@implementation SIHttpIncomingConnectionTests
+@implementation SICoreHttpIncomingConnectionTests
 
 -(void) setUp {
 	yes = YES;
 	no = NO;
-	processor1 = [OCMockObject mockForClass:[SIHttpRequestProcessor class]];
-	processor2 = [OCMockObject mockForClass:[SIHttpRequestProcessor class]];
-	connection = [[SIHttpIncomingConnection alloc] initWithAsyncSocket:nil configuration:nil];
+	processor1 = [OCMockObject mockForClass:[SICoreHttpRequestProcessor class]];
+	processor2 = [OCMockObject mockForClass:[SICoreHttpRequestProcessor class]];
+	connection = [[SICoreHttpIncomingConnection alloc] initWithAsyncSocket:nil configuration:nil];
 
 }
 

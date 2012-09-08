@@ -10,7 +10,7 @@
 #import <CocoaHTTPServer/HTTPDataResponse.h>
 #import <dUsefulStuff/DCCommon.h>
 
-@implementation SIHttpRequestProcessor (Simon)
+@implementation SICoreHttpRequestProcessor (Simon)
 
 -(NSObject<HTTPResponse> *) httpResponseWithBody:(id<SIJsonAware>) body {
 	NSError *error = nil;

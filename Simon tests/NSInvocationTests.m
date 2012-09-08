@@ -10,11 +10,11 @@
 #import <objc/runtime.h>
 #import <dUsefulStuff/DCCommon.h>
 
-@interface NSInvocations : GHTestCase
+@interface NSInvocationTests : GHTestCase
 -(void) throwAnException;
 @end
 
-@implementation NSInvocations
+@implementation NSInvocationTests
 
 -(void) testInvocationHandlesException {
 

@@ -6,8 +6,8 @@
 //  Copyright (c) 2012. All rights reserved.
 //
 
-#import <Simon/SIHttpRequestProcessor.h>
+#import <Simon/SICoreHttpRequestProcessor.h>
 
-@interface SIHttpExitRequestProcessor : SIHttpRequestProcessor
+@interface SIHttpExitRequestProcessor : SICoreHttpRequestProcessor
 
 @end

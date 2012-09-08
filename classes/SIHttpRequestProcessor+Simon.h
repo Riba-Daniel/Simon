@@ -6,12 +6,12 @@
 //  Copyright (c) 2012. All rights reserved.
 //
 
-#import <Simon/SIHttpRequestProcessor.h>
+#import <Simon/SICoreHttpRequestProcessor.h>
 
 /**
  Category which adds functionality to SIHttpRequestProcessors that we do not want exposed normally.
  */
-@interface SIHttpRequestProcessor (Simon)
+@interface SICoreHttpRequestProcessor (Simon)
 
 /**
  Creates a Httpresponse with the passed object converted to JSON and set as the response body.

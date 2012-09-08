@@ -8,8 +8,8 @@
 
 #import <dUsefulStuff/DCCommon.h>
 
-#import <Simon/SIHttpIncomingConnection.h>
-#import <Simon/SIHttpRequestProcessor.h>
+#import <Simon/SICoreHttpIncomingConnection.h>
+#import <Simon/SICoreHttpRequestProcessor.h>
 #import <Simon/SIHttpRunAllRequestProcessor.h>
 #import <Simon/SIHttpHeartbeatRequestProcessor.h>
 #import <Simon/SIHttpExitRequestProcessor.h>
@@ -17,12 +17,12 @@
 #import <Simon/SIAppBackpack.h>
 #import "TargetConditionals.h"
 
-@interface SIHttpIncomingConnection ()
+@interface SICoreHttpIncomingConnection ()
 @property (retain, nonatomic) NSArray *processors;
--(SIHttpRequestProcessor *) processorForMethod:(SIHttpMethod) method andPath:(NSString *) path;
+-(SICoreHttpRequestProcessor *) processorForMethod:(SIHttpMethod) method andPath:(NSString *) path;
 @end
 
-@implementation SIHttpIncomingConnection
+@implementation SICoreHttpIncomingConnection
 
 @synthesize processors;
 
@@ -39,9 +39,9 @@
 #if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
 		// Simon
 		DC_LOG(@"Loading iOS request processors");
-		SIHttpRequestProcessor * runAllProcessor = [[[SIHttpRunAllRequestProcessor alloc] init] autorelease];
-		SIHttpRequestProcessor * heartbeatProcessor = [[[SIHttpHeartbeatRequestProcessor alloc] init] autorelease];
-		SIHttpRequestProcessor * exitProcessor = [[[SIHttpExitRequestProcessor alloc] init] autorelease];
+		SICoreHttpRequestProcessor * runAllProcessor = [[[SIHttpRunAllRequestProcessor alloc] init] autorelease];
+		SICoreHttpRequestProcessor * heartbeatProcessor = [[[SIHttpHeartbeatRequestProcessor alloc] init] autorelease];
+		SICoreHttpRequestProcessor * exitProcessor = [[[SIHttpExitRequestProcessor alloc] init] autorelease];
 		self.processors = [NSArray arrayWithObjects:runAllProcessor, heartbeatProcessor, exitProcessor, nil];
 #else
 		// Pieman
@@ -59,7 +59,7 @@
 - (BOOL)expectsRequestBodyFromMethod:(NSString *)method atPath:(NSString *)path {
 
 	SIHttpMethod siMethod = [method siHttpMethod];
-	SIHttpRequestProcessor *processor = [self processorForMethod:siMethod andPath:path];
+	SICoreHttpRequestProcessor *processor = [self processorForMethod:siMethod andPath:path];
 	if (processor != nil) {
 		return [processor expectingHttpBody];
 	}
@@ -71,7 +71,7 @@
 - (NSObject<HTTPResponse> *)httpResponseForMethod:(NSString *)method URI:(NSString *)path {
 
 	SIHttpMethod siMethod = [method siHttpMethod];
-	SIHttpRequestProcessor *processor = [self processorForMethod:siMethod andPath:path];
+	SICoreHttpRequestProcessor *processor = [self processorForMethod:siMethod andPath:path];
 	
 	if (processor != nil) {
 		return [processor processPath:path withMethod:siMethod andBody:nil];
@@ -80,8 +80,8 @@
 	return [super httpResponseForMethod:method URI:path];
 }
 
--(SIHttpRequestProcessor *) processorForMethod:(SIHttpMethod) method andPath:(NSString *) path {
-	for (SIHttpRequestProcessor *processor in processors) {
+-(SICoreHttpRequestProcessor *) processorForMethod:(SIHttpMethod) method andPath:(NSString *) path {
+	for (SICoreHttpRequestProcessor *processor in processors) {
 		if ([processor canProcessPath:path withMethod:method]) {
 			return processor;
 		}

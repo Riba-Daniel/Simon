@@ -15,7 +15,7 @@
 /**
  Simple object that is used to serial response bodies back to the Pieman.
  */
-@interface SIHttpResponseBody : NSObject<SIJsonAware>
+@interface SICoreHttpResponseBody : NSObject<SIJsonAware>
 
 @property (nonatomic) SIHttpStatus status;
 

@@ -7,22 +7,22 @@
 //
 
 #import <GHUnitIOS/GHUnit.h>
-#import <Simon/SIHttpResponseBody.h>
+#import <Simon/SICoreHttpResponseBody.h>
 
-@interface SIHttpResponseBodyTests : GHTestCase
+@interface SICoreHttpResponseBodyTests : GHTestCase
 
 @end
 
-@implementation SIHttpResponseBodyTests
+@implementation SICoreHttpResponseBodyTests
 
 -(void) testInitWithJsonDictionary {
 	NSDictionary *data = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:SIHttpStatusError], RESPONSE_JSON_KEY_STATUS, nil];
-	SIHttpResponseBody *body = [[[SIHttpResponseBody alloc] initWithJsonDictionary:data] autorelease];
+	SICoreHttpResponseBody *body = [[[SICoreHttpResponseBody alloc] initWithJsonDictionary:data] autorelease];
 	GHAssertEquals(body.status, SIHttpStatusError, nil);
 }
 
 -(void) testJsonDictionary {
-	SIHttpResponseBody *body = [[[SIHttpResponseBody alloc] init] autorelease];
+	SICoreHttpResponseBody *body = [[[SICoreHttpResponseBody alloc] init] autorelease];
 	body.status = SIHttpStatusError;
 	NSDictionary *data = [body jsonDictionary];
 	GHAssertEquals([[data objectForKey:RESPONSE_JSON_KEY_STATUS] intValue], SIHttpStatusError, nil);

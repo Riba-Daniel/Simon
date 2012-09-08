@@ -10,7 +10,7 @@
 #import <Simon/SIConstants.h>
 #import <CocoaHTTPServer/HTTPDataResponse.h>
 #import <dUsefulStuff/DCCommon.h>
-#import <Simon/SIHttpResponseBody.h>
+#import <Simon/SICoreHttpResponseBody.h>
 #import <Simon/SIHttpRequestProcessor+Simon.h>
 
 @implementation SIHttpRunAllRequestProcessor
@@ -27,7 +27,7 @@
 	[[NSNotificationCenter defaultCenter] postNotification:notification];
 
 	// Post a success to the caller.
-	SIHttpResponseBody *responseBody = [[[SIHttpResponseBody alloc] init] autorelease];
+	SICoreHttpResponseBody *responseBody = [[[SICoreHttpResponseBody alloc] init] autorelease];
 	responseBody.status = SIHttpStatusOk;
 	return [self httpResponseWithBody:responseBody];
 

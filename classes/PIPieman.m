@@ -12,7 +12,7 @@
 #import "PIHeartbeat.h"
 #import "PISimulator.h"
 #import "PISimonComms.h"
-#import <Simon/SIHttpResponseBody.h>
+#import <Simon/SICoreHttpResponseBody.h>
 
 @interface PIPieman () {
 @private
@@ -92,7 +92,7 @@
 
 -(void) sendRunAllRequest {
 	[_comms sendRESTRequest:HTTP_PATH_RUN_ALL
-			responseBodyClass:[SIHttpResponseBody class]
+			responseBodyClass:[SICoreHttpResponseBody class]
 			  onResponseBlock:^(id obj){}
 				  onErrorBlock:^(id data, NSString *errorMsg){
 					  printf("Error: %s", [errorMsg UTF8String]);

@@ -6,11 +6,11 @@
 //  Copyright (c) 2012. All rights reserved.
 //
 
-#import <Simon/SIHttpRequestProcessor.h>
+#import <Simon/SICoreHttpRequestProcessor.h>
 
 /**
  Simple heard beat request processor which the Pieman calls to detect hung testing.
  */
-@interface SIHttpHeartbeatRequestProcessor : SIHttpRequestProcessor
+@interface SIHttpHeartbeatRequestProcessor : SICoreHttpRequestProcessor
 
 @end

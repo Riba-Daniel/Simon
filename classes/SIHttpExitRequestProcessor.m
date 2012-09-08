@@ -12,7 +12,7 @@
 #import <dUsefulStuff/DCCommon.h>
 #import <Simon/SIAppBackpack.h>
 #import <Simon/SIHttpRequestProcessor+Simon.h>
-#import <Simon/SIHttpResponseBody.h>
+#import <Simon/SICoreHttpResponseBody.h>
 
 @implementation SIHttpExitRequestProcessor
 
@@ -27,7 +27,7 @@
 	[[SIAppBackpack backpack] exit];
 
 	// Post a success to the caller.
-	SIHttpResponseBody *responseBody = [[[SIHttpResponseBody alloc] init] autorelease];
+	SICoreHttpResponseBody *responseBody = [[[SICoreHttpResponseBody alloc] init] autorelease];
 	responseBody.status = SIHttpStatusOk;
 	return [self httpResponseWithBody:responseBody];
 }

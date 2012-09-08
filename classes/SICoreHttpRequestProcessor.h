@@ -13,7 +13,7 @@
 /**
  Classes which extend this abstract class will be tested to see if they can respond to a specific HTTP request.
  */
-@interface SIHttpRequestProcessor: NSObject
+@interface SICoreHttpRequestProcessor: NSObject
 
 -(BOOL) canProcessPath:(NSString *) path withMethod:(SIHttpMethod) method;
 

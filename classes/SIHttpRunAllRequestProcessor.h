@@ -6,11 +6,11 @@
 //  Copyright (c) 2012. All rights reserved.
 //
 
-#import <Simon/SIHttpRequestProcessor.h>
+#import <Simon/SICoreHttpRequestProcessor.h>
 
 /**
  Class which responds to requests to run all stories.
  */
-@interface SIHttpRunAllRequestProcessor : SIHttpRequestProcessor
+@interface SIHttpRunAllRequestProcessor : SICoreHttpRequestProcessor
 
 @end

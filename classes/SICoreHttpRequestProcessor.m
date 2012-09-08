@@ -1,7 +1,7 @@
 
-#import "SIHttpRequestProcessor.h"
+#import "SICoreHttpRequestProcessor.h"
 
-@implementation SIHttpRequestProcessor
+@implementation SICoreHttpRequestProcessor
 
 -(BOOL) canProcessPath:(NSString *) path withMethod:(SIHttpMethod) method {
 	return NO;
