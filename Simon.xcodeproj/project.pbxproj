@@ -61,7 +61,6 @@
 		322B4FBA15F3893300C81E65 /* dUsefulStuff.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 32CDF2F115E5E5DA001F4317 /* dUsefulStuff.dylib */; };
 		322B4FBB15F3893B00C81E65 /* CocoaHTTPServer.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 322426A515EBA95E00F0CB62 /* CocoaHTTPServer.dylib */; };
 		322DA95615A18A4B005CFC83 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 322DA95515A18A4B005CFC83 /* main.m */; };
-		322DA95A15A18A4B005CFC83 /* pieman.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 322DA95915A18A4B005CFC83 /* pieman.1 */; };
 		32326CD715DA8F6D00C8B1DC /* NSObject+SimonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32326CD615DA8F6D00C8B1DC /* NSObject+SimonTests.m */; };
 		324108B61509C19400AFBF66 /* SIUIViewDescriptionVisitor.h in Headers */ = {isa = PBXBuildFile; fileRef = 324108B41509C19400AFBF66 /* SIUIViewDescriptionVisitor.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		324108B71509C19400AFBF66 /* SIUIViewDescriptionVisitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 324108B51509C19400AFBF66 /* SIUIViewDescriptionVisitor.m */; };
@@ -111,6 +110,7 @@
 		329F9A9915FA36AE0041FD1D /* PISimonComms.m in Sources */ = {isa = PBXBuildFile; fileRef = 329F9A9815FA36AE0041FD1D /* PISimonComms.m */; };
 		329F9A9A15FA36AE0041FD1D /* PISimonComms.m in Sources */ = {isa = PBXBuildFile; fileRef = 329F9A9815FA36AE0041FD1D /* PISimonComms.m */; };
 		329F9A9C15FB35D50041FD1D /* SIHttpResponseBody.m in Sources */ = {isa = PBXBuildFile; fileRef = 3224270615EDF41C00F0CB62 /* SIHttpResponseBody.m */; };
+		329F9AA315FB88DF0041FD1D /* pieman.1 in Resources */ = {isa = PBXBuildFile; fileRef = 329F9AA215FB88DF0041FD1D /* pieman.1 */; };
 		32A188A515EF89BE00B8C111 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 32A188A315EF89BE00B8C111 /* InfoPlist.strings */; };
 		32A188B715EF8A9800B8C111 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32A188B615EF8A9800B8C111 /* Foundation.framework */; };
 		32A188B815EF8ABB00B8C111 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32A188B615EF8A9800B8C111 /* Foundation.framework */; };
@@ -360,7 +360,6 @@
 			dstPath = /usr/share/man/man1/;
 			dstSubfolderSpec = 0;
 			files = (
-				322DA95A15A18A4B005CFC83 /* pieman.1 in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
@@ -441,7 +440,6 @@
 		322DA95115A18A4B005CFC83 /* pieman */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = pieman; sourceTree = BUILT_PRODUCTS_DIR; };
 		322DA95515A18A4B005CFC83 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		322DA95815A18A4B005CFC83 /* PieMan-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PieMan-Prefix.pch"; sourceTree = "<group>"; };
-		322DA95915A18A4B005CFC83 /* pieman.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = pieman.1; sourceTree = "<group>"; };
 		32326CD615DA8F6D00C8B1DC /* NSObject+SimonTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SimonTests.m"; sourceTree = "<group>"; };
 		324108B41509C19400AFBF66 /* SIUIViewDescriptionVisitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SIUIViewDescriptionVisitor.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		324108B51509C19400AFBF66 /* SIUIViewDescriptionVisitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIUIViewDescriptionVisitor.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -493,6 +491,7 @@
 		329F9A9715FA36AE0041FD1D /* PISimonComms.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PISimonComms.h; sourceTree = "<group>"; };
 		329F9A9815FA36AE0041FD1D /* PISimonComms.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PISimonComms.m; sourceTree = "<group>"; };
 		329F9A9B15FA3BE60041FD1D /* PISimonCommsDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PISimonCommsDelegate.h; sourceTree = "<group>"; };
+		329F9AA215FB88DF0041FD1D /* pieman.1 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.man; path = pieman.1; sourceTree = SOURCE_ROOT; };
 		32A1889815EF89BE00B8C111 /* Pieman Tests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pieman Tests.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		32A188A215EF89BE00B8C111 /* Pieman Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Pieman Tests-Info.plist"; sourceTree = "<group>"; };
 		32A188A415EF89BE00B8C111 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -775,10 +774,10 @@
 		322DA95415A18A4B005CFC83 /* PieMan */ = {
 			isa = PBXGroup;
 			children = (
+				329F9AA215FB88DF0041FD1D /* pieman.1 */,
 				326B624315F4DB48002CA603 /* Exceptions */,
 				322DA95515A18A4B005CFC83 /* main.m */,
 				3209231C15F4D41C0076A2BF /* PIConstants.h */,
-				322DA95915A18A4B005CFC83 /* pieman.1 */,
 				322426FD15EDD9F800F0CB62 /* PIHeartbeat.h */,
 				322426FE15EDD9F800F0CB62 /* PIHeartbeat.m */,
 				3224270015EDDB2900F0CB62 /* PIHeartbeatDelegate.h */,
@@ -790,7 +789,8 @@
 				32E3DC4115F319B7003E7B2B /* simulator */,
 				322DA95715A18A4B005CFC83 /* Supporting Files */,
 			);
-			path = PieMan;
+			name = PieMan;
+			path = classes;
 			sourceTree = "<group>";
 		};
 		322DA95715A18A4B005CFC83 /* Supporting Files */ = {
@@ -922,6 +922,13 @@
 				3298253B1504C87600631203 /* BDDImplementations.m */,
 			);
 			name = Stories;
+			sourceTree = "<group>";
+		};
+		329F9A9E15FB88110041FD1D /* Core */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Core;
 			sourceTree = "<group>";
 		};
 		32A188A015EF89BE00B8C111 /* Pieman Tests */ = {
@@ -1079,21 +1086,22 @@
 		653D0E7F13A782AC00A5AB82 = {
 			isa = PBXGroup;
 			children = (
-				32CDF2F615E5E5E7001F4317 /* CocoaHTTPServer.xcodeproj */,
-				32CDF2F815E5E602001F4317 /* dNodi.xcodeproj */,
+				329F9A9E15FB88110041FD1D /* Core */,
 				32CDF2E715E5E5DA001F4317 /* dUsefulStuff.xcodeproj */,
-				653D0EF013A7842500A5AB82 /* Simon-Prefix.pch */,
+				32CDF2F815E5E602001F4317 /* dNodi.xcodeproj */,
+				32CDF2F615E5E5E7001F4317 /* CocoaHTTPServer.xcodeproj */,
+				3298251215039FE300631203 /* ARC App with tests */,
 				6583B3EA13CF2220005E13F3 /* build.sh */,
 				6583B3EE13CF2242005E13F3 /* ChangeLog.textile */,
-				6583B3EB13CF2220005E13F3 /* License.textile */,
-				6583B3EC13CF2220005E13F3 /* ReadMe.textile */,
-				3298251215039FE300631203 /* ARC App with tests */,
 				653D0EB113A783C000A5AB82 /* classes */,
-				653D0ED413A783DC00A5AB82 /* tests */,
+				653D0E8C13A782AD00A5AB82 /* Frameworks */,
+				6583B3EB13CF2220005E13F3 /* License.textile */,
 				322DA95415A18A4B005CFC83 /* PieMan */,
 				32A188A015EF89BE00B8C111 /* Pieman Tests */,
-				653D0E8C13A782AD00A5AB82 /* Frameworks */,
 				653D0E8B13A782AD00A5AB82 /* Products */,
+				6583B3EC13CF2220005E13F3 /* ReadMe.textile */,
+				653D0EF013A7842500A5AB82 /* Simon-Prefix.pch */,
+				653D0ED413A783DC00A5AB82 /* Simon tests */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1142,7 +1150,7 @@
 			path = classes;
 			sourceTree = "<group>";
 		};
-		653D0ED413A783DC00A5AB82 /* tests */ = {
+		653D0ED413A783DC00A5AB82 /* Simon tests */ = {
 			isa = PBXGroup;
 			children = (
 				94657741141C95160026F1FB /* AbstractTestWithControlsOnView.h */,
@@ -1161,7 +1169,7 @@
 				32D5D98B14E135A300D29DD5 /* TestViewController.h */,
 				32D5D98C14E135A300D29DD5 /* TestViewController.m */,
 			);
-			path = tests;
+			path = "Simon tests";
 			sourceTree = "<group>";
 		};
 		653D0EDD13A783DC00A5AB82 /* Story files */ = {
@@ -1570,6 +1578,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				32A188A515EF89BE00B8C111 /* InfoPlist.strings in Resources */,
+				329F9AA315FB88DF0041FD1D /* pieman.1 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1857,7 +1866,7 @@
 				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "PieMan/PieMan-Prefix.pch";
+				GCC_PREFIX_HEADER = "PieMan-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -1884,7 +1893,7 @@
 				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "PieMan/PieMan-Prefix.pch";
+				GCC_PREFIX_HEADER = "PieMan-Prefix.pch";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				LD_RUNPATH_SEARCH_PATHS = "\"$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/PrivateFrameworks\" $(DEVELOPER_DIR)/../OtherFrameworks";
@@ -2109,7 +2118,7 @@
 					"\"$(SRCROOT)/../frameworks/OCMock/2.0.1/iOS\"",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "tests/GHUnit-Tests-Info.plist";
+				INFOPLIST_FILE = "Simon tests/GHUnit-Tests-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../frameworks/OCMock/2.0.1/iOS\"",
@@ -2136,7 +2145,7 @@
 					"\"$(SRCROOT)/../frameworks/OCMock/2.0.1/iOS\"",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "tests/GHUnit-Tests-Info.plist";
+				INFOPLIST_FILE = "Simon tests/GHUnit-Tests-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../frameworks/OCMock/2.0.1/iOS\"",
