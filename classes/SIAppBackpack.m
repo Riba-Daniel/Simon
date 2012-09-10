@@ -17,6 +17,7 @@
 #import <Simon/SIHttpAppBackpack.h>
 #import <Simon/NSObject+Simon.h>
 #import <dUsefulStuff/NSObject+dUsefulStuff.h>
+#import <NSObject+SimonCmdArgs.h>
 
 // Simon's background thread name.
 #define SI_QUEUE_NAME "au.com.derekclarkson.simon"
@@ -207,11 +208,6 @@ static SIAppBackpack *_backpack;
 				[story mapSteps:(NSArray *) self.mappings];
 			}];
 		}];
-		
-		// Everything is loaded and ready to go so post a notification to run.
-		if ([SIAppBackpack isArgumentPresentWithName:ARG_AUTORUN]) {
-			[[NSNotificationCenter defaultCenter] postNotificationName:SI_RUN_STORIES_NOTIFICATION object:self];
-		}
 	}];
 }
 
@@ -227,48 +223,6 @@ static SIAppBackpack *_backpack;
 	[self executeOnSimonThread: ^{
 		[self.runner run];
 	}];
-}
-
-#pragma mark - Process arguments
-
-+(BOOL) isArgumentPresentWithName:(NSString *) name {
-	return [self argIndexForName:name] != NSNotFound;
-}
-
-+(NSString *) argumentValueForName:(NSString *) name {
-	
-	int index = [self argIndexForName:name];
-	NSArray * arguments = [[NSProcessInfo processInfo] arguments];
-	
-	// return nil if not found or no more arguments.
-	if (index == NSNotFound || index + 1 == [arguments count]) {
-		return nil;
-	}
-	
-	NSString *argValue = [arguments objectAtIndex:index + 1];
-	
-	// return nil if the value is actually a flag or argument name.
-	if ([argValue characterAtIndex:0] == '-') {
-		return nil;
-	}
-	
-	return argValue;
-}
-
-+(int) argIndexForName:(NSString *) name {
-	NSArray * arguments = [[NSProcessInfo processInfo] arguments];
-	__block int argIndex = NSNotFound;
-	
-	// Get the index of the argument.
-	[arguments enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-		if ([(NSString *) obj isEqualToString:name]) {
-			argIndex = idx;
-			*stop = YES;
-		}
-	}];
-	
-	return argIndex;
-	
 }
 
 @end

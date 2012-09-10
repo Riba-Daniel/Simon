@@ -49,13 +49,16 @@ int main(int argc, const char * argv[]) {
 		
 		NSRunLoop *loop = [NSRunLoop currentRunLoop];
 		while (!pieman.finished && [loop runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]]) {
+#ifdef DC_DEBUG
 			NSLog(@"Run loop cycling");
+#endif
 		};
 		
 		// get the final code.
 		exitCode = pieman.exitCode;
 		
 	}
+	printf("Exiting with exit code %i\n", exitCode);
 	return exitCode;
 }
 

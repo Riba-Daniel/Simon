@@ -13,4 +13,9 @@
  */
 @interface SICoreHttpIncomingConnection : HTTPConnection
 
+/// @name Tasks
+
+/// Sets the list of SICoreHttpRequestProcessor classes which will be used when the SICoreHttpIncomingConnection instance is created by CocoaHTTPServer.
++(void) setProcessors:(NSArray *) processorArray;
+
 @end

@@ -7,18 +7,25 @@
 //
 
 #import "PIPieman.h"
+#import "PIException.h"
 #import <Simon/SIConstants.h>
 #import <dUsefulStuff/DCCommon.h>
 #import "PIHeartbeat.h"
 #import "PISimulator.h"
 #import <Simon/SICoreHttpSimpleResponseBody.h>
 #import "SICoreHttpConnection.h"
+#import <Simon/NSObject+SimonCmdArgs.h>
+#import <Simon/SICoreHttpIncomingConnection.h>
+#import <CocoaHTTPServer/DDLog.h>
+#import <CocoaHTTPServer/DDTTYLogger.h>
+#import <CocoaHTTPServer/HTTPServer.h>
 
 @interface PIPieman () {
 @private
 	PIHeartbeat *_heartbeat;
 	PISimulator *_simulator;
 	SICoreHttpConnection *_simon;
+	HTTPServer *server;
 }
 
 -(void) sendRunAllRequest;
@@ -39,6 +46,7 @@
 -(void) dealloc {
 	self.appPath = nil;
 	self.appArgs = nil;
+	DC_DEALLOC(server);
 	DC_DEALLOC(_heartbeat);
 	DC_DEALLOC(_simulator);
 	DC_DEALLOC(_simon);
@@ -53,6 +61,25 @@
 		// Heartbeat
 		_heartbeat = [[PIHeartbeat alloc] init];
 		_heartbeat.delegate = self;
+		
+		// Get a custom port value from the process args.
+		NSString *strValue = [self argumentValueForName:ARG_PIEMAN_PORT];
+		NSInteger intValue = [strValue integerValue];
+		NSInteger port = intValue > 0 ? intValue : HTTP_PIEMAN_PORT;
+		
+		// Setup the request processors.
+		//SICoreHttpRequestProcessor * runAllProcessor = [[[SIHttpRunAllRequestProcessor alloc] init] autorelease];
+		[SICoreHttpIncomingConnection setProcessors:[NSArray arrayWithObjects: nil]];
+		
+		DC_LOG(@"Starting HTTP server on port: %li", port);
+		[DDLog addLogger:[DDTTYLogger sharedInstance]];
+		server = [[HTTPServer alloc] init];
+		[server setConnectionClass:[SICoreHttpIncomingConnection class]];
+		[server setPort:port];
+		NSError *error = nil;
+		if(![server start:&error]) {
+			@throw [PIException exceptionWithReason:[NSString stringWithFormat:@"Error starting HTTP Server: %@", error]];
+		}
 		
 		// Setup the comms.
 		dispatch_queue_t simonsQ = dispatch_queue_create(SIMON_QUEUE_NAME, NULL);

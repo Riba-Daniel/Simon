@@ -29,7 +29,11 @@
 
 -(void) startUp:(NSNotification *) notification {
 	[super startUp:notification];
-	if(![SIAppBackpack isArgumentPresentWithName:ARG_AUTORUN]) {
+	
+	// Everything is loaded and ready to go so post a notification to run or display the UI.
+	if ([SIAppBackpack isArgumentPresentWithName:ARG_AUTORUN]) {
+		[[NSNotificationCenter defaultCenter] postNotificationName:SI_RUN_STORIES_NOTIFICATION object:self];
+	} else {
 		[ui displayUI];
 	}
 }

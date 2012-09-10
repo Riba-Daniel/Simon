@@ -41,6 +41,9 @@
 #define ARG_AUTORUN @"-autorun"
 #define ARG_LOG_ACTIONS @"-log-actions"
 
+#define SEND_READY_MAX_RETRIES 5
+#define SEND_READY_RETRY_INTERVAL 2.0
+
 /**
  Individual error codes.
  */

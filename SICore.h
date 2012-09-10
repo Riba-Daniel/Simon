@@ -20,6 +20,7 @@
 #define ARG_PIEMAN_PORT @"-pieman-port"
 
 // Http paths
+#define HTTP_PATH_SIMON_READY @"/simon/ready"
 #define HTTP_PATH_RUN_ALL @"/run/all"
 #define HTTP_PATH_HEARTBEAT @"/heartbeat"
 #define HTTP_PATH_EXIT @"/exit"

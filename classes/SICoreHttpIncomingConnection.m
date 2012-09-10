@@ -9,46 +9,26 @@
 #import <dUsefulStuff/DCCommon.h>
 
 #import <Simon/SICoreHttpIncomingConnection.h>
-#import <Simon/SICoreHttpRequestProcessor.h>
-#import <Simon/SIHttpRunAllRequestProcessor.h>
-#import <Simon/SIHttpHeartbeatRequestProcessor.h>
-#import <Simon/SIHttpExitRequestProcessor.h>
 #import <Simon/NSString+Simon.h>
 #import <Simon/SIAppBackpack.h>
+#import <Simon/SICoreHttpRequestProcessor.h>
 #import "TargetConditionals.h"
 
 @interface SICoreHttpIncomingConnection ()
-@property (retain, nonatomic) NSArray *processors;
 -(SICoreHttpRequestProcessor *) processorForMethod:(SIHttpMethod) method andPath:(NSString *) path;
 @end
 
 @implementation SICoreHttpIncomingConnection
 
-@synthesize processors;
+static NSArray *_processors;
 
 -(void) dealloc {
-	self.processors = nil;
+	DC_DEALLOC(_processors);
 	[super dealloc];
 }
 
--(id) initWithAsyncSocket:(GCDAsyncSocket *)newSocket configuration:(HTTPConfig *)aConfig {
-	self = [super initWithAsyncSocket:newSocket configuration:aConfig];
-	if (self) {
-		
-		// Load appropriate request processors depending on whether we are in Simon or the Pieman.
-#if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
-		// Simon
-		DC_LOG(@"Loading iOS request processors");
-		SICoreHttpRequestProcessor * runAllProcessor = [[[SIHttpRunAllRequestProcessor alloc] init] autorelease];
-		SICoreHttpRequestProcessor * heartbeatProcessor = [[[SIHttpHeartbeatRequestProcessor alloc] init] autorelease];
-		SICoreHttpRequestProcessor * exitProcessor = [[[SIHttpExitRequestProcessor alloc] init] autorelease];
-		self.processors = [NSArray arrayWithObjects:runAllProcessor, heartbeatProcessor, exitProcessor, nil];
-#else
-		// Pieman
-		DC_LOG(@"Loading OS X request processors");
-#endif
-	}
-	return self;
++(void) setProcessors:(NSArray *) processorArray {
+	_processors = [processorArray retain];
 }
 
 - (BOOL)supportsMethod:(NSString *)method atPath:(NSString *)path {
@@ -81,7 +61,7 @@
 }
 
 -(SICoreHttpRequestProcessor *) processorForMethod:(SIHttpMethod) method andPath:(NSString *) path {
-	for (SICoreHttpRequestProcessor *processor in processors) {
+	for (SICoreHttpRequestProcessor *processor in _processors) {
 		if ([processor canProcessPath:path withMethod:method]) {
 			return processor;
 		}

@@ -45,7 +45,6 @@
 -(void) executeOnSimonThread:(void (^)()) block {
 	dispatch_async([SIAppBackpack backpack].queue, ^{
 		DC_LOG(@"Executing block on Simon's background thread");
-		[NSThread currentThread].name = @"Simon";
 		block();
 	});
 	
