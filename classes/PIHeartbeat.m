@@ -7,20 +7,21 @@
 //
 
 #import "PIHeartbeat.h"
+#import <Simon/SICore.h>
 #import "PIConstants.h"
-#import <Simon/SIConstants.h>
 #import <dUsefulStuff/DCCommon.h>
+#import "SICoreHttpConnection.h"
+#import "SICoreHttpSimpleResponseBody.h"
 
 @interface PIHeartbeat () {
 @private
 	int heartbeats;
-	dispatch_queue_t heartbeatQueue;
 	BOOL shutdown;
-	NSURLRequest *request;
+	SICoreHttpConnection *_simon;
+	
 }
 
 -(void) heartbeat;
--(void) queueHeartbeat;
 -(void) notifyDelegate:(SEL) selector;
 
 @end
@@ -30,29 +31,31 @@
 @synthesize delegate = _delegate;
 
 -(void) dealloc {
-	DC_DEALLOC(request);
-	dispatch_release(heartbeatQueue);
+	DC_LOG(@"Deallocing");
+	DC_DEALLOC(_simon);
 	[super dealloc];
 }
 
--(id) init {
-	self = [super init];
-	if (self) {
-		heartbeatQueue = dispatch_queue_create(PI_HEARTBEAT_QUEUE_NAME, 0);
-		NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://localhost:%i%@", HTTP_SIMON_PORT, HTTP_PATH_HEARTBEAT]];
-		
-		request = [[NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:HEARTBEAT_TIMEOUT] retain];
-		DC_LOG(@"Checking url %@", request.URL);
-
-		shutdown = NO;
-	}
-	return self;
-}
-
 -(void) start {
-	DC_LOG(@"Starting heartbeat");
+	
+	DC_LOG(@"Starting heartbeat on it's own queue");
 	[self notifyDelegate:@selector(heartbeatDidStart)];
-	[self queueHeartbeat];
+	
+	dispatch_queue_t simonsQ = dispatch_queue_create(SIMON_QUEUE_NAME, 0);
+	dispatch_queue_t heartbeatQ = dispatch_queue_create(SIMON_HEARTBEAT_QUEUE_NAME, 0);
+	
+	_simon = [[SICoreHttpConnection alloc] initWithHostUrl:[NSString stringWithFormat:@"http://%@:%i", HTTP_SIMON_HOST, HTTP_SIMON_PORT]
+															sendGCDQueue:simonsQ
+													  responseGCDQueue:heartbeatQ];
+	
+	dispatch_async(heartbeatQ, ^(){
+		shutdown = NO;
+		[self heartbeat];
+	});
+	
+	dispatch_release(simonsQ);
+	dispatch_release(heartbeatQ);
+	
 }
 
 -(void) stop {
@@ -68,26 +71,40 @@
 	}
 	
 	// Query Simon
-	NSError *error = nil;
-	NSURLResponse *response = nil;
-	NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+	SimpleBlock queueHeartbeat = ^{
+		DC_LOG(@"Queuing heartbeat on queue: %s", dispatch_queue_get_label(dispatch_get_current_queue()));
+		dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, HEARTBEAT_FREQUENCY * NSEC_PER_SEC);
+		dispatch_after(popTime, dispatch_get_current_queue(), ^(void){
+			[self heartbeat];
+		});
+	};
 	
-	if (data == nil) {
-		DC_LOG(@"Heartbeat failed at attempt %i", heartbeats);
-		heartbeats++;
-		if (heartbeats >= HEARTBEAT_MAX_ATTEMPTS) {
-			[self notifyDelegate:@selector(heartbeatDidTimeout)];
-			DC_LOG(@"Exiting heartbeats");
-			return;
-		}
-	} else {
-		// Reset the heartbeat count.
-		DC_LOG(@"Heartbeat response %@", DC_DATA_TO_STRING(data));
-		heartbeats = 0;
-	}
-	
-	// Requeue
-	[self queueHeartbeat];
+	[_simon sendRESTRequest:HTTP_PATH_HEARTBEAT
+			responseBodyClass:[SICoreHttpSimpleResponseBody class]
+				  successBlock:^(id obj) {
+					  
+					  // Received a response.
+					  DC_LOG(@"Heartbeat response %@", obj);
+					  heartbeats = 0;
+					  // Requeue
+					  queueHeartbeat();
+					  
+				  }
+					 errorBlock:^(id obj, NSString *errorMsg){
+						 
+						 // If there is an error, increment the count and try for 5 times before exiting.
+						 heartbeats++;
+						 DC_LOG(@"Heartbeat failed to respond: attempt %i", heartbeats);
+						 if (heartbeats >= HEARTBEAT_MAX_ATTEMPTS) {
+							 [self notifyDelegate:@selector(heartbeatDidTimeout)];
+							 DC_LOG(@"Exiting heartbeats");
+							 return;
+						 }
+						 
+						 // Requeue
+						 queueHeartbeat();
+						 
+					 }];
 	
 }
 
@@ -97,14 +114,6 @@
 			[self.delegate performSelectorOnMainThread:selector withObject:self waitUntilDone:NO];
 		}
 	}
-}
-
--(void) queueHeartbeat {
-	dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, HEARTBEAT_FREQUENCY * NSEC_PER_SEC);
-	dispatch_after(popTime, heartbeatQueue, ^(void){
-		[NSThread currentThread].name = @"Simon heartbeat check";
-		[self heartbeat];
-	});
 }
 
 @end

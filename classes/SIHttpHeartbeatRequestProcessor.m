@@ -10,7 +10,7 @@
 #import <Simon/SIConstants.h>
 #import <CocoaHTTPServer/HTTPDataResponse.h>
 #import <dUsefulStuff/DCCommon.h>
-#import <Simon/SICoreHttpResponseBody.h>
+#import <Simon/SICoreHttpSimpleResponseBody.h>
 #import <Simon/SIHttpRequestProcessor+Simon.h>
 
 @implementation SIHttpHeartbeatRequestProcessor
@@ -22,7 +22,7 @@
 -(NSObject<HTTPResponse> *) processPath:(NSString *) path withMethod:(SIHttpMethod) method andBody:(NSString *) body {
 
 	// Post a success to the caller.
-	SICoreHttpResponseBody *responseBody = [[[SICoreHttpResponseBody alloc] init] autorelease];
+	SICoreHttpSimpleResponseBody *responseBody = [[[SICoreHttpSimpleResponseBody alloc] init] autorelease];
 	responseBody.status = SIHttpStatusOk;
 	return [self httpResponseWithBody:responseBody];
 }

@@ -7,7 +7,7 @@
 //
 
 #import <GHUnitIOS/GHUnit.h>
-#import <Simon/SIConstants.h>
+#import <Simon/SICore.h>
 
 @interface GHTestCase (Utils)
 

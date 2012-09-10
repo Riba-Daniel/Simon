@@ -6,6 +6,7 @@
 //  Copyright (c) 2012. All rights reserved.
 //
 
+#import "SICore.h"
 #import "PIConstants.h"
 #import "DTiPhoneSimulatorSessionDelegate.h"
 #import "PISimulatorDelegate.h"

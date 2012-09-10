@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Simon/SICore.h>
 #import <Simon/SIConstants.h>
 #import <Simon/SIStep.h>
 #import <Simon/SIJsonAware.h>

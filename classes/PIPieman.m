@@ -11,14 +11,14 @@
 #import <dUsefulStuff/DCCommon.h>
 #import "PIHeartbeat.h"
 #import "PISimulator.h"
-#import "PISimonComms.h"
-#import <Simon/SICoreHttpResponseBody.h>
+#import <Simon/SICoreHttpSimpleResponseBody.h>
+#import "SICoreHttpConnection.h"
 
 @interface PIPieman () {
 @private
 	PIHeartbeat *_heartbeat;
 	PISimulator *_simulator;
-	PISimonComms *_comms;
+	SICoreHttpConnection *_simon;
 }
 
 -(void) sendRunAllRequest;
@@ -41,7 +41,7 @@
 	self.appArgs = nil;
 	DC_DEALLOC(_heartbeat);
 	DC_DEALLOC(_simulator);
-	DC_DEALLOC(_comms);
+	DC_DEALLOC(_simon);
 	[super dealloc];
 }
 
@@ -49,17 +49,35 @@
 	self = [super init];
 	if (self) {
 		_finished = NO;
+		
+		// Heartbeat
 		_heartbeat = [[PIHeartbeat alloc] init];
 		_heartbeat.delegate = self;
-		_comms = [[PISimonComms alloc] init];
-		_comms.delegate = self;
+		
+		// Setup the comms.
+		dispatch_queue_t simonsQ = dispatch_queue_create(SIMON_QUEUE_NAME, NULL);
+		_simon = [[SICoreHttpConnection alloc] initWithHostUrl:[NSString stringWithFormat:@"%@:%i", HTTP_SIMON_HOST, HTTP_SIMON_PORT]
+																sendGCDQueue:simonsQ
+														  responseGCDQueue:dispatch_get_main_queue()];
+		dispatch_release(simonsQ);
 	}
 	return self;
 }
 
 -(void) start {
 	
+	printf("Starting Simon test run\n");
+	
+	// Before doing anything, check we have an app file.
+	BOOL exists = [[NSFileManager defaultManager] fileExistsAtPath:self.appPath];
+	if (!exists) {
+		printf("Error: app file %s does not exit.\nFinishing run.\n", [self.appPath UTF8String]);
+		_exitCode = EXIT_FAILURE;
+		return;
+	}
+
 	// Assemble arguments.
+	DC_LOG(@"Assembling arguments");
 	NSMutableArray *args = [NSMutableArray array];
 	
 	if (self.piemanPort > 0 && self.piemanPort != HTTP_PIEMAN_PORT) {
@@ -78,7 +96,9 @@
 	_simulator = [[PISimulator alloc] initWithApplicationPath:self.appPath];
 	_simulator.args = args;
 	
+	DC_LOG(@"Looking for currently running simulator before launching")
 	[_simulator shutdownSimulator:^{
+		DC_LOG(@"Starting launch procedure.");
 		// Don't set delegate until here so we are not bugged with shutdown notifications.
 		_simulator.delegate = self;
 		[_simulator reset];
@@ -91,13 +111,13 @@
 #pragma mark - Tasks
 
 -(void) sendRunAllRequest {
-	[_comms sendRESTRequest:HTTP_PATH_RUN_ALL
-			responseBodyClass:[SICoreHttpResponseBody class]
-			  onResponseBlock:^(id obj){}
-				  onErrorBlock:^(id data, NSString *errorMsg){
-					  printf("Error: %s", [errorMsg UTF8String]);
-					  _exitCode = EXIT_FAILURE;
-				  }];
+	[_simon sendRESTRequest:HTTP_PATH_RUN_ALL
+			responseBodyClass:[SICoreHttpSimpleResponseBody class]
+				  successBlock:NULL
+					 errorBlock:^(id data, NSString *errorMsg){
+						 printf("Error: %s", [errorMsg UTF8String]);
+						 _exitCode = EXIT_FAILURE;
+					 }];
 }
 
 #pragma mark - Delegate methods.

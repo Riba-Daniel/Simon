@@ -9,12 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "PIHeartbeatDelegate.h"
 #import "PISimulatorDelegate.h"
-#import "PISimonCommsDelegate.h"
 
 /**
  This is the main class of Pieman.
  */
-@interface PIPieman : NSObject<PIHeartbeatDelegate, PISimulatorDelegate, PISimonCommsDelegate>
+@interface PIPieman : NSObject<PIHeartbeatDelegate, PISimulatorDelegate>
 
 /// Set to YES when the tests are finished.
 @property (nonatomic, readonly) BOOL finished;

@@ -49,9 +49,9 @@
 		322426FB15ECF64900F0CB62 /* PIPieman.m in Sources */ = {isa = PBXBuildFile; fileRef = 322426FA15ECF64900F0CB62 /* PIPieman.m */; };
 		322426FF15EDD9F800F0CB62 /* PIHeartbeat.m in Sources */ = {isa = PBXBuildFile; fileRef = 322426FE15EDD9F800F0CB62 /* PIHeartbeat.m */; };
 		3224270415EDEDC300F0CB62 /* dUsefulStuff.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 32CDF2F115E5E5DA001F4317 /* dUsefulStuff.dylib */; };
-		3224270715EDF41C00F0CB62 /* SICoreHttpResponseBody.h in Headers */ = {isa = PBXBuildFile; fileRef = 3224270515EDF41B00F0CB62 /* SICoreHttpResponseBody.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		3224270815EDF41C00F0CB62 /* SICoreHttpResponseBody.m in Sources */ = {isa = PBXBuildFile; fileRef = 3224270615EDF41C00F0CB62 /* SICoreHttpResponseBody.m */; };
-		3224270915EDF41C00F0CB62 /* SICoreHttpResponseBody.m in Sources */ = {isa = PBXBuildFile; fileRef = 3224270615EDF41C00F0CB62 /* SICoreHttpResponseBody.m */; };
+		3224270715EDF41C00F0CB62 /* SICoreHttpSimpleResponseBody.h in Headers */ = {isa = PBXBuildFile; fileRef = 3224270515EDF41B00F0CB62 /* SICoreHttpSimpleResponseBody.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		3224270815EDF41C00F0CB62 /* SICoreHttpSimpleResponseBody.m in Sources */ = {isa = PBXBuildFile; fileRef = 3224270615EDF41C00F0CB62 /* SICoreHttpSimpleResponseBody.m */; };
+		3224270915EDF41C00F0CB62 /* SICoreHttpSimpleResponseBody.m in Sources */ = {isa = PBXBuildFile; fileRef = 3224270615EDF41C00F0CB62 /* SICoreHttpSimpleResponseBody.m */; };
 		3224270B15EDF64C00F0CB62 /* SICoreHttpResponseBodyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3224270A15EDF64C00F0CB62 /* SICoreHttpResponseBodyTests.m */; };
 		3224270D15EDFB0800F0CB62 /* SICoreHttpRequestProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3224270C15EDFB0700F0CB62 /* SICoreHttpRequestProcessor.m */; };
 		3224271015EDFD6300F0CB62 /* SIHttpRequestProcessor+Simon.h in Headers */ = {isa = PBXBuildFile; fileRef = 3224270E15EDFD6100F0CB62 /* SIHttpRequestProcessor+Simon.h */; };
@@ -107,10 +107,14 @@
 		3298252E15039FE300631203 /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3298252D15039FE300631203 /* second@2x.png */; };
 		329825391503A0FF00631203 /* BDD.stories in Resources */ = {isa = PBXBuildFile; fileRef = 329825381503A0FF00631203 /* BDD.stories */; };
 		3298253C1504C87700631203 /* BDDImplementations.m in Sources */ = {isa = PBXBuildFile; fileRef = 3298253B1504C87600631203 /* BDDImplementations.m */; };
-		329F9A9915FA36AE0041FD1D /* PISimonComms.m in Sources */ = {isa = PBXBuildFile; fileRef = 329F9A9815FA36AE0041FD1D /* PISimonComms.m */; };
-		329F9A9A15FA36AE0041FD1D /* PISimonComms.m in Sources */ = {isa = PBXBuildFile; fileRef = 329F9A9815FA36AE0041FD1D /* PISimonComms.m */; };
-		329F9A9C15FB35D50041FD1D /* SICoreHttpResponseBody.m in Sources */ = {isa = PBXBuildFile; fileRef = 3224270615EDF41C00F0CB62 /* SICoreHttpResponseBody.m */; };
+		329F9A9C15FB35D50041FD1D /* SICoreHttpSimpleResponseBody.m in Sources */ = {isa = PBXBuildFile; fileRef = 3224270615EDF41C00F0CB62 /* SICoreHttpSimpleResponseBody.m */; };
 		329F9AA315FB88DF0041FD1D /* pieman.1 in Resources */ = {isa = PBXBuildFile; fileRef = 329F9AA215FB88DF0041FD1D /* pieman.1 */; };
+		32A0A79D15FB8E2C00A3964F /* SICoreHttpConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 32A0A79B15FB8E2C00A3964F /* SICoreHttpConnection.h */; };
+		32A0A79E15FB8E2C00A3964F /* SICoreHttpConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A0A79C15FB8E2C00A3964F /* SICoreHttpConnection.m */; };
+		32A0A79F15FB8E2C00A3964F /* SICoreHttpConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A0A79C15FB8E2C00A3964F /* SICoreHttpConnection.m */; };
+		32A0A7A015FB8E2C00A3964F /* SICoreHttpConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A0A79C15FB8E2C00A3964F /* SICoreHttpConnection.m */; };
+		32A0A7A115FC832800A3964F /* SICore.h in Headers */ = {isa = PBXBuildFile; fileRef = 329F9AA415FB8A2A0041FD1D /* SICore.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		32A0A7A315FCB59600A3964F /* PIHeartbeatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A0A7A215FCB59600A3964F /* PIHeartbeatTests.m */; };
 		32A188A515EF89BE00B8C111 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 32A188A315EF89BE00B8C111 /* InfoPlist.strings */; };
 		32A188B715EF8A9800B8C111 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32A188B615EF8A9800B8C111 /* Foundation.framework */; };
 		32A188B815EF8ABB00B8C111 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32A188B615EF8A9800B8C111 /* Foundation.framework */; };
@@ -431,8 +435,8 @@
 		322426FD15EDD9F800F0CB62 /* PIHeartbeat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PIHeartbeat.h; sourceTree = "<group>"; };
 		322426FE15EDD9F800F0CB62 /* PIHeartbeat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PIHeartbeat.m; sourceTree = "<group>"; };
 		3224270015EDDB2900F0CB62 /* PIHeartbeatDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PIHeartbeatDelegate.h; sourceTree = "<group>"; };
-		3224270515EDF41B00F0CB62 /* SICoreHttpResponseBody.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SICoreHttpResponseBody.h; path = classes/SICoreHttpResponseBody.h; sourceTree = "<group>"; };
-		3224270615EDF41C00F0CB62 /* SICoreHttpResponseBody.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SICoreHttpResponseBody.m; path = classes/SICoreHttpResponseBody.m; sourceTree = "<group>"; };
+		3224270515EDF41B00F0CB62 /* SICoreHttpSimpleResponseBody.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SICoreHttpSimpleResponseBody.h; path = classes/SICoreHttpSimpleResponseBody.h; sourceTree = "<group>"; };
+		3224270615EDF41C00F0CB62 /* SICoreHttpSimpleResponseBody.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SICoreHttpSimpleResponseBody.m; path = classes/SICoreHttpSimpleResponseBody.m; sourceTree = "<group>"; };
 		3224270A15EDF64C00F0CB62 /* SICoreHttpResponseBodyTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SICoreHttpResponseBodyTests.m; sourceTree = "<group>"; };
 		3224270C15EDFB0700F0CB62 /* SICoreHttpRequestProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SICoreHttpRequestProcessor.m; path = classes/SICoreHttpRequestProcessor.m; sourceTree = "<group>"; };
 		3224270E15EDFD6100F0CB62 /* SIHttpRequestProcessor+Simon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SIHttpRequestProcessor+Simon.h"; sourceTree = "<group>"; };
@@ -488,11 +492,11 @@
 		3298252D15039FE300631203 /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "second@2x.png"; sourceTree = "<group>"; };
 		329825381503A0FF00631203 /* BDD.stories */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BDD.stories; sourceTree = "<group>"; };
 		3298253B1504C87600631203 /* BDDImplementations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BDDImplementations.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		329F9A9715FA36AE0041FD1D /* PISimonComms.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PISimonComms.h; sourceTree = "<group>"; };
-		329F9A9815FA36AE0041FD1D /* PISimonComms.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PISimonComms.m; sourceTree = "<group>"; };
-		329F9A9B15FA3BE60041FD1D /* PISimonCommsDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PISimonCommsDelegate.h; sourceTree = "<group>"; };
 		329F9AA215FB88DF0041FD1D /* pieman.1 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.man; path = pieman.1; sourceTree = SOURCE_ROOT; };
 		329F9AA415FB8A2A0041FD1D /* SICore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SICore.h; sourceTree = "<group>"; };
+		32A0A79B15FB8E2C00A3964F /* SICoreHttpConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SICoreHttpConnection.h; path = classes/SICoreHttpConnection.h; sourceTree = "<group>"; };
+		32A0A79C15FB8E2C00A3964F /* SICoreHttpConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SICoreHttpConnection.m; path = classes/SICoreHttpConnection.m; sourceTree = "<group>"; };
+		32A0A7A215FCB59600A3964F /* PIHeartbeatTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PIHeartbeatTests.m; sourceTree = "<group>"; };
 		32A1889815EF89BE00B8C111 /* Pieman Tests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pieman Tests.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		32A188A215EF89BE00B8C111 /* Pieman Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Pieman Tests-Info.plist"; sourceTree = "<group>"; };
 		32A188A415EF89BE00B8C111 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -777,9 +781,6 @@
 				3224270015EDDB2900F0CB62 /* PIHeartbeatDelegate.h */,
 				322426F915ECF64900F0CB62 /* PIPieman.h */,
 				322426FA15ECF64900F0CB62 /* PIPieman.m */,
-				329F9A9715FA36AE0041FD1D /* PISimonComms.h */,
-				329F9A9815FA36AE0041FD1D /* PISimonComms.m */,
-				329F9A9B15FA3BE60041FD1D /* PISimonCommsDelegate.h */,
 				32E3DC4115F319B7003E7B2B /* simulator */,
 				322DA95715A18A4B005CFC83 /* Supporting Files */,
 			);
@@ -935,8 +936,10 @@
 				3224270C15EDFB0700F0CB62 /* SICoreHttpRequestProcessor.m */,
 				32AF045515CEB7BA00501B1E /* SICoreHttpIncomingConnection.h */,
 				32AF045615CEB7BA00501B1E /* SICoreHttpIncomingConnection.m */,
-				3224270515EDF41B00F0CB62 /* SICoreHttpResponseBody.h */,
-				3224270615EDF41C00F0CB62 /* SICoreHttpResponseBody.m */,
+				3224270515EDF41B00F0CB62 /* SICoreHttpSimpleResponseBody.h */,
+				3224270615EDF41C00F0CB62 /* SICoreHttpSimpleResponseBody.m */,
+				32A0A79B15FB8E2C00A3964F /* SICoreHttpConnection.h */,
+				32A0A79C15FB8E2C00A3964F /* SICoreHttpConnection.m */,
 			);
 			name = http;
 			sourceTree = "<group>";
@@ -966,6 +969,7 @@
 				32E3DC4215F323F6003E7B2B /* simulator */,
 				32A188A115EF89BE00B8C111 /* Supporting Files */,
 				32E3DC2615F09FAF003E7B2B /* PIPiemanTests.m */,
+				32A0A7A215FCB59600A3964F /* PIHeartbeatTests.m */,
 			);
 			path = "Pieman Tests";
 			sourceTree = "<group>";
@@ -1075,7 +1079,8 @@
 				3291243B15F6CD4C00969A86 /* DtiPhoneSimulatorSession+Pieman.h */,
 				3291243C15F6CD4C00969A86 /* DtiPhoneSimulatorSession+Pieman.m */,
 			);
-			path = "simulator headers";
+			name = "simulator headers";
+			path = "../simulator headers";
 			sourceTree = "<group>";
 		};
 		32E3DC4115F319B7003E7B2B /* simulator */ = {
@@ -1120,7 +1125,7 @@
 				6583B3EA13CF2220005E13F3 /* build.sh */,
 				6583B3EE13CF2242005E13F3 /* ChangeLog.textile */,
 				329F9A9E15FB88110041FD1D /* Core */,
-				653D0EB113A783C000A5AB82 /* classes */,
+				653D0EB113A783C000A5AB82 /* Simon */,
 				653D0E8C13A782AD00A5AB82 /* Frameworks */,
 				6583B3EB13CF2220005E13F3 /* License.textile */,
 				322DA95415A18A4B005CFC83 /* PieMan */,
@@ -1153,7 +1158,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		653D0EB113A783C000A5AB82 /* classes */ = {
+		653D0EB113A783C000A5AB82 /* Simon */ = {
 			isa = PBXGroup;
 			children = (
 				65D03BEF13BE014700A3F0FA /* Categories */,
@@ -1173,6 +1178,7 @@
 				32AF045815CEB7BA00501B1E /* SIServerException.m */,
 				659E628E13D9C37200ACD34C /* app */,
 			);
+			name = Simon;
 			path = classes;
 			sourceTree = "<group>";
 		};
@@ -1375,8 +1381,10 @@
 				3224268D15EA599C00F0CB62 /* SIJsonAware.h in Headers */,
 				3224269015EB581600F0CB62 /* SIHttpHeartbeatRequestProcessor.h in Headers */,
 				3224269715EB9AFA00F0CB62 /* SIHttpExitRequestProcessor.h in Headers */,
-				3224270715EDF41C00F0CB62 /* SICoreHttpResponseBody.h in Headers */,
+				3224270715EDF41C00F0CB62 /* SICoreHttpSimpleResponseBody.h in Headers */,
 				3224271015EDFD6300F0CB62 /* SIHttpRequestProcessor+Simon.h in Headers */,
+				32A0A79D15FB8E2C00A3964F /* SICoreHttpConnection.h in Headers */,
+				32A0A7A115FC832800A3964F /* SICore.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1668,13 +1676,13 @@
 				32D9353915AB098000E51C8C /* SIStory.m in Sources */,
 				322426FB15ECF64900F0CB62 /* PIPieman.m in Sources */,
 				322426FF15EDD9F800F0CB62 /* PIHeartbeat.m in Sources */,
-				3224270915EDF41C00F0CB62 /* SICoreHttpResponseBody.m in Sources */,
+				3224270915EDF41C00F0CB62 /* SICoreHttpSimpleResponseBody.m in Sources */,
 				32E3DC4015F319B2003E7B2B /* PISimulator.m in Sources */,
 				3209231415F487500076A2BF /* PISDKNotFoundException.m in Sources */,
 				3209231615F488760076A2BF /* SIAbstractException.m in Sources */,
 				3209231A15F489670076A2BF /* PIException.m in Sources */,
 				3291243D15F6CD4C00969A86 /* DtiPhoneSimulatorSession+Pieman.m in Sources */,
-				329F9A9915FA36AE0041FD1D /* PISimonComms.m in Sources */,
+				32A0A79F15FB8E2C00A3964F /* SICoreHttpConnection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1705,8 +1713,9 @@
 				3209231715F488770076A2BF /* SIAbstractException.m in Sources */,
 				3209231B15F489670076A2BF /* PIException.m in Sources */,
 				3291243E15F6CD4C00969A86 /* DtiPhoneSimulatorSession+Pieman.m in Sources */,
-				329F9A9A15FA36AE0041FD1D /* PISimonComms.m in Sources */,
-				329F9A9C15FB35D50041FD1D /* SICoreHttpResponseBody.m in Sources */,
+				329F9A9C15FB35D50041FD1D /* SICoreHttpSimpleResponseBody.m in Sources */,
+				32A0A7A015FB8E2C00A3964F /* SICoreHttpConnection.m in Sources */,
+				32A0A7A315FCB59600A3964F /* PIHeartbeatTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1757,9 +1766,10 @@
 				3224268515E75F7000F0CB62 /* SIHttpRunAllRequestProcessor.m in Sources */,
 				3224269115EB581600F0CB62 /* SIHttpHeartbeatRequestProcessor.m in Sources */,
 				3224269815EB9AFA00F0CB62 /* SIHttpExitRequestProcessor.m in Sources */,
-				3224270815EDF41C00F0CB62 /* SICoreHttpResponseBody.m in Sources */,
+				3224270815EDF41C00F0CB62 /* SICoreHttpSimpleResponseBody.m in Sources */,
 				3224270D15EDFB0800F0CB62 /* SICoreHttpRequestProcessor.m in Sources */,
 				3224271115EDFD6300F0CB62 /* SIHttpRequestProcessor+Simon.m in Sources */,
+				32A0A79E15FB8E2C00A3964F /* SICoreHttpConnection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

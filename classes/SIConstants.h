@@ -15,7 +15,6 @@
 
 /// Error domain for NSError's that Simon generates.
 #define SIMON_ERROR_DOMAIN @"SIError"
-#define PIEMAN_ERROR_DOMAIN @"PIError"
 
 // keys for references attached to implementation classes.
 #define SI_INSTANCE_STORY_REF_KEY @"__story" 
@@ -40,16 +39,7 @@
 #define ARG_NO_LOAD @"-no-load"
 #define ARG_SHOW_UI @"-ui"
 #define ARG_AUTORUN @"-autorun"
-#define ARG_SIMON_PORT @"-simon-port"
-#define ARG_PIEMAN_PORT @"-pieman-port"
 #define ARG_LOG_ACTIONS @"-log-actions"
-
-// Http server config.
-#define HTTP_SIMON_PORT 44123
-#define HTTP_PIEMAN_PORT 44321
-#define HTTP_PATH_RUN_ALL @"/run/all"
-#define HTTP_PATH_HEARTBEAT @"/heartbeat"
-#define HTTP_PATH_EXIT @"/exit"
 
 /**
  Individual error codes.
@@ -81,33 +71,4 @@ typedef enum {
 	SIKeywordAs,
 	SIKeywordAnd
 } SIKeyword;
-
-/**
- Gives the final status of a story after the run.
- */
-typedef enum {
-	SIStoryStatusSuccess = 0,
-	SIStoryStatusIgnored,
-	SIStoryStatusError,
-	SIStoryStatusNotMapped,
-	SIStoryStatusNotRun,
-	SIStoryStatusCount
-} SIStoryStatus;
-
-/**
- Defines the methods that can be accepted by the http server.
- */
-typedef enum {
-	SIHttpMethodUnknown,
-	SIHttpMethodGet,
-	SIHttpMethodPost
-} SIHttpMethod;
-
-/**
- Defines status codes that can be sent back in Http response bodies.
- */
-typedef enum {
-	SIHttpStatusOk,
-	SIHttpStatusError
-} SIHttpStatus;
 

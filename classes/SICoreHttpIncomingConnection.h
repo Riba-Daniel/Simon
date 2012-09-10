@@ -8,6 +8,9 @@
 
 #import <CocoaHTTPServer/HTTPConnection.h>
 
+/**
+ Primary response class for handling incoming requests from CocoaHTTPServer classes. This then delegates out to SICoreHttpRequestProcessor implementations to handle individual requests.
+ */
 @interface SICoreHttpIncomingConnection : HTTPConnection
 
 @end

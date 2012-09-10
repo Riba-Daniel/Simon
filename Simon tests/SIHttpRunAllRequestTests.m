@@ -9,6 +9,7 @@
 #import <dUsefulStuff/DCCommon.h>
 #import <GHUnitIOS/GHUnit.h>
 #import <Simon/SIHttpRunAllRequestProcessor.h>
+#import <SImon/SIConstants.h>
 
 @interface SIHttpRunAllRequestTests : GHTestCase {
 	@private

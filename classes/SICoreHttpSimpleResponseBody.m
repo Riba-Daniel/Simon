@@ -6,9 +6,9 @@
 //  Copyright (c) 2012. All rights reserved.
 //
 
-#import <Simon/SICoreHttpResponseBody.h>
+#import <Simon/SICoreHttpSimpleResponseBody.h>
 
-@implementation SICoreHttpResponseBody
+@implementation SICoreHttpSimpleResponseBody
 
 @synthesize status = _status;
 

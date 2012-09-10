@@ -9,10 +9,12 @@
 #import <dUsefulStuff/DCCommon.h>
 
 #import "PIPieman.h"
-#import "SIConstants.h"
+#import "SICore.h"
+#import "PIConstants.h"
 
 #define ARG_HELP "-?"
 #define ARG_REPORT_DIR "-report-dir"
+
 #define EXIT_HELP_PRINTED 999
 
 // Function declarations.
@@ -41,6 +43,9 @@ int main(int argc, const char * argv[]) {
 		
 		// Start the run.
 		[pieman start];
+		if (pieman.finished) {
+			return pieman.finished;
+		}
 		
 		NSRunLoop *loop = [NSRunLoop currentRunLoop];
 		while (!pieman.finished && [loop runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]]) {
@@ -59,10 +64,6 @@ int arguments(PIPieman *pieman, int argc, const char * argv[]) {
 	BOOL appArgFound = NO;
 	NSMutableArray *args = [NSMutableArray array];
 	for (int i = 1; i < argc; i++) {
-
-#ifdef DC_DEBUG
-		NSLog(@"Command arg: %s", argv[i]);
-#endif
 
 		// Help
 		if (strcmp(argv[i], ARG_HELP) == 0) {
