@@ -7,8 +7,6 @@
 //
 
 #import <GHUnitIOS/GHUnit.h>
-#import <OCMock/OCMock.h>
-#import <OCMock/OCMArg.h>
 #import <dUsefulStuff/DCCommon.h>
 #import <Simon/SIConstants.h>
 #import <Simon/SIStoryFileReader.h>
@@ -16,23 +14,14 @@
 #import <CocoaHTTPServer/HTTPServer.h>
 
 // Hack into the process to update arguments for testing.
-@interface NSProcessInfo (SIHttpAppBackpackTests)
+@interface NSProcessInfo (_hack)
 - (void)setArguments:(id)arg1;
-@end
-
-@interface SIHttpAppBackpack (SIHttpAppBackpackTests)
--(HTTPServer *) server;
-@end
-
-@implementation SIHttpAppBackpack (SIHttpAppBackpackTests)
--(HTTPServer *) server {
-	return server;
-}
 @end
 
 @interface SIHttpAppBackpackTests : GHTestCase {
 @private
 	BOOL startRun;
+	NSProcessInfo *info;
 	NSArray *originalArgs;
 }
 -(void) startRun:(NSNotification *) notification;
@@ -41,15 +30,17 @@
 @implementation SIHttpAppBackpackTests
 
 -(void) setUp {
-	originalArgs = [[[NSProcessInfo processInfo] arguments] retain];
+	info = [[NSProcessInfo processInfo] retain];
+	originalArgs = [[info arguments] retain];
 	startRun = NO;
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startRun:) name:SI_RUN_STORIES_NOTIFICATION object:nil];
 }
 
 -(void) tearDown {
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	[[NSProcessInfo processInfo] setArguments: originalArgs];
 	DC_DEALLOC(originalArgs);
-	[[NSNotificationCenter defaultCenter] removeObserver:self];
+	DC_DEALLOC(info);
 }
 
 -(void) testHttpBackpackStartsServerOnDefaultPort {

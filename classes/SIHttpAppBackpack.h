@@ -7,9 +7,16 @@
 //
 
 #import <Simon/SIAppBackpack.h>
+#import <CocoaHTTPServer/HTTPServer.h>
 
 /**
  SIHttpBackpack implementation which is used when Simon is running in CI mode and talking to a command line control program.
  */
-@interface SIHttpAppBackpack : SIAppBackpack 
+@interface SIHttpAppBackpack : SIAppBackpack
+
+/// @name Properties
+
+/// Used for testing.
+@property (nonatomic, readonly) HTTPServer *server;
+
 @end

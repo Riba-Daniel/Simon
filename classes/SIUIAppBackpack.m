@@ -9,6 +9,7 @@
 #import <Simon/SIUIAppBackpack.h>
 #import <Simon/NSObject+Simon.h>
 #import <dUsefulStuff/DCCommon.h>
+#import <Simon/NSProcessInfo+Simon.h>
 
 @implementation SIUIAppBackpack
 
@@ -31,7 +32,7 @@
 	[super startUp:notification];
 	
 	// Everything is loaded and ready to go so post a notification to run or display the UI.
-	if ([SIAppBackpack isArgumentPresentWithName:ARG_AUTORUN]) {
+	if ([[NSProcessInfo processInfo] isArgumentPresentWithName:ARG_AUTORUN]) {
 		[[NSNotificationCenter defaultCenter] postNotificationName:SI_RUN_STORIES_NOTIFICATION object:self];
 	} else {
 		[ui displayUI];

@@ -23,6 +23,7 @@
 #import <Simon/SIUINotAnInputViewException.h>
 #import <Simon/SIAppBackpack.h>
 #import <Simon/SIUIApplication.h>
+#import <Simon/NSProcessInfo+Simon.h>
 
 #import <QuartzCore/CALayer.h>
 
@@ -58,7 +59,7 @@ static SIUIApplication *application = nil;
    if (self) {
 		SIUIViewHandlerFactory *factory = [[SIUIViewHandlerFactory alloc] init];
       self.viewHandlerFactory = factory;
-		self.logActions = [SIAppBackpack isArgumentPresentWithName:ARG_LOG_ACTIONS];
+		self.logActions = [[NSProcessInfo processInfo] isArgumentPresentWithName:ARG_LOG_ACTIONS];
 		[factory release];
    }
    return self;

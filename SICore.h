@@ -26,7 +26,7 @@
 #define HTTP_PATH_EXIT @"/exit"
 
 // Thread names.
-#define PIEMAN_QUEUE_NAME "au.com.derekclarkson.pieman"
+#define PIEMAN_QUEUE_NAME @"au.com.derekclarkson.pieman"
 #define SIMON_QUEUE_NAME "au.com.derekclarkson.simon.comms"
 
 // Block definitions.

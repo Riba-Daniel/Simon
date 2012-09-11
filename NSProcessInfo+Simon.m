@@ -1,16 +1,12 @@
 //
-//  NSObject+SimonCmdArgs.m
+//  NSProcessInfo+Simon.m
 //  Simon
 //
 //  Created by Derek Clarkson on 10/09/12.
 //  Copyright (c) 2012 Sensis. All rights reserved.
 //
 
-#import "NSObject+SimonCmdArgs.h"
-
-@interface NSObject (SimonCmdArgs_internal)
--(int) argIndexForName:(NSString *) name;
-@end
+#import "NSProcessInfo+Simon.h"
 
 @implementation NSObject (SimonCmdArgs)
 

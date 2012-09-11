@@ -52,7 +52,6 @@
 	NSThread *testThread = [NSThread currentThread];
 	__block BOOL executed = NO;
 	[self executeOnSimonThread:^{
-		GHAssertEqualStrings([[NSThread currentThread] name], @"Simon", nil);
 		GHAssertNotEquals([NSThread currentThread], testThread, nil);
 		executed = YES;
 	}];

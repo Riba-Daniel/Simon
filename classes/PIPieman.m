@@ -14,7 +14,6 @@
 #import "PISimulator.h"
 #import <Simon/SICoreHttpSimpleResponseBody.h>
 #import "SICoreHttpConnection.h"
-#import <Simon/NSObject+SimonCmdArgs.h>
 #import <Simon/SICoreHttpIncomingConnection.h>
 #import <CocoaHTTPServer/DDLog.h>
 #import <CocoaHTTPServer/DDTTYLogger.h>
@@ -56,16 +55,15 @@
 -(id) init {
 	self = [super init];
 	if (self) {
-		_finished = NO;
 		
+		_finished = NO;
+
 		// Heartbeat
 		_heartbeat = [[PIHeartbeat alloc] init];
 		_heartbeat.delegate = self;
 		
 		// Get a custom port value from the process args.
-		NSString *strValue = [self argumentValueForName:ARG_PIEMAN_PORT];
-		NSInteger intValue = [strValue integerValue];
-		NSInteger port = intValue > 0 ? intValue : HTTP_PIEMAN_PORT;
+		NSInteger port = self.piemanPort > 0 ? self.piemanPort : HTTP_PIEMAN_PORT;
 		
 		// Setup the request processors.
 		//SICoreHttpRequestProcessor * runAllProcessor = [[[SIHttpRunAllRequestProcessor alloc] init] autorelease];
@@ -95,14 +93,6 @@
 	
 	printf("Starting Simon test run\n");
 	
-	// Before doing anything, check we have an app file.
-	BOOL exists = [[NSFileManager defaultManager] fileExistsAtPath:self.appPath];
-	if (!exists) {
-		printf("Error: app file %s does not exit.\nFinishing run.\n", [self.appPath UTF8String]);
-		_exitCode = EXIT_FAILURE;
-		return;
-	}
-
 	// Assemble arguments.
 	DC_LOG(@"Assembling arguments");
 	NSMutableArray *args = [NSMutableArray array];

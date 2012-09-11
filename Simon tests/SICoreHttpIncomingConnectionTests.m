@@ -30,10 +30,14 @@
 @implementation SICoreHttpIncomingConnectionTests
 
 -(void) setUp {
+	
 	yes = YES;
 	no = NO;
+
 	processor1 = [OCMockObject mockForClass:[SICoreHttpRequestProcessor class]];
 	processor2 = [OCMockObject mockForClass:[SICoreHttpRequestProcessor class]];
+	[SICoreHttpIncomingConnection setProcessors:[NSArray arrayWithObjects:processor1, processor2, nil]];
+	
 	connection = [[SICoreHttpIncomingConnection alloc] initWithAsyncSocket:nil configuration:nil];
 
 }
@@ -46,9 +50,6 @@
 
 -(void) testSupportsMethodAtPathChecksProcessors {
 
-	// Override default setup.
-	connection.processors = [NSArray arrayWithObjects:processor1, processor2, nil];
-	
 	[[[processor1 expect] andReturnValue:OCMOCK_VALUE(no)] canProcessPath:@"/" withMethod:SIHttpMethodPost];
 	[[[processor2 expect] andReturnValue:OCMOCK_VALUE(yes)] canProcessPath:@"/" withMethod:SIHttpMethodPost];
 	
@@ -59,9 +60,6 @@
 
 -(void) testExpectingMethodBody {
 	
-	// Override default setup.
-	connection.processors = [NSArray arrayWithObjects:processor1, processor2, nil];
-	
 	[[[processor1 expect] andReturnValue:OCMOCK_VALUE(yes)] canProcessPath:@"/" withMethod:SIHttpMethodPost];
 	[[[processor1 expect] andReturnValue:OCMOCK_VALUE(yes)] expectingHttpBody];
 	
@@ -71,9 +69,6 @@
 }
 
 -(void) testExpectingMethodBodyWithNoExpectedBody {
-	
-	// Override default setup.
-	connection.processors = [NSArray arrayWithObjects:processor1, processor2, nil];
 	
 	[[[processor1 expect] andReturnValue:OCMOCK_VALUE(no)] canProcessPath:@"/" withMethod:SIHttpMethodPost];
 	[[[processor2 expect] andReturnValue:OCMOCK_VALUE(yes)] canProcessPath:@"/" withMethod:SIHttpMethodPost];

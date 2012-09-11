@@ -19,10 +19,10 @@
 #import <Simon/SIHttpHeartbeatRequestProcessor.h>
 #import <Simon/SIHttpExitRequestProcessor.h>
 #import <Simon/SICoreHttpConnection.h>
+#import <Simon/NSProcessInfo+Simon.h>
 
-@interface SIHttpAppBackpack (){
+@interface SIHttpAppBackpack () {
 @private
-	HTTPServer *server;
 	SICoreHttpConnection *pieman;
 	dispatch_queue_t piemanQ;
 	int piemanSendResendRetryCount;
@@ -34,12 +34,14 @@
 
 @implementation SIHttpAppBackpack
 
+@synthesize server = _server;
+
 -(void) dealloc {
 	DC_LOG(@"Stopping server");
-	[server stop];
+	[_server stop];
 	dispatch_release(piemanQ);
 	DC_DEALLOC(pieman);
-	DC_DEALLOC(server);
+	DC_DEALLOC(_server);
 	[super dealloc];
 }
 
@@ -48,7 +50,7 @@
 	if (self) {
 		
 		// Get a custom port value from the process args.
-		NSString *strValue = [SIAppBackpack argumentValueForName:ARG_SIMON_PORT];
+		NSString *strValue = [[NSProcessInfo processInfo] argumentValueForName:ARG_SIMON_PORT];
 		NSInteger intValue = [strValue integerValue];
 		NSInteger port = intValue > 0 ? intValue : HTTP_SIMON_PORT;
 
@@ -60,11 +62,11 @@
 		
 		DC_LOG(@"Starting HTTP server on port: %i", port);
 		[DDLog addLogger:[DDTTYLogger sharedInstance]];
-		server = [[HTTPServer alloc] init];
-		[server setConnectionClass:[SICoreHttpIncomingConnection class]];
-		[server setPort:port];
+		_server = [[HTTPServer alloc] init];
+		[_server setConnectionClass:[SICoreHttpIncomingConnection class]];
+		[_server setPort:port];
 		NSError *error = nil;
-		if(![server start:&error]) {
+		if(![_server start:&error]) {
 			@throw [SIServerException exceptionWithReason:[NSString stringWithFormat:@"Error starting HTTP Server: %@", error]];
 		}
 		

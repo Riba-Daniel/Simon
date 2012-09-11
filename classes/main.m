@@ -11,15 +11,15 @@
 #import "PIPieman.h"
 #import "SICore.h"
 #import "PIConstants.h"
+#import <Simon/NSProcessInfo+Simon.h>
 
-#define ARG_HELP "-?"
-#define ARG_REPORT_DIR "-report-dir"
-
-#define EXIT_HELP_PRINTED 999
+#define ARG_HELP @"-?"
+#define ARG_REPORT_DIR @"-report-dir"
 
 // Function declarations.
-int arguments(PIPieman *pieman, int argc, const char * argv[]);
-int checkForPortArg(int argc, int *i, const char * argv[], const char *portName);
+int processCmdArgs(PIPieman *pieman, int argc, const char * argv[]);
+int getPort(NSString *portArg, int *argIdx, int argc, const char *argv[]);
+int portFromValue(NSString *value, const char *portName);
 void printHelp(void);
 
 int main(int argc, const char * argv[]) {
@@ -27,23 +27,24 @@ int main(int argc, const char * argv[]) {
 	int exitCode = EXIT_SUCCESS;
 	@autoreleasepool {
 		
+		// Check for help.
+		if ([[NSProcessInfo processInfo] isArgumentPresentWithName:ARG_HELP]) {
+			printHelp();
+			return EXIT_SUCCESS;
+		}
 		
 		PIPieman *pieman = [[[PIPieman alloc] init] autorelease];
 		
 		// Process arguments.
-		int continueRun = arguments(pieman, argc, argv);
-		
-		if (continueRun == EXIT_HELP_PRINTED) {
-			return EXIT_SUCCESS;
-		}
-		if (continueRun != EXIT_SUCCESS) {
+		if (processCmdArgs(pieman, argc, argv) == EXIT_FAILURE) {
 			printf("Exiting\n");
-			return continueRun;
+			return EXIT_FAILURE;
 		}
 		
 		// Start the run.
 		[pieman start];
 		if (pieman.finished) {
+			// Can happen if there is a problem starting.
 			return pieman.finished;
 		}
 		
@@ -62,66 +63,88 @@ int main(int argc, const char * argv[]) {
 	return exitCode;
 }
 
-int arguments(PIPieman *pieman, int argc, const char * argv[]) {
+int processCmdArgs(PIPieman *pieman, int argc, const char * argv[]) {
 	
 	BOOL appArgFound = NO;
-	NSMutableArray *args = [NSMutableArray array];
-	for (int i = 1; i < argc; i++) {
-
-		// Help
-		if (strcmp(argv[i], ARG_HELP) == 0) {
-			printHelp();
-			return EXIT_HELP_PRINTED;
-		}
-
-		// Pieman port
-		if (strcmp(argv[i], [ARG_PIEMAN_PORT UTF8String]) == 0) {
-			pieman.piemanPort = checkForPortArg(argc, &i, argv, "Pieman");
-			if (pieman.piemanPort == 0) {
-				return EXIT_FAILURE;
-			}
-			continue;
-		}
-
-		// Simon port
-		if (strcmp(argv[i], [ARG_SIMON_PORT UTF8String]) == 0) {
-			pieman.simonPort = checkForPortArg(argc, &i, argv, "Simon");
-			if (pieman.simonPort == 0) {
-				return EXIT_FAILURE;
-			}
+	NSMutableArray *appArguments = [NSMutableArray array];
+	for (int i = 0; i < argc; i++ ) {
+		
+		NSString *arg = [NSString stringWithUTF8String:argv[i]];
+		
+		// if we have found the app argument then everything else is an argument for that and should be passed to the simulator.
+		if (appArgFound) {
+			[appArguments addObject:arg];
 			continue;
 		}
 		
-		// If here then it must be the app.
-		if (!appArgFound) {
-			pieman.appPath = [[NSString stringWithUTF8String:argv[i]] stringByExpandingTildeInPath];
-			appArgFound = YES;
+		// Ignore help.
+		if ([arg isEqualToString: ARG_HELP]) {
 			continue;
-		} else {
-			// It's an arg for the app.
-			[args addObject:[NSString stringWithUTF8String:argv[i]]];
 		}
-
+		
+		// Check for the pieman port.
+		if ([arg isEqualToString: ARG_PIEMAN_PORT]) {
+			int port = getPort(ARG_PIEMAN_PORT, &i, argc, argv);
+			pieman.piemanPort = port;
+			continue;
+		}
+		
+		// Check for Simon port.
+		if ([arg isEqualToString: ARG_PIEMAN_PORT]) {
+			int port = getPort(ARG_PIEMAN_PORT, &i, argc, argv);
+			pieman.simonPort = port;
+			continue;
+		}
+		
+		// If the arg starts with '-' is an unknown arg.
+		if ([arg hasPrefix:@"-"]) {
+			printf("Error: Unknown argument %s", argv[i]);
+			return EXIT_FAILURE;
+		}
+		
+		// Finally it must be the app file name.
+		pieman.appPath = [arg stringByExpandingTildeInPath];
+		if (![[NSFileManager defaultManager] fileExistsAtPath:pieman.appPath]) {
+			printf("Error: App file %s does not exist.", [pieman.appPath UTF8String]);
+			return EXIT_FAILURE;
+		}
+		appArgFound = YES;
+		
 	}
 	
 	// Set the args.
-	pieman.appArgs = args;
+	pieman.appArgs = appArguments;
 	
 	return EXIT_SUCCESS;
 	
 }
 
-int checkForPortArg(int argc, int *i, const char *argv[], const char *portName) {
-	if (*i + 1 == argc) {
-		printf("Error - No %s port specified.", portName);
-		return 0;
+int getPort(NSString *portArg, int *argIdx, int argc, const char *argv[]) {
+	
+	// Error if no more args.
+	if (*argIdx >= argc) {
+		printf("Error: expected a port value for %s", [portArg UTF8String]);
+		return EXIT_FAILURE;
 	}
-	*i = *i + 1;
-	int port = atoi(argv[*i]);
+	
+	// Error if value is another argument.
+	const char *portValue = argv[*argIdx + 1];
+	char first = portValue[0];
+	if (first == '-') {
+		printf("Error: expected a port value for %s but found another argument instead.", [portArg UTF8String]);
+		return EXIT_FAILURE;
+	}
+	
+	int port = atoi(portValue);
+	
+	// error if it's not a number.
 	if (port == 0) {
-		printf("Error - Passed %s port is not a valid integer.", portName);
-		return 0;
+		printf("Error: Passed %s port is not a valid integer.", [portArg UTF8String]);
+		return EXIT_FAILURE;
 	}
+	
+	// increment index and return.
+	*argIdx = *argIdx + 1;
 	return port;
 }
 
@@ -129,7 +152,7 @@ void printHelp() {
 	
 	const char *piemanArg = [[NSString stringWithFormat:@"%@ n", ARG_PIEMAN_PORT] UTF8String];
 	const char *simonArg = [[NSString stringWithFormat:@"%@ n", ARG_SIMON_PORT] UTF8String];
-	const char *reportDirArg = [[NSString stringWithFormat:@"%s path", ARG_REPORT_DIR] UTF8String];
+	const char *reportDirArg = [[NSString stringWithFormat:@"%@ path", ARG_REPORT_DIR] UTF8String];
 	
 	printf("The Pieman - Simon's mentor\n");
 	printf("===========================\n\n");
@@ -139,7 +162,7 @@ void printHelp() {
 	printf("builds and runs software on a regular basis. \n");
 	
 	printf("\nSyntax: pieman [%1$s] [%2$s] [%3$s] [%4$s] app-file app-args...\n",
-			 ARG_HELP,
+			 [ARG_HELP UTF8String],
 			 piemanArg,
 			 simonArg,
 			 reportDirArg);
@@ -147,7 +170,7 @@ void printHelp() {
 	printf("\nArguments\n");
 	printf("---------\n\n");
 	
-	printf("%1$-18s Prints this help information.\n\n", ARG_HELP);
+	printf("%1$-18s Prints this help information.\n\n", [ARG_HELP UTF8String]);
 	
 	printf("%1$-18s Overrides the default HTTP port that the Pieman is listening\n", piemanArg);
 	printf("%2$-18s for test results from Simon on. Defaults to %1$i\n\n", HTTP_PIEMAN_PORT, "");

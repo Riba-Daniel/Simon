@@ -17,7 +17,7 @@
 #import <Simon/SIHttpAppBackpack.h>
 #import <Simon/NSObject+Simon.h>
 #import <dUsefulStuff/NSObject+dUsefulStuff.h>
-#import <NSObject+SimonCmdArgs.h>
+#import <NSProcessInfo+Simon.h>
 
 // Simon's background thread name.
 #define SI_QUEUE_NAME "au.com.derekclarkson.simon"
@@ -27,7 +27,6 @@
 	SIStoryLogger *logger;
 	dispatch_queue_t _queue;
 }
-+(int) argIndexForName:(NSString *) name;
 @end
 
 @implementation SIAppBackpack
@@ -89,9 +88,10 @@ static SIAppBackpack *_backpack;
 +(void) load {
 	@autoreleasepool {
 		// Load Simon automatically.
-		if (![SIAppBackpack isArgumentPresentWithName:ARG_NO_LOAD]) {
+		NSProcessInfo *info = [NSProcessInfo processInfo];
+		if (![info isArgumentPresentWithName:ARG_NO_LOAD]) {
 			SIAppBackpack *backpack;
-			if ([SIAppBackpack isArgumentPresentWithName:ARG_SHOW_UI]) {
+			if ([info isArgumentPresentWithName:ARG_SHOW_UI]) {
 				backpack = [[SIUIAppBackpack alloc] init];
 			} else {
 				backpack = [[SIHttpAppBackpack alloc] init];

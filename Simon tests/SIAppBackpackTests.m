@@ -16,7 +16,7 @@
 #import <CocoaHTTPServer/HTTPServer.h>
 
 // Hack into the process to update arguments for testing.
-@interface NSProcessInfo (SIAppBackpackTests)
+@interface NSProcessInfo (_hack)
 - (void)setArguments:(id)arg1;
 @end
 
@@ -24,8 +24,8 @@
 @private
 	BOOL startRun;
 	NSArray *originalArgs;
+	SIAppBackpack *backpack;
 }
--(void) startRun:(NSNotification *) notification;
 @end
 
 @implementation SIAppBackpackTests
@@ -34,17 +34,20 @@
 	originalArgs = [[[NSProcessInfo processInfo] arguments] retain];
 	startRun = NO;
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startRun:) name:SI_RUN_STORIES_NOTIFICATION object:nil];
+	backpack = [[SIAppBackpack alloc] init];
+	[SIAppBackpack setBackpack:backpack];
 }
 
 -(void) tearDown {
 	[[NSProcessInfo processInfo] setArguments: originalArgs];
 	DC_DEALLOC(originalArgs);
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
+	DC_DEALLOC(backpack);
 }
 
 -(void) testStartupLoadsStoriesAndFiresStartRunNotification {
 
-	NSArray *args = [NSArray arrayWithObjects:@"-autorun", nil];
+	NSArray *args = [NSArray arrayWithObjects:ARG_AUTORUN, ARG_SHOW_UI, nil];
 	[[NSProcessInfo processInfo] setArguments:args];
 
 	NSNotification *notification = [NSNotification notificationWithName:UIApplicationDidBecomeActiveNotification object:self];
@@ -63,56 +66,19 @@
 	[[[mockReader expect] andReturnValue:OCMOCK_VALUE(yes)] readStorySources:[OCMArg anyPointer]];
 	[[[mockReader stub] andReturn:sources] storySources];
 
-	[SIAppBackpack backpack].reader = mockReader;
+	backpack.reader = mockReader;
 	
-	[[SIAppBackpack backpack] startUp:notification];
+	[backpack startUp:notification];
 	
 	// Need to give the code a change to execute.
-	[[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+	//[[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
 	[NSThread sleepForTimeInterval:2.0];
 
 	[mockReader verify];
 	[mockStory verify];
 	
-	GHAssertTrue(startRun, nil);
-	GHAssertTrue([[SIAppBackpack backpack].storySources.sources count] > 0, nil);
+	GHAssertTrue([backpack.storySources.sources count] > 0, nil);
 	
-}
-
--(void) testPresenceOfArg {
-	NSArray *args = [NSArray arrayWithObjects:@"-hello", nil];
-	[[NSProcessInfo processInfo] setArguments:args];
-	GHAssertTrue([SIAppBackpack isArgumentPresentWithName:@"-hello"], nil);
-}
-
--(void) testRetrieveArgValue {
-	NSArray *args = [NSArray arrayWithObjects:@"-hello", @"abc", nil];
-	[[NSProcessInfo processInfo] setArguments:args];
-	GHAssertTrue([SIAppBackpack isArgumentPresentWithName:@"-hello"], nil);
-	NSString *argValue = [SIAppBackpack argumentValueForName:@"-hello"];
-	GHAssertEqualStrings(argValue, @"abc", nil);
-}
-
--(void) testRetrieveArgValueNilWhenNotPresent {
-	NSArray *args = [NSArray arrayWithObjects:@"-hello", nil];
-	[[NSProcessInfo processInfo] setArguments:args];
-	GHAssertTrue([SIAppBackpack isArgumentPresentWithName:@"-hello"], nil);
-	NSString *argValue = [SIAppBackpack argumentValueForName:@"-hello"];
-	GHAssertNil(argValue, nil);
-}
-
--(void) testRetrieveArgValueNilWhenValueIsNextArg {
-	NSArray *args = [NSArray arrayWithObjects:@"-hello", @"-there", nil];
-	[[NSProcessInfo processInfo] setArguments:args];
-	GHAssertTrue([SIAppBackpack isArgumentPresentWithName:@"-hello"], nil);
-	NSString *argValue = [SIAppBackpack argumentValueForName:@"-hello"];
-	GHAssertNil(argValue, nil);
-}
-
-// Handlers.
-
--(void) startRun:(NSNotification *) notification {
-	startRun = YES;
 }
 
 @end

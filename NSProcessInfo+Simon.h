@@ -11,7 +11,18 @@
 /**
  Methods for dealing with arguments passed on the command line.
  */
-@interface NSObject (SimonCmdArgs)
+@interface NSProcessInfo (Simon)
+
+/// @name Command line arguments
+
+/**
+ Returns the index of the specified argument.
+ 
+ @param name the name of the argument.
+ @return a zero based index of where the argument appears in the argument list. NSNotFound if the argument is not present.
+ */
+-(int) argIndexForName:(NSString *) name;
+
 /**
  Returns true is the argument was presented to the process.
  
