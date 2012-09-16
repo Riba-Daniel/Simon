@@ -69,6 +69,11 @@ int processCmdArgs(PIPieman *pieman, int argc, const char * argv[]) {
 	NSMutableArray *appArguments = [NSMutableArray array];
 	for (int i = 0; i < argc; i++ ) {
 		
+		// Ignore the first arg because it will be the program name.
+		if (i == 0) {
+			continue;
+		}
+		
 		NSString *arg = [NSString stringWithUTF8String:argv[i]];
 		
 		// if we have found the app argument then everything else is an argument for that and should be passed to the simulator.

@@ -11,7 +11,7 @@
 /**
  This class manages an outgoing connection.
  */
-@interface SICoreHttpConnection : NSObject
+@interface SIHttpConnection : NSObject
 
 /**
  Main intialiser.
@@ -30,12 +30,13 @@
  
  @param path the REST path to send. This will be added to the server and port address.
  @param responseBodyClass the class that the JSON response class is expected to be loaded into.
- @param successBlock a block which will be executed after the response has been converted to the responseBodyClass instance.
- @param errorBlock a block which is called if there is an error.
+ @param successBlock a block which will be executed after the response has been converted to the responseBodyClass instance. Pass NULL if there is no block.
+ @param errorBlock a block which is called if there is an error. Pass NULL if there is no block.
  */
 -(void) sendRESTRequest:(NSString *) path
+					  method:(SIHttpMethod) method
 		responseBodyClass:(Class) responseBodyClass
-			  successBlock:(ResponseBlock) successBlock
-				 errorBlock:(ResponseErrorBlock) errorBlock;
+			  successBlock:(RequestSentBlock) successBlock
+				 errorBlock:(RequestSentErrorBlock) errorBlock;
 
 @end

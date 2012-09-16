@@ -12,9 +12,11 @@
 #import <dUsefulStuff/DCCommon.h>
 #import "PIHeartbeat.h"
 #import "PISimulator.h"
-#import <Simon/SICoreHttpSimpleResponseBody.h>
-#import "SICoreHttpConnection.h"
-#import <Simon/SICoreHttpIncomingConnection.h>
+#import <Simon/SIHttpGetRequestHandler.h>
+#import <Simon/SIHttpPostRequestHandler.h>
+#import <Simon/SIHttpBody.h>
+#import "SIHttpConnection.h"
+#import <Simon/SIHttpIncomingConnection.h>
 #import <CocoaHTTPServer/DDLog.h>
 #import <CocoaHTTPServer/DDTTYLogger.h>
 #import <CocoaHTTPServer/HTTPServer.h>
@@ -23,8 +25,9 @@
 @private
 	PIHeartbeat *_heartbeat;
 	PISimulator *_simulator;
-	SICoreHttpConnection *_simon;
+	SIHttpConnection *_simon;
 	HTTPServer *server;
+	int sendCount;
 }
 
 -(void) sendRunAllRequest;
@@ -43,6 +46,10 @@
 #pragma mark - Lifecycle
 
 -(void) dealloc {
+	
+	// Clear the static list of http processors.
+	[SIHttpIncomingConnection setProcessors:nil];
+	
 	self.appPath = nil;
 	self.appArgs = nil;
 	DC_DEALLOC(server);
@@ -57,7 +64,7 @@
 	if (self) {
 		
 		_finished = NO;
-
+		
 		// Heartbeat
 		_heartbeat = [[PIHeartbeat alloc] init];
 		_heartbeat.delegate = self;
@@ -66,24 +73,41 @@
 		NSInteger port = self.piemanPort > 0 ? self.piemanPort : HTTP_PIEMAN_PORT;
 		
 		// Setup the request processors.
-		//SICoreHttpRequestProcessor * runAllProcessor = [[[SIHttpRunAllRequestProcessor alloc] init] autorelease];
-		[SICoreHttpIncomingConnection setProcessors:[NSArray arrayWithObjects: nil]];
 		
-		DC_LOG(@"Starting HTTP server on port: %li", port);
-		[DDLog addLogger:[DDTTYLogger sharedInstance]];
-		server = [[HTTPServer alloc] init];
-		[server setConnectionClass:[SICoreHttpIncomingConnection class]];
-		[server setPort:port];
-		NSError *error = nil;
-		if(![server start:&error]) {
-			@throw [PIException exceptionWithReason:[NSString stringWithFormat:@"Error starting HTTP Server: %@", error]];
-		}
+		// Simon is ready so run tests.
+		RequestReceivedBlock simonReady = ^(id obj) {
+			DC_LOG(@"Simon ready received, sending Run All request back to Simon");
+			sendCount = 0;
+			[self sendRunAllRequest];
+			SIHttpBody *body = [[[SIHttpBody alloc] init] autorelease];
+			body.status = SIHttpStatusOk;
+			return body;
+		};
+		SIHttpPostRequestHandler *simonReadyProcessor = [[SIHttpPostRequestHandler alloc] initWithPath:HTTP_PATH_SIMON_READY
+																												requestBodyClass:NULL
+																															process:simonReady];
+
+		[SIHttpIncomingConnection setProcessors:[NSArray arrayWithObjects:simonReadyProcessor, nil]];
+		[simonReadyProcessor release];
 		
 		// Setup the comms.
 		dispatch_queue_t simonsQ = dispatch_queue_create(SIMON_QUEUE_NAME, NULL);
-		_simon = [[SICoreHttpConnection alloc] initWithHostUrl:[NSString stringWithFormat:@"%@:%i", HTTP_SIMON_HOST, HTTP_SIMON_PORT]
-																sendGCDQueue:simonsQ
-														  responseGCDQueue:dispatch_get_main_queue()];
+		_simon = [[SIHttpConnection alloc] initWithHostUrl:[NSString stringWithFormat:@"%@:%i", HTTP_SIMON_HOST, HTTP_SIMON_PORT]
+														  sendGCDQueue:simonsQ
+													 responseGCDQueue:dispatch_get_main_queue()];
+		
+		dispatch_async(simonsQ, ^{
+			DC_LOG(@"Starting HTTP server on port: %li", port);
+			[DDLog addLogger:[DDTTYLogger sharedInstance]];
+			server = [[HTTPServer alloc] init];
+			[server setConnectionClass:[SIHttpIncomingConnection class]];
+			[server setPort:port];
+			NSError *error = nil;
+			if(![server start:&error]) {
+				@throw [PIException exceptionWithReason:[NSString stringWithFormat:@"Error starting HTTP Server: %@", error]];
+			}
+		});
+		
 		dispatch_release(simonsQ);
 	}
 	return self;
@@ -129,24 +153,34 @@
 
 -(void) sendRunAllRequest {
 	[_simon sendRESTRequest:HTTP_PATH_RUN_ALL
-			responseBodyClass:[SICoreHttpSimpleResponseBody class]
+						  method:SIHttpMethodPost
+			responseBodyClass:[SIHttpBody class]
 				  successBlock:NULL
 					 errorBlock:^(id data, NSString *errorMsg){
-						 printf("Error: %s", [errorMsg UTF8String]);
-						 _exitCode = EXIT_FAILURE;
+						 sendCount++;
+						 if (sendCount < HTTP_MAX_RETRIES) {
+							 DC_LOG(@"Requeuing run all request");
+							 dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, HTTP_RETRY_INTERVAL * NSEC_PER_SEC);
+							 dispatch_after(popTime, dispatch_get_current_queue(), ^(void){
+								 [self sendRunAllRequest];
+							 });
+						 } else {
+							 printf("Error: %s\n", [errorMsg UTF8String]);
+							 _exitCode = EXIT_FAILURE;
+						 }
 					 }];
 }
 
 #pragma mark - Delegate methods.
 
+-(void) messageReceivedOnPath:(NSString *) path withBody:(id) obj {
+	DC_LOG(@"Simon ready, sending run request");
+	[self sendRunAllRequest];
+}
+
 -(void) errorFromSimon {
 	[_simulator shutdown];
 	_exitCode = EXIT_FAILURE;
-}
-
--(void) simulatorAppDidStart:(PISimulator *) simulator {
-	DC_LOG(@"Simulator has started, sending run request");
-	[self sendRunAllRequest];
 }
 
 -(void) heartbeatDidTimeout {

@@ -16,7 +16,7 @@
 
 -(NSString *) argumentValueForName:(NSString *) name {
 	
-	int index = [self argIndexForName:name];
+	NSInteger index = [self argIndexForName:name];
 	NSArray * arguments = [[NSProcessInfo processInfo] arguments];
 	
 	// return nil if not found or no more arguments.
@@ -34,9 +34,9 @@
 	return argValue;
 }
 
--(int) argIndexForName:(NSString *) name {
+-(NSInteger) argIndexForName:(NSString *) name {
 	NSArray * arguments = [[NSProcessInfo processInfo] arguments];
-	__block int argIndex = NSNotFound;
+	__block NSInteger argIndex = NSNotFound;
 	
 	// Get the index of the argument.
 	[arguments enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {

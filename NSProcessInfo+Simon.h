@@ -21,7 +21,7 @@
  @param name the name of the argument.
  @return a zero based index of where the argument appears in the argument list. NSNotFound if the argument is not present.
  */
--(int) argIndexForName:(NSString *) name;
+-(NSInteger) argIndexForName:(NSString *) name;
 
 /**
  Returns true is the argument was presented to the process.

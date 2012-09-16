@@ -6,7 +6,7 @@
 //  Copyright 2011. All rights reserved.
 //
 
-#import <Simon/SIConstants.h>
+#import <Simon/SICore.h>
 #import <Simon/SIStory.h>
 
 /**
@@ -62,7 +62,7 @@
  @see NSString:compare:options:range:
  @return YES if there is a match.
  */
--(BOOL) hasPrefix:(NSString *) prefix options:(int) options;
+-(BOOL) hasPrefix:(NSString *) prefix options:(NSStringCompareOptions) options;
 
 /**
  Returns the string converted to a SIHttpMethod value.

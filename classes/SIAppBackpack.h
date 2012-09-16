@@ -50,6 +50,9 @@
  */
 + (void) setBackpack:(SIAppBackpack *) backpack;
 
+/// Called once startup has finished. A good place to add code.
+-(void) startUpFinished;
+
 /**
  Exits the app. 
  */

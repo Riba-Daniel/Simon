@@ -208,7 +208,14 @@ static SIAppBackpack *_backpack;
 				[story mapSteps:(NSArray *) self.mappings];
 			}];
 		}];
+		
+		// Call the override point.
+		[self startUpFinished];
 	}];
+}
+
+-(void) startUpFinished {
+	// DO nothing here.
 }
 
 -(void) shutDown:(NSNotification *) notification  {

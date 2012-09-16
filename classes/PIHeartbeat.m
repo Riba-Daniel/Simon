@@ -10,14 +10,13 @@
 #import <Simon/SICore.h>
 #import "PIConstants.h"
 #import <dUsefulStuff/DCCommon.h>
-#import "SICoreHttpConnection.h"
-#import "SICoreHttpSimpleResponseBody.h"
+#import "SIHttpConnection.h"
 
 @interface PIHeartbeat () {
 @private
 	int heartbeats;
 	BOOL shutdown;
-	SICoreHttpConnection *_simon;
+	SIHttpConnection *_simon;
 	
 }
 
@@ -44,7 +43,7 @@
 	dispatch_queue_t simonsQ = dispatch_queue_create(SIMON_QUEUE_NAME, 0);
 	dispatch_queue_t heartbeatQ = dispatch_queue_create(SIMON_HEARTBEAT_QUEUE_NAME, 0);
 	
-	_simon = [[SICoreHttpConnection alloc] initWithHostUrl:[NSString stringWithFormat:@"http://%@:%i", HTTP_SIMON_HOST, HTTP_SIMON_PORT]
+	_simon = [[SIHttpConnection alloc] initWithHostUrl:[NSString stringWithFormat:@"http://%@:%i", HTTP_SIMON_HOST, HTTP_SIMON_PORT]
 															sendGCDQueue:simonsQ
 													  responseGCDQueue:heartbeatQ];
 	
@@ -80,21 +79,22 @@
 	};
 	
 	[_simon sendRESTRequest:HTTP_PATH_HEARTBEAT
-			responseBodyClass:[SICoreHttpSimpleResponseBody class]
-				  successBlock:^(id obj) {
+						  method:SIHttpMethodGet
+			responseBodyClass:nil
+				  successBlock:^(id<SIJsonAware> obj) {
 					  
 					  // Received a response.
-					  DC_LOG(@"Heartbeat response %@", obj);
+					  DC_LOG(@"Heartbeat responsed");
 					  heartbeats = 0;
 					  // Requeue
 					  queueHeartbeat();
 					  
 				  }
-					 errorBlock:^(id obj, NSString *errorMsg){
+					 errorBlock:^(id<SIJsonAware> obj, NSString *errorMsg){
 						 
 						 // If there is an error, increment the count and try for 5 times before exiting.
 						 heartbeats++;
-						 DC_LOG(@"Heartbeat failed to respond: attempt %i", heartbeats);
+						 DC_LOG(@"Heartbeat failed to respond: attempt %i, %@", heartbeats, errorMsg);
 						 if (heartbeats >= HEARTBEAT_MAX_ATTEMPTS) {
 							 [self notifyDelegate:@selector(heartbeatDidTimeout)];
 							 DC_LOG(@"Exiting heartbeats");

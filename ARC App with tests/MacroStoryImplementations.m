@@ -13,6 +13,10 @@ SIMapStepToSelector(@"reset test flags", setUp);
    gotThere = NO;
 }
 
+SIMapStepToSelector(@"the interface is up", checkUIAvailable);
+-(void) checkUIAvailable {
+}
+
 SIMapStepToSelector(@"check the flags", checkFlags);
 -(void) checkFlags {
 	SIAssertTrue(gotThere);

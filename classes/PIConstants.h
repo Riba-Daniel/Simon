@@ -18,7 +18,7 @@
 // Simulator control.
 #define TERMINATION_CHECK_PERIOD 1.0
 #define FORCE_TERMINATE_AFTER 5.0
-#define SESSION_TIMEOUT 10.0
+#define SESSION_TIMEOUT 30.0
 
 #define SIMULATOR_CONTENT_PATH @"~/Library/Application Support/iPhone Simulator/%@"
 #define APPLE_SIMULATOR_BUNDLE_ID @"com.apple.iphonesimulator"

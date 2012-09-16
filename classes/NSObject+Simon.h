@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Simon/SIJsonAware.h>
 
 /**
  General functions which are called from all sorts of places.
@@ -28,5 +29,6 @@
  @param block the block to be executed.
  */
 -(void) executeOnSimonThread:(void (^)()) block;
+
 
 @end

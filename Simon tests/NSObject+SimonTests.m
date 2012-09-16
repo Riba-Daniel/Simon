@@ -9,6 +9,7 @@
 #import <GHUnitIOS/GHUnit.h>
 #import <Simon/NSObject+Simon.h>
 #import <Simon/SIAppBackpack.h>
+#import <dUsefulStuff/DCCommon.h>
 
 @interface NSObject_SimonTests : GHTestCase {
 @private

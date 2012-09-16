@@ -18,6 +18,10 @@
 		3209231715F488770076A2BF /* SIAbstractException.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0AC0A14E8E8210020500E /* SIAbstractException.m */; };
 		3209231A15F489670076A2BF /* PIException.m in Sources */ = {isa = PBXBuildFile; fileRef = 3209231915F489670076A2BF /* PIException.m */; };
 		3209231B15F489670076A2BF /* PIException.m in Sources */ = {isa = PBXBuildFile; fileRef = 3209231915F489670076A2BF /* PIException.m */; };
+		320F89761603789400F2DC12 /* SIHttpBodyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3224270A15EDF64C00F0CB62 /* SIHttpBodyTests.m */; };
+		320F8977160378A200F2DC12 /* NSString+SimonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 65D35BC213A8BA130007A8AD /* NSString+SimonTests.m */; };
+		320F897916037D0500F2DC12 /* NSString+Simon.m in Sources */ = {isa = PBXBuildFile; fileRef = 6551A98913AC8A5200679B94 /* NSString+Simon.m */; };
+		320F897A16037D0600F2DC12 /* NSString+Simon.m in Sources */ = {isa = PBXBuildFile; fileRef = 6551A98913AC8A5200679B94 /* NSString+Simon.m */; };
 		3210988A15D3D6E200567D6D /* SIAppBackpackImplementation.h in Headers */ = {isa = PBXBuildFile; fileRef = 3210988915D3D6E200567D6D /* SIAppBackpackImplementation.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		3210988E15D6893F00567D6D /* SIStorySources.h in Headers */ = {isa = PBXBuildFile; fileRef = 3210988C15D6893E00567D6D /* SIStorySources.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		3210988F15D6893F00567D6D /* SIStorySources.m in Sources */ = {isa = PBXBuildFile; fileRef = 3210988D15D6893E00567D6D /* SIStorySources.m */; };
@@ -32,30 +36,19 @@
 		3221C7A7150CD1DE003CA286 /* SIUILabelHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 3221C7A5150CD1DD003CA286 /* SIUILabelHandler.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		3221C7A8150CD1DE003CA286 /* SIUILabelHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 3221C7A6150CD1DD003CA286 /* SIUILabelHandler.m */; };
 		3221C7AA150CD24C003CA286 /* SIUILabelHandlerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3221C7A9150CD24C003CA286 /* SIUILabelHandlerTests.m */; };
-		3224268115E7567600F0CB62 /* SICoreHttpRequestProcessor.h in Headers */ = {isa = PBXBuildFile; fileRef = 3224268015E7567500F0CB62 /* SICoreHttpRequestProcessor.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		3224268415E75F7000F0CB62 /* SIHttpRunAllRequestProcessor.h in Headers */ = {isa = PBXBuildFile; fileRef = 3224268215E75F7000F0CB62 /* SIHttpRunAllRequestProcessor.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		3224268515E75F7000F0CB62 /* SIHttpRunAllRequestProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3224268315E75F7000F0CB62 /* SIHttpRunAllRequestProcessor.m */; };
-		3224268715E7602D00F0CB62 /* SIHttpRunAllRequestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3224268615E7602D00F0CB62 /* SIHttpRunAllRequestTests.m */; };
-		3224268915E9184E00F0CB62 /* SICoreHttpIncomingConnectionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3224268815E9184E00F0CB62 /* SICoreHttpIncomingConnectionTests.m */; };
+		3224268115E7567600F0CB62 /* SIHttpGetRequestHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 3224268015E7567500F0CB62 /* SIHttpGetRequestHandler.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		3224268915E9184E00F0CB62 /* SIHttpIncomingConnectionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3224268815E9184E00F0CB62 /* SIHttpIncomingConnectionTests.m */; };
 		3224268B15EA400000F0CB62 /* JSONSerialisationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3224268A15EA400000F0CB62 /* JSONSerialisationTests.m */; };
 		3224268D15EA599C00F0CB62 /* SIJsonAware.h in Headers */ = {isa = PBXBuildFile; fileRef = 3224268C15EA599C00F0CB62 /* SIJsonAware.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		3224269015EB581600F0CB62 /* SIHttpHeartbeatRequestProcessor.h in Headers */ = {isa = PBXBuildFile; fileRef = 3224268E15EB581600F0CB62 /* SIHttpHeartbeatRequestProcessor.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		3224269115EB581600F0CB62 /* SIHttpHeartbeatRequestProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3224268F15EB581600F0CB62 /* SIHttpHeartbeatRequestProcessor.m */; };
-		3224269315EB590800F0CB62 /* SIHttpHeartbeatRequestProcessorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3224269215EB590800F0CB62 /* SIHttpHeartbeatRequestProcessorTests.m */; };
-		3224269715EB9AFA00F0CB62 /* SIHttpExitRequestProcessor.h in Headers */ = {isa = PBXBuildFile; fileRef = 3224269515EB9AFA00F0CB62 /* SIHttpExitRequestProcessor.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		3224269815EB9AFA00F0CB62 /* SIHttpExitRequestProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3224269615EB9AFA00F0CB62 /* SIHttpExitRequestProcessor.m */; };
 		3224269915EBA79A00F0CB62 /* SIStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 653D0EB613A783C000A5AB82 /* SIStep.m */; };
 		3224269A15EBA79A00F0CB62 /* SIStorySource.m in Sources */ = {isa = PBXBuildFile; fileRef = 94DC535C14445C5300C3E586 /* SIStorySource.m */; };
 		322426FB15ECF64900F0CB62 /* PIPieman.m in Sources */ = {isa = PBXBuildFile; fileRef = 322426FA15ECF64900F0CB62 /* PIPieman.m */; };
 		322426FF15EDD9F800F0CB62 /* PIHeartbeat.m in Sources */ = {isa = PBXBuildFile; fileRef = 322426FE15EDD9F800F0CB62 /* PIHeartbeat.m */; };
 		3224270415EDEDC300F0CB62 /* dUsefulStuff.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 32CDF2F115E5E5DA001F4317 /* dUsefulStuff.dylib */; };
-		3224270715EDF41C00F0CB62 /* SICoreHttpSimpleResponseBody.h in Headers */ = {isa = PBXBuildFile; fileRef = 3224270515EDF41B00F0CB62 /* SICoreHttpSimpleResponseBody.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		3224270815EDF41C00F0CB62 /* SICoreHttpSimpleResponseBody.m in Sources */ = {isa = PBXBuildFile; fileRef = 3224270615EDF41C00F0CB62 /* SICoreHttpSimpleResponseBody.m */; };
-		3224270915EDF41C00F0CB62 /* SICoreHttpSimpleResponseBody.m in Sources */ = {isa = PBXBuildFile; fileRef = 3224270615EDF41C00F0CB62 /* SICoreHttpSimpleResponseBody.m */; };
-		3224270B15EDF64C00F0CB62 /* SICoreHttpResponseBodyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3224270A15EDF64C00F0CB62 /* SICoreHttpResponseBodyTests.m */; };
-		3224270D15EDFB0800F0CB62 /* SICoreHttpRequestProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3224270C15EDFB0700F0CB62 /* SICoreHttpRequestProcessor.m */; };
-		3224271015EDFD6300F0CB62 /* SIHttpRequestProcessor+Simon.h in Headers */ = {isa = PBXBuildFile; fileRef = 3224270E15EDFD6100F0CB62 /* SIHttpRequestProcessor+Simon.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		3224271115EDFD6300F0CB62 /* SIHttpRequestProcessor+Simon.m in Sources */ = {isa = PBXBuildFile; fileRef = 3224270F15EDFD6200F0CB62 /* SIHttpRequestProcessor+Simon.m */; };
+		3224270715EDF41C00F0CB62 /* SIHttpBody.h in Headers */ = {isa = PBXBuildFile; fileRef = 3224270515EDF41B00F0CB62 /* SIHttpBody.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		3224270815EDF41C00F0CB62 /* SIHttpBody.m in Sources */ = {isa = PBXBuildFile; fileRef = 3224270615EDF41C00F0CB62 /* SIHttpBody.m */; };
+		3224270915EDF41C00F0CB62 /* SIHttpBody.m in Sources */ = {isa = PBXBuildFile; fileRef = 3224270615EDF41C00F0CB62 /* SIHttpBody.m */; };
+		3224270D15EDFB0800F0CB62 /* SIHttpGetRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 3224270C15EDFB0700F0CB62 /* SIHttpGetRequestHandler.m */; };
 		322B4FB415F387A900C81E65 /* iPhoneSimulatorRemoteClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32E3DC3315F0F9EA003E7B2B /* iPhoneSimulatorRemoteClient.framework */; };
 		322B4FB915F3893300C81E65 /* CocoaHTTPServer.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 322426A515EBA95E00F0CB62 /* CocoaHTTPServer.dylib */; };
 		322B4FBA15F3893300C81E65 /* dUsefulStuff.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 32CDF2F115E5E5DA001F4317 /* dUsefulStuff.dylib */; };
@@ -69,8 +62,15 @@
 		3243AA3015CFE613000205E2 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32AF045115CEB73600501B1E /* CFNetwork.framework */; };
 		3243AA3115CFE619000205E2 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32AF045315CEB75F00501B1E /* Security.framework */; };
 		325683D914EF6CEB00F7C189 /* SIUIConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 325683D814EF6CEB00F7C189 /* SIUIConstants.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		3257ECDF1603773600629C21 /* SIHttpBodyTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3224270A15EDF64C00F0CB62 /* SIHttpBodyTests.m */; };
 		3260B810151CB81C005A5AAA /* SIUINotAnInputViewException.h in Headers */ = {isa = PBXBuildFile; fileRef = 3260B80E151CB81C005A5AAA /* SIUINotAnInputViewException.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3260B811151CB81C005A5AAA /* SIUINotAnInputViewException.m in Sources */ = {isa = PBXBuildFile; fileRef = 3260B80F151CB81C005A5AAA /* SIUINotAnInputViewException.m */; };
+		3261A023160616B000DDA1CF /* NSData+Simon.h in Headers */ = {isa = PBXBuildFile; fileRef = 3261A021160616B000DDA1CF /* NSData+Simon.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		3261A024160616B000DDA1CF /* NSData+Simon.m in Sources */ = {isa = PBXBuildFile; fileRef = 3261A022160616B000DDA1CF /* NSData+Simon.m */; };
+		3261A025160616B000DDA1CF /* NSData+Simon.m in Sources */ = {isa = PBXBuildFile; fileRef = 3261A022160616B000DDA1CF /* NSData+Simon.m */; };
+		3261A026160616B000DDA1CF /* NSData+Simon.m in Sources */ = {isa = PBXBuildFile; fileRef = 3261A022160616B000DDA1CF /* NSData+Simon.m */; };
+		3261A0281606175200DDA1CF /* NSData+SimonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3261A0271606175200DDA1CF /* NSData+SimonTests.m */; };
+		3261A0291606175200DDA1CF /* NSData+SimonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3261A0271606175200DDA1CF /* NSData+SimonTests.m */; };
 		3265B0231514487100BE0930 /* Macro.stories in Resources */ = {isa = PBXBuildFile; fileRef = 3265B0211514487100BE0930 /* Macro.stories */; };
 		3265B0241514487100BE0930 /* MacroStoryImplementations.m in Sources */ = {isa = PBXBuildFile; fileRef = 3265B0221514487100BE0930 /* MacroStoryImplementations.m */; };
 		3265B02715144DB400BE0930 /* SIUIAbstractEventGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 3265B02515144DB300BE0930 /* SIUIAbstractEventGenerator.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -92,6 +92,10 @@
 		3291243E15F6CD4C00969A86 /* DtiPhoneSimulatorSession+Pieman.m in Sources */ = {isa = PBXBuildFile; fileRef = 3291243C15F6CD4C00969A86 /* DtiPhoneSimulatorSession+Pieman.m */; };
 		3296322614F751D300D9310A /* SIUITapGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 3296322414F751D300D9310A /* SIUITapGenerator.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		3296322714F751D300D9310A /* SIUITapGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3296322514F751D300D9310A /* SIUITapGenerator.m */; };
+		3296CE011605E78B00576072 /* SIHttpPostRequestHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 3296CDFF1605E78B00576072 /* SIHttpPostRequestHandler.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		3296CE021605E78B00576072 /* SIHttpPostRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 3296CE001605E78B00576072 /* SIHttpPostRequestHandler.m */; };
+		3296CE031605E78B00576072 /* SIHttpPostRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 3296CE001605E78B00576072 /* SIHttpPostRequestHandler.m */; };
+		3296CE041605E78B00576072 /* SIHttpPostRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 3296CE001605E78B00576072 /* SIHttpPostRequestHandler.m */; };
 		3298250F15039FE300631203 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 653D0E9D13A783A500A5AB82 /* UIKit.framework */; };
 		3298251015039FE300631203 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 653D0E8D13A782AD00A5AB82 /* Foundation.framework */; };
 		3298251115039FE300631203 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 653D0EA013A783A500A5AB82 /* CoreGraphics.framework */; };
@@ -107,27 +111,26 @@
 		3298252E15039FE300631203 /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3298252D15039FE300631203 /* second@2x.png */; };
 		329825391503A0FF00631203 /* BDD.stories in Resources */ = {isa = PBXBuildFile; fileRef = 329825381503A0FF00631203 /* BDD.stories */; };
 		3298253C1504C87700631203 /* BDDImplementations.m in Sources */ = {isa = PBXBuildFile; fileRef = 3298253B1504C87600631203 /* BDDImplementations.m */; };
-		329F9A9C15FB35D50041FD1D /* SICoreHttpSimpleResponseBody.m in Sources */ = {isa = PBXBuildFile; fileRef = 3224270615EDF41C00F0CB62 /* SICoreHttpSimpleResponseBody.m */; };
+		329F9A9C15FB35D50041FD1D /* SIHttpBody.m in Sources */ = {isa = PBXBuildFile; fileRef = 3224270615EDF41C00F0CB62 /* SIHttpBody.m */; };
 		329F9AA315FB88DF0041FD1D /* pieman.1 in Resources */ = {isa = PBXBuildFile; fileRef = 329F9AA215FB88DF0041FD1D /* pieman.1 */; };
-		32A0A79D15FB8E2C00A3964F /* SICoreHttpConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 32A0A79B15FB8E2C00A3964F /* SICoreHttpConnection.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		32A0A79E15FB8E2C00A3964F /* SICoreHttpConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A0A79C15FB8E2C00A3964F /* SICoreHttpConnection.m */; };
-		32A0A79F15FB8E2C00A3964F /* SICoreHttpConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A0A79C15FB8E2C00A3964F /* SICoreHttpConnection.m */; };
-		32A0A7A015FB8E2C00A3964F /* SICoreHttpConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A0A79C15FB8E2C00A3964F /* SICoreHttpConnection.m */; };
+		32A0A79D15FB8E2C00A3964F /* SIHttpConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 32A0A79B15FB8E2C00A3964F /* SIHttpConnection.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		32A0A79E15FB8E2C00A3964F /* SIHttpConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A0A79C15FB8E2C00A3964F /* SIHttpConnection.m */; };
+		32A0A79F15FB8E2C00A3964F /* SIHttpConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A0A79C15FB8E2C00A3964F /* SIHttpConnection.m */; };
+		32A0A7A015FB8E2C00A3964F /* SIHttpConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A0A79C15FB8E2C00A3964F /* SIHttpConnection.m */; };
 		32A0A7A115FC832800A3964F /* SICore.h in Headers */ = {isa = PBXBuildFile; fileRef = 329F9AA415FB8A2A0041FD1D /* SICore.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		32A0A7A315FCB59600A3964F /* PIHeartbeatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A0A7A215FCB59600A3964F /* PIHeartbeatTests.m */; };
 		32A0A7A615FE1E0E00A3964F /* NSProcessInfo+Simon.h in Headers */ = {isa = PBXBuildFile; fileRef = 32A0A7A415FE1E0E00A3964F /* NSProcessInfo+Simon.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		32A0A7A715FE1E0E00A3964F /* NSProcessInfo+Simon.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A0A7A515FE1E0E00A3964F /* NSProcessInfo+Simon.m */; };
 		32A0A7A815FE1E0E00A3964F /* NSProcessInfo+Simon.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A0A7A515FE1E0E00A3964F /* NSProcessInfo+Simon.m */; };
 		32A0A7A915FE1E0E00A3964F /* NSProcessInfo+Simon.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A0A7A515FE1E0E00A3964F /* NSProcessInfo+Simon.m */; };
-		32A0A7C615FE24AE00A3964F /* SICoreHttpIncomingConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AF045615CEB7BA00501B1E /* SICoreHttpIncomingConnection.m */; };
-		32A0A7C715FE24AE00A3964F /* SICoreHttpIncomingConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AF045615CEB7BA00501B1E /* SICoreHttpIncomingConnection.m */; };
-		32A0A7C815FE24B900A3964F /* SICoreHttpRequestProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3224270C15EDFB0700F0CB62 /* SICoreHttpRequestProcessor.m */; };
-		32A0A7C915FE24BA00A3964F /* SICoreHttpRequestProcessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 3224270C15EDFB0700F0CB62 /* SICoreHttpRequestProcessor.m */; };
+		32A0A7C615FE24AE00A3964F /* SIHttpIncomingConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AF045615CEB7BA00501B1E /* SIHttpIncomingConnection.m */; };
+		32A0A7C715FE24AE00A3964F /* SIHttpIncomingConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AF045615CEB7BA00501B1E /* SIHttpIncomingConnection.m */; };
+		32A0A7C815FE24B900A3964F /* SIHttpGetRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 3224270C15EDFB0700F0CB62 /* SIHttpGetRequestHandler.m */; };
+		32A0A7C915FE24BA00A3964F /* SIHttpGetRequestHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 3224270C15EDFB0700F0CB62 /* SIHttpGetRequestHandler.m */; };
 		32A0A7CA15FE24C600A3964F /* SIStep.m in Sources */ = {isa = PBXBuildFile; fileRef = 653D0EB613A783C000A5AB82 /* SIStep.m */; };
 		32A0A7CB15FE24D100A3964F /* SIStory.m in Sources */ = {isa = PBXBuildFile; fileRef = 653D0EB813A783C000A5AB82 /* SIStory.m */; };
 		32A0A7CD15FF208A00A3964F /* NSProcessInfo+SimonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A0A7CC15FF208A00A3964F /* NSProcessInfo+SimonTests.m */; };
 		32A188A515EF89BE00B8C111 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 32A188A315EF89BE00B8C111 /* InfoPlist.strings */; };
-		32A188B715EF8A9800B8C111 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32A188B615EF8A9800B8C111 /* Foundation.framework */; };
 		32A188B815EF8ABB00B8C111 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32A188B615EF8A9800B8C111 /* Foundation.framework */; };
 		32A188BB15EF92F200B8C111 /* GHUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32A188BA15EF92F200B8C111 /* GHUnit.framework */; };
 		32A188BD15EF969900B8C111 /* GHUnit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 32A188BA15EF92F200B8C111 /* GHUnit.framework */; };
@@ -136,8 +139,8 @@
 		32AF044215CE36C500501B1E /* SIAppBackpackTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AF044115CE36C500501B1E /* SIAppBackpackTests.m */; };
 		32AF045215CEB73600501B1E /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32AF045115CEB73600501B1E /* CFNetwork.framework */; };
 		32AF045415CEB75F00501B1E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32AF045315CEB75F00501B1E /* Security.framework */; };
-		32AF045915CEB7BA00501B1E /* SICoreHttpIncomingConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 32AF045515CEB7BA00501B1E /* SICoreHttpIncomingConnection.h */; settings = {ATTRIBUTES = (Private, ); }; };
-		32AF045A15CEB7BA00501B1E /* SICoreHttpIncomingConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AF045615CEB7BA00501B1E /* SICoreHttpIncomingConnection.m */; };
+		32AF045915CEB7BA00501B1E /* SIHttpIncomingConnection.h in Headers */ = {isa = PBXBuildFile; fileRef = 32AF045515CEB7BA00501B1E /* SIHttpIncomingConnection.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		32AF045A15CEB7BA00501B1E /* SIHttpIncomingConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AF045615CEB7BA00501B1E /* SIHttpIncomingConnection.m */; };
 		32AF045B15CEB7BA00501B1E /* SIServerException.h in Headers */ = {isa = PBXBuildFile; fileRef = 32AF045715CEB7BA00501B1E /* SIServerException.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		32AF045C15CEB7BA00501B1E /* SIServerException.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AF045815CEB7BA00501B1E /* SIServerException.m */; };
 		32B0ABF914E8DF780020500E /* SISyntaxException.h in Headers */ = {isa = PBXBuildFile; fileRef = 32B0ABF714E8DF780020500E /* SISyntaxException.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -429,29 +432,19 @@
 		3221C7A5150CD1DD003CA286 /* SIUILabelHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SIUILabelHandler.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		3221C7A6150CD1DD003CA286 /* SIUILabelHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIUILabelHandler.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		3221C7A9150CD24C003CA286 /* SIUILabelHandlerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIUILabelHandlerTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		3224268015E7567500F0CB62 /* SICoreHttpRequestProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SICoreHttpRequestProcessor.h; path = classes/SICoreHttpRequestProcessor.h; sourceTree = "<group>"; };
-		3224268215E75F7000F0CB62 /* SIHttpRunAllRequestProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIHttpRunAllRequestProcessor.h; sourceTree = "<group>"; };
-		3224268315E75F7000F0CB62 /* SIHttpRunAllRequestProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIHttpRunAllRequestProcessor.m; sourceTree = "<group>"; };
-		3224268615E7602D00F0CB62 /* SIHttpRunAllRequestTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIHttpRunAllRequestTests.m; sourceTree = "<group>"; };
-		3224268815E9184E00F0CB62 /* SICoreHttpIncomingConnectionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SICoreHttpIncomingConnectionTests.m; sourceTree = "<group>"; };
+		3224268015E7567500F0CB62 /* SIHttpGetRequestHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SIHttpGetRequestHandler.h; path = classes/SIHttpGetRequestHandler.h; sourceTree = "<group>"; };
+		3224268815E9184E00F0CB62 /* SIHttpIncomingConnectionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIHttpIncomingConnectionTests.m; sourceTree = "<group>"; };
 		3224268A15EA400000F0CB62 /* JSONSerialisationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONSerialisationTests.m; sourceTree = "<group>"; };
 		3224268C15EA599C00F0CB62 /* SIJsonAware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIJsonAware.h; sourceTree = "<group>"; };
-		3224268E15EB581600F0CB62 /* SIHttpHeartbeatRequestProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIHttpHeartbeatRequestProcessor.h; sourceTree = "<group>"; };
-		3224268F15EB581600F0CB62 /* SIHttpHeartbeatRequestProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIHttpHeartbeatRequestProcessor.m; sourceTree = "<group>"; };
-		3224269215EB590800F0CB62 /* SIHttpHeartbeatRequestProcessorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIHttpHeartbeatRequestProcessorTests.m; sourceTree = "<group>"; };
-		3224269515EB9AFA00F0CB62 /* SIHttpExitRequestProcessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIHttpExitRequestProcessor.h; sourceTree = "<group>"; };
-		3224269615EB9AFA00F0CB62 /* SIHttpExitRequestProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIHttpExitRequestProcessor.m; sourceTree = "<group>"; };
 		322426F915ECF64900F0CB62 /* PIPieman.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PIPieman.h; sourceTree = "<group>"; };
 		322426FA15ECF64900F0CB62 /* PIPieman.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PIPieman.m; sourceTree = "<group>"; };
 		322426FD15EDD9F800F0CB62 /* PIHeartbeat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PIHeartbeat.h; sourceTree = "<group>"; };
 		322426FE15EDD9F800F0CB62 /* PIHeartbeat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PIHeartbeat.m; sourceTree = "<group>"; };
 		3224270015EDDB2900F0CB62 /* PIHeartbeatDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PIHeartbeatDelegate.h; sourceTree = "<group>"; };
-		3224270515EDF41B00F0CB62 /* SICoreHttpSimpleResponseBody.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SICoreHttpSimpleResponseBody.h; path = classes/SICoreHttpSimpleResponseBody.h; sourceTree = "<group>"; };
-		3224270615EDF41C00F0CB62 /* SICoreHttpSimpleResponseBody.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SICoreHttpSimpleResponseBody.m; path = classes/SICoreHttpSimpleResponseBody.m; sourceTree = "<group>"; };
-		3224270A15EDF64C00F0CB62 /* SICoreHttpResponseBodyTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SICoreHttpResponseBodyTests.m; sourceTree = "<group>"; };
-		3224270C15EDFB0700F0CB62 /* SICoreHttpRequestProcessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SICoreHttpRequestProcessor.m; path = classes/SICoreHttpRequestProcessor.m; sourceTree = "<group>"; };
-		3224270E15EDFD6100F0CB62 /* SIHttpRequestProcessor+Simon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SIHttpRequestProcessor+Simon.h"; sourceTree = "<group>"; };
-		3224270F15EDFD6200F0CB62 /* SIHttpRequestProcessor+Simon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SIHttpRequestProcessor+Simon.m"; sourceTree = "<group>"; };
+		3224270515EDF41B00F0CB62 /* SIHttpBody.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SIHttpBody.h; path = classes/SIHttpBody.h; sourceTree = "<group>"; };
+		3224270615EDF41C00F0CB62 /* SIHttpBody.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SIHttpBody.m; path = classes/SIHttpBody.m; sourceTree = "<group>"; };
+		3224270A15EDF64C00F0CB62 /* SIHttpBodyTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIHttpBodyTests.m; sourceTree = "<group>"; };
+		3224270C15EDFB0700F0CB62 /* SIHttpGetRequestHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SIHttpGetRequestHandler.m; path = classes/SIHttpGetRequestHandler.m; sourceTree = "<group>"; };
 		322DA95115A18A4B005CFC83 /* pieman */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = pieman; sourceTree = BUILT_PRODUCTS_DIR; };
 		322DA95515A18A4B005CFC83 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		322DA95815A18A4B005CFC83 /* PieMan-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PieMan-Prefix.pch"; sourceTree = "<group>"; };
@@ -463,6 +456,9 @@
 		325683D814EF6CEB00F7C189 /* SIUIConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIConstants.h; sourceTree = "<group>"; };
 		3260B80E151CB81C005A5AAA /* SIUINotAnInputViewException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SIUINotAnInputViewException.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		3260B80F151CB81C005A5AAA /* SIUINotAnInputViewException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIUINotAnInputViewException.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		3261A021160616B000DDA1CF /* NSData+Simon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Simon.h"; sourceTree = "<group>"; };
+		3261A022160616B000DDA1CF /* NSData+Simon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Simon.m"; sourceTree = "<group>"; };
+		3261A0271606175200DDA1CF /* NSData+SimonTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+SimonTests.m"; sourceTree = "<group>"; };
 		3265B0211514487100BE0930 /* Macro.stories */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Macro.stories; sourceTree = "<group>"; };
 		3265B0221514487100BE0930 /* MacroStoryImplementations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = MacroStoryImplementations.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		3265B02515144DB300BE0930 /* SIUIAbstractEventGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIAbstractEventGenerator.h; sourceTree = "<group>"; };
@@ -485,6 +481,8 @@
 		3291243F15F6D2AF00969A86 /* PISimulatorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PISimulatorDelegate.h; sourceTree = "<group>"; };
 		3296322414F751D300D9310A /* SIUITapGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SIUITapGenerator.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		3296322514F751D300D9310A /* SIUITapGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIUITapGenerator.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		3296CDFF1605E78B00576072 /* SIHttpPostRequestHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIHttpPostRequestHandler.h; sourceTree = "<group>"; };
+		3296CE001605E78B00576072 /* SIHttpPostRequestHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIHttpPostRequestHandler.m; sourceTree = "<group>"; };
 		3298250D15039FE300631203 /* ARC App with tests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ARC App with tests.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3298251415039FE300631203 /* ARC App with tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ARC App with tests-Info.plist"; sourceTree = "<group>"; };
 		3298251615039FE300631203 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -505,8 +503,8 @@
 		3298253B1504C87600631203 /* BDDImplementations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BDDImplementations.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		329F9AA215FB88DF0041FD1D /* pieman.1 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.man; path = pieman.1; sourceTree = SOURCE_ROOT; };
 		329F9AA415FB8A2A0041FD1D /* SICore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SICore.h; sourceTree = "<group>"; };
-		32A0A79B15FB8E2C00A3964F /* SICoreHttpConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SICoreHttpConnection.h; path = classes/SICoreHttpConnection.h; sourceTree = "<group>"; };
-		32A0A79C15FB8E2C00A3964F /* SICoreHttpConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SICoreHttpConnection.m; path = classes/SICoreHttpConnection.m; sourceTree = "<group>"; };
+		32A0A79B15FB8E2C00A3964F /* SIHttpConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SIHttpConnection.h; path = classes/SIHttpConnection.h; sourceTree = "<group>"; };
+		32A0A79C15FB8E2C00A3964F /* SIHttpConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SIHttpConnection.m; path = classes/SIHttpConnection.m; sourceTree = "<group>"; };
 		32A0A7A215FCB59600A3964F /* PIHeartbeatTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PIHeartbeatTests.m; sourceTree = "<group>"; };
 		32A0A7A415FE1E0E00A3964F /* NSProcessInfo+Simon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSProcessInfo+Simon.h"; sourceTree = "<group>"; };
 		32A0A7A515FE1E0E00A3964F /* NSProcessInfo+Simon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSProcessInfo+Simon.m"; sourceTree = "<group>"; };
@@ -522,8 +520,8 @@
 		32AF044115CE36C500501B1E /* SIAppBackpackTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIAppBackpackTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		32AF045115CEB73600501B1E /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		32AF045315CEB75F00501B1E /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		32AF045515CEB7BA00501B1E /* SICoreHttpIncomingConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SICoreHttpIncomingConnection.h; path = classes/SICoreHttpIncomingConnection.h; sourceTree = "<group>"; };
-		32AF045615CEB7BA00501B1E /* SICoreHttpIncomingConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = SICoreHttpIncomingConnection.m; path = classes/SICoreHttpIncomingConnection.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		32AF045515CEB7BA00501B1E /* SIHttpIncomingConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SIHttpIncomingConnection.h; path = classes/SIHttpIncomingConnection.h; sourceTree = "<group>"; };
+		32AF045615CEB7BA00501B1E /* SIHttpIncomingConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; name = SIHttpIncomingConnection.m; path = classes/SIHttpIncomingConnection.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		32AF045715CEB7BA00501B1E /* SIServerException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIServerException.h; sourceTree = "<group>"; };
 		32AF045815CEB7BA00501B1E /* SIServerException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIServerException.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		32B0ABF714E8DF780020500E /* SISyntaxException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SISyntaxException.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
@@ -643,7 +641,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				322B4FBB15F3893B00C81E65 /* CocoaHTTPServer.dylib in Frameworks */,
-				32A188B715EF8A9800B8C111 /* Foundation.framework in Frameworks */,
 				3224270415EDEDC300F0CB62 /* dUsefulStuff.dylib in Frameworks */,
 				32E3DC3415F0F9EA003E7B2B /* iPhoneSimulatorRemoteClient.framework in Frameworks */,
 				3291243A15F5E8AE00969A86 /* AppKit.framework in Frameworks */,
@@ -758,7 +755,6 @@
 		3224267D15E74DD300F0CB62 /* Http */ = {
 			isa = PBXGroup;
 			children = (
-				32E3DC3515F1B4AD003E7B2B /* Request Processors */,
 				32C30DD515D3A73100AA7347 /* SIHttpAppBackpack.h */,
 				32C30DD615D3A73100AA7347 /* SIHttpAppBackpack.m */,
 				328DE14415D3792C009A16C1 /* SIHttpResultSender.h */,
@@ -770,7 +766,6 @@
 		3224267E15E750D000F0CB62 /* Http */ = {
 			isa = PBXGroup;
 			children = (
-				32E3DC3615F1B4EF003E7B2B /* Request Processors */,
 				32B9594415E6054700470287 /* SIHttpAppBackpackTests.m */,
 			);
 			name = Http;
@@ -877,6 +872,7 @@
 			children = (
 				65D35BC213A8BA130007A8AD /* NSString+SimonTests.m */,
 				32326CD615DA8F6D00C8B1DC /* NSObject+SimonTests.m */,
+				3261A0271606175200DDA1CF /* NSData+SimonTests.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -948,14 +944,16 @@
 		329F9AA515FB8B130041FD1D /* http */ = {
 			isa = PBXGroup;
 			children = (
-				3224268015E7567500F0CB62 /* SICoreHttpRequestProcessor.h */,
-				3224270C15EDFB0700F0CB62 /* SICoreHttpRequestProcessor.m */,
-				32AF045515CEB7BA00501B1E /* SICoreHttpIncomingConnection.h */,
-				32AF045615CEB7BA00501B1E /* SICoreHttpIncomingConnection.m */,
-				3224270515EDF41B00F0CB62 /* SICoreHttpSimpleResponseBody.h */,
-				3224270615EDF41C00F0CB62 /* SICoreHttpSimpleResponseBody.m */,
-				32A0A79B15FB8E2C00A3964F /* SICoreHttpConnection.h */,
-				32A0A79C15FB8E2C00A3964F /* SICoreHttpConnection.m */,
+				3224270515EDF41B00F0CB62 /* SIHttpBody.h */,
+				3224270615EDF41C00F0CB62 /* SIHttpBody.m */,
+				32A0A79B15FB8E2C00A3964F /* SIHttpConnection.h */,
+				32A0A79C15FB8E2C00A3964F /* SIHttpConnection.m */,
+				3224268015E7567500F0CB62 /* SIHttpGetRequestHandler.h */,
+				3224270C15EDFB0700F0CB62 /* SIHttpGetRequestHandler.m */,
+				32AF045515CEB7BA00501B1E /* SIHttpIncomingConnection.h */,
+				32AF045615CEB7BA00501B1E /* SIHttpIncomingConnection.m */,
+				3296CDFF1605E78B00576072 /* SIHttpPostRequestHandler.h */,
+				3296CE001605E78B00576072 /* SIHttpPostRequestHandler.m */,
 			);
 			name = http;
 			sourceTree = "<group>";
@@ -973,9 +971,9 @@
 		329F9AA715FB8B900041FD1D /* http */ = {
 			isa = PBXGroup;
 			children = (
-				3224268815E9184E00F0CB62 /* SICoreHttpIncomingConnectionTests.m */,
+				3224268815E9184E00F0CB62 /* SIHttpIncomingConnectionTests.m */,
 				3224268A15EA400000F0CB62 /* JSONSerialisationTests.m */,
-				3224270A15EDF64C00F0CB62 /* SICoreHttpResponseBodyTests.m */,
+				3224270A15EDF64C00F0CB62 /* SIHttpBodyTests.m */,
 			);
 			name = http;
 			sourceTree = "<group>";
@@ -1059,30 +1057,6 @@
 				32CDF2F515E5E5DA001F4317 /* dUsefullStuff Test Program.app */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		32E3DC3515F1B4AD003E7B2B /* Request Processors */ = {
-			isa = PBXGroup;
-			children = (
-				3224269515EB9AFA00F0CB62 /* SIHttpExitRequestProcessor.h */,
-				3224269615EB9AFA00F0CB62 /* SIHttpExitRequestProcessor.m */,
-				3224268E15EB581600F0CB62 /* SIHttpHeartbeatRequestProcessor.h */,
-				3224268F15EB581600F0CB62 /* SIHttpHeartbeatRequestProcessor.m */,
-				3224270E15EDFD6100F0CB62 /* SIHttpRequestProcessor+Simon.h */,
-				3224270F15EDFD6200F0CB62 /* SIHttpRequestProcessor+Simon.m */,
-				3224268215E75F7000F0CB62 /* SIHttpRunAllRequestProcessor.h */,
-				3224268315E75F7000F0CB62 /* SIHttpRunAllRequestProcessor.m */,
-			);
-			name = "Request Processors";
-			sourceTree = "<group>";
-		};
-		32E3DC3615F1B4EF003E7B2B /* Request Processors */ = {
-			isa = PBXGroup;
-			children = (
-				3224268615E7602D00F0CB62 /* SIHttpRunAllRequestTests.m */,
-				3224269215EB590800F0CB62 /* SIHttpHeartbeatRequestProcessorTests.m */,
-			);
-			name = "Request Processors";
 			sourceTree = "<group>";
 		};
 		32E3DC3715F31901003E7B2B /* simulator headers */ = {
@@ -1323,6 +1297,8 @@
 				6551A98913AC8A5200679B94 /* NSString+Simon.m */,
 				321A34681519FA9E00B22EDD /* NSObject+Simon.h */,
 				321A34691519FA9E00B22EDD /* NSObject+Simon.m */,
+				3261A021160616B000DDA1CF /* NSData+Simon.h */,
+				3261A022160616B000DDA1CF /* NSData+Simon.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -1378,7 +1354,7 @@
 				3221C79E150C9365003CA286 /* SIUIViewInfo.h in Headers */,
 				3221C7A1150C956A003CA286 /* SIUIButtonHandler.h in Headers */,
 				3221C7A7150CD1DE003CA286 /* SIUILabelHandler.h in Headers */,
-				32AF045915CEB7BA00501B1E /* SICoreHttpIncomingConnection.h in Headers */,
+				32AF045915CEB7BA00501B1E /* SIHttpIncomingConnection.h in Headers */,
 				0BF2104515D25412006BB2CA /* SIResultListener.h in Headers */,
 				32AF045B15CEB7BA00501B1E /* SIServerException.h in Headers */,
 				3265B02715144DB400BE0930 /* SIUIAbstractEventGenerator.h in Headers */,
@@ -1393,16 +1369,14 @@
 				328DE14D15D39B73009A16C1 /* Simon.h in Headers */,
 				3260B810151CB81C005A5AAA /* SIUINotAnInputViewException.h in Headers */,
 				3210988E15D6893F00567D6D /* SIStorySources.h in Headers */,
-				3224268115E7567600F0CB62 /* SICoreHttpRequestProcessor.h in Headers */,
-				3224268415E75F7000F0CB62 /* SIHttpRunAllRequestProcessor.h in Headers */,
+				3224268115E7567600F0CB62 /* SIHttpGetRequestHandler.h in Headers */,
 				3224268D15EA599C00F0CB62 /* SIJsonAware.h in Headers */,
-				3224269015EB581600F0CB62 /* SIHttpHeartbeatRequestProcessor.h in Headers */,
-				32A0A79D15FB8E2C00A3964F /* SICoreHttpConnection.h in Headers */,
-				3224269715EB9AFA00F0CB62 /* SIHttpExitRequestProcessor.h in Headers */,
-				3224271015EDFD6300F0CB62 /* SIHttpRequestProcessor+Simon.h in Headers */,
-				3224270715EDF41C00F0CB62 /* SICoreHttpSimpleResponseBody.h in Headers */,
+				32A0A79D15FB8E2C00A3964F /* SIHttpConnection.h in Headers */,
+				3224270715EDF41C00F0CB62 /* SIHttpBody.h in Headers */,
 				32A0A7A115FC832800A3964F /* SICore.h in Headers */,
 				32A0A7A615FE1E0E00A3964F /* NSProcessInfo+Simon.h in Headers */,
+				3296CE011605E78B00576072 /* SIHttpPostRequestHandler.h in Headers */,
+				3261A023160616B000DDA1CF /* NSData+Simon.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1694,16 +1668,19 @@
 				32D9353915AB098000E51C8C /* SIStory.m in Sources */,
 				322426FB15ECF64900F0CB62 /* PIPieman.m in Sources */,
 				322426FF15EDD9F800F0CB62 /* PIHeartbeat.m in Sources */,
-				3224270915EDF41C00F0CB62 /* SICoreHttpSimpleResponseBody.m in Sources */,
+				3224270915EDF41C00F0CB62 /* SIHttpBody.m in Sources */,
 				32E3DC4015F319B2003E7B2B /* PISimulator.m in Sources */,
 				3209231415F487500076A2BF /* PISDKNotFoundException.m in Sources */,
 				3209231615F488760076A2BF /* SIAbstractException.m in Sources */,
 				3209231A15F489670076A2BF /* PIException.m in Sources */,
 				3291243D15F6CD4C00969A86 /* DtiPhoneSimulatorSession+Pieman.m in Sources */,
-				32A0A79F15FB8E2C00A3964F /* SICoreHttpConnection.m in Sources */,
+				32A0A79F15FB8E2C00A3964F /* SIHttpConnection.m in Sources */,
 				32A0A7A815FE1E0E00A3964F /* NSProcessInfo+Simon.m in Sources */,
-				32A0A7C615FE24AE00A3964F /* SICoreHttpIncomingConnection.m in Sources */,
-				32A0A7C815FE24B900A3964F /* SICoreHttpRequestProcessor.m in Sources */,
+				32A0A7C615FE24AE00A3964F /* SIHttpIncomingConnection.m in Sources */,
+				32A0A7C815FE24B900A3964F /* SIHttpGetRequestHandler.m in Sources */,
+				320F897916037D0500F2DC12 /* NSString+Simon.m in Sources */,
+				3296CE031605E78B00576072 /* SIHttpPostRequestHandler.m in Sources */,
+				3261A025160616B000DDA1CF /* NSData+Simon.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1734,14 +1711,20 @@
 				3209231715F488770076A2BF /* SIAbstractException.m in Sources */,
 				3209231B15F489670076A2BF /* PIException.m in Sources */,
 				3291243E15F6CD4C00969A86 /* DtiPhoneSimulatorSession+Pieman.m in Sources */,
-				329F9A9C15FB35D50041FD1D /* SICoreHttpSimpleResponseBody.m in Sources */,
-				32A0A7A015FB8E2C00A3964F /* SICoreHttpConnection.m in Sources */,
+				329F9A9C15FB35D50041FD1D /* SIHttpBody.m in Sources */,
+				32A0A7A015FB8E2C00A3964F /* SIHttpConnection.m in Sources */,
 				32A0A7A315FCB59600A3964F /* PIHeartbeatTests.m in Sources */,
 				32A0A7A915FE1E0E00A3964F /* NSProcessInfo+Simon.m in Sources */,
-				32A0A7C715FE24AE00A3964F /* SICoreHttpIncomingConnection.m in Sources */,
-				32A0A7C915FE24BA00A3964F /* SICoreHttpRequestProcessor.m in Sources */,
+				32A0A7C715FE24AE00A3964F /* SIHttpIncomingConnection.m in Sources */,
+				32A0A7C915FE24BA00A3964F /* SIHttpGetRequestHandler.m in Sources */,
 				32A0A7CA15FE24C600A3964F /* SIStep.m in Sources */,
 				32A0A7CB15FE24D100A3964F /* SIStory.m in Sources */,
+				320F89761603789400F2DC12 /* SIHttpBodyTests.m in Sources */,
+				320F8977160378A200F2DC12 /* NSString+SimonTests.m in Sources */,
+				320F897A16037D0600F2DC12 /* NSString+Simon.m in Sources */,
+				3296CE041605E78B00576072 /* SIHttpPostRequestHandler.m in Sources */,
+				3261A026160616B000DDA1CF /* NSData+Simon.m in Sources */,
+				3261A0291606175200DDA1CF /* NSData+SimonTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1782,21 +1765,19 @@
 				3265B02815144DB400BE0930 /* SIUIAbstractEventGenerator.m in Sources */,
 				321A346B1519FA9E00B22EDD /* NSObject+Simon.m in Sources */,
 				3260B811151CB81C005A5AAA /* SIUINotAnInputViewException.m in Sources */,
-				32AF045A15CEB7BA00501B1E /* SICoreHttpIncomingConnection.m in Sources */,
+				32AF045A15CEB7BA00501B1E /* SIHttpIncomingConnection.m in Sources */,
 				32AF045C15CEB7BA00501B1E /* SIServerException.m in Sources */,
 				0BF2104615D25412006BB2CA /* SIResultListener.m in Sources */,
 				328DE14715D3792C009A16C1 /* SIHttpResultSender.m in Sources */,
 				328DE14B15D39946009A16C1 /* SIUIAppBackpack.m in Sources */,
 				32C30DD815D3A73100AA7347 /* SIHttpAppBackpack.m in Sources */,
 				3210988F15D6893F00567D6D /* SIStorySources.m in Sources */,
-				3224268515E75F7000F0CB62 /* SIHttpRunAllRequestProcessor.m in Sources */,
-				3224269115EB581600F0CB62 /* SIHttpHeartbeatRequestProcessor.m in Sources */,
-				3224269815EB9AFA00F0CB62 /* SIHttpExitRequestProcessor.m in Sources */,
-				3224270815EDF41C00F0CB62 /* SICoreHttpSimpleResponseBody.m in Sources */,
-				3224270D15EDFB0800F0CB62 /* SICoreHttpRequestProcessor.m in Sources */,
-				3224271115EDFD6300F0CB62 /* SIHttpRequestProcessor+Simon.m in Sources */,
-				32A0A79E15FB8E2C00A3964F /* SICoreHttpConnection.m in Sources */,
+				3224270815EDF41C00F0CB62 /* SIHttpBody.m in Sources */,
+				3224270D15EDFB0800F0CB62 /* SIHttpGetRequestHandler.m in Sources */,
+				32A0A79E15FB8E2C00A3964F /* SIHttpConnection.m in Sources */,
 				32A0A7A715FE1E0E00A3964F /* NSProcessInfo+Simon.m in Sources */,
+				3296CE021605E78B00576072 /* SIHttpPostRequestHandler.m in Sources */,
+				3261A024160616B000DDA1CF /* NSData+Simon.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1834,12 +1815,11 @@
 				3210989115D6896C00567D6D /* SIStorySourcesTests.m in Sources */,
 				32326CD715DA8F6D00C8B1DC /* NSObject+SimonTests.m in Sources */,
 				32B9594515E6054700470287 /* SIHttpAppBackpackTests.m in Sources */,
-				3224268715E7602D00F0CB62 /* SIHttpRunAllRequestTests.m in Sources */,
-				3224268915E9184E00F0CB62 /* SICoreHttpIncomingConnectionTests.m in Sources */,
+				3224268915E9184E00F0CB62 /* SIHttpIncomingConnectionTests.m in Sources */,
 				3224268B15EA400000F0CB62 /* JSONSerialisationTests.m in Sources */,
-				3224269315EB590800F0CB62 /* SIHttpHeartbeatRequestProcessorTests.m in Sources */,
-				3224270B15EDF64C00F0CB62 /* SICoreHttpResponseBodyTests.m in Sources */,
 				32A0A7CD15FF208A00A3964F /* NSProcessInfo+SimonTests.m in Sources */,
+				3257ECDF1603773600629C21 /* SIHttpBodyTests.m in Sources */,
+				3261A0281606175200DDA1CF /* NSData+SimonTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1927,7 +1907,7 @@
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SYSTEM_APPS_DIR)/Xcode45-DP4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/PrivateFrameworks\"",
+					"\"$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/PrivateFrameworks\"",
 				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1954,7 +1934,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SYSTEM_APPS_DIR)/Xcode45-DP4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/PrivateFrameworks\"",
+					"\"$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/PrivateFrameworks\"",
 				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2009,15 +1989,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SYSTEM_APPS_DIR)/Xcode45-DP4.app/Contents/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_DIR)/Library/Frameworks\"",
 					"\"$(SRCROOT)/../frameworks/GHUnit/0.5.1\"",
-					"\"$(SYSTEM_APPS_DIR)/Xcode45-DP4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/PrivateFrameworks\"",
+					"\"$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/PrivateFrameworks\"",
 				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2027,14 +2008,21 @@
 					"$(inherited)",
 					DC_DEBUG,
 				);
+				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
+				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
+				GCC_WARN_SHADOW = YES;
+				GCC_WARN_SIGN_COMPARE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNKNOWN_PRAGMAS = YES;
 				INFOPLIST_FILE = "Pieman Tests/Pieman Tests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks \"$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/PrivateFrameworks\" $(DEVELOPER_DIR)/../OtherFrameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
+				SDKROOT = macosx10.7;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -2043,27 +2031,35 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_IMPLICIT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SYSTEM_APPS_DIR)/Xcode45-DP4.app/Contents/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_DIR)/Library/Frameworks\"",
 					"\"$(SRCROOT)/../frameworks/GHUnit/0.5.1\"",
-					"\"$(SYSTEM_APPS_DIR)/Xcode45-DP4.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/PrivateFrameworks\"",
+					"\"$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/PrivateFrameworks\"",
 				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Pieman Tests/Pieman Tests-Prefix.pch";
+				GCC_TREAT_IMPLICIT_FUNCTION_DECLARATIONS_AS_ERRORS = YES;
+				GCC_TREAT_INCOMPATIBLE_POINTER_TYPE_WARNINGS_AS_ERRORS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_FOUR_CHARACTER_CONSTANTS = YES;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = YES;
+				GCC_WARN_SHADOW = YES;
+				GCC_WARN_SIGN_COMPARE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNKNOWN_PRAGMAS = YES;
 				INFOPLIST_FILE = "Pieman Tests/Pieman Tests-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "@loader_path/../Frameworks \"$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/PrivateFrameworks\" $(DEVELOPER_DIR)/../OtherFrameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
+				SDKROOT = macosx10.7;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

@@ -20,6 +20,7 @@
 
 #import <dUsefulStuff/NSObject+dUsefulStuff.h>
 #import <dUsefulStuff/DCCommon.h>
+#import <dUsefulStuff/NSError+dUsefulStuff.h>
 
 #import "PIConstants.h"
 
@@ -258,7 +259,7 @@
 	DC_LOG(@"App session ended");
 	NSError *finalError = error;
 	if (error != nil) {
-		DC_LOG(@"App session ended with error: %@", [error localizedFailureReason]);
+		DC_LOG(@"App session ended with error: %@", [error localizedErrorMessage]);
 		
 		// We want to ignore timeouts because they will be triggered by shutdowns and restarts.
 		if ([error code] == 2) {

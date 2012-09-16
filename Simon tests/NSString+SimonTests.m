@@ -8,7 +8,8 @@
 
 #import <GHUnitIOS/GHUnit.h>
 #import <dUsefulStuff/DCCommon.h>
-#import <Simon/SIConstants.h>
+
+#import <Simon/SICore.h>
 #import <Simon/NSString+Simon.h>
 
 @interface NSString_SimonTests : GHTestCase {}
@@ -131,6 +132,21 @@
 
 -(void) testSIHttpMethodWithUnknown {
 	GHAssertEquals([@"xxx" siHttpMethod], SIHttpMethodUnknown, nil);
+}
+
+-(void) testSIHttpMethodPost {
+	SIHttpMethod method = [@"Post" siHttpMethod];
+	GHAssertEquals(method, SIHttpMethodPost, nil);
+}
+
+-(void) testSIHttpMethodGet {
+	SIHttpMethod method = [@"get" siHttpMethod];
+	GHAssertEquals(method, SIHttpMethodGet, nil);
+}
+
+-(void) testSIHttpMethodUnknonw {
+	SIHttpMethod method = [@"xxx" siHttpMethod];
+	GHAssertEquals(method, SIHttpMethodUnknown, nil);
 }
 
 @end
