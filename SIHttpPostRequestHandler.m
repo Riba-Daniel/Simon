@@ -7,10 +7,12 @@
 //
 
 #import "SIHttpPostRequestHandler.h"
-#import <Simon/SIHttpBody.h>
+#import <Simon/SIHttpPayload.h>
 #import <Simon/NSData+Simon.h>
+#import <Simon/SIHttpGetRequestHandler+Simon.h>
 
 #import <dUsefulStuff/NSError+dUsefulStuff.h>
+#import <dUsefulStuff/DCCommon.h>
 
 @interface SIHttpPostRequestHandler () {
 @private
@@ -43,24 +45,23 @@
 	return _requestBodyClass != NULL;
 }
 
--(id<SIJsonAware>) bodyObjectFromBody:(NSData *) body {
+-(NSObject<HTTPResponse> *) processPath:(NSString *) path andBody:(NSData *) body {
+	DC_LOG(@"Request %@, returning response", path);
+	
+	// Process the payload.
+	id<SIJsonAware> requestPayload = nil;
+	if ([self expectingHttpBody]) {
+		NSError *error = nil;
+		requestPayload = [body jsonToObjectWithClass:_requestBodyClass error:&error];
+		if (requestPayload == nil) {
+			DC_LOG(@"Error accessing request body: %@", [error localizedErrorMessage]);
+			return [self httpResponseWithError:error];
+		}
+	}
 
-	if (_requestBodyClass == NULL) {
-		return nil;
-	}
-	
-	// Convert to a dictionary.
-	NSError *error = nil;
-	id<SIJsonAware> bodyObj = [body jsonToObjectWithClass:_requestBodyClass error:&error];
-	if (bodyObj == nil) {
-		return [SIHttpBody httpBodyWithStatus: SIHttpStatusError message:[error localizedErrorMessage]];
-	}
-	
-	// Now create the return type.
-	return bodyObj;
+	// Now process the request.
+	id<SIJsonAware> responsePayload = [self runProcessWithRequestPayload:requestPayload];
+	return [self httpResponseWithPayload:responsePayload];
 }
-
-#pragma mark - Helper methods
-
 
 @end

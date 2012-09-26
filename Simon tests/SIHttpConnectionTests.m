@@ -8,7 +8,7 @@
 
 #import <GHUnitIOS/GHUnit.h>
 #import <Simon/SIHttpConnection.h>
-#import <Simon/SIHttpBody.h>
+#import <Simon/SIHttpPayload.h>
 #import <dUsefulStuff/DCCommon.h>
 #import <objc/runtime.h>
 
@@ -119,7 +119,7 @@ BOOL bodyCorrect;
 	[connection sendRESTRequest:@"/def"
 								method:SIHttpMethodPost
 						 requestBody:nil
-				 responseBodyClass:[SIHttpBody class]
+				 responseBodyClass:[SIHttpPayload class]
 						successBlock:^(id<SIJsonAware> bodyObj) {
 							DC_LOG(@"Success block with %@", bodyObj);
 							successBlockCalled = YES;
@@ -142,7 +142,7 @@ BOOL bodyCorrect;
 	IMP newImp = method_getImplementation(newMethod);
 	method_setImplementation(oldMethod, newImp);
 	
-	id<SIJsonAware> body = [SIHttpBody httpBodyWithStatus:SIHttpStatusError message:@"abc"];
+	id<SIJsonAware> body = [SIHttpPayload httpPayloadWithStatus:SIHttpStatusError message:@"abc"];
 
 	bodyPresent = NO;
 	bodyCorrect = NO;
@@ -150,7 +150,7 @@ BOOL bodyCorrect;
 	[connection sendRESTRequest:@"/def"
 								method:SIHttpMethodPost
 						 requestBody:body
-				 responseBodyClass:[SIHttpBody class]
+				 responseBodyClass:[SIHttpPayload class]
 						successBlock:^(id<SIJsonAware> bodyObj) {
 
 							DC_LOG(@"Success block with %@", bodyObj);

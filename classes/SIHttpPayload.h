@@ -14,9 +14,9 @@
 #define RESPONSE_JSON_KEY_MESSAGE @"message"
 
 /**
- Simple object that is the basic response for any query.
+ Base obejct for any content of a request or response.
  */
-@interface SIHttpBody : NSObject<SIJsonAware>
+@interface SIHttpPayload : NSObject<SIJsonAware>
 
 /// @name Properties
 
@@ -46,7 +46,7 @@
  @param message an associated message. Can be nil.
  @return an autorelease instance of this class.
  */
-+(id<SIJsonAware>) httpBodyWithStatus:(SIHttpStatus) status
-										message:(NSString *) message;
++(id<SIJsonAware>) httpPayloadWithStatus:(SIHttpStatus) status
+											message:(NSString *) message;
 
 @end

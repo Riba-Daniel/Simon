@@ -36,7 +36,7 @@
 
 /**
  Indicates of the processor is expecting a message body.
-
+ 
  @return YES if the processor has been passed a body class. Therefore is expecting JSON content to be passed.
  */
 -(BOOL) expectingHttpBody;
@@ -59,20 +59,12 @@
 -(NSObject<HTTPResponse> *) processPath:(NSString *) path andBody:(NSData *) body;
 
 /**
- Override to generate content from POST requests.
+ Called to run the processing block and handles any object it returns. If the return value is nil, this will geneate a simple payload with a success status.
  
- @param body the NSData object containing the content of a POST request.
- @return the body parameter converted to an object which conforms to the SIJsonAware protocol.
+ @param payload the request body after converting to an object.
+ @return any response object from the processing block or an instance of SIHttpPayload with a status of 0 (SIHttpSuccess).
  */
--(id<SIJsonAware>) bodyObjectFromBody:(NSData *) body;
-
-/**
- Generates an appropriate response object for the passed error.
- 
- @param error the error encountered.
- @return a HTTPResponse protocol object.
- */
--(NSObject<HTTPResponse> *) responseForError:(NSError *) error;
+-(id<SIJsonAware>) runProcessWithRequestPayload:(id<SIJsonAware>) payload;
 
 @end
 

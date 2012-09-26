@@ -14,7 +14,7 @@
 #import <CocoaHTTPServer/DDTTYLogger.h>
 #import <Simon/SIServerException.h>
 #import <Simon/SIHttpIncomingConnection.h>
-#import <Simon/SIHttpBody.h>
+#import <Simon/SIHttpPayload.h>
 #import <Simon/SIHttpGetRequestHandler.h>
 #import <Simon/SIHttpPostRequestHandler.h>
 #import <Simon/SIHttpConnection.h>
@@ -68,7 +68,7 @@
 			NSNotification *notification = [NSNotification notificationWithName:SI_RUN_STORIES_NOTIFICATION object:self];
 			[[NSNotificationCenter defaultCenter] postNotification:notification];
 			
-			return [SIHttpBody httpBodyWithStatus:SIHttpStatusOk message:nil];
+			return [SIHttpPayload httpPayloadWithStatus:SIHttpStatusOk message:nil];
 		};
 		
 		SIHttpPostRequestHandler * runAllProcessor = [[SIHttpPostRequestHandler alloc] initWithPath:HTTP_PATH_RUN_ALL
@@ -84,7 +84,7 @@
 			DC_LOG(@"Queuing exit command.");
 			[[SIAppBackpack backpack] exit];
 			
-			SIHttpBody *body = [[[SIHttpBody alloc] init] autorelease];
+			SIHttpPayload *body = [[[SIHttpPayload alloc] init] autorelease];
 			body.status = SIHttpStatusOk;
 			return body;
 		};
@@ -131,7 +131,7 @@
 	[pieman sendRESTRequest:HTTP_PATH_SIMON_READY
 						  method:SIHttpMethodPost
 					requestBody:nil
-			responseBodyClass:[SIHttpBody class]
+			responseBodyClass:[SIHttpPayload class]
 				  successBlock:NULL
 					 errorBlock:^(id<SIJsonAware> obj, NSError *error){
 						 

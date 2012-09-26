@@ -7,34 +7,34 @@
 //
 
 #import <GHUnitIOS/GHUnit.h>
-#import <Simon/SIHttpBody.h>
+#import <Simon/SIHttpPayload.h>
 
-@interface SIHttpBodyTests : GHTestCase
+@interface SIHttpPayloadTests : GHTestCase
 
 @end
 
-@implementation SIHttpBodyTests
+@implementation SIHttpPayloadTests
 
 -(void) testDefaultInitialiser {
-	SIHttpBody *body = [[[SIHttpBody alloc] initWithStatus:SIHttpMethodPost message:@"abc"] autorelease];
+	SIHttpPayload *body = [[[SIHttpPayload alloc] initWithStatus:SIHttpMethodPost message:@"abc"] autorelease];
 	GHAssertEquals(body.status, SIHttpMethodPost, nil);
 	GHAssertEqualStrings(body.message, @"abc", nil);
 }
 
 -(void) testFactoryMethod {
-	SIHttpBody *body = [SIHttpBody httpBodyWithStatus:SIHttpMethodPost message:@"abc"];
+	SIHttpPayload *body = [SIHttpPayload httpPayloadWithStatus:SIHttpMethodPost message:@"abc"];
 	GHAssertEquals(body.status, SIHttpMethodPost, nil);
 	GHAssertEqualStrings(body.message, @"abc", nil);
 }
 
 -(void) testInitWithJsonDictionary {
 	NSDictionary *data = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:SIHttpStatusError], RESPONSE_JSON_KEY_STATUS, @"Message", RESPONSE_JSON_KEY_MESSAGE, nil];
-	SIHttpBody *body = [[[SIHttpBody alloc] initWithJsonDictionary:data] autorelease];
+	SIHttpPayload *body = [[[SIHttpPayload alloc] initWithJsonDictionary:data] autorelease];
 	GHAssertEquals(body.status, SIHttpStatusError, nil);
 }
 
 -(void) testJsonDictionary {
-	SIHttpBody *body = [[[SIHttpBody alloc] init] autorelease];
+	SIHttpPayload *body = [[[SIHttpPayload alloc] init] autorelease];
 	body.status = SIHttpStatusError;
 	body.message = @"message";
 	NSDictionary *data = [body jsonDictionary];

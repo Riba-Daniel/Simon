@@ -6,9 +6,9 @@
 //  Copyright (c) 2012. All rights reserved.
 //
 
-#import <Simon/SIHttpBody.h>
+#import <Simon/SIHttpPayload.h>
 
-@implementation SIHttpBody
+@implementation SIHttpPayload
 
 @synthesize status = _status;
 @synthesize message = _message;
@@ -28,9 +28,9 @@
 	return self;
 }
 
-+(id<SIJsonAware>) httpBodyWithStatus:(SIHttpStatus) status
++(id<SIJsonAware>) httpPayloadWithStatus:(SIHttpStatus) status
 										message:(NSString *) message {
-	return [[[SIHttpBody alloc] initWithStatus:status message:message] autorelease];
+	return [[[SIHttpPayload alloc] initWithStatus:status message:message] autorelease];
 }
 
 -(id) initWithJsonDictionary:(NSDictionary *) data {

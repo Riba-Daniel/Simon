@@ -14,7 +14,7 @@
 #import "PISimulator.h"
 #import <Simon/SIHttpGetRequestHandler.h>
 #import <Simon/SIHttpPostRequestHandler.h>
-#import <Simon/SIHttpBody.h>
+#import <Simon/SIHttpPayload.h>
 #import "SIHttpConnection.h"
 #import <Simon/SIHttpIncomingConnection.h>
 #import <CocoaHTTPServer/DDLog.h>
@@ -79,7 +79,7 @@
 			DC_LOG(@"Simon ready received, sending Run All request back to Simon");
 			sendCount = 0;
 			[self sendRunAllRequest];
-			SIHttpBody *body = [[[SIHttpBody alloc] init] autorelease];
+			SIHttpPayload *body = [[[SIHttpPayload alloc] init] autorelease];
 			body.status = SIHttpStatusOk;
 			return body;
 		};
@@ -154,7 +154,7 @@
 -(void) sendRunAllRequest {
 	[_simon sendRESTRequest:HTTP_PATH_RUN_ALL
 						  method:SIHttpMethodPost
-			responseBodyClass:[SIHttpBody class]
+			responseBodyClass:[SIHttpPayload class]
 				  successBlock:NULL
 					 errorBlock:^(id data, NSString *errorMsg){
 						 sendCount++;

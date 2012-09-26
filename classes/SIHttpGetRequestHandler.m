@@ -3,14 +3,12 @@
 #import <CocoaHTTPServer/HTTPDataResponse.h>
 #import <dUsefulStuff/DCCommon.h>
 #import <dUsefulStuff/NSError+dUsefulStuff.h>
-#import <Simon/SIHttpBody.h>
+#import <Simon/SIHttpPayload.h>
+#import <Simon/SIHttpGetRequestHandler+Simon.h>
 
 @interface SIHttpGetRequestHandler () {
 	RequestReceivedBlock _requestReceivedBlock;
 }
-
--(id<SIJsonAware>) responseBodyObjectWithRequestBody:(NSData *) body;
--(NSObject<HTTPResponse> *) httpResponseWithBody:(id<SIJsonAware>) body;
 
 @end
 
@@ -42,60 +40,25 @@
 }
 
 -(NSObject<HTTPResponse> *) processPath:(NSString *) path andBody:(NSData *) body {
-	id<SIJsonAware> responseBodyObj = [self responseBodyObjectWithRequestBody:body];
 	DC_LOG(@"Request %@, returning response", path);
-	return [self httpResponseWithBody:responseBodyObj];
+	id<SIJsonAware> responsePayload = [self runProcessWithRequestPayload:nil];
+	return [self httpResponseWithPayload:responsePayload];
 }
 
 -(BOOL) expectingHttpBody {
 	return NO;
 }
 
--(id<SIJsonAware>) bodyObjectFromBody:(NSData *) body {
-	return nil;
-}
-
-#pragma mark - Helper methods
-
--(id<SIJsonAware>) responseBodyObjectWithRequestBody:(NSData *) body {
-
+-(id<SIJsonAware>) runProcessWithRequestPayload:(id<SIJsonAware>) payload {
+	id<SIJsonAware> responsePayload = nil;
 	if (_requestReceivedBlock != NULL) {
-		id<SIJsonAware> bodyObj = [self bodyObjectFromBody:body];
-		return _requestReceivedBlock(bodyObj);
+		responsePayload = _requestReceivedBlock(payload);
 	}
 	
-	return [SIHttpBody httpBodyWithStatus:SIHttpStatusOk message:nil];
-}
-
--(NSObject<HTTPResponse> *) httpResponseWithBody:(id<SIJsonAware>) body {
-	
-	NSData *data = nil;
-	NSError *error = nil;
-	data = [NSJSONSerialization dataWithJSONObject:[body jsonDictionary] options:0 error:&error];
-	if (data == nil)  {
-		return [self responseForError:error];
+	if (responsePayload == nil) {
+		responsePayload = [SIHttpPayload httpPayloadWithStatus:SIHttpStatusOk message:nil];
 	}
-	
-	DC_LOG(@"Returning HTTP response with body: %@", DC_DATA_TO_STRING(data));
-	return [[[HTTPDataResponse alloc] initWithData:data] autorelease];
-	
-}
-
--(NSObject<HTTPResponse> *) responseForError:(NSError *) error {
-	
-	// Attempt to create a JSON response.
-	NSString *msg = [error localizedErrorMessage];
-	DC_LOG(@"Creating response for error: %@", msg);
-	SIHttpBody *body = [SIHttpBody httpBodyWithStatus:SIHttpStatusError message:msg];
-	
-	NSError *jsonError = nil;
-	NSData *data = [NSJSONSerialization dataWithJSONObject:body options:0 error:&jsonError];
-	if (data == nil) {
-		// And if that fails, just send the text.
-		return [[[HTTPDataResponse alloc] initWithData:DC_STRING_TO_DATA(msg)] autorelease];
-	}
-	
-	return [[[HTTPDataResponse alloc] initWithData:data] autorelease];
+	return responsePayload;
 }
 
 @end
