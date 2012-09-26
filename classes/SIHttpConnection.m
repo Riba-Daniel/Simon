@@ -11,6 +11,7 @@
 #import <Simon/SIJsonAware.h>
 #import <dUsefulStuff/DCCommon.h>
 #import <dUsefulStuff/NSError+dUsefulStuff.h>
+#import <Simon/NSData+Simon.h>
 
 @interface SIHttpConnection () {
 @private
@@ -44,57 +45,83 @@
 	return self;
 }
 
+-(void) sendRESTGetRequest:(NSString *) path
+			responseBodyClass:(Class) responseBodyClass
+				  successBlock:(RequestSentBlock) successBlock
+					 errorBlock:(RequestSentErrorBlock) errorBlock {
+	[self sendRESTRequest:path
+						method:SIHttpMethodGet
+				 requestBody:nil
+		 responseBodyClass:responseBodyClass
+				successBlock:successBlock
+				  errorBlock:errorBlock];
+}
+
 -(void) sendRESTRequest:(NSString *) path
 					  method:(SIHttpMethod) method
+				requestBody:(id<SIJsonAware>)requestBody
 		responseBodyClass:(Class) responseBodyClass
 			  successBlock:(RequestSentBlock) successBlock
 				 errorBlock:(RequestSentErrorBlock) errorBlock {
 	
 	dispatch_async(_sendQ, ^{
-		
+
+		NSError *error = nil;
+
+		// Attempt to serialise the body.
+		NSData *body = nil;
+		if (requestBody != nil) {
+			body = [NSJSONSerialization dataWithJSONObject:[requestBody jsonDictionary] options:0 error:&error];
+			if (body == nil) {
+				DC_LOG(@"Sending %@, rrror serialising request body: %@", path, error);
+				dispatch_async(_replyQ, ^{
+					errorBlock(nil, error);
+				});
+				return;
+			}
+			DC_LOG(@"Sending %@, post body %@", path, DC_DATA_TO_STRING(body));
+		}
+
+		// Setup the request.
 		NSURL *url = [[[NSURL alloc] initWithScheme:@"http" host:_baseUrl path:path] autorelease];
 		NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
 																				 cachePolicy:NSURLRequestReloadIgnoringLocalCacheData
 																			timeoutInterval:HTTP_REQUEST_TIMEOUT];
 		request.HTTPMethod = method == SIHttpMethodGet ? @"GET" : @"POST";
+		[request setHTTPBody:body];
 		
-		NSError *error = nil;
 		NSURLResponse *response = nil;
 		DC_LOG(@"Sending %@", [url absoluteURL]);
 		NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-		DC_LOG(@"Sending %@, request response received", path);
 		
 		// Check for an error.
 		if (data == nil) {
-			NSString *msg = [error localizedErrorMessage];
-			DC_LOG(@"Sending %@, error: %@", path, msg);
+			DC_LOG(@"Sending %@, error: %@", path, [error localizedErrorMessage]);
 			dispatch_async(_replyQ, ^{
-				errorBlock(nil, [NSString stringWithFormat:@"Sent %@ and received an error: %@", path, msg]);
+				errorBlock(nil, error);
 			});
 			return;
 		}
 		
 		// Now analyse the response.
+		DC_LOG(@"Response body: %@", DC_DATA_TO_STRING(data));
 		
 		// First de-serialise to a NSDictionary.
-		id body = nil;
+		id<SIJsonAware> responseBody = nil;
 		if (responseBodyClass != nil) {
-			id jsonData = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
-			if (jsonData == nil) {
-				DC_LOG(@"Sending %@, error processing response body: %@", path, DC_DATA_TO_STRING(data));
+			responseBody = [data jsonToObjectWithClass:responseBodyClass error:&error];
+			if (responseBody == nil) {
+				DC_LOG(@"Sending %@, error processing response body: %@", path, error);
 				dispatch_async(_replyQ, ^{
-					errorBlock(nil, [NSString stringWithFormat:@"Unexpected response: %@", DC_DATA_TO_STRING(data)]);
+					errorBlock(nil, error);
 				});
 				return;
 			}
-			
-			// Convert the object to our expected type an call the response block.
-			body = [[(id<SIJsonAware>)[responseBodyClass alloc] initWithJsonDictionary:jsonData] autorelease];
 		}
 		
 		if (successBlock != NULL) {
 			dispatch_async(_replyQ, ^{
-				successBlock(body);
+				successBlock(responseBody);
 				DC_LOG(@"Sending %@, success", path);
 			});
 		}

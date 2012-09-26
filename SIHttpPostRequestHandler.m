@@ -8,6 +8,7 @@
 
 #import "SIHttpPostRequestHandler.h"
 #import <Simon/SIHttpBody.h>
+#import <Simon/NSData+Simon.h>
 
 #import <dUsefulStuff/NSError+dUsefulStuff.h>
 
@@ -50,15 +51,13 @@
 	
 	// Convert to a dictionary.
 	NSError *error = nil;
-	NSDictionary *bodyObjDictionary = [NSJSONSerialization JSONObjectWithData:body
-																							options:0
-																							  error:&error];
-	if (bodyObjDictionary == nil) {
+	id<SIJsonAware> bodyObj = [body jsonToObjectWithClass:_requestBodyClass error:&error];
+	if (bodyObj == nil) {
 		return [SIHttpBody httpBodyWithStatus: SIHttpStatusError message:[error localizedErrorMessage]];
 	}
 	
 	// Now create the return type.
-	return [[[_requestBodyClass alloc] initWithJsonDictionary:bodyObjDictionary] autorelease];
+	return bodyObj;
 }
 
 #pragma mark - Helper methods

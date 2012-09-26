@@ -10,18 +10,17 @@
 
 @implementation NSData (Simon)
 
--(id<SIJsonAware>) jsonToObject {
+-(id<SIJsonAware>) jsonToObjectWithClass:(Class) expectedClass error:(NSError **) error {
 	
-	NSError *error = nil;
 	NSDictionary *bodyObjDictionary = [NSJSONSerialization JSONObjectWithData:self
 																							options:0
-																							  error:&error];
+																							  error:error];
 	if (bodyObjDictionary == nil) {
 		return nil;
 	}
 	
 	// Now create the return type.
-	return [[[[self class] alloc] initWithJsonDictionary:bodyObjDictionary] autorelease];
+	return [[[expectedClass alloc] initWithJsonDictionary:bodyObjDictionary] autorelease];
 	
 }
 

@@ -39,7 +39,7 @@ typedef void (^SimpleBlock)();
 
 // Blocks for HTTP requests and responses.
 typedef void (^RequestSentBlock)(id<SIJsonAware> bodyObj);
-typedef void (^RequestSentErrorBlock)(id<SIJsonAware> bodyObj, NSString *errorMsg);
+typedef void (^RequestSentErrorBlock)(id<SIJsonAware> bodyObj, NSError *error);
 
 typedef id<SIJsonAware> (^RequestReceivedBlock)(id<SIJsonAware> bodyObj);
 

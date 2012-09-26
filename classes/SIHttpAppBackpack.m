@@ -8,6 +8,7 @@
 
 #import <Simon/SIHttpAppBackpack.h>
 #import <dUsefulStuff/DCCommon.h>
+#import <dUsefulStuff/NSError+dUsefulStuff.h>
 #import <CocoaHTTPServer/HTTPServer.h>
 #import <CocoaHTTPServer/DDLog.h>
 #import <CocoaHTTPServer/DDTTYLogger.h>
@@ -129,15 +130,16 @@
 	// Tell the Pieman we are ready to rock.
 	[pieman sendRESTRequest:HTTP_PATH_SIMON_READY
 						  method:SIHttpMethodPost
+					requestBody:nil
 			responseBodyClass:[SIHttpBody class]
 				  successBlock:NULL
-					 errorBlock:^(id<SIJsonAware> obj, NSString *errorMsg){
+					 errorBlock:^(id<SIJsonAware> obj, NSError *error){
 						 
-						 DC_LOG(@"Error returned attempting to contact the Pieman: %@", errorMsg);
+						 DC_LOG(@"Error returned attempting to contact the Pieman: %@", [error localizedErrorMessage]);
 						 sendCount++;
 						 if (sendCount >= HTTP_MAX_RETRIES) {
 							 DC_LOG(@"Throwing exception");
-							 @throw [SIServerException exceptionWithReason:[NSString stringWithFormat:@"Error received attempting to contact the Pieman: %@", errorMsg]];
+							 @throw [SIServerException exceptionWithReason:[NSString stringWithFormat:@"Error received attempting to contact the Pieman: %@", [error localizedErrorMessage]]];
 						 }
 						 
 						 DC_LOG(@"requeuing send ready request");

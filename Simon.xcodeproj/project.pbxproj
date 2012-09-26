@@ -80,6 +80,7 @@
 		32741D7914EB581E00093E0F /* UITouch+Simon.m in Sources */ = {isa = PBXBuildFile; fileRef = 32741D7714EB581E00093E0F /* UITouch+Simon.m */; };
 		32741D7C14EB5BAE00093E0F /* UIEvent+Simon.h in Headers */ = {isa = PBXBuildFile; fileRef = 32741D7A14EB5BAE00093E0F /* UIEvent+Simon.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		32741D7D14EB5BAE00093E0F /* UIEvent+Simon.m in Sources */ = {isa = PBXBuildFile; fileRef = 32741D7B14EB5BAE00093E0F /* UIEvent+Simon.m */; };
+		327A263E160B50FF004AEC09 /* SIHttpConnectionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 327A263D160B50FF004AEC09 /* SIHttpConnectionTests.m */; };
 		328DE14015D368D2009A16C1 /* SIResultListenerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 328DE13F15D368D2009A16C1 /* SIResultListenerTests.m */; };
 		328DE14315D37566009A16C1 /* GHTestCase+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 328DE14215D37566009A16C1 /* GHTestCase+Utils.m */; };
 		328DE14615D3792C009A16C1 /* SIHttpResultSender.h in Headers */ = {isa = PBXBuildFile; fileRef = 328DE14415D3792C009A16C1 /* SIHttpResultSender.h */; settings = {ATTRIBUTES = (Private, ); }; };
@@ -468,6 +469,7 @@
 		32741D7714EB581E00093E0F /* UITouch+Simon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "UITouch+Simon.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		32741D7A14EB5BAE00093E0F /* UIEvent+Simon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIEvent+Simon.h"; sourceTree = "<group>"; };
 		32741D7B14EB5BAE00093E0F /* UIEvent+Simon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "UIEvent+Simon.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		327A263D160B50FF004AEC09 /* SIHttpConnectionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIHttpConnectionTests.m; sourceTree = "<group>"; };
 		328DE13F15D368D2009A16C1 /* SIResultListenerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIResultListenerTests.m; sourceTree = "<group>"; };
 		328DE14115D37566009A16C1 /* GHTestCase+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GHTestCase+Utils.h"; sourceTree = "<group>"; };
 		328DE14215D37566009A16C1 /* GHTestCase+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GHTestCase+Utils.m"; sourceTree = "<group>"; };
@@ -974,6 +976,7 @@
 				3224268815E9184E00F0CB62 /* SIHttpIncomingConnectionTests.m */,
 				3224268A15EA400000F0CB62 /* JSONSerialisationTests.m */,
 				3224270A15EDF64C00F0CB62 /* SIHttpBodyTests.m */,
+				327A263D160B50FF004AEC09 /* SIHttpConnectionTests.m */,
 			);
 			name = http;
 			sourceTree = "<group>";
@@ -1152,11 +1155,10 @@
 		653D0EB113A783C000A5AB82 /* Simon */ = {
 			isa = PBXGroup;
 			children = (
+				659E628E13D9C37200ACD34C /* app */,
 				65D03BEF13BE014700A3F0FA /* Categories */,
 				32B0ABF514E8DEE20020500E /* Exceptions */,
 				9490249114408D11006132A5 /* Interface */,
-				65D03BD813BA099700A3F0FA /* SIStoryLogger.h */,
-				65D03BD913BA099700A3F0FA /* SIStoryLogger.m */,
 				652D4E4B13CDD44300633E51 /* SIAppBackpack.h */,
 				652D4E4C13CDD44400633E51 /* SIAppBackpack.m */,
 				3210988915D3D6E200567D6D /* SIAppBackpackImplementation.h */,
@@ -1167,7 +1169,8 @@
 				65FCD12513AF622300A90FCA /* SIRuntime.m */,
 				32AF045715CEB7BA00501B1E /* SIServerException.h */,
 				32AF045815CEB7BA00501B1E /* SIServerException.m */,
-				659E628E13D9C37200ACD34C /* app */,
+				65D03BD813BA099700A3F0FA /* SIStoryLogger.h */,
+				65D03BD913BA099700A3F0FA /* SIStoryLogger.m */,
 			);
 			name = Simon;
 			path = classes;
@@ -1820,6 +1823,7 @@
 				32A0A7CD15FF208A00A3964F /* NSProcessInfo+SimonTests.m in Sources */,
 				3257ECDF1603773600629C21 /* SIHttpBodyTests.m in Sources */,
 				3261A0281606175200DDA1CF /* NSData+SimonTests.m in Sources */,
+				327A263E160B50FF004AEC09 /* SIHttpConnectionTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

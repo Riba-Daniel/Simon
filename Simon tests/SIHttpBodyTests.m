@@ -15,6 +15,18 @@
 
 @implementation SIHttpBodyTests
 
+-(void) testDefaultInitialiser {
+	SIHttpBody *body = [[[SIHttpBody alloc] initWithStatus:SIHttpMethodPost message:@"abc"] autorelease];
+	GHAssertEquals(body.status, SIHttpMethodPost, nil);
+	GHAssertEqualStrings(body.message, @"abc", nil);
+}
+
+-(void) testFactoryMethod {
+	SIHttpBody *body = [SIHttpBody httpBodyWithStatus:SIHttpMethodPost message:@"abc"];
+	GHAssertEquals(body.status, SIHttpMethodPost, nil);
+	GHAssertEqualStrings(body.message, @"abc", nil);
+}
+
 -(void) testInitWithJsonDictionary {
 	NSDictionary *data = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:SIHttpStatusError], RESPONSE_JSON_KEY_STATUS, @"Message", RESPONSE_JSON_KEY_MESSAGE, nil];
 	SIHttpBody *body = [[[SIHttpBody alloc] initWithJsonDictionary:data] autorelease];
