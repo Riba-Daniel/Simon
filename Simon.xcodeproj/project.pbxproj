@@ -168,8 +168,10 @@
 		32CDF2F715E5E5E7001F4317 /* CocoaHTTPServer.xcodeproj in Resources */ = {isa = PBXBuildFile; fileRef = 32CDF2F615E5E5E7001F4317 /* CocoaHTTPServer.xcodeproj */; };
 		32CF03B31613222600FFD010 /* SIHttpGetRequestHandlerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CF03B21613222600FFD010 /* SIHttpGetRequestHandlerTests.m */; };
 		32CF03B5161325D800FFD010 /* SIHttpPostRequestHandlerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CF03B4161325D800FFD010 /* SIHttpPostRequestHandlerTests.m */; };
-		32CF03B81613281800FFD010 /* SIHttpGetRequestHandler+Simon.h in Headers */ = {isa = PBXBuildFile; fileRef = 32CF03B61613281800FFD010 /* SIHttpGetRequestHandler+Simon.h */; };
+		32CF03B81613281800FFD010 /* SIHttpGetRequestHandler+Simon.h in Headers */ = {isa = PBXBuildFile; fileRef = 32CF03B61613281800FFD010 /* SIHttpGetRequestHandler+Simon.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		32CF03B91613281800FFD010 /* SIHttpGetRequestHandler+Simon.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CF03B71613281800FFD010 /* SIHttpGetRequestHandler+Simon.m */; };
+		32CF03BA1614867100FFD010 /* SIHttpGetRequestHandler+Simon.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CF03B71613281800FFD010 /* SIHttpGetRequestHandler+Simon.m */; };
+		32CF03BB1614867200FFD010 /* SIHttpGetRequestHandler+Simon.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CF03B71613281800FFD010 /* SIHttpGetRequestHandler+Simon.m */; };
 		32D5D98A14E1357900D29DD5 /* TestView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32D5D98914E1357900D29DD5 /* TestView.xib */; };
 		32D5D98D14E135A300D29DD5 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D5D98C14E135A300D29DD5 /* TestViewController.m */; };
 		32D9353915AB098000E51C8C /* SIStory.m in Sources */ = {isa = PBXBuildFile; fileRef = 653D0EB813A783C000A5AB82 /* SIStory.m */; };
@@ -1697,6 +1699,7 @@
 				320F897916037D0500F2DC12 /* NSString+Simon.m in Sources */,
 				3296CE031605E78B00576072 /* SIHttpPostRequestHandler.m in Sources */,
 				3261A025160616B000DDA1CF /* NSData+Simon.m in Sources */,
+				32CF03BA1614867100FFD010 /* SIHttpGetRequestHandler+Simon.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1741,6 +1744,7 @@
 				3296CE041605E78B00576072 /* SIHttpPostRequestHandler.m in Sources */,
 				3261A026160616B000DDA1CF /* NSData+Simon.m in Sources */,
 				3261A0291606175200DDA1CF /* NSData+SimonTests.m in Sources */,
+				32CF03BB1614867200FFD010 /* SIHttpGetRequestHandler+Simon.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

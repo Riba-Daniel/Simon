@@ -57,6 +57,19 @@
 				  errorBlock:errorBlock];
 }
 
+-(void) sendRESTPostRequest:(NSString *) path
+					 requestBody:(id<SIJsonAware>)requestBody
+			 responseBodyClass:(Class) responseBodyClass
+					successBlock:(RequestSentBlock) successBlock
+					  errorBlock:(RequestSentErrorBlock) errorBlock {
+	[self sendRESTRequest:path
+						method:SIHttpMethodPost
+				 requestBody:requestBody
+		 responseBodyClass:responseBodyClass
+				successBlock:successBlock
+				  errorBlock:errorBlock];
+}
+
 -(void) sendRESTRequest:(NSString *) path
 					  method:(SIHttpMethod) method
 				requestBody:(id<SIJsonAware>)requestBody
@@ -65,9 +78,9 @@
 				 errorBlock:(RequestSentErrorBlock) errorBlock {
 	
 	dispatch_async(_sendQ, ^{
-
+		
 		NSError *error = nil;
-
+		
 		// Attempt to serialise the body.
 		NSData *body = nil;
 		if (requestBody != nil) {
@@ -81,7 +94,7 @@
 			}
 			DC_LOG(@"Sending %@, post body %@", path, DC_DATA_TO_STRING(body));
 		}
-
+		
 		// Setup the request.
 		NSURL *url = [[[NSURL alloc] initWithScheme:@"http" host:_baseUrl path:path] autorelease];
 		NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url

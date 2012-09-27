@@ -8,6 +8,8 @@
 
 #import "PIHeartbeat.h"
 #import <Simon/SICore.h>
+#import <Simon/SIHttpPayload.h>
+#import <dUsefulStuff/NSError+dUsefulStuff.h>
 #import "PIConstants.h"
 #import <dUsefulStuff/DCCommon.h>
 #import "SIHttpConnection.h"
@@ -78,9 +80,8 @@
 		});
 	};
 	
-	[_simon sendRESTRequest:HTTP_PATH_HEARTBEAT
-						  method:SIHttpMethodGet
-			responseBodyClass:nil
+	[_simon sendRESTGetRequest:HTTP_PATH_HEARTBEAT
+				responseBodyClass:[SIHttpPayload class]
 				  successBlock:^(id<SIJsonAware> obj) {
 					  
 					  // Received a response.
@@ -90,11 +91,11 @@
 					  queueHeartbeat();
 					  
 				  }
-					 errorBlock:^(id<SIJsonAware> obj, NSString *errorMsg){
+					 errorBlock:^(id<SIJsonAware> obj, NSError *error){
 						 
 						 // If there is an error, increment the count and try for 5 times before exiting.
 						 heartbeats++;
-						 DC_LOG(@"Heartbeat failed to respond: attempt %i, %@", heartbeats, errorMsg);
+						 DC_LOG(@"Heartbeat failed to respond: attempt %i, %@", heartbeats, [error localizedErrorMessage]);
 						 if (heartbeats >= HEARTBEAT_MAX_ATTEMPTS) {
 							 [self notifyDelegate:@selector(heartbeatDidTimeout)];
 							 DC_LOG(@"Exiting heartbeats");

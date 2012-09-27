@@ -17,6 +17,7 @@
 #import <Simon/SIHttpPayload.h>
 #import "SIHttpConnection.h"
 #import <Simon/SIHttpIncomingConnection.h>
+#import <dUsefulStuff/NSError+dUsefulStuff.h>
 #import <CocoaHTTPServer/DDLog.h>
 #import <CocoaHTTPServer/DDTTYLogger.h>
 #import <CocoaHTTPServer/HTTPServer.h>
@@ -86,7 +87,7 @@
 		SIHttpPostRequestHandler *simonReadyProcessor = [[SIHttpPostRequestHandler alloc] initWithPath:HTTP_PATH_SIMON_READY
 																												requestBodyClass:NULL
 																															process:simonReady];
-
+		
 		[SIHttpIncomingConnection setProcessors:[NSArray arrayWithObjects:simonReadyProcessor, nil]];
 		[simonReadyProcessor release];
 		
@@ -152,23 +153,24 @@
 #pragma mark - Tasks
 
 -(void) sendRunAllRequest {
-	[_simon sendRESTRequest:HTTP_PATH_RUN_ALL
-						  method:SIHttpMethodPost
-			responseBodyClass:[SIHttpPayload class]
-				  successBlock:NULL
-					 errorBlock:^(id data, NSString *errorMsg){
-						 sendCount++;
-						 if (sendCount < HTTP_MAX_RETRIES) {
-							 DC_LOG(@"Requeuing run all request");
-							 dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, HTTP_RETRY_INTERVAL * NSEC_PER_SEC);
-							 dispatch_after(popTime, dispatch_get_current_queue(), ^(void){
-								 [self sendRunAllRequest];
-							 });
-						 } else {
-							 printf("Error: %s\n", [errorMsg UTF8String]);
-							 _exitCode = EXIT_FAILURE;
-						 }
-					 }];
+	
+	[_simon sendRESTPostRequest:HTTP_PATH_RUN_ALL
+						 requestBody:nil
+				 responseBodyClass:[SIHttpPayload class]
+						successBlock:NULL
+						  errorBlock:^(id data, NSError *error){
+							  sendCount++;
+							  if (sendCount < HTTP_MAX_RETRIES) {
+								  DC_LOG(@"Requeuing run all request");
+								  dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, HTTP_RETRY_INTERVAL * NSEC_PER_SEC);
+								  dispatch_after(popTime, dispatch_get_current_queue(), ^(void){
+									  [self sendRunAllRequest];
+								  });
+							  } else {
+								  printf("Error: %s\n", [[error localizedErrorMessage] UTF8String]);
+								  _exitCode = EXIT_FAILURE;
+							  }
+						  }];
 }
 
 #pragma mark - Delegate methods.
