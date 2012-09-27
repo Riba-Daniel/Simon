@@ -45,7 +45,7 @@
 	dispatch_queue_t simonsQ = dispatch_queue_create(SIMON_QUEUE_NAME, 0);
 	dispatch_queue_t heartbeatQ = dispatch_queue_create(SIMON_HEARTBEAT_QUEUE_NAME, 0);
 	
-	_simon = [[SIHttpConnection alloc] initWithHostUrl:[NSString stringWithFormat:@"http://%@:%i", HTTP_SIMON_HOST, HTTP_SIMON_PORT]
+	_simon = [[SIHttpConnection alloc] initWithHostUrl:[NSString stringWithFormat:@"%@:%i", HTTP_SIMON_HOST, HTTP_SIMON_PORT]
 															sendGCDQueue:simonsQ
 													  responseGCDQueue:heartbeatQ];
 	

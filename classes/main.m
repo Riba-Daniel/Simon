@@ -110,7 +110,7 @@ int processCmdArgs(PIPieman *pieman, int argc, const char * argv[]) {
 		// Finally it must be the app file name.
 		pieman.appPath = [arg stringByExpandingTildeInPath];
 		if (![[NSFileManager defaultManager] fileExistsAtPath:pieman.appPath]) {
-			printf("Error: App file %s does not exist.", [pieman.appPath UTF8String]);
+			printf("Error: App file '%s' does not exist.", [pieman.appPath UTF8String]);
 			return EXIT_FAILURE;
 		}
 		appArgFound = YES;

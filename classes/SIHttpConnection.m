@@ -86,7 +86,7 @@
 		if (requestBody != nil) {
 			body = [NSJSONSerialization dataWithJSONObject:[requestBody jsonDictionary] options:0 error:&error];
 			if (body == nil) {
-				DC_LOG(@"Sending %@, rrror serialising request body: %@", path, error);
+				DC_LOG(@"Sending %@, error serialising request body: %@", path, error);
 				dispatch_async(_replyQ, ^{
 					errorBlock(nil, error);
 				});
