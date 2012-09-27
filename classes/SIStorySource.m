@@ -65,9 +65,12 @@
 
 -(void) selectWithPrefix:(NSString *) prefix {
 	
+	DC_LOG(@"Filtering source '%@' and stories based on prefix: %@", [self.source lastPathComponent], prefix);
+
 	// First see if the source name matches.
 	NSString *filename = [_source lastPathComponent];
 	if ([filename hasPrefix:prefix options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch)]) {
+		DC_LOG(@"Source matches, selecting all stories");
 		[self selectAll];
 		return;
 	}
@@ -75,8 +78,10 @@
 	// Now check each story title.
 	DC_DEALLOC(_selectedStories);
 	NSMutableIndexSet *selectedIndexes = [[NSMutableIndexSet alloc] init];
+	DC_LOG(@"Checking story titles");
 	[self.stories enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
 		if ([((SIStory *) obj).title hasPrefix:prefix options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch)]) {
+			DC_LOG(@"Story '%@' matches", ((SIStory *) obj).title);
 			[selectedIndexes addIndex:idx];
 		}
 	}];

@@ -20,6 +20,9 @@
 -(void) backToStoryList;
 -(NSArray *) sourcesToDisplay;
 -(void) filterContentForSearchText:(NSString *)searchText scope:(NSString *)scope;
+-(SIStorySource *) sourceForSection:(NSInteger) section;
+-(SIStorySource *) sourceForIndexPath:(NSIndexPath *) indexPath;
+-(SIStory *) storyForIndexPath:(NSIndexPath *) indexPath;
 @end
 
 @implementation SIStoryListController
@@ -34,6 +37,19 @@
 
 -(NSArray *) sourcesToDisplay {
 	return [SIAppBackpack backpack].storySources.selectedSources;
+}
+
+-(SIStorySource *) sourceForSection:(NSInteger) section {
+	return [[self sourcesToDisplay] objectAtIndex:section];
+}
+
+-(SIStorySource *) sourceForIndexPath:(NSIndexPath *) indexPath {
+	return [self sourceForSection:indexPath.section];
+}
+
+-(SIStory *) storyForIndexPath:(NSIndexPath *) indexPath {
+	SIStorySource *source = [self sourceForIndexPath:indexPath];
+	return [source.selectedStories objectAtIndex:indexPath.row];
 }
 
 #pragma mark - UIView methods
@@ -106,8 +122,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	NSArray *sources = [self sourcesToDisplay];
-	NSInteger count = [((SIStorySource *)[sources objectAtIndex:section]).stories count];
+	NSInteger count = [[self sourceForSection:section].selectedStories count];
 	DC_LOG(@"There are %i stories in section %i", count, section);
 	return count;
 }
@@ -120,10 +135,8 @@
 		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"Story cell"] autorelease];
 	}
 	
-	// Get the source and story.
-	NSArray *sources = [self sourcesToDisplay];
-	NSArray *stories = ((SIStorySource *)[sources objectAtIndex:indexPath.section]).stories;
-	SIStory *story = (SIStory *)[stories objectAtIndex:indexPath.row];
+	// Get the story.
+	SIStory *story = [self storyForIndexPath:indexPath];
    
    // Setup the cell.
 	cell.textLabel.text = story.title;
@@ -153,8 +166,7 @@
 #pragma mark - Table view delegate
 
 -(NSString *) tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-	NSArray *sources = [self sourcesToDisplay];
-	return [((SIStorySource *)[sources objectAtIndex:section]).source lastPathComponent];
+	return [[self sourceForSection:section].source lastPathComponent];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -165,9 +177,8 @@
 	// Load the controller.
 	detailsController = [[SIStoryDetailsController alloc] initWithStyle:UITableViewStylePlain];
 	
- 	NSArray *sources = [self sourcesToDisplay];
-	detailsController.source = [sources objectAtIndex:indexPath.section];
-	detailsController.story = (SIStory *)[detailsController.source.stories objectAtIndex:indexPath.row];
+	detailsController.source = [self sourceForIndexPath:indexPath];
+	detailsController.story = [self storyForIndexPath:indexPath];
 	detailsController.navigationItem.title = detailsController.story.title;
 	
 	UIBarButtonItem *rerunButton = [[UIBarButtonItem alloc] initWithTitle:@"Run" 
@@ -217,6 +228,7 @@
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+	DC_LOG(@"Searching for sources and stories starting with: %@", searchText);
 	[self filterContentForSearchText:searchText scope:[searchBar.scopeButtonTitles objectAtIndex:searchBar.selectedScopeButtonIndex]];
 }
 

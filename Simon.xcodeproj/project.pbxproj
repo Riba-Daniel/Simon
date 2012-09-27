@@ -983,11 +983,11 @@
 		329F9AA715FB8B900041FD1D /* http */ = {
 			isa = PBXGroup;
 			children = (
-				3224268815E9184E00F0CB62 /* SIHttpIncomingConnectionTests.m */,
 				3224268A15EA400000F0CB62 /* JSONSerialisationTests.m */,
-				3224270A15EDF64C00F0CB62 /* SIHttpPayloadTests.m */,
 				327A263D160B50FF004AEC09 /* SIHttpConnectionTests.m */,
 				32CF03B21613222600FFD010 /* SIHttpGetRequestHandlerTests.m */,
+				3224268815E9184E00F0CB62 /* SIHttpIncomingConnectionTests.m */,
+				3224270A15EDF64C00F0CB62 /* SIHttpPayloadTests.m */,
 				32CF03B4161325D800FFD010 /* SIHttpPostRequestHandlerTests.m */,
 			);
 			name = http;

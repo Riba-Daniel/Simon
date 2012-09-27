@@ -53,18 +53,21 @@
 
 -(void) selectWithPrefix:(NSString *) prefix {
 	
-	NSMutableIndexSet *selectedIndexes = [[NSMutableIndexSet alloc] init];
+	// Select matching sources.
+	NSMutableIndexSet *selectedSourceIndexes = [[NSMutableIndexSet alloc] init];
+
+	// Query each source.
 	[_sources enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
 		SIStorySource *source = (SIStorySource *) obj;
 		[source selectWithPrefix:prefix];
 		if ([source.selectedStories count] > 0) {
-			[selectedIndexes addIndex:idx];
+			[selectedSourceIndexes addIndex:idx];
 		}
 	}];
 	
 	DC_DEALLOC(_selectedSources);
-	_selectedSources = [[_sources objectsAtIndexes:selectedIndexes] retain];
-	DC_DEALLOC(selectedIndexes);
+	_selectedSources = [[_sources objectsAtIndexes:selectedSourceIndexes] retain];
+	DC_DEALLOC(selectedSourceIndexes);
 	DC_DEALLOC(_selectionCriteria);
 	_selectionCriteria = [prefix retain];
 }
