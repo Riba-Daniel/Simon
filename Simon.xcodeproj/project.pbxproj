@@ -172,6 +172,12 @@
 		32CF03B91613281800FFD010 /* SIHttpGetRequestHandler+Simon.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CF03B71613281800FFD010 /* SIHttpGetRequestHandler+Simon.m */; };
 		32CF03BA1614867100FFD010 /* SIHttpGetRequestHandler+Simon.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CF03B71613281800FFD010 /* SIHttpGetRequestHandler+Simon.m */; };
 		32CF03BB1614867200FFD010 /* SIHttpGetRequestHandler+Simon.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CF03B71613281800FFD010 /* SIHttpGetRequestHandler+Simon.m */; };
+		32CF03D916148D4700FFD010 /* SIFinalReport.h in Headers */ = {isa = PBXBuildFile; fileRef = 32CF03D716148D4600FFD010 /* SIFinalReport.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		32CF03DA16148D4700FFD010 /* SIFinalReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CF03D816148D4700FFD010 /* SIFinalReport.m */; };
+		32CF03DB16148D4700FFD010 /* SIFinalReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CF03D816148D4700FFD010 /* SIFinalReport.m */; };
+		32CF03DC16148D4700FFD010 /* SIFinalReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CF03D816148D4700FFD010 /* SIFinalReport.m */; };
+		32CF03DE1614902F00FFD010 /* SIFinalReportTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CF03DD1614902F00FFD010 /* SIFinalReportTests.m */; };
+		32CF03DF1614902F00FFD010 /* SIFinalReportTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CF03DD1614902F00FFD010 /* SIFinalReportTests.m */; };
 		32D5D98A14E1357900D29DD5 /* TestView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32D5D98914E1357900D29DD5 /* TestView.xib */; };
 		32D5D98D14E135A300D29DD5 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D5D98C14E135A300D29DD5 /* TestViewController.m */; };
 		32D9353915AB098000E51C8C /* SIStory.m in Sources */ = {isa = PBXBuildFile; fileRef = 653D0EB813A783C000A5AB82 /* SIStory.m */; };
@@ -554,6 +560,9 @@
 		32CF03B4161325D800FFD010 /* SIHttpPostRequestHandlerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIHttpPostRequestHandlerTests.m; sourceTree = "<group>"; };
 		32CF03B61613281800FFD010 /* SIHttpGetRequestHandler+Simon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SIHttpGetRequestHandler+Simon.h"; sourceTree = "<group>"; };
 		32CF03B71613281800FFD010 /* SIHttpGetRequestHandler+Simon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SIHttpGetRequestHandler+Simon.m"; sourceTree = "<group>"; };
+		32CF03D716148D4600FFD010 /* SIFinalReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SIFinalReport.h; path = ../SIFinalReport.h; sourceTree = "<group>"; };
+		32CF03D816148D4700FFD010 /* SIFinalReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SIFinalReport.m; path = ../SIFinalReport.m; sourceTree = "<group>"; };
+		32CF03DD1614902F00FFD010 /* SIFinalReportTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIFinalReportTests.m; sourceTree = "<group>"; };
 		32D5D98914E1357900D29DD5 /* TestView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestView.xib; sourceTree = "<group>"; };
 		32D5D98B14E135A300D29DD5 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
 		32D5D98C14E135A300D29DD5 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
@@ -1231,6 +1240,8 @@
 		6583B42F13D1C9FF005E13F3 /* Stories */ = {
 			isa = PBXGroup;
 			children = (
+				32CF03D716148D4600FFD010 /* SIFinalReport.h */,
+				32CF03D816148D4700FFD010 /* SIFinalReport.m */,
 				653D0EB513A783C000A5AB82 /* SIStep.h */,
 				653D0EB613A783C000A5AB82 /* SIStep.m */,
 				65FCD11C13AE2D6900A90FCA /* SIStepMapping.h */,
@@ -1261,6 +1272,7 @@
 				3210989015D6896C00567D6D /* SIStorySourcesTests.m */,
 				0B9D8FEF15CF82540005CBBF /* SIStorySourceTests.m */,
 				65B647CA13B8AE5E0083C114 /* SIStoryTests.m */,
+				32CF03DD1614902F00FFD010 /* SIFinalReportTests.m */,
 			);
 			name = Stories;
 			sourceTree = "<group>";
@@ -1395,6 +1407,7 @@
 				3296CE011605E78B00576072 /* SIHttpPostRequestHandler.h in Headers */,
 				3261A023160616B000DDA1CF /* NSData+Simon.h in Headers */,
 				32CF03B81613281800FFD010 /* SIHttpGetRequestHandler+Simon.h in Headers */,
+				32CF03D916148D4700FFD010 /* SIFinalReport.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1700,6 +1713,7 @@
 				3296CE031605E78B00576072 /* SIHttpPostRequestHandler.m in Sources */,
 				3261A025160616B000DDA1CF /* NSData+Simon.m in Sources */,
 				32CF03BA1614867100FFD010 /* SIHttpGetRequestHandler+Simon.m in Sources */,
+				32CF03DB16148D4700FFD010 /* SIFinalReport.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1745,6 +1759,8 @@
 				3261A026160616B000DDA1CF /* NSData+Simon.m in Sources */,
 				3261A0291606175200DDA1CF /* NSData+SimonTests.m in Sources */,
 				32CF03BB1614867200FFD010 /* SIHttpGetRequestHandler+Simon.m in Sources */,
+				32CF03DC16148D4700FFD010 /* SIFinalReport.m in Sources */,
+				32CF03DF1614902F00FFD010 /* SIFinalReportTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1799,6 +1815,7 @@
 				3296CE021605E78B00576072 /* SIHttpPostRequestHandler.m in Sources */,
 				3261A024160616B000DDA1CF /* NSData+Simon.m in Sources */,
 				32CF03B91613281800FFD010 /* SIHttpGetRequestHandler+Simon.m in Sources */,
+				32CF03DA16148D4700FFD010 /* SIFinalReport.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1844,6 +1861,7 @@
 				327A263E160B50FF004AEC09 /* SIHttpConnectionTests.m in Sources */,
 				32CF03B31613222600FFD010 /* SIHttpGetRequestHandlerTests.m in Sources */,
 				32CF03B5161325D800FFD010 /* SIHttpPostRequestHandlerTests.m in Sources */,
+				32CF03DE1614902F00FFD010 /* SIFinalReportTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

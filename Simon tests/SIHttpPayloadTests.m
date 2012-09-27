@@ -28,7 +28,7 @@
 }
 
 -(void) testInitWithJsonDictionary {
-	NSDictionary *data = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:SIHttpStatusError], RESPONSE_JSON_KEY_STATUS, @"Message", RESPONSE_JSON_KEY_MESSAGE, nil];
+	NSDictionary *data = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInt:SIHttpStatusError], PAYLOAD_KEY_STATUS, @"Message", PAYLOAD_KEY_MESSAGE, nil];
 	SIHttpPayload *body = [[[SIHttpPayload alloc] initWithJsonDictionary:data] autorelease];
 	GHAssertEquals(body.status, SIHttpStatusError, nil);
 }
@@ -38,8 +38,8 @@
 	body.status = SIHttpStatusError;
 	body.message = @"message";
 	NSDictionary *data = [body jsonDictionary];
-	GHAssertEquals([[data objectForKey:RESPONSE_JSON_KEY_STATUS] intValue], SIHttpStatusError, nil);
-	GHAssertEquals([data objectForKey:RESPONSE_JSON_KEY_MESSAGE], @"message", nil);
+	GHAssertEquals([[data objectForKey:PAYLOAD_KEY_STATUS] intValue], SIHttpStatusError, nil);
+	GHAssertEquals([data objectForKey:PAYLOAD_KEY_MESSAGE], @"message", nil);
 }
 
 @end
