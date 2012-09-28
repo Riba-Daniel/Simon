@@ -16,11 +16,7 @@
 #import <Simon/SIAppBackpack.h>
 #import "NSString+Simon.h"
 
-@interface SIStoryLogger() {
-	@private
-
-}
-
+@interface SIStoryLogger() 
 @end
 
 @implementation SIStoryLogger

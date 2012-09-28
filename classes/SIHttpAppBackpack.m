@@ -20,12 +20,14 @@
 #import <Simon/SIHttpConnection.h>
 #import <Simon/NSProcessInfo+Simon.h>
 #import <Simon/SIJsonAware.h>
+#import <SImon/SIHttpResultSender.h>
 
 @interface SIHttpAppBackpack () {
 @private
 	SIHttpConnection *pieman;
 	dispatch_queue_t piemanQ;
 	int sendCount;
+	SIHttpResultSender *resultSender;
 }
 
 -(void) sendReadyToPieman;
@@ -37,11 +39,13 @@
 @synthesize server = _server;
 
 -(void) dealloc {
-	DC_LOG(@"Stopping server");
-	
+
+	DC_DEALLOC(resultSender);
+
 	// Clear static list of processors.
 	[SIHttpIncomingConnection setProcessors:nil];
 	
+	DC_LOG(@"Stopping server");
 	[_server stop];
 	dispatch_release(piemanQ);
 	DC_DEALLOC(pieman);
@@ -113,6 +117,10 @@
 		pieman = [[SIHttpConnection alloc] initWithHostUrl:[NSString stringWithFormat:@"%@:%i", HTTP_PIEMAN_HOST, HTTP_PIEMAN_PORT]
 														  sendGCDQueue:piemanQ
 													 responseGCDQueue:self.queue];
+		
+		// init the result listener which tells the Pieman when things happen.
+		resultSender = [[SIHttpResultSender alloc] initWithConnection:pieman];
+
 	}
 	return self;
 }

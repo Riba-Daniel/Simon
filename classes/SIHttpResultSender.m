@@ -7,11 +7,30 @@
 //
 
 #import <Simon/SIHttpResultSender.h>
+#import <dUsefulStuff/DCCommon.h>
 
-/**
- The intent of this class is to be used to notify listening command line programs of the results of story runs.
- */
+@interface SIHttpResultSender () {
+	@private
+	SIHttpConnection *_connection;
+}
+
+@end
+
 @implementation SIHttpResultSender
+
+-(void) dealloc {
+	DC_DEALLOC(_connection);
+	[super dealloc];
+}
+
+-(id) initWithConnection:(SIHttpConnection *) connection {
+	self = [super init];
+	if (self) {
+		_connection = [connection retain];
+	}
+	return self;
+	
+}
 
 -(void) runStarting:(NSNotification *) notification {
 	[super runStarting:notification];

@@ -7,7 +7,13 @@
 //
 
 #import <Simon/SIResultListener.h>
+#import <Simon/SIHttpConnection.h>
 
+/**
+ Class which sends messages to Simon about the status of a run.
+ */
 @interface SIHttpResultSender : SIResultListener
+
+-(id) initWithConnection:(SIHttpConnection *) connection;
 
 @end
