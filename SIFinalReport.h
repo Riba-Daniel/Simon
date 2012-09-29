@@ -8,12 +8,6 @@
 
 #import <Simon/SIHttpPayload.h>
 
-#define FINAL_REPORT_JSON_KEY_NOT_RUN @"notRun"
-#define FINAL_REPORT_JSON_KEY_SUCCESSFUL @"successful"
-#define FINAL_REPORT_JSON_KEY_NOT_MAPPED @"notMapped"
-#define FINAL_REPORT_JSON_KEY_IGNORED @"ignored"
-#define FINAL_REPORT_JSON_KEY_FAILED @"failed"
-
 @interface SIFinalReport : SIHttpPayload
 
 @property (nonatomic, assign) NSUInteger notRun;

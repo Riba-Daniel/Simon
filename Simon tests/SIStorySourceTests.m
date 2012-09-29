@@ -82,41 +82,37 @@
 }
 
 -(void) testInitWithJsonDictionary {
+	NSDictionary *storyData = @{@"title":@"story title"};
+	NSArray *storyArray = @[storyData];
+	NSDictionary *dic = @{@"stories":storyArray, @"source":@"source-file-name"};
 	
-	id mockStoryData = [OCMockObject niceMockForClass:[NSDictionary class]];
-	[[[mockStoryData stub] andReturn:@"story title"] valueForKey:STORY_JSON_KEY_TITLE];
-	
-	NSMutableArray *storyArray = [NSMutableArray arrayWithObject:mockStoryData];
-	NSDictionary *dic = [[[NSDictionary alloc] initWithObjectsAndKeys:
-								 storyArray, SOURCE_JSON_KEY_STORIES,
-								 @"source-file-name", SOURCE_JSON_KEY_SOURCE,
-								 nil] autorelease];
-	
-	SIStorySource *jsonSource = [[[SIStorySource alloc] initWithJsonDictionary:dic] autorelease];
+	SIStorySource *jsonSource = [[SIStorySource alloc] initWithJsonDictionary:dic];
 	
 	GHAssertNotNil(jsonSource, nil);
 	GHAssertEqualObjects(jsonSource.source, @"source-file-name", nil);
+	
 	NSArray *storedStories = jsonSource.stories;
 	GHAssertNotNil(storedStories, nil);
 	GHAssertEquals([storedStories count], (NSUInteger) 1, nil);
-	GHAssertEquals(((SIStory *)[storedStories objectAtIndex:0]).title, @"story title", nil);
+	GHAssertTrue([storedStories[0] isKindOfClass:[SIStory class]], nil);
+	GHAssertEquals(((SIStory *)storedStories[0]).title, @"story title", nil);
 }
 
--(void) testAsJsonDictionary {
+-(void) testJsonDictionary {
 	
 	source.source = @"abc";
 	
 	NSDictionary *data = [source jsonDictionary];
 
-	GHAssertNotNil([data objectForKey:SOURCE_JSON_KEY_SOURCE], nil);
-	GHAssertNotNil([data objectForKey:SOURCE_JSON_KEY_STORIES], nil);
-	GHAssertEqualStrings([data objectForKey:SOURCE_JSON_KEY_SOURCE], @"abc", nil);
+	GHAssertNotNil(data[@"source"], nil);
+	GHAssertNotNil(data[@"stories"], nil);
+	GHAssertEqualStrings(data[@"source"], @"abc", nil);
 	
-	NSArray *storyList = [data objectForKey:SOURCE_JSON_KEY_STORIES];
+	NSArray *storyList = [data objectForKey:@"stories"];
 	GHAssertEquals([storyList count], (NSUInteger) 3, nil);
-	GHAssertEqualObjects([[storyList objectAtIndex:0] valueForKey:STORY_JSON_KEY_TITLE], @"Abc", nil);
-	GHAssertEqualObjects([[storyList objectAtIndex:1] valueForKey:STORY_JSON_KEY_TITLE], @"def", nil);
-	GHAssertEqualObjects([[storyList objectAtIndex:2] valueForKey:STORY_JSON_KEY_TITLE], @"abc", nil);
+	GHAssertEqualObjects(storyList[0][@"title"], @"Abc", nil);
+	GHAssertEqualObjects(storyList[1][@"title"], @"def", nil);
+	GHAssertEqualObjects(storyList[2][@"title"], @"abc", nil);
 }
 
 

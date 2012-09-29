@@ -161,21 +161,19 @@
 
 -(void) testInitWithJsonDictionary {
 	
-	id mockStepData = [OCMockObject niceMockForClass:[NSDictionary class]];
-	[[[mockStepData stub] andReturn:@"step"] valueForKey:STEP_JSON_KEY_COMMAND];
-	
-	NSDictionary *storyData = [NSDictionary dictionaryWithObjectsAndKeys:@"title", STORY_JSON_KEY_TITLE,
-										[NSArray arrayWithObject:mockStepData], STORY_JSON_KEY_STEPS,
-										[NSNumber numberWithInt:SIStoryStatusSuccess], STORY_JSON_KEY_STATUS, nil];
+	NSDictionary *stepData = @{@"keyword":@(SIKeywordGiven), @"command": @"a command"};
+	NSDictionary *storyData = @{@"title": @"title", @"steps":@[stepData], @"status": @(SIStoryStatusSuccess)};
 
 	SIStory *jsonStory = [[[SIStory alloc] initWithJsonDictionary:storyData] autorelease];
 	
 	GHAssertEqualStrings(jsonStory.title, @"title", nil);
 	GHAssertEquals(jsonStory.status, SIStoryStatusSuccess, nil);
+
 	NSArray *steps = jsonStory.steps;
 	GHAssertNotNil(steps, nil);
 	GHAssertEquals([steps count], (NSUInteger) 1, nil);
-	GHAssertEqualStrings(((SIStep *)[steps objectAtIndex:0]).command, @"step", nil);
+	GHAssertEquals(((SIStep *)steps[0]).keyword, SIKeywordGiven, nil);
+	GHAssertEqualStrings(((SIStep *)steps[0]).command, @"a command", nil);
 
 }
 
@@ -185,15 +183,15 @@
 	[story createStepWithKeyword:SIKeywordGiven command:@"def"];
 	
 	NSDictionary *jsonData = [story jsonDictionary];
-	GHAssertEqualStrings([jsonData valueForKey:STORY_JSON_KEY_TITLE], @"abc", nil);
+	GHAssertEqualStrings(jsonData[@"title"], @"abc", nil);
 	
-	NSNumber *status = [jsonData valueForKey:STORY_JSON_KEY_STATUS];
-	GHAssertEquals([status intValue], SIStoryStatusNotRun, nil);
+	int status = [jsonData[@"status"] intValue];
+	GHAssertEquals(status, SIStoryStatusNotRun, nil);
 	
-	NSArray *steps = [jsonData valueForKey:STORY_JSON_KEY_STEPS];
+	NSArray *steps = [jsonData valueForKey:@"steps"];
 	GHAssertNotNil(steps, nil);
 	GHAssertEquals([steps count], (NSUInteger) 1, nil);
-	GHAssertEqualStrings([[steps objectAtIndex:0] valueForKey:STEP_JSON_KEY_COMMAND], @"def", nil);
+	GHAssertEqualStrings(steps[0][@"command"], @"def", nil);
 
 }
 

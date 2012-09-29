@@ -36,19 +36,13 @@
 -(id) initWithJsonDictionary:(NSDictionary *) data {
 	self = [super init];
 	if (self) {
-		self.status = [[data valueForKey:PAYLOAD_KEY_STATUS] intValue];
-		self.message = [data valueForKey:PAYLOAD_KEY_MESSAGE];
+		[self setValuesForKeysWithDictionary:data];
 	}
 	return self;
 }
 
 -(NSDictionary *) jsonDictionary {
-	NSMutableDictionary *jsonData = [NSMutableDictionary dictionary];
-	[jsonData setObject:[NSNumber numberWithInt:self.status] forKey:PAYLOAD_KEY_STATUS];
-	if (self.message != nil) {
-		[jsonData setObject:self.message forKey:PAYLOAD_KEY_MESSAGE];
-	}
-	return jsonData;
+	return [self dictionaryWithValuesForKeys:@[@"status", @"message"]];
 }
 
 @end

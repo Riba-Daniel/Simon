@@ -12,10 +12,6 @@
 #import <Simon/SIStep.h>
 #import <Simon/SIJsonAware.h>
 
-#define STORY_JSON_KEY_STEPS @"steps"
-#define STORY_JSON_KEY_STATUS @"status"
-#define STORY_JSON_KEY_TITLE @"title"
-
 // Stops circular reference in headers.
 @class SIStorySource;
 

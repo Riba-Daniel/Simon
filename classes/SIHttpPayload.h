@@ -10,9 +10,6 @@
 #import <Simon/SIJsonAware.h>
 #import <Simon/SICore.h>
 
-#define PAYLOAD_KEY_STATUS @"status"
-#define PAYLOAD_KEY_MESSAGE @"message"
-
 /**
  Base obejct for any content of a request or response.
  */

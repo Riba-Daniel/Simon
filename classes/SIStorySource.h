@@ -9,9 +9,6 @@
 #import <Simon/SIStory.h>
 #import <Simon/SIJsonAware.h>
 
-#define SOURCE_JSON_KEY_STORIES @"stories"
-#define SOURCE_JSON_KEY_SOURCE @"source"
-
 /**
  Represents a source of stories. Mainly used for reporting purposes.
  */

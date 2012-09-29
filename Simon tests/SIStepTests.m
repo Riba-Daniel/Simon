@@ -35,7 +35,7 @@
 	SIStepMapping * mapping = [SIStepMapping stepMappingWithClass:[self class] selector:@selector(setUp) regex:@"abc" error:&error];
 	GHAssertNotNil(mapping, @"Mapping not returned, error says %@", error.localizedDescription);
 	NSArray * mappings = [NSArray arrayWithObject:mapping];
-
+	
 	[step findMappingInList:mappings];
 	
 	GHAssertTrue([step isMapped], @"Step did not find a mapping.");
@@ -57,7 +57,7 @@
 -(void) testCallsInvoke {
 	
 	SIStep * step = [[[SIStep alloc] initWithKeyword:SIKeywordGiven command:@"abc"] autorelease];
-
+	
 	NSError *error = nil;
 	BOOL yes = YES;
 	
@@ -68,7 +68,7 @@
 	[step invokeWithObject:self error:&error];
 	
 	GHAssertTrue(step.executed, @"Executed flag incorrect");
-
+	
 	[mockMapping verify];
 	
 }
@@ -98,14 +98,14 @@
 
 -(void) testInitWithJsonDictionary {
 	
-	NSDictionary *jsonData = [NSDictionary dictionaryWithObjectsAndKeys:
-									  [NSNumber numberWithInt:SIKeywordGiven], STEP_JSON_KEY_KEYWORD,
-									  @"hello", STEP_JSON_KEY_COMMAND,
-									  @"exception_name", STEP_JSON_KEY_EXCEPTION_NAME,
-									  @"exception_reason", STEP_JSON_KEY_EXCEPTION_REASON,
-									  [NSNumber numberWithBool:YES], STEP_JSON_KEY_EXECUTED,
-									  nil];
-	
+	NSDictionary *jsonData = @{@"keyword": @(SIKeywordGiven),
+	@"command":@"hello",
+	@"exception":@{
+	@"name":@"exception_name",
+	@"reason":@"exception_reason"
+	},
+	@"executed":@YES};
+
 	SIStep *jsonStep = [[[SIStep alloc] initWithJsonDictionary:jsonData] autorelease];
 	
 	GHAssertEquals(jsonStep.keyword, SIKeywordGiven, nil);
@@ -118,18 +118,17 @@
 }
 
 -(void) testJsonDictionary {
-
+	
 	SIStep *step = [[SIStep alloc] initWithKeyword:SIKeywordGiven command:@"hello"];
 	step.executed = YES;
 	step.exception = [NSException exceptionWithName:@"exception_name" reason:@"exception_reason" userInfo:nil];
 	
 	NSDictionary *jsonData = [step jsonDictionary];
-	GHAssertEquals([[jsonData valueForKey:STEP_JSON_KEY_KEYWORD] intValue], SIKeywordGiven, nil);
-	GHAssertEqualStrings([jsonData valueForKey:STEP_JSON_KEY_COMMAND], @"hello", nil);
-	GHAssertEqualStrings([jsonData valueForKey:STEP_JSON_KEY_EXCEPTION_NAME], @"exception_name", nil);
-	GHAssertEqualStrings([jsonData valueForKey:STEP_JSON_KEY_EXCEPTION_REASON], @"exception_reason", nil);
-	GHAssertTrue([[jsonData valueForKey:STEP_JSON_KEY_EXECUTED] boolValue], nil);
-	
+	GHAssertEquals([[jsonData valueForKey:@"keyword"] intValue], SIKeywordGiven, nil);
+	GHAssertEqualStrings([jsonData valueForKey:@"command"], @"hello", nil);
+	GHAssertEqualStrings([jsonData valueForKeyPath:@"exception.name"], @"exception_name", nil);
+	GHAssertEqualStrings([jsonData valueForKeyPath:@"exception.reason"], @"exception_reason", nil);
+	GHAssertTrue([[jsonData valueForKey:@"executed"] boolValue], nil);
 	
 }
 

@@ -10,16 +10,13 @@
 #import <dUsefulStuff/DCCommon.h>
 #import "NSString+Simon.h"
 
-@interface SIStorySource () {
-	@private
-}
-@end
-
 @implementation SIStorySource
 
 @synthesize stories = _stories;
 @synthesize selectedStories = _selectedStories;
 @synthesize source = _source;
+
+#pragma mark - Lifecycle
 
 -(void) dealloc {
 	DC_LOG(@"Deallocing");
@@ -40,15 +37,27 @@
 -(id) initWithJsonDictionary:(NSDictionary *) data {
 	self = [self init];
 	if (self) {
-		self.source = [data valueForKey:SOURCE_JSON_KEY_SOURCE];
-		NSArray *storyData = [data valueForKey:SOURCE_JSON_KEY_STORIES];
-		NSMutableArray *mStories = (NSMutableArray *) self.stories;
-		[storyData enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-			[mStories addObject:[[[SIStory alloc] initWithJsonDictionary: obj] autorelease]];
-		}];
+		[self setValuesForKeysWithDictionary:data];
 	}
 	return self;
 }
+
+#pragma mark - Tasks
+
+-(void) addStory:(SIStory *) story {
+	[(NSMutableArray *)self.stories addObject:story];
+	// Clear so next request for selected gets everything.
+	DC_DEALLOC(_selectedStories);
+}
+
+/**
+ Returns a dictionary populated by the object.
+ */
+-(NSDictionary *) jsonDictionary {
+	return [self dictionaryWithValuesForKeys:@[@"source", @"stories"]];
+}
+
+#pragma mark - Selecting stories
 
 -(NSArray *) selectedStories {
 	if (_selectedStories == nil) {
@@ -57,16 +66,10 @@
 	return _selectedStories;
 }
 
--(void) addStory:(SIStory *) story {
-	[(NSMutableArray *)self.stories addObject:story];
-	// Clear so next request for selected gets everything.
-	DC_DEALLOC(_selectedStories);
-}
-
 -(void) selectWithPrefix:(NSString *) prefix {
 	
 	DC_LOG(@"Filtering source '%@' and stories based on prefix: %@", [self.source lastPathComponent], prefix);
-
+	
 	// First see if the source name matches.
 	NSString *filename = [_source lastPathComponent];
 	if ([filename hasPrefix:prefix options:(NSCaseInsensitiveSearch|NSDiacriticInsensitiveSearch)]) {
@@ -99,19 +102,30 @@
 	_selectedStories = [[NSArray alloc] init];
 }
 
+#pragma mark - KVC
 
-/**
- Returns a dictionary populated by the object.
- */
--(NSDictionary *) jsonDictionary {
+-(void) setValue:(id)value forKey:(NSString *)key {
+	if ([key isEqualToString:@"stories"]) {
+		DC_DEALLOC(_stories);
+		_stories = [[NSMutableArray alloc] init];
+		[(NSArray *) value enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+			[self addStory:[[[SIStory alloc] initWithJsonDictionary:obj] autorelease]];
+		}];
+	} else {
+		[super setValue:value forKey:key];
+	}
 	
-	NSMutableArray *jsonStories = [NSMutableArray array];
-	[self.stories enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-		id<SIJsonAware> story = obj;
-		[jsonStories addObject:[story jsonDictionary]];
-	}];
-	
-	return [NSDictionary dictionaryWithObjectsAndKeys:self.source, SOURCE_JSON_KEY_SOURCE, jsonStories, SOURCE_JSON_KEY_STORIES, nil];
+}
+
+-(id) valueForKey:(NSString *)key {
+	if ([key isEqualToString:@"stories"]) {
+		NSMutableArray *jsonStories = [NSMutableArray array];
+		[self.stories enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+			[jsonStories addObject:[obj jsonDictionary]];
+		}];
+		return jsonStories;
+	}
+	return [super valueForKey:key];
 }
 
 @end

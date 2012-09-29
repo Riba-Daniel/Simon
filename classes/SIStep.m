@@ -17,11 +17,11 @@
 
 @implementation SIStep
 
-@synthesize keyword = keyword_;
-@synthesize command = command_;
-@synthesize stepMapping = stepMapping_;
-@synthesize exception = exception_;
-@synthesize executed = executed_;
+@synthesize keyword = _keyword;
+@synthesize command = _command;
+@synthesize stepMapping = _stepMapping;
+@synthesize exception = _exception;
+@synthesize executed = _executed;
 
 -(void) dealloc {
 	self.command = nil;
@@ -33,7 +33,7 @@
 -(id) initWithKeyword:(SIKeyword) aKeyword command:(NSString *) theCommand {
 	self = [super init];
 	if (self) {
-		keyword_ = aKeyword;
+		_keyword = aKeyword;
 		self.command = theCommand;
 		[self reset];
 	}
@@ -41,14 +41,28 @@
 }
 
 -(id) initWithJsonDictionary:(NSDictionary *) data {
-	self = [self initWithKeyword:[[data valueForKey:STEP_JSON_KEY_KEYWORD] intValue] command:[data valueForKey:STEP_JSON_KEY_COMMAND]];
+	self = [super init];
 	if (self) {
-		self.executed = [[data valueForKey:STEP_JSON_KEY_KEYWORD] boolValue];
-		if ([data valueForKey: STEP_JSON_KEY_EXCEPTION_NAME] != nil) {
-			self.exception = [NSException exceptionWithName:[data valueForKey:STEP_JSON_KEY_EXCEPTION_NAME] reason:[data valueForKey:STEP_JSON_KEY_EXCEPTION_REASON] userInfo: nil];
-		}
+		[self setValuesForKeysWithDictionary:data];
 	}
 	return self;
+}
+
+- (void)setNilValueForKey:(NSString *)key {
+	[super setNilValueForKey:key];
+}
+
+-(void) setValue:(id)value forKeyPath:(NSString *)keyPath {
+	[super setValue:value forKeyPath:keyPath];
+}
+
+-(void) setValue:(id)value forKey:(NSString *)key {
+	if ([key isEqualToString:@"exception"]) {
+		NSDictionary *dataDic = (NSDictionary *) value;
+		self.exception = [NSException exceptionWithName:[dataDic valueForKey:@"name"] reason:[dataDic valueForKey:@"reason"] userInfo:nil];
+	} else {
+		[super setValue:value forKey:key];
+	}
 }
 
 -(void) findMappingInList:(NSArray *) mappings {
@@ -101,16 +115,14 @@
 }
 
 -(NSDictionary *) jsonDictionary {
-	NSMutableDictionary *jsonData = [NSMutableDictionary dictionary];
-	[jsonData setObject:[NSNumber numberWithInt:self.keyword] forKey:STEP_JSON_KEY_KEYWORD];
-	[jsonData setObject:self.command forKey:STEP_JSON_KEY_COMMAND];
-	[jsonData setObject:[NSNumber numberWithBool:self.executed] forKey:STEP_JSON_KEY_EXECUTED];
-	if (self.exception != nil) {
-		[jsonData setObject:self.exception.name forKey:STEP_JSON_KEY_EXCEPTION_NAME];
-		[jsonData setObject:self.exception.reason forKey:STEP_JSON_KEY_EXCEPTION_REASON];
-	}
-	return jsonData;
+	return [self dictionaryWithValuesForKeys:@[@"keyword", @"command", @"executed", @"exception"]];
 }
 
+-(id) valueForKey:(NSString *)key {
+	if ([key isEqualToString:@"exception"]) {
+		return [self.exception dictionaryWithValuesForKeys:@[@"name", @"reason"]];
+	}
+	return [super valueForKey:key];
+}
 
 @end

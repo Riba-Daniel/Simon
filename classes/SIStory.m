@@ -26,6 +26,8 @@
 @synthesize title = _title;
 @synthesize error = _error;
 
+#pragma mark - Lifecycle
+
 -(void) dealloc {
 	DC_LOG(@"Deallocing");
 	self.steps = nil;
@@ -49,22 +51,12 @@
 -(id) initWithJsonDictionary:(NSDictionary *) data {
 	self = [self init];
 	if (self) {
-
-		// Add the steps.
-		NSArray *jsonSteps = [data valueForKey:STORY_JSON_KEY_STEPS];
-		NSMutableArray *mSteps = (NSMutableArray *)self.steps;
-		[jsonSteps enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-			NSDictionary *stepData = obj;
-			SIStep *step = [[[SIStep alloc] initWithJsonDictionary:stepData] autorelease];
-			[mSteps addObject:step];
-		}];
-		
-		// and teh rest of the data.
-		self.title = [data valueForKey:STORY_JSON_KEY_TITLE];
-		_status = [(NSNumber *)[data valueForKey:STORY_JSON_KEY_STATUS] intValue];
+		[self setValuesForKeysWithDictionary:data];
 	}
 	return self;
 }
+
+#pragma mark - Tasks
 
 -(SIStep *) createStepWithKeyword:(SIKeyword) keyword command:(NSString *) theCommand {
 	
@@ -188,18 +180,32 @@
 }
 
 -(NSDictionary *) jsonDictionary {
-	NSMutableArray *jsonSteps = [NSMutableArray array];
-	[self.steps enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-		id<SIJsonAware> step = obj;
-		[jsonSteps addObject:[step jsonDictionary]];
-	}];
-	
-	return [NSDictionary dictionaryWithObjectsAndKeys:
-			  self.title, STORY_JSON_KEY_TITLE,
-			  jsonSteps, STORY_JSON_KEY_STEPS,
-			  [NSNumber numberWithInt:self.status], STORY_JSON_KEY_STATUS,
-			  nil];
+	return [self dictionaryWithValuesForKeys:@[@"title", @"steps", @"status"]];
 }
 
+#pragma mark - KVC
+
+-(void) setValue:(id)value forKey:(NSString *)key {
+	if ([key isEqualToString:@"steps"]) {
+		self.steps = [NSMutableArray array];
+		[(NSArray *) value enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+			[self createStepWithKeyword:[obj[@"keyword"] intValue] command:obj[@"command"]];
+		}];
+	} else {
+		[super setValue:value forKey:key];
+	}
+	
+}
+
+-(id) valueForKey:(NSString *)key {
+	if ([key isEqualToString:@"steps"]) {
+		NSMutableArray *jsonSteps = [NSMutableArray array];
+		[self.steps enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+			[jsonSteps addObject:[obj jsonDictionary]];
+		}];
+		return jsonSteps;
+	}
+	return [super valueForKey:key];
+}
 
 @end

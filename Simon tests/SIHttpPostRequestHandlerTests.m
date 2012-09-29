@@ -84,7 +84,7 @@
 	HTTPDataResponse *response = (HTTPDataResponse *)[handler processPath:@"abc" andBody:body];
 	GHAssertNotNil(response, nil);
 	NSData *responseBody = [response readDataOfLength:[response contentLength]];
-	GHAssertEqualStrings(DC_DATA_TO_STRING(responseBody), @"{\"status\":0}", nil);
+	GHAssertEqualStrings(DC_DATA_TO_STRING(responseBody), @"{\"status\":0,\"message\":null}", nil);
 }
 
 

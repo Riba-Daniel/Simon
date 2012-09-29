@@ -27,24 +27,23 @@
 	NSDictionary *jsonDic = [report jsonDictionary];
 	
 
-	GHAssertEquals([[jsonDic valueForKey:PAYLOAD_KEY_STATUS] intValue], SIHttpStatusError, nil);
-	GHAssertEqualStrings([jsonDic valueForKey:PAYLOAD_KEY_MESSAGE], @"abc", nil);
-	GHAssertEquals([[jsonDic valueForKey:FINAL_REPORT_JSON_KEY_NOT_RUN] intValue], 2, nil);
-	GHAssertEquals([[jsonDic valueForKey:FINAL_REPORT_JSON_KEY_SUCCESSFUL] intValue], 3, nil);
-	GHAssertEquals([[jsonDic valueForKey:FINAL_REPORT_JSON_KEY_IGNORED] intValue], 4, nil);
-	GHAssertEquals([[jsonDic valueForKey:FINAL_REPORT_JSON_KEY_NOT_MAPPED] intValue], 5, nil);
-	GHAssertEquals([[jsonDic valueForKey:FINAL_REPORT_JSON_KEY_FAILED] intValue], 6, nil);
+	GHAssertEquals([[jsonDic valueForKey:@"status"] intValue], SIHttpStatusError, nil);
+	GHAssertEqualStrings([jsonDic valueForKey:@"message"], @"abc", nil);
+	GHAssertEquals([[jsonDic valueForKey:@"notRun"] intValue], 2, nil);
+	GHAssertEquals([[jsonDic valueForKey:@"successful"] intValue], 3, nil);
+	GHAssertEquals([[jsonDic valueForKey:@"ignored"] intValue], 4, nil);
+	GHAssertEquals([[jsonDic valueForKey:@"notMapped"] intValue], 5, nil);
+	GHAssertEquals([[jsonDic valueForKey:@"failed"] intValue], 6, nil);
 }
 
 -(void) testInitWithJsonDictionary {
 	NSDictionary *jsonDic = [NSDictionary dictionaryWithObjectsAndKeys:
-									 [NSNumber numberWithInt:SIHttpStatusError], PAYLOAD_KEY_STATUS,
-									 @"abc", PAYLOAD_KEY_MESSAGE,
-									 [NSNumber numberWithInt:2], FINAL_REPORT_JSON_KEY_FAILED,
-									 [NSNumber numberWithInt:3], FINAL_REPORT_JSON_KEY_IGNORED,
-									 [NSNumber numberWithInt:4], FINAL_REPORT_JSON_KEY_NOT_MAPPED,
-									 [NSNumber numberWithInt:5], FINAL_REPORT_JSON_KEY_NOT_RUN,
-									 [NSNumber numberWithInt:6], FINAL_REPORT_JSON_KEY_SUCCESSFUL,
+									 [NSNumber numberWithInt:SIHttpStatusError], @"status", @"abc", @"message",
+									 [NSNumber numberWithInt:2], @"failed",
+									 [NSNumber numberWithInt:3], @"ignored",
+									 [NSNumber numberWithInt:4], @"notMapped",
+									 [NSNumber numberWithInt:5], @"notRun",
+									 [NSNumber numberWithInt:6], @"successful",
 									 nil];
 	
 	SIFinalReport *report = [[[SIFinalReport alloc] initWithJsonDictionary:jsonDic] autorelease];
