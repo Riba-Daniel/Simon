@@ -177,6 +177,7 @@
 		32CF03DC16148D4700FFD010 /* SIFinalReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CF03D816148D4700FFD010 /* SIFinalReport.m */; };
 		32CF03DE1614902F00FFD010 /* SIFinalReportTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CF03DD1614902F00FFD010 /* SIFinalReportTests.m */; };
 		32CF03DF1614902F00FFD010 /* SIFinalReportTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CF03DD1614902F00FFD010 /* SIFinalReportTests.m */; };
+		32CF03E1161744C500FFD010 /* SIHttpResultSenderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32CF03E0161744C500FFD010 /* SIHttpResultSenderTests.m */; };
 		32D5D98A14E1357900D29DD5 /* TestView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 32D5D98914E1357900D29DD5 /* TestView.xib */; };
 		32D5D98D14E135A300D29DD5 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 32D5D98C14E135A300D29DD5 /* TestViewController.m */; };
 		32D9353915AB098000E51C8C /* SIStory.m in Sources */ = {isa = PBXBuildFile; fileRef = 653D0EB813A783C000A5AB82 /* SIStory.m */; };
@@ -561,6 +562,7 @@
 		32CF03D716148D4600FFD010 /* SIFinalReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SIFinalReport.h; path = ../SIFinalReport.h; sourceTree = "<group>"; };
 		32CF03D816148D4700FFD010 /* SIFinalReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SIFinalReport.m; path = ../SIFinalReport.m; sourceTree = "<group>"; };
 		32CF03DD1614902F00FFD010 /* SIFinalReportTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIFinalReportTests.m; sourceTree = "<group>"; };
+		32CF03E0161744C500FFD010 /* SIHttpResultSenderTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIHttpResultSenderTests.m; sourceTree = "<group>"; };
 		32D5D98914E1357900D29DD5 /* TestView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestView.xib; sourceTree = "<group>"; };
 		32D5D98B14E135A300D29DD5 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
 		32D5D98C14E135A300D29DD5 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
@@ -997,6 +999,7 @@
 				3224268815E9184E00F0CB62 /* SIHttpIncomingConnectionTests.m */,
 				3224270A15EDF64C00F0CB62 /* SIHttpPayloadTests.m */,
 				32CF03B4161325D800FFD010 /* SIHttpPostRequestHandlerTests.m */,
+				32CF03E0161744C500FFD010 /* SIHttpResultSenderTests.m */,
 			);
 			name = http;
 			sourceTree = "<group>";
@@ -1858,6 +1861,7 @@
 				32CF03B31613222600FFD010 /* SIHttpGetRequestHandlerTests.m in Sources */,
 				32CF03B5161325D800FFD010 /* SIHttpPostRequestHandlerTests.m in Sources */,
 				32CF03DE1614902F00FFD010 /* SIFinalReportTests.m in Sources */,
+				32CF03E1161744C500FFD010 /* SIHttpResultSenderTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

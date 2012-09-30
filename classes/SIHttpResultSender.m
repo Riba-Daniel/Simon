@@ -8,6 +8,7 @@
 
 #import <Simon/SIHttpResultSender.h>
 #import <dUsefulStuff/DCCommon.h>
+#import <Simon/SIFinalReport.h>
 
 @interface SIHttpResultSender () {
 	@private
@@ -49,7 +50,22 @@
 
 -(void) runFinished:(NSNotification *) notification {
 	[super runFinished:notification];
-	// DO something http'y
+	
+	// Create the results object.
+	SIFinalReport *results = [[SIFinalReport alloc] init];
+	results.successful = [[self storiesWithStatus:SIStoryStatusSuccess] count];
+	results.ignored = [[self storiesWithStatus:SIStoryStatusIgnored] count];
+	results.failed = [[self storiesWithStatus:SIStoryStatusError] count];
+	results.notMapped = [[self storiesWithStatus:SIStoryStatusNotMapped] count];
+	results.notRun = [[self storiesWithStatus:SIStoryStatusNotRun] count];
+	results.status = SIHttpStatusOk;
+	
+	[_connection sendRESTPostRequest:HTTP_PATH_RUN_FINISHED
+								requestBody:results
+						responseBodyClass:[SIHttpPayload class]
+							  successBlock:NULL
+								 errorBlock:NULL];
+	[results release];
 }
 
 @end
