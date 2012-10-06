@@ -20,34 +20,32 @@
 
 @interface SIHttpAppBackpackTests : GHTestCase {
 @private
-	BOOL startRun;
-	NSProcessInfo *info;
 	NSArray *originalArgs;
+	SIHttpAppBackpack *backpack;
 }
--(void) startRun:(NSNotification *) notification;
 @end
 
 @implementation SIHttpAppBackpackTests
 
 -(void) setUp {
-	info = [[NSProcessInfo processInfo] retain];
-	originalArgs = [[info arguments] retain];
-	startRun = NO;
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startRun:) name:SI_RUN_STORIES_NOTIFICATION object:nil];
+	originalArgs = [[[NSProcessInfo processInfo] arguments] retain];
 }
 
 -(void) tearDown {
-	[[NSNotificationCenter defaultCenter] removeObserver:self];
+	// Tell the backpack to clear processors.
+	[backpack shutDown:nil];
+	DC_DEALLOC(backpack);
+	
 	[[NSProcessInfo processInfo] setArguments: originalArgs];
 	DC_DEALLOC(originalArgs);
-	DC_DEALLOC(info);
 }
 
 -(void) testHttpBackpackStartsServerOnDefaultPort {
 	NSArray *args = [NSArray arrayWithObjects:@"", nil];
 	[[NSProcessInfo processInfo] setArguments:args];
-	
-	SIHttpAppBackpack *backpack = [[[SIHttpAppBackpack alloc] init] autorelease];
+
+	backpack = [[SIHttpAppBackpack alloc] init];
+
 	HTTPServer *server = [backpack server];
 	GHAssertEquals([server port], (UInt16) HTTP_SIMON_PORT, nil);
 }
@@ -56,16 +54,9 @@
 	NSArray *args = [NSArray arrayWithObjects:@"-simon-port", @"12345", nil];
 	[[NSProcessInfo processInfo] setArguments:args];
 	
-	SIHttpAppBackpack *backpack = [[[SIHttpAppBackpack alloc] init] autorelease];
+	backpack = [[SIHttpAppBackpack alloc] init];
 	HTTPServer *server = [backpack server];
 	GHAssertEquals([server port], (UInt16) 12345, nil);
-}
-
-
-// Handlers.
-
--(void) startRun:(NSNotification *) notification {
-	startRun = YES;
 }
 
 @end

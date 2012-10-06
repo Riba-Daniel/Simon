@@ -32,7 +32,7 @@
 		stepMappings = [[NSMutableArray alloc] init];
 		if (numClasses > 0 ) {
 			
-			Class * classes = malloc(sizeof(Class) * numClasses);
+			Class * classes = malloc(sizeof(Class) * (unsigned long) numClasses);
 			// Don't use the return number from this call because it's often wrong. Reported as a Bug to Apple.
 			objc_getClassList(classes, numClasses);
 			DC_LOG(@"When returning classes, %i classes in runtime", numClasses);

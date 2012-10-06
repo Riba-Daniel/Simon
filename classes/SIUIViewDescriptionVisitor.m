@@ -46,7 +46,7 @@
 	
 	// Get the window list.
 	NSArray *windows = [UIApplication sharedApplication].windows;
-	for (int i = 0;i < [windows count];i++) {
+	for (NSUInteger i = 0;i < [windows count];i++) {
 		UIWindow *window = [windows objectAtIndex:i];
 		[self visitView:window indexPath:[NSIndexPath indexPathWithIndex:i] siblingNames:siblingNames];
 	}
@@ -78,7 +78,7 @@
 					  sibling:siblingCount];
 	
 	// Loop through subviews and visit each one.
-	int idx = 0;
+	NSUInteger idx = 0;
 	NSMutableArray *subNodeSiblings = [NSMutableArray array];
 	for(UIView *subView in view.subviews) {
 		NSIndexPath *subNodeIndexPath = [indexPath indexPathByAddingIndex:idx];

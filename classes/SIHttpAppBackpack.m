@@ -24,10 +24,10 @@
 
 @interface SIHttpAppBackpack () {
 @private
-	SIHttpConnection *pieman;
-	dispatch_queue_t piemanQ;
-	int sendCount;
-	SIHttpResultSender *resultSender;
+	SIHttpConnection *_pieman;
+	dispatch_queue_t _piemanQ;
+	int _sendCount;
+	SIHttpResultSender *_resultSender;
 }
 
 -(void) sendReadyToPieman;
@@ -40,15 +40,12 @@
 
 -(void) dealloc {
 
-	DC_DEALLOC(resultSender);
+	DC_DEALLOC(_resultSender);
 
-	// Clear static list of processors.
-	[SIHttpIncomingConnection setProcessors:nil];
-	
 	DC_LOG(@"Stopping server");
 	[_server stop];
-	dispatch_release(piemanQ);
-	DC_DEALLOC(pieman);
+	dispatch_release(_piemanQ);
+	DC_DEALLOC(_pieman);
 	DC_DEALLOC(_server);
 	[super dealloc];
 }
@@ -59,12 +56,12 @@
 		
 		// Get a custom port value from the process args.
 		NSString *strValue = [[NSProcessInfo processInfo] argumentValueForName:ARG_SIMON_PORT];
-		NSInteger intValue = [strValue integerValue];
-		NSInteger port = intValue > 0 ? intValue : HTTP_SIMON_PORT;
+		unsigned short intValue = (unsigned short)[strValue integerValue];
+		unsigned short port = intValue > 0 ? intValue : HTTP_SIMON_PORT;
 		
 		// Setup the request processors.
 		
-		// Run all tests command.
+		// Run all tests command. Note this will cause a retain on this instance.
 		RequestReceivedBlock runAllBlock = ^(id<SIJsonAware> obj){
 			
 			// Send the notification to start processing.
@@ -79,10 +76,10 @@
 																											requestBodyClass:NULL
 																														process:runAllBlock];
 		
-		// Simple heart beat response.
+		// Simple heart beat response. 
 		SIHttpGetRequestHandler * heartbeatProcessor = [[SIHttpGetRequestHandler alloc] initWithPath:HTTP_PATH_HEARTBEAT process:nil];
 
-		// Exit app command.
+		// Exit app command. Note this will cause a retain on this instance.
 		RequestReceivedBlock exitBlock = ^(id obj){
 			// Queue an exit on the main thread.
 			DC_LOG(@"Queuing exit command.");
@@ -113,13 +110,13 @@
 		}
 		
 		// Start up the Piemans connection.
-		piemanQ = dispatch_queue_create([PIEMAN_QUEUE_NAME UTF8String], NULL);
-		pieman = [[SIHttpConnection alloc] initWithHostUrl:[NSString stringWithFormat:@"%@:%i", HTTP_PIEMAN_HOST, HTTP_PIEMAN_PORT]
-														  sendGCDQueue:piemanQ
+		_piemanQ = dispatch_queue_create([PIEMAN_QUEUE_NAME UTF8String], NULL);
+		_pieman = [[SIHttpConnection alloc] initWithHostUrl:[NSString stringWithFormat:@"%@:%i", HTTP_PIEMAN_HOST, HTTP_PIEMAN_PORT]
+														  sendGCDQueue:_piemanQ
 													 responseGCDQueue:self.queue];
 		
 		// init the result listener which tells the Pieman when things happen.
-		resultSender = [[SIHttpResultSender alloc] initWithConnection:pieman];
+		_resultSender = [[SIHttpResultSender alloc] initWithConnection:_pieman];
 
 	}
 	return self;
@@ -130,13 +127,13 @@
 }
 
 -(void) startUpFinished {
-	sendCount = 0;
+	_sendCount = 0;
 	[self sendReadyToPieman];
 }
 
 -(void) sendReadyToPieman {
 	// Tell the Pieman we are ready to rock.
-	[pieman sendRESTRequest:HTTP_PATH_SIMON_READY
+	[_pieman sendRESTRequest:HTTP_PATH_SIMON_READY
 						  method:SIHttpMethodPost
 					requestBody:nil
 			responseBodyClass:[SIHttpPayload class]
@@ -144,14 +141,14 @@
 					 errorBlock:^(id<SIJsonAware> obj, NSError *error){
 						 
 						 DC_LOG(@"Error returned attempting to contact the Pieman: %@", [error localizedErrorMessage]);
-						 sendCount++;
-						 if (sendCount >= HTTP_MAX_RETRIES) {
+						 _sendCount++;
+						 if (_sendCount >= HTTP_MAX_RETRIES) {
 							 DC_LOG(@"Throwing exception");
 							 @throw [SIServerException exceptionWithReason:[NSString stringWithFormat:@"Error received attempting to contact the Pieman: %@", [error localizedErrorMessage]]];
 						 }
 						 
 						 DC_LOG(@"requeuing send ready request");
-						 dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, HTTP_RETRY_INTERVAL * NSEC_PER_SEC);
+						 dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, lround(HTTP_RETRY_INTERVAL * NSEC_PER_SEC));
 						 dispatch_after(popTime, dispatch_get_current_queue(), ^(void){
 							 [self sendReadyToPieman];
 						 });
@@ -160,6 +157,9 @@
 
 -(void) shutDown:(NSNotification *) notification {
 	[super shutDown:notification];
+	// Clear static list of processors which are retaining this instance.
+	DC_LOG(@"Clearing response processors");
+	[SIHttpIncomingConnection setProcessors:nil];
 }
 
 -(void) runFinished:(NSNotification *) notification {

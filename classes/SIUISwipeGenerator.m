@@ -33,7 +33,7 @@
 -(void) generateEvents {
    
    // Calculate the number of events to generate and the distance between them.
-   int nbrMoves = round(self.eps * self.duration);
+   int nbrMoves = lround(self.eps * self.duration);
    CGFloat touchAdjust = (CGFloat) self.distance / (CGFloat) nbrMoves;
 
    // Calculate the event interval between events to achieve this.

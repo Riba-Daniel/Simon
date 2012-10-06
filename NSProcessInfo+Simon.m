@@ -17,14 +17,15 @@
 -(NSString *) argumentValueForName:(NSString *) name {
 	
 	NSInteger index = [self argIndexForName:name];
+	NSUInteger nextIndex = (NSUInteger)index + 1;
 	NSArray * arguments = [[NSProcessInfo processInfo] arguments];
 	
 	// return nil if not found or no more arguments.
-	if (index == NSNotFound || index + 1 == [arguments count]) {
+	if (index == NSNotFound || nextIndex == [arguments count]) {
 		return nil;
 	}
 	
-	NSString *argValue = [arguments objectAtIndex:index + 1];
+	NSString *argValue = [arguments objectAtIndex:nextIndex];
 	
 	// return nil if the value is actually a flag or argument name.
 	if ([argValue characterAtIndex:0] == '-') {

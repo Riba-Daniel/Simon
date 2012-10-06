@@ -27,7 +27,7 @@
 	handler = [[SIHttpGetRequestHandler alloc] initWithPath:@"abc"
 																	process:^id<SIJsonAware>(id<SIJsonAware> bodyObj) {
 																		processCalled = YES;
-																		return [[SIHttpPayload alloc] initWithStatus:SIHttpStatusError message:@"xyz"];
+																		return [[[SIHttpPayload alloc] initWithStatus:SIHttpStatusError message:@"xyz"] autorelease];
 																	}];
 }
 

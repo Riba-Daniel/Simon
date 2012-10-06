@@ -22,6 +22,16 @@
 
 @implementation SIResultListener
 
+-(void) dealloc {
+	DC_LOG(@"Deallocing");
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
+	for (int i = 0; i < SIStoryStatusCount; i++) {
+		DC_DEALLOC(resultsByStatus[i]);
+	}
+	
+	[super dealloc];
+}
+
 -(id) init {
 	self = [super init];
 	if (self) {
@@ -66,15 +76,6 @@
 
 -(NSArray *) storiesWithStatus:(SIStoryStatus) status {
 	return resultsByStatus[status];
-}
-
--(void) dealloc {
-	[[NSNotificationCenter defaultCenter] removeObserver:self];
-	for (int i = 0; i < SIStoryStatusCount; i++) {
-		DC_DEALLOC(resultsByStatus[i]);
-	}
-
-	[super dealloc];
 }
 
 @end

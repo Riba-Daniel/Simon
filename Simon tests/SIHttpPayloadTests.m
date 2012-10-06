@@ -16,14 +16,14 @@
 @implementation SIHttpPayloadTests
 
 -(void) testDefaultInitialiser {
-	SIHttpPayload *body = [[[SIHttpPayload alloc] initWithStatus:SIHttpMethodPost message:@"abc"] autorelease];
-	GHAssertEquals(body.status, SIHttpMethodPost, nil);
+	SIHttpPayload *body = [[[SIHttpPayload alloc] initWithStatus:SIHttpStatusError message:@"abc"] autorelease];
+	GHAssertEquals(body.status, SIHttpStatusError, nil);
 	GHAssertEqualStrings(body.message, @"abc", nil);
 }
 
 -(void) testFactoryMethod {
-	SIHttpPayload *body = [SIHttpPayload httpPayloadWithStatus:SIHttpMethodPost message:@"abc"];
-	GHAssertEquals(body.status, SIHttpMethodPost, nil);
+	SIHttpPayload *body = [SIHttpPayload httpPayloadWithStatus:SIHttpStatusError message:@"abc"];
+	GHAssertEquals(body.status, SIHttpStatusError, nil);
 	GHAssertEqualStrings(body.message, @"abc", nil);
 }
 

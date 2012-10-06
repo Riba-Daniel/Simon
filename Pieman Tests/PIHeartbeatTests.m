@@ -17,7 +17,7 @@
 
 -(void) testHeartbeat {
 	
-	PIHeartbeat *heartbeat = [[PIHeartbeat alloc] init];
+	//PIHeartbeat *heartbeat = [[[PIHeartbeat alloc] init] autorelease];
 	
 }
 

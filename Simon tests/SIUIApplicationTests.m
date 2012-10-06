@@ -307,7 +307,7 @@
 		enteredText = [self.testViewController.phoneNumberField.text retain];
 	}];
 	[enteredText autorelease];
-	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+	if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
 		GHAssertEqualStrings(enteredText, @"0404 053 463", @"Text not correct");
 	} else {
 		GHAssertEqualStrings(enteredText, @"0404053463", @"Text not correct");

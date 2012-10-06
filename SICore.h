@@ -17,7 +17,7 @@
 #define HTTP_PIEMAN_PORT 44321
 #define HTTP_REQUEST_TIMEOUT 5.0
 #define HTTP_MAX_RETRIES 5
-#define HTTP_RETRY_INTERVAL 2.0
+#define HTTP_RETRY_INTERVAL 2.0f
 
 // Common command line args.
 #define ARG_SIMON_PORT @"-simon-port"

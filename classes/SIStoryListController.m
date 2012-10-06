@@ -40,7 +40,7 @@
 }
 
 -(SIStorySource *) sourceForSection:(NSInteger) section {
-	return [[self sourcesToDisplay] objectAtIndex:section];
+	return [[self sourcesToDisplay] objectAtIndex:(NSUInteger)section];
 }
 
 -(SIStorySource *) sourceForIndexPath:(NSIndexPath *) indexPath {
@@ -49,7 +49,7 @@
 
 -(SIStory *) storyForIndexPath:(NSIndexPath *) indexPath {
 	SIStorySource *source = [self sourceForIndexPath:indexPath];
-	return [source.selectedStories objectAtIndex:indexPath.row];
+	return [source.selectedStories objectAtIndex:(NSUInteger)indexPath.row];
 }
 
 #pragma mark - UIView methods
@@ -118,11 +118,11 @@
 #pragma mark - Table view datasource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	return [[self sourcesToDisplay] count];
+	return (NSInteger)[[self sourcesToDisplay] count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	NSInteger count = [[self sourceForSection:section].selectedStories count];
+	NSInteger count = (NSInteger)[[self sourceForSection:section].selectedStories count];
 	DC_LOG(@"There are %i stories in section %i", count, section);
 	return count;
 }
@@ -229,7 +229,7 @@
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
 	DC_LOG(@"Searching for sources and stories starting with: %@", searchText);
-	[self filterContentForSearchText:searchText scope:[searchBar.scopeButtonTitles objectAtIndex:searchBar.selectedScopeButtonIndex]];
+	[self filterContentForSearchText:searchText scope:[searchBar.scopeButtonTitles objectAtIndex:(NSUInteger)searchBar.selectedScopeButtonIndex]];
 }
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {

@@ -10,9 +10,11 @@
 #import <OCMock/OCMock.h>
 #import <dUsefulStuff/DCCommon.h>
 #import <Simon/SIStoryRunner.h>
+#import "TestUtils.h"
+#import <objc/runtime.h>
 
 @interface SIStoryRunnerTests : GHTestCase {
-	@private
+@private
 	BOOL startSent;
 	BOOL endSent;
 	SIStoryRunner *runner;
@@ -26,6 +28,11 @@
 }
 -(void) runStart:(NSNotification *) notification;
 -(void) runEnd:(NSNotification *) notification;
+
++ (NSData *)dummySendSynchronousRequest:(NSURLRequest *)request
+							 returningResponse:(NSURLResponse **)response
+											 error:(NSError **)error;
+
 @end
 
 @implementation SIStoryRunnerTests
@@ -46,24 +53,30 @@
 	
 	source1 = [[SIStorySource alloc] init];
 	[sources addSource:source1];
-
+	
 	source2 = [[SIStorySource alloc] init];
 	[sources addSource:source2];
-
+	
 	mockStory1 = [OCMockObject mockForClass:[SIStory class]];
 	[source1 addStory:mockStory1];
-
+	
 	mockStory2 = [OCMockObject mockForClass:[SIStory class]];
 	[source2 addStory:mockStory2];
-
+	
 	mockStory3 = [OCMockObject mockForClass:[SIStory class]];
 	[source2 addStory:mockStory3];
-
+	
 	runner = [[SIStoryRunner alloc] init];
 	runner.storySources = sources;
+	
+	// Swizzle the comms.
+	SEL dummySelector = @selector(dummySendSynchronousRequest:returningResponse:error:);
+	IMP impl = class_getMethodImplementation([SIStoryRunnerTests class], dummySelector);
+	[TestUtils swizzleNSURLConnectionSendSyncWithImp:impl];
 }
 
 -(void) tearDown {
+	[TestUtils restoreNSURLConnectionSendSync];
 	[mockStory1 verify];
 	[mockStory2 verify];
 	[mockStory3 verify];
@@ -78,7 +91,7 @@
 }
 
 -(void) testExecutingAllStories {
-
+	
 	[[mockStory1 expect] reset];
 	[[mockStory2 expect] reset];
 	[[mockStory3 expect] reset];
@@ -86,7 +99,7 @@
 	[[[mockStory1 expect] andReturnValue:OCMOCK_VALUE(yes)] invokeWithSource:source1];
 	[[[mockStory2 expect] andReturnValue:OCMOCK_VALUE(yes)] invokeWithSource:source2];
 	[[[mockStory3 expect] andReturnValue:OCMOCK_VALUE(yes)] invokeWithSource:source2];
-
+	
 	[runner run];
 	
 	[[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.2]];
@@ -100,7 +113,7 @@
 	[[mockStory2 expect] reset];
 	BOOL yes = YES;
 	[[[mockStory2 expect] andReturnValue:OCMOCK_VALUE(yes)] invokeWithSource:source2];
-
+	
 	NSIndexPath *currentStory = [NSIndexPath indexPathForRow:0 inSection:1];
 	sources.currentIndexPath = currentStory;
 	[runner run];
@@ -118,6 +131,14 @@
 
 -(void) runEnd:(NSNotification *) notification {
 	endSent = YES;
+}
+
++ (NSData *)dummySendSynchronousRequest:(NSURLRequest *)request
+							 returningResponse:(NSURLResponse **)response
+											 error:(NSError **)error {
+	// Don't do anything except return a basic response.
+	DC_LOG(@"Executing dummy impl of sendSynchronousRequest:returningResponse:error:");
+	return DC_STRING_TO_DATA(@"{\"status\":\"0\"}");
 }
 
 @end

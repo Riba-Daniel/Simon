@@ -105,7 +105,7 @@
 		
 		// Loop and send each character.
 		NSRange subStringRange;
-		for (int i = 0; i < [text length]; i++) {
+		for (NSUInteger i = 0; i < [text length]; i++) {
 
 			subStringRange = NSMakeRange(i,1);
 			

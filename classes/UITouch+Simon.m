@@ -48,8 +48,8 @@
       
 		// Find the deepest view at the cursor position.
       [self setLocationInWindow:CGPointMake(
-                                            frameInWindow.origin.x + 0.5 * frameInWindow.size.width,
-                                            frameInWindow.origin.y + 0.5 * frameInWindow.size.height)];
+                                            frameInWindow.origin.x + 0.5f * frameInWindow.size.width,
+                                            frameInWindow.origin.y + 0.5f * frameInWindow.size.height)];
       
       // If a table view we need to tap the table view, not the control within it.
 		UIView *target = [view.window hitTest:self.locationInWindow withEvent:nil];

@@ -11,14 +11,13 @@
 #import <Simon/SIHttpPayload.h>
 #import <dUsefulStuff/DCCommon.h>
 #import <objc/runtime.h>
+#import "TestUtils.h"
 
 BOOL bodyPresent;
 BOOL bodyCorrect;
 
 @interface SIHttpConnectionTests : GHTestCase {
 @private
-	IMP oldImp;
-	Method oldMethod;
 	SIHttpConnection *connection;
 	__block BOOL successBlockCalled;
 	__block BOOL errorBlockCalled;
@@ -38,22 +37,16 @@ BOOL bodyCorrect;
 @implementation SIHttpConnectionTests
 
 -(void) setUp {
-	
-	// Override the NSURLConnection send method so it does nothing.
-	oldMethod = class_getClassMethod([NSURLConnection class], @selector(sendSynchronousRequest:returningResponse:error:));
-	oldImp = method_getImplementation(oldMethod);
-	
 	connection = [[SIHttpConnection alloc] initWithHostUrl:@"abc.com"
 															sendGCDQueue:dispatch_get_current_queue()
 													  responseGCDQueue:dispatch_get_current_queue()];
 	successBlockCalled = NO;
 	errorBlockCalled = NO;
-	
 }
 
 -(void) tearDown {
 	// Restore the method.
-	method_setImplementation(oldMethod, oldImp);
+	[TestUtils restoreNSURLConnectionSendSync];
 	DC_DEALLOC(connection);
 }
 
@@ -62,8 +55,7 @@ BOOL bodyCorrect;
 -(void) testSendGet {
 	
 	Method newMethod = class_getClassMethod([self class], @selector(sendSynchronousRequest:returningResponse:error:));
-	IMP newImp = method_getImplementation(newMethod);
-	method_setImplementation(oldMethod, newImp);
+	[TestUtils swizzleNSURLConnectionSendSyncWithImp:method_getImplementation(newMethod)];
 	
 	[connection sendRESTRequest:@"/def"
 								method:SIHttpMethodGet
@@ -87,8 +79,7 @@ BOOL bodyCorrect;
 -(void) testSendGetGeneratesError {
 	
 	Method newMethod = class_getClassMethod([self class], @selector(errorFromRequest:returningResponse:error:));
-	IMP newImp = method_getImplementation(newMethod);
-	method_setImplementation(oldMethod, newImp);
+	[TestUtils swizzleNSURLConnectionSendSyncWithImp:method_getImplementation(newMethod)];
 	
 	[connection sendRESTRequest:@"/def"
 								method:SIHttpMethodGet
@@ -113,8 +104,7 @@ BOOL bodyCorrect;
 -(void) testSendPostGeneratesErrorForInvalidResponse {
 	
 	Method newMethod = class_getClassMethod([self class], @selector(errorFromInvalidReponseWithRequest:returningResponse:error:));
-	IMP newImp = method_getImplementation(newMethod);
-	method_setImplementation(oldMethod, newImp);
+	[TestUtils swizzleNSURLConnectionSendSyncWithImp:method_getImplementation(newMethod)];
 	
 	[connection sendRESTRequest:@"/def"
 								method:SIHttpMethodPost
@@ -139,8 +129,7 @@ BOOL bodyCorrect;
 -(void) testSendPostWithRequestBody {
 	
 	Method newMethod = class_getClassMethod([self class], @selector(sendPostWithBodyRequest:returningResponse:error:));
-	IMP newImp = method_getImplementation(newMethod);
-	method_setImplementation(oldMethod, newImp);
+	[TestUtils swizzleNSURLConnectionSendSyncWithImp:method_getImplementation(newMethod)];
 	
 	id<SIJsonAware> body = [SIHttpPayload httpPayloadWithStatus:SIHttpStatusError message:@"abc"];
 

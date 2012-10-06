@@ -22,7 +22,6 @@
 
 @interface SIAppBackpackTests : GHTestCase {
 @private
-	BOOL startRun;
 	NSArray *originalArgs;
 	SIAppBackpack *backpack;
 }
@@ -32,8 +31,6 @@
 
 -(void) setUp {
 	originalArgs = [[[NSProcessInfo processInfo] arguments] retain];
-	startRun = NO;
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startRun:) name:SI_RUN_STORIES_NOTIFICATION object:nil];
 	backpack = [[SIAppBackpack alloc] init];
 	[SIAppBackpack setBackpack:backpack];
 }
@@ -45,7 +42,7 @@
 	DC_DEALLOC(backpack);
 }
 
--(void) testStartupLoadsStoriesAndFiresStartRunNotification {
+-(void) testStartupLoadsStories {
 
 	NSArray *args = [NSArray arrayWithObjects:ARG_AUTORUN, ARG_SHOW_UI, nil];
 	[[NSProcessInfo processInfo] setArguments:args];

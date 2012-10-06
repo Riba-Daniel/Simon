@@ -22,7 +22,7 @@
 -(BOOL) setValue:(NSString *) value 
 			 ofType:(char) type 
 	 onInvocation:(NSInvocation *) invocation 
-		atArgIndex:(NSUInteger) index 
+		atArgIndex:(NSInteger) index
 			  error:(NSError **) error;
 @end
 
@@ -72,7 +72,7 @@
 	}
 	
 	// Validate that the the regex's number of capture groups match the number of selector arguments.
-	int nbrArgs = method_getNumberOfArguments(method) - 2;
+	unsigned int nbrArgs = method_getNumberOfArguments(method) - 2;
 	if ([mapping.regex numberOfCaptureGroups] != nbrArgs) {
 		[self setError:error 
 					 code:SIErrorRegularExpressionWillNotMatchSelector 
@@ -144,15 +144,15 @@
 	
 	// Populate the invocation with the data from the command. Remember to allow for the first three
 	// Arguments being the return type, class and selector.
-	int nbrArgs = method_getNumberOfArguments(method) - 2;
-	for (int i = 0; i < nbrArgs; i++) {
+	NSInteger nbrArgs = (NSInteger)method_getNumberOfArguments(method) - 2;
+	for (NSInteger i = 0; i < nbrArgs; i++) {
 		
 		// Values will be from regex groups after group 0 which is he complete match.
-		NSString *value = [command substringWithRange:[match rangeAtIndex:i + 1]];
+		NSString *value = [command substringWithRange:[match rangeAtIndex:(NSUInteger)i + 1]];
 		DC_LOG(@"Adding value to invocation: %@", value);
 		
 		// This can probably be done better using the argument functions on the signature.
-		char argType = *method_copyArgumentType(method, i + 2);
+		char argType = *method_copyArgumentType(method, (unsigned)i + 2);
 		if (![self setValue:value ofType:argType onInvocation:invocation atArgIndex:i + 2 error:error]) {
 			return NO;
 		}
@@ -167,7 +167,7 @@
 -(BOOL) setValue:(NSString *) value 
 			 ofType:(char) type 
 	 onInvocation:(NSInvocation *) invocation 
-		atArgIndex:(NSUInteger) index 
+		atArgIndex:(NSInteger) index 
 			  error:(NSError **) error {
 	
 	DC_LOG(@"Arg type = %c", type);
@@ -186,7 +186,7 @@
 				[invocation setArgument:&boolValue atIndex:index];
 			} else {
 				// Its a char.
-				char charValue = [value characterAtIndex:0];
+				unichar charValue = [value characterAtIndex:0];
 				[invocation setArgument:&charValue atIndex:index];
 			}
 			break;

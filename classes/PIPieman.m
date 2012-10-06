@@ -102,7 +102,7 @@
 			[DDLog addLogger:[DDTTYLogger sharedInstance]];
 			server = [[HTTPServer alloc] init];
 			[server setConnectionClass:[SIHttpIncomingConnection class]];
-			[server setPort:port];
+			[server setPort:(unsigned short)port];
 			NSError *error = nil;
 			if(![server start:&error]) {
 				@throw [PIException exceptionWithReason:[NSString stringWithFormat:@"Error starting HTTP Server: %@", error]];

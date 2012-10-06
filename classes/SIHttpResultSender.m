@@ -7,11 +7,13 @@
 //
 
 #import <Simon/SIHttpResultSender.h>
+#import <Simon/SIServerException.h>
 #import <dUsefulStuff/DCCommon.h>
 #import <Simon/SIFinalReport.h>
+#import <dUsefulStuff/NSError+dUsefulStuff.h>
 
 @interface SIHttpResultSender () {
-	@private
+@private
 	SIHttpConnection *_connection;
 }
 
@@ -23,6 +25,8 @@
 	DC_DEALLOC(_connection);
 	[super dealloc];
 }
+
+//#warning !!!! Find out what tests are calling this as something is trying to send to the pieman.
 
 -(id) initWithConnection:(SIHttpConnection *) connection {
 	self = [super init];
@@ -52,7 +56,7 @@
 	[super runFinished:notification];
 	
 	// Create the results object.
-	SIFinalReport *results = [[SIFinalReport alloc] init];
+	SIFinalReport *results = [[[SIFinalReport alloc] init] autorelease];
 	results.successful = [[self storiesWithStatus:SIStoryStatusSuccess] count];
 	results.ignored = [[self storiesWithStatus:SIStoryStatusIgnored] count];
 	results.failed = [[self storiesWithStatus:SIStoryStatusError] count];
@@ -64,8 +68,10 @@
 								requestBody:results
 						responseBodyClass:[SIHttpPayload class]
 							  successBlock:NULL
-								 errorBlock:NULL];
-	[results release];
+								 errorBlock:^(id<SIJsonAware> obj, NSError *error){
+									 DC_LOG(@"Throwing exception");
+									 @throw [SIServerException exceptionWithReason:[NSString stringWithFormat:@"Error received attempting to contact the Pieman: %@", [error localizedErrorMessage]]];
+								 }];
 }
 
 @end

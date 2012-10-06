@@ -75,7 +75,7 @@ static NSArray *_processors;
 }
 
 - (void)prepareForBodyWithSize:(UInt64)contentLength {
-	bodyContent = [[NSMutableData alloc] initWithCapacity:contentLength];
+	bodyContent = [[NSMutableData alloc] initWithCapacity:(NSUInteger)contentLength];
 }
 
 - (void)processBodyData:(NSData *)postDataChunk {

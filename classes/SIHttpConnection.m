@@ -76,6 +76,8 @@
 		responseBodyClass:(Class) responseBodyClass
 			  successBlock:(RequestSentBlock) successBlock
 				 errorBlock:(RequestSentErrorBlock) errorBlock {
+
+	assert(errorBlock != nil);
 	
 	dispatch_async(_sendQ, ^{
 		

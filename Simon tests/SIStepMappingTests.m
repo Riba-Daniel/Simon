@@ -26,7 +26,7 @@
 
 -(void) testCreateFailsWhenInvalidSelector {
 	NSError *error = nil;
-	SIStepMapping * mapping = [SIStepMapping stepMappingWithClass:[self class] selector:@selector(doesNotExist) regex:@"abc" error:&error];
+	SIStepMapping * mapping = [SIStepMapping stepMappingWithClass:[self class] selector:NSSelectorFromString(@"doesNotExist") regex:@"abc" error:&error];
 	GHAssertNil(mapping, @"Nil mapping returned, error %@", error.localizedDescription);
 	GHAssertEquals(error.code, SIErrorUnknownSelector, @"Unknown selector message not returned");
 }
@@ -158,7 +158,7 @@
 
 -(void) doSomethingWithBoolean:(Boolean) yesNo {
 	methodCalled = YES;
-	GHAssertTrue(yesNo, @"Incorrect value passed to method.");
+	GHAssertTrue(yesNo == 1, @"Incorrect value passed to method.");
 }
 
 -(void) doSomethingWithA:(NSString *) a andB:(NSString *) b {

@@ -9,6 +9,7 @@
 #import <dUsefulStuff/DCCommon.h>
 #import <Simon/SIStoryDetailsController.h>
 #import <Simon/SIStep.h>
+#import <UIKit/UIDevice.h>
 
 // Stores a line from the back trace.
 @interface SITraceLineData : NSObject
@@ -137,7 +138,7 @@
 	}
 	
 	// Calculate size depending on the device and orientation.
-	CGSize size = [text sizeWithFont:font constrainedToSize:CGSizeMake(UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ? 580 : 204, CGFLOAT_MAX)];
+	CGSize size = [text sizeWithFont:font constrainedToSize:CGSizeMake([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad ? 580 : 204, CGFLOAT_MAX)];
 	return size.height + (32 - font.lineHeight);
 }
 
@@ -154,7 +155,7 @@
 			return 2;
 		case 1:
 			// Step details
-			return [self.story.steps count];
+			return (NSInteger)[self.story.steps count];
 		default:
 			// Exception details.
 			return 2;
@@ -191,7 +192,7 @@
 			
 		case 1: {
 			// Step details.
-			SIStep *step = [self.story.steps objectAtIndex:indexPath.row];
+			SIStep *step = [self.story.steps objectAtIndex:(NSUInteger)indexPath.row];
 			if ([step isMapped]) {
 				if (step.executed) {
 					if (step.exception == nil) {
@@ -290,7 +291,7 @@
    
 	// Work out the stack trace line.
 	NSString *lineFormatString;
-	if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+	if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
 		lineFormatString = [NSString stringWithFormat:@"\n%%-3i %%-%is %%@ %%@", maxSourceLength];
 	} else {
 		lineFormatString = @"\n%@";
@@ -299,14 +300,14 @@
    // Now format the lines.
    NSMutableString *stackTrace = [NSMutableString string];
 	SITraceLineData *lineData;
-   for (int i = 0; i < [traceLines count]; i++) {
+   for (NSUInteger i = 0; i < [traceLines count]; i++) {
       
 		lineData = [traceLines objectAtIndex: i];
       
 		if (DC_EQUALS_NOT_FOUND_RANGE(lineData.sourceRange)) {
          [stackTrace appendString:lineData.line];
       } else {
-			if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+			if ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) {
 				[stackTrace appendFormat:lineFormatString, i, 
 				 [[lineData.line substringWithRange:lineData.sourceRange] UTF8String],
 				 [lineData.line substringWithRange:lineData.addressRange],

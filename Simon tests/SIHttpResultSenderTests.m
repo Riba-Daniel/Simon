@@ -21,6 +21,8 @@
 
 @implementation SIHttpResultSenderTests
 
+
+
 -(void) testSendsResults {
 	
 	id mockConnection = [OCMockObject mockForClass:[SIHttpConnection class]];
@@ -38,7 +40,7 @@
 	}]
 										responseBodyClass:[SIHttpPayload class]
 											  successBlock:nil
-												 errorBlock:nil];
+												 errorBlock:[OCMArg any]];
 	
 	SIHttpResultSender *sender = [[[SIHttpResultSender alloc] initWithConnection:mockConnection] autorelease];
 	
@@ -55,7 +57,10 @@
 -(void) addStoryToSender:(SIHttpResultSender *) sender withStatus:(SIStoryStatus) status {
 	
 	id mockStory = [OCMockObject mockForClass:[SIStory class]];
+	// Turn of strict selector match diagnostic because GHTestCase as a status method and the compiler doesn't know which to use.
+#pragma GCC diagnostic ignored "-Wstrict-selector-match"
 	[[[mockStory stub] andReturnValue:OCMOCK_VALUE(status)] status];
+#pragma GCC diagnostic warning "-Wstrict-selector-match"
 	
 	NSDictionary *userInfo = @{SI_NOTIFICATION_KEY_STORY:mockStory};
 	NSNotification *notification = [NSNotification notificationWithName:@"x" object:self userInfo:userInfo];

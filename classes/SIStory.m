@@ -189,7 +189,7 @@
 	if ([key isEqualToString:@"steps"]) {
 		self.steps = [NSMutableArray array];
 		[(NSArray *) value enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-			[self createStepWithKeyword:[obj[@"keyword"] intValue] command:obj[@"command"]];
+			[self createStepWithKeyword:[obj[@"keyword"] unsignedIntValue] command:obj[@"command"]];
 		}];
 	} else {
 		[super setValue:value forKey:key];

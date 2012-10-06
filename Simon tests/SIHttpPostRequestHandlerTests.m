@@ -68,7 +68,7 @@
 -(void) testProcessReturnsHttpResponse {
 	HTTPDataResponse *response = (HTTPDataResponse *)[handler processPath:@"abc" andBody:body];
 	GHAssertNotNil(response, nil);
-	NSData *responseBody = [response readDataOfLength:[response contentLength]];
+	NSData *responseBody = [response readDataOfLength:(NSUInteger)[response contentLength]];
 	GHAssertEqualStrings(DC_DATA_TO_STRING(responseBody), @"{\"status\":1,\"message\":\"xyz\"}", nil);
 }
 
@@ -83,7 +83,7 @@
 	
 	HTTPDataResponse *response = (HTTPDataResponse *)[handler processPath:@"abc" andBody:body];
 	GHAssertNotNil(response, nil);
-	NSData *responseBody = [response readDataOfLength:[response contentLength]];
+	NSData *responseBody = [response readDataOfLength:(NSUInteger)[response contentLength]];
 	GHAssertEqualStrings(DC_DATA_TO_STRING(responseBody), @"{\"status\":0,\"message\":null}", nil);
 }
 
