@@ -136,6 +136,7 @@
 		32A188BD15EF969900B8C111 /* GHUnit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 32A188BA15EF92F200B8C111 /* GHUnit.framework */; };
 		32A4DDFB161FD9FB0031DEA3 /* TestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A4DDFA161FD9FB0031DEA3 /* TestUtils.m */; };
 		32A4DDFC161FD9FB0031DEA3 /* TestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A4DDFA161FD9FB0031DEA3 /* TestUtils.m */; };
+		32A4DE3B1621B8AB0031DEA3 /* libGRMustache5-MacOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32A4DE301621B74F0031DEA3 /* libGRMustache5-MacOS.a */; };
 		32A9D11014C907BC00B0CFBD /* NSInvocationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A9D10F14C907BC00B0CFBD /* NSInvocationTests.m */; };
 		32A9D11314C914B500B0CFBD /* SIMacroTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A9D11214C914B500B0CFBD /* SIMacroTests.m */; };
 		32AF044215CE36C500501B1E /* SIAppBackpackTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AF044115CE36C500501B1E /* SIAppBackpackTests.m */; };
@@ -299,6 +300,41 @@
 			proxyType = 1;
 			remoteGlobalIDString = 32F3DF4B15B8219700588D21;
 			remoteInfo = "dUsefulStuff-OSX";
+		};
+		32A4DE2F1621B74F0031DEA3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 32A4DE251621B74E0031DEA3 /* GRMustache.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 56DEC248152631040031E8DC;
+			remoteInfo = "GRMustache5-MacOS";
+		};
+		32A4DE311621B74F0031DEA3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 32A4DE251621B74E0031DEA3 /* GRMustache.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 56DEC255152631040031E8DC;
+			remoteInfo = "GRMustache5-MacOSTests";
+		};
+		32A4DE331621B74F0031DEA3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 32A4DE251621B74E0031DEA3 /* GRMustache.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 56DEC26E1526311B0031E8DC;
+			remoteInfo = "GRMustache5-iOS";
+		};
+		32A4DE351621B74F0031DEA3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 32A4DE251621B74E0031DEA3 /* GRMustache.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 56DEC27B1526311C0031E8DC;
+			remoteInfo = "GRMustache5-iOSTests";
+		};
+		32A4DE3C1621B8B20031DEA3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 32A4DE251621B74E0031DEA3 /* GRMustache.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 56DEC247152631040031E8DC;
+			remoteInfo = "GRMustache5-MacOS";
 		};
 		32B9592C15E5E62F00470287 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -532,6 +568,7 @@
 		32A188BA15EF92F200B8C111 /* GHUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GHUnit.framework; path = ../frameworks/GHUnit/0.5.1/GHUnit.framework; sourceTree = "<group>"; };
 		32A4DDF9161FD9FB0031DEA3 /* TestUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestUtils.h; sourceTree = "<group>"; };
 		32A4DDFA161FD9FB0031DEA3 /* TestUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestUtils.m; sourceTree = "<group>"; };
+		32A4DE251621B74E0031DEA3 /* GRMustache.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GRMustache.xcodeproj; path = submodules/GRMustache/src/GRMustache.xcodeproj; sourceTree = "<group>"; };
 		32A9D10F14C907BC00B0CFBD /* NSInvocationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = NSInvocationTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		32A9D11214C914B500B0CFBD /* SIMacroTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIMacroTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		32AF044115CE36C500501B1E /* SIAppBackpackTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIAppBackpackTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -665,6 +702,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32A4DE3B1621B8AB0031DEA3 /* libGRMustache5-MacOS.a in Frameworks */,
 				322B4FBB15F3893B00C81E65 /* CocoaHTTPServer.dylib in Frameworks */,
 				3224270415EDEDC300F0CB62 /* dUsefulStuff.dylib in Frameworks */,
 				32E3DC3415F0F9EA003E7B2B /* iPhoneSimulatorRemoteClient.framework in Frameworks */,
@@ -1041,6 +1079,17 @@
 			name = "OS X";
 			sourceTree = "<group>";
 		};
+		32A4DE261621B74E0031DEA3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				32A4DE301621B74F0031DEA3 /* libGRMustache5-MacOS.a */,
+				32A4DE321621B74F0031DEA3 /* GRMustache5-MacOSTests.octest */,
+				32A4DE341621B74F0031DEA3 /* libGRMustache.a */,
+				32A4DE361621B74F0031DEA3 /* GRMustache5-iOSTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		32B0ABF514E8DEE20020500E /* Exceptions */ = {
 			isa = PBXGroup;
 			children = (
@@ -1139,6 +1188,7 @@
 		653D0E7F13A782AC00A5AB82 = {
 			isa = PBXGroup;
 			children = (
+				32A4DE251621B74E0031DEA3 /* GRMustache.xcodeproj */,
 				32CDF2E715E5E5DA001F4317 /* dUsefulStuff.xcodeproj */,
 				32CDF2F815E5E602001F4317 /* dNodi.xcodeproj */,
 				32CDF2F615E5E5E7001F4317 /* CocoaHTTPServer.xcodeproj */,
@@ -1432,6 +1482,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				32A4DE3D1621B8B20031DEA3 /* PBXTargetDependency */,
 				3224269F15EBA88800F0CB62 /* PBXTargetDependency */,
 				322426A715EBA96400F0CB62 /* PBXTargetDependency */,
 			);
@@ -1550,6 +1601,10 @@
 					ProductGroup = 32CDF2E815E5E5DA001F4317 /* Products */;
 					ProjectRef = 32CDF2E715E5E5DA001F4317 /* dUsefulStuff.xcodeproj */;
 				},
+				{
+					ProductGroup = 32A4DE261621B74E0031DEA3 /* Products */;
+					ProjectRef = 32A4DE251621B74E0031DEA3 /* GRMustache.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -1568,6 +1623,34 @@
 			fileType = "compiled.mach-o.dylib";
 			path = CocoaHTTPServer.dylib;
 			remoteRef = 322426A415EBA95E00F0CB62 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		32A4DE301621B74F0031DEA3 /* libGRMustache5-MacOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libGRMustache5-MacOS.a";
+			remoteRef = 32A4DE2F1621B74F0031DEA3 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		32A4DE321621B74F0031DEA3 /* GRMustache5-MacOSTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "GRMustache5-MacOSTests.octest";
+			remoteRef = 32A4DE311621B74F0031DEA3 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		32A4DE341621B74F0031DEA3 /* libGRMustache.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libGRMustache.a;
+			remoteRef = 32A4DE331621B74F0031DEA3 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		32A4DE361621B74F0031DEA3 /* GRMustache5-iOSTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "GRMustache5-iOSTests.octest";
+			remoteRef = 32A4DE351621B74F0031DEA3 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		32B9592D15E5E62F00470287 /* libCocoaHTTPServer.a */ = {
@@ -1895,6 +1978,11 @@
 			isa = PBXTargetDependency;
 			name = "dUsefulStuff-OSX";
 			targetProxy = 322B4FB715F3892500C81E65 /* PBXContainerItemProxy */;
+		};
+		32A4DE3D1621B8B20031DEA3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "GRMustache5-MacOS";
+			targetProxy = 32A4DE3C1621B8B20031DEA3 /* PBXContainerItemProxy */;
 		};
 		32B9593915E5E64100470287 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
