@@ -21,6 +21,7 @@
 #import <CocoaHTTPServer/DDLog.h>
 #import <CocoaHTTPServer/DDTTYLogger.h>
 #import <CocoaHTTPServer/HTTPServer.h>
+#import <Simon/SIFinalReport.h>
 
 @interface PIPieman () {
 @private
@@ -32,6 +33,8 @@
 }
 
 -(void) sendRunAllRequest;
+-(SIHttpPostRequestHandler *) simonReadyHandler;
+-(SIHttpPostRequestHandler *) simonFinishedHandler;
 
 @end
 
@@ -74,24 +77,9 @@
 		NSInteger port = self.piemanPort > 0 ? self.piemanPort : HTTP_PIEMAN_PORT;
 		
 		// Setup the request processors.
+		[SIHttpIncomingConnection setProcessors:@[[self simonReadyHandler], [self simonFinishedHandler]]];
 		
-		// Simon is ready so run tests.
-		RequestReceivedBlock simonReady = ^(id obj) {
-			DC_LOG(@"Simon ready received, sending Run All request back to Simon");
-			sendCount = 0;
-			[self sendRunAllRequest];
-			SIHttpPayload *body = [[[SIHttpPayload alloc] init] autorelease];
-			body.status = SIHttpStatusOk;
-			return body;
-		};
-		SIHttpPostRequestHandler *simonReadyProcessor = [[SIHttpPostRequestHandler alloc] initWithPath:HTTP_PATH_SIMON_READY
-																												requestBodyClass:NULL
-																															process:simonReady];
-		
-		[SIHttpIncomingConnection setProcessors:[NSArray arrayWithObjects:simonReadyProcessor, nil]];
-		[simonReadyProcessor release];
-		
-		// Setup the comms.
+		// Setup the outgoing comms.
 		dispatch_queue_t simonsQ = dispatch_queue_create(SIMON_QUEUE_NAME, NULL);
 		_simon = [[SIHttpConnection alloc] initWithHostUrl:[NSString stringWithFormat:@"%@:%i", HTTP_SIMON_HOST, HTTP_SIMON_PORT]
 														  sendGCDQueue:simonsQ
@@ -162,7 +150,7 @@
 							  sendCount++;
 							  if (sendCount < HTTP_MAX_RETRIES) {
 								  DC_LOG(@"Requeuing run all request");
-								  dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, HTTP_RETRY_INTERVAL * NSEC_PER_SEC);
+								  dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, lround(HTTP_RETRY_INTERVAL * NSEC_PER_SEC));
 								  dispatch_after(popTime, dispatch_get_current_queue(), ^(void){
 									  [self sendRunAllRequest];
 								  });
@@ -171,6 +159,43 @@
 								  _exitCode = EXIT_FAILURE;
 							  }
 						  }];
+}
+
+-(SIHttpPostRequestHandler *) simonReadyHandler {
+	RequestReceivedBlock simonReady = ^(id obj) {
+		DC_LOG(@"Simon ready received, sending Run All request back to Simon");
+		sendCount = 0;
+		[self sendRunAllRequest];
+		SIHttpPayload *body = [[[SIHttpPayload alloc] init] autorelease];
+		body.status = SIHttpStatusOk;
+		return body;
+	};
+	return [[[SIHttpPostRequestHandler alloc] initWithPath:HTTP_PATH_SIMON_READY
+													  requestBodyClass:NULL
+																  process:simonReady] autorelease];
+}
+
+-(SIHttpPostRequestHandler *) simonFinishedHandler {
+	RequestReceivedBlock simonFinished = ^(id obj) {
+		DC_LOG(@"Simon has finished running tests.");
+		SIFinalReport *report = (SIFinalReport *) obj;
+		if (report.failed > 0) {
+			DC_LOG(@"Error: %lu failed tests", report.failed);
+		}
+		
+		// Start the shutdown process.
+		[_simulator shutdown];
+		_exitCode = report.failed > 0 ? EXIT_FAILURE : EXIT_SUCCESS;
+		
+		// Say ok.
+		SIHttpPayload *body = [[[SIHttpPayload alloc] init] autorelease];
+		body.status = SIHttpStatusOk;
+		return body;
+	};
+	return [[[SIHttpPostRequestHandler alloc] initWithPath:HTTP_PATH_RUN_FINISHED
+													  requestBodyClass:[SIFinalReport class]
+																  process:simonFinished] autorelease];
+	
 }
 
 #pragma mark - Delegate methods.

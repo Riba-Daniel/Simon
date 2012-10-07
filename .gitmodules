@@ -1,0 +1,3 @@
+[submodule "submodules/GRMustache"]
+	path = submodules/GRMustache
+	url = git@github.com:drekka/GRMustache.git

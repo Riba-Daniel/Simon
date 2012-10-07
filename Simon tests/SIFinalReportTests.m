@@ -50,11 +50,11 @@
 	
 	GHAssertEquals(report.status, SIHttpStatusError, nil);
 	GHAssertEqualStrings(report.message, @"abc", nil);
-	GHAssertEquals(report.failed, 2u, nil);
-	GHAssertEquals(report.ignored, 3u, nil);
-	GHAssertEquals(report.notMapped, 4u, nil);
-	GHAssertEquals(report.notRun, 5u, nil);
-	GHAssertEquals(report.successful, 6u, nil);
+	GHAssertEquals(report.failed, 2lu, nil);
+	GHAssertEquals(report.ignored, 3lu, nil);
+	GHAssertEquals(report.notMapped, 4lu, nil);
+	GHAssertEquals(report.notRun, 5lu, nil);
+	GHAssertEquals(report.successful, 6lu, nil);
 
 }
 

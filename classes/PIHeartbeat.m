@@ -74,7 +74,7 @@
 	// Query Simon
 	SimpleBlock queueHeartbeat = ^{
 		DC_LOG(@"Queuing heartbeat on queue: %s", dispatch_queue_get_label(dispatch_get_current_queue()));
-		dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, HEARTBEAT_FREQUENCY * NSEC_PER_SEC);
+		dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, lround(HEARTBEAT_FREQUENCY * NSEC_PER_SEC));
 		dispatch_after(popTime, dispatch_get_current_queue(), ^(void){
 			[self heartbeat];
 		});

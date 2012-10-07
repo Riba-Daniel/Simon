@@ -33,7 +33,7 @@
 	id<SIJsonAware> obj = [data jsonToObjectWithClass:[SIHttpPayload class] error:&error];
 	GHAssertNil(obj, nil);
 	GHAssertNotNil(error, [error localizedDescription]);
-	GHAssertEquals([error code], 3840, nil);
+	GHAssertEquals([error code], 3840l, nil);
 }
 
 @end
