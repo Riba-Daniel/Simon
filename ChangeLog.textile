@@ -13,7 +13,8 @@ h1. Version 0.2.0 2012
 * Whole new set of command line args.
 * More unit tests.
 * Refactored and rebuilt the project and how it is assembled in XCode.
-* lots of other changes.
+* Lots of other changes.
+* Added -report option which turns on the command line output in Simon. This is now off by default.
 
 h1. Version 0.1.9, Aug 2012
 

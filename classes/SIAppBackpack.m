@@ -113,7 +113,9 @@ static SIAppBackpack *_backpack;
 		DC_LOG(@"Simon initialising");
 		self.reader = [[[SIStoryFileReader alloc] init] autorelease];
 		_runner = [[SIStoryRunner alloc] init];
-		logger = [[SIStoryLogger alloc] init];
+		if ([[NSProcessInfo processInfo] isArgumentPresentWithName:ARG_REPORT]) {
+			logger = [[SIStoryLogger alloc] init];
+		}
 		
 		// Because this is executing during +load just hook onto the app start notification.
 		DC_LOG(@"Adding hook to application start");
@@ -127,7 +129,7 @@ static SIAppBackpack *_backpack;
 
 -(void) exit {
 	
-	// DOn't exit immediately, queue the request.
+	// Don't exit immediately, queue the request.
 	dispatch_async(dispatch_get_main_queue(), ^{
 		dispatch_async(dispatch_get_main_queue(), ^(void){
 			DC_LOG(@"Exiting the application");

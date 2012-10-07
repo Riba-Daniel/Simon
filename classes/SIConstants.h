@@ -40,6 +40,7 @@
 #define ARG_SHOW_UI @"-ui"
 #define ARG_AUTORUN @"-autorun"
 #define ARG_LOG_ACTIONS @"-log-actions"
+#define ARG_REPORT @"-report"
 
 /**
  Individual error codes.

@@ -183,7 +183,16 @@
 			DC_LOG(@"Error: %lu failed tests", report.failed);
 		}
 		
-		// Start the shutdown process.
+		// Report to the command line.
+		printf("\nTest report\n");
+		printf("=====================================================\n");
+		printf("Successful stories           : %lu\n", report.successful);
+		printf("Failed stories               : %lu\n", report.failed);
+		printf("Stories with missing mappings: %lu\n", report.notMapped);
+		printf("Ignored stories              : %lu\n", report.ignored);
+		printf("Stories not run              : %lu\n", report.notRun);
+		
+		// Queue the shutdown process.
 		[_simulator shutdown];
 		_exitCode = report.failed > 0 ? EXIT_FAILURE : EXIT_SUCCESS;
 		
