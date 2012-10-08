@@ -537,8 +537,8 @@
 		3291243F15F6D2AF00969A86 /* PISimulatorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PISimulatorDelegate.h; sourceTree = "<group>"; };
 		3296322414F751D300D9310A /* SIUITapGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SIUITapGenerator.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		3296322514F751D300D9310A /* SIUITapGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIUITapGenerator.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		3296CDFF1605E78B00576072 /* SIHttpPostRequestHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIHttpPostRequestHandler.h; sourceTree = "<group>"; };
-		3296CE001605E78B00576072 /* SIHttpPostRequestHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIHttpPostRequestHandler.m; sourceTree = "<group>"; };
+		3296CDFF1605E78B00576072 /* SIHttpPostRequestHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SIHttpPostRequestHandler.h; path = classes/SIHttpPostRequestHandler.h; sourceTree = "<group>"; };
+		3296CE001605E78B00576072 /* SIHttpPostRequestHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SIHttpPostRequestHandler.m; path = classes/SIHttpPostRequestHandler.m; sourceTree = "<group>"; };
 		3298250D15039FE300631203 /* ARC App with tests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ARC App with tests.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3298251415039FE300631203 /* ARC App with tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ARC App with tests-Info.plist"; sourceTree = "<group>"; };
 		3298251615039FE300631203 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -562,8 +562,8 @@
 		32A0A79B15FB8E2C00A3964F /* SIHttpConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SIHttpConnection.h; path = classes/SIHttpConnection.h; sourceTree = "<group>"; };
 		32A0A79C15FB8E2C00A3964F /* SIHttpConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SIHttpConnection.m; path = classes/SIHttpConnection.m; sourceTree = "<group>"; };
 		32A0A7A215FCB59600A3964F /* PIHeartbeatTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PIHeartbeatTests.m; sourceTree = "<group>"; };
-		32A0A7A415FE1E0E00A3964F /* NSProcessInfo+Simon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSProcessInfo+Simon.h"; sourceTree = "<group>"; };
-		32A0A7A515FE1E0E00A3964F /* NSProcessInfo+Simon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSProcessInfo+Simon.m"; sourceTree = "<group>"; };
+		32A0A7A415FE1E0E00A3964F /* NSProcessInfo+Simon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSProcessInfo+Simon.h"; path = "classes/NSProcessInfo+Simon.h"; sourceTree = "<group>"; };
+		32A0A7A515FE1E0E00A3964F /* NSProcessInfo+Simon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSProcessInfo+Simon.m"; path = "classes/NSProcessInfo+Simon.m"; sourceTree = "<group>"; };
 		32A0A7CC15FF208A00A3964F /* NSProcessInfo+SimonTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSProcessInfo+SimonTests.m"; sourceTree = "<group>"; };
 		32A1889815EF89BE00B8C111 /* Pieman Tests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pieman Tests.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		32A188A215EF89BE00B8C111 /* Pieman Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Pieman Tests-Info.plist"; sourceTree = "<group>"; };
@@ -609,10 +609,10 @@
 		32CDF2F815E5E602001F4317 /* dNodi.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = dNodi.xcodeproj; path = ../dNodi/dNodi.xcodeproj; sourceTree = "<group>"; };
 		32CF03B21613222600FFD010 /* SIHttpGetRequestHandlerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIHttpGetRequestHandlerTests.m; sourceTree = "<group>"; };
 		32CF03B4161325D800FFD010 /* SIHttpPostRequestHandlerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIHttpPostRequestHandlerTests.m; sourceTree = "<group>"; };
-		32CF03B61613281800FFD010 /* SIHttpGetRequestHandler+Simon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SIHttpGetRequestHandler+Simon.h"; sourceTree = "<group>"; };
-		32CF03B71613281800FFD010 /* SIHttpGetRequestHandler+Simon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SIHttpGetRequestHandler+Simon.m"; sourceTree = "<group>"; };
-		32CF03D716148D4600FFD010 /* SIFinalReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SIFinalReport.h; path = ../SIFinalReport.h; sourceTree = "<group>"; };
-		32CF03D816148D4700FFD010 /* SIFinalReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SIFinalReport.m; path = ../SIFinalReport.m; sourceTree = "<group>"; };
+		32CF03B61613281800FFD010 /* SIHttpGetRequestHandler+Simon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "SIHttpGetRequestHandler+Simon.h"; path = "classes/SIHttpGetRequestHandler+Simon.h"; sourceTree = "<group>"; };
+		32CF03B71613281800FFD010 /* SIHttpGetRequestHandler+Simon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "SIHttpGetRequestHandler+Simon.m"; path = "classes/SIHttpGetRequestHandler+Simon.m"; sourceTree = "<group>"; };
+		32CF03D716148D4600FFD010 /* SIFinalReport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIFinalReport.h; sourceTree = "<group>"; };
+		32CF03D816148D4700FFD010 /* SIFinalReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIFinalReport.m; sourceTree = "<group>"; };
 		32CF03DD1614902F00FFD010 /* SIFinalReportTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIFinalReportTests.m; sourceTree = "<group>"; };
 		32CF03E0161744C500FFD010 /* SIHttpResultSenderTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIHttpResultSenderTests.m; sourceTree = "<group>"; };
 		32D5D98914E1357900D29DD5 /* TestView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TestView.xib; sourceTree = "<group>"; };
