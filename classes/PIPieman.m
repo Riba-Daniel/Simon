@@ -214,11 +214,6 @@
 	[self sendRunAllRequest];
 }
 
--(void) errorFromSimon {
-	[_simulator shutdown];
-	_exitCode = EXIT_FAILURE;
-}
-
 -(void) heartbeatDidTimeout {
 	DC_LOG(@"Heart beat timed out, asking simulator to quit.");
 	[_simulator shutdown];

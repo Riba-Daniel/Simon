@@ -131,7 +131,6 @@
 		32A0A7CB15FE24D100A3964F /* SIStory.m in Sources */ = {isa = PBXBuildFile; fileRef = 653D0EB813A783C000A5AB82 /* SIStory.m */; };
 		32A0A7CD15FF208A00A3964F /* NSProcessInfo+SimonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A0A7CC15FF208A00A3964F /* NSProcessInfo+SimonTests.m */; };
 		32A188A515EF89BE00B8C111 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 32A188A315EF89BE00B8C111 /* InfoPlist.strings */; };
-		32A188B815EF8ABB00B8C111 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32A188B615EF8A9800B8C111 /* Foundation.framework */; };
 		32A188BB15EF92F200B8C111 /* GHUnit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32A188BA15EF92F200B8C111 /* GHUnit.framework */; };
 		32A188BD15EF969900B8C111 /* GHUnit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = 32A188BA15EF92F200B8C111 /* GHUnit.framework */; };
 		32A4DDFB161FD9FB0031DEA3 /* TestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A4DDFA161FD9FB0031DEA3 /* TestUtils.m */; };
@@ -139,6 +138,9 @@
 		32A4DE3B1621B8AB0031DEA3 /* libGRMustache5-MacOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32A4DE301621B74F0031DEA3 /* libGRMustache5-MacOS.a */; };
 		32A9D11014C907BC00B0CFBD /* NSInvocationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A9D10F14C907BC00B0CFBD /* NSInvocationTests.m */; };
 		32A9D11314C914B500B0CFBD /* SIMacroTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A9D11214C914B500B0CFBD /* SIMacroTests.m */; };
+		32AE69F91622E08A006410CE /* PIReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AE69F81622E08A006410CE /* PIReporter.m */; };
+		32AE69FA1622E08A006410CE /* PIReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AE69F81622E08A006410CE /* PIReporter.m */; };
+		32AE69FD1622E29C006410CE /* PIReporterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AE69FC1622E29C006410CE /* PIReporterTests.m */; };
 		32AF044215CE36C500501B1E /* SIAppBackpackTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AF044115CE36C500501B1E /* SIAppBackpackTests.m */; };
 		32AF045215CEB73600501B1E /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32AF045115CEB73600501B1E /* CFNetwork.framework */; };
 		32AF045415CEB75F00501B1E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32AF045315CEB75F00501B1E /* Security.framework */; };
@@ -571,6 +573,9 @@
 		32A4DE251621B74E0031DEA3 /* GRMustache.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GRMustache.xcodeproj; path = submodules/GRMustache/src/GRMustache.xcodeproj; sourceTree = "<group>"; };
 		32A9D10F14C907BC00B0CFBD /* NSInvocationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = NSInvocationTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		32A9D11214C914B500B0CFBD /* SIMacroTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIMacroTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		32AE69F71622E08A006410CE /* PIReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PIReporter.h; sourceTree = "<group>"; };
+		32AE69F81622E08A006410CE /* PIReporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PIReporter.m; sourceTree = "<group>"; };
+		32AE69FC1622E29C006410CE /* PIReporterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PIReporterTests.m; sourceTree = "<group>"; };
 		32AF044115CE36C500501B1E /* SIAppBackpackTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIAppBackpackTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		32AF045115CEB73600501B1E /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		32AF045315CEB75F00501B1E /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -735,7 +740,6 @@
 				32E3DC2315F09BA5003E7B2B /* AppKit.framework in Frameworks */,
 				32A188BB15EF92F200B8C111 /* GHUnit.framework in Frameworks */,
 				322B4FB415F387A900C81E65 /* iPhoneSimulatorRemoteClient.framework in Frameworks */,
-				32A188B815EF8ABB00B8C111 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -820,8 +824,6 @@
 			children = (
 				32C30DD515D3A73100AA7347 /* SIHttpAppBackpack.h */,
 				32C30DD615D3A73100AA7347 /* SIHttpAppBackpack.m */,
-				328DE14415D3792C009A16C1 /* SIHttpResultSender.h */,
-				328DE14515D3792C009A16C1 /* SIHttpResultSender.m */,
 			);
 			name = Http;
 			sourceTree = "<group>";
@@ -844,6 +846,7 @@
 		322DA95415A18A4B005CFC83 /* PieMan */ = {
 			isa = PBXGroup;
 			children = (
+				32AE69F41622DE37006410CE /* Report */,
 				329F9AA215FB88DF0041FD1D /* pieman.1 */,
 				326B624315F4DB48002CA603 /* Exceptions */,
 				322DA95515A18A4B005CFC83 /* main.m */,
@@ -945,7 +948,6 @@
 			children = (
 				3224267F15E750D500F0CB62 /* In app UI */,
 				3224267E15E750D000F0CB62 /* Http */,
-				328DE13F15D368D2009A16C1 /* SIResultListenerTests.m */,
 			);
 			name = Interface;
 			sourceTree = "<group>";
@@ -1041,7 +1043,6 @@
 				3224268815E9184E00F0CB62 /* SIHttpIncomingConnectionTests.m */,
 				3224270A15EDF64C00F0CB62 /* SIHttpPayloadTests.m */,
 				32CF03B4161325D800FFD010 /* SIHttpPostRequestHandlerTests.m */,
-				32CF03E0161744C500FFD010 /* SIHttpResultSenderTests.m */,
 			);
 			name = http;
 			sourceTree = "<group>";
@@ -1049,6 +1050,7 @@
 		32A188A015EF89BE00B8C111 /* Pieman Tests */ = {
 			isa = PBXGroup;
 			children = (
+				32AE69FB1622E279006410CE /* Report */,
 				32E3DC4215F323F6003E7B2B /* simulator */,
 				32A188A115EF89BE00B8C111 /* Supporting Files */,
 				32E3DC2615F09FAF003E7B2B /* PIPiemanTests.m */,
@@ -1088,6 +1090,45 @@
 				32A4DE361621B74F0031DEA3 /* GRMustache5-iOSTests.octest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		32AE69F41622DE37006410CE /* Report */ = {
+			isa = PBXGroup;
+			children = (
+				32AE69F71622E08A006410CE /* PIReporter.h */,
+				32AE69F81622E08A006410CE /* PIReporter.m */,
+			);
+			name = Report;
+			sourceTree = "<group>";
+		};
+		32AE69F51622DF79006410CE /* Result listeners */ = {
+			isa = PBXGroup;
+			children = (
+				0BF2104315D25412006BB2CA /* SIResultListener.h */,
+				0BF2104415D25412006BB2CA /* SIResultListener.m */,
+				65D03BD813BA099700A3F0FA /* SIStoryLogger.h */,
+				65D03BD913BA099700A3F0FA /* SIStoryLogger.m */,
+				328DE14415D3792C009A16C1 /* SIHttpResultSender.h */,
+				328DE14515D3792C009A16C1 /* SIHttpResultSender.m */,
+			);
+			name = "Result listeners";
+			sourceTree = "<group>";
+		};
+		32AE69F61622DFC1006410CE /* Result listener */ = {
+			isa = PBXGroup;
+			children = (
+				328DE13F15D368D2009A16C1 /* SIResultListenerTests.m */,
+				32CF03E0161744C500FFD010 /* SIHttpResultSenderTests.m */,
+			);
+			name = "Result listener";
+			sourceTree = "<group>";
+		};
+		32AE69FB1622E279006410CE /* Report */ = {
+			isa = PBXGroup;
+			children = (
+				32AE69FC1622E29C006410CE /* PIReporterTests.m */,
+			);
+			name = Report;
 			sourceTree = "<group>";
 		};
 		32B0ABF514E8DEE20020500E /* Exceptions */ = {
@@ -1232,6 +1273,7 @@
 		653D0EB113A783C000A5AB82 /* Simon */ = {
 			isa = PBXGroup;
 			children = (
+				32AE69F51622DF79006410CE /* Result listeners */,
 				659E628E13D9C37200ACD34C /* app */,
 				65D03BEF13BE014700A3F0FA /* Categories */,
 				32B0ABF514E8DEE20020500E /* Exceptions */,
@@ -1246,8 +1288,6 @@
 				65FCD12513AF622300A90FCA /* SIRuntime.m */,
 				32AF045715CEB7BA00501B1E /* SIServerException.h */,
 				32AF045815CEB7BA00501B1E /* SIServerException.m */,
-				65D03BD813BA099700A3F0FA /* SIStoryLogger.h */,
-				65D03BD913BA099700A3F0FA /* SIStoryLogger.m */,
 			);
 			name = Simon;
 			path = classes;
@@ -1256,6 +1296,7 @@
 		653D0ED413A783DC00A5AB82 /* Simon tests */ = {
 			isa = PBXGroup;
 			children = (
+				32AE69F61622DFC1006410CE /* Result listener */,
 				329F9AA615FB8B8A0041FD1D /* Core */,
 				94657741141C95160026F1FB /* AbstractTestWithControlsOnView.h */,
 				94657742141C95160026F1FB /* AbstractTestWithControlsOnView.m */,
@@ -1393,8 +1434,6 @@
 			children = (
 				3224267D15E74DD300F0CB62 /* Http */,
 				3224267C15E74DC600F0CB62 /* In app UI */,
-				0BF2104315D25412006BB2CA /* SIResultListener.h */,
-				0BF2104415D25412006BB2CA /* SIResultListener.m */,
 			);
 			name = Interface;
 			sourceTree = "<group>";
@@ -1803,6 +1842,7 @@
 				3261A025160616B000DDA1CF /* NSData+Simon.m in Sources */,
 				32CF03BA1614867100FFD010 /* SIHttpGetRequestHandler+Simon.m in Sources */,
 				32CF03DB16148D4700FFD010 /* SIFinalReport.m in Sources */,
+				32AE69F91622E08A006410CE /* PIReporter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1851,6 +1891,8 @@
 				32CF03DC16148D4700FFD010 /* SIFinalReport.m in Sources */,
 				32CF03DF1614902F00FFD010 /* SIFinalReportTests.m in Sources */,
 				32A4DDFC161FD9FB0031DEA3 /* TestUtils.m in Sources */,
+				32AE69FA1622E08A006410CE /* PIReporter.m in Sources */,
+				32AE69FD1622E29C006410CE /* PIReporterTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
