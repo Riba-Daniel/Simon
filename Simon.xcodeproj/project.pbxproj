@@ -141,6 +141,9 @@
 		32AE69F91622E08A006410CE /* PIReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AE69F81622E08A006410CE /* PIReporter.m */; };
 		32AE69FA1622E08A006410CE /* PIReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AE69F81622E08A006410CE /* PIReporter.m */; };
 		32AE69FD1622E29C006410CE /* PIReporterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AE69FC1622E29C006410CE /* PIReporterTests.m */; };
+		32AE6A0016230BEF006410CE /* PIJUnitReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AE69FF16230BEF006410CE /* PIJUnitReporter.m */; };
+		32AE6A0116230BEF006410CE /* PIJUnitReporter.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AE69FF16230BEF006410CE /* PIJUnitReporter.m */; };
+		32AE6A0316230C16006410CE /* PIJUnitReporterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AE6A0216230C16006410CE /* PIJUnitReporterTests.m */; };
 		32AF044215CE36C500501B1E /* SIAppBackpackTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32AF044115CE36C500501B1E /* SIAppBackpackTests.m */; };
 		32AF045215CEB73600501B1E /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32AF045115CEB73600501B1E /* CFNetwork.framework */; };
 		32AF045415CEB75F00501B1E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32AF045315CEB75F00501B1E /* Security.framework */; };
@@ -576,6 +579,9 @@
 		32AE69F71622E08A006410CE /* PIReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PIReporter.h; sourceTree = "<group>"; };
 		32AE69F81622E08A006410CE /* PIReporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PIReporter.m; sourceTree = "<group>"; };
 		32AE69FC1622E29C006410CE /* PIReporterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PIReporterTests.m; sourceTree = "<group>"; };
+		32AE69FE16230BEF006410CE /* PIJUnitReporter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PIJUnitReporter.h; sourceTree = "<group>"; };
+		32AE69FF16230BEF006410CE /* PIJUnitReporter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PIJUnitReporter.m; sourceTree = "<group>"; };
+		32AE6A0216230C16006410CE /* PIJUnitReporterTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PIJUnitReporterTests.m; sourceTree = "<group>"; };
 		32AF044115CE36C500501B1E /* SIAppBackpackTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIAppBackpackTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		32AF045115CEB73600501B1E /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		32AF045315CEB75F00501B1E /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -866,6 +872,7 @@
 		322DA95715A18A4B005CFC83 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				32AE6A0416230C5D006410CE /* Junit */,
 				322DA95815A18A4B005CFC83 /* PieMan-Prefix.pch */,
 			);
 			name = "Supporting Files";
@@ -1097,6 +1104,8 @@
 			children = (
 				32AE69F71622E08A006410CE /* PIReporter.h */,
 				32AE69F81622E08A006410CE /* PIReporter.m */,
+				32AE69FE16230BEF006410CE /* PIJUnitReporter.h */,
+				32AE69FF16230BEF006410CE /* PIJUnitReporter.m */,
 			);
 			name = Report;
 			sourceTree = "<group>";
@@ -1127,8 +1136,16 @@
 			isa = PBXGroup;
 			children = (
 				32AE69FC1622E29C006410CE /* PIReporterTests.m */,
+				32AE6A0216230C16006410CE /* PIJUnitReporterTests.m */,
 			);
 			name = Report;
+			sourceTree = "<group>";
+		};
+		32AE6A0416230C5D006410CE /* Junit */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Junit;
 			sourceTree = "<group>";
 		};
 		32B0ABF514E8DEE20020500E /* Exceptions */ = {
@@ -1843,6 +1860,7 @@
 				32CF03BA1614867100FFD010 /* SIHttpGetRequestHandler+Simon.m in Sources */,
 				32CF03DB16148D4700FFD010 /* SIFinalReport.m in Sources */,
 				32AE69F91622E08A006410CE /* PIReporter.m in Sources */,
+				32AE6A0016230BEF006410CE /* PIJUnitReporter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1893,6 +1911,8 @@
 				32A4DDFC161FD9FB0031DEA3 /* TestUtils.m in Sources */,
 				32AE69FA1622E08A006410CE /* PIReporter.m in Sources */,
 				32AE69FD1622E29C006410CE /* PIReporterTests.m in Sources */,
+				32AE6A0116230BEF006410CE /* PIJUnitReporter.m in Sources */,
+				32AE6A0316230C16006410CE /* PIJUnitReporterTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

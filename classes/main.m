@@ -14,7 +14,7 @@
 #import <Simon/NSProcessInfo+Simon.h>
 
 #define ARG_HELP @"-?"
-#define ARG_REPORT_DIR @"-report-dir"
+#define ARG_JUNIT_DIR @"-junit-report-dir"
 
 // Function declarations.
 int processCmdArgs(PIPieman *pieman, int argc, const char * argv[]);
@@ -157,7 +157,7 @@ void printHelp() {
 	
 	const char *piemanArg = [[NSString stringWithFormat:@"%@ n", ARG_PIEMAN_PORT] UTF8String];
 	const char *simonArg = [[NSString stringWithFormat:@"%@ n", ARG_SIMON_PORT] UTF8String];
-	const char *reportDirArg = [[NSString stringWithFormat:@"%@ path", ARG_REPORT_DIR] UTF8String];
+	const char *jUnitReportDirArg = [[NSString stringWithFormat:@"%@ [path]", ARG_JUNIT_DIR] UTF8String];
 	
 	printf("The Pieman - Simon's mentor\n");
 	printf("===========================\n\n");
@@ -170,25 +170,29 @@ void printHelp() {
 			 [ARG_HELP UTF8String],
 			 piemanArg,
 			 simonArg,
-			 reportDirArg);
+			 jUnitReportDirArg);
 	
 	printf("\nArguments\n");
 	printf("---------\n\n");
 	
-	printf("%1$-18s Prints this help information.\n\n", [ARG_HELP UTF8String]);
+#define argFmt "%1$-25"
 	
-	printf("%1$-18s Overrides the default HTTP port that the Pieman is listening\n", piemanArg);
-	printf("%2$-18s for test results from Simon on. Defaults to %1$i\n\n", HTTP_PIEMAN_PORT, "");
+	printf(argFmt "s Prints this help information.\n\n", [ARG_HELP UTF8String]);
 	
-	printf("%1$-18s Overrides the default HTTP port that Smon is listening on for\n", simonArg);
-	printf("%2$-18s instructions from the Pieman on. Defaults to %1$i\n\n", HTTP_SIMON_PORT, "");
+	printf(argFmt "s Overrides the default HTTP port that the Pieman is listening\n", piemanArg);
+	printf(argFmt "s for test results from Simon on. Defaults to %2$i\n\n", "", HTTP_PIEMAN_PORT);
 	
-	printf("%1$-18s Sets the output path where test reports are written to.\n\n", reportDirArg);
+	printf(argFmt "s Overrides the default HTTP port that Smon is listening on for\n", simonArg);
+	printf(argFmt "s instructions from the Pieman on. Defaults to %2$i\n\n", "", HTTP_SIMON_PORT);
 	
-	printf("%1$-18s The previously compiled .app file which contains your app.\n", "app-file");
-	printf("%1$-18s This must have Simon's static librarystory files and implementation\n", "");
-	printf("%1$-18s code included for the test run to work.\n\n", "");
+	printf(argFmt "s Activates junit xml test reports and writes them to a directory.\n", jUnitReportDirArg);
+	printf(argFmt "s If 'path' is specified, writes to that path.\n", "");
+	printf(argFmt "s If 'path' is not specified, writes to <current-dir>/junit.\n\n", "");
 	
-	printf("%1$-18s Any args that should be passed to the app when it is started.\n", "app-args...");
+	printf(argFmt "s The previously compiled .app file which contains your app.\n", "app-file");
+	printf(argFmt "s This must have Simon's static librarystory files and implementation\n", "");
+	printf(argFmt "s code included for the test run to work.\n\n", "");
+	
+	printf(argFmt "s Any args that should be passed to the app when it is started.\n", "app-args...");
 	
 }
