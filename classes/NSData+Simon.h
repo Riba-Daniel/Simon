@@ -9,6 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <Simon/SIJsonAware.h>
 
+/**
+ Category on NSData which provides additional functionality Simon needs.
+ */
 @interface NSData (Simon)
 
 /**

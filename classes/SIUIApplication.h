@@ -175,7 +175,7 @@
  
  @param query the query that should find the control.
  @param interval the time interval between attemts to find the control.
- @param maxRetrieves hows many times to attempt to find the control before giving up.
+ @param maxRetries how many times to attempt to find the control before giving up.
  @return the control if found.
  */
 -(UIView *) waitForViewWithQuery:(NSString *) query retryInterval:(NSTimeInterval) interval maxRetries:(int) maxRetries;

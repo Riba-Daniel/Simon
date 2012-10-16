@@ -16,6 +16,8 @@
 @interface SIStoryRunner : NSObject
 
 /// @name Properties
+
+/// Contains instances which in turn contain the stories that are part of the run. Setting this controls what stories are run.
 @property (nonatomic, retain) SIStorySources *storySources;
 
 /// @name Stories

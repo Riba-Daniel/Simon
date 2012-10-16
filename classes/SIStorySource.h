@@ -29,6 +29,8 @@
 
 /**
  Adds a story to the array of stories.
+ 
+ @param story the story to add to the source.
  */
 -(void) addStory:(SIStory *) story;
 

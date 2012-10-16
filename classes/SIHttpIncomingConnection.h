@@ -15,7 +15,11 @@
 
 /// @name Tasks
 
-/// Sets the list of SICoreHttpRequestProcessor classes which will be used when the SICoreHttpIncomingConnection instance is created by CocoaHTTPServer.
+/** 
+ Sets the list of SICoreHttpRequestProcessor classes which will be used when the SICoreHttpIncomingConnection instance is created by CocoaHTTPServer.
+ 
+ @param processorArray a NSArray containing instances of SIHttpGetRequestHandler and SIHttpPostRequestHandler which will respond to various incoming requests.
+*/
 +(void) setProcessors:(NSArray *) processorArray;
 
 @end

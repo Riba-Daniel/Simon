@@ -20,7 +20,7 @@
  @param description the text description, usually the class name of the UIView.
  @param attributes a dictionary of any attribute we might want to display.
  @param indexPath the index path to the UIView in the UI tree.
- @param sibling the index of the UIView when there are prior views with the same description and parent. i.e. siblings.
+ @param siblingIndex the index of the UIView when there are prior views with the same description and parent. i.e. siblings.
  */
 -(void) visitedView:(UIView *) view 
 		  description:(NSString *) description 

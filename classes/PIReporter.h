@@ -16,7 +16,7 @@
 #define PI_USERINFO_KEY_RESULTS @"results"
 
 /**
- All classes which want to report on results from Simon should extend this class. Simply create an instance of your class to exanble the reporting to occur.
+ All classes which want to report on results from Simon should extend this class. Simply create an instance of your class to enable the reporting to occur. This class will handle tracking the data, extracting results from the notifications coming from Simon and providing the results to the methods you have implemented.
 */
 
 @interface PIReporter : NSObject
@@ -30,6 +30,8 @@
 
 /**
  Called after all tests have been run.
+ 
+ @param report the final report from the test run.
  */
 -(void) runFinished:(SIFinalReport *) report;
 

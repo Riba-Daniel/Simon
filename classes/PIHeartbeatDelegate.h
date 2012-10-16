@@ -14,7 +14,13 @@
 @protocol PIHeartbeatDelegate <NSObject>
 
 @optional
+
+/// @name Tasks
+
+/// Called when the heartbeat has started.
 -(void) heartbeatDidStart;
+
+/// The heartbeat timed out.
 -(void) heartbeatDidTimeout;
 
 @end

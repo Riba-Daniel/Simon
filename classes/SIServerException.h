@@ -6,6 +6,9 @@
 //  Copyright (c) 2012. All rights reserved.
 //
 
+/**
+ Exception thrown if a server error occurs.
+ */
 #import <Simon/SIAbstractException.h>
 
 @interface SIServerException : SIAbstractException

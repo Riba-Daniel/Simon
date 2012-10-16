@@ -8,6 +8,9 @@
 
 #import "PIReporter.h"
 
+/**
+ An class extending PIReporter which outputs Junit report files which can be read by CI servers.
+ */
 @interface PIJUnitReporter : PIReporter
 
 @end

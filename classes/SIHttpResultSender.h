@@ -14,6 +14,14 @@
  */
 @interface SIHttpResultSender : SIResultListener
 
+/// @name Default initialiser
+
+/**
+ Inits the result sender with the passed connection.
+ 
+ @param connection the connection to send results to.
+ @return an instance of this class.
+ */
 -(id) initWithConnection:(SIHttpConnection *) connection;
 
 @end

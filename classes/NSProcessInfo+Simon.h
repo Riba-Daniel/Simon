@@ -24,7 +24,7 @@
 -(NSInteger) argIndexForName:(NSString *) name;
 
 /**
- Returns true is the argument was presented to the process.
+ Returns true if the argument was presented to the process.
  
  @param name the name of the argument.
  @return YES if the argument is present.
