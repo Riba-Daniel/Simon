@@ -112,12 +112,12 @@
 	
 	if (self.piemanPort > 0 && self.piemanPort != HTTP_PIEMAN_PORT) {
 		[args addObject:ARG_PIEMAN_PORT];
-		[args addObject:[NSString stringWithFormat:@"%li", self.piemanPort]];
+		[args addObject:[NSString stringWithFormat:@"%ld", (long) self.piemanPort]];
 	}
 	
 	if (self.simonPort > 0 && self.simonPort != HTTP_SIMON_PORT) {
 		[args addObject:ARG_SIMON_PORT];
-		[args addObject:[NSString stringWithFormat:@"%li", self.simonPort]];
+		[args addObject:[NSString stringWithFormat:@"%ld", (long) self.simonPort]];
 	}
 	
 	// Append args for the app.
@@ -186,11 +186,11 @@
 		// Report to the command line.
 		printf("\nTest report\n");
 		printf("=====================================================\n");
-		printf("Successful stories           : %lu\n", report.successful);
-		printf("Failed stories               : %lu\n", report.failed);
-		printf("Stories with missing mappings: %lu\n", report.notMapped);
-		printf("Ignored stories              : %lu\n", report.ignored);
-		printf("Stories not run              : %lu\n", report.notRun);
+		printf("Successful stories           : %lu\n", (unsigned long) report.successful);
+		printf("Failed stories               : %lu\n", (unsigned long) report.failed);
+		printf("Stories with missing mappings: %lu\n", (unsigned long) report.notMapped);
+		printf("Ignored stories              : %lu\n", (unsigned long) report.ignored);
+		printf("Stories not run              : %lu\n", (unsigned long) report.notRun);
 		
 		// Queue the shutdown process.
 		[_simulator shutdown];

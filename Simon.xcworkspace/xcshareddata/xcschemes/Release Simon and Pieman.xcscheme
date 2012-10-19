@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "323D696C162AF42400660D36"
-               BuildableName = "Build iOS framework"
-               BlueprintName = "Build iOS framework"
+               BuildableName = "Build Simon &amp; Pieman"
+               BlueprintName = "Build Simon &amp; Pieman"
                ReferencedContainer = "container:Simon.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

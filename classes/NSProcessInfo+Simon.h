@@ -34,7 +34,7 @@
 /**
  Returns the value associated with the argument presented to the process.
  
- @name name the name of the argument.
+ @param name the name of the argument.
  @return the value as a string.
  */
 -(NSString *) argumentValueForName:(NSString *) name;
