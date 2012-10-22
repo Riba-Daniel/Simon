@@ -181,7 +181,6 @@
 		32B0AC0C14E8E8210020500E /* SIAbstractException.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0AC0A14E8E8210020500E /* SIAbstractException.m */; };
 		32B0AC0F14E8EB170020500E /* SIUIException.h in Headers */ = {isa = PBXBuildFile; fileRef = 32B0AC0D14E8EB170020500E /* SIUIException.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		32B0AC1014E8EB170020500E /* SIUIException.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0AC0E14E8EB170020500E /* SIUIException.m */; };
-		32B9593E15E5E69300470287 /* libCocoaHTTPServer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32B9592D15E5E62F00470287 /* libCocoaHTTPServer.a */; };
 		32B9593F15E5E69300470287 /* libdNodi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32B9593515E5E62F00470287 /* libdNodi.a */; };
 		32B9594015E5E69300470287 /* libdUsefulStuff.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32CDF2EF15E5E5DA001F4317 /* libdUsefulStuff.a */; };
 		32B9594115E5E6D100470287 /* libCocoaHTTPServer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32B9592D15E5E62F00470287 /* libCocoaHTTPServer.a */; };
@@ -329,6 +328,27 @@
 			remoteGlobalIDString = 32F3DF4B15B8219700588D21;
 			remoteInfo = "dUsefulStuff-OSX";
 		};
+		3293EE4B16342D0C00C371BF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 32CDF2E715E5E5DA001F4317 /* dUsefulStuff.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 65A0C679116EF534003AC854;
+			remoteInfo = "dUsefulStuff-iOS";
+		};
+		3293EE4D16342D0C00C371BF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 32CDF2F815E5E602001F4317 /* dNodi.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 6583B49113D2BD1C005E13F3;
+			remoteInfo = dNodi;
+		};
+		3293EE4F16342D2000C371BF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 32CDF2F615E5E5E7001F4317 /* CocoaHTTPServer.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 322DA73E159B4A5C005CFC83;
+			remoteInfo = "CocoaHTTPServer-iOS";
+		};
 		32A4DE2F1621B74F0031DEA3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 32A4DE251621B74E0031DEA3 /* GRMustache.xcodeproj */;
@@ -384,27 +404,6 @@
 			proxyType = 2;
 			remoteGlobalIDString = 6583B4A713D2BDE5005E13F3;
 			remoteInfo = "dNodi Unit Tests";
-		};
-		32B9593815E5E64100470287 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 32CDF2F815E5E602001F4317 /* dNodi.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 6583B49113D2BD1C005E13F3;
-			remoteInfo = dNodi;
-		};
-		32B9593A15E5E64100470287 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 32CDF2F615E5E5E7001F4317 /* CocoaHTTPServer.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 322DA73E159B4A5C005CFC83;
-			remoteInfo = "CocoaHTTPServer-iOS";
-		};
-		32B9593C15E5E64100470287 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 32CDF2E715E5E5DA001F4317 /* dUsefulStuff.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 65A0C679116EF534003AC854;
-			remoteInfo = "iOS lib";
 		};
 		32C1B121162EDAA900157749 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -790,7 +789,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				32B9593E15E5E69300470287 /* libCocoaHTTPServer.a in Frameworks */,
 				32B9593F15E5E69300470287 /* libdNodi.a in Frameworks */,
 				32B9594015E5E69300470287 /* libdUsefulStuff.a in Frameworks */,
 				32AF045415CEB75F00501B1E /* Security.framework in Frameworks */,
@@ -1626,9 +1624,9 @@
 			buildRules = (
 			);
 			dependencies = (
-				32B9593D15E5E64100470287 /* PBXTargetDependency */,
-				32B9593915E5E64100470287 /* PBXTargetDependency */,
-				32B9593B15E5E64100470287 /* PBXTargetDependency */,
+				3293EE5016342D2000C371BF /* PBXTargetDependency */,
+				3293EE4C16342D0C00C371BF /* PBXTargetDependency */,
+				3293EE4E16342D0C00C371BF /* PBXTargetDependency */,
 			);
 			name = Simon;
 			productName = Simon;
@@ -1846,7 +1844,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "echo \"Building static library ...\"\n\n# Trap errors\nset +o errexit\n\nxcodebuild -target Simon -sdk ${EXPORT_SIMULATOR_SDK} -configuration Release VALID_ARCHS=\"i386\" ARCHS=\"i386\" BUILD_DIR=${BUILD_DIR_SIMON}\nDC_BUILD_RC=$?\n\n# if it failed then restore user settings and exit.\nif [ $DC_BUILD_RC != 0 ]; then\necho \"Exiting as build threw an error.\"\nexit $DC_BUILD_RC\nfi\n\nxcodebuild -target Simon -sdk ${EXPORT_DEVICE_SDK} -configuration Release VALID_ARCHS=\"armv7 armv7s\" ARCHS=\"armv7 armv7s\" BUILD_DIR=${BUILD_DIR_SIMON}\nDC_BUILD_RC=$?\n\n# if it failed then restore user settings and exit.\nif [ $DC_BUILD_RC != 0 ]; then\necho \"Exiting as build threw an error.\"\nexit $DC_BUILD_RC\nfi\n\n\n# Restore error trapping.\nset -o errexit\n\necho \"Combining ...\"\nlipo -create \"${BUILD_DIR}/simon/Release-iphoneos/lib${PROJECT_NAME}.a\" \"${BUILD_DIR_SIMON}/Release-iphonesimulator/lib${PROJECT_NAME}.a\" -o \"${BUILD_DIR_SIMON}\"/lib${PROJECT_NAME}.a\n";
+			shellScript = "echo \"Building static library ...\"\n\n# Trap errors\nset +o errexit\n\nxcodebuild -target Simon -sdk ${EXPORT_SIMULATOR_SDK} -configuration Release VALID_ARCHS=\"i386\" ARCHS=\"i386\" BUILD_DIR=${BUILD_DIR_SIMON}\nDC_BUILD_RC=$?\n\n# if it failed then restore user settings and exit.\nif [ $DC_BUILD_RC != 0 ]; then\necho \"Exiting as build threw an error.\"\nexit $DC_BUILD_RC\nfi\n\nxcodebuild -target Simon -sdk ${EXPORT_DEVICE_SDK} -configuration Release VALID_ARCHS=\"armv7 armv7s\" ARCHS=\"armv7 armv7s\" BUILD_DIR=${BUILD_DIR_SIMON}\nDC_BUILD_RC=$?\n\n# if it failed then restore user settings and exit.\nif [ $DC_BUILD_RC != 0 ]; then\necho \"Exiting as build threw an error.\"\nexit $DC_BUILD_RC\nfi\n\n\n# Restore error trapping.\nset -o errexit\n\necho \"Combining ...\"\nlipo -create \"${BUILD_DIR}/simon/Release-iphoneos/lib${PROJECT_NAME}.a\" \"${BUILD_DIR_SIMON}/Release-iphonesimulator/lib${PROJECT_NAME}.a\" -o \"${BUILD_DIR_SIMON}/${PROJECT_NAME}\"\n";
 		};
 		323D6973162AF51400660D36 /* Build Simon framework */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1860,7 +1858,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\necho building framework directories: ${FRAMEWORK_DIR}\n\nrm -fr \"${ARTIFACT_DIR}\"\n\nFULL_DIR=\"${FRAMEWORK_DIR}/Versions/${CURRENT_PROJECT_VERSION}\"\n\nmkdir -p \"${FULL_DIR}/Headers\"\nmkdir -p \"${FULL_DIR}/Resources\"\n\necho Copying files\n# The -a ensures that the headers maintain the source modification date so that we don't constantly\n# cause propagating rebuilds of files that import these headers.\ncp \"${BUILD_DIR_SIMON}\"/lib${PROJECT_NAME}.a \"${FULL_DIR}\"\ncp -a \"${BUILD_DIR_SIMON}/Release-iphoneos/include/${PROJECT_NAME}/\" \"${FULL_DIR}/Headers\"\n\n# Link the \"Current\" version to ...\necho Building links\nln -sfh \"${FULL_DIR}\" \"${FRAMEWORK_DIR}/Versions/Current\"\nln -sfh \"${FULL_DIR}/Headers\" \"${FRAMEWORK_DIR}/Headers\"\nln -sfh \"${FULL_DIR}/Resources\" \"${FRAMEWORK_DIR}/Resources\"\nln -sfh \"${FULL_DIR}/lib${PROJECT_NAME}.a\" \"${FRAMEWORK_DIR}/lib${PROJECT_NAME}.a\"\n\necho \"Creating plist for framework ...\"\necho \"<?xml version=\\\"1.0\\\" encoding=\\\"UTF-8\\\"?>\n<!DOCTYPE plist PUBLIC \\\"-//Apple//DTD PLIST 1.0//EN\\\" \\\"http://www.apple.com/DTDs/PropertyList-1.0.dtd\\\">\n<plist version=\\\"1.0\\\">\n<dict>\n<key>CFBundleDevelopmentRegion</key>\n<string>English</string>\n<key>CFBundleExecutable</key>\n<string>${PROJECT_NAME}</string>\n<key>CFBundleIdentifier</key>\n<string>${COMPANY_ID}.${PROJECT_NAME}</string>\n<key>CFBundleInfoDictionaryVersion</key>\n<string>6.0</string>\n<key>CFBundlePackageType</key>\n<string>FMWK</string>\n<key>CFBundleSignature</key>\n<string>????</string>\n<key>CFBundleVersion</key>\n<string>${CURRENT_PROJECT_VERSION}</string>\n</dict>\n</plist>\" > \"${FULL_DIR}/Resources/Info.plist\"\n\n";
+			shellScript = "\necho building framework directories: ${FRAMEWORK_DIR}\n\nrm -fr \"${ARTIFACT_DIR}\"\n\nFULL_DIR=\"${FRAMEWORK_DIR}/Versions/${CURRENT_PROJECT_VERSION}\"\n\nmkdir -p \"${FULL_DIR}/Headers\"\nmkdir -p \"${FULL_DIR}/Resources\"\n\necho Copying files\n# The -a ensures that the headers maintain the source modification date so that we don't constantly\n# cause propagating rebuilds of files that import these headers.\ncp \"${BUILD_DIR_SIMON}/${PROJECT_NAME}\" \"${FULL_DIR}\"\ncp -a \"${BUILD_DIR_SIMON}/Release-iphoneos/include/${PROJECT_NAME}/\" \"${FULL_DIR}/Headers\"\n\n# Link the \"Current\" version to ...\necho Building links\nln -s \"${CURRENT_PROJECT_VERSION}\" \"${FRAMEWORK_DIR}/Versions/Current\"\nln -s \"Versions/Current/Headers\" \"${FRAMEWORK_DIR}/Headers\"\nln -s \"Versions/Current/Resources\" \"${FRAMEWORK_DIR}/Resources\"\nln -s \"Versions/Current/${PROJECT_NAME}\" \"${FRAMEWORK_DIR}/${PROJECT_NAME}\"\n\necho \"Creating plist for framework ...\"\necho \"<?xml version=\\\"1.0\\\" encoding=\\\"UTF-8\\\"?>\n<!DOCTYPE plist PUBLIC \\\"-//Apple//DTD PLIST 1.0//EN\\\" \\\"http://www.apple.com/DTDs/PropertyList-1.0.dtd\\\">\n<plist version=\\\"1.0\\\">\n<dict>\n<key>CFBundleDevelopmentRegion</key>\n<string>English</string>\n<key>CFBundleExecutable</key>\n<string>${PROJECT_NAME}</string>\n<key>CFBundleIdentifier</key>\n<string>${COMPANY_ID}.${PROJECT_NAME}</string>\n<key>CFBundleInfoDictionaryVersion</key>\n<string>6.0</string>\n<key>CFBundlePackageType</key>\n<string>FMWK</string>\n<key>CFBundleSignature</key>\n<string>????</string>\n<key>CFBundleVersion</key>\n<string>${CURRENT_PROJECT_VERSION}</string>\n</dict>\n</plist>\" > \"${FULL_DIR}/Resources/Info.plist\"\n\n";
 			showEnvVarsInLog = 0;
 		};
 		323D6974162AF52D00660D36 /* Appledoc Simon */ = {
@@ -2144,25 +2142,25 @@
 			name = "dUsefulStuff-OSX";
 			targetProxy = 322B4FB715F3892500C81E65 /* PBXContainerItemProxy */;
 		};
+		3293EE4C16342D0C00C371BF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "dUsefulStuff-iOS";
+			targetProxy = 3293EE4B16342D0C00C371BF /* PBXContainerItemProxy */;
+		};
+		3293EE4E16342D0C00C371BF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = dNodi;
+			targetProxy = 3293EE4D16342D0C00C371BF /* PBXContainerItemProxy */;
+		};
+		3293EE5016342D2000C371BF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "CocoaHTTPServer-iOS";
+			targetProxy = 3293EE4F16342D2000C371BF /* PBXContainerItemProxy */;
+		};
 		32A4DE3D1621B8B20031DEA3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "GRMustache5-MacOS";
 			targetProxy = 32A4DE3C1621B8B20031DEA3 /* PBXContainerItemProxy */;
-		};
-		32B9593915E5E64100470287 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = dNodi;
-			targetProxy = 32B9593815E5E64100470287 /* PBXContainerItemProxy */;
-		};
-		32B9593B15E5E64100470287 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "CocoaHTTPServer-iOS";
-			targetProxy = 32B9593A15E5E64100470287 /* PBXContainerItemProxy */;
-		};
-		32B9593D15E5E64100470287 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "iOS lib";
-			targetProxy = 32B9593C15E5E64100470287 /* PBXContainerItemProxy */;
 		};
 		32C1B122162EDAA900157749 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2275,7 +2273,7 @@
 				EXPORT_DEVICE_SDK = iphoneos6.0;
 				EXPORT_PIEMAN_SDK = macosx10.8;
 				EXPORT_SIMULATOR_SDK = iphonesimulator6.0;
-				FRAMEWORK_DIR = "${ARTIFACT_DIR}/${PROJECT_NAME}.framework\n";
+				FRAMEWORK_DIR = "${ARTIFACT_DIR}/${PROJECT_NAME}.framework";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -2293,7 +2291,7 @@
 				EXPORT_DEVICE_SDK = iphoneos6.0;
 				EXPORT_PIEMAN_SDK = macosx10.8;
 				EXPORT_SIMULATOR_SDK = iphonesimulator6.0;
-				FRAMEWORK_DIR = "${ARTIFACT_DIR}/${PROJECT_NAME}.framework\n";
+				FRAMEWORK_DIR = "${ARTIFACT_DIR}/${PROJECT_NAME}.framework";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
