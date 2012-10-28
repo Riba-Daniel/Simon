@@ -10,6 +10,7 @@
 #import <Simon/SIServerException.h>
 #import <dUsefulStuff/DCCommon.h>
 #import <Simon/SIFinalReport.h>
+#import <Simon/SIStory.h>
 #import <dUsefulStuff/NSError+dUsefulStuff.h>
 
 @interface SIHttpResultSender () {
@@ -49,7 +50,20 @@
 
 -(void) storyExecuted:(NSNotification *) notification {
 	[super storyExecuted:notification];
-	// DO something http'y
+	
+	// Get the story.
+	SIStory *story = [[notification userInfo] valueForKey:SI_NOTIFICATION_KEY_STORY];
+
+	// let the pieman know.
+	[_connection sendRESTPostRequest:HTTP_PATH_STORY_FINISHED
+								requestBody:story
+						responseBodyClass:[SIHttpPayload class]
+							  successBlock:NULL
+								 errorBlock:^(id<SIJsonAware> obj, NSError *error){
+									 DC_LOG(@"Throwing exception");
+									 @throw [SIServerException exceptionWithReason:[NSString stringWithFormat:@"Error received attempting to contact the Pieman: %@", [error localizedErrorMessage]]];
+								 }];
+
 }
 
 -(void) runFinished:(NSNotification *) notification {

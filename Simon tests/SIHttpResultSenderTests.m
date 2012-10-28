@@ -21,11 +21,45 @@
 
 @implementation SIHttpResultSenderTests
 
+-(void) testSendsStoryFinished {
 
+	// Create a story to use.
+	SIStory *story = [[SIStory alloc] init];
+	__block BOOL sendDone = NO;
+	
+	id mockConnection = [OCMockObject mockForClass:[SIHttpConnection class]];
+	[[mockConnection expect] sendRESTPostRequest:HTTP_PATH_STORY_FINISHED
+												requestBody:[OCMArg checkWithBlock:^(id value) {
+		GHAssertTrue(value == story, nil);
+		sendDone = YES;
+		return YES;
+	}]
+										responseBodyClass:[SIHttpPayload class]
+											  successBlock:nil
+												 errorBlock:[OCMArg any]];
+
+	// Setup the test.
+	SIHttpResultSender *sender = [[[SIHttpResultSender alloc] initWithConnection:mockConnection] autorelease];
+	NSDictionary *dic = @{SI_NOTIFICATION_KEY_STORY: story};
+	[sender storyExecuted:[NSNotification notificationWithName:@"x" object:self userInfo:dic]];
+	
+	GHAssertTrue(sendDone, nil);
+
+}
 
 -(void) testSendsResults {
 	
 	id mockConnection = [OCMockObject mockForClass:[SIHttpConnection class]];
+
+	// Stub out the story finished.
+	[[mockConnection stub] sendRESTPostRequest:HTTP_PATH_STORY_FINISHED
+												requestBody:[OCMArg any]
+										responseBodyClass:[SIHttpPayload class]
+											  successBlock:nil
+												 errorBlock:[OCMArg any]];
+
+	
+	// Expectations
 	[[mockConnection expect] sendRESTPostRequest:HTTP_PATH_RUN_FINISHED
 												requestBody:[OCMArg checkWithBlock:^(id value) {
 		GHAssertTrue([value isKindOfClass:[SIFinalReport class]], nil);
