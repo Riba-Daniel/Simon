@@ -140,7 +140,7 @@
    
    // Setup the cell.
 	cell.textLabel.text = story.title;
-	cell.detailTextLabel.text = [NSString stringStatusWithStory:story];
+	cell.detailTextLabel.text = story.statusString;
    cell.selectionStyle = UITableViewCellSelectionStyleNone;
 	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 	

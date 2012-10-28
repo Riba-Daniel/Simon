@@ -14,23 +14,27 @@
 
 @interface SIStepTests : GHTestCase {
 @private
+	SIStep *step;
 }
 @end
 
 @implementation SIStepTests
 
 -(void) setUp {
+	step = [[SIStep alloc] initWithKeyword:SIKeywordGiven command:@"abc"];
+}
+
+-(void) tearDown {
+	DC_DEALLOC(step);
 }
 
 -(void) testStoresKeywordAndCommand {
-	SIStep * step = [[[SIStep alloc] initWithKeyword:SIKeywordGiven command:@"abc"] autorelease];
 	GHAssertEquals(step.keyword, SIKeywordGiven, @"Keyword not returned");
 	GHAssertEqualStrings(step.command,	@"abc", @"command not returned");
 }
 
 -(void) testFindsMapping {
 	
-	SIStep * step = [[[SIStep alloc] initWithKeyword:SIKeywordGiven command:@"abc"] autorelease];
 	NSError *error = nil;
 	SIStepMapping * mapping = [SIStepMapping stepMappingWithClass:[self class] selector:@selector(setUp) regex:@"abc" error:&error];
 	GHAssertNotNil(mapping, @"Mapping not returned, error says %@", error.localizedDescription);
@@ -43,7 +47,6 @@
 
 -(void) testDoesNotFindMapping {
 	
-	SIStep * step = [[[SIStep alloc] initWithKeyword:SIKeywordGiven command:@"abc"] autorelease];
 	NSError *error = nil;
 	SIStepMapping * mapping = [SIStepMapping stepMappingWithClass:[self class] selector:@selector(setUp) regex:@"xyz" error:&error];
 	GHAssertNotNil(mapping, @"Mapping not returned, error says %@", error.localizedDescription);
@@ -55,8 +58,6 @@
 }
 
 -(void) testCallsInvoke {
-	
-	SIStep * step = [[[SIStep alloc] initWithKeyword:SIKeywordGiven command:@"abc"] autorelease];
 	
 	NSError *error = nil;
 	BOOL yes = YES;
@@ -74,8 +75,6 @@
 }
 
 -(void) testCallsInvokeAndDetectsException {
-	
-	SIStep * step = [[[SIStep alloc] initWithKeyword:SIKeywordGiven command:@"abc"] autorelease];
 	
 	NSError *error = nil;
 	
@@ -119,17 +118,60 @@
 
 -(void) testJsonDictionary {
 	
-	SIStep *step = [[SIStep alloc] initWithKeyword:SIKeywordGiven command:@"hello"];
 	step.executed = YES;
 	step.exception = [NSException exceptionWithName:@"exception_name" reason:@"exception_reason" userInfo:nil];
 	
 	NSDictionary *jsonData = [step jsonDictionary];
 	GHAssertEquals([[jsonData valueForKey:@"keyword"] intValue], SIKeywordGiven, nil);
-	GHAssertEqualStrings([jsonData valueForKey:@"command"], @"hello", nil);
+	GHAssertEqualStrings([jsonData valueForKey:@"command"], @"abc", nil);
 	GHAssertEqualStrings([jsonData valueForKeyPath:@"exception.name"], @"exception_name", nil);
 	GHAssertEqualStrings([jsonData valueForKeyPath:@"exception.reason"], @"exception_reason", nil);
 	GHAssertTrue([[jsonData valueForKey:@"executed"] boolValue], nil);
 	
+}
+
+-(void) testStatusSuccess {
+	step.stepMapping = [OCMockObject mockForClass:[SIStepMapping class]];
+	step.executed = YES;
+	GHAssertEquals(step.status, SIStepStatusSuccess, nil);
+}
+
+-(void) testStatusFailure {
+	step.stepMapping = [OCMockObject mockForClass:[SIStepMapping class]];
+	step.executed = YES;
+	step.exception = [NSException exceptionWithName:@"abc" reason:@"reason" userInfo:nil];
+	GHAssertEquals(step.status, SIStepStatusFailed, nil);
+}
+
+-(void) testStatusNotRun {
+	step.stepMapping = [OCMockObject mockForClass:[SIStepMapping class]];
+	GHAssertEquals(step.status, SIStepStatusNotRun, nil);
+}
+
+-(void) testStatusNotMapped {
+	GHAssertEquals(step.status, SIStepStatusNotMapped, nil);
+}
+
+-(void) testStatusSuccessString {
+	step.stepMapping = [OCMockObject mockForClass:[SIStepMapping class]];
+	step.executed = YES;
+	GHAssertEqualStrings(step.statusString, @"Success", nil);
+}
+
+-(void) testStatusFailureString {
+	step.stepMapping = [OCMockObject mockForClass:[SIStepMapping class]];
+	step.executed = YES;
+	step.exception = [NSException exceptionWithName:@"abc" reason:@"reason" userInfo:nil];
+	GHAssertEqualStrings(step.statusString, @"Failed", nil);
+}
+
+-(void) testStatusNotRunString {
+	step.stepMapping = [OCMockObject mockForClass:[SIStepMapping class]];
+	GHAssertEqualStrings(step.statusString, @"Not run", nil);
+}
+
+-(void) testStatusNotMappedString {
+	GHAssertEqualStrings(step.statusString, @"Not mapped", nil);
 }
 
 @end

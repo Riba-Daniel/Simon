@@ -16,28 +16,6 @@
 	return [self stringByTrimmingCharactersInSet:quotes];
 }
 
-+(NSString *) stringStatusWithStory:(SIStory *) story {
-	
-	switch (story.status) {
-		case SIStoryStatusSuccess:
-			return @"Success";
-			break;
-		case SIStoryStatusNotMapped:
-			return @"Not mapped";
-			break;
-		case SIStoryStatusError:
-			return [NSString stringWithFormat:@"Failed: %@", story.error.localizedFailureReason];
-			break;
-		case SIStoryStatusIgnored:
-			return @"Ignored";
-			break;
-		default:
-			return @"Not run";
-			break;
-	}
-	
-}
-
 -(SIKeyword) siKeyword {
 	NSString * upper = [self uppercaseString];
 	if ([@"STORY" isEqualToString:upper]) {

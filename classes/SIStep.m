@@ -17,11 +17,17 @@
 
 @implementation SIStep
 
+#pragma mark - Properties
+
 @synthesize keyword = _keyword;
 @synthesize command = _command;
 @synthesize stepMapping = _stepMapping;
 @synthesize exception = _exception;
 @synthesize executed = _executed;
+@dynamic status;
+@dynamic statusString;
+
+#pragma mark - Lifecycle
 
 -(void) dealloc {
 	self.command = nil;
@@ -48,12 +54,10 @@
 	return self;
 }
 
+#pragma mark - KVC Property overrides
+
 - (void)setNilValueForKey:(NSString *)key {
 	[super setNilValueForKey:key];
-}
-
--(void) setValue:(id)value forKeyPath:(NSString *)keyPath {
-	[super setValue:value forKeyPath:keyPath];
 }
 
 -(void) setValue:(id)value forKey:(NSString *)key {
@@ -62,6 +66,35 @@
 		self.exception = [NSException exceptionWithName:[dataDic valueForKey:@"name"] reason:[dataDic valueForKey:@"reason"] userInfo:nil];
 	} else {
 		[super setValue:value forKey:key];
+	}
+}
+
+#pragma mark - Tasks
+
+-(SIStepStatus) status {
+	if (![self isMapped]) {
+		return SIStepStatusNotMapped;
+	}
+	if (!self.executed) {
+		return SIStepStatusNotRun;
+	}
+	return self.exception != nil ? SIStepStatusFailed : SIStepStatusSuccess;
+	
+}
+
+-(NSString *) statusString {
+	switch (self.status) {
+		case SIStepStatusFailed:
+			return @"Failed";
+			break;
+		case SIStepStatusSuccess:
+			return @"Success";
+			break;
+		case SIStepStatusNotRun:
+			return @"Not run";
+			break;
+		default:
+			return @"Not mapped";
 	}
 }
 
@@ -103,13 +136,13 @@
 -(NSError *) errorForException {
 	
 	if ([self.exception.name isEqualToString:@"NSUnknownKeyException"]) {
-		return [self errorForCode:SIErrorUnknownProperty 
-						  errorDomain:SIMON_ERROR_DOMAIN 
-					shortDescription:@"Unknown property" 
+		return [self errorForCode:SIErrorUnknownProperty
+						  errorDomain:SIMON_ERROR_DOMAIN
+					shortDescription:@"Unknown property"
 						failureReason:[NSString stringWithFormat:@"Unknown property: %@",[self.exception reason]]];
-	} 
-	return [self errorForCode:SIErrorExceptionCaught 
-					  errorDomain:SIMON_ERROR_DOMAIN 
+	}
+	return [self errorForCode:SIErrorExceptionCaught
+					  errorDomain:SIMON_ERROR_DOMAIN
 				shortDescription:@"Exception caught"
 					failureReason:[NSString stringWithFormat:@"Exception caught: %@",[self.exception reason]]];
 }

@@ -49,6 +49,9 @@
  */
 @property (nonatomic, readonly) SIStoryStatus status;
 
+/// Returns the status as a string for use in messages.
+@property (nonatomic, readonly) NSString *statusString;
+
 /**
  The error that was returned from the step executions.
  */

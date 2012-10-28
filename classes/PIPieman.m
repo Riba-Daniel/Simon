@@ -15,6 +15,7 @@
 #import <Simon/SIHttpGetRequestHandler.h>
 #import <Simon/SIHttpPostRequestHandler.h>
 #import <Simon/SIHttpPayload.h>
+#import <Simon/SIStory.h>
 #import "SIHttpConnection.h"
 #import <Simon/SIHttpIncomingConnection.h>
 #import <dUsefulStuff/NSError+dUsefulStuff.h>
@@ -35,6 +36,7 @@
 -(void) sendRunAllRequest;
 -(SIHttpPostRequestHandler *) simonReadyHandler;
 -(SIHttpPostRequestHandler *) simonFinishedHandler;
+-(SIHttpPostRequestHandler *) storyFinishedHandler;
 
 @end
 
@@ -77,7 +79,7 @@
 		NSInteger port = self.piemanPort > 0 ? self.piemanPort : HTTP_PIEMAN_PORT;
 		
 		// Setup the request processors.
-		[SIHttpIncomingConnection setProcessors:@[[self simonReadyHandler], [self simonFinishedHandler]]];
+		[SIHttpIncomingConnection setProcessors:@[[self simonReadyHandler], [self simonFinishedHandler], [self storyFinishedHandler]]];
 		
 		// Setup the outgoing comms.
 		dispatch_queue_t simonsQ = dispatch_queue_create(SIMON_QUEUE_NAME, NULL);
@@ -206,6 +208,33 @@
 																  process:simonFinished] autorelease];
 	
 }
+
+-(SIHttpPostRequestHandler *) storyFinishedHandler {
+	RequestReceivedBlock storyFinished = ^(id obj) {
+		DC_LOG(@"Simon has finished a story");
+		
+		// Get the story.
+		SIStory *story = (SIStory *) obj;
+		printf("\nStory finished: %s", [story.title UTF8String]);
+		
+		// Output Steps.
+		[story.steps enumerateObjectsUsingBlock:^(id stepObj, NSUInteger idx, BOOL *stop) {
+			SIStep *step = (SIStep *) stepObj;
+			printf("\nStep: %s -> %i", [step.command UTF8String], step.status);
+			
+		}];
+
+		
+		// Send an Ok response.
+		SIHttpPayload *body = [[[SIHttpPayload alloc] init] autorelease];
+		body.status = SIHttpStatusOk;
+		return body;
+	};
+	return [[[SIHttpPostRequestHandler alloc] initWithPath:HTTP_PATH_STORY_FINISHED
+													  requestBodyClass:[SIStory class]
+																  process:storyFinished] autorelease];
+}
+
 
 #pragma mark - Delegate methods.
 

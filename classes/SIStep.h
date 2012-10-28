@@ -10,6 +10,7 @@
 #import <Simon/SIConstants.h>
 #import <Simon/SIStepMapping.h>
 #import <Simon/SIJsonAware.h>
+#import <Simon/SICore.h>
 
 /**
  Represents a step within a SIStory. It stores the text of the step as read from the story file and the SISTepMapping which is then used to execute the implementation code.
@@ -36,6 +37,12 @@
  If an exception is caught, it is stored here.
  */
 @property (nonatomic, retain) NSException *exception;
+
+/// The current executions status of the step.
+@property (nonatomic, readonly) SIStepStatus status;
+
+/// The status as a string.
+@property (nonatomic, readonly) NSString *statusString;
 
 /// @name Initialisation
 

@@ -183,7 +183,6 @@
 		32B0AC1014E8EB170020500E /* SIUIException.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B0AC0E14E8EB170020500E /* SIUIException.m */; };
 		32B9593F15E5E69300470287 /* libdNodi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32B9593515E5E62F00470287 /* libdNodi.a */; };
 		32B9594015E5E69300470287 /* libdUsefulStuff.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32CDF2EF15E5E5DA001F4317 /* libdUsefulStuff.a */; };
-		32B9594115E5E6D100470287 /* libCocoaHTTPServer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32B9592D15E5E62F00470287 /* libCocoaHTTPServer.a */; };
 		32B9594215E5E6D100470287 /* libdNodi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32B9593515E5E62F00470287 /* libdNodi.a */; };
 		32B9594315E5E6D100470287 /* libdUsefulStuff.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32CDF2EF15E5E5DA001F4317 /* libdUsefulStuff.a */; };
 		32B9594515E6054700470287 /* SIHttpAppBackpackTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32B9594415E6054700470287 /* SIHttpAppBackpackTests.m */; };
@@ -750,7 +749,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				32B9594115E5E6D100470287 /* libCocoaHTTPServer.a in Frameworks */,
 				32B9594215E5E6D100470287 /* libdNodi.a in Frameworks */,
 				32B9594315E5E6D100470287 /* libdUsefulStuff.a in Frameworks */,
 				3216D48015DDCE0700CD47C8 /* libSimon.a in Frameworks */,

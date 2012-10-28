@@ -17,13 +17,6 @@
 /// @name Class methods
 
 /**
- Returns the string description of a story's status.
- 
- @param story the story we want the status of.
- */
-+(NSString *) stringStatusWithStory:(SIStory *) story;
-
-/**
  Returns a string representation of the keyword.
  
  @param keyword the keyword we want the string for.

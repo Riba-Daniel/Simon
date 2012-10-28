@@ -58,6 +58,16 @@ typedef enum {
 } SIStoryStatus;
 
 /**
+ The current status of a step.
+ */
+typedef enum {
+	SIStepStatusNotMapped,
+	SIStepStatusNotRun,
+	SIStepStatusSuccess,
+	SIStepStatusFailed,
+} SIStepStatus;
+
+/**
  Defines the methods that can be accepted by the http server.
  */
 typedef enum {

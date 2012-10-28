@@ -56,6 +56,28 @@
 	return self;
 }
 
+#pragma mark - Property overrides
+
+-(NSString *) statusString {
+	switch (self.status) {
+		case SIStoryStatusSuccess:
+			return @"Success";
+			break;
+		case SIStoryStatusNotMapped:
+			return @"Not mapped";
+			break;
+		case SIStoryStatusError:
+			return [NSString stringWithFormat:@"Failed: %@", self.error.localizedFailureReason];
+			break;
+		case SIStoryStatusIgnored:
+			return @"Ignored";
+			break;
+		default:
+			return @"Not run";
+			break;
+	}
+}
+
 #pragma mark - Tasks
 
 -(SIStep *) createStepWithKeyword:(SIKeyword) keyword command:(NSString *) theCommand {
@@ -67,7 +89,7 @@
 	SIStep * step = [[[SIStep alloc] initWithKeyword:keyword command:theCommand] autorelease];
 	DC_LOG(@"Adding new step with keyword %i and command \"%@\"", keyword, theCommand);
 	[(NSMutableArray *)self.steps addObject:step];
-
+	
 	return step;
 }
 
@@ -76,20 +98,20 @@
 }
 
 -(BOOL) invokeWithSource:(SIStorySource *) source {
-
+	
 	NSDictionary *userData = [NSDictionary dictionaryWithObjectsAndKeys:source, SI_NOTIFICATION_KEY_SOURCE, self, SI_NOTIFICATION_KEY_STORY, nil];
 	[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:SI_STORY_STARTING_EXECUTION_NOTIFICATION object:self userInfo:userData]];
-
+	
 	// Allocate the caches.
 	instanceCache = [[NSMutableDictionary alloc] init];
 	storyCache = [[NSMutableDictionary alloc] init];
-
+	
 	BOOL result = [self invokeSteps];
-
+	
 	// Let the loggers know the story has executed.
 	DC_LOG(@"Firing story finished notification");
 	[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:SI_STORY_EXECUTED_NOTIFICATION object:self userInfo:userData]];
-
+	
 	// Clear the caches.
 	DC_DEALLOC(instanceCache);
 	DC_DEALLOC(storyCache);
@@ -98,20 +120,20 @@
 }
 
 -(void) reset {
-
+	
 	// Reset any current result data.
 	DC_LOG(@"Resetting");
 	_status = SIStoryStatusNotRun;
 	DC_DEALLOC(_stepWithError);
 	DC_DEALLOC(_error);
-
+	
 	for (SIStep *step in self.steps) {
 		[step reset];
 	}
 }
 
 -(BOOL) invokeSteps {
-
+	
 	// If the story is not fully mapped then exit because we cannot run it.
 	for (SIStep *step in self.steps) {
 		if (![step isMapped]) {
@@ -124,7 +146,7 @@
 	DC_LOG(@"Executing steps");
 	for (SIStep *step in self.steps) {
 		
-		// First check the cache for an instance of the class. 
+		// First check the cache for an instance of the class.
 		// Create an instance of the class if we don't have one.
 		id instance = [self instanceForTargetClass:step.stepMapping.targetClass];
 		
@@ -158,7 +180,7 @@
 	instance = [[[targetClass alloc] init] autorelease];
 	[instanceCache setObject:instance forKey:cacheKey];
 	
-	// Inject a reference to the story so it can be accessed for data. Note we assign so we don't have 
+	// Inject a reference to the story so it can be accessed for data. Note we assign so we don't have
 	// to worry about retains. This is fine as the story will be around longer than the test class.
 	objc_setAssociatedObject(instance, SI_INSTANCE_STORY_REF_KEY, self, OBJC_ASSOCIATION_ASSIGN);
 	

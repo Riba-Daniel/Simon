@@ -33,9 +33,8 @@
 
 -(void) storyExecuted:(NSNotification *) notification {
 	[super storyExecuted:notification];
+
 	SIStory *story = [[notification userInfo] valueForKey:SI_NOTIFICATION_KEY_STORY];
-	
-	NSString *statusAsString = [NSString stringStatusWithStory:story];
 	[self log:[NSString stringWithFormat:@"Story executed: %@", story.title]];
 	
 	NSString *stepStatus;
@@ -56,7 +55,7 @@
 		}
 	}
 	
-	[self log:[NSString stringWithFormat:@"Result: %@", statusAsString]];
+	[self log:[NSString stringWithFormat:@"Result: %@", story.statusString]];
 	
 }
 

@@ -125,6 +125,46 @@
 
 }
 
+#pragma mark - JSON tests
+
+-(void) testInitWithJsonDictionary {
+	
+	NSDictionary *stepData = @{@"keyword":@(SIKeywordGiven), @"command": @"a command"};
+	NSDictionary *storyData = @{@"title": @"title", @"steps":@[stepData], @"status": @(SIStoryStatusSuccess)};
+	
+	SIStory *jsonStory = [[[SIStory alloc] initWithJsonDictionary:storyData] autorelease];
+	
+	GHAssertEqualStrings(jsonStory.title, @"title", nil);
+	GHAssertEquals(jsonStory.status, SIStoryStatusSuccess, nil);
+	
+	NSArray *steps = jsonStory.steps;
+	GHAssertNotNil(steps, nil);
+	GHAssertEquals([steps count], (NSUInteger) 1, nil);
+	GHAssertEquals(((SIStep *)steps[0]).keyword, SIKeywordGiven, nil);
+	GHAssertEqualStrings(((SIStep *)steps[0]).command, @"a command", nil);
+	
+}
+
+-(void) testJsonDictionary {
+	
+	story.title = @"abc";
+	[story createStepWithKeyword:SIKeywordGiven command:@"def"];
+	
+	NSDictionary *jsonData = [story jsonDictionary];
+	GHAssertEqualStrings(jsonData[@"title"], @"abc", nil);
+	
+	int status = [jsonData[@"status"] intValue];
+	GHAssertEquals(status, SIStoryStatusNotRun, nil);
+	
+	NSArray *steps = [jsonData valueForKey:@"steps"];
+	GHAssertNotNil(steps, nil);
+	GHAssertEquals([steps count], (NSUInteger) 1, nil);
+	GHAssertEqualStrings(steps[0][@"command"], @"def", nil);
+	
+}
+
+#pragma mark - Support methods
+
 // Used for testing.
 -(void) abc {
 	DC_LOG(@"Executing abc");
@@ -155,44 +195,6 @@
 	GHAssertTrue([[userData allKeys] containsObject:SI_NOTIFICATION_KEY_STORY], nil);
 	GHAssertEquals([userData valueForKey:SI_NOTIFICATION_KEY_SOURCE], source, nil);
 	GHAssertEquals([userData valueForKey:SI_NOTIFICATION_KEY_STORY], story, nil);
-}
-
-#pragma mark - JSON tests
-
--(void) testInitWithJsonDictionary {
-	
-	NSDictionary *stepData = @{@"keyword":@(SIKeywordGiven), @"command": @"a command"};
-	NSDictionary *storyData = @{@"title": @"title", @"steps":@[stepData], @"status": @(SIStoryStatusSuccess)};
-
-	SIStory *jsonStory = [[[SIStory alloc] initWithJsonDictionary:storyData] autorelease];
-	
-	GHAssertEqualStrings(jsonStory.title, @"title", nil);
-	GHAssertEquals(jsonStory.status, SIStoryStatusSuccess, nil);
-
-	NSArray *steps = jsonStory.steps;
-	GHAssertNotNil(steps, nil);
-	GHAssertEquals([steps count], (NSUInteger) 1, nil);
-	GHAssertEquals(((SIStep *)steps[0]).keyword, SIKeywordGiven, nil);
-	GHAssertEqualStrings(((SIStep *)steps[0]).command, @"a command", nil);
-
-}
-
--(void) testJsonDictionary {
-	
-	story.title = @"abc";
-	[story createStepWithKeyword:SIKeywordGiven command:@"def"];
-	
-	NSDictionary *jsonData = [story jsonDictionary];
-	GHAssertEqualStrings(jsonData[@"title"], @"abc", nil);
-	
-	int status = [jsonData[@"status"] intValue];
-	GHAssertEquals(status, SIStoryStatusNotRun, nil);
-	
-	NSArray *steps = [jsonData valueForKey:@"steps"];
-	GHAssertNotNil(steps, nil);
-	GHAssertEquals([steps count], (NSUInteger) 1, nil);
-	GHAssertEqualStrings(steps[0][@"command"], @"def", nil);
-
 }
 
 @end
