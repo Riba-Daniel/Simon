@@ -15,9 +15,11 @@
 
 #define ARG_HELP @"-?"
 #define ARG_JUNIT_DIR @"-junit-report-dir"
+#define ARG_DEVICE @"-device"
 
 // Function declarations.
 int processCmdArgs(PIPieman *pieman, int argc, const char * argv[]);
+NSString *getArgValue(NSString *portArg, int *argIdx, int argc, const char *argv[]);
 int getPort(NSString *portArg, int *argIdx, int argc, const char *argv[]);
 int portFromValue(NSString *value, const char *portName);
 void printHelp(void);
@@ -37,7 +39,7 @@ int main(int argc, const char * argv[]) {
 		
 		// Process arguments.
 		if (processCmdArgs(pieman, argc, argv) == EXIT_FAILURE) {
-			printf("Exiting\n");
+			printf("\nExiting\n");
 			return EXIT_FAILURE;
 		}
 		
@@ -82,14 +84,22 @@ int processCmdArgs(PIPieman *pieman, int argc, const char * argv[]) {
 			continue;
 		}
 		
-		// Ignore help.
-		if ([arg isEqualToString: ARG_HELP]) {
+		// Device settings
+		if ([arg isEqualToString:ARG_DEVICE]) {
+			NSString *device = getArgValue(ARG_DEVICE, &i, argc, argv);
+			if (device == nil) {
+				return EXIT_FAILURE;
+			}
+			pieman.device = [device isEqualToString:@"iphone"] ? PIDeviceFamilyiPhone : PIDeviceFamilyiPad;
 			continue;
 		}
 		
 		// Check for the pieman port.
 		if ([arg isEqualToString: ARG_PIEMAN_PORT]) {
 			int port = getPort(ARG_PIEMAN_PORT, &i, argc, argv);
+			if (port == EXIT_FAILURE) {
+				return EXIT_FAILURE;
+			}
 			pieman.piemanPort = port;
 			continue;
 		}
@@ -97,20 +107,23 @@ int processCmdArgs(PIPieman *pieman, int argc, const char * argv[]) {
 		// Check for Simon port.
 		if ([arg isEqualToString: ARG_PIEMAN_PORT]) {
 			int port = getPort(ARG_PIEMAN_PORT, &i, argc, argv);
+			if (port == EXIT_FAILURE) {
+				return EXIT_FAILURE;
+			}
 			pieman.simonPort = port;
 			continue;
 		}
 		
 		// If the arg starts with '-' is an unknown arg.
 		if ([arg hasPrefix:@"-"]) {
-			printf("Error: Unknown argument %s", argv[i]);
+			printf("Error: Unknown argument %s\n", argv[i]);
 			return EXIT_FAILURE;
 		}
 		
 		// Finally it must be the app file name.
 		pieman.appPath = [arg stringByExpandingTildeInPath];
 		if (![[NSFileManager defaultManager] fileExistsAtPath:pieman.appPath]) {
-			printf("Error: App file '%s' does not exist.", [pieman.appPath UTF8String]);
+			printf("Error: App file '%s' does not exist.\n", [pieman.appPath UTF8String]);
 			return EXIT_FAILURE;
 		}
 		appArgFound = YES;
@@ -126,31 +139,42 @@ int processCmdArgs(PIPieman *pieman, int argc, const char * argv[]) {
 
 int getPort(NSString *portArg, int *argIdx, int argc, const char *argv[]) {
 	
-	// Error if no more args.
-	if (*argIdx >= argc) {
-		printf("Error: expected a port value for %s", [portArg UTF8String]);
+	// Get the arg.
+	NSString *value = getArgValue(portArg, argIdx, argc, argv);
+	if (value == nil) {
 		return EXIT_FAILURE;
 	}
 	
-	// Error if value is another argument.
-	const char *portValue = argv[*argIdx + 1];
-	char first = portValue[0];
-	if (first == '-') {
-		printf("Error: expected a port value for %s but found another argument instead.", [portArg UTF8String]);
-		return EXIT_FAILURE;
-	}
-	
-	int port = atoi(portValue);
+	int port = [value intValue];
 	
 	// error if it's not a number.
 	if (port == 0) {
-		printf("Error: Passed %s port is not a valid integer.", [portArg UTF8String]);
+		printf("Error: Passed %s port is not a valid integer.\n", [portArg UTF8String]);
 		return EXIT_FAILURE;
+	}
+	
+	return port;
+}
+
+NSString *getArgValue(NSString *arg, int *argIdx, int argc, const char *argv[]) {
+	
+	// Error if no more args.
+	if (*argIdx >= argc) {
+		printf("Error: expected a port value for %s\n", [arg UTF8String]);
+		return nil;
+	}
+	
+	// Error if value is another argument.
+	const char *value = argv[*argIdx + 1];
+	char first = value[0];
+	if (first == '-') {
+		printf("Error: expected a value for %s but found another argument instead.\n", [arg UTF8String]);
+		return nil;
 	}
 	
 	// increment index and return.
 	*argIdx = *argIdx + 1;
-	return port;
+	return [NSString stringWithCString:value encoding:NSUTF8StringEncoding];
 }
 
 void printHelp() {
@@ -158,6 +182,7 @@ void printHelp() {
 	const char *piemanArg = [[NSString stringWithFormat:@"%@ n", ARG_PIEMAN_PORT] UTF8String];
 	const char *simonArg = [[NSString stringWithFormat:@"%@ n", ARG_SIMON_PORT] UTF8String];
 	const char *jUnitReportDirArg = [[NSString stringWithFormat:@"%@ [path]", ARG_JUNIT_DIR] UTF8String];
+	const char *deviceArg = [[NSString stringWithFormat:@"%@ iphone|ipad", ARG_DEVICE] UTF8String];
 	
 	printf("The Pieman - Simon's mentor\n");
 	printf("===========================\n\n");
@@ -166,11 +191,12 @@ void printHelp() {
 	printf("This is particularly useful when running on a Continuous Integeration (CI) machine which\n");
 	printf("builds and runs software on a regular basis. \n");
 	
-	printf("\nSyntax: pieman [%1$s] [%2$s] [%3$s] [%4$s] app-file app-args...\n",
+	printf("\nSyntax: pieman [%1$s] [%5$s] [%2$s] [%3$s] [%4$s] app-file app-args...\n",
 			 [ARG_HELP UTF8String],
 			 piemanArg,
 			 simonArg,
-			 jUnitReportDirArg);
+			 jUnitReportDirArg,
+			 deviceArg);
 	
 	printf("\nArguments\n");
 	printf("---------\n\n");
@@ -178,7 +204,9 @@ void printHelp() {
 #define argFmt "%1$-25"
 	
 	printf(argFmt "s Prints this help information.\n\n", [ARG_HELP UTF8String]);
-	
+
+	printf(argFmt "s The device to use. iPhone or iPad, defaults to iPhone.\n\n", deviceArg);
+
 	printf(argFmt "s Overrides the default HTTP port that the Pieman is listening\n", piemanArg);
 	printf(argFmt "s for test results from Simon on. Defaults to %2$i\n\n", "", HTTP_PIEMAN_PORT);
 	

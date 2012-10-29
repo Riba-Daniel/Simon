@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "PIHeartbeatDelegate.h"
 #import "PISimulatorDelegate.h"
+#import "PIConstants.h"
 
 /**
  This is the main class of Pieman.
@@ -20,6 +21,9 @@
 
 /// The full path to the app to be tested.
 @property (nonatomic, retain) NSString *appPath;
+
+// The device to pass to the simulator.
+@property (nonatomic, assign) PIDeviceFamily device;
 
 /// The port that the Pieman will listen on.
 @property (nonatomic, assign) NSInteger piemanPort;

@@ -48,6 +48,7 @@
 @synthesize simonPort = _simonPort;
 @synthesize appArgs = _appArgs;
 @synthesize exitCode = _exitCode;
+@synthesize device = _device;
 
 #pragma mark - Lifecycle
 
@@ -127,6 +128,7 @@
 	
 	_simulator = [[PISimulator alloc] initWithApplicationPath:self.appPath];
 	_simulator.args = args;
+	_simulator.deviceFamily = self.device;
 	
 	DC_LOG(@"Looking for currently running simulator before launching")
 	[_simulator shutdownSimulator:^{
