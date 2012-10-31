@@ -49,6 +49,7 @@
 @synthesize appArgs = _appArgs;
 @synthesize exitCode = _exitCode;
 @synthesize device = _device;
+@synthesize sdk = _sdk;
 
 #pragma mark - Lifecycle
 
@@ -59,6 +60,7 @@
 	
 	self.appPath = nil;
 	self.appArgs = nil;
+	self.sdk = nil;
 	DC_DEALLOC(server);
 	DC_DEALLOC(_heartbeat);
 	DC_DEALLOC(_simulator);
@@ -129,6 +131,11 @@
 	_simulator = [[PISimulator alloc] initWithApplicationPath:self.appPath];
 	_simulator.args = args;
 	_simulator.deviceFamily = self.device;
+	
+	// Pass the sdk through if it is specified.
+	if (self.sdk != nil) {
+		_simulator.sdkVersion = self.sdk;
+	}
 	
 	DC_LOG(@"Looking for currently running simulator before launching")
 	[_simulator shutdownSimulator:^{

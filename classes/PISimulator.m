@@ -309,7 +309,7 @@
 	NSMutableArray *sdks = [NSMutableArray array];
 	for (id root in [DTiPhoneSimulatorSystemRoot knownRoots]) {
 		DC_LOG(@"Found SDK: %2$@, version %3$@ at %1$@", [root sdkRootPath], [root sdkDisplayName], [root sdkVersion]);
-		[sdks addObject:[root sdkVersion]];
+		[sdks addObject:root];
 	}
 	return sdks;
 }

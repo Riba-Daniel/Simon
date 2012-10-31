@@ -12,16 +12,22 @@
 #import "SICore.h"
 #import "PIConstants.h"
 #import <Simon/NSProcessInfo+Simon.h>
+#import "PISimulator.h"
+#import "DTiPhoneSimulatorSystemRoot.h"
 
 #define ARG_HELP @"-?"
 #define ARG_JUNIT_DIR @"-junit-report-dir"
 #define ARG_DEVICE @"-device"
+#define ARG_SDK @"-sdk"
+#define ARG_LIST_SDKS @"-list-sdks"
+
 
 // Function declarations.
 int processCmdArgs(PIPieman *pieman, int argc, const char * argv[]);
 NSString *getArgValue(NSString *portArg, int *argIdx, int argc, const char *argv[]);
 int getPort(NSString *portArg, int *argIdx, int argc, const char *argv[]);
 int portFromValue(NSString *value, const char *portName);
+void printSdks(void);
 void printHelp(void);
 
 int main(int argc, const char * argv[]) {
@@ -32,6 +38,12 @@ int main(int argc, const char * argv[]) {
 		// Check for help.
 		if ([[NSProcessInfo processInfo] isArgumentPresentWithName:ARG_HELP]) {
 			printHelp();
+			return EXIT_SUCCESS;
+		}
+		
+		// Check for sdk listing.
+		if ([[NSProcessInfo processInfo] isArgumentPresentWithName:ARG_LIST_SDKS]) {
+			printSdks();
 			return EXIT_SUCCESS;
 		}
 		
@@ -114,6 +126,16 @@ int processCmdArgs(PIPieman *pieman, int argc, const char * argv[]) {
 			continue;
 		}
 		
+		// Check for sdk.
+		if ([arg isEqualToString:ARG_SDK]) {
+			NSString *sdk = getArgValue(ARG_SDK, &i, argc, argv);
+			if (sdk == nil) {
+				return EXIT_FAILURE;
+			}
+			pieman.sdk = sdk;
+			continue;
+		}
+		
 		// If the arg starts with '-' is an unknown arg.
 		if ([arg hasPrefix:@"-"]) {
 			printf("Error: Unknown argument %s\n", argv[i]);
@@ -177,12 +199,31 @@ NSString *getArgValue(NSString *arg, int *argIdx, int argc, const char *argv[]) 
 	return [NSString stringWithCString:value encoding:NSUTF8StringEncoding];
 }
 
+void printSdks() {
+	
+	PISimulator *simulator = [[PISimulator alloc] init];
+	NSArray *sdks = [simulator availableSdkVersions];
+
+	printf("Available Sdks:\n");
+	
+	[sdks enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+		DTiPhoneSimulatorSystemRoot *sdkRoot = obj;
+		printf("\nName   : %s\n", [sdkRoot.sdkDisplayName UTF8String]);
+		printf("Version: %s\n", [sdkRoot.sdkVersion UTF8String]);
+		printf("Path   : %s\n", [sdkRoot.sdkRootPath UTF8String]);
+	}];
+	
+	[simulator release];
+	
+}
+
 void printHelp() {
 	
 	const char *piemanArg = [[NSString stringWithFormat:@"%@ n", ARG_PIEMAN_PORT] UTF8String];
 	const char *simonArg = [[NSString stringWithFormat:@"%@ n", ARG_SIMON_PORT] UTF8String];
 	const char *jUnitReportDirArg = [[NSString stringWithFormat:@"%@ [path]", ARG_JUNIT_DIR] UTF8String];
 	const char *deviceArg = [[NSString stringWithFormat:@"%@ iphone|ipad", ARG_DEVICE] UTF8String];
+	const char *sdkArg = [[NSString stringWithFormat:@"%@ version", ARG_SDK] UTF8String];
 	
 	printf("The Pieman - Simon's mentor\n");
 	printf("===========================\n\n");
@@ -191,12 +232,15 @@ void printHelp() {
 	printf("This is particularly useful when running on a Continuous Integeration (CI) machine which\n");
 	printf("builds and runs software on a regular basis. \n");
 	
-	printf("\nSyntax: pieman [%1$s] [%5$s] [%2$s] [%3$s] [%4$s] app-file app-args...\n",
+	printf("\nSyntax: pieman [%1$s] [%5$s] [%2$s] [%3$s] [%4$s] [%6$s] [%7$s] app-file app-args...\n",
 			 [ARG_HELP UTF8String],
 			 piemanArg,
 			 simonArg,
 			 jUnitReportDirArg,
-			 deviceArg);
+			 deviceArg,
+			 [ARG_LIST_SDKS UTF8String],
+			 sdkArg
+			 );
 	
 	printf("\nArguments\n");
 	printf("---------\n\n");
@@ -216,7 +260,11 @@ void printHelp() {
 	printf(argFmt "s Activates junit xml test reports and writes them to a directory.\n", jUnitReportDirArg);
 	printf(argFmt "s If 'path' is specified, writes to that path.\n", "");
 	printf(argFmt "s If 'path' is not specified, writes to <current-dir>/junit.\n\n", "");
-	
+
+	printf(argFmt "s Prints all installed simulator sdks.\n\n", [ARG_LIST_SDKS UTF8String]);
+
+	printf(argFmt "s Sets the simulator to the specified sdk.\n\n", sdkArg);
+
 	printf(argFmt "s The previously compiled .app file which contains your app.\n", "app-file");
 	printf(argFmt "s This must have Simon's static librarystory files and implementation\n", "");
 	printf(argFmt "s code included for the test run to work.\n\n", "");

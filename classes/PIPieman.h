@@ -25,6 +25,9 @@
 /// The device to pass to the simulator.
 @property (nonatomic, assign) PIDeviceFamily device;
 
+/// The sdk to select in the simulator.
+@property (nonatomic, retain) NSString *sdk;
+
 /// The port that the Pieman will listen on.
 @property (nonatomic, assign) NSInteger piemanPort;
 
