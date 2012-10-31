@@ -75,6 +75,7 @@ typedef void (^completion)();
 		
 		// Get the front most view and add our report to it, dont use the window due to rotation.
 		UIView *parentView = [self uiParentView];
+		assert(parentView != nil);
 		DC_LOG(@"Parent View: %@", parentView);
 		
 		// Position the new view offscreen.

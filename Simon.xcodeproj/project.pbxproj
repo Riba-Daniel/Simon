@@ -12,6 +12,7 @@
 			buildConfigurationList = 323D696D162AF42400660D36 /* Build configuration list for PBXAggregateTarget "Build Simon & Pieman" */;
 			buildPhases = (
 				323D6972162AF4EE00660D36 /* Build Simon static library */,
+				323BE276163FDDDB00B3B964 /* Combine libs */,
 				323D6973162AF51400660D36 /* Build Simon framework */,
 				32C1B117162D93CB00157749 /* Build Pieman */,
 				323D6974162AF52D00660D36 /* Appledoc Simon */,
@@ -73,7 +74,6 @@
 		322B4FBB15F3893B00C81E65 /* libCocoaHTTPServer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 322426A515EBA95E00F0CB62 /* libCocoaHTTPServer.a */; };
 		322DA95615A18A4B005CFC83 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 322DA95515A18A4B005CFC83 /* main.m */; };
 		32326CD715DA8F6D00C8B1DC /* NSObject+SimonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32326CD615DA8F6D00C8B1DC /* NSObject+SimonTests.m */; };
-		323D6976162AF5D300660D36 /* libCocoaHTTPServer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32B9592D15E5E62F00470287 /* libCocoaHTTPServer.a */; };
 		324108B61509C19400AFBF66 /* SIUIViewDescriptionVisitor.h in Headers */ = {isa = PBXBuildFile; fileRef = 324108B41509C19400AFBF66 /* SIUIViewDescriptionVisitor.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		324108B71509C19400AFBF66 /* SIUIViewDescriptionVisitor.m in Sources */ = {isa = PBXBuildFile; fileRef = 324108B51509C19400AFBF66 /* SIUIViewDescriptionVisitor.m */; };
 		324108BA1509C23200AFBF66 /* SIUIViewDescriptionVisitorDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 324108B91509C23200AFBF66 /* SIUIViewDescriptionVisitorDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -776,7 +776,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				323D6976162AF5D300660D36 /* libCocoaHTTPServer.a in Frameworks */,
 				32EA6E76150E11E2000A64A1 /* QuartzCore.framework in Frameworks */,
 				653D0E8E13A782AD00A5AB82 /* Foundation.framework in Frameworks */,
 				659E629F13DAFEF500ACD34C /* UIKit.framework in Frameworks */,
@@ -1830,6 +1829,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		323BE276163FDDDB00B3B964 /* Combine libs */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Combine libs";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "echo \"Combining ...\"\n\n# CocoaHTTPServer\nlipo -create \"${BUILD_DIR}/simon/$CONFIGURATION-iphoneos/libCocoaHTTPServer.a\" \"${BUILD_DIR_SIMON}/$CONFIGURATION-iphonesimulator/libCocoaHTTPServer.a\" -o \"${BUILD_DIR_SIMON}/libCocoaHTTPServer.a\"\n\n# Simon\nlipo -create \"${BUILD_DIR}/simon/$CONFIGURATION-iphoneos/lib${PROJECT_NAME}.a\" \"${BUILD_DIR_SIMON}/$CONFIGURATION-iphonesimulator/lib${PROJECT_NAME}.a\" -o \"${BUILD_DIR_SIMON}/${PROJECT_NAME}\"\n";
+		};
 		323D6972162AF4EE00660D36 /* Build Simon static library */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1842,7 +1855,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "echo \"Building static library ...\"\n\n# Trap errors\nset +o errexit\n\nxcodebuild -target Simon -sdk ${EXPORT_SIMULATOR_SDK} -configuration Release VALID_ARCHS=\"i386\" ARCHS=\"i386\" BUILD_DIR=${BUILD_DIR_SIMON}\nDC_BUILD_RC=$?\n\n# if it failed then restore user settings and exit.\nif [ $DC_BUILD_RC != 0 ]; then\necho \"Exiting as build threw an error.\"\nexit $DC_BUILD_RC\nfi\n\nxcodebuild -target Simon -sdk ${EXPORT_DEVICE_SDK} -configuration Release VALID_ARCHS=\"armv7 armv7s\" ARCHS=\"armv7 armv7s\" BUILD_DIR=${BUILD_DIR_SIMON}\nDC_BUILD_RC=$?\n\n# if it failed then restore user settings and exit.\nif [ $DC_BUILD_RC != 0 ]; then\necho \"Exiting as build threw an error.\"\nexit $DC_BUILD_RC\nfi\n\n\n# Restore error trapping.\nset -o errexit\n\necho \"Combining ...\"\nlipo -create \"${BUILD_DIR}/simon/Release-iphoneos/lib${PROJECT_NAME}.a\" \"${BUILD_DIR_SIMON}/Release-iphonesimulator/lib${PROJECT_NAME}.a\" -o \"${BUILD_DIR_SIMON}/${PROJECT_NAME}\"\n";
+			shellScript = "echo \"Building static library ...\"\n\n# Trap errors\nset +o errexit\n\nxcodebuild -target Simon -sdk ${EXPORT_SIMULATOR_SDK} -configuration $CONFIGURATION VALID_ARCHS=\"i386\" ARCHS=\"i386\" BUILD_DIR=${BUILD_DIR_SIMON}\nDC_BUILD_RC=$?\n\n# if it failed then restore user settings and exit.\nif [ $DC_BUILD_RC != 0 ]; then\necho \"Exiting as build threw an error.\"\nexit $DC_BUILD_RC\nfi\n\nxcodebuild -target Simon -sdk ${EXPORT_DEVICE_SDK} -configuration $CONFIGURATION VALID_ARCHS=\"armv7 armv7s\" ARCHS=\"armv7 armv7s\" BUILD_DIR=${BUILD_DIR_SIMON}\nDC_BUILD_RC=$?\n\n# if it failed then restore user settings and exit.\nif [ $DC_BUILD_RC != 0 ]; then\necho \"Exiting as build threw an error.\"\nexit $DC_BUILD_RC\nfi\n\n\n# Restore error trapping.\nset -o errexit\n";
 		};
 		323D6973162AF51400660D36 /* Build Simon framework */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1886,7 +1899,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "echo Building dmg of project ...\n\ncp ReadMe.textile \"${ARTIFACT_DIR}\"\ncp ChangeLog.textile \"${ARTIFACT_DIR}\"\n\ncp ${BUILD_DIR_PIEMAN}/Release/pieman \"${ARTIFACT_DIR}\"\n\n# Find the relevant dUsefulStuff and dNodi frameworks. Copy to the image.\nDUSEFULSTUFF_VERSION=$(<\"${BUILD_DIR}/dUsefulStuff.version\")\nDNODI_VERSION=$(<\"${BUILD_DIR}/dNodi.version\")\necho dUsefulStuff version ${DUSEFULSTUFF_VERSION}\necho dNodi version ${DNODI_VERSION}\n\ncp -R \"${ARTIFACT_BASE_DIR}/dUsefulStuff/${DUSEFULSTUFF_VERSION}/dUsefulStuff.framework\" \"${ARTIFACT_DIR}\"\ncp -R \"${ARTIFACT_BASE_DIR}/dNodi/${DNODI_VERSION}/dNodi.framework\" \"${ARTIFACT_DIR}\"\n\n\nhdiutil create \"${ARTIFACT_DIR}/../${PROJECT_NAME}-${CURRENT_PROJECT_VERSION}\" -ov -srcdir \"${ARTIFACT_DIR}\" -volname \"${PROJECT_NAME} v${CURRENT_PROJECT_VERSION}\"\n";
+			shellScript = "echo Building dmg of project ...\n\ncp ReadMe.textile \"${ARTIFACT_DIR}\"\ncp ChangeLog.textile \"${ARTIFACT_DIR}\"\n\ncp ${BUILD_DIR_PIEMAN}/Release/pieman \"${ARTIFACT_DIR}\"\n\n# Find the relevant dUsefulStuff and dNodi frameworks. Copy to the image.\nDUSEFULSTUFF_VERSION=$(<\"${BUILD_DIR}/dUsefulStuff.version\")\nDNODI_VERSION=$(<\"${BUILD_DIR}/dNodi.version\")\necho dUsefulStuff version ${DUSEFULSTUFF_VERSION}\necho dNodi version ${DNODI_VERSION}\n\ncp -R \"${ARTIFACT_BASE_DIR}/dUsefulStuff/${DUSEFULSTUFF_VERSION}/dUsefulStuff.framework\" \"${ARTIFACT_DIR}\"\ncp -R \"${ARTIFACT_BASE_DIR}/dNodi/${DNODI_VERSION}/dNodi.framework\" \"${ARTIFACT_DIR}\"\ncp \"${BUILD_DIR_SIMON}/libCocoaHTTPServer.a\" \"${ARTIFACT_DIR}\"\n\n\nhdiutil create \"${ARTIFACT_DIR}/../${PROJECT_NAME}-${CURRENT_PROJECT_VERSION}\" -ov -srcdir \"${ARTIFACT_DIR}\" -volname \"${PROJECT_NAME} v${CURRENT_PROJECT_VERSION}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		326B624915F5A2B4002CA603 /* ShellScript */ = {

@@ -202,7 +202,7 @@ static SIAppBackpack *_backpack;
 		DC_DEALLOC(runtime);
 		
 		// Find the mapping for each story.
-		DC_LOG(@"Mappin steps to story steps");
+		DC_LOG(@"Mapping steps to story steps");
 		[self.storySources.sources enumerateObjectsUsingBlock:^(id sourceObj, NSUInteger sourceIdx, BOOL *sourceStop) {
 			SIStorySource *source = (SIStorySource *) sourceObj;
 			[source.stories enumerateObjectsUsingBlock:^(id storyObj, NSUInteger storyIdx, BOOL *storyStop) {

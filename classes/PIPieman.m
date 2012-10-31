@@ -217,12 +217,12 @@
 		
 		// Get the story.
 		SIStory *story = (SIStory *) obj;
-		printf("\nStory finished: %s", [story.title UTF8String]);
+		printf("\nStory finished: %s -> %s\n", [story.title UTF8String], [story.statusString UTF8String]);
 		
 		// Output Steps.
 		[story.steps enumerateObjectsUsingBlock:^(id stepObj, NSUInteger idx, BOOL *stop) {
 			SIStep *step = (SIStep *) stepObj;
-			printf("\nStep: %s -> %i", [step.command UTF8String], step.status);
+			printf("Step: %s -> %s\n", [step.command UTF8String], [step.statusString UTF8String]);
 			
 		}];
 
