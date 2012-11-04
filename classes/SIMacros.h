@@ -266,7 +266,7 @@ do { \
    do { \
       id xValue = (x) == nil ? @"nil" : (x); \
       id yValue = (y) == nil ? @"nil" : (y); \
-      SIAssertObjectEqualsM(x, y, [NSString stringWithFormat:@"SIAssertObjectEquals(%s, %s) failed: %@ != %@", #x, #y, xValue, yValue] ); \
+      SIAssertObjectEqualsM(x, y, @"SIAssertObjectEquals(%s, %s) failed: %@ != %@", #x, #y, xValue, yValue); \
    } while (NO)
 
 /*

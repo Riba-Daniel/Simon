@@ -9,7 +9,7 @@
 #import <GHUnitIOS/GHUnit.h>
 #import <dUsefulStuff/DCCommon.h>
 #import <Simon/SIStepMapping.h>
-#import <Simon/SIConstants.h>
+#import <Simon/SICore.h>
 
 @interface SIStepMappingTests : GHTestCase {
 @private

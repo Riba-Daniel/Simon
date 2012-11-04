@@ -34,10 +34,6 @@
 
 +(NSString *) stringFromSIKeyword:(SIKeyword) keyword {
 	switch (keyword) {
-		case SIKeywordStartOfFile:
-			return @"Start of file";
-			break;
-			
 		case SIKeywordStory:
 			return @"Story";
 			break;

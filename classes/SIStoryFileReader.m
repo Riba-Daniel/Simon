@@ -10,7 +10,7 @@
 #import <dUsefulStuff/NSObject+dUsefulStuff.h>
 
 #import <Simon/SIStoryFileReader.h>
-#import <Simon/SIConstants.h>
+#import <Simon/SICore.h>
 #import "NSString+Simon.h"
 
 @interface SIStoryFileReader() {
@@ -82,7 +82,7 @@
 	}
 	
 	// Break it up and process the lines.
-	priorKeyword = SIKeywordStartOfFile;
+	priorKeyword = SIKeywordUnknown;
 	NSUInteger lineNbr = 0;
 	for (NSString * line in [contents componentsSeparatedByString:@"\n"]) {
 		currentLineNumber = ++lineNbr;
@@ -95,7 +95,6 @@
 	return YES;
 	
 }
-
 
 -(BOOL) processLine:(NSString *) line
 			  inSource:(SIStorySource *) source
@@ -180,7 +179,7 @@
 	// Cross reference the prior keyword and current keyword to decide
 	// whether the syntax is ok.
 	switch (priorKeyword) {
-			
+			/*
 		case SIKeywordStartOfFile:
 			if (nextKeyword != SIKeywordStory) {
 				NSString *message = [self failureReasonWithContent:@"Incorrect keyword order, the \"Story:\" keyword must be the first keyword." forSource:source];
@@ -192,7 +191,7 @@
 				return NO;
 			}
 			break;
-			
+			*/
 		case SIKeywordStory: // SIKeywordStory so no prior.
 			if (nextKeyword != SIKeywordGiven && nextKeyword != SIKeywordAs) {
 				NSString *message = [self failureReasonWithContent:@"Incorrect keyword order, \"As\" or \"Given\" must appear after \"Story:\"" forSource:source];

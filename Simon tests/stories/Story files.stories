@@ -6,6 +6,7 @@ then I should be able to read 5 and abc from it.
 Story: Meaningless story.
 Given something
 and something else,
+when I do this
 then this should be ok
 and this should be ok too.
 

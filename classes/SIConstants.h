@@ -42,34 +42,3 @@
 #define ARG_LOG_ACTIONS @"-log-actions"
 #define ARG_REPORT @"-report"
 
-/**
- Individual error codes.
- */
-typedef enum {
-	SIErrorInvalidStorySyntax = 1, /// Generated when there is an issue with the syntax used in a story file.
-	SIErrorInvalidKeyword, 
-	SIErrorInvalidRegularExpression,
-	SIErrorUnknownSelector,
-	SIErrorCannotConvertArgumentToType,
-	SIErrorRegularExpressionWillNotMatchSelector,
-	SIErrorNoStoriesFound,
-	SIErrorStoryFailures,
-	SIErrorExceptionCaught,
-	SIErrorUnknownProperty
-} SIError;
-
-/**
- This gives the types of keywords read by SIStoryFileReader. SIKeywordNone is used only when the first story is beng read as it designates
- the start of the file.
- */
-typedef enum {
-	SIKeywordUnknown = 999,
-	SIKeywordStartOfFile = 0,
-	SIKeywordNone,
-	SIKeywordStory,
-	SIKeywordGiven,
-	SIKeywordThen,
-	SIKeywordAs,
-	SIKeywordAnd
-} SIKeyword;
-

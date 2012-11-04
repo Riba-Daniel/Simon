@@ -46,6 +46,36 @@ typedef void (^RequestSentErrorBlock)(id<SIJsonAware> bodyObj, NSError *error);
 typedef id<SIJsonAware> (^RequestReceivedBlock)(id<SIJsonAware> bodyObj);
 
 /**
+ Individual error codes.
+ */
+typedef enum {
+	SIErrorInvalidStorySyntax = 1, /// Generated when there is an issue with the syntax used in a story file.
+	SIErrorInvalidKeyword,
+	SIErrorInvalidRegularExpression,
+	SIErrorUnknownSelector,
+	SIErrorCannotConvertArgumentToType,
+	SIErrorRegularExpressionWillNotMatchSelector,
+	SIErrorNoStoriesFound,
+	SIErrorStoryFailures,
+	SIErrorExceptionCaught,
+	SIErrorUnknownProperty
+} SIError;
+
+/**
+ This gives the types of keywords read by SIStoryFileReader. SIKeywordNone is used only when the first story is beng read as it designates
+ the start of the file.
+ */
+typedef enum {
+	SIKeywordUnknown = 999,
+	SIKeywordStory = 1,
+	SIKeywordAs,
+	SIKeywordGiven,
+	SIKeywordWhen,
+	SIKeywordThen,
+	SIKeywordAnd
+} SIKeyword;
+
+/**
  Gives the final status of a story after the run.
  */
 typedef enum {

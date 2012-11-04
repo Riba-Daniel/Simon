@@ -80,6 +80,10 @@
 		324108BC1509C61E00AFBF66 /* SIUIViewDescriptionVisitorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 324108BB1509C61E00AFBF66 /* SIUIViewDescriptionVisitorTests.m */; };
 		3243AA3015CFE613000205E2 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32AF045115CEB73600501B1E /* CFNetwork.framework */; };
 		3243AA3115CFE619000205E2 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32AF045315CEB75F00501B1E /* Security.framework */; };
+		3249677016428FB500118EF4 /* SIStorySyntaxParser.h in Headers */ = {isa = PBXBuildFile; fileRef = 3249676E16428FB500118EF4 /* SIStorySyntaxParser.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3249677116428FB500118EF4 /* SIStorySyntaxParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3249676F16428FB500118EF4 /* SIStorySyntaxParser.m */; };
+		324967751642A07400118EF4 /* SIStorySyntaxParserTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 324967731642A07400118EF4 /* SIStorySyntaxParserTests.m */; };
+		324967761642A61B00118EF4 /* libCocoaHTTPServer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32B9592D15E5E62F00470287 /* libCocoaHTTPServer.a */; };
 		325683D914EF6CEB00F7C189 /* SIUIConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 325683D814EF6CEB00F7C189 /* SIUIConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3257ECDF1603773600629C21 /* SIHttpPayloadTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3224270A15EDF64C00F0CB62 /* SIHttpPayloadTests.m */; };
 		3260B810151CB81C005A5AAA /* SIUINotAnInputViewException.h in Headers */ = {isa = PBXBuildFile; fileRef = 3260B80E151CB81C005A5AAA /* SIUINotAnInputViewException.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -527,6 +531,9 @@
 		324108B51509C19400AFBF66 /* SIUIViewDescriptionVisitor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIUIViewDescriptionVisitor.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		324108B91509C23200AFBF66 /* SIUIViewDescriptionVisitorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIViewDescriptionVisitorDelegate.h; sourceTree = "<group>"; };
 		324108BB1509C61E00AFBF66 /* SIUIViewDescriptionVisitorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIUIViewDescriptionVisitorTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		3249676E16428FB500118EF4 /* SIStorySyntaxParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIStorySyntaxParser.h; sourceTree = "<group>"; };
+		3249676F16428FB500118EF4 /* SIStorySyntaxParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIStorySyntaxParser.m; sourceTree = "<group>"; };
+		324967731642A07400118EF4 /* SIStorySyntaxParserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIStorySyntaxParserTests.m; sourceTree = "<group>"; };
 		325683D814EF6CEB00F7C189 /* SIUIConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIConstants.h; sourceTree = "<group>"; };
 		3260B80E151CB81C005A5AAA /* SIUINotAnInputViewException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = SIUINotAnInputViewException.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		3260B80F151CB81C005A5AAA /* SIUINotAnInputViewException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIUINotAnInputViewException.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -786,6 +793,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				324967761642A61B00118EF4 /* libCocoaHTTPServer.a in Frameworks */,
 				32B9593F15E5E69300470287 /* libdNodi.a in Frameworks */,
 				32B9594015E5E69300470287 /* libdUsefulStuff.a in Frameworks */,
 				32AF045415CEB75F00501B1E /* Security.framework in Frameworks */,
@@ -1054,14 +1062,16 @@
 			name = http;
 			sourceTree = "<group>";
 		};
-		329F9AA615FB8B8A0041FD1D /* Core */ = {
+		329F9AA615FB8B8A0041FD1D /* Core Tests */ = {
 			isa = PBXGroup;
 			children = (
+				653D0EDD13A783DC00A5AB82 /* Story files */,
 				6583B43013D1CB2E005E13F3 /* Stories */,
 				329F9AA715FB8B900041FD1D /* http */,
 				32A0A7CC15FF208A00A3964F /* NSProcessInfo+SimonTests.m */,
 			);
-			name = Core;
+			name = "Core Tests";
+			path = "Simon tests";
 			sourceTree = "<group>";
 		};
 		329F9AA715FB8B900041FD1D /* http */ = {
@@ -1270,23 +1280,24 @@
 		653D0E7F13A782AC00A5AB82 = {
 			isa = PBXGroup;
 			children = (
-				32A4DE251621B74E0031DEA3 /* GRMustache.xcodeproj */,
-				32CDF2E715E5E5DA001F4317 /* dUsefulStuff.xcodeproj */,
+				6583B3EC13CF2220005E13F3 /* ReadMe.textile */,
+				6583B3EB13CF2220005E13F3 /* License.textile */,
+				6583B3EE13CF2242005E13F3 /* ChangeLog.textile */,
 				32CDF2F815E5E602001F4317 /* dNodi.xcodeproj */,
+				32CDF2E715E5E5DA001F4317 /* dUsefulStuff.xcodeproj */,
+				32A4DE251621B74E0031DEA3 /* GRMustache.xcodeproj */,
 				32CDF2F615E5E5E7001F4317 /* CocoaHTTPServer.xcodeproj */,
 				3298251215039FE300631203 /* ARC App with tests */,
 				6583B3EA13CF2220005E13F3 /* build.sh */,
-				6583B3EE13CF2242005E13F3 /* ChangeLog.textile */,
 				329F9A9E15FB88110041FD1D /* Core */,
-				653D0EB113A783C000A5AB82 /* Simon */,
+				329F9AA615FB8B8A0041FD1D /* Core Tests */,
 				653D0E8C13A782AD00A5AB82 /* Frameworks */,
-				6583B3EB13CF2220005E13F3 /* License.textile */,
 				322DA95415A18A4B005CFC83 /* PieMan */,
 				32A188A015EF89BE00B8C111 /* Pieman Tests */,
 				653D0E8B13A782AD00A5AB82 /* Products */,
-				6583B3EC13CF2220005E13F3 /* ReadMe.textile */,
-				653D0EF013A7842500A5AB82 /* Simon-Prefix.pch */,
+				653D0EB113A783C000A5AB82 /* Simon */,
 				653D0ED413A783DC00A5AB82 /* Simon tests */,
+				653D0EF013A7842500A5AB82 /* Simon-Prefix.pch */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1338,7 +1349,6 @@
 			isa = PBXGroup;
 			children = (
 				32AE69F61622DFC1006410CE /* Result listener */,
-				329F9AA615FB8B8A0041FD1D /* Core */,
 				94657741141C95160026F1FB /* AbstractTestWithControlsOnView.h */,
 				94657742141C95160026F1FB /* AbstractTestWithControlsOnView.m */,
 				328DE13D15D3688D009A16C1 /* Categories */,
@@ -1348,7 +1358,6 @@
 				32AF044115CE36C500501B1E /* SIAppBackpackTests.m */,
 				32A9D11214C914B500B0CFBD /* SIMacroTests.m */,
 				65FCD11713ADE3C200A90FCA /* SIRuntimeTests.m */,
-				653D0EDD13A783DC00A5AB82 /* Story files */,
 				659E62A013DB026400ACD34C /* app */,
 				32D5D98914E1357900D29DD5 /* TestView.xib */,
 				32D5D98B14E135A300D29DD5 /* TestViewController.h */,
@@ -1395,6 +1404,8 @@
 				3210988C15D6893E00567D6D /* SIStorySources.h */,
 				3210988D15D6893E00567D6D /* SIStorySources.m */,
 				3224268C15EA599C00F0CB62 /* SIJsonAware.h */,
+				3249676E16428FB500118EF4 /* SIStorySyntaxParser.h */,
+				3249676F16428FB500118EF4 /* SIStorySyntaxParser.m */,
 			);
 			name = Stories;
 			path = classes;
@@ -1411,6 +1422,7 @@
 				0B9D8FEF15CF82540005CBBF /* SIStorySourceTests.m */,
 				65B647CA13B8AE5E0083C114 /* SIStoryTests.m */,
 				32CF03DD1614902F00FFD010 /* SIFinalReportTests.m */,
+				324967731642A07400118EF4 /* SIStorySyntaxParserTests.m */,
 			);
 			name = Stories;
 			sourceTree = "<group>";
@@ -1544,6 +1556,7 @@
 				659E629D13DAFC4000ACD34C /* SIUIApplication.h in Headers */,
 				328DE14D15D39B73009A16C1 /* Simon.h in Headers */,
 				3260B810151CB81C005A5AAA /* SIUINotAnInputViewException.h in Headers */,
+				3249677016428FB500118EF4 /* SIStorySyntaxParser.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1654,7 +1667,7 @@
 		653D0E8113A782AC00A5AB82 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0440;
+				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = Sensis;
 			};
 			buildConfigurationList = 653D0E8413A782AC00A5AB82 /* Build configuration list for PBXProject "Simon" */;
@@ -2080,6 +2093,7 @@
 				3261A024160616B000DDA1CF /* NSData+Simon.m in Sources */,
 				32CF03B91613281800FFD010 /* SIHttpGetRequestHandler+Simon.m in Sources */,
 				32CF03DA16148D4700FFD010 /* SIFinalReport.m in Sources */,
+				3249677116428FB500118EF4 /* SIStorySyntaxParser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2127,6 +2141,7 @@
 				32CF03DE1614902F00FFD010 /* SIFinalReportTests.m in Sources */,
 				32CF03E1161744C500FFD010 /* SIHttpResultSenderTests.m in Sources */,
 				32A4DDFB161FD9FB0031DEA3 /* TestUtils.m in Sources */,
+				324967751642A07400118EF4 /* SIStorySyntaxParserTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2311,7 +2326,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_OBJCPP_ARC_ABI = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PREFIX_HEADER = "ARC App with tests/ARC App with tests-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -2331,7 +2345,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_OBJCPP_ARC_ABI = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PREFIX_HEADER = "ARC App with tests/ARC App with tests-Prefix.pch";
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
@@ -2430,7 +2443,6 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ANALYZER_SECURITY_FLOATLOOPCOUNTER = YES;
 				CLANG_ENABLE_OBJC_ARC = NO;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
 				CLANG_WARN_OBJC_IMPLICIT_ATOMIC_PROPERTIES = YES;
@@ -2481,7 +2493,6 @@
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CLANG_ANALYZER_SECURITY_FLOATLOOPCOUNTER = YES;
 				CLANG_ENABLE_OBJC_ARC = NO;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_IMPLICIT_SIGN_CONVERSION = YES;
 				CLANG_WARN_OBJC_IMPLICIT_ATOMIC_PROPERTIES = YES;
