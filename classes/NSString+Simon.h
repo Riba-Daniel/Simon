@@ -6,7 +6,7 @@
 //  Copyright 2011. All rights reserved.
 //
 
-#import <Simon/SICore.h>
+#import <Simon/SIConstants.h>
 #import <Simon/SIStory.h>
 
 /**

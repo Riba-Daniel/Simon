@@ -1,5 +1,5 @@
 //
-//  SICoreHttpConnection.m
+//  SIHttpConnection.m
 //  Simon
 //
 //  Created by Derek Clarkson on 9/09/12.
@@ -7,7 +7,7 @@
 //
 
 #import "SIHttpConnection.h"
-#import <Simon/SICore.h>
+#import <Simon/SIConstants.h>
 #import <Simon/SIJsonAware.h>
 #import <dUsefulStuff/DCCommon.h>
 #import <dUsefulStuff/NSError+dUsefulStuff.h>

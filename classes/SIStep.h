@@ -10,7 +10,6 @@
 #import <Simon/SIConstants.h>
 #import <Simon/SIStepMapping.h>
 #import <Simon/SIJsonAware.h>
-#import <Simon/SICore.h>
 
 /**
  Represents a step within a SIStory. It stores the text of the step as read from the story file and the SISTepMapping which is then used to execute the implementation code.

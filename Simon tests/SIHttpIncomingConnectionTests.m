@@ -16,7 +16,7 @@
 @property (retain, nonatomic) NSArray *processors;
 @end
 
-@interface SICoreHttpIncomingConnectionTests : GHTestCase {
+@interface SIHttpIncomingConnectionTests : GHTestCase {
 	@private
 	SIHttpIncomingConnection *connection;
 	id processor1;
@@ -27,7 +27,7 @@
 
 @end
 
-@implementation SICoreHttpIncomingConnectionTests
+@implementation SIHttpIncomingConnectionTests
 
 -(void) setUp {
 	

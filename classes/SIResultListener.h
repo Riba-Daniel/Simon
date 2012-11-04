@@ -6,7 +6,7 @@
 //
 //
 
-#import <Simon/SICore.h>
+#import <Simon/SIConstants.h>
 
 /**
  Instances of this class will automatically listen to status notifications and respond according to the intent of the class.

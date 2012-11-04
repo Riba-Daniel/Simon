@@ -9,7 +9,6 @@
 #import <dUsefulStuff/DCCommon.h>
 
 #import "PIPieman.h"
-#import "SICore.h"
 #import "PIConstants.h"
 #import <Simon/NSProcessInfo+Simon.h>
 #import "PISimulator.h"

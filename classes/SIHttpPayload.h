@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <Simon/SIJsonAware.h>
-#import <Simon/SICore.h>
+#import <Simon/SIConstants.h>
 
 /**
  Base obejct for any content of a request or response.

@@ -7,7 +7,7 @@
 //
 
 #import "PIHeartbeat.h"
-#import <Simon/SICore.h>
+#import <Simon/SIConstants.h>
 #import <Simon/SIHttpPayload.h>
 #import <dUsefulStuff/NSError+dUsefulStuff.h>
 #import "PIConstants.h"

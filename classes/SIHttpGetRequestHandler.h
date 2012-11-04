@@ -6,7 +6,7 @@
 //  Copyright (c) 2012. All rights reserved.
 //
 
-#import <Simon/SICore.h>
+#import <Simon/SIConstants.h>
 #import <CocoaHTTPServer/HTTPResponse.h>
 #import <Simon/SIJsonAware.h>
 

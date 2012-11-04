@@ -9,7 +9,7 @@
 #import <GHUnitIOS/GHUnit.h>
 #import <dUsefulStuff/DCCommon.h>
 #import <Simon/SIStorySyntaxParser.h>
-#import <Simon/SICore.h>
+#import <Simon/SIConstants.h>
 
 @interface SIStorySyntaxParserTests : GHTestCase {
 	@private
@@ -33,13 +33,28 @@
 	DC_DEALLOC(error);
 }
 
--(void) testStartOfStory {
+-(void) testStartOfStoryThenStory {
 	GHAssertTrue([parser checkLine:@"story: abc" lineNumber:1 error:&error], nil);
+}
+
+-(void) testStartOfStoryThenAs {
 	[self checkLine:@"as abc" failsWithMessage:@"as cannot follow story"];
-	[self checkLine:@"given abc" failsWithMessage:@"as cannot follow story"];
-	[self checkLine:@"when abc" failsWithMessage:@"as cannot follow story"];
-	[self checkLine:@"then abc" failsWithMessage:@"as cannot follow story"];
-	[self checkLine:@"and abc" failsWithMessage:@"as cannot follow story"];
+}
+
+-(void) testStartOfStoryThenGiven {
+	[self checkLine:@"given abc" failsWithMessage:@"given cannot follow story"];
+}
+
+-(void) testStartOfStoryThenWhen {
+	[self checkLine:@"when abc" failsWithMessage:@"when cannot follow story"];
+}
+
+-(void) testStartOfStoryThenThen {
+	[self checkLine:@"then abc" failsWithMessage:@"then cannot follow story"];
+}
+
+-(void) testStartOfStoryThenAnd {
+	[self checkLine:@"and abc" failsWithMessage:@"and cannot follow story"];
 }
 
 -(void) checkLine:(NSString *) line failsWithMessage:(NSString *) msg {

@@ -10,7 +10,7 @@
 #import <dUsefulStuff/NSObject+dUsefulStuff.h>
 
 #import <Simon/SIStoryFileReader.h>
-#import <Simon/SICore.h>
+#import <Simon/SIConstants.h>
 #import "NSString+Simon.h"
 
 @interface SIStoryFileReader() {
