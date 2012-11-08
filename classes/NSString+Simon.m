@@ -22,6 +22,8 @@
 		return SIKeywordStory;
 	} else if ([@"GIVEN" isEqualToString:upper]) {
 		return SIKeywordGiven;
+	} else if ([@"WHEN" isEqualToString:upper]) {
+		return SIKeywordWhen;
 	} else if ([@"THEN" isEqualToString:upper]) {
 		return SIKeywordThen;
 	} else if ([@"AS" isEqualToString:upper]) {
@@ -34,12 +36,17 @@
 
 +(NSString *) stringFromSIKeyword:(SIKeyword) keyword {
 	switch (keyword) {
+
 		case SIKeywordStory:
 			return @"Story";
 			break;
 			
 		case SIKeywordGiven:
 			return @"Given";
+			break;
+
+		case SIKeywordWhen:
+			return @"When";
 			break;
 			
 		case SIKeywordThen:

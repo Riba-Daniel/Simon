@@ -1861,7 +1861,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\necho building framework directories: ${FRAMEWORK_DIR}\n\nrm -fr \"${ARTIFACT_DIR}\"\n\nFULL_DIR=\"${FRAMEWORK_DIR}/Versions/${CURRENT_PROJECT_VERSION}\"\n\nmkdir -p \"${FULL_DIR}/Headers\"\nmkdir -p \"${FULL_DIR}/Resources\"\n\necho Copying files\n# The -a ensures that the headers maintain the source modification date so that we don't constantly\n# cause propagating rebuilds of files that import these headers.\ncp \"${BUILD_DIR_SIMON}/${PROJECT_NAME}\" \"${FULL_DIR}\"\ncp -a \"${BUILD_DIR_SIMON}/Release-iphoneos/include/${PROJECT_NAME}/\" \"${FULL_DIR}/Headers\"\n\n# Link the \"Current\" version to ...\necho Building links\nln -s \"${CURRENT_PROJECT_VERSION}\" \"${FRAMEWORK_DIR}/Versions/Current\"\nln -s \"Versions/Current/Headers\" \"${FRAMEWORK_DIR}/Headers\"\nln -s \"Versions/Current/Resources\" \"${FRAMEWORK_DIR}/Resources\"\nln -s \"Versions/Current/${PROJECT_NAME}\" \"${FRAMEWORK_DIR}/${PROJECT_NAME}\"\n\necho \"Creating plist for framework ...\"\necho \"<?xml version=\\\"1.0\\\" encoding=\\\"UTF-8\\\"?>\n<!DOCTYPE plist PUBLIC \\\"-//Apple//DTD PLIST 1.0//EN\\\" \\\"http://www.apple.com/DTDs/PropertyList-1.0.dtd\\\">\n<plist version=\\\"1.0\\\">\n<dict>\n<key>CFBundleDevelopmentRegion</key>\n<string>English</string>\n<key>CFBundleExecutable</key>\n<string>${PROJECT_NAME}</string>\n<key>CFBundleIdentifier</key>\n<string>${COMPANY_ID}.${PROJECT_NAME}</string>\n<key>CFBundleInfoDictionaryVersion</key>\n<string>6.0</string>\n<key>CFBundlePackageType</key>\n<string>FMWK</string>\n<key>CFBundleSignature</key>\n<string>????</string>\n<key>CFBundleVersion</key>\n<string>${CURRENT_PROJECT_VERSION}</string>\n</dict>\n</plist>\" > \"${FULL_DIR}/Resources/Info.plist\"\n\n";
+			shellScript = "\necho building framework directories: ${FRAMEWORK_DIR}\n\nrm -fr \"${ARTIFACT_DIR}\"\n\nFULL_DIR=\"${FRAMEWORK_DIR}/Versions/${CURRENT_PROJECT_VERSION}\"\n\nmkdir -p \"${FULL_DIR}/Headers\"\nmkdir -p \"${FULL_DIR}/Resources\"\n\necho Copying files\n# The -a ensures that the headers maintain the source modification date so that we don't constantly\n# cause propagating rebuilds of files that import these headers.\ncp \"${BUILD_DIR_SIMON}/${PROJECT_NAME}\" \"${FULL_DIR}\"\ncp -a \"${BUILD_DIR_SIMON}/$CONFIGURATION-iphoneos/include/${PROJECT_NAME}/\" \"${FULL_DIR}/Headers\"\n\n# Link the \"Current\" version to ...\necho Building links\nln -s \"${CURRENT_PROJECT_VERSION}\" \"${FRAMEWORK_DIR}/Versions/Current\"\nln -s \"Versions/Current/Headers\" \"${FRAMEWORK_DIR}/Headers\"\nln -s \"Versions/Current/Resources\" \"${FRAMEWORK_DIR}/Resources\"\nln -s \"Versions/Current/${PROJECT_NAME}\" \"${FRAMEWORK_DIR}/${PROJECT_NAME}\"\n\necho \"Creating plist for framework ...\"\necho \"<?xml version=\\\"1.0\\\" encoding=\\\"UTF-8\\\"?>\n<!DOCTYPE plist PUBLIC \\\"-//Apple//DTD PLIST 1.0//EN\\\" \\\"http://www.apple.com/DTDs/PropertyList-1.0.dtd\\\">\n<plist version=\\\"1.0\\\">\n<dict>\n<key>CFBundleDevelopmentRegion</key>\n<string>English</string>\n<key>CFBundleExecutable</key>\n<string>${PROJECT_NAME}</string>\n<key>CFBundleIdentifier</key>\n<string>${COMPANY_ID}.${PROJECT_NAME}</string>\n<key>CFBundleInfoDictionaryVersion</key>\n<string>6.0</string>\n<key>CFBundlePackageType</key>\n<string>FMWK</string>\n<key>CFBundleSignature</key>\n<string>????</string>\n<key>CFBundleVersion</key>\n<string>${CURRENT_PROJECT_VERSION}</string>\n</dict>\n</plist>\" > \"${FULL_DIR}/Resources/Info.plist\"\n\n";
 			showEnvVarsInLog = 0;
 		};
 		323D6974162AF52D00660D36 /* Appledoc Simon */ = {
@@ -1891,7 +1891,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "echo Building dmg of project ...\n\ncp ReadMe.textile \"${ARTIFACT_DIR}\"\ncp ChangeLog.textile \"${ARTIFACT_DIR}\"\n\ncp ${BUILD_DIR_PIEMAN}/Release/pieman \"${ARTIFACT_DIR}\"\n\n# Find the relevant dUsefulStuff and dNodi frameworks. Copy to the image.\nDUSEFULSTUFF_VERSION=$(<\"${BUILD_DIR}/dUsefulStuff.version\")\nDNODI_VERSION=$(<\"${BUILD_DIR}/dNodi.version\")\necho dUsefulStuff version ${DUSEFULSTUFF_VERSION}\necho dNodi version ${DNODI_VERSION}\n\ncp -R \"${ARTIFACT_BASE_DIR}/dUsefulStuff/${DUSEFULSTUFF_VERSION}/dUsefulStuff.framework\" \"${ARTIFACT_DIR}\"\ncp -R \"${ARTIFACT_BASE_DIR}/dNodi/${DNODI_VERSION}/dNodi.framework\" \"${ARTIFACT_DIR}\"\ncp \"${BUILD_DIR_SIMON}/libCocoaHTTPServer.a\" \"${ARTIFACT_DIR}\"\n\n\nhdiutil create \"${ARTIFACT_DIR}/../${PROJECT_NAME}-${CURRENT_PROJECT_VERSION}\" -ov -srcdir \"${ARTIFACT_DIR}\" -volname \"${PROJECT_NAME} v${CURRENT_PROJECT_VERSION}\"\n";
+			shellScript = "echo Building dmg of project ...\n\ncp ReadMe.textile \"${ARTIFACT_DIR}\"\ncp ChangeLog.textile \"${ARTIFACT_DIR}\"\n\ncp ${BUILD_DIR_PIEMAN}/$CONFIGURATION/pieman \"${ARTIFACT_DIR}\"\n\n# Find the relevant dUsefulStuff and dNodi frameworks. Copy to the image.\nDUSEFULSTUFF_VERSION=$(<\"${BUILD_DIR}/dUsefulStuff.version\")\nDNODI_VERSION=$(<\"${BUILD_DIR}/dNodi.version\")\necho dUsefulStuff version ${DUSEFULSTUFF_VERSION}\necho dNodi version ${DNODI_VERSION}\n\ncp -R \"${ARTIFACT_BASE_DIR}/dUsefulStuff/${DUSEFULSTUFF_VERSION}/dUsefulStuff.framework\" \"${ARTIFACT_DIR}\"\ncp -R \"${ARTIFACT_BASE_DIR}/dNodi/${DNODI_VERSION}/dNodi.framework\" \"${ARTIFACT_DIR}\"\ncp \"${BUILD_DIR_SIMON}/libCocoaHTTPServer.a\" \"${ARTIFACT_DIR}\"\n\n\nhdiutil create \"${ARTIFACT_DIR}/../${PROJECT_NAME}-${CURRENT_PROJECT_VERSION}\" -ov -srcdir \"${ARTIFACT_DIR}\" -volname \"${PROJECT_NAME} v${CURRENT_PROJECT_VERSION}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		326B624915F5A2B4002CA603 /* ShellScript */ = {
@@ -1932,7 +1932,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Trap errors\nset +o errexit\n\nxcodebuild -target PieMan -sdk ${EXPORT_PIEMAN_SDK} -configuration Release VALID_ARCHS=\"x86_64\" ARCHS=\"x86_64\" BUILD_DIR=${BUILD_DIR_PIEMAN}\nDC_BUILD_RC=$?\n\n# if it failed then restore user settings and exit.\nif [ $DC_BUILD_RC != 0 ]; then\necho \"Exiting as build threw an error.\"\nexit $DC_BUILD_RC\nfi\n\n# Restore error trapping.\nset -o errexit\n";
+			shellScript = "# Trap errors\nset +o errexit\n\nxcodebuild -target PieMan -sdk ${EXPORT_PIEMAN_SDK} -configuration $CONFIGURATION VALID_ARCHS=\"x86_64\" ARCHS=\"x86_64\" BUILD_DIR=${BUILD_DIR_PIEMAN}\nDC_BUILD_RC=$?\n\n# if it failed then restore user settings and exit.\nif [ $DC_BUILD_RC != 0 ]; then\necho \"Exiting as build threw an error.\"\nexit $DC_BUILD_RC\nfi\n\n# Restore error trapping.\nset -o errexit\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -2275,9 +2275,9 @@
 				COMPANY_ID = au.com.derekclarkson;
 				COMPANY_NAME = "Derek Clarkson";
 				CURRENT_PROJECT_VERSION = 0.2.0;
-				EXPORT_DEVICE_SDK = iphoneos6.0;
+				EXPORT_DEVICE_SDK = iphoneos6.1;
 				EXPORT_PIEMAN_SDK = macosx10.8;
-				EXPORT_SIMULATOR_SDK = iphonesimulator6.0;
+				EXPORT_SIMULATOR_SDK = iphonesimulator6.1;
 				FRAMEWORK_DIR = "${ARTIFACT_DIR}/${PROJECT_NAME}.framework";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -2293,9 +2293,9 @@
 				COMPANY_ID = au.com.derekclarkson;
 				COMPANY_NAME = "Derek Clarkson";
 				CURRENT_PROJECT_VERSION = 0.2.0;
-				EXPORT_DEVICE_SDK = iphoneos6.0;
+				EXPORT_DEVICE_SDK = iphoneos6.1;
 				EXPORT_PIEMAN_SDK = macosx10.8;
-				EXPORT_SIMULATOR_SDK = iphonesimulator6.0;
+				EXPORT_SIMULATOR_SDK = iphonesimulator6.1;
 				FRAMEWORK_DIR = "${ARTIFACT_DIR}/${PROJECT_NAME}.framework";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

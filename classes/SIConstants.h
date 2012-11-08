@@ -101,7 +101,8 @@ typedef enum {
  */
 typedef enum {
 	SIKeywordUnknown = 999,
-	SIKeywordStory = 1,
+	SIKeywordStartOfStory = 0,
+	SIKeywordStory,
 	SIKeywordAs,
 	SIKeywordGiven,
 	SIKeywordWhen,

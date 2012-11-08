@@ -30,7 +30,7 @@ static BOOL validSyntax[][7] = {
 }
 -(SIKeyword) keywordForLine:(NSString *) line lineNumber:(NSInteger) lineNumber error:(NSError **) error;
 -(BOOL) setError:(NSError **) error
- withShortReason:(NSString *) shortReason
+	  shortReason:(NSString *) shortReason
 	failureReason:(NSString *) failureReason
 		lineNumber:(NSInteger) lineNumber;
 @end
@@ -46,7 +46,7 @@ static BOOL validSyntax[][7] = {
 	self = [super init];
 	if (self) {
 		_source = [source retain];
-		_previousKeyword = 0; // No lines read.
+		_previousKeyword = SIKeywordStartOfStory; // No lines read.
 	}
 	return self;
 }
@@ -60,14 +60,23 @@ static BOOL validSyntax[][7] = {
 	}
 	
 	// Validate and populate the error if it's not found.
-	if (validSyntax[_previousKeyword][keyword]) {
-		[self setError:error
-	  withShortReason:@"Invalid syntax"
-		 failureReason:[NSString stringWithFormat:@"Invalid syntax: %@ cannot follow %@", [NSString stringFromSIKeyword:keyword], [NSString stringFromSIKeyword:_previousKeyword]]
-			 lineNumber:lineNumber];
+	if (!validSyntax[_previousKeyword][keyword]) {
+		
+		if (_previousKeyword == SIKeywordStartOfStory) {
+			[self setError:error
+				shortReason:@"Invalid syntax"
+			 failureReason:[NSString stringWithFormat:@"You cannot start a story with %@", [NSString stringFromSIKeyword:keyword]]
+				 lineNumber:lineNumber];
+		} else {
+			[self setError:error
+				shortReason:@"Invalid syntax"
+			 failureReason:[NSString stringWithFormat:@"Invalid syntax: %@ cannot follow %@", [NSString stringFromSIKeyword:keyword], [NSString stringFromSIKeyword:_previousKeyword]]
+				 lineNumber:lineNumber];
+		}
+		
 		return NO;
 	}
-
+	
 	// Remember the keyword and exit.
 	_previousKeyword = keyword;
 	return YES;
@@ -82,7 +91,7 @@ static BOOL validSyntax[][7] = {
 	
 	if (!foundWord) {
 		[self setError:error
-	  withShortReason:@"Story syntax error, step does not begin with a word"
+			shortReason:@"Story syntax error, step does not begin with a word"
 		 failureReason:@"Each line of a story must start with a valid keyword (As, Story, Given, When, Then or And) or a comment."
 			 lineNumber:lineNumber];
 		return SIKeywordUnknown;
@@ -91,7 +100,7 @@ static BOOL validSyntax[][7] = {
 	SIKeyword keyword = [firstWord siKeyword];
 	if (keyword == SIKeywordUnknown) {
 		[self setError:error
-	  withShortReason:[NSString stringWithFormat:@"Story syntax error, unknown keyword %@", firstWord]
+			shortReason:[NSString stringWithFormat:@"Story syntax error, unknown keyword %@", firstWord]
 		 failureReason:[NSString stringWithFormat:@"Each line of a story must start with a valid keyword (As, Given, When, Then or And) or a comment. \"%@\" is not a keyword.", firstWord]
 			 lineNumber:lineNumber];
 	}
@@ -99,7 +108,7 @@ static BOOL validSyntax[][7] = {
 }
 
 -(BOOL) setError:(NSError **) error
- withShortReason:(NSString *) shortReason
+	  shortReason:(NSString *) shortReason
 	failureReason:(NSString *) failureReason
 		lineNumber:(NSInteger) lineNumber {
 	

@@ -164,15 +164,14 @@ static SIAppBackpack *_backpack;
 		
 		DC_LOG(@"Starting Simon");
 		
-		NSError *error = nil;
-		
 		// Read the stories.
 		DC_LOG(@"Reading stories");
+		NSError *error = nil;
 		BOOL storiesRead = [self.reader readStorySources: &error];
 		
 		if (!storiesRead) {
 			DC_LOG(@"Error reading story files: %@", [error localizedFailureReason]);
-			NSDictionary *userData = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInteger:error.code], SI_NOTIFICATION_KEY_STATUS,
+			NSDictionary *userData = [NSDictionary dictionaryWithObjectsAndKeys:@(error.code), SI_NOTIFICATION_KEY_STATUS,
 											  [error localizedFailureReason], SI_NOTIFICATION_KEY_MESSAGE, nil];
 			NSNotification *runFinished = [NSNotification notificationWithName:SI_SHUTDOWN_NOTIFICATION object:self userInfo:userData];
 			[[NSNotificationCenter defaultCenter] postNotification:runFinished];
@@ -183,14 +182,9 @@ static SIAppBackpack *_backpack;
 		
 		// If no stories where read then generate an error and return.
 		if ([self.storySources.sources count] == 0) {
-			[self setError:&error
-						 code:SIErrorNoStoriesFound
-				errorDomain:SIMON_ERROR_DOMAIN
-		 shortDescription:@"No stories read"
-			 failureReason:@"No stories where read from the files."];
-			DC_LOG(@"Error reading story files: %@", [error localizedFailureReason]);
-			NSDictionary *userData = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithInteger:error.code], SI_NOTIFICATION_KEY_STATUS,
-											  [error localizedFailureReason], SI_NOTIFICATION_KEY_MESSAGE, nil];
+			DC_LOG(@"Error reading story files: No files found");
+			NSDictionary *userData = [NSDictionary dictionaryWithObjectsAndKeys:@(SIErrorNoStoriesFound), SI_NOTIFICATION_KEY_STATUS,
+											  @"No stories where read from the files.", SI_NOTIFICATION_KEY_MESSAGE, nil];
 			NSNotification *runFinished = [NSNotification notificationWithName:SI_SHUTDOWN_NOTIFICATION object:self userInfo:userData];
 			[[NSNotificationCenter defaultCenter] postNotification:runFinished];
 			return;

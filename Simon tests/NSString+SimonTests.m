@@ -26,6 +26,10 @@
 	GHAssertEquals([@"Given" siKeyword] , SIKeywordGiven, nil);
 }
 
+-(void) testSIKeywordWhen {
+	GHAssertEquals([@"When" siKeyword] , SIKeywordWhen, nil);
+}
+
 -(void) testSIToKeywordThen {
 	GHAssertEquals([@"Then" siKeyword] , SIKeywordThen, nil);
 }
@@ -44,6 +48,10 @@
 
 -(void) testStringFromSIKeywordGiven {
 	GHAssertEqualStrings([NSString stringFromSIKeyword:SIKeywordGiven], @"Given", nil);
+}
+
+-(void) testStringFromSIKeywordWhen {
+	GHAssertEqualStrings([NSString stringFromSIKeyword:SIKeywordWhen], @"When", nil);
 }
 
 -(void) testStringFromSIKeywordThen {
