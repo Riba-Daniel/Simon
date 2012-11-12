@@ -96,7 +96,7 @@ typedef enum {
 } SIError;
 
 /**
- This gives the types of keywords read by SIStoryFileReader. SIKeywordNone is used only when the first story is beng read as it designates
+ This gives the types of keywords read by SIStoryAnalyser. SIKeywordNone is used only when the first story is beng read as it designates
  the start of the file.
  */
 typedef enum {

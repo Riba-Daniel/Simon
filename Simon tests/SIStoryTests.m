@@ -13,11 +13,11 @@
 #import <Simon/SIStep.h>
 #import <Simon/SIStory.h>
 #import <Simon/SIStepMapping.h>
-#import <Simon/SIStorySource.h>
+#import <Simon/SIStoryGroup.h>
 
 @interface SIStoryTests : GHTestCase {
 @private
-	SIStorySource *source;
+	SIStoryGroup *storyGroup;
 	SIStory *story;
 	BOOL abcMethodCalled;
 	BOOL defMethodCalled;
@@ -32,7 +32,7 @@
 @implementation SIStoryTests
 
 -(void) setUp {
-	source = [[SIStorySource alloc] init];
+	storyGroup = [[SIStoryGroup alloc] init];
 	story = [[SIStory alloc] init];
 	finishedNotificationFired = NO;
 	startNotificationFired = NO;
@@ -45,12 +45,12 @@
 -(void) tearDown {
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
 	DC_DEALLOC(story);
-	DC_DEALLOC(source);
+	DC_DEALLOC(storyGroup);
 }
 
 -(void) testInvokeFiresNotification {
 	
-	BOOL success = [story invokeWithSource:source];
+	BOOL success = [story invokeWithSource:storyGroup];
 	
 	// Allow the notification to be sent.
 	[[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
@@ -66,7 +66,7 @@
 	
 	[story createStepWithKeyword:SIKeywordGiven command:@"abc"];
 	
-	BOOL success = [story invokeWithSource:source];
+	BOOL success = [story invokeWithSource:storyGroup];
 	
 	GHAssertFalse(success, @"Invoked should have failed");
 	GHAssertEquals(story.status, SIStoryStatusNotMapped, @"Incorrect status returned");
@@ -83,7 +83,7 @@
 	GHAssertNotNil(mapping, @"Mapping should not be nil, error %@", error.localizedDescription);
 	step.stepMapping = mapping;
 	
-	BOOL success = [story invokeWithSource:source];
+	BOOL success = [story invokeWithSource:storyGroup];
 	
 	GHAssertTrue(success, @"Invoked should have worked. Error %@", story.error.localizedFailureReason);
 	GHAssertNil(story.error, @"Error not nil. Error %@", error.localizedFailureReason);
@@ -94,7 +94,7 @@
 	
 	[story createStepWithKeyword:SIKeywordGiven command:@"abc"];
 	
-	BOOL success = [story invokeWithSource:source];
+	BOOL success = [story invokeWithSource:storyGroup];
 	
 	GHAssertFalse(success, @"Invocation should be false");
 	GHAssertNil(story.error, @"Error not nil. Error %@", story.error.localizedFailureReason);
@@ -117,7 +117,7 @@
 	step1.stepMapping = mapping1;
 	step2.stepMapping = mapping2;
 	
-	BOOL success = [story invokeWithSource:source];
+	BOOL success = [story invokeWithSource:storyGroup];
 	
 	GHAssertTrue(success, @"Invoked should have worked. Error %@", story.error.localizedFailureReason);
 	GHAssertNil(story.error, @"Error not nil. Error %@", story.error.localizedFailureReason);
@@ -183,7 +183,7 @@
 	NSDictionary *userData = [notification userInfo];
 	GHAssertTrue([[userData allKeys] containsObject:SI_NOTIFICATION_KEY_SOURCE], nil);
 	GHAssertTrue([[userData allKeys] containsObject:SI_NOTIFICATION_KEY_STORY], nil);
-	GHAssertEquals([userData valueForKey:SI_NOTIFICATION_KEY_SOURCE], source, nil);
+	GHAssertEquals([userData valueForKey:SI_NOTIFICATION_KEY_SOURCE], storyGroup, nil);
 	GHAssertEquals([userData valueForKey:SI_NOTIFICATION_KEY_STORY], story, nil);
 }
 
@@ -193,7 +193,7 @@
 	NSDictionary *userData = [notification userInfo];
 	GHAssertTrue([[userData allKeys] containsObject:SI_NOTIFICATION_KEY_SOURCE], nil);
 	GHAssertTrue([[userData allKeys] containsObject:SI_NOTIFICATION_KEY_STORY], nil);
-	GHAssertEquals([userData valueForKey:SI_NOTIFICATION_KEY_SOURCE], source, nil);
+	GHAssertEquals([userData valueForKey:SI_NOTIFICATION_KEY_SOURCE], storyGroup, nil);
 	GHAssertEquals([userData valueForKey:SI_NOTIFICATION_KEY_STORY], story, nil);
 }
 

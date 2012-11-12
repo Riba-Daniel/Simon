@@ -11,8 +11,8 @@
 #import <Simon/SIStoryRunner.h>
 #import <Simon/SIStoryLogger.h>
 #import <Simon/SIAppBackpackImplementation.h>
-#import <Simon/SIStorySources.h>
-#import <Simon/SIStoryFileReader.h>
+#import <Simon/SIStoryGroupManager.h>
+#import <Simon/SIStoryAnalyser.h>
 
 /**
  This class backpack's on a UIApplication in order to allow Simon to run in the background. You add it through the SIRun macro.
@@ -21,14 +21,14 @@
 
 /// @name Properties
 
-/// Readonly reference to the story sources.
-@property (nonatomic, readonly) SIStorySources *storySources;
+/// Readonly reference to the story group manager.
+@property (nonatomic, readonly) SIStoryGroupManager *storyGroupManager;
 
 /// Readonly reference to the list of loaded SIStepMapping instances.
 @property (nonatomic, readonly) NSArray *mappings;
 
 /// The file reader to read story files with.
-@property (nonatomic, retain) SIStoryFileReader *reader;
+@property (nonatomic, retain) SIStoryAnalyser *reader;
 
 /// The story runner which will execute the stories.
 @property (nonatomic, readonly) SIStoryRunner *runner;

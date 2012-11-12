@@ -12,7 +12,7 @@
 #import <dUsefulStuff/DCCommon.h>
 #import <Simon/SIAppBackpack.h>
 #import <Simon/SIConstants.h>
-#import <Simon/SIStoryFileReader.h>
+#import <Simon/SIStoryAnalyser.h>
 #import <CocoaHTTPServer/HTTPServer.h>
 
 // Hack into the process to update arguments for testing.
@@ -49,19 +49,19 @@
 
 	NSNotification *notification = [NSNotification notificationWithName:UIApplicationDidBecomeActiveNotification object:self];
 	
-	id mockReader = [OCMockObject mockForClass:[SIStoryFileReader class]];
-	SIStorySources *sources = [[[SIStorySources alloc] init] autorelease];
-	SIStorySource *source = [[[SIStorySource alloc] init] autorelease];
-	[sources addSource:source];
+	id mockReader = [OCMockObject mockForClass:[SIStoryAnalyser class]];
+	SIStoryGroupManager *storyGroupManager = [[[SIStoryGroupManager alloc] init] autorelease];
+	SIStoryGroup *storyGroup = [[[SIStoryGroup alloc] init] autorelease];
+	[storyGroupManager addStoryGroup:storyGroup];
 	id mockStory = [OCMockObject mockForClass:[SIStory class]];
-	[source addStory:mockStory];
+	[storyGroup addStory:mockStory];
 	[[mockStory stub] reset];
 	[[mockStory expect] mapSteps:[OCMArg any]];
-	[[mockStory stub] invokeWithSource:source];
+	[[mockStory stub] invokeWithSource:storyGroup];
 
-	BOOL yes = YES;
-	[[[mockReader expect] andReturnValue:OCMOCK_VALUE(yes)] readStorySources:[OCMArg anyPointer]];
-	[[[mockReader stub] andReturn:sources] storySources];
+	//BOOL yes = YES;
+	//[[[mockReader expect] andReturnValue:OCMOCK_VALUE(yes)] readstoryGroupManager:[OCMArg anyPointer]];
+	[[[mockReader stub] andReturn:storyGroupManager] storyGroupManager];
 
 	backpack.reader = mockReader;
 	
@@ -74,7 +74,7 @@
 	[mockReader verify];
 	[mockStory verify];
 	
-	GHAssertTrue([backpack.storySources.sources count] > 0, nil);
+	GHAssertTrue([backpack.storyGroupManager.storyGroups count] > 0, nil);
 	
 }
 

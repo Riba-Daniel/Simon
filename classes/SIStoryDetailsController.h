@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <Simon/SIStorySource.h>
+#import <Simon/SIStoryGroup.h>
 #import <Simon/SIStory.h>
 
 /**
@@ -19,7 +19,7 @@
 /// @name Properties
 
 /// The source file of the story.
-@property (nonatomic, retain) SIStorySource *source;
+@property (nonatomic, retain) SIStoryGroup *storyGroup;
 
 /// The story being displayed.
 @property (nonatomic, retain) SIStory *story;

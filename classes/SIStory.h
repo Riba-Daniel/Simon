@@ -12,7 +12,7 @@
 #import <Simon/SIJsonAware.h>
 
 // Stops circular reference in headers.
-@class SIStorySource;
+@class SIStoryGroup;
 
 /**
  The story is the heart of BDD. This class encapsulates the information for one specific story. It stores a list of the steps that 
@@ -102,7 +102,7 @@
  @param source the source that owns the story.
  @return YES if the story executed successfully, NO if it was not executable or had an error.
  */
--(BOOL) invokeWithSource:(SIStorySource *) source;
+-(BOOL) invokeWithSource:(SIStoryGroup *) source;
 
 /**
  Called to reset the state of the story before rerunning it.

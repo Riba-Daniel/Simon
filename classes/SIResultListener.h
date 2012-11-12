@@ -16,14 +16,14 @@
 /** 
  Called when a story is about to be executed. If overridden, super should be called to ensure that the result data structures are built correctly.
  
- @param notification the notification containing userInfo data which refers to the SIStory and SIStorySource.
+ @param notification the notification containing userInfo data which refers to the SIStory and SIStoryGroup.
  */
 -(void) storyStarting:(NSNotification *) notification;
 
 /**
  Called when a story has finished executing. If overridden, super should be called to ensure that the result data structures are built correctly.
  
- @param notification the notification containing userInfo data which refers to the SIStory and SIStorySource.
+ @param notification the notification containing userInfo data which refers to the SIStory and SIStoryGroup.
  */
 -(void) storyExecuted:(NSNotification *) notification;
 

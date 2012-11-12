@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Sensis. All rights reserved.
 //
 
-#import <Simon/SIStorySource.h>
+#import <Simon/SIStoryGroup.h>
 
 /**
  Class which is used to syntax check the lines in a story to make sure they follow the correct seqeuence. Currently the sequence follows this:
@@ -24,26 +24,17 @@
  */
 @interface SIStorySyntaxParser : NSObject
 
-/// @name Initialisers
-
-/**
- Default initialiser.
- 
- @param source the story source that the story comes from.
- @return an instance of this class.
- */
--(id) initWithSource:(SIStorySource *) source;
-
 /// @name Tasks
 
 /**
- Checks a line to see if it is valid.
+ Checks a line to see if it is valid and returns the keyword that was found.
+ 
+ If no valid keyword was found or the syntax was wrong, this will return SIkeywordUnknown.
  
  @param line the line to test.
- @param lineNumber the line number of the line. Used for reporting errors.
  @param error a pointer to an NSError variable.
- @return YES if the line is valid.
+ @return a value from the SIKeyword enum if valid, otherwise SIKeywordUnknown.
  */
--(BOOL) checkLine:(NSString *) line lineNumber:(NSInteger) lineNumber error:(NSError **) error;
+-(SIKeyword) checkLine:(NSString *) line error:(NSError **) error;
 
 @end

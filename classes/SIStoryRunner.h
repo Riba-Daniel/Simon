@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <Simon/SIStoryFileReader.h>
+#import <Simon/SIStoryAnalyser.h>
 #import <Simon/SIRuntime.h>
 
 /**
@@ -18,7 +18,7 @@
 /// @name Properties
 
 /// Contains instances which in turn contain the stories that are part of the run. Setting this controls what stories are run.
-@property (nonatomic, retain) SIStorySources *storySources;
+@property (nonatomic, retain) SIStoryGroupManager *storyGroupManager;
 
 /// @name Stories
 

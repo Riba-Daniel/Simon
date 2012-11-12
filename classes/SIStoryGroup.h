@@ -1,5 +1,5 @@
 //
-//  SIStorySource.h
+//  SIStoryGroup.h
 //  Simon
 //
 //  Created by Derek Clarkson on 11/10/11.
@@ -12,7 +12,7 @@
 /**
  Represents a source of stories. Mainly used for reporting purposes.
  */
-@interface SIStorySource : NSObject<SIJsonAware>
+@interface SIStoryGroup : NSObject<SIJsonAware>
 
 /**
  The source file which the story was read from.

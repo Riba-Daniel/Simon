@@ -9,7 +9,7 @@
 #import <GHUnitIOS/GHUnit.h>
 #import <dUsefulStuff/DCCommon.h>
 #import <Simon/SIConstants.h>
-#import <Simon/SIStoryFileReader.h>
+#import <Simon/SIStoryAnalyser.h>
 #import <Simon/SIHttpAppBackpack.h>
 #import <CocoaHTTPServer/HTTPServer.h>
 

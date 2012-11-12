@@ -36,7 +36,7 @@
 @synthesize reader = _reader;
 
 @dynamic queue;
-@dynamic storySources;
+@dynamic storyGroupManager;
 
 // Static reference to self to keep alive in an ARC environment.
 static SIAppBackpack *_backpack;
@@ -79,8 +79,8 @@ static SIAppBackpack *_backpack;
 	return _queue;
 }
 
--(SIStorySources *) storySources {
-	return self.reader.storySources;
+-(SIStoryGroupManager *) storyGroupManager {
+	return self.reader.storyGroupManager;
 }
 
 #pragma mark - Lifecycle
@@ -111,7 +111,7 @@ static SIAppBackpack *_backpack;
 		
 		// Instantiate required instances
 		DC_LOG(@"Simon initialising");
-		self.reader = [[[SIStoryFileReader alloc] init] autorelease];
+		self.reader = [[[SIStoryAnalyser alloc] init] autorelease];
 		_runner = [[SIStoryRunner alloc] init];
 		if ([[NSProcessInfo processInfo] isArgumentPresentWithName:ARG_REPORT]) {
 			logger = [[SIStoryLogger alloc] init];
@@ -166,8 +166,9 @@ static SIAppBackpack *_backpack;
 		
 		// Read the stories.
 		DC_LOG(@"Reading stories");
+		/*
 		NSError *error = nil;
-		BOOL storiesRead = [self.reader readStorySources: &error];
+		BOOL storiesRead = [self.reader readstoryGroupManager: &error];
 		
 		if (!storiesRead) {
 			DC_LOG(@"Error reading story files: %@", [error localizedFailureReason]);
@@ -177,11 +178,11 @@ static SIAppBackpack *_backpack;
 			[[NSNotificationCenter defaultCenter] postNotification:runFinished];
 			return;
 		}
-		
-		self.runner.storySources = self.storySources;
+		*/
+		self.runner.storyGroupManager = self.storyGroupManager;
 		
 		// If no stories where read then generate an error and return.
-		if ([self.storySources.sources count] == 0) {
+		if ([self.storyGroupManager.storyGroups count] == 0) {
 			DC_LOG(@"Error reading story files: No files found");
 			NSDictionary *userData = [NSDictionary dictionaryWithObjectsAndKeys:@(SIErrorNoStoriesFound), SI_NOTIFICATION_KEY_STATUS,
 											  @"No stories where read from the files.", SI_NOTIFICATION_KEY_MESSAGE, nil];
@@ -197,9 +198,9 @@ static SIAppBackpack *_backpack;
 		
 		// Find the mapping for each story.
 		DC_LOG(@"Mapping steps to story steps");
-		[self.storySources.sources enumerateObjectsUsingBlock:^(id sourceObj, NSUInteger sourceIdx, BOOL *sourceStop) {
-			SIStorySource *source = (SIStorySource *) sourceObj;
-			[source.stories enumerateObjectsUsingBlock:^(id storyObj, NSUInteger storyIdx, BOOL *storyStop) {
+		[self.storyGroupManager.storyGroups enumerateObjectsUsingBlock:^(id sourceObj, NSUInteger sourceIdx, BOOL *sourceStop) {
+			SIStoryGroup *storyGroup = (SIStoryGroup *) sourceObj;
+			[storyGroup.stories enumerateObjectsUsingBlock:^(id storyObj, NSUInteger storyIdx, BOOL *storyStop) {
 				SIStory *story = (SIStory *) storyObj;
 				[story mapSteps:(NSArray *) self.mappings];
 			}];

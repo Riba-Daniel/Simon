@@ -97,7 +97,7 @@
 	return [self.steps objectAtIndex:index];
 }
 
--(BOOL) invokeWithSource:(SIStorySource *) source {
+-(BOOL) invokeWithSource:(SIStoryGroup *) source {
 	
 	NSDictionary *userData = [NSDictionary dictionaryWithObjectsAndKeys:source, SI_NOTIFICATION_KEY_SOURCE, self, SI_NOTIFICATION_KEY_STORY, nil];
 	[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:SI_STORY_STARTING_EXECUTION_NOTIFICATION object:self userInfo:userData]];

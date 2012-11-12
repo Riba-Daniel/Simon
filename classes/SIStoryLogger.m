@@ -9,7 +9,7 @@
 #import <dUsefulStuff/DCCommon.h>
 
 #import <Simon/SIStoryLogger.h>
-#import <Simon/SIStorySource.h>
+#import <Simon/SIStoryGroup.h>
 #import <Simon/SIStory.h>
 #import <Simon/SIStep.h>
 #import <Simon/SIStepMapping.h>
@@ -24,11 +24,11 @@
 
 -(void) storyStarting:(NSNotification *) notification {
 	[super storyStarting:notification];
-	SIStorySource *source = [[notification userInfo] valueForKey:SI_NOTIFICATION_KEY_SOURCE];
+	SIStoryGroup *storyGroup = [[notification userInfo] valueForKey:SI_NOTIFICATION_KEY_SOURCE];
 	SIStory *story = [[notification userInfo] valueForKey:SI_NOTIFICATION_KEY_STORY];
 	[self log:@" "];
 	[self log:[NSString stringWithFormat:@"Starting story execution: %@", story.title]];
-	[self log:[NSString stringWithFormat:@"Source: %@", source.source]];
+	[self log:[NSString stringWithFormat:@"Source: %@", storyGroup.source]];
 }
 
 -(void) storyExecuted:(NSNotification *) notification {

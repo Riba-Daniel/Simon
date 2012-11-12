@@ -47,17 +47,17 @@
 
 @implementation SIStoryDetailsController
 
-@synthesize source = source_;
-@synthesize story = story_;
-@synthesize trace = trace_;
-@synthesize storyText = storyText_;
-@synthesize reportFont = reportFont_;
-@synthesize traceFont = traceFont_;
+@synthesize storyGroup = _storyGroup;
+@synthesize story = _story;
+@synthesize trace = _trace;
+@synthesize storyText = _storyText;
+@synthesize reportFont = _reportFont;
+@synthesize traceFont = _traceFont;
 
 -(void) dealloc {
    self.story = nil;
 	self.storyText = nil;
-   self.source = nil;
+   self.storyGroup = nil;
    self.traceFont = nil;
    self.reportFont = nil;
    self.trace = nil;
@@ -112,7 +112,7 @@
 					break;
 					
 				default:
-					text = [self.source.source lastPathComponent];
+					text = [self.storyGroup.source lastPathComponent];
 					break;
 			}
 			break;
@@ -185,7 +185,7 @@
 					break;
 				default:
 					cell.textLabel.text = @"Story file";
-					cell.detailTextLabel.text = [self.source.source lastPathComponent];
+					cell.detailTextLabel.text = [self.storyGroup.source lastPathComponent];
 					break;
 			}
 			break;

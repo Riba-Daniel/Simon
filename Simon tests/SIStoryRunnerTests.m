@@ -18,9 +18,9 @@
 	BOOL startSent;
 	BOOL endSent;
 	SIStoryRunner *runner;
-	SIStorySources *sources;
-	SIStorySource *source1;
-	SIStorySource *source2;
+	SIStoryGroupManager *storyGroupManager;
+	SIStoryGroup *storyGroup1;
+	SIStoryGroup *storyGroup2;
 	id mockStory1;
 	id mockStory2;
 	id mockStory3;
@@ -49,25 +49,25 @@
 																name:SI_RUN_FINISHED_NOTIFICATION
 															 object:nil];
 	
-	sources = [[SIStorySources alloc] init];
+	storyGroupManager = [[SIStoryGroupManager alloc] init];
 	
-	source1 = [[SIStorySource alloc] init];
-	[sources addSource:source1];
+	storyGroup1 = [[SIStoryGroup alloc] init];
+	[storyGroupManager addStoryGroup:storyGroup1];
 	
-	source2 = [[SIStorySource alloc] init];
-	[sources addSource:source2];
+	storyGroup2 = [[SIStoryGroup alloc] init];
+	[storyGroupManager addStoryGroup:storyGroup2];
 	
 	mockStory1 = [OCMockObject mockForClass:[SIStory class]];
-	[source1 addStory:mockStory1];
+	[storyGroup1 addStory:mockStory1];
 	
 	mockStory2 = [OCMockObject mockForClass:[SIStory class]];
-	[source2 addStory:mockStory2];
+	[storyGroup2 addStory:mockStory2];
 	
 	mockStory3 = [OCMockObject mockForClass:[SIStory class]];
-	[source2 addStory:mockStory3];
+	[storyGroup2 addStory:mockStory3];
 	
 	runner = [[SIStoryRunner alloc] init];
-	runner.storySources = sources;
+	runner.storyGroupManager = storyGroupManager;
 	
 	// Swizzle the comms.
 	SEL dummySelector = @selector(dummySendSynchronousRequest:returningResponse:error:);
@@ -81,9 +81,9 @@
 	[mockStory2 verify];
 	[mockStory3 verify];
 	DC_DEALLOC(runner);
-	DC_DEALLOC(sources);
-	DC_DEALLOC(source1);
-	DC_DEALLOC(source2);
+	DC_DEALLOC(storyGroupManager);
+	DC_DEALLOC(storyGroup1);
+	DC_DEALLOC(storyGroup2);
 	DC_DEALLOC(mockStory1);
 	DC_DEALLOC(mockStory2);
 	DC_DEALLOC(mockStory3);
@@ -96,9 +96,9 @@
 	[[mockStory2 expect] reset];
 	[[mockStory3 expect] reset];
 	BOOL yes = YES;
-	[[[mockStory1 expect] andReturnValue:OCMOCK_VALUE(yes)] invokeWithSource:source1];
-	[[[mockStory2 expect] andReturnValue:OCMOCK_VALUE(yes)] invokeWithSource:source2];
-	[[[mockStory3 expect] andReturnValue:OCMOCK_VALUE(yes)] invokeWithSource:source2];
+	[[[mockStory1 expect] andReturnValue:OCMOCK_VALUE(yes)] invokeWithSource:storyGroup1];
+	[[[mockStory2 expect] andReturnValue:OCMOCK_VALUE(yes)] invokeWithSource:storyGroup2];
+	[[[mockStory3 expect] andReturnValue:OCMOCK_VALUE(yes)] invokeWithSource:storyGroup2];
 	
 	[runner run];
 	
@@ -112,10 +112,10 @@
 -(void) testRunCurrentStoryOnly {
 	[[mockStory2 expect] reset];
 	BOOL yes = YES;
-	[[[mockStory2 expect] andReturnValue:OCMOCK_VALUE(yes)] invokeWithSource:source2];
+	[[[mockStory2 expect] andReturnValue:OCMOCK_VALUE(yes)] invokeWithSource:storyGroup2];
 	
 	NSIndexPath *currentStory = [NSIndexPath indexPathForRow:0 inSection:1];
-	sources.currentIndexPath = currentStory;
+	storyGroupManager.currentIndexPath = currentStory;
 	[runner run];
 	
 	[[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.2]];

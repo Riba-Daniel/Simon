@@ -1,16 +1,16 @@
 //
-//  SIStorySource.m
+//  SIStoryGroup.m
 //  Simon
 //
 //  Created by Derek Clarkson on 11/10/11.
 //  Copyright (c) 2011. All rights reserved.
 //
 
-#import <Simon/SIStorySource.h>
+#import <Simon/SIStoryGroup.h>
 #import <dUsefulStuff/DCCommon.h>
 #import "NSString+Simon.h"
 
-@implementation SIStorySource
+@implementation SIStoryGroup
 
 @synthesize stories = _stories;
 @synthesize selectedStories = _selectedStories;

@@ -10,7 +10,7 @@
 #import <Simon/SIStoryListController.h>
 #import <Simon/SIStory.h>
 #import "NSString+Simon.h"
-#import <Simon/SIStorySource.h>
+#import <Simon/SIStoryGroup.h>
 #import <dUsefulStuff/DCDialogs.h>
 #import <Simon/SIStoryDetailsController.h>
 #import <Simon/SIAppBackpack.h>
@@ -20,8 +20,8 @@
 -(void) backToStoryList;
 -(NSArray *) sourcesToDisplay;
 -(void) filterContentForSearchText:(NSString *)searchText scope:(NSString *)scope;
--(SIStorySource *) sourceForSection:(NSInteger) section;
--(SIStorySource *) sourceForIndexPath:(NSIndexPath *) indexPath;
+-(SIStoryGroup *) sourceForSection:(NSInteger) section;
+-(SIStoryGroup *) sourceForIndexPath:(NSIndexPath *) indexPath;
 -(SIStory *) storyForIndexPath:(NSIndexPath *) indexPath;
 @end
 
@@ -36,20 +36,20 @@
 }
 
 -(NSArray *) sourcesToDisplay {
-	return [SIAppBackpack backpack].storySources.selectedSources;
+	return [SIAppBackpack backpack].storyGroupManager.selectedStoryGroups;
 }
 
--(SIStorySource *) sourceForSection:(NSInteger) section {
+-(SIStoryGroup *) sourceForSection:(NSInteger) section {
 	return [[self sourcesToDisplay] objectAtIndex:(NSUInteger)section];
 }
 
--(SIStorySource *) sourceForIndexPath:(NSIndexPath *) indexPath {
+-(SIStoryGroup *) sourceForIndexPath:(NSIndexPath *) indexPath {
 	return [self sourceForSection:indexPath.section];
 }
 
 -(SIStory *) storyForIndexPath:(NSIndexPath *) indexPath {
-	SIStorySource *source = [self sourceForIndexPath:indexPath];
-	return [source.selectedStories objectAtIndex:(NSUInteger)indexPath.row];
+	SIStoryGroup *storyGroup = [self sourceForIndexPath:indexPath];
+	return [storyGroup.selectedStories objectAtIndex:(NSUInteger)indexPath.row];
 }
 
 #pragma mark - UIView methods
@@ -79,10 +79,10 @@
 	
 	self.tableView.tableHeaderView = searchBar;
 
-	SIStorySources *storySources = [SIAppBackpack backpack].storySources;
+	SIStoryGroupManager *storyGroupManager = [SIAppBackpack backpack].storyGroupManager;
 
 	// If search terms have been passed in then setup a search.
-	NSString *searchTerms = storySources.selectionCriteria;
+	NSString *searchTerms = storyGroupManager.selectionCriteria;
 	if (![NSString isEmpty:searchTerms]) {
 		DC_LOG(@"Initialising with search terms: %@", searchTerms);
 		[searchController setActive:YES animated:YES];
@@ -92,19 +92,19 @@
 	[searchBar release];
 	
 	// If we are being asked to show details then do so.
-	if (storySources.currentIndexPath != nil) {
+	if (storyGroupManager.currentIndexPath != nil) {
 		
-		DC_LOG(@"Showing details for story at index path: %@", storySources.currentIndexPath);
+		DC_LOG(@"Showing details for story at index path: %@", storyGroupManager.currentIndexPath);
 		
 		// And scroll to it.
 		if (searchController.isActive) {
 			DC_LOG(@"Selecting in search table view");
-			[searchController.searchResultsTableView selectRowAtIndexPath:storySources.currentIndexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
-			[searchController.searchResultsTableView.delegate tableView:searchController.searchResultsTableView didSelectRowAtIndexPath:storySources.currentIndexPath];
+			[searchController.searchResultsTableView selectRowAtIndexPath:storyGroupManager.currentIndexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+			[searchController.searchResultsTableView.delegate tableView:searchController.searchResultsTableView didSelectRowAtIndexPath:storyGroupManager.currentIndexPath];
 		} else {
 			DC_LOG(@"Selecting in full table view");
-			[self.tableView selectRowAtIndexPath:storySources.currentIndexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
-			[self.tableView.delegate tableView:self.tableView didSelectRowAtIndexPath:storySources.currentIndexPath];
+			[self.tableView selectRowAtIndexPath:storyGroupManager.currentIndexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+			[self.tableView.delegate tableView:self.tableView didSelectRowAtIndexPath:storyGroupManager.currentIndexPath];
 		}
 		
 	}
@@ -172,12 +172,12 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	
 	// Track the selected story.
-	[SIAppBackpack backpack].storySources.currentIndexPath = indexPath;
+	[SIAppBackpack backpack].storyGroupManager.currentIndexPath = indexPath;
 	
 	// Load the controller.
 	detailsController = [[SIStoryDetailsController alloc] initWithStyle:UITableViewStylePlain];
 	
-	detailsController.source = [self sourceForIndexPath:indexPath];
+	detailsController.storyGroup = [self sourceForIndexPath:indexPath];
 	detailsController.story = [self storyForIndexPath:indexPath];
 	detailsController.navigationItem.title = detailsController.story.title;
 	
@@ -205,13 +205,13 @@
 -(void) backToStoryList {
 	// Coming back so clear the selected story. This is the only time we do this because everything else needs to know what is currently selected(displayed).
 	DC_LOG(@"Clearing current story and returning to story list");
-	[SIAppBackpack backpack].storySources.currentIndexPath = nil;
+	[SIAppBackpack backpack].storyGroupManager.currentIndexPath = nil;
 	[super.navigationController popViewControllerAnimated:YES];
 }
 
 -(void) runStories {
 	// Post back to the UI manager so that it can remove the window.
-	DC_LOG(@"Rerunning stories, run single story only indexPath: %@", [SIAppBackpack backpack].storySources.currentIndexPath);
+	DC_LOG(@"Rerunning stories, run single story only indexPath: %@", [SIAppBackpack backpack].storyGroupManager.currentIndexPath);
 	[[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:SI_HIDE_WINDOW_RUN_STORIES_NOTIFICATION object:self userInfo:nil]];
 }
 
@@ -224,7 +224,7 @@
 
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope {
 	DC_LOG(@"Filtering sources for text: %@", searchText);
-	[[SIAppBackpack backpack].storySources selectWithPrefix:searchText];
+	[[SIAppBackpack backpack].storyGroupManager selectWithPrefix:searchText];
 }
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
@@ -234,7 +234,7 @@
 
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar {
 	DC_LOG(@"Cancelling search function");
-	[[SIAppBackpack backpack].storySources selectAll];
+	[[SIAppBackpack backpack].storyGroupManager selectAll];
 	[self.searchDisplayController setActive:NO animated:YES];
 	[self.tableView reloadData];
 }

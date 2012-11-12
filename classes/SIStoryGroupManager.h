@@ -1,5 +1,5 @@
 //
-//  SIStorySources.h
+//  SIStoryGroupManager.h
 //  Simon
 //
 //  Created by Derek Clarkson on 11/08/12.
@@ -7,18 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <Simon/SIStorySource.h>
+#import <Simon/SIStoryGroup.h>
 
 /**
  Stores and manages the story sources.
  */
-@interface SIStorySources : NSObject
+@interface SIStoryGroupManager : NSObject
 
-/// All the sources.
-@property (nonatomic, readonly) NSArray *sources;
+/// All the story groups.
+@property (nonatomic, readonly) NSArray *storyGroups;
 
-/// Only the sources which contain selected stories.
-@property (nonatomic, readonly) NSArray *selectedSources;
+/// Only the story groups which contain selected stories.
+@property (nonatomic, readonly) NSArray *selectedStoryGroups;
 
 /// Returns the text used as a criteria for selecting stories.
 @property (nonatomic, readonly) NSString *selectionCriteria;
@@ -33,7 +33,7 @@
  
  @param source the source to be added.
  */
--(void) addSource:(SIStorySource *) source;
+-(void) addStoryGroup:(SIStoryGroup *) storyGroup;
 
 /**
  Selects sources and stores where the source file name or the story title match the passed prefix. If the source is selected then all the stories within it are automatically selected.

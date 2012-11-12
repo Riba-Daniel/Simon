@@ -6,83 +6,82 @@
 //  Copyright (c) 2012 Sensis. All rights reserved.
 //
 
-#import "SIStorySyntaxParser.h"
-#import <Simon/SIConstants.h>
 #import <dUsefulStuff/DCCommon.h>
 #import <dUsefulStuff/NSObject+dUsefulStuff.h>
-#import <Simon/NSString+Simon.h>
 
-// Array which validates the order of lines in a story.
-static BOOL validSyntax[][7] = {
-	{NO, YES, NO, NO, NO, NO, NO}, // Start of file
-	{NO, NO, YES, YES, YES, NO, NO}, // Story
-	{NO, NO, NO, YES, YES, NO, NO}, // As
-	{NO, NO, NO, NO, YES, YES, YES}, // Given
-	{NO, NO, NO, NO, NO, YES, YES}, // When
-	{NO, NO, NO, NO, NO, NO, YES}, // Then
-	{NO, NO, NO, NO, NO, NO, YES} // And
-};
+#import <Simon/SIConstants.h>
+#import "SIStorySyntaxParser.h"
+#import <Simon/NSString+Simon.h>
 
 @interface SIStorySyntaxParser () {
 @private
-	SIStorySource *_source;
 	SIKeyword _previousKeyword;
+	NSDictionary *_syntaxRules;
 }
--(SIKeyword) keywordForLine:(NSString *) line lineNumber:(NSInteger) lineNumber error:(NSError **) error;
--(BOOL) setError:(NSError **) error
-	  shortReason:(NSString *) shortReason
-	failureReason:(NSString *) failureReason
-		lineNumber:(NSInteger) lineNumber;
+-(SIKeyword) keywordForLine:(NSString *) line error:(NSError **) error;
 @end
 
 @implementation SIStorySyntaxParser
 
 -(void) dealloc {
-	DC_DEALLOC(_source);
+	DC_DEALLOC(_syntaxRules);
 	[super dealloc];
 }
 
--(id) initWithSource:(SIStorySource *) source {
+-(id) init {
 	self = [super init];
 	if (self) {
-		_source = [source retain];
 		_previousKeyword = SIKeywordStartOfStory; // No lines read.
+		// Syntax rules. Dictionary with the from word as the key and array of next words as the value.
+		_syntaxRules = [@{
+							 @(SIKeywordStartOfStory):@[@(SIKeywordStory)],
+							 @(SIKeywordStory):@[@(SIKeywordGiven), @(SIKeywordAs)],
+							 @(SIKeywordAs):@[@(SIKeywordGiven), @(SIKeywordWhen)],
+							 @(SIKeywordGiven):@[@(SIKeywordWhen), @(SIKeywordThen), @(SIKeywordAnd)],
+							 @(SIKeywordWhen):@[@(SIKeywordThen), @(SIKeywordAnd)],
+							 @(SIKeywordThen):@[@(SIKeywordAnd), @(SIKeywordStory)]
+							 } retain];
 	}
 	return self;
 }
 
--(BOOL) checkLine:(NSString *) line lineNumber:(NSInteger) lineNumber error:(NSError **) error {
+-(SIKeyword) checkLine:(NSString *) line error:(NSError **) error {
 	
 	// Get the keyword.
-	SIKeyword keyword = [self keywordForLine:line lineNumber:lineNumber error:error];
+	SIKeyword keyword = [self keywordForLine:line error:error];
 	if (keyword == SIKeywordUnknown) {
-		return NO;
+		return SIKeywordUnknown;
 	}
 	
 	// Validate and populate the error if it's not found.
-	if (!validSyntax[_previousKeyword][keyword]) {
+	if (![_syntaxRules[@(_previousKeyword)] containsObject:@(keyword)]) {
 		
 		if (_previousKeyword == SIKeywordStartOfStory) {
 			[self setError:error
-				shortReason:@"Invalid syntax"
-			 failureReason:[NSString stringWithFormat:@"You cannot start a story with %@", [NSString stringFromSIKeyword:keyword]]
-				 lineNumber:lineNumber];
+						 code:SIErrorInvalidStorySyntax
+				errorDomain:SIMON_ERROR_DOMAIN
+		 shortDescription:@"Invalid syntax"
+			 failureReason:[NSString stringWithFormat:@"You cannot start a story with %@", [NSString stringFromSIKeyword:keyword]]];
 		} else {
 			[self setError:error
-				shortReason:@"Invalid syntax"
-			 failureReason:[NSString stringWithFormat:@"Invalid syntax: %@ cannot follow %@", [NSString stringFromSIKeyword:keyword], [NSString stringFromSIKeyword:_previousKeyword]]
-				 lineNumber:lineNumber];
+						 code:SIErrorInvalidStorySyntax
+				errorDomain:SIMON_ERROR_DOMAIN
+		 shortDescription:@"Invalid syntax"
+			 failureReason:[NSString stringWithFormat:@"Invalid syntax: %@ cannot follow %@", [NSString stringFromSIKeyword:keyword], [NSString stringFromSIKeyword:_previousKeyword]]];
 		}
 		
-		return NO;
+		return SIKeywordUnknown;
 	}
 	
+	// If the keyword is And then don't remember it as the previous.
 	// Remember the keyword and exit.
-	_previousKeyword = keyword;
-	return YES;
+	if (keyword != SIKeywordAnd) {
+		_previousKeyword = keyword;
+	}
+	return keyword;
 }
 
--(SIKeyword) keywordForLine:(NSString *) line lineNumber:(NSInteger) lineNumber error:(NSError **) error {
+-(SIKeyword) keywordForLine:(NSString *) line error:(NSError **) error {
 	
 	NSString *firstWord = nil;
 	BOOL foundWord = [[NSScanner scannerWithString:line]
@@ -91,34 +90,22 @@ static BOOL validSyntax[][7] = {
 	
 	if (!foundWord) {
 		[self setError:error
-			shortReason:@"Story syntax error, step does not begin with a word"
-		 failureReason:@"Each line of a story must start with a valid keyword (As, Story, Given, When, Then or And) or a comment."
-			 lineNumber:lineNumber];
+					 code:SIErrorInvalidKeyword
+			errorDomain:SIMON_ERROR_DOMAIN
+	 shortDescription:@"Story syntax error, step does not begin with a word"
+		 failureReason:@"Each line of a story must start with a valid keyword (As, Story, Given, When, Then or And) or a comment."];
 		return SIKeywordUnknown;
 	}
 	
 	SIKeyword keyword = [firstWord siKeyword];
 	if (keyword == SIKeywordUnknown) {
 		[self setError:error
-			shortReason:[NSString stringWithFormat:@"Story syntax error, unknown keyword %@", firstWord]
-		 failureReason:[NSString stringWithFormat:@"Each line of a story must start with a valid keyword (As, Given, When, Then or And) or a comment. \"%@\" is not a keyword.", firstWord]
-			 lineNumber:lineNumber];
+					 code:SIErrorInvalidKeyword
+			errorDomain:SIMON_ERROR_DOMAIN
+	 shortDescription:[NSString stringWithFormat:@"Story syntax error, unknown keyword %@", firstWord]
+		 failureReason:[NSString stringWithFormat:@"Each line of a story must start with a valid keyword (As, Given, When, Then or And) or a comment. \"%@\" is not a keyword.", firstWord]];
 	}
 	return keyword;
-}
-
--(BOOL) setError:(NSError **) error
-	  shortReason:(NSString *) shortReason
-	failureReason:(NSString *) failureReason
-		lineNumber:(NSInteger) lineNumber {
-	
-	NSString * finalfailureReason = [NSString stringWithFormat:@"%@[line %i]: %@", [_source.source lastPathComponent], lineNumber, failureReason];
-	[self setError:error
-				 code:SIErrorInvalidStorySyntax
-		errorDomain:SIMON_ERROR_DOMAIN
- shortDescription:shortReason
-	 failureReason:finalfailureReason];
-	return YES;
 }
 
 @end

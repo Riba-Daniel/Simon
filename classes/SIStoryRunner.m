@@ -15,7 +15,7 @@
 #import "NSString+Simon.h"
 #import <UIKit/UIKit.h>
 
-#define STORYBLOCK_ARG_DEFS SIStorySource *source, NSInteger sourceIdx, BOOL *sourceStop, SIStory *story, NSInteger storyIdx, BOOL *storyStop
+#define STORYBLOCK_ARG_DEFS SIStoryGroup *storyGroup, NSInteger sourceIdx, BOOL *sourceStop, SIStory *story, NSInteger storyIdx, BOOL *storyStop
 typedef void (^StoryBlock)(STORYBLOCK_ARG_DEFS);
 
 @interface SIStoryRunner(_private)
@@ -26,7 +26,7 @@ typedef void (^StoryBlock)(STORYBLOCK_ARG_DEFS);
 
 @implementation SIStoryRunner
 
-@synthesize storySources = _storySources;
+@synthesize storyGroupManager = _storyGroupManager;
 
 -(void) run {
 
@@ -34,7 +34,7 @@ typedef void (^StoryBlock)(STORYBLOCK_ARG_DEFS);
 
 	// First reset all the stories we are going to run.
 	DC_LOG(@"Starting run");
-	if (self.storySources.currentIndexPath == nil) {
+	if (self.storyGroupManager.currentIndexPath == nil) {
 		[self runAllSelected];
 	} else {
 		[self runCurrentStory];
@@ -47,22 +47,22 @@ typedef void (^StoryBlock)(STORYBLOCK_ARG_DEFS);
 -(void) runAllSelected {
 	DC_LOG(@"Running all selected stories");
 	DC_LOG(@"Resetting stories");
-	[self executeOnSources:self.storySources.selectedSources block:^(STORYBLOCK_ARG_DEFS){
+	[self executeOnSources:self.storyGroupManager.selectedStoryGroups block:^(STORYBLOCK_ARG_DEFS){
 		[story reset];
 	}];
    
 	// Now execute them.
 	DC_LOG(@"Executing");
-	[self executeOnSources:self.storySources.selectedSources block:^(STORYBLOCK_ARG_DEFS){
-		[story invokeWithSource:source];
+	[self executeOnSources:self.storyGroupManager.selectedStoryGroups block:^(STORYBLOCK_ARG_DEFS){
+		[story invokeWithSource:storyGroup];
 	}];
 }
 
 -(void) runCurrentStory {
-	NSIndexPath *indexPath = self.storySources.currentIndexPath;
+	NSIndexPath *indexPath = self.storyGroupManager.currentIndexPath;
 	DC_LOG(@"Running current story at indexPath: %@", indexPath);
 	DC_LOG(@"Resetting story");
-	[self executeOnSources:self.storySources.selectedSources block:^(STORYBLOCK_ARG_DEFS){
+	[self executeOnSources:self.storyGroupManager.selectedStoryGroups block:^(STORYBLOCK_ARG_DEFS){
 		if (indexPath.section == sourceIdx && indexPath.row == storyIdx) {
 			[story reset];
 			*storyStop = YES;
@@ -72,9 +72,9 @@ typedef void (^StoryBlock)(STORYBLOCK_ARG_DEFS);
    
 	// Now execute them.
 	DC_LOG(@"Executing");
-	[self executeOnSources:self.storySources.selectedSources block:^(STORYBLOCK_ARG_DEFS){
+	[self executeOnSources:self.storyGroupManager.selectedStoryGroups block:^(STORYBLOCK_ARG_DEFS){
 		if (indexPath.section == sourceIdx && indexPath.row == storyIdx) {
-			[story invokeWithSource:source];
+			[story invokeWithSource:storyGroup];
 			*storyStop = YES;
 			*sourceStop = YES;
 		}
@@ -84,10 +84,10 @@ typedef void (^StoryBlock)(STORYBLOCK_ARG_DEFS);
 
 -(void) executeOnSources:(NSArray *) sources block:(StoryBlock) block {
 	[sources enumerateObjectsUsingBlock:^(id sourceObj, NSUInteger sourceIdx, BOOL *sourceStop) {
-		SIStorySource *source = (SIStorySource *) sourceObj;
-		[source.stories enumerateObjectsUsingBlock:^(id storyObj, NSUInteger storyIdx, BOOL *storyStop) {
+		SIStoryGroup *storyGroup = (SIStoryGroup *) sourceObj;
+		[storyGroup.stories enumerateObjectsUsingBlock:^(id storyObj, NSUInteger storyIdx, BOOL *storyStop) {
 			SIStory *story = (SIStory *) storyObj;
-			block(source, (NSInteger)sourceIdx, sourceStop, story, (NSInteger)storyIdx, storyStop);
+			block(storyGroup, (NSInteger)sourceIdx, sourceStop, story, (NSInteger)storyIdx, storyStop);
 		}];
 	}];
 }
