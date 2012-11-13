@@ -7,6 +7,7 @@
 //
 
 #import <GHUnit/GHUnit.h>
+
 #import "PISimulator.h"
 #import "PIException.h"
 #import "PISDKNotFoundException.h"
@@ -23,15 +24,12 @@
 	NSArray *availableSdks = simulator.availableSdkVersions;
 	
 	GHAssertNotNil(availableSdks, nil);
-	GHAssertEquals([availableSdks count], (NSUInteger) 3, nil);
-	GHAssertTrue([availableSdks containsObject:@"5.0"], nil);
-	GHAssertTrue([availableSdks containsObject:@"5.1"], nil);
-	GHAssertTrue([availableSdks containsObject:@"6.0"], nil);
+	GHAssertEquals([availableSdks count], (NSUInteger) 4, nil);
 }
 
 -(void) testSdkVersionSetsDefault {
 	PISimulator *simulator = [[[PISimulator alloc] initWithApplicationPath:nil] autorelease];
-	GHAssertEqualStrings(simulator.sdkVersion, @"6.0", nil);
+	GHAssertEqualStrings(simulator.sdkVersion, @"6.1", nil);
 }
 
 -(void) testSetSdkVersion {
