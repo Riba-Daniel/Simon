@@ -10,6 +10,7 @@
 #import <Simon/NSObject+Simon.h>
 #import <dUsefulStuff/DCCommon.h>
 #import <Simon/NSProcessInfo+Simon.h>
+#import <dUsefulStuff/DCDialogs.h>
 
 @implementation SIUIAppBackpack
 
@@ -35,6 +36,16 @@
 	} else {
 		[ui displayUI];
 	}
+}
+
+-(void) shutDown:(NSNotification *) notification  {
+	[super shutDown:notification];
+	[self executeBlockOnMainThread:^() {
+		NSDictionary *userinfo = notification.userInfo;
+		if ([(NSNumber *)userinfo[SI_NOTIFICATION_KEY_STATUS] intValue] > 0) {
+			[DCDialogs displayMessage:userinfo[SI_NOTIFICATION_KEY_MESSAGE] title:@"Error"];
+		}
+	}];
 }
 
 -(void) runFinished:(NSNotification *) notification {

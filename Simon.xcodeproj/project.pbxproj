@@ -47,6 +47,7 @@
 		3210988F15D6893F00567D6D /* SIStoryGroupManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3210988D15D6893E00567D6D /* SIStoryGroupManager.m */; };
 		3210989115D6896C00567D6D /* SIStoryGroupManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3210989015D6896C00567D6D /* SIStoryGroupManagerTests.m */; };
 		3216D48015DDCE0700CD47C8 /* libSimon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 653D0E8A13A782AD00A5AB82 /* libSimon.a */; };
+		3217B915165126510016D7D5 /* libCocoaHTTPServer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32B9592D15E5E62F00470287 /* libCocoaHTTPServer.a */; };
 		321A346A1519FA9E00B22EDD /* NSObject+Simon.h in Headers */ = {isa = PBXBuildFile; fileRef = 321A34681519FA9E00B22EDD /* NSObject+Simon.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		321A346B1519FA9E00B22EDD /* NSObject+Simon.m in Sources */ = {isa = PBXBuildFile; fileRef = 321A34691519FA9E00B22EDD /* NSObject+Simon.m */; };
 		321F0E6C164D17B0004EC922 /* SIStoryTextSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 321F0E6B164D17B0004EC922 /* SIStoryTextSource.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -763,6 +764,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3217B915165126510016D7D5 /* libCocoaHTTPServer.a in Frameworks */,
 				32B9594215E5E6D100470287 /* libdNodi.a in Frameworks */,
 				32B9594315E5E6D100470287 /* libdUsefulStuff.a in Frameworks */,
 				3216D48015DDCE0700CD47C8 /* libSimon.a in Frameworks */,

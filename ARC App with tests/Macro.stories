@@ -1,20 +1,23 @@
 
 Story: SIFail macro handles custom message
 Given the interface is up
-and call the SIFail macro with a message
+when I call the SIFail macro with a message
+then the run should abort
 
 
 Story: SIFail macro passes exception back to story
 Given the interface is up
-and call the SIFail macro
+when I call the SIFail macro
+then the run should abort
 
 Story: SIAssertNil should pass when not nil
 Given the interface is up
-and reset test flags
+When I reset the test flags
 and call the SIAssertNil macro with "abc"
-and check the flags
+then the flags should be true
 
 Story: SIAssertNil should throw an exception
-given reset test flags
+Given the interface is up
+When I reset test flags
 then calling SIAssertNil with nil should work
 

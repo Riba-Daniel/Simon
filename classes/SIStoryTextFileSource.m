@@ -81,7 +81,7 @@
 						 code:lineError.code
 				errorDomain:SIMON_ERROR_DOMAIN
 		 shortDescription:[NSString stringWithFormat:@"Line %i: %@", lineNumber, [lineError localizedDescription]]
-			 failureReason:[NSString stringWithFormat:@"File: %@[%i] %@", filename, lineNumber, [lineError localizedFailureReason]]];
+			 failureReason:[NSString stringWithFormat:@"File: %@[%i] %@", [filename lastPathComponent], lineNumber, [lineError localizedFailureReason]]];
 			return NO;
 		}
 	}

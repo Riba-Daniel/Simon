@@ -106,8 +106,7 @@
 	 }
 	// Now add the step to the current story.
 	DC_LOG(@"Adding step: %@", cleanLine);
-	//SIStory *story = [source.stories lastObject];
-	//[story createStepWithKeyword:keyword command:cleanLine];
+	[self.currentStory createStepWithKeyword:keyword command:cleanLine];
 	
 	return YES;
 }

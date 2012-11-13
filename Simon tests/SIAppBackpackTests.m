@@ -49,7 +49,6 @@
 
 	NSNotification *notification = [NSNotification notificationWithName:UIApplicationDidBecomeActiveNotification object:self];
 	
-	id mockReader = [OCMockObject mockForClass:[SIStoryAnalyser class]];
 	SIStoryGroupManager *storyGroupManager = [[[SIStoryGroupManager alloc] init] autorelease];
 	SIStoryGroup *storyGroup = [[[SIStoryGroup alloc] init] autorelease];
 	[storyGroupManager addStoryGroup:storyGroup];
@@ -59,11 +58,12 @@
 	[[mockStory expect] mapSteps:[OCMArg any]];
 	[[mockStory stub] invokeWithSource:storyGroup];
 
-	//BOOL yes = YES;
-	//[[[mockReader expect] andReturnValue:OCMOCK_VALUE(yes)] readstoryGroupManager:[OCMArg anyPointer]];
-	[[[mockReader stub] andReturn:storyGroupManager] storyGroupManager];
+	BOOL yes = YES;
+	id mockAnalyser = [OCMockObject mockForClass:[SIStoryAnalyser class]];
+	[[[mockAnalyser expect] andReturnValue:OCMOCK_VALUE(yes)] startWithError:[OCMArg anyPointer]];
+	[[[mockAnalyser stub] andReturn:storyGroupManager] storyGroupManager];
 
-	backpack.reader = mockReader;
+	backpack.storyAnalyser = mockAnalyser;
 	
 	[backpack startUp:notification];
 	
@@ -71,7 +71,7 @@
 	//[[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
 	[NSThread sleepForTimeInterval:2.0];
 
-	[mockReader verify];
+	[mockAnalyser verify];
 	[mockStory verify];
 	
 	GHAssertTrue([backpack.storyGroupManager.storyGroups count] > 0, nil);

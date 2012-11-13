@@ -13,7 +13,7 @@
 @end
 
 @implementation SecondViewController
-@synthesize outputLabel;
+@synthesize outputLabel = _outputLabel;
 
 - (void)viewDidLoad
 {

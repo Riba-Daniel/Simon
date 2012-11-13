@@ -72,7 +72,7 @@ static SIUIApplication *application = nil;
 }
 
 + (id)allocWithZone:(NSZone*)zone {
-   return [[self application] retain];
+   return [[SIUIApplication application] retain];
 }
 
 - (id)copyWithZone:(NSZone *)zone {

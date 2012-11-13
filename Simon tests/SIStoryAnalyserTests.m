@@ -34,6 +34,25 @@
 	[super tearDown];
 }
 
+-(void) testReturnsValidStories {
+	[self setReaderWithSingleFile:@"Story files.stories"];
+	BOOL result = [reader startWithError:&error];
+	GHAssertTrue(result, @"Should have returned true");
+	NSArray * storyGroupManager = reader.storyGroupManager.storyGroups;
+	
+	GHAssertNil(error, @"Unexpected error thrown %@", error.localizedDescription);
+	GHAssertEquals([storyGroupManager count], (NSUInteger) 1, @"incorrect number of story sources returned");
+	GHAssertTrue([((SIStoryGroup *)[storyGroupManager objectAtIndex:0]).source hasSuffix:@"Story files.stories"], @"Title not correct");
+	
+	NSArray *stories = ((SIStoryGroup *)[storyGroupManager objectAtIndex:0]).stories;
+	GHAssertEquals([stories count], (NSUInteger) 2, @"incorrect number of stories returned");
+	SIStory *story1 = [stories objectAtIndex:0];
+	SIStory *story2 = [stories objectAtIndex:1];
+	GHAssertEqualStrings(story1.title, @"Basic story", @"Title not correct");
+	GHAssertEqualStrings(story2.title, @"Meaningless story", @"Title not correct");
+	GHAssertEquals([story1.steps count], (NSUInteger) 3, nil);
+	GHAssertEquals([story2.steps count], (NSUInteger) 5, nil);
+}
 
 -(void) testReturnsErrorWhenReadingUnknownKeywords {
 	[self setReaderWithSingleFile:@"Non keyword steps.stories"];
@@ -78,22 +97,6 @@
 	GHAssertNotNil(error, @"Error not thrown");
 	GHAssertEquals(error.code, SIErrorInvalidStorySyntax, @"Incorrect error thrown");
 	GHAssertEqualStrings(error.localizedDescription, @"Line 5: Invalid syntax", @"Incorrect error message");
-}
-
--(void) testReturnsValidStories {
-	[self setReaderWithSingleFile:@"Story files.stories"];
-	BOOL result = [reader startWithError:&error];
-	GHAssertTrue(result, @"Should have returned true");
-	NSArray * storyGroupManager = reader.storyGroupManager.storyGroups;
-	
-	GHAssertNil(error, @"Unexpected error thrown %@", error.localizedDescription);
-	GHAssertEquals([storyGroupManager count], (NSUInteger) 1, @"incorrect number of story sources returned");
-	GHAssertTrue([((SIStoryGroup *)[storyGroupManager objectAtIndex:0]).source hasSuffix:@"Story files.stories"], @"Title not correct");
-	
-	NSArray *stories = ((SIStoryGroup *)[storyGroupManager objectAtIndex:0]).stories;
-	GHAssertEquals([stories count], (NSUInteger) 2, @"incorrect number of stories returned");
-	GHAssertEqualStrings([(SIStory *)[stories objectAtIndex:0] title], @"Basic story", @"Title not correct");
-	GHAssertEqualStrings([(SIStory *)[stories objectAtIndex:1] title], @"Meaningless story", @"Title not correct");
 }
 
 -(void) testReturnsValidStoriesFromUnformattedSource {

@@ -10,6 +10,6 @@
 
 @interface SecondViewController : UIViewController
 - (IBAction)helloButton:(id)sender;
-@property (weak, nonatomic) IBOutlet UILabel *outputLabel;
+@property (strong, nonatomic) IBOutlet UILabel *outputLabel;
 
 @end

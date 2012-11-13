@@ -27,8 +27,8 @@
 /// Readonly reference to the list of loaded SIStepMapping instances.
 @property (nonatomic, readonly) NSArray *mappings;
 
-/// The file reader to read story files with.
-@property (nonatomic, retain) SIStoryAnalyser *reader;
+/// Analyses the stories.
+@property (nonatomic, retain) SIStoryAnalyser *storyAnalyser;
 
 /// The story runner which will execute the stories.
 @property (nonatomic, readonly) SIStoryRunner *runner;

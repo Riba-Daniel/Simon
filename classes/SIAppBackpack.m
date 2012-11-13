@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import <dUsefulStuff/DCCommon.h>
 #import <dUsefulStuff/DCDialogs.h>
+#import <dUsefulStuff/NSObject+dUsefulStuff.h>
+
 #import <Simon/SIConstants.h>
 
 #import <Simon/SIAppBackpack.h>
@@ -16,8 +18,8 @@
 #import <Simon/SIUIAppBackpack.h>
 #import <Simon/SIHttpAppBackpack.h>
 #import <Simon/NSObject+Simon.h>
-#import <dUsefulStuff/NSObject+dUsefulStuff.h>
-#import <NSProcessInfo+Simon.h>
+#import <Simon/NSProcessInfo+Simon.h>
+#import <Simon/SIStoryTextFileSource.h>
 
 // Simon's background thread name.
 #define SI_QUEUE_NAME "au.com.derekclarkson.simon"
@@ -33,7 +35,7 @@
 
 @synthesize runner = _runner;
 @synthesize mappings = _mappings;
-@synthesize reader = _reader;
+@synthesize storyAnalyser = _storyAnalyser;
 
 @dynamic queue;
 @dynamic storyGroupManager;
@@ -44,7 +46,7 @@ static SIAppBackpack *_backpack;
 -(void) dealloc {
 	DC_LOG(@"Freeing memory and exiting");
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
-	self.reader = nil;
+	self.storyAnalyser = nil;
 	DC_DEALLOC(_runner);
 	DC_DEALLOC(logger);
 	DC_DEALLOC(_mappings);
@@ -80,7 +82,7 @@ static SIAppBackpack *_backpack;
 }
 
 -(SIStoryGroupManager *) storyGroupManager {
-	return self.reader.storyGroupManager;
+	return self.storyAnalyser.storyGroupManager;
 }
 
 #pragma mark - Lifecycle
@@ -111,7 +113,10 @@ static SIAppBackpack *_backpack;
 		
 		// Instantiate required instances
 		DC_LOG(@"Simon initialising");
-		self.reader = [[[SIStoryAnalyser alloc] init] autorelease];
+		id<SIStoryTextSource> storyTextSource = [[SIStoryTextFileSource alloc] init];
+		self.storyAnalyser = [[[SIStoryAnalyser alloc] initWithStoryTextSource:storyTextSource] autorelease];
+		[storyTextSource release];
+		
 		_runner = [[SIStoryRunner alloc] init];
 		if ([[NSProcessInfo processInfo] isArgumentPresentWithName:ARG_REPORT]) {
 			logger = [[SIStoryLogger alloc] init];
@@ -165,27 +170,25 @@ static SIAppBackpack *_backpack;
 		DC_LOG(@"Starting Simon");
 		
 		// Read the stories.
-		DC_LOG(@"Reading stories");
-		/*
 		NSError *error = nil;
-		BOOL storiesRead = [self.reader readstoryGroupManager: &error];
+		BOOL started = [self.storyAnalyser startWithError:&error];
 		
-		if (!storiesRead) {
+		if (!started) {
 			DC_LOG(@"Error reading story files: %@", [error localizedFailureReason]);
-			NSDictionary *userData = [NSDictionary dictionaryWithObjectsAndKeys:@(error.code), SI_NOTIFICATION_KEY_STATUS,
-											  [error localizedFailureReason], SI_NOTIFICATION_KEY_MESSAGE, nil];
-			NSNotification *runFinished = [NSNotification notificationWithName:SI_SHUTDOWN_NOTIFICATION object:self userInfo:userData];
-			[[NSNotificationCenter defaultCenter] postNotification:runFinished];
+			NSDictionary *userData = @{SI_NOTIFICATION_KEY_STATUS: @(error.code),
+										SI_NOTIFICATION_KEY_MESSAGE: [error localizedFailureReason]};
+			NSNotification *shutdown = [NSNotification notificationWithName:SI_SHUTDOWN_NOTIFICATION object:self userInfo:userData];
+			[[NSNotificationCenter defaultCenter] postNotification:shutdown];
 			return;
 		}
-		*/
+		
 		self.runner.storyGroupManager = self.storyGroupManager;
 		
 		// If no stories where read then generate an error and return.
 		if ([self.storyGroupManager.storyGroups count] == 0) {
 			DC_LOG(@"Error reading story files: No files found");
-			NSDictionary *userData = [NSDictionary dictionaryWithObjectsAndKeys:@(SIErrorNoStoriesFound), SI_NOTIFICATION_KEY_STATUS,
-											  @"No stories where read from the files.", SI_NOTIFICATION_KEY_MESSAGE, nil];
+			NSDictionary *userData = @{SI_NOTIFICATION_KEY_STATUS: @(SIErrorNoStoriesFound),
+										SI_NOTIFICATION_KEY_MESSAGE: @"No stories where read from the files."};
 			NSNotification *runFinished = [NSNotification notificationWithName:SI_SHUTDOWN_NOTIFICATION object:self userInfo:userData];
 			[[NSNotificationCenter defaultCenter] postNotification:runFinished];
 			return;
