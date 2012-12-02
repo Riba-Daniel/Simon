@@ -17,6 +17,7 @@
 
 @synthesize button1 = button1_;
 @synthesize button2 = button2_;
+@synthesize button3 = button3_;
 @synthesize waitForItButton = waitForItButton_;
 @synthesize tabBar = tabBar_;
 @synthesize tapableLabel = tapableLabel_;
@@ -35,6 +36,7 @@
 - (void)dealloc {
    self.button1 = nil;
    self.button2 = nil;
+   self.button3 = nil;
    self.waitForItButton = nil;
    self.tabBar = nil;
    self.slider = nil;
@@ -126,4 +128,8 @@
    return [self.endDragTime timeIntervalSinceDate:self.startDragTime];
 }
 
+- (void)viewDidUnload {
+    [self setButton3:nil];
+    [super viewDidUnload];
+}
 @end

@@ -13,6 +13,7 @@
 @property (retain, nonatomic) IBOutlet UIButton *button1;
 @property (retain, nonatomic) IBOutlet UIButton *button2;
 @property (retain, nonatomic) IBOutlet UIButton *waitForItButton;
+@property (retain, nonatomic) IBOutlet UIButton *button3;
 @property (retain, nonatomic) IBOutlet UITabBar *tabBar;
 @property (retain, nonatomic) IBOutlet UILabel *tapableLabel;
 @property (retain, nonatomic) IBOutlet UILabel *displayLabel;

@@ -5,6 +5,10 @@ root-url: ../
 simon-tab-class: tabbar-tab-highlighted
 ---
 
+h1. Version 0.2.1 Nov 2012
+
+* Updated with new dNodi that can handle multiple attributes on a node. Now using a totally refactored dNodi. 
+
 h1. Version 0.2.0 Nov 2012
 
 * Major new changes.
