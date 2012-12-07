@@ -47,6 +47,7 @@
 		3210989115D6896C00567D6D /* SIStoryGroupManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3210989015D6896C00567D6D /* SIStoryGroupManagerTests.m */; };
 		3216D48015DDCE0700CD47C8 /* libSimon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 653D0E8A13A782AD00A5AB82 /* libSimon.a */; };
 		3217B915165126510016D7D5 /* libCocoaHTTPServer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32B9592D15E5E62F00470287 /* libCocoaHTTPServer.a */; };
+		3217EF7D166E2792004D9AD7 /* libPublicAutomation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3217EF7A166E2762004D9AD7 /* libPublicAutomation.a */; };
 		321A346A1519FA9E00B22EDD /* NSObject+Simon.h in Headers */ = {isa = PBXBuildFile; fileRef = 321A34681519FA9E00B22EDD /* NSObject+Simon.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		321A346B1519FA9E00B22EDD /* NSObject+Simon.m in Sources */ = {isa = PBXBuildFile; fileRef = 321A34691519FA9E00B22EDD /* NSObject+Simon.m */; };
 		321F0E6C164D17B0004EC922 /* SIStoryTextSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 321F0E6B164D17B0004EC922 /* SIStoryTextSource.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -299,6 +300,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		3217EF79166E2762004D9AD7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3217EF75166E2761004D9AD7 /* PublicAutomation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C194253815D838BD004FC314;
+			remoteInfo = PublicAutomation;
+		};
+		3217EF7B166E278A004D9AD7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3217EF75166E2761004D9AD7 /* PublicAutomation.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = C194253715D838BD004FC314;
+			remoteInfo = PublicAutomation;
+		};
 		3224269E15EBA88800F0CB62 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 32CDF2E715E5E5DA001F4317 /* dUsefulStuff.xcodeproj */;
@@ -505,6 +520,7 @@
 		3210988C15D6893E00567D6D /* SIStoryGroupManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIStoryGroupManager.h; sourceTree = "<group>"; };
 		3210988D15D6893E00567D6D /* SIStoryGroupManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIStoryGroupManager.m; sourceTree = "<group>"; };
 		3210989015D6896C00567D6D /* SIStoryGroupManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIStoryGroupManagerTests.m; sourceTree = "<group>"; };
+		3217EF75166E2761004D9AD7 /* PublicAutomation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PublicAutomation.xcodeproj; path = submodules/PublicAutomation/PublicAutomation.xcodeproj; sourceTree = "<group>"; };
 		321A34681519FA9E00B22EDD /* NSObject+Simon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Simon.h"; sourceTree = "<group>"; };
 		321A34691519FA9E00B22EDD /* NSObject+Simon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "NSObject+Simon.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		321F0E6B164D17B0004EC922 /* SIStoryTextSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIStoryTextSource.h; sourceTree = "<group>"; };
@@ -537,7 +553,7 @@
 		324108B91509C23200AFBF66 /* SIUIViewDescriptionVisitorDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIViewDescriptionVisitorDelegate.h; sourceTree = "<group>"; };
 		324108BB1509C61E00AFBF66 /* SIUIViewDescriptionVisitorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIUIViewDescriptionVisitorTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		3249676E16428FB500118EF4 /* SIStorySyntaxParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIStorySyntaxParser.h; sourceTree = "<group>"; };
-		3249676F16428FB500118EF4 /* SIStorySyntaxParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIStorySyntaxParser.m; sourceTree = "<group>"; };
+		3249676F16428FB500118EF4 /* SIStorySyntaxParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIStorySyntaxParser.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		324967731642A07400118EF4 /* SIStorySyntaxParserTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIStorySyntaxParserTests.m; sourceTree = "<group>"; };
 		324D598C1652634A001569B5 /* PieMan-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PieMan-Prefix.pch"; sourceTree = SOURCE_ROOT; };
 		325683D814EF6CEB00F7C189 /* SIUIConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIConstants.h; sourceTree = "<group>"; };
@@ -552,7 +568,7 @@
 		3265B02615144DB300BE0930 /* SIUIAbstractEventGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIUIAbstractEventGenerator.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		3265B0291514887600BE0930 /* UIViewSimonTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = UIViewSimonTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		32703657164D05E000C6EC88 /* SIStoryTextFileSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIStoryTextFileSource.h; sourceTree = "<group>"; };
-		32703658164D05E000C6EC88 /* SIStoryTextFileSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIStoryTextFileSource.m; sourceTree = "<group>"; };
+		32703658164D05E000C6EC88 /* SIStoryTextFileSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIStoryTextFileSource.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		32741D7614EB581E00093E0F /* UITouch+Simon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITouch+Simon.h"; sourceTree = "<group>"; };
 		32741D7714EB581E00093E0F /* UITouch+Simon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "UITouch+Simon.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		32741D7A14EB5BAE00093E0F /* UIEvent+Simon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIEvent+Simon.h"; sourceTree = "<group>"; };
@@ -786,6 +802,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3217EF7D166E2792004D9AD7 /* libPublicAutomation.a in Frameworks */,
 				32EA6E76150E11E2000A64A1 /* QuartzCore.framework in Frameworks */,
 				653D0E8E13A782AD00A5AB82 /* Foundation.framework in Frameworks */,
 				659E629F13DAFEF500ACD34C /* UIKit.framework in Frameworks */,
@@ -841,6 +858,14 @@
 				653D0EA013A783A500A5AB82 /* CoreGraphics.framework */,
 			);
 			name = iOS;
+			sourceTree = "<group>";
+		};
+		3217EF76166E2761004D9AD7 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3217EF7A166E2762004D9AD7 /* libPublicAutomation.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		3224267C15E74DC600F0CB62 /* In app UI */ = {
@@ -1277,6 +1302,7 @@
 		653D0E7F13A782AC00A5AB82 = {
 			isa = PBXGroup;
 			children = (
+				3217EF75166E2761004D9AD7 /* PublicAutomation.xcodeproj */,
 				6583B3EC13CF2220005E13F3 /* ReadMe.textile */,
 				6583B3EB13CF2220005E13F3 /* License.textile */,
 				6583B3EE13CF2242005E13F3 /* ChangeLog.textile */,
@@ -1319,14 +1345,12 @@
 		653D0EB113A783C000A5AB82 /* Simon */ = {
 			isa = PBXGroup;
 			children = (
-				3246B4B9165104C7008311DE /* Sources */,
-				329F9AA515FB8B130041FD1D /* http */,
-				6583B42F13D1C9FF005E13F3 /* Stories */,
-				32AE69F51622DF79006410CE /* Result listeners */,
 				659E628E13D9C37200ACD34C /* app */,
 				65D03BEF13BE014700A3F0FA /* Categories */,
 				32B0ABF514E8DEE20020500E /* Exceptions */,
+				329F9AA515FB8B130041FD1D /* http */,
 				9490249114408D11006132A5 /* Interface */,
+				32AE69F51622DF79006410CE /* Result listeners */,
 				652D4E4B13CDD44300633E51 /* SIAppBackpack.h */,
 				652D4E4C13CDD44400633E51 /* SIAppBackpack.m */,
 				3210988915D3D6E200567D6D /* SIAppBackpackImplementation.h */,
@@ -1337,6 +1361,8 @@
 				65FCD12513AF622300A90FCA /* SIRuntime.m */,
 				32AF045715CEB7BA00501B1E /* SIServerException.h */,
 				32AF045815CEB7BA00501B1E /* SIServerException.m */,
+				3246B4B9165104C7008311DE /* Sources */,
+				6583B42F13D1C9FF005E13F3 /* Stories */,
 			);
 			name = Simon;
 			path = classes;
@@ -1345,26 +1371,26 @@
 		653D0ED413A783DC00A5AB82 /* Simon tests */ = {
 			isa = PBXGroup;
 			children = (
-				3246B4C1165104E4008311DE /* Sources */,
-				653D0EDD13A783DC00A5AB82 /* Story files */,
-				6583B43013D1CB2E005E13F3 /* Stories */,
-				329F9AA715FB8B900041FD1D /* http */,
-				32AE69F61622DFC1006410CE /* Result listener */,
 				94657741141C95160026F1FB /* AbstractTestWithControlsOnView.h */,
 				94657742141C95160026F1FB /* AbstractTestWithControlsOnView.m */,
+				659E62A013DB026400ACD34C /* app */,
 				328DE13D15D3688D009A16C1 /* Categories */,
 				6583B43113D1CB4F005E13F3 /* GHUnit */,
+				329F9AA715FB8B900041FD1D /* http */,
 				328DE13E15D368B9009A16C1 /* Interface */,
 				32A9D10F14C907BC00B0CFBD /* NSInvocationTests.m */,
+				32AE69F61622DFC1006410CE /* Result listener */,
 				32AF044115CE36C500501B1E /* SIAppBackpackTests.m */,
 				32A9D11214C914B500B0CFBD /* SIMacroTests.m */,
 				65FCD11713ADE3C200A90FCA /* SIRuntimeTests.m */,
-				659E62A013DB026400ACD34C /* app */,
+				3246B4C1165104E4008311DE /* Sources */,
+				6583B43013D1CB2E005E13F3 /* Stories */,
+				653D0EDD13A783DC00A5AB82 /* Story files */,
+				32A4DDF9161FD9FB0031DEA3 /* TestUtils.h */,
+				32A4DDFA161FD9FB0031DEA3 /* TestUtils.m */,
 				32D5D98914E1357900D29DD5 /* TestView.xib */,
 				32D5D98B14E135A300D29DD5 /* TestViewController.h */,
 				32D5D98C14E135A300D29DD5 /* TestViewController.m */,
-				32A4DDF9161FD9FB0031DEA3 /* TestUtils.h */,
-				32A4DDFA161FD9FB0031DEA3 /* TestUtils.m */,
 			);
 			path = "Simon tests";
 			sourceTree = "<group>";
@@ -1638,6 +1664,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				3217EF7C166E278A004D9AD7 /* PBXTargetDependency */,
 				3293EE5016342D2000C371BF /* PBXTargetDependency */,
 				3293EE4C16342D0C00C371BF /* PBXTargetDependency */,
 				3293EE4E16342D0C00C371BF /* PBXTargetDependency */,
@@ -1701,6 +1728,10 @@
 					ProductGroup = 32A4DE261621B74E0031DEA3 /* Products */;
 					ProjectRef = 32A4DE251621B74E0031DEA3 /* GRMustache.xcodeproj */;
 				},
+				{
+					ProductGroup = 3217EF76166E2761004D9AD7 /* Products */;
+					ProjectRef = 3217EF75166E2761004D9AD7 /* PublicAutomation.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -1715,6 +1746,13 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		3217EF7A166E2762004D9AD7 /* libPublicAutomation.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libPublicAutomation.a;
+			remoteRef = 3217EF79166E2762004D9AD7 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		322426A515EBA95E00F0CB62 /* libCocoaHTTPServer.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
@@ -2153,6 +2191,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		3217EF7C166E278A004D9AD7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = PublicAutomation;
+			targetProxy = 3217EF7B166E278A004D9AD7 /* PBXContainerItemProxy */;
+		};
 		3224269F15EBA88800F0CB62 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "OS X dynlib";

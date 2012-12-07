@@ -36,14 +36,19 @@
 	GHAssertEquals(handler.dnParentNode, self.testViewController.view, @"Incorrect name returned");
 }
 
--(void) testAttributeQueryFailsWithInvalidPropertyName {
+-(void) testAttributeQueryIgnoresInvalidPropertyName {
 	handler.view = (UIView<DNNode> *) self.testViewController.button1;
-	GHAssertThrowsSpecificNamed([handler dnHasAttribute:@"xyz" withValue:nil], NSException, @"NSUnknownKeyException", @"Handler should have failed request.");
+	GHAssertFalse([handler dnHasAttribute:@"xyz" withValue:nil], nil);
 }
 
 -(void) testAttributeQueryMatchesPropertyValue {
 	handler.view = (UIView<DNNode> *) self.testViewController.button1;
-	GHAssertTrue([handler dnHasAttribute:@"alpha" withValue:[NSNumber numberWithInt:1]], @"Handler fails to match attribute data");
+	GHAssertTrue([handler dnHasAttribute:@"alpha" withValue:@"1"], @"Handler fails to match attribute data");
+}
+
+-(void) testAttributeQueryMatchesPropertyValueWhenNumericWithNumber {
+	handler.view = (UIView<DNNode> *) self.testViewController.button3;
+	GHAssertTrue([handler dnHasAttribute:@"alpha" withValue:@"1.0"], nil);
 }
 
 -(void) testAttributeQueryMatchesNestedPropertyValue {
@@ -51,19 +56,15 @@
 	GHAssertTrue([handler dnHasAttribute:@"titleLabel.text" withValue:@"Button 1"], @"Handler fails to match attribute data");
 }
 
+-(void) testAttributeQueryIgnoresUnknownPropertyValue {
+	handler.view = (UIView<DNNode> *) self.testViewController.tabBar;
+	GHAssertFalse([handler dnHasAttribute:@"titleLabel.text" withValue:nil], nil);
+}
+
 -(void) testSubnodes {
    handler.view = (UIView<DNNode> *) self.testViewController.view;
 	NSArray *subNodes = handler.dnSubNodes;
-	GHAssertEquals([subNodes count], (NSUInteger) 12, @"Should be one sub view");
-	GHAssertEquals([subNodes objectAtIndex:0], self.testViewController.button1, @"Returned node was not button 1.");
-	GHAssertEquals([subNodes objectAtIndex:1], self.testViewController.button2, @"Returned node was not button 2.");
-	GHAssertEquals([subNodes objectAtIndex:2], self.testViewController.tabBar, @"Returned node was not the tab bar.");
-	GHAssertEquals([subNodes objectAtIndex:3], self.testViewController.slider, @"Returned node was not the slider.");
-	GHAssertEquals([subNodes objectAtIndex:4], self.testViewController.tableView, @"Returned node was not the tableView.");
-	GHAssertEquals([subNodes objectAtIndex:5], self.testViewController.tapableLabel, @"Returned node was not the tapable label.");
-	GHAssertEquals([subNodes objectAtIndex:6], self.testViewController.displayLabel, @"Returned node was not the display label.");
-	GHAssertEquals([subNodes objectAtIndex:7], self.testViewController.waitForItButton, @"Returned node was not the wait for it button.");
-	// There are more but at this point we can be sure it's pretty correct.
+	GHAssertEquals([subNodes count], (NSUInteger) 13, @"Should be one sub view");
 }
 
 #pragma mark - Special attributes

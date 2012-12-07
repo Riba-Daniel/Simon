@@ -44,9 +44,15 @@
 			for (int index = 0; index < numClasses; index++) {
 				
 				nextClass = classes[index];
-				
+
 				// Ignore nulls.
 				if (nextClass == NULL || nextClass == nil) {
+					continue;
+				}
+
+				// Handle UI class which is known to cause problems in runtime methods.
+				// In our case it triggers a crash when attempting to find the bundle.
+				if ([NSStringFromClass(nextClass) isEqualToString:@"UIAccessibilitySafeCategory__NSObject"]) {
 					continue;
 				}
 

@@ -12,8 +12,8 @@
 @interface BDDImplementations : NSObject
 @end
 
-#define LABEL_FIRST @"//UILabel[@text='First View']"
-#define LABEL_SECOND @"//UILabel[@text='Second View']"
+#define LABEL_FIRST @"//UILabel[text='First View']"
+#define LABEL_SECOND @"//UILabel[text='Second View']"
 
 @implementation BDDImplementations
 

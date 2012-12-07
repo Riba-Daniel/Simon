@@ -34,8 +34,7 @@
 #pragma mark - DNNode
 
 -(NSString *)dnName {
-	NSString *name =  NSStringFromClass([self.view class]);
-	return name;
+	return NSStringFromClass([self.view class]);
 }
 
 -(NSObject<DNNode> *)dnParentNode {
@@ -44,12 +43,12 @@
 
 -(NSArray *)dnSubNodes {
 	// Return a copy as this has been known to change whilst this code is executing.
-	return [[self.view.subviews copy] autorelease];	
+	return [[self.view.subviews copy] autorelease];
 }
 
--(BOOL) dnHasAttribute:(NSString *)attribute withValue:(id)value {
+-(BOOL) dnHasAttribute:(NSString *)attribute withValue:(NSString *)value {
 	
-	// Check for special attribute requests.
+	// Check for special attribute requests for protocols and class structures.
 	if ([attribute isEqualToString:@"protocol"]) {
 		return [self.view conformsToProtocol:NSProtocolFromString(value)];
 	}
@@ -58,8 +57,27 @@
 	}
 	
 	// Use KVC to test the value.
-	id propertyValue = [self.view valueForKeyPath:attribute];
-	return [propertyValue isEqual:value];
+	id propertyValue = nil;
+	@try {
+		propertyValue = [self.view valueForKeyPath:attribute];
+	}
+	@catch (NSException *exception) {
+		// This will be thrown if the object does not have the path.
+		if ([exception.name isEqualToString:@"NSUnknownKeyException"]) {
+			return NO;
+		}
+		@throw exception;
+	}
+	
+	// If retrieved value is a number, attempt a conversion of the passed value.
+	// Then compare numbers.
+	if ([propertyValue isKindOfClass:[NSNumber class]]) {
+		NSNumber *valueAsNumber = @([value doubleValue]);
+		return [valueAsNumber isEqualToNumber:(NSNumber *) propertyValue];
+	}
+
+	// Otherwise string compare.
+	return [value isEqualToString:propertyValue];
 }
 
 #pragma mark - SIUIAction
@@ -88,7 +106,7 @@
 
 -(void) enterText:(NSString *) text keyRate:(NSTimeInterval) keyRate autoCorrect:(BOOL) autoCorrect {
 	
-	// Here we assume that the 
+	// Here we assume that the
 	
 	[self executeBlockOnMainThread:^{
 		
@@ -100,31 +118,31 @@
 		UIKeyboardImpl *kbImpl = (UIKeyboardImpl *) [keyboardAuto.subviews objectAtIndex:0];
 		UIKeyboardLayout *kbLayout = (UIKeyboardLayout *) [kbImpl.subviews objectAtIndex:0];
 		
-		// Turn on or off auto correct. 
+		// Turn on or off auto correct.
 		[kbImpl _setAutocorrects:autoCorrect];
 		
 		// Loop and send each character.
 		NSRange subStringRange;
 		for (NSUInteger i = 0; i < [text length]; i++) {
-
+			
 			subStringRange = NSMakeRange(i,1);
 			
 			// shouldTypeVariant controls whether characters which are variants of a base key should be typed.
 			// baseKeyForVariants controls wether to type the base key instead of a variant.
 #ifdef DEBUG
-			id sentChar = 
+			id sentChar =
 #endif
 			[kbLayout simulateTouchForCharacter:[text substringWithRange:subStringRange]
-															  errorVector:CGPointMake(0,0) 
-													 shouldTypeVariants:YES 
-													 baseKeyForVariants:NO];
+											errorVector:CGPointMake(0,0)
+								  shouldTypeVariants:YES
+								  baseKeyForVariants:NO];
 			
 			[[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:keyRate]];
 			DC_LOG(@"Sent character %@", sentChar);
 		}
 		DC_LOG(@"Text entry finished, return key %@", [kbImpl returnKeyDisplayName]);
 	}];
-} 
+}
 
 
 #pragma mark - View info

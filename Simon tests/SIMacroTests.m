@@ -163,7 +163,7 @@ SIMapStepToSelector(@"abc", dummyMethod);
 }
 
 -(void) testSIAssertViewPresent {
-   SIAssertViewPresent(@"//UIRoundedRectButton[@titleLabel.text='Button 1']");
+   SIAssertViewPresent(@"//UIRoundedRectButton[titleLabel.text='Button 1']");
 }
 
 -(void) testSIAssertViewPresentThrows {
@@ -182,30 +182,30 @@ SIMapStepToSelector(@"abc", dummyMethod);
 
 -(void) testSIAssertViewNotPresentThrows {
    @try {
-		SIAssertViewNotPresent(@"//UIRoundedRectButton[@titleLabel.text='Button 1']");
+		SIAssertViewNotPresent(@"//UIRoundedRectButton[titleLabel.text='Button 1']");
       GHFail(@"Exception not thrown");
 	}
 	@catch (NSException *exception) {
-		catchMessage(@"-[SIMacroTests testSIAssertViewNotPresentThrows](%i) SIAssertViewNotPresent(@\"//UIRoundedRectButton[@titleLabel.text='Button 1']\") Expected '//UIRoundedRectButton[@titleLabel.text='Button 1']' to not find a UIView.");
+		catchMessage(@"-[SIMacroTests testSIAssertViewNotPresentThrows](%i) SIAssertViewNotPresent(@\"//UIRoundedRectButton[titleLabel.text='Button 1']\") Expected '//UIRoundedRectButton[titleLabel.text='Button 1']' to not find a UIView.");
 	}
 }
 
 -(void) testSIAssertLabelTextEqualsWithQuery {
-   SIAssertLabelTextEquals(@"//UILabel[@tag='101']", @"Tapable Label");
+   SIAssertLabelTextEquals(@"//UILabel[tag='101']", @"Tapable Label");
 }
 
 -(void) testSIAssertLabelTextEqualsWithLabel {
-	UILabel *label = (UILabel *) SIFindView(@"//UILabel[@tag='101']");
+	UILabel *label = (UILabel *) SIFindView(@"//UILabel[tag='101']");
    SIAssertLabelTextEquals(label, @"Tapable Label");
 }
 
 -(void) testSIAssertLabelTextEqualsThrows {
    @try {
-		SIAssertLabelTextEquals(@"//UILabel[@tag='101']", @"XXX");
+		SIAssertLabelTextEquals(@"//UILabel[tag='101']", @"XXX");
       GHFail(@"Exception not thrown");
 	}
 	@catch (NSException *exception) {
-		catchMessage(@"-[SIMacroTests testSIAssertLabelTextEqualsThrows](%i) SIAssertLabelTextEquals(@\"//UILabel[@tag='101']\", @\"XXX\") failed: label text does equal 'XXX'");
+		catchMessage(@"-[SIMacroTests testSIAssertLabelTextEqualsThrows](%i) SIAssertLabelTextEquals(@\"//UILabel[tag='101']\", @\"XXX\") failed: label text does equal 'XXX'");
 	}
 }
 
@@ -315,19 +315,19 @@ SIMapStepToSelector(@"abc", dummyMethod);
 }
 
 -(void) testSIFindViewFindsASingleControl {
-	UIView *foundView = SIFindView(@"//UIRoundedRectButton[@titleLabel.text='Button 1']");
+	UIView *foundView = SIFindView(@"//UIRoundedRectButton[titleLabel.text='Button 1']");
 	GHAssertNotNil(foundView, @"Nil returned");
 	GHAssertEqualObjects(foundView, self.testViewController.button1, @"Returned view is not a match");
 }
 
 -(void) testSIFindViewsFindsASingleControl {
-	NSArray *foundViews = SIFindViews(@"//UIRoundedRectButton[@titleLabel.text='Button 1']");
+	NSArray *foundViews = SIFindViews(@"//UIRoundedRectButton[titleLabel.text='Button 1']");
 	GHAssertNotNil(foundViews, @"Nil returned");
 	GHAssertEqualObjects([foundViews objectAtIndex:0], self.testViewController.button1, @"Returned view is not a match");
 }
 
 -(void) testIsViewPresentReturnsYes {
-	GHAssertTrue(SIIsViewPresent(@"//UIRoundedRectButton/UIButtonLabel[@text='Button 1']/.."), @"Should have returned YES");
+	GHAssertTrue(SIIsViewPresent(@"//UIRoundedRectButton/UIButtonLabel[text='Button 1']/.."), @"Should have returned YES");
 }
 
 -(void) testIsViewPresentReturnsNo {
@@ -335,7 +335,7 @@ SIMapStepToSelector(@"abc", dummyMethod);
 }
 
 -(void) testSIIsViewPresentReturnsYes {
-	NSArray *foundViews = SIFindViews(@"//UIRoundedRectButton[@titleLabel.text='Button 1']");
+	NSArray *foundViews = SIFindViews(@"//UIRoundedRectButton[titleLabel.text='Button 1']");
 	GHAssertNotNil(foundViews, @"Nil returned");
 	GHAssertEqualObjects([foundViews objectAtIndex:0], self.testViewController.button1, @"Returned view is not a match");
 }
@@ -351,7 +351,7 @@ SIMapStepToSelector(@"abc", dummyMethod);
 
 -(void) testSITapViewWithQuery {
    self.testViewController.tappedButton = 0;
-	UIView *tappedView = SITapView(@"//UIRoundedRectButton[@titleLabel.text='Button 1']");
+	UIView *tappedView = SITapView(@"//UIRoundedRectButton[titleLabel.text='Button 1']");
 	GHAssertEquals(self.testViewController.tappedButton, 1, @"Tapped flag not set. Control tapping may not have worked");
 	GHAssertEqualObjects(tappedView, self.testViewController.button1, @"Button not returned");
 }
@@ -438,7 +438,7 @@ SIMapStepToSelector(@"abc", dummyMethod);
    self.testViewController.displayLabel.text = @"...";
    [[SIUIApplication application] tapButtonWithLabel:@"Wait for it!"];
    GHAssertEqualStrings(self.testViewController.displayLabel.text, @"...", @"Label should not be updated yet");
-   UIView *label = SIWaitForView(@"//UILabel[@text='Clicked!']", 0.5, 5);
+   UIView *label = SIWaitForView(@"//UILabel[text='Clicked!']", 0.5, 5);
    GHAssertNotNil(label, @"Nothing returned");
    GHAssertEqualStrings(self.testViewController.displayLabel.text, @"Clicked!", @"Button should have updated by now");
 }
@@ -462,7 +462,7 @@ SIMapStepToSelector(@"abc", dummyMethod);
 							  }];
 	});
 	
-	SIWaitForViewAnimationsToFinish(@"//UIRoundedRectButton[@titleLabel.text='Wait for it!']", 0.1);
+	SIWaitForViewAnimationsToFinish(@"//UIRoundedRectButton[titleLabel.text='Wait for it!']", 0.1);
 	
    NSTimeInterval diff = fabs([before timeIntervalSinceNow]);
 	GHAssertGreaterThan(diff, 2.0, @"not long enough, animation not finished.");

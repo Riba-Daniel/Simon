@@ -277,7 +277,7 @@ static SIUIApplication *application = nil;
 
 -(void) tapButtonWithLabel:(NSString *) label {
    @try {
-      [self tapViewWithQuery:[NSString stringWithFormat:@"//UIRoundedRectButton[@titleLabel.text='%@']", label]];
+      [self tapViewWithQuery:[NSString stringWithFormat:@"//UI*Button[titleLabel.text='%@']", label]];
    }
    @catch (SIUINotFoundException *exception) {
       @throw [SIUINotFoundException exceptionWithReason:[NSString stringWithFormat:@"%@ not found.", label]];
@@ -290,7 +290,7 @@ static SIUIApplication *application = nil;
 }
 
 -(void) tapTabBarButtonWithLabel:(NSString *) label {
-   [self tapViewWithQuery:[NSString stringWithFormat:@"//UITabBarButtonLabel[@text='%@']/..", label]];
+   [self tapViewWithQuery:[NSString stringWithFormat:@"//UITabBarButtonLabel[text='%@']/..", label]];
 }
 
 #pragma mark - Swiping

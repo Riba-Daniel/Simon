@@ -3,4 +3,4 @@
 	url = git@github.com:drekka/GRMustache.git
 [submodule "submodules/PublicAutomation"]
 	path = submodules/PublicAutomation
-	url = git://github.com/moredip/PublicAutomation.git
+	url = git://github.com/TestingWithFrank/PublicAutomation.git

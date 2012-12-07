@@ -32,7 +32,7 @@
 #pragma mark - finding
 
 -(void) testViewWithQueryFindsButton {
-	UIView<DNNode> *button = [[SIUIApplication application] findViewWithQuery:@"//UIRoundedRectButton/UIButtonLabel[@text='Button 1']/.."];
+	UIView<DNNode> *button = [[SIUIApplication application] findViewWithQuery:@"//UIRoundedRectButton/UIButtonLabel[text='Button 1']/.."];
 	GHAssertEqualStrings(button.dnName, @"UIRoundedRectButton", @"Search bar not returned");
 }
 
@@ -64,8 +64,8 @@
       GHFail(@"Exception not thrown");
    }
    @catch (SISyntaxException *exception) {
-      GHAssertEqualStrings(exception.name, NSStringFromClass([SISyntaxException class]), @"Incorrect domain");
-      GHAssertEqualStrings(exception.reason, @"Cannot go from a // to a [ at character index 2", @"Reason incorrect");
+      GHAssertEqualStrings(exception.name, NSStringFromClass([SISyntaxException class]), nil);
+      GHAssertEqualStrings(exception.reason, @"Query appears to be incomplete.", nil);
    }
 }
 
@@ -79,7 +79,7 @@
 }
 
 -(void) testIsViewPresentReturnsYes {
-	GHAssertTrue([[SIUIApplication application] isViewPresent:@"//UIRoundedRectButton/UIButtonLabel[@text='Button 1']/.."], @"Should have returned YES");
+	GHAssertTrue([[SIUIApplication application] isViewPresent:@"//UIRoundedRectButton/UIButtonLabel[text='Button 1']/.."], @"Should have returned YES");
 }
 
 -(void) testIsViewPresentReturnsNo {
@@ -103,14 +103,14 @@
 
 -(void) testTapViewWithQueryTapsButton1 {
    self.testViewController.tappedButton = 0;
-   UIView *tappedView = [[SIUIApplication application] tapViewWithQuery:@"//UIRoundedRectButton[@titleLabel.text='Button 1']"];
+   UIView *tappedView = [[SIUIApplication application] tapViewWithQuery:@"//UIRoundedRectButton[titleLabel.text='Button 1']"];
    GHAssertEquals(self.testViewController.tappedButton, 1, @"Button not tapped");
 	GHAssertEqualObjects(tappedView, self.testViewController.button1, @"button not returned");
 }
 
 -(void) testTapViewWithQueryTapsButton2 {
    self.testViewController.tappedButton = 0;
-   UIView *tappedView = [[SIUIApplication application] tapViewWithQuery:@"//UIRoundedRectButton[@titleLabel.text='Button 2']"];
+   UIView *tappedView = [[SIUIApplication application] tapViewWithQuery:@"//UIRoundedRectButton[titleLabel.text='Button 2']"];
    GHAssertEquals(self.testViewController.tappedButton, 2, @"Button not tapped");
 	GHAssertEqualObjects(tappedView, self.testViewController.button2, @"button not returned");
 }
@@ -194,7 +194,7 @@
 	
    [[SIUIApplication application] tapButtonWithLabel:@"Wait for it!"];
    GHAssertEqualStrings(self.testViewController.displayLabel.text, @"...", @"Label should not be updated yet");
-   UIView *label = [[SIUIApplication application] waitForViewWithQuery:@"//UILabel[@text='Clicked!']" retryInterval:0.5 maxRetries:5];
+   UIView *label = [[SIUIApplication application] waitForViewWithQuery:@"//UILabel[text='Clicked!']" retryInterval:0.5 maxRetries:5];
    GHAssertNotNil(label, @"Nothing returned");
    GHAssertEqualStrings(self.testViewController.displayLabel.text, @"Clicked!", @"Button should have updated by now");
 }
@@ -215,7 +215,7 @@
    [[NSRunLoop mainRunLoop] runUntilDate:[NSDate date]];
 	
    @try {
-      [[SIUIApplication application] waitForViewWithQuery:@"//UILabel[@text='Wait for it!']" retryInterval:0.5 maxRetries:5];
+      [[SIUIApplication application] waitForViewWithQuery:@"//UILabel[text='Wait for it!']" retryInterval:0.5 maxRetries:5];
       GHFail(@"Exception not thrown");
    }
    @catch (SIUIException *exception) {
@@ -242,7 +242,7 @@
 							  }];
 	});
 	
-	[[SIUIApplication application] waitForAnimationEndOnViewWithQuery:@"//UIRoundedRectButton[@titleLabel.text='Wait for it!']" retryInterval:0.8];
+	[[SIUIApplication application] waitForAnimationEndOnViewWithQuery:@"//UIRoundedRectButton[titleLabel.text='Wait for it!']" retryInterval:0.8];
 	
    NSTimeInterval diff = fabs([before timeIntervalSinceNow]);
 	GHAssertGreaterThan(diff, 2.0, @"not long enough, animation not finished.");
