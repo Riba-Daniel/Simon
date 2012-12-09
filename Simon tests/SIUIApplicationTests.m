@@ -25,6 +25,8 @@
 
 @interface SIUIApplicationTests : AbstractTestWithControlsOnView
 
+-(void) ensureTestInBackground:(void (^)())testBlock;
+
 @end
 
 @implementation SIUIApplicationTests
@@ -95,10 +97,16 @@
 #pragma mark - taps
 
 -(void) testTapViewTapsButton1 {
-   self.testViewController.tappedButton = 0;
-   UIView *tappedView = [[SIUIApplication application] tapView:self.testViewController.button1];
-   GHAssertEquals(self.testViewController.tappedButton, 1, @"Button not tapped");
-	GHAssertEqualObjects(tappedView, self.testViewController.button1, @"button not returned");
+	[self ensureTestInBackground:^{
+		self.testViewController.tappedButton = 0;
+		UIView *tappedView = [[SIUIApplication application] tapView:self.testViewController.button1];
+		
+		//[[NSRunLoop mainRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.5]];
+		//[NSThread sleepForTimeInterval:0.5];
+		
+		GHAssertEquals(self.testViewController.tappedButton, 1, @"Button not tapped");
+		GHAssertEqualObjects(tappedView, self.testViewController.button1, @"button not returned");
+	}];
 }
 
 -(void) testTapViewWithQueryTapsButton1 {
@@ -314,5 +322,25 @@
 	}
 }
 
+#pragma mark - Helpers
+
+-(void) ensureTestInBackground:(void (^)())testBlock {
+	__block NSException *exception = nil;
+	if ([NSThread isMainThread] ) {
+		dispatch_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
+			@try {
+				testBlock();
+			}
+			@catch (NSException *e) {
+				exception = [e retain];
+			}
+		});
+		if (exception != nil) {
+			@throw [exception autorelease];
+		}
+	} else {
+		testBlock();
+	}
+}
 
 @end

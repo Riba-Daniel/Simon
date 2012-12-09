@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import <dNodi/DNNode.h>
-#import <Simon/SIUIAction.h>
 #import <Simon/SIUIViewInfo.h>
 
 /**
@@ -18,7 +17,7 @@
  Then the method call is forwarded to the handler which also implements the DNNode protocol. 
  This allows the handler factory to be able to generate an apprpriate handler for the class on the UI instance. 
  */
-@interface UIView (Simon) <DNNode, SIUIAction, SIUIViewInfo>
+@interface UIView (Simon) <DNNode,  SIUIViewInfo>
 
 /// @name Tasks
 

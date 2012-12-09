@@ -10,9 +10,9 @@
 #import <UIKit/UIKit.h>
 
 #import <Simon/SIUITapGenerator.h>
-#import "UITouch+Simon.h"
-#import "UIEvent+Simon.h"
-#import "UIView+Simon.h"
+#import <Simon/UITouch+Simon.h>
+#import <Simon/UIEvent+Simon.h>
+#import <Simon/UIView+Simon.h>
 
 @implementation SIUITapGenerator
 

@@ -10,7 +10,7 @@
 #import <Simon/SIUIViewHandler.h>
 #import <Simon/SIUITapGenerator.h>
 #import <Simon/SIUISwipeGenerator.h>
-#import "NSObject+Simon.h"
+#import <Simon/NSObject+Simon.h>
 
 // We need access to the private API of the keyboard layout so we can send keys.
 @interface UIKeyboardLayout : UIView
@@ -112,11 +112,11 @@
 		
 		// First navigate the keyboard hierarchy to the keyboard layout.
 		NSArray *windows = [UIApplication sharedApplication].windows;
-		UIWindow *effectsWindow = [windows objectAtIndex:1];
-		UIView *hostView = (UIView *) [effectsWindow.subviews objectAtIndex:0];
-		UIView *keyboardAuto = (UIView *) [hostView.subviews objectAtIndex:0];
-		UIKeyboardImpl *kbImpl = (UIKeyboardImpl *) [keyboardAuto.subviews objectAtIndex:0];
-		UIKeyboardLayout *kbLayout = (UIKeyboardLayout *) [kbImpl.subviews objectAtIndex:0];
+		UIWindow *effectsWindow = windows[1];
+		UIView *hostView = (UIView *) effectsWindow.subviews[0];
+		UIView *keyboardAuto = (UIView *) hostView.subviews[0];
+		UIKeyboardImpl *kbImpl = (UIKeyboardImpl *) keyboardAuto.subviews[0];
+		UIKeyboardLayout *kbLayout = (UIKeyboardLayout *) kbImpl.subviews[0];
 		
 		// Turn on or off auto correct.
 		[kbImpl _setAutocorrects:autoCorrect];

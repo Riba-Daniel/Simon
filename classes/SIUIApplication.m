@@ -10,7 +10,7 @@
 #import <dUsefulStuff/DCCommon.h>
 #import <dUsefulStuff/NSObject+dUsefulStuff.h>
 
-#import "UIView+Simon.h"
+#import <Simon/UIView+Simon.h>
 #import <Simon/SIConstants.h>
 #import <Simon/SISyntaxException.h>
 #import "SIUITooManyFoundException.m"
@@ -19,7 +19,7 @@
 #import <Simon/SIUIViewHandlerFactory.h>
 #import <Simon/SIUIException.h>
 #import <Simon/SIUIViewDescriptionVisitor.h>
-#import "NSObject+Simon.h"
+#import <Simon/NSObject+Simon.h>
 #import <Simon/SIUINotAnInputViewException.h>
 #import <Simon/SIAppBackpack.h>
 #import <Simon/SIUIApplication.h>

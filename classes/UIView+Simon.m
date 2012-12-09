@@ -39,24 +39,8 @@
 
 #pragma mark - Actions
 
--(void) tap {
-	[[[SIUIApplication application].viewHandlerFactory handlerForView:self] tap];
-}
-
--(void) tapAtPoint:(CGPoint) atPoint {
-	[[[SIUIApplication application].viewHandlerFactory handlerForView:self] tapAtPoint:atPoint];
-}
-
--(void) swipe:(SIUISwipeDirection) swipeDirection distance:(int) distance {
-   [[[SIUIApplication application].viewHandlerFactory handlerForView:self] swipe:swipeDirection distance:distance];
-}
-
 -(NSDictionary *) kvcAttributes {
    return [[[SIUIApplication application].viewHandlerFactory handlerForView:self] kvcAttributes];
-}
-
--(void) enterText:(NSString *) text keyRate:(NSTimeInterval) keyRate autoCorrect:(BOOL)autoCorrect {
-	[[[SIUIApplication application].viewHandlerFactory handlerForView:self] enterText:text keyRate:keyRate autoCorrect:autoCorrect];
 }
 
 -(CGPoint) pointInWindowFromPointInView:(CGPoint) pointInView {
