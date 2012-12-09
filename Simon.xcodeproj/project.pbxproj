@@ -47,7 +47,6 @@
 		3210989115D6896C00567D6D /* SIStoryGroupManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3210989015D6896C00567D6D /* SIStoryGroupManagerTests.m */; };
 		3216D48015DDCE0700CD47C8 /* libSimon.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 653D0E8A13A782AD00A5AB82 /* libSimon.a */; };
 		3217B915165126510016D7D5 /* libCocoaHTTPServer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32B9592D15E5E62F00470287 /* libCocoaHTTPServer.a */; };
-		3217EF7D166E2792004D9AD7 /* libPublicAutomation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3217EF7A166E2762004D9AD7 /* libPublicAutomation.a */; };
 		321A346A1519FA9E00B22EDD /* NSObject+Simon.h in Headers */ = {isa = PBXBuildFile; fileRef = 321A34681519FA9E00B22EDD /* NSObject+Simon.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		321A346B1519FA9E00B22EDD /* NSObject+Simon.m in Sources */ = {isa = PBXBuildFile; fileRef = 321A34691519FA9E00B22EDD /* NSObject+Simon.m */; };
 		321F0E6C164D17B0004EC922 /* SIStoryTextSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 321F0E6B164D17B0004EC922 /* SIStoryTextSource.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -300,20 +299,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		3217EF79166E2762004D9AD7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3217EF75166E2761004D9AD7 /* PublicAutomation.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = C194253815D838BD004FC314;
-			remoteInfo = PublicAutomation;
-		};
-		3217EF7B166E278A004D9AD7 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 3217EF75166E2761004D9AD7 /* PublicAutomation.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = C194253715D838BD004FC314;
-			remoteInfo = PublicAutomation;
-		};
 		3224269E15EBA88800F0CB62 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 32CDF2E715E5E5DA001F4317 /* dUsefulStuff.xcodeproj */;
@@ -520,7 +505,6 @@
 		3210988C15D6893E00567D6D /* SIStoryGroupManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIStoryGroupManager.h; sourceTree = "<group>"; };
 		3210988D15D6893E00567D6D /* SIStoryGroupManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIStoryGroupManager.m; sourceTree = "<group>"; };
 		3210989015D6896C00567D6D /* SIStoryGroupManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIStoryGroupManagerTests.m; sourceTree = "<group>"; };
-		3217EF75166E2761004D9AD7 /* PublicAutomation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PublicAutomation.xcodeproj; path = submodules/PublicAutomation/PublicAutomation.xcodeproj; sourceTree = "<group>"; };
 		321A34681519FA9E00B22EDD /* NSObject+Simon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Simon.h"; sourceTree = "<group>"; };
 		321A34691519FA9E00B22EDD /* NSObject+Simon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = "NSObject+Simon.m"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		321F0E6B164D17B0004EC922 /* SIStoryTextSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIStoryTextSource.h; sourceTree = "<group>"; };
@@ -802,7 +786,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3217EF7D166E2792004D9AD7 /* libPublicAutomation.a in Frameworks */,
 				32EA6E76150E11E2000A64A1 /* QuartzCore.framework in Frameworks */,
 				653D0E8E13A782AD00A5AB82 /* Foundation.framework in Frameworks */,
 				659E629F13DAFEF500ACD34C /* UIKit.framework in Frameworks */,
@@ -858,14 +841,6 @@
 				653D0EA013A783A500A5AB82 /* CoreGraphics.framework */,
 			);
 			name = iOS;
-			sourceTree = "<group>";
-		};
-		3217EF76166E2761004D9AD7 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				3217EF7A166E2762004D9AD7 /* libPublicAutomation.a */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		3224267C15E74DC600F0CB62 /* In app UI */ = {
@@ -1302,7 +1277,6 @@
 		653D0E7F13A782AC00A5AB82 = {
 			isa = PBXGroup;
 			children = (
-				3217EF75166E2761004D9AD7 /* PublicAutomation.xcodeproj */,
 				6583B3EC13CF2220005E13F3 /* ReadMe.textile */,
 				6583B3EB13CF2220005E13F3 /* License.textile */,
 				6583B3EE13CF2242005E13F3 /* ChangeLog.textile */,
@@ -1664,7 +1638,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				3217EF7C166E278A004D9AD7 /* PBXTargetDependency */,
 				3293EE5016342D2000C371BF /* PBXTargetDependency */,
 				3293EE4C16342D0C00C371BF /* PBXTargetDependency */,
 				3293EE4E16342D0C00C371BF /* PBXTargetDependency */,
@@ -1728,10 +1701,6 @@
 					ProductGroup = 32A4DE261621B74E0031DEA3 /* Products */;
 					ProjectRef = 32A4DE251621B74E0031DEA3 /* GRMustache.xcodeproj */;
 				},
-				{
-					ProductGroup = 3217EF76166E2761004D9AD7 /* Products */;
-					ProjectRef = 3217EF75166E2761004D9AD7 /* PublicAutomation.xcodeproj */;
-				},
 			);
 			projectRoot = "";
 			targets = (
@@ -1746,13 +1715,6 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		3217EF7A166E2762004D9AD7 /* libPublicAutomation.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libPublicAutomation.a;
-			remoteRef = 3217EF79166E2762004D9AD7 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		322426A515EBA95E00F0CB62 /* libCocoaHTTPServer.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.dylib";
@@ -2191,11 +2153,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		3217EF7C166E278A004D9AD7 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = PublicAutomation;
-			targetProxy = 3217EF7B166E278A004D9AD7 /* PBXContainerItemProxy */;
-		};
 		3224269F15EBA88800F0CB62 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "OS X dynlib";
