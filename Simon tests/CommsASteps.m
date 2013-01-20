@@ -17,9 +17,9 @@
 
 @implementation CommsASteps
 
-SIMapStepToSelector(@"Given this class stores (.*) in the story storage using key (.*)", storesString:withKey:)
+mapStepToSelector(@"Given this class stores (.*) in the story storage using key (.*)", storesString:withKey:)
 -(void) storesString:(NSString *) aString withKey:(NSString *) key{
-	SIStoreInStory(key, aString);
+	storeInStory(key, aString);
 }
 
 @end

@@ -19,6 +19,9 @@
 #define HTTP_MAX_RETRIES 5
 #define HTTP_RETRY_INTERVAL 2.0f
 
+#define DEFAULT_RETRY_FREQUENCY 0.2f
+#define DEFAULT_TIMEOUT 5.0f
+
 /**
  * The prefix used to start the method names for the step definition.
  */

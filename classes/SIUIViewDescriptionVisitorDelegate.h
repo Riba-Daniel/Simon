@@ -22,10 +22,10 @@
  @param indexPath the index path to the UIView in the UI tree.
  @param siblingIndex the index of the UIView when there are prior views with the same description and parent. i.e. siblings.
  */
--(void) visitedView:(UIView *) view 
-		  description:(NSString *) description 
-			attributes:(NSDictionary *) attributes
-			 indexPath:(NSIndexPath *) indexPath
-				sibling:(int) siblingIndex;
+-(void) visitView:(UIView *) view
+		description:(NSString *) description
+		 attributes:(NSDictionary *) attributes
+		  indexPath:(NSIndexPath *) indexPath
+			 sibling:(int) siblingIndex;
 
 @end

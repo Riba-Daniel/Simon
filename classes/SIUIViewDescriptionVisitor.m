@@ -31,7 +31,7 @@
 // Entry point method.
 -(void) visitView:(UIView *) view {
 	
-	// Create the initial index path and sibling array. 
+	// Create the initial index path and sibling array.
 	NSIndexPath *indexPath = [NSIndexPath indexPathWithIndex:0];
 	NSMutableArray *siblingNames = [NSMutableArray array];
 	
@@ -40,8 +40,8 @@
 }
 
 -(void) visitAllWindows {
-
-	// Create the initial index path and sibling array. 
+	
+	// Create the initial index path and sibling array.
 	NSMutableArray *siblingNames = [NSMutableArray array];
 	
 	// Get the window list.
@@ -71,11 +71,11 @@
 	[siblingNames addObject:viewDescription];
 	
 	// Tell the delegate we are being visited.
-	[delegate visitedView:view 
-				 description:viewDescription 
-				  attributes:[view kvcAttributes]
-					indexPath:indexPath
-					  sibling:siblingCount];
+	[delegate visitView:view
+			  description:viewDescription
+				attributes:[view kvcAttributes]
+				 indexPath:indexPath
+					sibling:siblingCount];
 	
 	// Loop through subviews and visit each one.
 	NSUInteger idx = 0;

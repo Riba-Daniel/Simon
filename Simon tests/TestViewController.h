@@ -22,7 +22,7 @@
 
 @property (nonatomic) NSInteger tappedButton;
 @property (nonatomic) NSInteger tappedTabBarItem;
-@property (nonatomic) NSInteger selectedRow;
+@property (nonatomic, readonly) NSInteger selectedRow;
 @property (nonatomic, retain) NSDate *startDragTime;
 @property (nonatomic, retain) NSDate *endDragTime;
 
@@ -35,5 +35,7 @@
 - (IBAction)waitForItTapped:(id)sender;
 
 - (NSTimeInterval) dragDuration;
+
+-(void) deselectRow;
 
 @end

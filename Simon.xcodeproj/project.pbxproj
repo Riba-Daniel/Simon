@@ -100,6 +100,18 @@
 		3261A026160616B000DDA1CF /* NSData+Simon.m in Sources */ = {isa = PBXBuildFile; fileRef = 3261A022160616B000DDA1CF /* NSData+Simon.m */; };
 		3261A0281606175200DDA1CF /* NSData+SimonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3261A0271606175200DDA1CF /* NSData+SimonTests.m */; };
 		3261A0291606175200DDA1CF /* NSData+SimonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3261A0271606175200DDA1CF /* NSData+SimonTests.m */; };
+		3264C84D1696937C00E654E0 /* SIUIApplication+Text.h in Headers */ = {isa = PBXBuildFile; fileRef = 3264C84B1696937C00E654E0 /* SIUIApplication+Text.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3264C84E1696937C00E654E0 /* SIUIApplication+Text.m in Sources */ = {isa = PBXBuildFile; fileRef = 3264C84C1696937C00E654E0 /* SIUIApplication+Text.m */; };
+		3264C85116969BB100E654E0 /* SIUIApplication+Searches.h in Headers */ = {isa = PBXBuildFile; fileRef = 3264C84F16969BB100E654E0 /* SIUIApplication+Searches.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3264C85216969BB100E654E0 /* SIUIApplication+Searches.m in Sources */ = {isa = PBXBuildFile; fileRef = 3264C85016969BB100E654E0 /* SIUIApplication+Searches.m */; };
+		3264C85416969D5700E654E0 /* SIUIApplication_TextTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3264C85316969D5700E654E0 /* SIUIApplication_TextTests.m */; };
+		3264C85616969DF900E654E0 /* SIUIApplication_SearchesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3264C85516969DF900E654E0 /* SIUIApplication_SearchesTests.m */; };
+		3264C8591696A10A00E654E0 /* SIUIApplication+Actions.h in Headers */ = {isa = PBXBuildFile; fileRef = 3264C8571696A10900E654E0 /* SIUIApplication+Actions.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3264C85A1696A10A00E654E0 /* SIUIApplication+Actions.m in Sources */ = {isa = PBXBuildFile; fileRef = 3264C8581696A10900E654E0 /* SIUIApplication+Actions.m */; };
+		3264C85C1696A27300E654E0 /* SIUIApplication_ActionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3264C85B1696A27300E654E0 /* SIUIApplication_ActionsTests.m */; };
+		3264C85F1696A3DD00E654E0 /* SIUIApplication+Time.h in Headers */ = {isa = PBXBuildFile; fileRef = 3264C85D1696A3DD00E654E0 /* SIUIApplication+Time.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3264C8601696A3DD00E654E0 /* SIUIApplication+Time.m in Sources */ = {isa = PBXBuildFile; fileRef = 3264C85E1696A3DD00E654E0 /* SIUIApplication+Time.m */; };
+		3264C8621696A89600E654E0 /* SIUIApplication_TimeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3264C8611696A89500E654E0 /* SIUIApplication_TimeTests.m */; };
 		3265B0231514487100BE0930 /* Macro.stories in Resources */ = {isa = PBXBuildFile; fileRef = 3265B0211514487100BE0930 /* Macro.stories */; };
 		3265B0241514487100BE0930 /* MacroStoryImplementations.m in Sources */ = {isa = PBXBuildFile; fileRef = 3265B0221514487100BE0930 /* MacroStoryImplementations.m */; };
 		3265B02715144DB400BE0930 /* SIUIAbstractEventGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 3265B02515144DB300BE0930 /* SIUIAbstractEventGenerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -162,6 +174,7 @@
 		32A0A7CB15FE24D100A3964F /* SIStory.m in Sources */ = {isa = PBXBuildFile; fileRef = 653D0EB813A783C000A5AB82 /* SIStory.m */; };
 		32A0A7CD15FF208A00A3964F /* NSProcessInfo+SimonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A0A7CC15FF208A00A3964F /* NSProcessInfo+SimonTests.m */; };
 		32A188A515EF89BE00B8C111 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 32A188A315EF89BE00B8C111 /* InfoPlist.strings */; };
+		32A3660D1674BD1900D8F5BA /* libPublicAutomation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32A3660A1674BC6A00D8F5BA /* libPublicAutomation.a */; };
 		32A4DDFB161FD9FB0031DEA3 /* TestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A4DDFA161FD9FB0031DEA3 /* TestUtils.m */; };
 		32A4DDFC161FD9FB0031DEA3 /* TestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A4DDFA161FD9FB0031DEA3 /* TestUtils.m */; };
 		32A4DE3B1621B8AB0031DEA3 /* libGRMustache5-MacOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32A4DE301621B74F0031DEA3 /* libGRMustache5-MacOS.a */; };
@@ -355,6 +368,20 @@
 			remoteGlobalIDString = 322DA73E159B4A5C005CFC83;
 			remoteInfo = "CocoaHTTPServer-iOS";
 		};
+		32A366091674BC6A00D8F5BA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 32A365FE1674BC6A00D8F5BA /* PublicAutomation.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C194253815D838BD004FC314;
+			remoteInfo = PublicAutomation;
+		};
+		32A3660B1674BD1000D8F5BA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 32A365FE1674BC6A00D8F5BA /* PublicAutomation.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = C194253715D838BD004FC314;
+			remoteInfo = PublicAutomation;
+		};
 		32A4DE2F1621B74F0031DEA3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 32A4DE251621B74E0031DEA3 /* GRMustache.xcodeproj */;
@@ -485,7 +512,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0B14F00D15CBA65C00284016 /* GHUnitIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GHUnitIOS.framework; path = ../frameworks/GHUnit/0.5.2/GHUnitIOS.framework; sourceTree = "<group>"; };
+		0B14F00D15CBA65C00284016 /* GHUnitIOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GHUnitIOS.framework; path = ../frameworks/GHUnit/0.5.6/GHUnitIOS.framework; sourceTree = "<group>"; };
 		0B14F00F15CBA66F00284016 /* libOCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOCMock.a; path = ../frameworks/OCMock/2.0.1/iOS/libOCMock.a; sourceTree = "<group>"; };
 		0B14F01115CBA66F00284016 /* NSNotificationCenter+OCMAdditions.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+OCMAdditions.h"; sourceTree = "<group>"; };
 		0B14F01215CBA66F00284016 /* OCMArg.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OCMArg.h; sourceTree = "<group>"; };
@@ -546,6 +573,18 @@
 		3261A021160616B000DDA1CF /* NSData+Simon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Simon.h"; sourceTree = "<group>"; };
 		3261A022160616B000DDA1CF /* NSData+Simon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Simon.m"; sourceTree = "<group>"; };
 		3261A0271606175200DDA1CF /* NSData+SimonTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+SimonTests.m"; sourceTree = "<group>"; };
+		3264C84B1696937C00E654E0 /* SIUIApplication+Text.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SIUIApplication+Text.h"; sourceTree = "<group>"; };
+		3264C84C1696937C00E654E0 /* SIUIApplication+Text.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SIUIApplication+Text.m"; sourceTree = "<group>"; };
+		3264C84F16969BB100E654E0 /* SIUIApplication+Searches.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SIUIApplication+Searches.h"; sourceTree = "<group>"; };
+		3264C85016969BB100E654E0 /* SIUIApplication+Searches.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SIUIApplication+Searches.m"; sourceTree = "<group>"; };
+		3264C85316969D5700E654E0 /* SIUIApplication_TextTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUIApplication_TextTests.m; sourceTree = "<group>"; };
+		3264C85516969DF900E654E0 /* SIUIApplication_SearchesTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUIApplication_SearchesTests.m; sourceTree = "<group>"; };
+		3264C8571696A10900E654E0 /* SIUIApplication+Actions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SIUIApplication+Actions.h"; sourceTree = "<group>"; };
+		3264C8581696A10900E654E0 /* SIUIApplication+Actions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SIUIApplication+Actions.m"; sourceTree = "<group>"; };
+		3264C85B1696A27300E654E0 /* SIUIApplication_ActionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUIApplication_ActionsTests.m; sourceTree = "<group>"; };
+		3264C85D1696A3DD00E654E0 /* SIUIApplication+Time.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SIUIApplication+Time.h"; sourceTree = "<group>"; };
+		3264C85E1696A3DD00E654E0 /* SIUIApplication+Time.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SIUIApplication+Time.m"; sourceTree = "<group>"; };
+		3264C8611696A89500E654E0 /* SIUIApplication_TimeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUIApplication_TimeTests.m; sourceTree = "<group>"; };
 		3265B0211514487100BE0930 /* Macro.stories */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Macro.stories; sourceTree = "<group>"; };
 		3265B0221514487100BE0930 /* MacroStoryImplementations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = MacroStoryImplementations.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		3265B02515144DB300BE0930 /* SIUIAbstractEventGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIAbstractEventGenerator.h; sourceTree = "<group>"; };
@@ -601,6 +640,7 @@
 		32A1889815EF89BE00B8C111 /* Pieman Tests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pieman Tests.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		32A188A215EF89BE00B8C111 /* Pieman Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Pieman Tests-Info.plist"; sourceTree = "<group>"; };
 		32A188A415EF89BE00B8C111 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		32A365FE1674BC6A00D8F5BA /* PublicAutomation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PublicAutomation.xcodeproj; path = submodules/PublicAutomation/PublicAutomation.xcodeproj; sourceTree = "<group>"; };
 		32A4DDF9161FD9FB0031DEA3 /* TestUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestUtils.h; sourceTree = "<group>"; };
 		32A4DDFA161FD9FB0031DEA3 /* TestUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestUtils.m; sourceTree = "<group>"; };
 		32A4DE251621B74E0031DEA3 /* GRMustache.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GRMustache.xcodeproj; path = submodules/GRMustache/src/GRMustache.xcodeproj; sourceTree = "<group>"; };
@@ -786,6 +826,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				32A3660D1674BD1900D8F5BA /* libPublicAutomation.a in Frameworks */,
 				32EA6E76150E11E2000A64A1 /* QuartzCore.framework in Frameworks */,
 				653D0E8E13A782AD00A5AB82 /* Foundation.framework in Frameworks */,
 				659E629F13DAFEF500ACD34C /* UIKit.framework in Frameworks */,
@@ -1119,6 +1160,14 @@
 			name = "OS X";
 			sourceTree = "<group>";
 		};
+		32A365FF1674BC6A00D8F5BA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				32A3660A1674BC6A00D8F5BA /* libPublicAutomation.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		32A4DE261621B74E0031DEA3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -1277,6 +1326,7 @@
 		653D0E7F13A782AC00A5AB82 = {
 			isa = PBXGroup;
 			children = (
+				32A365FE1674BC6A00D8F5BA /* PublicAutomation.xcodeproj */,
 				6583B3EC13CF2220005E13F3 /* ReadMe.textile */,
 				6583B3EB13CF2220005E13F3 /* License.textile */,
 				6583B3EE13CF2242005E13F3 /* ChangeLog.textile */,
@@ -1444,6 +1494,14 @@
 			isa = PBXGroup;
 			children = (
 				3232A9F514EDFD25002010FF /* Events */,
+				3264C8571696A10900E654E0 /* SIUIApplication+Actions.h */,
+				3264C8581696A10900E654E0 /* SIUIApplication+Actions.m */,
+				3264C84F16969BB100E654E0 /* SIUIApplication+Searches.h */,
+				3264C85016969BB100E654E0 /* SIUIApplication+Searches.m */,
+				3264C84B1696937C00E654E0 /* SIUIApplication+Text.h */,
+				3264C84C1696937C00E654E0 /* SIUIApplication+Text.m */,
+				3264C85D1696A3DD00E654E0 /* SIUIApplication+Time.h */,
+				3264C85E1696A3DD00E654E0 /* SIUIApplication+Time.m */,
 				659E629B13DAFC4000ACD34C /* SIUIApplication.h */,
 				659E629C13DAFC4000ACD34C /* SIUIApplication.m */,
 				325683D814EF6CEB00F7C189 /* SIUIConstants.h */,
@@ -1460,11 +1518,15 @@
 		659E62A013DB026400ACD34C /* app */ = {
 			isa = PBXGroup;
 			children = (
-				659E62A213DB027E00ACD34C /* SIUIApplicationTests.m */,
 				32793BAC14F4F97700B93621 /* Events */,
-				32793BAA14F4F95600B93621 /* View Handlers */,
+				3264C85B1696A27300E654E0 /* SIUIApplication_ActionsTests.m */,
+				3264C85516969DF900E654E0 /* SIUIApplication_SearchesTests.m */,
+				3264C85316969D5700E654E0 /* SIUIApplication_TextTests.m */,
+				3264C8611696A89500E654E0 /* SIUIApplication_TimeTests.m */,
+				659E62A213DB027E00ACD34C /* SIUIApplicationTests.m */,
 				94AED1511420DB070070D3BB /* SIUIHandlerFactoryTests.m */,
 				324108BB1509C61E00AFBF66 /* SIUIViewDescriptionVisitorTests.m */,
+				32793BAA14F4F95600B93621 /* View Handlers */,
 			);
 			name = app;
 			sourceTree = "<group>";
@@ -1561,6 +1623,10 @@
 				32703659164D05E000C6EC88 /* SIStoryTextFileSource.h in Headers */,
 				321F0E6C164D17B0004EC922 /* SIStoryTextSource.h in Headers */,
 				321F0E75164E698F004EC922 /* SIStoryTextSourceDelegate.h in Headers */,
+				3264C84D1696937C00E654E0 /* SIUIApplication+Text.h in Headers */,
+				3264C85116969BB100E654E0 /* SIUIApplication+Searches.h in Headers */,
+				3264C8591696A10A00E654E0 /* SIUIApplication+Actions.h in Headers */,
+				3264C85F1696A3DD00E654E0 /* SIUIApplication+Time.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1638,6 +1704,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				32A3660C1674BD1000D8F5BA /* PBXTargetDependency */,
 				3293EE5016342D2000C371BF /* PBXTargetDependency */,
 				3293EE4C16342D0C00C371BF /* PBXTargetDependency */,
 				3293EE4E16342D0C00C371BF /* PBXTargetDependency */,
@@ -1701,6 +1768,10 @@
 					ProductGroup = 32A4DE261621B74E0031DEA3 /* Products */;
 					ProjectRef = 32A4DE251621B74E0031DEA3 /* GRMustache.xcodeproj */;
 				},
+				{
+					ProductGroup = 32A365FF1674BC6A00D8F5BA /* Products */;
+					ProjectRef = 32A365FE1674BC6A00D8F5BA /* PublicAutomation.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -1720,6 +1791,13 @@
 			fileType = "compiled.mach-o.dylib";
 			path = libCocoaHTTPServer.a;
 			remoteRef = 322426A415EBA95E00F0CB62 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		32A3660A1674BC6A00D8F5BA /* libPublicAutomation.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libPublicAutomation.a;
+			remoteRef = 32A366091674BC6A00D8F5BA /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		32A4DE301621B74F0031DEA3 /* libGRMustache5-MacOS.a */ = {
@@ -2098,6 +2176,10 @@
 				32CF03DA16148D4700FFD010 /* SIFinalReport.m in Sources */,
 				3249677116428FB500118EF4 /* SIStorySyntaxParser.m in Sources */,
 				3270365A164D05E000C6EC88 /* SIStoryTextFileSource.m in Sources */,
+				3264C84E1696937C00E654E0 /* SIUIApplication+Text.m in Sources */,
+				3264C85216969BB100E654E0 /* SIUIApplication+Searches.m in Sources */,
+				3264C85A1696A10A00E654E0 /* SIUIApplication+Actions.m in Sources */,
+				3264C8601696A3DD00E654E0 /* SIUIApplication+Time.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2147,6 +2229,10 @@
 				32A4DDFB161FD9FB0031DEA3 /* TestUtils.m in Sources */,
 				324967751642A07400118EF4 /* SIStorySyntaxParserTests.m in Sources */,
 				321F0E77164E9276004EC922 /* SIStoryTextFileSourceTests.m in Sources */,
+				3264C85416969D5700E654E0 /* SIUIApplication_TextTests.m in Sources */,
+				3264C85616969DF900E654E0 /* SIUIApplication_SearchesTests.m in Sources */,
+				3264C85C1696A27300E654E0 /* SIUIApplication_ActionsTests.m in Sources */,
+				3264C8621696A89600E654E0 /* SIUIApplication_TimeTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2187,6 +2273,11 @@
 			isa = PBXTargetDependency;
 			name = "CocoaHTTPServer-iOS";
 			targetProxy = 3293EE4F16342D2000C371BF /* PBXContainerItemProxy */;
+		};
+		32A3660C1674BD1000D8F5BA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = PublicAutomation;
+			targetProxy = 32A3660B1674BD1000D8F5BA /* PBXContainerItemProxy */;
 		};
 		32A4DE3D1621B8B20031DEA3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -2364,7 +2455,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/PrivateFrameworks\"",
-					"\"$(SRCROOT)/../frameworks/GHUnit/0.5.1\"",
+					"\"$(SRCROOT)/../frameworks/GHUnit/Latest\"",
 				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2394,7 +2485,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(DEVELOPER_DIR)/Platforms/iPhoneSimulator.platform/Developer/Library/PrivateFrameworks\"",
-					"\"$(SRCROOT)/../frameworks/GHUnit/0.5.1\"",
+					"\"$(SRCROOT)/../frameworks/GHUnit/Latest\"",
 				);
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2544,7 +2635,7 @@
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../frameworks/GHUnit/0.5.2\"",
+					"\"$(SRCROOT)/../frameworks/GHUnit/0.5.6\"",
 				);
 				GCC_PREFIX_HEADER = "Simon-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -2571,7 +2662,7 @@
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../frameworks/GHUnit/0.5.2\"",
+					"\"$(SRCROOT)/../frameworks/GHUnit/0.5.6\"",
 				);
 				GCC_PREFIX_HEADER = "Simon-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (

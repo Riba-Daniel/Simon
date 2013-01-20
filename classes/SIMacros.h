@@ -8,6 +8,9 @@
 #import <dUsefulStuff/DCCommon.h>
 #import <Simon/SIStepMapping.h>
 #import <Simon/SIUIApplication.h>
+#import <Simon/SIUIApplication+Text.h>
+#import <Simon/SIUIApplication+Searches.h>
+#import <Simon/SIUIApplication+Actions.h>
 #import <Simon/SIConstants.h>
 #import <Simon/SIStory.h>
 
@@ -16,14 +19,6 @@
  */
 #define toNSString(chars) _toNSString(chars)
 #define _toNSString(chars) @#chars
-
-#pragma mark - Runners
-
-/**
- This macro must be placed in your startup code. 
- */
-#define SIRun() DC_LOG(@"Starting backpack"); \
-[SIAppBackpack backpack];
 
 #pragma mark - Step mapping
 
@@ -37,7 +32,7 @@
  }
  `
  */
-#define SIMapStepToSelector(theRegex, aSelector) \
+#define mapStepToSelector(theRegex, aSelector) \
 +(SIStepMapping *) DC_CONCATINATE(SI_STEP_METHOD_PREFIX, __LINE__):(Class) class { \
    DC_LOG(@"Creating mapping \"%@\" -> %@::%@", theRegex, NSStringFromClass(class), toNSString(aSelector)); \
    NSError *error = nil; \
@@ -53,12 +48,12 @@
 /**
  * Macro which stores data in the story so it can be passed between implmentation classes. 
  */
-#define SIStoreInStory(key, value) [(SIStory *) objc_getAssociatedObject(self, SI_INSTANCE_STORY_REF_KEY) storeObject:value withKey:key]
+#define storeInStory(key, value) [(SIStory *) objc_getAssociatedObject(self, SI_INSTANCE_STORY_REF_KEY) storeObject:value withKey:key]
 
 /**
  * The opposite of SISToreInStory(key, value) this macro retrieves a previously stored value.
  */
-#define SIRetrieveFromStory(key) [(SIStory *) objc_getAssociatedObject(self, SI_INSTANCE_STORY_REF_KEY) retrieveObjectWithKey:key]
+#define retrieveFromStory(key) [(SIStory *) objc_getAssociatedObject(self, SI_INSTANCE_STORY_REF_KEY) retrieveObjectWithKey:key]
 
 #pragma mark - Accessing the UI
 /// @name UI interactions
@@ -66,7 +61,7 @@
 /**
  Prints a tree view of the current window's UIView hirachy to the console. This is very useful for debugging and working out queries to location controls. 
  */
-#define SIPrintCurrentWindowTree() [[SIUIApplication application] logUITree]
+#define printCurrentWindowTree() [[SIUIApplication application] logUITree]
 
 /**
  Simple wrapper around dNodi's query facilities which returns a simple object from the display. This will trigger an error if the control is not found, so it is both a find and assert in one wrapper. 
@@ -74,7 +69,7 @@
  @param path a NSString containing the path to follow.
  @return a single UIView instance.
  */
-#define SIFindView(path) [[SIUIApplication application] findViewWithQuery:path]
+#define withQuery(path) [[SIUIApplication application] viewWithQuery:path]
 
 /**
  Finds and returns an array of views. This does not assert anything about the views it is looking for.
@@ -82,7 +77,7 @@
  @param query a NSString containing the path to follow.
  @return a NSArray containing the found views.
  */
-#define SIFindViews(query) [[SIUIApplication application] findViewsWithQuery:query]
+#define viewsWithQuery(query) [[SIUIApplication application] viewsWithQuery:query]
 
 /**
  Returns YES if the query returns one or more UIViews.
@@ -90,40 +85,16 @@
  @param query a NSString containing the path to follow.
  @return YES if one or more views are found, otherwise NO.
  */
-#define SIIsViewPresent(query) [[SIUIApplication application] isViewPresent:query]
+#define isPresent(query) [[SIUIApplication application] isViewPresent:query]
 
 /**
- Taps a UIView in a given direction and distance. The passed view can be either a UIView or a NSString containing a query which will locate it in the UI.
+ Taps a UIView. The passed view can be either a UIView or a NSString containing a query which will locate it in the UI.
  
  @param view a NSString containing the path to the view or a UIView reference to the view.
  @return the UIView that was tapped.
  */
-#define SITapView(view) \
-	[(view) isKindOfClass:[NSString class]] ? \
-	[[SIUIApplication application] tapViewWithQuery:(NSString *)view] : \
-	[[SIUIApplication application] tapView:(UIView *)view]
-
-/**
- Locates the button with the matching label and taps it.
- 
- @param label the text label on the button to find.
- */
-#define SITapButtonWithLabel(label) [[SIUIApplication application] tapButtonWithLabel:label]
-
-/**
- Locates the button with the matching label and taps it, then waits for the specified seconds before continuing.
-
- @param label the text label on the button to find.
- @param seconds how many seconds and/or part seconds to wait after tapping the button.
- */
-#define SITapButtonWithLabelAndWait(label, seconds) [[SIUIApplication application] tapButtonWithLabel:label andWait:seconds]
-
-/**
- Locates the tab bar button with the matching label and taps it.
- 
- @param label the text label of the tab bar button we want to tap.
- */
-#define SITapTabBarButtonWithLabel(label) [[SIUIApplication application] tapTabBarButtonWithLabel:label]
+#define tap(view) \
+	[[SIUIApplication application] tap:view]
 
 /**
  Swipes a UIView in a given direction and distance. The passed view can be either a UIView or a NSString containing a query which will locate it in the UI.
@@ -133,17 +104,15 @@
  @param distance how far to swipe in display points.
  @return the UIView that was swiped.
  */
-#define SISwipeView(view, direction, distance) \
-[(view) isKindOfClass:[NSString class]] ? \
-[[SIUIApplication application] swipeViewWithQuery:(NSString *)view inDirection:direction forDistance: distance] : \
-[[SIUIApplication application] swipeView:(UIView *)view inDirection:direction forDistance: distance]
+#define swipe(view, direction, distance) \
+[[SIUIApplication application] swipe:(UIView *)view inDirection:direction forDistance: distance]
 
 /**
  Pauses the current thread for the specified time. Note that this will only work on a background thread.
  
  @param seconds how many seconds to pause for.
  */
-#define SIPauseFor(seconds) [[SIUIApplication application] pauseFor:seconds]
+#define pauseFor(seconds) [[SIUIApplication application] pauseFor:seconds]
 
 /**
  Checks for the existance of a query path on the UI periodically, up to a specified number of retries. Returns the control found (can be only one) or throws an
@@ -153,7 +122,7 @@
  @param retryEvery the time interval between retries.
  @param maxRetryAttempts how many times to attempt to find the control before throwing an exception.
  */
-#define SIWaitForView(query, retryEvery, maxRetryAttempts) [[SIUIApplication application] waitForViewWithQuery:query retryInterval:retryEvery maxRetries:maxRetryAttempts]
+#define waitForView(query, retryEvery, maxRetryAttempts) [[SIUIApplication application] waitForViewWithQuery:query retryInterval:retryEvery maxRetries:maxRetryAttempts]
 
 /**
  Finds the view defined by path and waits until any animations which are active on it finish processing. This is tested periodically as defined by the checkEvery argument.
@@ -163,7 +132,7 @@
  @param query the query path that should locate the control.
  @param checkEvery the time interval to wait before checking for animations.
 */
-#define SIWaitForViewAnimationsToFinish(query, checkEvery) [[SIUIApplication application] waitForAnimationEndOnViewWithQuery:query retryInterval:checkEvery];
+#define waitForViewAnimationsToFinish(query, checkEvery) [[SIUIApplication application] waitForAnimationEndOnViewWithQuery:query retryInterval:checkEvery];
 
 /**
  Brings up the keyboard and enters text into the field. If a query is passed this first finds the field before activating the keyboard.
@@ -172,7 +141,7 @@
  @param query the query path that should locate the control.
  @param text the text that you want entered. It is assumed that the text can be entered. I.e. that the field accepts it.
  */ 
-#define SIEnterText(view, text) \
+#define enterText(view, text) \
 [(view) isKindOfClass:[NSString class]] ? \
 [[SIUIApplication application] enterText: text intoViewWithQuery:(NSString *)view] : \
 [[SIUIApplication application] enterText: text intoView:(UIView *)view]
@@ -298,14 +267,14 @@ do { \
 
 #define SIAssertViewPresentM(query, msgTemplate, ...) \
 	do { \
-		if (!SIIsViewPresent(query)) { \
+		if (!isPresent(query)) { \
 			SIThrowException(ASSERTION_EXCEPTION_NAME, msgTemplate, ## __VA_ARGS__); \
 		} \
 	} while (NO)
 
 #define SIAssertViewNotPresentM(query, msgTemplate, ...) \
 	do { \
-		if (SIIsViewPresent(query)) { \
+		if (isPresent(query)) { \
 			SIThrowException(ASSERTION_EXCEPTION_NAME, msgTemplate, ## __VA_ARGS__); \
 		} \
 	} while (NO)
@@ -331,7 +300,7 @@ do { \
 	do { \
 		UILabel *theLabel = nil; \
 		if ([label isKindOfClass:[NSString class]]) { \
-			theLabel = (UILabel *)SIFindView((NSString *) label); \
+			theLabel = (UILabel *) withQuery((NSString *) label); \
 		} else { \
 			theLabel = (UILabel *) label; \
 		} \

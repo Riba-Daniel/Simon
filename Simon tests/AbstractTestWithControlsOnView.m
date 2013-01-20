@@ -21,6 +21,14 @@
    [self setupTestView];
 }
 
+-(void) setUp {
+	[self executeBlockOnMainThread:^{
+		DC_LOG(@"Setting up for test");
+		[self.testViewController deselectRow];
+		self.testViewController.tableView.delaysContentTouches = NO;
+	}];
+}
+
 -(void) tearDownClass {
    [self removeTestView];
    [super tearDownClass];
@@ -36,7 +44,7 @@
 		[keyWindow addSubview:self.testViewController.view];
 		
 		// get the view on screen.
-		[[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow:0.1]];
+		[[NSRunLoop currentRunLoop] runUntilDate:[NSDate date]];
 	}];   
 }
 
@@ -54,9 +62,11 @@
 #pragma mark - Helpers
 -(void) scrollTableViewToIndex:(int) index atScrollPosition:(UITableViewScrollPosition) position {
    [self executeBlockOnMainThread:^{
+		DC_LOG(@"Scrolling to row %i", index);
 		[self.testViewController.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:index inSection:0] atScrollPosition:position animated:NO];
 		[[NSRunLoop currentRunLoop] runUntilDate: [NSDate date]];
 	}];
+	[NSThread sleepForTimeInterval:0.5];
 }
 
 @end

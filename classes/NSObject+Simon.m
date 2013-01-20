@@ -17,9 +17,9 @@
 @implementation NSObject (Simon)
 
 -(void) executeBlockOnMainThread:(void (^)()) block {
-	if ([NSThread isMainThread]) {
+	if (dispatch_get_current_queue() == dispatch_get_main_queue()) {
 		// Direct execution.
-		DC_LOG(@"Executing on main thread");
+		DC_LOG(@"Already on main thread, executing");
 		block();
 	} else {
 		// Goto the main Q.
@@ -43,6 +43,8 @@
 }
 
 -(void) executeOnSimonThread:(void (^)()) block {
+	
+	// Async call so no need to catch exceptions.
 	dispatch_async([SIAppBackpack backpack].queue, ^{
 		DC_LOG(@"Executing block on Simon's background thread");
 		block();

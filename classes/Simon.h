@@ -8,4 +8,8 @@
 
 #import <Simon/SIMacros.h>
 #import <Simon/SIUIApplication.h>
+#import <Simon/SIUIApplication+Text.h>
+#import <Simon/SIUIApplication+Searches.h>
+#import <Simon/SIUIApplication+Actions.h>
+#import <Simon/SIUIApplication+Time.h>
 

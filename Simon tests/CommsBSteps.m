@@ -18,9 +18,9 @@
 
 @implementation CommsBSteps
 
-SIMapStepToSelector(@"then this class should be able to retrieve (.*) from storage with key (.*)", retrieveString:withKey:)
+mapStepToSelector(@"then this class should be able to retrieve (.*) from storage with key (.*)", retrieveString:withKey:)
 -(void) retrieveString:(NSString *) aString withKey:(NSString *) key{
-	NSString *value = SIRetrieveFromStory(key);
+	NSString *value = retrieveFromStory(key);
 	GHAssertEqualStrings(value, aString, @"Strings do not match");
 }
 

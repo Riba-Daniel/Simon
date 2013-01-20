@@ -25,7 +25,7 @@
 	NSIndexPath *testNodeIndexPath = [NSIndexPath indexPathWithIndex:0];
 	
 	id mockDelegate = [OCMockObject mockForProtocol:@protocol(SIUIViewDescriptionVisitorDelegate)];
-	[[mockDelegate expect] visitedView:testView description:@"UIView" attributes:nil indexPath:testNodeIndexPath sibling:0];
+	[[mockDelegate expect] visitView:testView description:@"UIView" attributes:nil indexPath:testNodeIndexPath sibling:0];
 	
 	SIUIViewDescriptionVisitor *visitor = [[[SIUIViewDescriptionVisitor alloc] initWithDelegate:mockDelegate] autorelease];
 	[visitor visitView:testView];
@@ -51,9 +51,9 @@
 
 	// Mock delegate
 	id mockDelegate = [OCMockObject mockForProtocol:@protocol(SIUIViewDescriptionVisitorDelegate)];
-	[[mockDelegate expect] visitedView:testView description:@"UIView" attributes:nil indexPath:testNodeIndexPath sibling:0];
-	[[mockDelegate expect] visitedView:testSubView1 description:@"UIView" attributes:nil indexPath:testSubViewIndexPath1 sibling:0];
-	[[mockDelegate expect] visitedView:testSubView2 description:@"UILabel" attributes:nil indexPath:testSubViewIndexPath2 sibling:0];
+	[[mockDelegate expect] visitView:testView description:@"UIView" attributes:nil indexPath:testNodeIndexPath sibling:0];
+	[[mockDelegate expect] visitView:testSubView1 description:@"UIView" attributes:nil indexPath:testSubViewIndexPath1 sibling:0];
+	[[mockDelegate expect] visitView:testSubView2 description:@"UILabel" attributes:nil indexPath:testSubViewIndexPath2 sibling:0];
 	
 	SIUIViewDescriptionVisitor *visitor = [[[SIUIViewDescriptionVisitor alloc] initWithDelegate:mockDelegate] autorelease];
 	[visitor visitView:testView];
@@ -79,9 +79,9 @@
 	
 	// Mock delegate
 	id mockDelegate = [OCMockObject mockForProtocol:@protocol(SIUIViewDescriptionVisitorDelegate)];
-	[[mockDelegate expect] visitedView:testView description:@"UIView" attributes:nil indexPath:testNodeIndexPath sibling:0];
-	[[mockDelegate expect] visitedView:testSubView1 description:@"UIView" attributes:nil indexPath:testSubViewIndexPath1 sibling:0];
-	[[mockDelegate expect] visitedView:testSubView2 description:@"UIView" attributes:nil indexPath:testSubViewIndexPath2 sibling:1];
+	[[mockDelegate expect] visitView:testView description:@"UIView" attributes:nil indexPath:testNodeIndexPath sibling:0];
+	[[mockDelegate expect] visitView:testSubView1 description:@"UIView" attributes:nil indexPath:testSubViewIndexPath1 sibling:0];
+	[[mockDelegate expect] visitView:testSubView2 description:@"UIView" attributes:nil indexPath:testSubViewIndexPath2 sibling:1];
 	
 	SIUIViewDescriptionVisitor *visitor = [[[SIUIViewDescriptionVisitor alloc] initWithDelegate:mockDelegate] autorelease];
 	[visitor visitView:testView];

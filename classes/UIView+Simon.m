@@ -13,10 +13,6 @@
 #import <Simon/SIUIViewHandlerFactory.h>
 #import <Simon/SIUIApplication.h>
 
-// We need to clear the view after each call so that the handler does not hang onto a view which is no longer valid. Leaving
-// the view retained will trigger zombies. Still not sure exactly why, but it's something to do with the view no longer being 
-// present. Still should clear here anyway.
-
 @implementation UIView (Simon)
 
 #pragma mark - Querying
