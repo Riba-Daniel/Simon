@@ -106,7 +106,7 @@
 		cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"X"] autorelease];
 	}
    cell.textLabel.text = [NSString stringWithFormat:@"Cell %i", indexPath.row];
-	cell.tag = indexPath.row;
+	//cell.tag = indexPath.row;
    
    return cell;
 }

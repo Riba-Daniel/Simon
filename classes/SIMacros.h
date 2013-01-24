@@ -158,145 +158,74 @@
 
 #define ASSERTION_EXCEPTION_NAME @"SIAssertionException"
 
-#define SIThrowException(name, msgTemplate, ...) \
+#define throwException(name, msgTemplate, ...) \
 do { \
-   NSString *_message = [NSString stringWithFormat:msgTemplate, ## __VA_ARGS__]; \
-   NSString *_finalMessage = [NSString stringWithFormat:@"%s(%d) %@", __PRETTY_FUNCTION__, __LINE__, _message]; \
-   DC_LOG(@"Throwing exception with message: %@", _finalMessage); \
-   @throw [NSException exceptionWithName:name reason:_finalMessage userInfo:nil]; \
+   NSString *message = [NSString stringWithFormat:msgTemplate, ## __VA_ARGS__]; \
+   NSString *finalMessage = [NSString stringWithFormat:@"%s(%d) %@", __PRETTY_FUNCTION__, __LINE__, message]; \
+   DC_LOG(@"Throwing exception with message: %@", finalMessage); \
+   @throw [NSException exceptionWithName:name reason:finalMessage userInfo:nil]; \
 } while (NO)
 
-/** 
- Generates a failure unconditionally. 
- */
-#define SIFail() SIFailM(@"SIFail executed, throwing failure exception.")
+#pragma mark - Assertions
 
-/**
- Fail if the passed object variable is not a nil value.
- 
- @param obj a variable of type id or NSObject* to test.
- */
-#define SIAssertNotNil(obj) SIAssertNotNilM(obj, @"SIAssertNotNil(" #obj ") '" #obj "' should be a valid object.")
-
-/**
- Fail if the passed object variable is a nil value.
- 
- @param obj a variable of type id or NSObject* to test.
- */
-#define SIAssertNil(obj) SIAssertNilM(obj, @"SIAssertNil(" #obj ") Expecting '" #obj "' to be nil.")
-
-/**
- Fail if the passed BOOL variable is NO.
- 
- @param exp an expression that is expected to resolve to a BOOL value. The expression can just be a simple BOOL variable name.
- */ 
-#define SIAssertTrue(exp) SIAssertTrueM(exp, @"SIAssertTrue(" #exp ") Expecting '" #exp "' to be YES, but it was NO.")
-
-/**
- Fail if the passed query does not find a UIView.
- */
-#define SIAssertViewPresent(query) SIAssertViewPresentM(query, @"SIAssertViewPresent(" #query ") Expected '" query "' to find a UIView.")
-
-/**
- Fail if the passed query finds a UIView.
- */
-#define SIAssertViewNotPresent(query) SIAssertViewNotPresentM(query, @"SIAssertViewNotPresent(" #query ") Expected '" query "' to not find a UIView.")
-
-/**
- Fail if the passed BOOL variable is YES.
- 
- @param exp an expression that is expected to resolve to a BOOL value. The expression can just be a simple BOOL variable name.
- */ 
-#define SIAssertFalse(exp) SIAssertFalseM(exp, @"SIAssertFalse(" #exp ") Expecting '" #exp "' to be NO, but it was YES.")
-
-/*
- Fails if the two values are not equal. This works for all primitive numbers.
- 
- @param x the first value to compare.
- @parma y the second value to compare.
- */
-#define SIAssertEquals(x, y) SIAssertEqualsM(x, y, @"SIAssertEquals(" #x ", " #y ") failed: " #x @" != " #y)
-
-/*
- Fails if the label does not have the specified text. Label can be either a UILabel pointer or a dNodi query that will return a label.
- 
- @param label a dNodi query that will return a UILabel or a reference to a UILabel.
- @parma expectedText the text we expect the label to be displaying.
- */
-#define SIAssertLabelTextEquals(label, expectedText) SIAssertLabelTextEqualsM(label, expectedText, @"SIAssertLabelTextEquals(" #label ", " #expectedText ") failed: label text does equal '" expectedText "'")
-
-/*
- Fails if the two objects are not equal. This basically calls the Object:isEquals: method on x giving y as a parameter.
- 
- @param x the first object to compare.
- @parma y the second value to compare.
- */
-#define SIAssertObjectEquals(x, y) \
-   do { \
-      id xValue = (x) == nil ? @"nil" : (x); \
-      id yValue = (y) == nil ? @"nil" : (y); \
-      SIAssertObjectEqualsM(x, y, @"SIAssertObjectEquals(%s, %s) failed: %@ != %@", #x, #y, xValue, yValue); \
-   } while (NO)
-
-/*
- Same as above assertions but have extra parameters which are passed to NSString:stringWithFormat:
- */
-
-#pragma mark - Main assertions
 /// @name Main assertions
 
-#define SIFailM(msgTemplate, ...) SIThrowException(ASSERTION_EXCEPTION_NAME, msgTemplate, ## __VA_ARGS__)
+#define fail(msg) throwException(ASSERTION_EXCEPTION_NAME, msg)
 
-#define SIAssertNotNilM(obj, msgtemplate, ...) \
+#define assertNotNil(obj) \
    if (obj == nil) { \
-      SIThrowException(ASSERTION_EXCEPTION_NAME, msgtemplate, ## __VA_ARGS__); \
+      throwException(ASSERTION_EXCEPTION_NAME, @"assertNotNil(" #obj ") '" #obj "' should be a valid object."); \
    }
 
-#define SIAssertNilM(obj, msgTemplate, ...) \
+#define assertNil(obj) \
    if (obj != nil) { \
-      SIThrowException(ASSERTION_EXCEPTION_NAME, msgTemplate, ## __VA_ARGS__); \
+      throwException(ASSERTION_EXCEPTION_NAME, @"assertNil(" #obj ") Expecting '" #obj "' to be nil."); \
    }
 
-#define SIAssertTrueM(exp, msgTemplate, ...) \
+#define assertTrue(exp) \
    do { \
       BOOL _exp = exp; \
       if (!_exp) { \
-         SIThrowException(ASSERTION_EXCEPTION_NAME, msgTemplate, ## __VA_ARGS__); \
+         throwException(ASSERTION_EXCEPTION_NAME, @"assertTrue(" #exp ") Expecting '" #exp "' to be YES, but it was NO."); \
       } \
    } while (NO)
 
-#define SIAssertViewPresentM(query, msgTemplate, ...) \
+#define assertFalse(exp) \
 	do { \
-		if (!isPresent(query)) { \
-			SIThrowException(ASSERTION_EXCEPTION_NAME, msgTemplate, ## __VA_ARGS__); \
+		BOOL _exp = exp; \
+		if (_exp) { \
+			throwException(ASSERTION_EXCEPTION_NAME, @"assertFalse(" #exp ") Expecting '" #exp "' to be NO, but it was YES."); \
 		} \
 	} while (NO)
 
-#define SIAssertViewNotPresentM(query, msgTemplate, ...) \
+#define assertViewPresent(view) \
 	do { \
-		if (isPresent(query)) { \
-			SIThrowException(ASSERTION_EXCEPTION_NAME, msgTemplate, ## __VA_ARGS__); \
+		if (!isPresent(view)) { \
+			throwException(ASSERTION_EXCEPTION_NAME, @"assertViewPresent(" #view ") Expected '" view "' to find a UIView."); \
 		} \
 	} while (NO)
 
-#define SIAssertFalseM(exp, msgTemplate, ...) \
-   do { \
-      BOOL _exp = exp; \
-      if (_exp) { \
-         SIThrowException(ASSERTION_EXCEPTION_NAME, msgTemplate, ## __VA_ARGS__); \
-      } \
-   } while (NO)
+#define assertViewNotPresent(view) \
+	do { \
+		if (isPresent(view)) { \
+			throwException(ASSERTION_EXCEPTION_NAME, @"assertViewNotPresent(" #view ") Expected '" view "' to not find a UIView."); \
+		} \
+	} while (NO)
 
-#define SIAssertEqualsM(x, y, msgTemplate, ...) \
-   SIAssertTrueM((x) == (y), msgTemplate, ## __VA_ARGS__);
+#define assertEquals(x, y) \
+	if ((x) != (y)) { \
+		throwException(ASSERTION_EXCEPTION_NAME, @"assertEquals(" #x ", " #y ") failed: " #x " != " #y); \
+	}
 
 // Compares if at least one is an object. Otherwise both are nil and that is ok too.
-#define SIAssertObjectEqualsM(x, y, msgTemplate, ...) \
+#define assertObjectEquals(x, y) \
    if ((x) != nil || (y) != nil) { \
-		SIAssertTrueM([(id)(x) isEqual:(id)(y)], msgTemplate, ## __VA_ARGS__); \
+		if (![(id)(x) isEqual:(id)(y)]) { \
+			throwException(ASSERTION_EXCEPTION_NAME, @"assertObjectEquals(" #x ", " #y ") failed."); \
+		} \
    } 
 
-#define SIAssertLabelTextEqualsM(label, expectedText, msgTemplate, ...) \
+#define assertLabelTextEquals(label, expectedText) \
 	do { \
 		UILabel *theLabel = nil; \
 		if ([label isKindOfClass:[NSString class]]) { \
@@ -305,6 +234,8 @@ do { \
 			theLabel = (UILabel *) label; \
 		} \
 		NSString *labelText = theLabel.text; \
-		SIAssertObjectEqualsM(labelText, expectedText, msgTemplate, ## __VA_ARGS__); \
+		if (![labelText isEqual:expectedText]) { \
+			throwException(ASSERTION_EXCEPTION_NAME, @"assertLabelTextEquals(" #label ", " #expectedText ") failed. Found label text: '%@' instead.", labelText); \
+		} \
 	} while (NO)
 

@@ -14,8 +14,6 @@
 #import <Simon/SIAppBackpack.h>
 #import <Simon/NSProcessInfo+Simon.h>
 
-#import <PublicAutomation/UIAutomationBridge.h>
-
 #import <QuartzCore/CALayer.h>
 
 @implementation SIUIApplication

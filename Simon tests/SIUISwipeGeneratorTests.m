@@ -16,6 +16,7 @@
 @end
 
 @implementation SIUISwipeGeneratorTests
+/*
 -(void) testSwipeSliderRight {
    self.testViewController.slider.value = 5.0;
 
@@ -75,5 +76,5 @@
    
    GHAssertGreaterThanOrEqual([self.testViewController dragDuration], 0.45, @"Drag too fast");
 }
-
+*/
 @end

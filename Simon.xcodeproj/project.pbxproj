@@ -174,7 +174,6 @@
 		32A0A7CB15FE24D100A3964F /* SIStory.m in Sources */ = {isa = PBXBuildFile; fileRef = 653D0EB813A783C000A5AB82 /* SIStory.m */; };
 		32A0A7CD15FF208A00A3964F /* NSProcessInfo+SimonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A0A7CC15FF208A00A3964F /* NSProcessInfo+SimonTests.m */; };
 		32A188A515EF89BE00B8C111 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 32A188A315EF89BE00B8C111 /* InfoPlist.strings */; };
-		32A3660D1674BD1900D8F5BA /* libPublicAutomation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32A3660A1674BC6A00D8F5BA /* libPublicAutomation.a */; };
 		32A4DDFB161FD9FB0031DEA3 /* TestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A4DDFA161FD9FB0031DEA3 /* TestUtils.m */; };
 		32A4DDFC161FD9FB0031DEA3 /* TestUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 32A4DDFA161FD9FB0031DEA3 /* TestUtils.m */; };
 		32A4DE3B1621B8AB0031DEA3 /* libGRMustache5-MacOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 32A4DE301621B74F0031DEA3 /* libGRMustache5-MacOS.a */; };
@@ -367,20 +366,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 322DA73E159B4A5C005CFC83;
 			remoteInfo = "CocoaHTTPServer-iOS";
-		};
-		32A366091674BC6A00D8F5BA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 32A365FE1674BC6A00D8F5BA /* PublicAutomation.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = C194253815D838BD004FC314;
-			remoteInfo = PublicAutomation;
-		};
-		32A3660B1674BD1000D8F5BA /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 32A365FE1674BC6A00D8F5BA /* PublicAutomation.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = C194253715D838BD004FC314;
-			remoteInfo = PublicAutomation;
 		};
 		32A4DE2F1621B74F0031DEA3 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -640,7 +625,6 @@
 		32A1889815EF89BE00B8C111 /* Pieman Tests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Pieman Tests.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		32A188A215EF89BE00B8C111 /* Pieman Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Pieman Tests-Info.plist"; sourceTree = "<group>"; };
 		32A188A415EF89BE00B8C111 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		32A365FE1674BC6A00D8F5BA /* PublicAutomation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = PublicAutomation.xcodeproj; path = submodules/PublicAutomation/PublicAutomation.xcodeproj; sourceTree = "<group>"; };
 		32A4DDF9161FD9FB0031DEA3 /* TestUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestUtils.h; sourceTree = "<group>"; };
 		32A4DDFA161FD9FB0031DEA3 /* TestUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestUtils.m; sourceTree = "<group>"; };
 		32A4DE251621B74E0031DEA3 /* GRMustache.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GRMustache.xcodeproj; path = submodules/GRMustache/src/GRMustache.xcodeproj; sourceTree = "<group>"; };
@@ -826,7 +810,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				32A3660D1674BD1900D8F5BA /* libPublicAutomation.a in Frameworks */,
 				32EA6E76150E11E2000A64A1 /* QuartzCore.framework in Frameworks */,
 				653D0E8E13A782AD00A5AB82 /* Foundation.framework in Frameworks */,
 				659E629F13DAFEF500ACD34C /* UIKit.framework in Frameworks */,
@@ -1160,14 +1143,6 @@
 			name = "OS X";
 			sourceTree = "<group>";
 		};
-		32A365FF1674BC6A00D8F5BA /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				32A3660A1674BC6A00D8F5BA /* libPublicAutomation.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		32A4DE261621B74E0031DEA3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -1326,7 +1301,6 @@
 		653D0E7F13A782AC00A5AB82 = {
 			isa = PBXGroup;
 			children = (
-				32A365FE1674BC6A00D8F5BA /* PublicAutomation.xcodeproj */,
 				6583B3EC13CF2220005E13F3 /* ReadMe.textile */,
 				6583B3EB13CF2220005E13F3 /* License.textile */,
 				6583B3EE13CF2242005E13F3 /* ChangeLog.textile */,
@@ -1704,7 +1678,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				32A3660C1674BD1000D8F5BA /* PBXTargetDependency */,
 				3293EE5016342D2000C371BF /* PBXTargetDependency */,
 				3293EE4C16342D0C00C371BF /* PBXTargetDependency */,
 				3293EE4E16342D0C00C371BF /* PBXTargetDependency */,
@@ -1768,10 +1741,6 @@
 					ProductGroup = 32A4DE261621B74E0031DEA3 /* Products */;
 					ProjectRef = 32A4DE251621B74E0031DEA3 /* GRMustache.xcodeproj */;
 				},
-				{
-					ProductGroup = 32A365FF1674BC6A00D8F5BA /* Products */;
-					ProjectRef = 32A365FE1674BC6A00D8F5BA /* PublicAutomation.xcodeproj */;
-				},
 			);
 			projectRoot = "";
 			targets = (
@@ -1791,13 +1760,6 @@
 			fileType = "compiled.mach-o.dylib";
 			path = libCocoaHTTPServer.a;
 			remoteRef = 322426A415EBA95E00F0CB62 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		32A3660A1674BC6A00D8F5BA /* libPublicAutomation.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libPublicAutomation.a;
-			remoteRef = 32A366091674BC6A00D8F5BA /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		32A4DE301621B74F0031DEA3 /* libGRMustache5-MacOS.a */ = {
@@ -2273,11 +2235,6 @@
 			isa = PBXTargetDependency;
 			name = "CocoaHTTPServer-iOS";
 			targetProxy = 3293EE4F16342D2000C371BF /* PBXContainerItemProxy */;
-		};
-		32A3660C1674BD1000D8F5BA /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = PublicAutomation;
-			targetProxy = 32A3660B1674BD1000D8F5BA /* PBXContainerItemProxy */;
 		};
 		32A4DE3D1621B8B20031DEA3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;

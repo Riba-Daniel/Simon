@@ -11,6 +11,7 @@
 #import <Simon/SIUITapGenerator.h>
 #import <Simon/SIUISwipeGenerator.h>
 #import <Simon/NSObject+Simon.h>
+#import <Simon/SIConstants.h>
 
 // We need access to the private API of the keyboard layout so we can send keys.
 @interface UIKeyboardLayout : UIView
@@ -42,7 +43,7 @@
 }
 
 -(NSArray *)dnSubNodes {
-	// Return a copy as this has been known to change whilst this code is executing.
+	// Return a copy as this has been known to change whilst this code is executing. Thus triggering zombies and the undead.
 	return [[self.view.subviews copy] autorelease];
 }
 
@@ -75,7 +76,7 @@
 		NSNumber *valueAsNumber = @([value doubleValue]);
 		return [valueAsNumber isEqualToNumber:(NSNumber *) propertyValue];
 	}
-
+	
 	// Otherwise string compare.
 	return [value isEqualToString:propertyValue];
 }

@@ -10,7 +10,6 @@
 #import <Simon/SIUIApplication.h>
 #import <Simon/SIUIApplication+Actions.h>
 #import "AbstractTestWithControlsOnView.h"
-#import <PublicAutomation/UIAutomationBridge.h>
 
 @interface SIUIApplication_ActionsTests : AbstractTestWithControlsOnView
 
@@ -90,7 +89,7 @@
 	[[SIUIApplication application] tap:self.testViewController.tableView];
 	
 	[NSThread sleepForTimeInterval:0.2];
-	GHAssertEquals(self.testViewController.selectedRow, (NSInteger) 6, nil);
+	GHAssertEquals(self.testViewController.selectedRow, (NSInteger) 5, nil);
 }
 
 @end

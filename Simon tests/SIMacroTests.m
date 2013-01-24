@@ -51,254 +51,234 @@ mapStepToSelector(@"abc", dummyMethod);
 
 -(void) testFail {
    @try {
-      SIFail();
+      fail(@"abc");
       GHFail(@"Exception not thrown");
    }
    @catch (NSException *exception) {
-      catchMessage(@"-[SIMacroTests testSIFail](%i) SIFail executed, throwing failure exception.");
-   }
-}
-
--(void) testFailWithMessage {
-   @try {
-      SIFailM(@"abc %@", @"def");
-      GHFail(@"Exception not thrown");
-   }
-   @catch (NSException *exception) {
-      catchMessage(@"-[SIMacroTests testSIFailWithMessage](%i) abc def");
+      catchMessage(@"-[SIMacroTests testFail](%i) abc");
    }
 }
 
 #pragma mark - Assert tests
 
--(void) testSIAssertNil {
-   SIAssertNil(nil);
+-(void) testAssertNil {
+   assertNil(nil);
 }
 
--(void) testSIAssertNilThrows {
+-(void) testAssertNilThrows {
    @try {
-      SIAssertNil(@"abc");
+      assertNil(@"abc");
       GHFail(@"Exception not thrown");
    }
    @catch (NSException *exception) {
-      catchMessage(@"-[SIMacroTests testSIAssertNilThrows](%i) SIAssertNil(@\"abc\") Expecting '@\"abc\"' to be nil.");
+      catchMessage(@"-[SIMacroTests testAssertNilThrows](%i) assertNil(@\"abc\") Expecting '@\"abc\"' to be nil.");
    }
 }
 
--(void) testSIAssertNilThrowsWithMessage {
+-(void) testAssertNotNil {
+   assertNotNil(@"abc");
+}
+
+-(void) testAssertNotNilThrows {
    @try {
-      SIAssertNilM(@"abc", @"def %@", @"ghi");
+      assertNotNil(nil);
       GHFail(@"Exception not thrown");
    }
    @catch (NSException *exception) {
-      catchMessage(@"-[SIMacroTests testSIAssertNilThrowsWithMessage](%i) def ghi");
+      catchMessage(@"-[SIMacroTests testAssertNotNilThrows](%i) assertNotNil(nil) 'nil' should be a valid object.");
    }
 }
 
--(void) testSIAssertNotNil {
-   SIAssertNotNil(@"abc");
+-(void) testAssertTrue {
+   assertTrue(YES);
 }
 
--(void) testSIAssertNotNilThrows {
+-(void) testAssertTrueWithExpression {
+   assertTrue(45 == 45);
+}
+
+-(void) testAssertTrueWithObjectExpression {
+   assertTrue([[@"ABC" lowercaseString] isEqualToString:@"abc"]);
+}
+
+-(void) testAssertTrueThrows {
    @try {
-      SIAssertNotNil(nil);
+      assertTrue(NO);
       GHFail(@"Exception not thrown");
    }
    @catch (NSException *exception) {
-      catchMessage(@"-[SIMacroTests testSIAssertNotNilThrows](%i) SIAssertNotNil(nil) 'nil' should be a valid object.");
+      catchMessage(@"-[SIMacroTests testAssertTrueThrows](%i) assertTrue(NO) Expecting 'NO' to be YES, but it was NO.");
    }
 }
 
--(void) testSIAssertTrue {
-   SIAssertTrue(YES);
+-(void) testAssertFalse {
+   assertFalse(NO);
 }
 
--(void) testSIAssertTrueWithExpression {
-   SIAssertTrue(45 == 45);
+-(void) testAssertFalseWithExpression {
+   assertFalse(12 == 45);
 }
 
--(void) testSIAssertTrueWithObjectExpression {
-   SIAssertTrue([[@"ABC" lowercaseString] isEqualToString:@"abc"]);
+-(void) testAssertFalseWithObjectExpression {
+   assertFalse([@"ABC" isEqualToString:@"abc"]);
 }
 
--(void) testSIAssertTrueThrows {
+-(void) testAssertFalseThrows {
    @try {
-      SIAssertTrue(NO);
+      assertFalse(YES);
       GHFail(@"Exception not thrown");
    }
    @catch (NSException *exception) {
-      catchMessage(@"-[SIMacroTests testSIAssertTrueThrows](%i) SIAssertTrue(NO) Expecting 'NO' to be YES, but it was NO.");
+      catchMessage(@"-[SIMacroTests testAssertFalseThrows](%i) assertFalse(YES) Expecting 'YES' to be NO, but it was YES.");
    }
 }
 
--(void) testSIAssertFalse {
-   SIAssertFalse(NO);
-}
-
--(void) testSIAssertFalseWithExpression {
-   SIAssertFalse(12 == 45);
-}
-
--(void) testSIAssertFalseWithObjectExpression {
-   SIAssertFalse([@"ABC" isEqualToString:@"abc"]);
-}
-
--(void) testSIAssertFalseThrows {
+-(void) testAssertFalseThrowsWhenExpression {
    @try {
-      SIAssertFalse(YES);
+      assertFalse(1 == 1);
       GHFail(@"Exception not thrown");
    }
    @catch (NSException *exception) {
-      catchMessage(@"-[SIMacroTests testSIAssertFalseThrows](%i) SIAssertFalse(YES) Expecting 'YES' to be NO, but it was YES.");
+      catchMessage(@"-[SIMacroTests testAssertFalseThrowsWhenExpression](%i) assertFalse(1 == 1) Expecting '1 == 1' to be NO, but it was YES.");
    }
 }
 
--(void) testSIAssertFalseThrowsWhenExpression {
+-(void) testAssertViewPresent {
+   assertViewPresent(@"//UIRoundedRectButton[titleLabel.text='Button 1']");
+}
+
+-(void) testAssertViewPresentThrows {
    @try {
-      SIAssertFalse(1 == 1);
-      GHFail(@"Exception not thrown");
-   }
-   @catch (NSException *exception) {
-      catchMessage(@"-[SIMacroTests testSIAssertFalseThrowsWhenExpression](%i) SIAssertFalse(1 == 1) Expecting '1 == 1' to be NO, but it was YES.");
-   }
-}
-
--(void) testSIAssertViewPresent {
-   SIAssertViewPresent(@"//UIRoundedRectButton[titleLabel.text='Button 1']");
-}
-
--(void) testSIAssertViewPresentThrows {
-   @try {
-		SIAssertViewPresent(@"//xxx");
+		assertViewPresent(@"//xxx");
       GHFail(@"Exception not thrown");
 	}
 	@catch (NSException *exception) {
-		catchMessage(@"-[SIMacroTests testSIAssertViewPresentThrows](%i) SIAssertViewPresent(@\"//xxx\") Expected '//xxx' to find a UIView.");
+		catchMessage(@"-[SIMacroTests testAssertViewPresentThrows](%i) assertViewPresent(@\"//xxx\") Expected '//xxx' to find a UIView.");
 	}
 }
 
--(void) testSIAssertViewNotPresent {
-   SIAssertViewNotPresent(@"//xxx");
+-(void) testAssertViewNotPresent {
+   assertViewNotPresent(@"//xxx");
 }
 
--(void) testSIAssertViewNotPresentThrows {
+-(void) testAssertViewNotPresentThrows {
    @try {
-		SIAssertViewNotPresent(@"//UIRoundedRectButton[titleLabel.text='Button 1']");
+		assertViewNotPresent(@"//UIRoundedRectButton[titleLabel.text='Button 1']");
       GHFail(@"Exception not thrown");
 	}
 	@catch (NSException *exception) {
-		catchMessage(@"-[SIMacroTests testSIAssertViewNotPresentThrows](%i) SIAssertViewNotPresent(@\"//UIRoundedRectButton[titleLabel.text='Button 1']\") Expected '//UIRoundedRectButton[titleLabel.text='Button 1']' to not find a UIView.");
+		catchMessage(@"-[SIMacroTests testAssertViewNotPresentThrows](%i) assertViewNotPresent(@\"//UIRoundedRectButton[titleLabel.text='Button 1']\") Expected '//UIRoundedRectButton[titleLabel.text='Button 1']' to not find a UIView.");
 	}
 }
 
--(void) testSIAssertLabelTextEqualsWithQuery {
-   SIAssertLabelTextEquals(@"//UILabel[tag='101']", @"Tapable Label");
+-(void) testAssertLabelTextEqualsWithQuery {
+   assertLabelTextEquals(@"//UILabel[tag='101']", @"Tapable Label");
 }
 
--(void) testSIAssertLabelTextEqualsWithLabel {
+-(void) testAssertLabelTextEqualsWithLabel {
 	UILabel *label = (UILabel *) withQuery(@"//UILabel[tag='101']");
-   SIAssertLabelTextEquals(label, @"Tapable Label");
+   assertLabelTextEquals(label, @"Tapable Label");
 }
 
--(void) testSIAssertLabelTextEqualsThrows {
+-(void) testAssertLabelTextEqualsThrows {
    @try {
-		SIAssertLabelTextEquals(@"//UILabel[tag='101']", @"XXX");
+		assertLabelTextEquals(@"//UILabel[tag='101']", @"XXX");
       GHFail(@"Exception not thrown");
 	}
 	@catch (NSException *exception) {
-		catchMessage(@"-[SIMacroTests testSIAssertLabelTextEqualsThrows](%i) SIAssertLabelTextEquals(@\"//UILabel[tag='101']\", @\"XXX\") failed: label text does equal 'XXX'");
+		catchMessage(@"-[SIMacroTests testAssertLabelTextEqualsThrows](%i) assertLabelTextEquals(@\"//UILabel[tag='101']\", @\"XXX\") failed. Found label text: 'Tapable Label' instead.");
 	}
 }
 
 #pragma mark - Equals tests
 
--(void) testSIAssertEqualsWithInts {
-   SIAssertEquals(5, 5);
+-(void) testAssertEqualsWithInts {
+   assertEquals(5, 5);
 }
 
--(void) testSIAssertEqualsWithIntsThrows {
+-(void) testAssertEqualsWithIntsThrows {
    @try {
-      SIAssertEquals(1, 2);
+      assertEquals(1, 2);
       GHFail(@"Exception not thrown");
    }
    @catch (NSException *exception) {
-      catchMessage(@"-[SIMacroTests testSIAssertEqualsWithIntsThrows](%i) SIAssertEquals(1, 2) failed: 1 != 2");
+      catchMessage(@"-[SIMacroTests testAssertEqualsWithIntsThrows](%i) assertEquals(1, 2) failed: 1 != 2");
    }
 }
 
--(void) testSIAssertEqualsWithMixedTypes {
-   SIAssertEquals(5, 5.0);
+-(void) testAssertEqualsWithMixedTypes {
+   assertEquals(5, 5.0);
 }
 
--(void) testSIAssertEqualsWithEquations {
-   SIAssertEquals(45 / 45 * 5, 100 / 20.0);
+-(void) testAssertEqualsWithEquations {
+   assertEquals(45 / 45 * 5, 100 / 20.0);
 }
 
--(void) testSIAssertEqualsWithObjectsProducingPrimitives {
-   SIAssertEquals([[NSNumber numberWithDouble:12.0] floatValue], [[NSNumber numberWithInt:12] intValue]);
+-(void) testAssertEqualsWithObjectsProducingPrimitives {
+   assertEquals([[NSNumber numberWithDouble:12.0] floatValue], [[NSNumber numberWithInt:12] intValue]);
 }
 
--(void) testSIAssertEqualsWithMixedTypesThrows {
+-(void) testAssertEqualsWithMixedTypesThrows {
    @try {
-      SIAssertEquals(1.5, 2);
+      assertEquals(1.5, 2);
       GHFail(@"Exception not thrown");
    }
    @catch (NSException *exception) {
-      catchMessage(@"-[SIMacroTests testSIAssertEqualsWithMixedTypesThrows](%i) SIAssertEquals(1.5, 2) failed: 1.5 != 2");
+      catchMessage(@"-[SIMacroTests testAssertEqualsWithMixedTypesThrows](%i) assertEquals(1.5, 2) failed: 1.5 != 2");
    }
 }
 
--(void) testSIAssertEqualsWithNulls {
-   SIAssertEquals(NULL, NULL);
+-(void) testAssertEqualsWithNulls {
+   assertEquals(NULL, NULL);
 }
 
--(void) testSIAssertEqualsWithComplexExpressions {
-   SIAssertEquals(NO ? 0 : 12, YES ? 12 : 0);
+-(void) testAssertEqualsWithComplexExpressions {
+   assertEquals(NO ? 0 : 12, YES ? 12 : 0);
 }
 
 #pragma mark - Object comparison
 
--(void) testSIAssertObjectEqualsWithNils {
-   SIAssertObjectEquals(nil, nil);
+-(void) testAssertObjectEqualsWithNils {
+   assertObjectEquals(nil, nil);
 }
 
--(void) testSIAssertObjectEqualsWithNilAndStringThrows {
+-(void) testAssertObjectEqualsWithNilAndStringThrows {
    @try {
-      SIAssertObjectEquals(nil, @"abc");
+      assertObjectEquals(nil, @"abc");
       GHFail(@"Exception not thrown");
    }
    @catch (NSException *exception) {
-      catchMessage(@"-[SIMacroTests testSIAssertObjectEqualsWithNilAndStringThrows](%i) SIAssertObjectEquals(nil, @\"abc\") failed: nil != abc");
+      catchMessage(@"-[SIMacroTests testAssertObjectEqualsWithNilAndStringThrows](%i) assertObjectEquals(nil, @\"abc\") failed.");
    }
 }
 
--(void) testSIAssertObjectEqualsWithObjects {
-   SIAssertObjectEquals(@"abc", @"abc");
+-(void) testAssertObjectEqualsWithObjects {
+   assertObjectEquals(@"abc", @"abc");
 }
 
--(void) testSIAssertObjectEqualsWithBuiltObjects {
+-(void) testAssertObjectEqualsWithBuiltObjects {
    NSString *s1 = [NSString stringWithFormat:@"abc %@", @"def"];
    NSString *s2 = [NSString stringWithFormat:@"%@ def", @"abc"];
-   SIAssertObjectEquals(s1, s2);
+   assertObjectEquals(s1, s2);
 }
 
--(void) testSIAssertObjectEqualsWithDifferentTypes {
-   SIAssertObjectEquals(@"12", [[NSNumber numberWithInt:12] stringValue]);
+-(void) testAssertObjectEqualsWithDifferentTypes {
+   assertObjectEquals(@"12", [[NSNumber numberWithInt:12] stringValue]);
 }
 
--(void) testSIAssertObjectEqualsWithObjectExpressions {
+-(void) testAssertObjectEqualsWithObjectExpressions {
    NSString *s1 = [NSString stringWithFormat:@"abc %@", @"def"];
    NSString *s2 = [NSString stringWithFormat:@"%@ def", @"abc"];
-   SIAssertObjectEquals([s1 substringFromIndex:2], [s2 substringFromIndex:2]);
+   assertObjectEquals([s1 substringFromIndex:2], [s2 substringFromIndex:2]);
 }
 
--(void) testSIAssertObjectEqualsWithObjectsThrows {
+-(void) testAssertObjectEqualsWithObjectsThrows {
    @try {
-      SIAssertObjectEquals(@"def", @"abc");
+      assertObjectEquals(@"def", @"abc");
       GHFail(@"Exception not thrown");
    }
    @catch (NSException *exception) {
-      catchMessage(@"-[SIMacroTests testSIAssertObjectEqualsWithObjectsThrows](%i) SIAssertObjectEquals(@\"def\", @\"abc\") failed: def != abc");
+      catchMessage(@"-[SIMacroTests testAssertObjectEqualsWithObjectsThrows](%i) assertObjectEquals(@\"def\", @\"abc\") failed.");
    }
 }
 
@@ -343,77 +323,18 @@ mapStepToSelector(@"abc", dummyMethod);
 	GHAssertEquals(self.testViewController.tappedButton, 1, @"Tapped flag not set. Control tapping may not have worked");
 }
 
--(void) testTapButtonWithLabel {
-   self.testViewController.tappedButton = 0;
-	//tapButtonWithLabel(@"Button 1");
-	GHAssertEquals(self.testViewController.tappedButton, 1, @"Tapped flag not set. Control tapping may not have worked");
-}
-
--(void) testTapButtonWithLabelFailsIfButtonNotFound {
-   @try {
-      //tapButtonWithLabel(@"Button 3");
-      GHFail(@"Exception not thrown");
-   }
-   @catch (SIUINotFoundException *exception) {
-      GHAssertEqualStrings(exception.name, NSStringFromClass([SIUINotFoundException class]), @"Incorrect domain");
-      GHAssertEqualStrings(exception.reason, @"Button 3 not found.", @"Reason incorrect");
-   }
-}
-
--(void) testTapButtonWithLabelAndWait {
-	
-   self.testViewController.tappedButton = 0;
-   NSDate *before = [NSDate date];
-   //tapButtonWithLabelAndWait(@"Button 1",1.0);
-   NSTimeInterval diff = [before timeIntervalSinceNow];
-   
-   GHAssertEquals(self.testViewController.tappedButton, 1, @"Button not tapped");
-   GHAssertLessThan(diff, -1.0, @"Not enough time passed");
-}
-
--(void) testTapTabBarItems {
-   self.testViewController.tappedTabBarItem = 0;
-   //tapTabBarButtonWithLabel(@"More");
-	GHAssertEquals(self.testViewController.tappedTabBarItem, 2, @"Tapped flag not set. Control tapping may not have worked");
-   //tapTabBarButtonWithLabel(@"Favorites");
-	GHAssertEquals(self.testViewController.tappedTabBarItem, 1, @"Tapped flag not set. Control tapping may not have worked");
-}
-
 #pragma mark - UI Tests - Swiping
 
--(void) testSwipeSliderRightWithUIView {
+-(void) testSwipeSliderRight {
    self.testViewController.slider.value = 5;
    swipe(self.testViewController.slider, SIUISwipeDirectionRight, 50);
 	GHAssertEquals(round(self.testViewController.slider.value), 7.0, @"Slider not slide.");
 }
 
--(void) testSwipeSliderRightWithQuery {
-	/*
-   self.testViewController.slider.value = 5;
-   UIView *swipedView = swipe(@"//UISlider", SIUISwipeDirectionRight, 50);
-	GHAssertEquals(round(self.testViewController.slider.value), 7.0, @"Slider not slide.");
-	GHAssertEquals(swipedView, self.testViewController.slider, @"View not swiped");
-*/
-	 }
-
 -(void) testSwipeSliderLeft {
-	/*
    self.testViewController.slider.value = 5;
-   swipe(@"//UISlider", SIUISwipeDirectionLeft, 50);
+   swipe(self.testViewController.slider, SIUISwipeDirectionLeft, 50);
 	GHAssertEquals(round(self.testViewController.slider.value), 3.0, @"Slider not slide.");
-*/
-	 }
-
--(void) testSwipeThrowsWhenNotFound {
-	/*
-   @try {
-      swipeView(@"//XXX", SIUISwipeDirectionRight, 50);
-      GHFail(@"Exception not thrown");
-   }
-   @catch (SIUINotFoundException *exception) {
-      GHAssertEqualStrings(exception.name, NSStringFromClass([SIUINotFoundException class]), @"Incorrect domain");
-      GHAssertEqualStrings(exception.reason, @"Path //XXX failed to find anything.", @"Reason incorrect");
-   }*/
 }
 
 #pragma mark - Pauses and Waits
@@ -427,7 +348,7 @@ mapStepToSelector(@"abc", dummyMethod);
 
 -(void) testWaitForViewWithQuery {
    self.testViewController.displayLabel.text = @"...";
-   //[[SIUIApplication application] tapButtonWithLabel:@"Wait for it!"];
+   [[SIUIApplication application] tap:self.testViewController.waitForItButton];
    GHAssertEqualStrings(self.testViewController.displayLabel.text, @"...", @"Label should not be updated yet");
    UIView *label = waitForView(@"//UILabel[text='Clicked!']", 0.5, 5);
    GHAssertNotNil(label, @"Nothing returned");
@@ -503,7 +424,7 @@ mapStepToSelector(@"abc", dummyMethod);
 -(void) dummyMethod {}
 
 -(void) verifyException:(NSException *) exception description:(NSString *) expectedDescription {
-   GHAssertEqualStrings(exception.name, @"SIAssertionException", @"Incorrect exception: %@", exception);
+   GHAssertEqualStrings(exception.name, ASSERTION_EXCEPTION_NAME, @"Incorrect exception: %@", exception);
    GHAssertEqualStrings(exception.description, expectedDescription, @"Incorrect exception");
 }
 
