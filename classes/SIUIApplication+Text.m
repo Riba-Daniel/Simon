@@ -29,9 +29,4 @@
 	
 }
 
--(void) enterText:(NSString *) text intoViewWithQuery:(NSString *) query {
-	UIView *theView = [self viewWithQuery:query];
-	[self enterText:text intoView:theView];
-}
-
 @end

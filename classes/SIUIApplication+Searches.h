@@ -73,18 +73,33 @@
 -(BOOL) isViewPresent:(NSString *) query view:(UIView **) view;
 
 /**
- Locates a button with the specific label. This will also pick up buttons on UITabBar instances.
+ Locates a button with the specific label. 
  
  @param label the label to look for.
  */
 -(UIButton *) buttonWithLabel:(NSString *) label;
 
 /**
- Locates a button with the specific label. This will also pick up buttons on UITabBar instances.
+ Locates a button with the specific label. 
  
  @param label the label to look for.
  @param timeout an NSTimeInterval which specifies the maximum wait time. This method will periodically scan the interface for the requested view and after the number of specified seconds, will generate a not found error.
  */
 -(UIButton *) buttonWithLabel:(NSString *) label timeout:(NSTimeInterval) timeout;
+
+/**
+ Locates a button with the specific label.
+ 
+ @param label the label to look for.
+ */
+-(UIView *) tabBarButtonWithLabel:(NSString *) label;
+
+/**
+ Locates a tab bar item with the specific label. 
+ 
+ @param label the label to look for.
+ @param timeout an NSTimeInterval which specifies the maximum wait time. This method will periodically scan the interface for the requested view and after the number of specified seconds, will generate a not found error.
+ */
+-(UIView *) tabBarButtonWithLabel:(NSString *) label timeout:(NSTimeInterval) timeout;
 
 @end

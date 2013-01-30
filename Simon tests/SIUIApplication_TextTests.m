@@ -46,22 +46,6 @@
 	}
 }
 
--(void) testEnterTextIntoViewWithQuery {
-	[self executeBlockOnMainThread:^{
-		self.testViewController.textField.text = @"";
-	}];
-	
-	NSString *text = @"Hello world";
-	[[SIUIApplication application] enterText:text intoViewWithQuery:@"//UITextField[0]"];
-	
-	__block NSString *enteredText = nil;
-	[self executeBlockOnMainThread:^{
-		enteredText = [self.testViewController.textField.text retain];
-	}];
-	[enteredText autorelease];
-	GHAssertEqualStrings(enteredText, text, @"Text not correct");
-}
-
 -(void) testEnterPhoneNumber {
 	
 	[self executeBlockOnMainThread:^{

@@ -20,6 +20,16 @@
 #define toNSString(chars) _toNSString(chars)
 #define _toNSString(chars) @#chars
 
+#define ASSERTION_EXCEPTION_NAME @"SIAssertionException"
+
+#define throwException(name, msgTemplate, ...) \
+do { \
+NSString *message = [NSString stringWithFormat:msgTemplate, ## __VA_ARGS__]; \
+NSString *finalMessage = [NSString stringWithFormat:@"%s(%d) %@", __PRETTY_FUNCTION__, __LINE__, message]; \
+DC_LOG(@"Throwing exception with message: %@", finalMessage); \
+@throw [NSException exceptionWithName:name reason:finalMessage userInfo:nil]; \
+} while (NO)
+
 #pragma mark - Step mapping
 
 /**
@@ -55,29 +65,25 @@
  */
 #define retrieveFromStory(key) [(SIStory *) objc_getAssociatedObject(self, SI_INSTANCE_STORY_REF_KEY) retrieveObjectWithKey:key]
 
-#pragma mark - Accessing the UI
+#pragma mark - Searching the UI
+
 /// @name UI interactions
 
 /**
- Prints a tree view of the current window's UIView hirachy to the console. This is very useful for debugging and working out queries to location controls. 
- */
-#define printCurrentWindowTree() [[SIUIApplication application] logUITree]
-
-/**
- Simple wrapper around dNodi's query facilities which returns a simple object from the display. This will trigger an error if the control is not found, so it is both a find and assert in one wrapper. 
+ Simple wrapper around dNodi's query facilities which returns a simple object from the display. This will trigger an error if the control is not found, so it is both a find and assert in one wrapper.
  
  @param path a NSString containing the path to follow.
  @return a single UIView instance.
  */
-#define withQuery(path) [[SIUIApplication application] viewWithQuery:path]
+#define viewWithQuery(path) [[SIUIApplication application] viewWithQuery:path]
 
 /**
- Finds and returns an array of views. This does not assert anything about the views it is looking for.
+ Simple wrapper around dNodi's query facilities which returns a simple object from the display. This will trigger an error if the control is not found, so it is both a find and assert in one wrapper.
  
- @param query a NSString containing the path to follow.
- @return a NSArray containing the found views.
+ @param label a NSString containing the label we are looking for. 
+ @return a single UILabel instance.
  */
-#define viewsWithQuery(query) [[SIUIApplication application] viewsWithQuery:query]
+#define buttonWithLabel(label) [[SIUIApplication application] buttonWithLabel:label]
 
 /**
  Returns YES if the query returns one or more UIViews.
@@ -85,7 +91,15 @@
  @param query a NSString containing the path to follow.
  @return YES if one or more views are found, otherwise NO.
  */
-#define isPresent(query) [[SIUIApplication application] isViewPresent:query]
+#define isPresent(view) [[SIUIApplication application] isViewPresent:view]
+
+#pragma mark - Logging
+/**
+ Prints a tree view of the current window's UIView hirachy to the console. This is very useful for debugging and working out queries to location controls. 
+ */
+#define printCurrentWindowTree() [[SIUIApplication application] logUITree]
+
+#pragma mark - Actions
 
 /**
  Taps a UIView. The passed view can be either a UIView or a NSString containing a query which will locate it in the UI.
@@ -93,8 +107,7 @@
  @param view a NSString containing the path to the view or a UIView reference to the view.
  @return the UIView that was tapped.
  */
-#define tap(view) \
-	[[SIUIApplication application] tap:view]
+#define tap(view) [[SIUIApplication application] tap:view]
 
 /**
  Swipes a UIView in a given direction and distance. The passed view can be either a UIView or a NSString containing a query which will locate it in the UI.
@@ -106,6 +119,17 @@
  */
 #define swipe(view, direction, distance) \
 [[SIUIApplication application] swipe:(UIView *)view inDirection:direction forDistance: distance]
+
+/**
+ Brings up the keyboard and enters text into the field. If a query is passed this first finds the field before activating the keyboard.
+ A SIUINotAnInputFieldException will be thrown if the passed view does not implement the UITextInput protocol.
+ 
+ @param textEntryField the text entry field.
+ @param text the text that you want entered. It is assumed that the text can be entered. I.e. that the field accepts it.
+ */
+#define enterText(textEntryField, text) [[SIUIApplication application] enterText: text intoView:textEntryField]
+
+#pragma mark - Time based
 
 /**
  Pauses the current thread for the specified time. Note that this will only work on a background thread.
@@ -135,36 +159,12 @@
 #define waitForViewAnimationsToFinish(query, checkEvery) [[SIUIApplication application] waitForAnimationEndOnViewWithQuery:query retryInterval:checkEvery];
 
 /**
- Brings up the keyboard and enters text into the field. If a query is passed this first finds the field before activating the keyboard.
- A SIUINotAnInputFieldException will be thrown if the passed view does not implement the UITextInput protocol.
- 
- @param query the query path that should locate the control.
- @param text the text that you want entered. It is assumed that the text can be entered. I.e. that the field accepts it.
- */ 
-#define enterText(view, text) \
-[(view) isKindOfClass:[NSString class]] ? \
-[[SIUIApplication application] enterText: text intoViewWithQuery:(NSString *)view] : \
-[[SIUIApplication application] enterText: text intoView:(UIView *)view]
- 
-/**
  But first some reuseable logic embedded in a macro.
  */
 
 /// @name Basic Assertions
 
 // These have been written because the others I was modelling off only worked within their respective frameworks. They take two forms. The base form is a simple macro. The *M form takes an addition set of parameters where you can specify a custom message. 
-
-#pragma mark - Basic assertions
-
-#define ASSERTION_EXCEPTION_NAME @"SIAssertionException"
-
-#define throwException(name, msgTemplate, ...) \
-do { \
-   NSString *message = [NSString stringWithFormat:msgTemplate, ## __VA_ARGS__]; \
-   NSString *finalMessage = [NSString stringWithFormat:@"%s(%d) %@", __PRETTY_FUNCTION__, __LINE__, message]; \
-   DC_LOG(@"Throwing exception with message: %@", finalMessage); \
-   @throw [NSException exceptionWithName:name reason:finalMessage userInfo:nil]; \
-} while (NO)
 
 #pragma mark - Assertions
 
@@ -227,15 +227,8 @@ do { \
 
 #define assertLabelTextEquals(label, expectedText) \
 	do { \
-		UILabel *theLabel = nil; \
-		if ([label isKindOfClass:[NSString class]]) { \
-			theLabel = (UILabel *) withQuery((NSString *) label); \
-		} else { \
-			theLabel = (UILabel *) label; \
-		} \
-		NSString *labelText = theLabel.text; \
-		if (![labelText isEqual:expectedText]) { \
-			throwException(ASSERTION_EXCEPTION_NAME, @"assertLabelTextEquals(" #label ", " #expectedText ") failed. Found label text: '%@' instead.", labelText); \
+		if (![((UILabel *)label).text isEqualToString:expectedText]) { \
+			throwException(ASSERTION_EXCEPTION_NAME, @"assertLabelTextEquals(" #label ", " #expectedText ") failed. Found label text: '%@' instead.", ((UILabel *)label).text); \
 		} \
 	} while (NO)
 

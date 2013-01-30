@@ -17,49 +17,50 @@
 
 @implementation BDDImplementations
 
-SIMapStepToSelector(@"Given I am on the first page", startOnFirstScreen);
+mapStepToSelector(@"Given I am on the first page", startOnFirstScreen);
 -(void) startOnFirstScreen {
-	SIPrintCurrentWindowTree();
+	printCurrentWindowTree();
 	DC_LOG(@"%@", LABEL_FIRST);
-	if (!SIIsViewPresent(LABEL_FIRST)) {
-		SITapTabBarButtonWithLabel(@"First");
-		SIPauseFor(0.5);
+	if (!isPresent(LABEL_FIRST)) {
+		tap(buttonWithLabel(@"First"));
+		pauseFor(0.5);
 	}
-	SIAssertViewPresent(LABEL_FIRST);
+	assertViewPresent(LABEL_FIRST);
 }
 
-SIMapStepToSelector(@"Given I am on the second page", startOnSecondScreen);
+mapStepToSelector(@"Given I am on the second page", startOnSecondScreen);
 -(void)startOnSecondScreen {
-	if (!SIIsViewPresent(LABEL_SECOND)) {
-		SITapTabBarButtonWithLabel(@"Second");
-		SIPauseFor(0.5);
+	if (!isPresent(LABEL_SECOND)) {
+		tap(buttonWithLabel(@"Second"));
+		pauseFor(0.5);
 	}
-	SIAssertViewPresent(LABEL_SECOND);
+	assertViewPresent(LABEL_SECOND);
 }
 
-SIMapStepToSelector(@"Then goto the second page", gotoSecondScreen);
+mapStepToSelector(@"Then goto the second page", gotoSecondScreen);
 -(void) gotoSecondScreen {
-	SIAssertViewNotPresent(LABEL_SECOND);
-	SITapTabBarButtonWithLabel(@"Second");
-	SIPauseFor(0.5);
-	SIAssertViewPresent(LABEL_SECOND);
+	assertViewNotPresent(LABEL_SECOND);
+	tap(buttonWithLabel(@"Second"));
+	pauseFor(0.5);
+	assertViewPresent(LABEL_SECOND);
 }
 
-SIMapStepToSelector(@"Then I can tap a button", tapSecondPageHelloButton);
+mapStepToSelector(@"Then I can tap a button", tapSecondPageHelloButton);
 -(void) tapSecondPageHelloButton {
-	SITapButtonWithLabel(@"Hello");
+	tap(buttonWithLabel(@"Hello"));
 }
 
-SIMapStepToSelector(@"and see \"(.*)\" in the label", verifyLabel:);
+mapStepToSelector(@"and see \"(.*)\" in the label", verifyLabel:);
 -(void) verifyLabel:(NSString *) text {
-	SIAssertLabelTextEquals(@"//UILabel[1]", @"hello");
+	assertLabelTextEquals(viewWithQuery(@"//UILabel[1]"), @"hello");
 }
 
-SIMapStepToSelector(@"then I can enter \"(.*)\" into the name field", enterTextIntoNameField:);
+mapStepToSelector(@"then I can enter \"(.*)\" into the name field", enterTextIntoNameField:);
 -(void) enterTextIntoNameField:(NSString *) text {
-	UIView *txtField = SITapView(@"//UITextField[1]");
-	SIPauseFor(0.5);
-	SIEnterText(txtField, @"Hello there!");
+	UITextField *field = (UITextField *)viewWithQuery(@"//UITextField[1]");
+	tap(field);
+	pauseFor(0.5);
+	enterText(field, @"Hello there!");
 }
 
 @end

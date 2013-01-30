@@ -23,6 +23,8 @@
 
 @implementation SIUIApplication (Searches)
 
+#pragma mark - Core calls
+
 -(NSArray *) viewsWithQuery:(NSString *) query {
 	
 	if (self.logActions) {
@@ -88,6 +90,8 @@
 	
 }
 
+#pragma mark - Extensions
+
 -(UIView *) viewWithTag:(NSInteger) tag {
 	return [self viewWithTag:tag timeout:self.timeout];
 }
@@ -118,8 +122,17 @@
 }
 
 -(UIButton *) buttonWithLabel:(NSString *) label timeout:(NSTimeInterval) timeout {
-	return (UIButton *)[self viewWithQuery:[NSString stringWithFormat:@"//UI*Button[titleLabel.text='%@']", label] timeout:timeout];
+	return (UIButton *)[self viewWithQuery:[NSString stringWithFormat:@"//UI*Button/UI*ButtonLabel[text='%@']/..", label] timeout:timeout];
 }
+
+-(UIView *) tabBarButtonWithLabel:(NSString *) label {
+	return [self tabBarButtonWithLabel:label timeout:self.timeout];
+}
+
+-(UIView *) tabBarButtonWithLabel:(NSString *) label timeout:(NSTimeInterval) timeout {
+	return [self viewWithQuery:[NSString stringWithFormat:@"//UI*Button/UITabBarButtonLabel[text='%@']/..", label] timeout:timeout];
+}
+
 
 #pragma mark - Internal helpers
 

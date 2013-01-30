@@ -171,22 +171,17 @@ mapStepToSelector(@"abc", dummyMethod);
 	}
 }
 
--(void) testAssertLabelTextEqualsWithQuery {
-   assertLabelTextEquals(@"//UILabel[tag='101']", @"Tapable Label");
-}
-
--(void) testAssertLabelTextEqualsWithLabel {
-	UILabel *label = (UILabel *) withQuery(@"//UILabel[tag='101']");
-   assertLabelTextEquals(label, @"Tapable Label");
+-(void) testAssertLabelTextEquals {
+   assertLabelTextEquals(self.testViewController.tapableLabel, @"Tapable Label");
 }
 
 -(void) testAssertLabelTextEqualsThrows {
    @try {
-		assertLabelTextEquals(@"//UILabel[tag='101']", @"XXX");
+		assertLabelTextEquals(self.testViewController.tapableLabel, @"XXX");
       GHFail(@"Exception not thrown");
 	}
 	@catch (NSException *exception) {
-		catchMessage(@"-[SIMacroTests testAssertLabelTextEqualsThrows](%i) assertLabelTextEquals(@\"//UILabel[tag='101']\", @\"XXX\") failed. Found label text: 'Tapable Label' instead.");
+		catchMessage(@"-[SIMacroTests testAssertLabelTextEqualsThrows](%i) assertLabelTextEquals(self.testViewController.tapableLabel, @\"XXX\") failed. Found label text: 'Tapable Label' instead.");
 	}
 }
 
@@ -284,9 +279,9 @@ mapStepToSelector(@"abc", dummyMethod);
 
 #pragma mark - UI Tests - Finding
 
--(void) testWithQueryReturnsErrors {
+-(void) testViewWithQueryReturnsErrors {
    @try {
-      withQuery(@"/xxx");
+      viewWithQuery(@"/xxx");
       GHFail(@"Exception not thrown");
    }
    @catch (SIUINotFoundException *exception) {
@@ -295,16 +290,16 @@ mapStepToSelector(@"abc", dummyMethod);
    }
 }
 
--(void) testWithQueryFindsASingleControl {
-	UIView *foundView = withQuery(@"//UIRoundedRectButton[titleLabel.text='Button 1']");
+-(void) testViewWithQueryFindsButton {
+	UIView *foundView = viewWithQuery(@"//UIRoundedRectButton[titleLabel.text='Button 1']");
 	GHAssertNotNil(foundView, @"Nil returned");
 	GHAssertEqualObjects(foundView, self.testViewController.button1, @"Returned view is not a match");
 }
 
--(void) testViewsWithQueryFindsASingleControl {
-	NSArray *foundViews = viewsWithQuery(@"//UIRoundedRectButton[titleLabel.text='Button 1']");
-	GHAssertNotNil(foundViews, @"Nil returned");
-	GHAssertEqualObjects([foundViews objectAtIndex:0], self.testViewController.button1, @"Returned view is not a match");
+-(void) testButtonWithLabelFindsButton {
+	UIView *foundButton = buttonWithLabel(@"Button 1");
+	GHAssertNotNil(foundButton, @"Nil returned");
+	GHAssertEqualObjects(foundButton, self.testViewController.button1, @"Returned view is not a match");
 }
 
 -(void) testIsPresentReturnsYes {
@@ -392,24 +387,6 @@ mapStepToSelector(@"abc", dummyMethod);
 	[SIUIApplication application].disableKeyboardAutocorrect = YES;
 	
 	enterText(self.testViewController.textField, text);
-	
-	__block NSString *enteredText = nil;
-	[self executeBlockOnMainThread:^{
-		enteredText = [self.testViewController.textField.text retain];
-	}];
-	[enteredText autorelease];
-	GHAssertEqualStrings(enteredText, text, @"Text not correct");
-}
-
--(void) testEnterTextIntoViewWithQuery {
-	[self executeBlockOnMainThread:^{
-		self.testViewController.textField.text = @"";
-	}];
-	
-	NSString *text = @"ABC DEF GHI klm nop qrs tuv-w.y,y:z";
-	[SIUIApplication application].disableKeyboardAutocorrect = YES;
-	
-	enterText(@"//UITextField[0]", text);
 	
 	__block NSString *enteredText = nil;
 	[self executeBlockOnMainThread:^{

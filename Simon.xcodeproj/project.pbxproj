@@ -112,8 +112,6 @@
 		3264C85F1696A3DD00E654E0 /* SIUIApplication+Time.h in Headers */ = {isa = PBXBuildFile; fileRef = 3264C85D1696A3DD00E654E0 /* SIUIApplication+Time.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3264C8601696A3DD00E654E0 /* SIUIApplication+Time.m in Sources */ = {isa = PBXBuildFile; fileRef = 3264C85E1696A3DD00E654E0 /* SIUIApplication+Time.m */; };
 		3264C8621696A89600E654E0 /* SIUIApplication_TimeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3264C8611696A89500E654E0 /* SIUIApplication_TimeTests.m */; };
-		3265B0231514487100BE0930 /* Macro.stories in Resources */ = {isa = PBXBuildFile; fileRef = 3265B0211514487100BE0930 /* Macro.stories */; };
-		3265B0241514487100BE0930 /* MacroStoryImplementations.m in Sources */ = {isa = PBXBuildFile; fileRef = 3265B0221514487100BE0930 /* MacroStoryImplementations.m */; };
 		3265B02715144DB400BE0930 /* SIUIAbstractEventGenerator.h in Headers */ = {isa = PBXBuildFile; fileRef = 3265B02515144DB300BE0930 /* SIUIAbstractEventGenerator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		3265B02815144DB400BE0930 /* SIUIAbstractEventGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = 3265B02615144DB300BE0930 /* SIUIAbstractEventGenerator.m */; };
 		3265B02A1514887600BE0930 /* UIViewSimonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3265B0291514887600BE0930 /* UIViewSimonTests.m */; };
@@ -570,8 +568,6 @@
 		3264C85D1696A3DD00E654E0 /* SIUIApplication+Time.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SIUIApplication+Time.h"; sourceTree = "<group>"; };
 		3264C85E1696A3DD00E654E0 /* SIUIApplication+Time.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SIUIApplication+Time.m"; sourceTree = "<group>"; };
 		3264C8611696A89500E654E0 /* SIUIApplication_TimeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SIUIApplication_TimeTests.m; sourceTree = "<group>"; };
-		3265B0211514487100BE0930 /* Macro.stories */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Macro.stories; sourceTree = "<group>"; };
-		3265B0221514487100BE0930 /* MacroStoryImplementations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = MacroStoryImplementations.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		3265B02515144DB300BE0930 /* SIUIAbstractEventGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SIUIAbstractEventGenerator.h; sourceTree = "<group>"; };
 		3265B02615144DB300BE0930 /* SIUIAbstractEventGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = SIUIAbstractEventGenerator.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		3265B0291514887600BE0930 /* UIViewSimonTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = UIViewSimonTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -1070,8 +1066,6 @@
 		329825371503A0E500631203 /* Stories */ = {
 			isa = PBXGroup;
 			children = (
-				3265B0211514487100BE0930 /* Macro.stories */,
-				3265B0221514487100BE0930 /* MacroStoryImplementations.m */,
 				329825381503A0FF00631203 /* BDD.stories */,
 				3298253B1504C87600631203 /* BDDImplementations.m */,
 			);
@@ -1853,7 +1847,6 @@
 				3298252C15039FE300631203 /* second.png in Resources */,
 				3298252E15039FE300631203 /* second@2x.png in Resources */,
 				329825391503A0FF00631203 /* BDD.stories in Resources */,
-				3265B0231514487100BE0930 /* Macro.stories in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2042,7 +2035,6 @@
 				3298252315039FE300631203 /* FirstViewController.m in Sources */,
 				3298252A15039FE300631203 /* SecondViewController.m in Sources */,
 				3298253C1504C87700631203 /* BDDImplementations.m in Sources */,
-				3265B0241514487100BE0930 /* MacroStoryImplementations.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

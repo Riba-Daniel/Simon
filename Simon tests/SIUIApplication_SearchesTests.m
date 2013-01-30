@@ -70,9 +70,9 @@
 	}
 }
 
--(void) findViewWithQueryTimeoutFindsView {
+-(void) testViewWithQueryTimeoutFindsView {
 	id<DNNode> button = (id<DNNode>)[[SIUIApplication application] viewWithQuery:@"//UIRoundedRectButton/UIButtonLabel[text='Button 1']/.." timeout:1.0];
-	GHAssertEqualStrings(button.dnName, @"UIRoundedRectButton", @"Search bar not returned");
+	GHAssertEquals(button, self.testViewController.button1, @"Search bar not returned");
 }
 
 -(void) testViewWithQueryTimeoutThrowsIfNotFound {
@@ -137,6 +137,12 @@
 -(void) testButtonWithLableFindsButton {
 	UIButton *button = [[SIUIApplication application] buttonWithLabel:@"Button 1"];
 	GHAssertEqualStrings(button.titleLabel.text, @"Button 1", nil);
+}
+
+-(void) testTabBarButtonWithLabelFindsTabBarButton {
+	[[SIUIApplication application] logUITree];
+	UIView *button = [[SIUIApplication application] tabBarButtonWithLabel:@"Favorites"];
+	GHAssertEqualStrings(((UILabel *)button.subviews[1]).text, @"Favorites", nil);
 }
 
 @end
