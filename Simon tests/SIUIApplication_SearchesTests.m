@@ -140,7 +140,6 @@
 }
 
 -(void) testTabBarButtonWithLabelFindsTabBarButton {
-	[[SIUIApplication application] logUITree];
 	UIView *button = [[SIUIApplication application] tabBarButtonWithLabel:@"Favorites"];
 	GHAssertEqualStrings(((UILabel *)button.subviews[1]).text, @"Favorites", nil);
 }

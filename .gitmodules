@@ -4,3 +4,6 @@
 [submodule "submodules/PublicAutomation"]
 	path = submodules/PublicAutomation
 	url = git://github.com/TestingWithFrank/PublicAutomation.git
+[submodule "submodules/CocoaHttpServer"]
+	path = submodules/CocoaHttpServer
+	url = git://github.com/robbiehanson/CocoaHTTPServer.git

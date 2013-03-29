@@ -5,6 +5,13 @@ root-url: ../
 simon-tab-class: tabbar-tab-highlighted
 ---
 
+h1. Version 0.3.0   2013
+
+* Total rethink and re-write of many core functions. Simon now works by looking for views and waiting for them to appear before applying taps and other actions. This is different to previous techniques.
+* Separated search functions from action functions to simplify the interfaces.
+* Removed all SI prefixes from macros as they where not necessary and made the resulting test code messy.
+* Simplified and redesigned the DSL behind the macros and methods.
+
 h1. Version 0.2.1 Nov 2012
 
 * Updated with new dNodi that can handle multiple attributes on a node. Now using a totally refactored dNodi. 

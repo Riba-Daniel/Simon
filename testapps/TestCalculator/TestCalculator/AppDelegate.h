@@ -1,9 +1,9 @@
 //
 //  AppDelegate.h
-//  ARC App with tests
+//  TestCalculator
 //
-//  Created by Derek Clarkson on 5/03/12.
-//  Copyright (c) 2012. All rights reserved.
+//  Created by Derek Clarkson on 7/02/13.
+//  Copyright (c) 2013 Derek Clarkson. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
